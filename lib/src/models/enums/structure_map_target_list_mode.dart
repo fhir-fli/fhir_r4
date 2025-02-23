@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// If field is a list, how to manage the production.
-class StructureMapTargetListMode extends FhirCode {
+class StructureMapTargetListMode extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   StructureMapTargetListMode._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,22 +44,34 @@ class StructureMapTargetListMode extends FhirCode {
   /// first
   static final StructureMapTargetListMode first = StructureMapTargetListMode._(
     'first',
+    system: 'http://hl7.org/fhir/ValueSet/map-target-list-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'First'.toFhirString,
   );
 
   /// share
   static final StructureMapTargetListMode share = StructureMapTargetListMode._(
     'share',
+    system: 'http://hl7.org/fhir/ValueSet/map-target-list-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Share'.toFhirString,
   );
 
   /// last
   static final StructureMapTargetListMode last = StructureMapTargetListMode._(
     'last',
+    system: 'http://hl7.org/fhir/ValueSet/map-target-list-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Last'.toFhirString,
   );
 
   /// collate
   static final StructureMapTargetListMode collate =
       StructureMapTargetListMode._(
     'collate',
+    system: 'http://hl7.org/fhir/ValueSet/map-target-list-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Collate'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

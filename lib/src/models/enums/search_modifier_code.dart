@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A supported modifier for a search parameter.
-class SearchModifierCode extends FhirCode {
+class SearchModifierCode extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   SearchModifierCode._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,61 +43,97 @@ class SearchModifierCode extends FhirCode {
   /// missing
   static final SearchModifierCode missing = SearchModifierCode._(
     'missing',
+    system: 'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Missing'.toFhirString,
   );
 
   /// exact
   static final SearchModifierCode exact = SearchModifierCode._(
     'exact',
+    system: 'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Exact'.toFhirString,
   );
 
   /// contains
   static final SearchModifierCode contains = SearchModifierCode._(
     'contains',
+    system: 'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Contains'.toFhirString,
   );
 
   /// not
   static final SearchModifierCode not = SearchModifierCode._(
     'not',
+    system: 'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Not'.toFhirString,
   );
 
   /// text
   static final SearchModifierCode text = SearchModifierCode._(
     'text',
+    system: 'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Text'.toFhirString,
   );
 
   /// in_
   static final SearchModifierCode in_ = SearchModifierCode._(
     'in',
+    system: 'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'In'.toFhirString,
   );
 
   /// not_in
   static final SearchModifierCode not_in = SearchModifierCode._(
     'not-in',
+    system: 'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Not In'.toFhirString,
   );
 
   /// below
   static final SearchModifierCode below = SearchModifierCode._(
     'below',
+    system: 'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Below'.toFhirString,
   );
 
   /// above
   static final SearchModifierCode above = SearchModifierCode._(
     'above',
+    system: 'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Above'.toFhirString,
   );
 
   /// type
   static final SearchModifierCode type = SearchModifierCode._(
     'type',
+    system: 'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Type'.toFhirString,
   );
 
   /// identifier
   static final SearchModifierCode identifier = SearchModifierCode._(
     'identifier',
+    system: 'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Identifier'.toFhirString,
   );
 
   /// ofType
   static final SearchModifierCode ofType = SearchModifierCode._(
     'ofType',
+    system: 'http://hl7.org/fhir/ValueSet/search-modifier-code'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Of Type'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

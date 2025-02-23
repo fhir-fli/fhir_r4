@@ -6,10 +6,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// For example whether it is a possible one (others allowed), or an
 /// exclusive authorized one for this ingredient. Note that this is not the
 /// manufacturing process role.
-class IngredientManufacturerRole extends FhirCode {
+class IngredientManufacturerRole extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   IngredientManufacturerRole._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -45,17 +48,32 @@ class IngredientManufacturerRole extends FhirCode {
   static final IngredientManufacturerRole allowed =
       IngredientManufacturerRole._(
     'allowed',
+    system:
+        'http://hl7.org/fhir/ValueSet/ingredient-manufacturer-role'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display:
+        'Manufacturer is specifically allowed for this ingredient'.toFhirString,
   );
 
   /// possible
   static final IngredientManufacturerRole possible =
       IngredientManufacturerRole._(
     'possible',
+    system:
+        'http://hl7.org/fhir/ValueSet/ingredient-manufacturer-role'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display:
+        'Manufacturer is known to make this ingredient in general'.toFhirString,
   );
 
   /// actual
   static final IngredientManufacturerRole actual = IngredientManufacturerRole._(
     'actual',
+    system:
+        'http://hl7.org/fhir/ValueSet/ingredient-manufacturer-role'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display:
+        'Manufacturer actually makes this particular ingredient'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

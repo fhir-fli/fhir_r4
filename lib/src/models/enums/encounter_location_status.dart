@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The status of the location.
-class EncounterLocationStatus extends FhirCode {
+class EncounterLocationStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   EncounterLocationStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,21 +43,33 @@ class EncounterLocationStatus extends FhirCode {
   /// planned
   static final EncounterLocationStatus planned = EncounterLocationStatus._(
     'planned',
+    system: 'http://hl7.org/fhir/ValueSet/encounter-location-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Planned'.toFhirString,
   );
 
   /// active
   static final EncounterLocationStatus active = EncounterLocationStatus._(
     'active',
+    system: 'http://hl7.org/fhir/ValueSet/encounter-location-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Active'.toFhirString,
   );
 
   /// reserved
   static final EncounterLocationStatus reserved = EncounterLocationStatus._(
     'reserved',
+    system: 'http://hl7.org/fhir/ValueSet/encounter-location-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Reserved'.toFhirString,
   );
 
   /// completed
   static final EncounterLocationStatus completed = EncounterLocationStatus._(
     'completed',
+    system: 'http://hl7.org/fhir/ValueSet/encounter-location-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Completed'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

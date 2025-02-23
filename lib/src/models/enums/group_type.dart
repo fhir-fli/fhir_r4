@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Types of resources that are part of group.
-class GroupType extends FhirCode {
+class GroupType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   GroupType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,31 +43,49 @@ class GroupType extends FhirCode {
   /// person
   static final GroupType person = GroupType._(
     'person',
+    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Person'.toFhirString,
   );
 
   /// animal
   static final GroupType animal = GroupType._(
     'animal',
+    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Animal'.toFhirString,
   );
 
   /// practitioner
   static final GroupType practitioner = GroupType._(
     'practitioner',
+    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Practitioner'.toFhirString,
   );
 
   /// device
   static final GroupType device = GroupType._(
     'device',
+    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Device'.toFhirString,
   );
 
   /// medication
   static final GroupType medication = GroupType._(
     'medication',
+    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Medication'.toFhirString,
   );
 
   /// substance
   static final GroupType substance = GroupType._(
     'substance',
+    system: 'http://hl7.org/fhir/ValueSet/group-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Substance'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

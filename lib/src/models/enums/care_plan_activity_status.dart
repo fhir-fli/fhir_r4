@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes that reflect the current state of a care plan activity within its
 /// overall life cycle.
-class CarePlanActivityStatus extends FhirCode {
+class CarePlanActivityStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   CarePlanActivityStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,47 +44,74 @@ class CarePlanActivityStatus extends FhirCode {
   /// not_started
   static final CarePlanActivityStatus not_started = CarePlanActivityStatus._(
     'not-started',
+    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Not Started'.toFhirString,
   );
 
   /// scheduled
   static final CarePlanActivityStatus scheduled = CarePlanActivityStatus._(
     'scheduled',
+    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Scheduled'.toFhirString,
   );
 
   /// in_progress
   static final CarePlanActivityStatus in_progress = CarePlanActivityStatus._(
     'in-progress',
+    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'In Progress'.toFhirString,
   );
 
   /// on_hold
   static final CarePlanActivityStatus on_hold = CarePlanActivityStatus._(
     'on-hold',
+    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'On Hold'.toFhirString,
   );
 
   /// completed
   static final CarePlanActivityStatus completed = CarePlanActivityStatus._(
     'completed',
+    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Completed'.toFhirString,
   );
 
   /// cancelled
   static final CarePlanActivityStatus cancelled = CarePlanActivityStatus._(
     'cancelled',
+    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Cancelled'.toFhirString,
   );
 
   /// stopped
   static final CarePlanActivityStatus stopped = CarePlanActivityStatus._(
     'stopped',
+    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Stopped'.toFhirString,
   );
 
   /// unknown
   static final CarePlanActivityStatus unknown = CarePlanActivityStatus._(
     'unknown',
+    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Unknown'.toFhirString,
   );
 
   /// entered_in_error
   static final CarePlanActivityStatus entered_in_error =
       CarePlanActivityStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/care-plan-activity-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

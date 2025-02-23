@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A code that identifies the status of the family history record.
-class FamilyHistoryStatus extends FhirCode {
+class FamilyHistoryStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   FamilyHistoryStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,21 +43,33 @@ class FamilyHistoryStatus extends FhirCode {
   /// partial
   static final FamilyHistoryStatus partial = FamilyHistoryStatus._(
     'partial',
+    system: 'http://hl7.org/fhir/ValueSet/history-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Partial'.toFhirString,
   );
 
   /// completed
   static final FamilyHistoryStatus completed = FamilyHistoryStatus._(
     'completed',
+    system: 'http://hl7.org/fhir/ValueSet/history-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Completed'.toFhirString,
   );
 
   /// entered_in_error
   static final FamilyHistoryStatus entered_in_error = FamilyHistoryStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/history-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// health_unknown
   static final FamilyHistoryStatus health_unknown = FamilyHistoryStatus._(
     'health-unknown',
+    system: 'http://hl7.org/fhir/ValueSet/history-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Health Unknown'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

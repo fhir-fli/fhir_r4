@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The validation status of the target
-class Status extends FhirCode {
+class Status extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   Status._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,31 +43,49 @@ class Status extends FhirCode {
   /// attested
   static final Status attested = Status._(
     'attested',
+    system: 'http://hl7.org/fhir/ValueSet/verificationresult-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Attested'.toFhirString,
   );
 
   /// validated
   static final Status validated = Status._(
     'validated',
+    system: 'http://hl7.org/fhir/ValueSet/verificationresult-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Validated'.toFhirString,
   );
 
   /// in_process
   static final Status in_process = Status._(
     'in-process',
+    system: 'http://hl7.org/fhir/ValueSet/verificationresult-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'In process'.toFhirString,
   );
 
   /// req_revalid
   static final Status req_revalid = Status._(
     'req-revalid',
+    system: 'http://hl7.org/fhir/ValueSet/verificationresult-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Requires revalidation'.toFhirString,
   );
 
   /// val_fail
   static final Status val_fail = Status._(
     'val-fail',
+    system: 'http://hl7.org/fhir/ValueSet/verificationresult-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Validation failed'.toFhirString,
   );
 
   /// reval_fail
   static final Status reval_fail = Status._(
     'reval-fail',
+    system: 'http://hl7.org/fhir/ValueSet/verificationresult-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Re-Validation failed'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

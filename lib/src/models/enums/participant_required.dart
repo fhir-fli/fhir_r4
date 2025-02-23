@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Is the Participant required to attend the appointment.
-class ParticipantRequired extends FhirCode {
+class ParticipantRequired extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ParticipantRequired._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,16 +43,25 @@ class ParticipantRequired extends FhirCode {
   /// required_
   static final ParticipantRequired required_ = ParticipantRequired._(
     'required',
+    system: 'http://hl7.org/fhir/ValueSet/participantrequired'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Required'.toFhirString,
   );
 
   /// optional
   static final ParticipantRequired optional = ParticipantRequired._(
     'optional',
+    system: 'http://hl7.org/fhir/ValueSet/participantrequired'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Optional'.toFhirString,
   );
 
   /// information_only
   static final ParticipantRequired information_only = ParticipantRequired._(
     'information-only',
+    system: 'http://hl7.org/fhir/ValueSet/participantrequired'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Information Only'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

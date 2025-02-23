@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of participant for the action.
-class ActionParticipantType extends FhirCode {
+class ActionParticipantType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ActionParticipantType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,21 +43,33 @@ class ActionParticipantType extends FhirCode {
   /// patient
   static final ActionParticipantType patient = ActionParticipantType._(
     'patient',
+    system: 'http://hl7.org/fhir/ValueSet/action-participant-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Patient'.toFhirString,
   );
 
   /// practitioner
   static final ActionParticipantType practitioner = ActionParticipantType._(
     'practitioner',
+    system: 'http://hl7.org/fhir/ValueSet/action-participant-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Practitioner'.toFhirString,
   );
 
   /// related_person
   static final ActionParticipantType related_person = ActionParticipantType._(
     'related-person',
+    system: 'http://hl7.org/fhir/ValueSet/action-participant-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Related Person'.toFhirString,
   );
 
   /// device
   static final ActionParticipantType device = ActionParticipantType._(
     'device',
+    system: 'http://hl7.org/fhir/ValueSet/action-participant-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Device'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

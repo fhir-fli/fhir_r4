@@ -8,6 +8,76 @@ extension FhirCodeExtension on String {
   FhirCode get toFhirCode => FhirCode(this);
 }
 
+/// Extension of FhirCode for Specific FhirCode
+class FhirCodeEnum extends FhirCode {
+  /// Constructor
+  FhirCodeEnum(
+    super.value, {
+    this.system,
+    this.version,
+    this.display,
+    super.element,
+    super.id,
+    super.extension_,
+    super.disallowExtensions,
+    super.objectPath,
+  });
+
+  /// Creates empty [FhirCodeEnum] object
+  factory FhirCodeEnum.empty() => FhirCodeEnum(null, element: Element.empty());
+
+  /// Factory constructor to create [ActionConditionKind] from JSON.
+  factory FhirCodeEnum.fromJson(
+    Map<String, dynamic> json,
+  ) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return FhirCodeEnum(null, element: element);
+    } else if (value == null && element == null) {
+      throw ArgumentError(
+        'ActionConditionKind cannot be constructed from JSON.',
+      );
+    }
+    return FhirCodeEnum(
+      value,
+      element: element,
+    );
+  }
+
+  /// Attempts to parse the input as a [FhirCode], returning `null` if
+  /// parsing fails
+  static FhirCodeEnum? tryParse(dynamic input) {
+    if (input is String) {
+      try {
+        return FhirCodeEnum(input);
+      } catch (_) {
+        return null;
+      }
+    }
+    return null;
+  }
+
+  /// [system]
+  /// The identification of the code system that defines the meaning of the
+  /// symbol in the code.
+  final FhirUri? system;
+
+  /// [version]
+  /// The version of the code system which was used when choosing this code.
+  /// Note that a well-maintained code system does not need the version
+  /// reported, because the meaning of codes is consistent across versions.
+  /// However this cannot consistently be assured, and when the meaning is
+  /// not guaranteed to be consistent, the version SHOULD be exchanged.
+  final FhirString? version;
+
+  /// [display]
+  /// A representation of the meaning of the code in the system, following
+  /// the rules of the system.
+  final FhirString? display;
+}
+
 /// FHIR primitive type `code`
 class FhirCode extends PrimitiveType<String>
     implements

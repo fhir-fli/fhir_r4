@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes identifying the category of observation range.
-class ObservationRangeCategory extends FhirCode {
+class ObservationRangeCategory extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ObservationRangeCategory._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,16 +43,25 @@ class ObservationRangeCategory extends FhirCode {
   /// reference
   static final ObservationRangeCategory reference = ObservationRangeCategory._(
     'reference',
+    system: 'http://hl7.org/fhir/ValueSet/observation-range-category'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'reference range'.toFhirString,
   );
 
   /// critical
   static final ObservationRangeCategory critical = ObservationRangeCategory._(
     'critical',
+    system: 'http://hl7.org/fhir/ValueSet/observation-range-category'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'critical range'.toFhirString,
   );
 
   /// absolute
   static final ObservationRangeCategory absolute = ObservationRangeCategory._(
     'absolute',
+    system: 'http://hl7.org/fhir/ValueSet/observation-range-category'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'absolute range'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

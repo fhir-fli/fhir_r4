@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The results of executing an action.
-class TestReportActionResult extends FhirCode {
+class TestReportActionResult extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   TestReportActionResult._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,26 +43,41 @@ class TestReportActionResult extends FhirCode {
   /// pass
   static final TestReportActionResult pass = TestReportActionResult._(
     'pass',
+    system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Pass'.toFhirString,
   );
 
   /// skip
   static final TestReportActionResult skip = TestReportActionResult._(
     'skip',
+    system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Skip'.toFhirString,
   );
 
   /// fail
   static final TestReportActionResult fail = TestReportActionResult._(
     'fail',
+    system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Fail'.toFhirString,
   );
 
   /// warning
   static final TestReportActionResult warning = TestReportActionResult._(
     'warning',
+    system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Warning'.toFhirString,
   );
 
   /// error
   static final TestReportActionResult error = TestReportActionResult._(
     'error',
+    system: 'http://hl7.org/fhir/ValueSet/report-action-result-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Error'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

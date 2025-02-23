@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Indicates whether the event succeeded or failed.
-class AuditEventOutcome extends FhirCode {
+class AuditEventOutcome extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   AuditEventOutcome._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,21 +43,33 @@ class AuditEventOutcome extends FhirCode {
   /// value0
   static final AuditEventOutcome value0 = AuditEventOutcome._(
     '0',
+    system: 'http://hl7.org/fhir/ValueSet/audit-event-outcome'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Success'.toFhirString,
   );
 
   /// value4
   static final AuditEventOutcome value4 = AuditEventOutcome._(
     '4',
+    system: 'http://hl7.org/fhir/ValueSet/audit-event-outcome'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Minor failure'.toFhirString,
   );
 
   /// value8
   static final AuditEventOutcome value8 = AuditEventOutcome._(
     '8',
+    system: 'http://hl7.org/fhir/ValueSet/audit-event-outcome'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Serious failure'.toFhirString,
   );
 
   /// value12
   static final AuditEventOutcome value12 = AuditEventOutcome._(
     '12',
+    system: 'http://hl7.org/fhir/ValueSet/audit-event-outcome'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Major failure'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

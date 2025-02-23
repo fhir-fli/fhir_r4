@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes identifying the lifecycle stage of a product.
-class NutritionProductStatus extends FhirCode {
+class NutritionProductStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   NutritionProductStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,17 +43,26 @@ class NutritionProductStatus extends FhirCode {
   /// active
   static final NutritionProductStatus active = NutritionProductStatus._(
     'active',
+    system: 'http://hl7.org/fhir/ValueSet/nutritionproduct-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Active'.toFhirString,
   );
 
   /// inactive
   static final NutritionProductStatus inactive = NutritionProductStatus._(
     'inactive',
+    system: 'http://hl7.org/fhir/ValueSet/nutritionproduct-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Inactive'.toFhirString,
   );
 
   /// entered_in_error
   static final NutritionProductStatus entered_in_error =
       NutritionProductStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/nutritionproduct-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The availability status of the device.
-class FHIRDeviceStatus extends FhirCode {
+class FHIRDeviceStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   FHIRDeviceStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,21 +43,33 @@ class FHIRDeviceStatus extends FhirCode {
   /// active
   static final FHIRDeviceStatus active = FHIRDeviceStatus._(
     'active',
+    system: 'http://hl7.org/fhir/ValueSet/device-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Active'.toFhirString,
   );
 
   /// inactive
   static final FHIRDeviceStatus inactive = FHIRDeviceStatus._(
     'inactive',
+    system: 'http://hl7.org/fhir/ValueSet/device-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Inactive'.toFhirString,
   );
 
   /// entered_in_error
   static final FHIRDeviceStatus entered_in_error = FHIRDeviceStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/device-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// unknown
   static final FHIRDeviceStatus unknown = FHIRDeviceStatus._(
     'unknown',
+    system: 'http://hl7.org/fhir/ValueSet/device-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Unknown'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Type for access of external URI.
-class RepositoryType extends FhirCode {
+class RepositoryType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   RepositoryType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,26 +43,48 @@ class RepositoryType extends FhirCode {
   /// directlink
   static final RepositoryType directlink = RepositoryType._(
     'directlink',
+    system: 'http://hl7.org/fhir/ValueSet/repository-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Click and see'.toFhirString,
   );
 
   /// openapi
   static final RepositoryType openapi = RepositoryType._(
     'openapi',
+    system: 'http://hl7.org/fhir/ValueSet/repository-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display:
+        'The URL is the RESTful or other kind of API that can access to the result.'
+            .toFhirString,
   );
 
   /// login
   static final RepositoryType login = RepositoryType._(
     'login',
+    system: 'http://hl7.org/fhir/ValueSet/repository-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display:
+        'Result cannot be access unless an account is logged in'.toFhirString,
   );
 
   /// oauth
   static final RepositoryType oauth = RepositoryType._(
     'oauth',
+    system: 'http://hl7.org/fhir/ValueSet/repository-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display:
+        'Result need to be fetched with API and need LOGIN( or cookies are required when visiting the link of resource)'
+            .toFhirString,
   );
 
   /// other
   static final RepositoryType other = RepositoryType._(
     'other',
+    system: 'http://hl7.org/fhir/ValueSet/repository-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display:
+        'Some other complicated or particular way to get resource from URL.'
+            .toFhirString,
   );
 
   /// For instances where an Element is present but not value

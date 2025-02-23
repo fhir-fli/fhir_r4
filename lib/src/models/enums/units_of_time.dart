@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A unit of time (units from UCUM).
-class UnitsOfTime extends FhirCode {
+class UnitsOfTime extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   UnitsOfTime._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,36 +43,57 @@ class UnitsOfTime extends FhirCode {
   /// s
   static final UnitsOfTime s = UnitsOfTime._(
     's',
+    system: 'http://hl7.org/fhir/ValueSet/units-of-time'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'second'.toFhirString,
   );
 
   /// min
   static final UnitsOfTime min = UnitsOfTime._(
     'min',
+    system: 'http://hl7.org/fhir/ValueSet/units-of-time'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'minute'.toFhirString,
   );
 
   /// h
   static final UnitsOfTime h = UnitsOfTime._(
     'h',
+    system: 'http://hl7.org/fhir/ValueSet/units-of-time'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'hour'.toFhirString,
   );
 
   /// d
   static final UnitsOfTime d = UnitsOfTime._(
     'd',
+    system: 'http://hl7.org/fhir/ValueSet/units-of-time'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'day'.toFhirString,
   );
 
   /// wk
   static final UnitsOfTime wk = UnitsOfTime._(
     'wk',
+    system: 'http://hl7.org/fhir/ValueSet/units-of-time'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'week'.toFhirString,
   );
 
   /// mo
   static final UnitsOfTime mo = UnitsOfTime._(
     'mo',
+    system: 'http://hl7.org/fhir/ValueSet/units-of-time'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'month'.toFhirString,
   );
 
   /// a
   static final UnitsOfTime a = UnitsOfTime._(
     'a',
+    system: 'http://hl7.org/fhir/ValueSet/units-of-time'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'year'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

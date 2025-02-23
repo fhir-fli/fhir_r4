@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Describes the category of the metric.
-class DeviceMetricCategory extends FhirCode {
+class DeviceMetricCategory extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   DeviceMetricCategory._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,21 +43,33 @@ class DeviceMetricCategory extends FhirCode {
   /// measurement
   static final DeviceMetricCategory measurement = DeviceMetricCategory._(
     'measurement',
+    system: 'http://hl7.org/fhir/ValueSet/metric-category'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Measurement'.toFhirString,
   );
 
   /// setting
   static final DeviceMetricCategory setting = DeviceMetricCategory._(
     'setting',
+    system: 'http://hl7.org/fhir/ValueSet/metric-category'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Setting'.toFhirString,
   );
 
   /// calculation
   static final DeviceMetricCategory calculation = DeviceMetricCategory._(
     'calculation',
+    system: 'http://hl7.org/fhir/ValueSet/metric-category'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Calculation'.toFhirString,
   );
 
   /// unspecified
   static final DeviceMetricCategory unspecified = DeviceMetricCategory._(
     'unspecified',
+    system: 'http://hl7.org/fhir/ValueSet/metric-category'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Unspecified'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

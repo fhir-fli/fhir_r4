@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of notification represented by the status message.
-class SubscriptionNotificationType extends FhirCode {
+class SubscriptionNotificationType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   SubscriptionNotificationType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -42,30 +45,50 @@ class SubscriptionNotificationType extends FhirCode {
   static final SubscriptionNotificationType handshake =
       SubscriptionNotificationType._(
     'handshake',
+    system:
+        'http://hl7.org/fhir/ValueSet/subscription-notification-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Handshake'.toFhirString,
   );
 
   /// heartbeat
   static final SubscriptionNotificationType heartbeat =
       SubscriptionNotificationType._(
     'heartbeat',
+    system:
+        'http://hl7.org/fhir/ValueSet/subscription-notification-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Heartbeat'.toFhirString,
   );
 
   /// event_notification
   static final SubscriptionNotificationType event_notification =
       SubscriptionNotificationType._(
     'event-notification',
+    system:
+        'http://hl7.org/fhir/ValueSet/subscription-notification-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Event Notification'.toFhirString,
   );
 
   /// query_status
   static final SubscriptionNotificationType query_status =
       SubscriptionNotificationType._(
     'query-status',
+    system:
+        'http://hl7.org/fhir/ValueSet/subscription-notification-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Query Status'.toFhirString,
   );
 
   /// query_event
   static final SubscriptionNotificationType query_event =
       SubscriptionNotificationType._(
     'query-event',
+    system:
+        'http://hl7.org/fhir/ValueSet/subscription-notification-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Query Event'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

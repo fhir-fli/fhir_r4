@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Degree of preference of a type of conditioned specimen.
-class SpecimenContainedPreference extends FhirCode {
+class SpecimenContainedPreference extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   SpecimenContainedPreference._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -42,12 +45,20 @@ class SpecimenContainedPreference extends FhirCode {
   static final SpecimenContainedPreference preferred =
       SpecimenContainedPreference._(
     'preferred',
+    system:
+        'http://hl7.org/fhir/ValueSet/specimen-contained-preference'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Preferred'.toFhirString,
   );
 
   /// alternate
   static final SpecimenContainedPreference alternate =
       SpecimenContainedPreference._(
     'alternate',
+    system:
+        'http://hl7.org/fhir/ValueSet/specimen-contained-preference'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Alternate'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

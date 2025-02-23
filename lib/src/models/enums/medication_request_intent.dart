@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// MedicationRequest Intent Codes
-class MedicationRequestIntent extends FhirCode {
+class MedicationRequestIntent extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   MedicationRequestIntent._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,43 +43,67 @@ class MedicationRequestIntent extends FhirCode {
   /// proposal
   static final MedicationRequestIntent proposal = MedicationRequestIntent._(
     'proposal',
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Proposal'.toFhirString,
   );
 
   /// plan
   static final MedicationRequestIntent plan = MedicationRequestIntent._(
     'plan',
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Plan'.toFhirString,
   );
 
   /// order
   static final MedicationRequestIntent order = MedicationRequestIntent._(
     'order',
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Order'.toFhirString,
   );
 
   /// original_order
   static final MedicationRequestIntent original_order =
       MedicationRequestIntent._(
     'original-order',
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Original Order'.toFhirString,
   );
 
   /// reflex_order
   static final MedicationRequestIntent reflex_order = MedicationRequestIntent._(
     'reflex-order',
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Reflex Order'.toFhirString,
   );
 
   /// filler_order
   static final MedicationRequestIntent filler_order = MedicationRequestIntent._(
     'filler-order',
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Filler Order'.toFhirString,
   );
 
   /// instance_order
   static final MedicationRequestIntent instance_order =
       MedicationRequestIntent._(
     'instance-order',
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Instance Order'.toFhirString,
   );
 
   /// option
   static final MedicationRequestIntent option = MedicationRequestIntent._(
     'option',
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Option'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

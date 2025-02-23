@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of response code to use for assertion.
-class AssertionResponseTypes extends FhirCode {
+class AssertionResponseTypes extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   AssertionResponseTypes._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,63 +43,99 @@ class AssertionResponseTypes extends FhirCode {
   /// okay
   static final AssertionResponseTypes okay = AssertionResponseTypes._(
     'okay',
+    system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'okay'.toFhirString,
   );
 
   /// created
   static final AssertionResponseTypes created = AssertionResponseTypes._(
     'created',
+    system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'created'.toFhirString,
   );
 
   /// noContent
   static final AssertionResponseTypes noContent = AssertionResponseTypes._(
     'noContent',
+    system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'noContent'.toFhirString,
   );
 
   /// notModified
   static final AssertionResponseTypes notModified = AssertionResponseTypes._(
     'notModified',
+    system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'notModified'.toFhirString,
   );
 
   /// bad
   static final AssertionResponseTypes bad = AssertionResponseTypes._(
     'bad',
+    system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'bad'.toFhirString,
   );
 
   /// forbidden
   static final AssertionResponseTypes forbidden = AssertionResponseTypes._(
     'forbidden',
+    system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'forbidden'.toFhirString,
   );
 
   /// notFound
   static final AssertionResponseTypes notFound = AssertionResponseTypes._(
     'notFound',
+    system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'notFound'.toFhirString,
   );
 
   /// methodNotAllowed
   static final AssertionResponseTypes methodNotAllowed =
       AssertionResponseTypes._(
     'methodNotAllowed',
+    system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'methodNotAllowed'.toFhirString,
   );
 
   /// conflict
   static final AssertionResponseTypes conflict = AssertionResponseTypes._(
     'conflict',
+    system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'conflict'.toFhirString,
   );
 
   /// gone
   static final AssertionResponseTypes gone = AssertionResponseTypes._(
     'gone',
+    system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'gone'.toFhirString,
   );
 
   /// preconditionFailed
   static final AssertionResponseTypes preconditionFailed =
       AssertionResponseTypes._(
     'preconditionFailed',
+    system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'preconditionFailed'.toFhirString,
   );
 
   /// unprocessable
   static final AssertionResponseTypes unprocessable = AssertionResponseTypes._(
     'unprocessable',
+    system: 'http://hl7.org/fhir/ValueSet/assert-response-code-types'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'unprocessable'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

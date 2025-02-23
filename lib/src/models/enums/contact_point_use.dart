@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Use of contact point.
-class ContactPointUse extends FhirCode {
+class ContactPointUse extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ContactPointUse._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,26 +43,41 @@ class ContactPointUse extends FhirCode {
   /// home
   static final ContactPointUse home = ContactPointUse._(
     'home',
+    system: 'http://hl7.org/fhir/ValueSet/contact-point-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Home'.toFhirString,
   );
 
   /// work
   static final ContactPointUse work = ContactPointUse._(
     'work',
+    system: 'http://hl7.org/fhir/ValueSet/contact-point-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Work'.toFhirString,
   );
 
   /// temp
   static final ContactPointUse temp = ContactPointUse._(
     'temp',
+    system: 'http://hl7.org/fhir/ValueSet/contact-point-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Temp'.toFhirString,
   );
 
   /// old
   static final ContactPointUse old = ContactPointUse._(
     'old',
+    system: 'http://hl7.org/fhir/ValueSet/contact-point-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Old'.toFhirString,
   );
 
   /// mobile
   static final ContactPointUse mobile = ContactPointUse._(
     'mobile',
+    system: 'http://hl7.org/fhir/ValueSet/contact-point-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Mobile'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of direction to use for assertion.
-class AssertionDirectionType extends FhirCode {
+class AssertionDirectionType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   AssertionDirectionType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,11 +43,17 @@ class AssertionDirectionType extends FhirCode {
   /// response
   static final AssertionDirectionType response = AssertionDirectionType._(
     'response',
+    system: 'http://hl7.org/fhir/ValueSet/assert-direction-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'response'.toFhirString,
   );
 
   /// request
   static final AssertionDirectionType request = AssertionDirectionType._(
     'request',
+    system: 'http://hl7.org/fhir/ValueSet/assert-direction-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'request'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

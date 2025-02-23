@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The degree of equivalence between concepts.
-class ConceptMapEquivalence extends FhirCode {
+class ConceptMapEquivalence extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ConceptMapEquivalence._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,51 +43,81 @@ class ConceptMapEquivalence extends FhirCode {
   /// relatedto
   static final ConceptMapEquivalence relatedto = ConceptMapEquivalence._(
     'relatedto',
+    system: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Related To'.toFhirString,
   );
 
   /// equivalent
   static final ConceptMapEquivalence equivalent = ConceptMapEquivalence._(
     'equivalent',
+    system: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Equivalent'.toFhirString,
   );
 
   /// equal
   static final ConceptMapEquivalence equal = ConceptMapEquivalence._(
     'equal',
+    system: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Equal'.toFhirString,
   );
 
   /// wider
   static final ConceptMapEquivalence wider = ConceptMapEquivalence._(
     'wider',
+    system: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Wider'.toFhirString,
   );
 
   /// subsumes
   static final ConceptMapEquivalence subsumes = ConceptMapEquivalence._(
     'subsumes',
+    system: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Subsumes'.toFhirString,
   );
 
   /// narrower
   static final ConceptMapEquivalence narrower = ConceptMapEquivalence._(
     'narrower',
+    system: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Narrower'.toFhirString,
   );
 
   /// specializes
   static final ConceptMapEquivalence specializes = ConceptMapEquivalence._(
     'specializes',
+    system: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Specializes'.toFhirString,
   );
 
   /// inexact
   static final ConceptMapEquivalence inexact = ConceptMapEquivalence._(
     'inexact',
+    system: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Inexact'.toFhirString,
   );
 
   /// unmatched
   static final ConceptMapEquivalence unmatched = ConceptMapEquivalence._(
     'unmatched',
+    system: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Unmatched'.toFhirString,
   );
 
   /// disjoint
   static final ConceptMapEquivalence disjoint = ConceptMapEquivalence._(
     'disjoint',
+    system: 'http://hl7.org/fhir/ValueSet/concept-map-equivalence'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Disjoint'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

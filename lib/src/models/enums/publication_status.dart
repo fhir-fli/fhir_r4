@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The lifecycle status of an artifact.
-class PublicationStatus extends FhirCode {
+class PublicationStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   PublicationStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,21 +43,33 @@ class PublicationStatus extends FhirCode {
   /// draft
   static final PublicationStatus draft = PublicationStatus._(
     'draft',
+    system: 'http://hl7.org/fhir/ValueSet/publication-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Draft'.toFhirString,
   );
 
   /// active
   static final PublicationStatus active = PublicationStatus._(
     'active',
+    system: 'http://hl7.org/fhir/ValueSet/publication-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Active'.toFhirString,
   );
 
   /// retired
   static final PublicationStatus retired = PublicationStatus._(
     'retired',
+    system: 'http://hl7.org/fhir/ValueSet/publication-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Retired'.toFhirString,
   );
 
   /// unknown
   static final PublicationStatus unknown = PublicationStatus._(
     'unknown',
+    system: 'http://hl7.org/fhir/ValueSet/publication-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Unknown'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

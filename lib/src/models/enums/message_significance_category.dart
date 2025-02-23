@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The impact of the content of a message.
-class MessageSignificanceCategory extends FhirCode {
+class MessageSignificanceCategory extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   MessageSignificanceCategory._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -42,18 +45,30 @@ class MessageSignificanceCategory extends FhirCode {
   static final MessageSignificanceCategory consequence =
       MessageSignificanceCategory._(
     'consequence',
+    system:
+        'http://hl7.org/fhir/ValueSet/message-significance-category'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Consequence'.toFhirString,
   );
 
   /// currency
   static final MessageSignificanceCategory currency =
       MessageSignificanceCategory._(
     'currency',
+    system:
+        'http://hl7.org/fhir/ValueSet/message-significance-category'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Currency'.toFhirString,
   );
 
   /// notification
   static final MessageSignificanceCategory notification =
       MessageSignificanceCategory._(
     'notification',
+    system:
+        'http://hl7.org/fhir/ValueSet/message-significance-category'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Notification'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

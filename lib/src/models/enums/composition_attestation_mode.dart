@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The way in which a person authenticated a composition.
-class CompositionAttestationMode extends FhirCode {
+class CompositionAttestationMode extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   CompositionAttestationMode._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -42,23 +45,39 @@ class CompositionAttestationMode extends FhirCode {
   static final CompositionAttestationMode personal =
       CompositionAttestationMode._(
     'personal',
+    system:
+        'http://hl7.org/fhir/ValueSet/composition-attestation-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Personal'.toFhirString,
   );
 
   /// professional
   static final CompositionAttestationMode professional =
       CompositionAttestationMode._(
     'professional',
+    system:
+        'http://hl7.org/fhir/ValueSet/composition-attestation-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Professional'.toFhirString,
   );
 
   /// legal
   static final CompositionAttestationMode legal = CompositionAttestationMode._(
     'legal',
+    system:
+        'http://hl7.org/fhir/ValueSet/composition-attestation-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Legal'.toFhirString,
   );
 
   /// official
   static final CompositionAttestationMode official =
       CompositionAttestationMode._(
     'official',
+    system:
+        'http://hl7.org/fhir/ValueSet/composition-attestation-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Official'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

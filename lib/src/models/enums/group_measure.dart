@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Possible group measure aggregates (E.g. Mean, Median).
-class GroupMeasure extends FhirCode {
+class GroupMeasure extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   GroupMeasure._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,31 +43,49 @@ class GroupMeasure extends FhirCode {
   /// mean
   static final GroupMeasure mean = GroupMeasure._(
     'mean',
+    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Mean'.toFhirString,
   );
 
   /// median
   static final GroupMeasure median = GroupMeasure._(
     'median',
+    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Median'.toFhirString,
   );
 
   /// mean_of_mean
   static final GroupMeasure mean_of_mean = GroupMeasure._(
     'mean-of-mean',
+    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Mean of Study Means'.toFhirString,
   );
 
   /// mean_of_median
   static final GroupMeasure mean_of_median = GroupMeasure._(
     'mean-of-median',
+    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Mean of Study Medins'.toFhirString,
   );
 
   /// median_of_mean
   static final GroupMeasure median_of_mean = GroupMeasure._(
     'median-of-mean',
+    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Median of Study Means'.toFhirString,
   );
 
   /// median_of_median
   static final GroupMeasure median_of_median = GroupMeasure._(
     'median-of-median',
+    system: 'http://hl7.org/fhir/ValueSet/group-measure'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Median of Study Medians'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

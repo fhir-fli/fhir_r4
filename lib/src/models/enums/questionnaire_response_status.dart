@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Lifecycle status of the questionnaire response.
-class QuestionnaireResponseStatus extends FhirCode {
+class QuestionnaireResponseStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   QuestionnaireResponseStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -42,30 +45,50 @@ class QuestionnaireResponseStatus extends FhirCode {
   static final QuestionnaireResponseStatus in_progress =
       QuestionnaireResponseStatus._(
     'in-progress',
+    system:
+        'http://hl7.org/fhir/ValueSet/questionnaire-answers-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'In Progress'.toFhirString,
   );
 
   /// completed
   static final QuestionnaireResponseStatus completed =
       QuestionnaireResponseStatus._(
     'completed',
+    system:
+        'http://hl7.org/fhir/ValueSet/questionnaire-answers-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Completed'.toFhirString,
   );
 
   /// amended
   static final QuestionnaireResponseStatus amended =
       QuestionnaireResponseStatus._(
     'amended',
+    system:
+        'http://hl7.org/fhir/ValueSet/questionnaire-answers-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Amended'.toFhirString,
   );
 
   /// entered_in_error
   static final QuestionnaireResponseStatus entered_in_error =
       QuestionnaireResponseStatus._(
     'entered-in-error',
+    system:
+        'http://hl7.org/fhir/ValueSet/questionnaire-answers-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// stopped
   static final QuestionnaireResponseStatus stopped =
       QuestionnaireResponseStatus._(
     'stopped',
+    system:
+        'http://hl7.org/fhir/ValueSet/questionnaire-answers-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Stopped'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

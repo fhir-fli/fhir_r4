@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Type for orientation.
-class OrientationType extends FhirCode {
+class OrientationType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   OrientationType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,11 +43,17 @@ class OrientationType extends FhirCode {
   /// sense
   static final OrientationType sense = OrientationType._(
     'sense',
+    system: 'http://hl7.org/fhir/ValueSet/orientation-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Sense orientation of referenceSeq'.toFhirString,
   );
 
   /// antisense
   static final OrientationType antisense = OrientationType._(
     'antisense',
+    system: 'http://hl7.org/fhir/ValueSet/orientation-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Antisense orientation of referenceSeq'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

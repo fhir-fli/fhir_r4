@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// If field is a list, how to manage the source.
-class StructureMapSourceListMode extends FhirCode {
+class StructureMapSourceListMode extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   StructureMapSourceListMode._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,29 +44,44 @@ class StructureMapSourceListMode extends FhirCode {
   /// first
   static final StructureMapSourceListMode first = StructureMapSourceListMode._(
     'first',
+    system: 'http://hl7.org/fhir/ValueSet/map-source-list-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'First'.toFhirString,
   );
 
   /// not_first
   static final StructureMapSourceListMode not_first =
       StructureMapSourceListMode._(
     'not_first',
+    system: 'http://hl7.org/fhir/ValueSet/map-source-list-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'All but the first'.toFhirString,
   );
 
   /// last
   static final StructureMapSourceListMode last = StructureMapSourceListMode._(
     'last',
+    system: 'http://hl7.org/fhir/ValueSet/map-source-list-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Last'.toFhirString,
   );
 
   /// not_last
   static final StructureMapSourceListMode not_last =
       StructureMapSourceListMode._(
     'not_last',
+    system: 'http://hl7.org/fhir/ValueSet/map-source-list-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'All but the last'.toFhirString,
   );
 
   /// only_one
   static final StructureMapSourceListMode only_one =
       StructureMapSourceListMode._(
     'only_one',
+    system: 'http://hl7.org/fhir/ValueSet/map-source-list-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Enforce only one'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

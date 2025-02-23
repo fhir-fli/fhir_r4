@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The current status of the task.
-class TaskStatus extends FhirCode {
+class TaskStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   TaskStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,61 +43,97 @@ class TaskStatus extends FhirCode {
   /// draft
   static final TaskStatus draft = TaskStatus._(
     'draft',
+    system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Draft'.toFhirString,
   );
 
   /// requested
   static final TaskStatus requested = TaskStatus._(
     'requested',
+    system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Requested'.toFhirString,
   );
 
   /// received
   static final TaskStatus received = TaskStatus._(
     'received',
+    system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Received'.toFhirString,
   );
 
   /// accepted
   static final TaskStatus accepted = TaskStatus._(
     'accepted',
+    system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Accepted'.toFhirString,
   );
 
   /// rejected
   static final TaskStatus rejected = TaskStatus._(
     'rejected',
+    system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Rejected'.toFhirString,
   );
 
   /// ready
   static final TaskStatus ready = TaskStatus._(
     'ready',
+    system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Ready'.toFhirString,
   );
 
   /// cancelled
   static final TaskStatus cancelled = TaskStatus._(
     'cancelled',
+    system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Cancelled'.toFhirString,
   );
 
   /// in_progress
   static final TaskStatus in_progress = TaskStatus._(
     'in-progress',
+    system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'In Progress'.toFhirString,
   );
 
   /// on_hold
   static final TaskStatus on_hold = TaskStatus._(
     'on-hold',
+    system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'On Hold'.toFhirString,
   );
 
   /// failed
   static final TaskStatus failed = TaskStatus._(
     'failed',
+    system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Failed'.toFhirString,
   );
 
   /// completed
   static final TaskStatus completed = TaskStatus._(
     'completed',
+    system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Completed'.toFhirString,
   );
 
   /// entered_in_error
   static final TaskStatus entered_in_error = TaskStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/task-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

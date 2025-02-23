@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// Clinical assessment of the severity of a reaction event as a whole,
 /// potentially considering multiple different manifestations.
-class AllergyIntoleranceSeverity extends FhirCode {
+class AllergyIntoleranceSeverity extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   AllergyIntoleranceSeverity._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -42,17 +45,26 @@ class AllergyIntoleranceSeverity extends FhirCode {
   /// mild
   static final AllergyIntoleranceSeverity mild = AllergyIntoleranceSeverity._(
     'mild',
+    system: 'http://hl7.org/fhir/ValueSet/reaction-event-severity'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Mild'.toFhirString,
   );
 
   /// moderate
   static final AllergyIntoleranceSeverity moderate =
       AllergyIntoleranceSeverity._(
     'moderate',
+    system: 'http://hl7.org/fhir/ValueSet/reaction-event-severity'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Moderate'.toFhirString,
   );
 
   /// severe
   static final AllergyIntoleranceSeverity severe = AllergyIntoleranceSeverity._(
     'severe',
+    system: 'http://hl7.org/fhir/ValueSet/reaction-event-severity'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Severe'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

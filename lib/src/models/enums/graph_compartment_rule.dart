@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// How a compartment must be linked.
-class GraphCompartmentRule extends FhirCode {
+class GraphCompartmentRule extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   GraphCompartmentRule._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,21 +43,33 @@ class GraphCompartmentRule extends FhirCode {
   /// identical
   static final GraphCompartmentRule identical = GraphCompartmentRule._(
     'identical',
+    system: 'http://hl7.org/fhir/ValueSet/graph-compartment-rule'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Identical'.toFhirString,
   );
 
   /// matching
   static final GraphCompartmentRule matching = GraphCompartmentRule._(
     'matching',
+    system: 'http://hl7.org/fhir/ValueSet/graph-compartment-rule'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Matching'.toFhirString,
   );
 
   /// different
   static final GraphCompartmentRule different = GraphCompartmentRule._(
     'different',
+    system: 'http://hl7.org/fhir/ValueSet/graph-compartment-rule'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Different'.toFhirString,
   );
 
   /// custom
   static final GraphCompartmentRule custom = GraphCompartmentRule._(
     'custom',
+    system: 'http://hl7.org/fhir/ValueSet/graph-compartment-rule'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Custom'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

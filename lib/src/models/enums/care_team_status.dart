@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Indicates the status of the care team.
-class CareTeamStatus extends FhirCode {
+class CareTeamStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   CareTeamStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,26 +43,41 @@ class CareTeamStatus extends FhirCode {
   /// proposed
   static final CareTeamStatus proposed = CareTeamStatus._(
     'proposed',
+    system: 'http://hl7.org/fhir/ValueSet/care-team-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Proposed'.toFhirString,
   );
 
   /// active
   static final CareTeamStatus active = CareTeamStatus._(
     'active',
+    system: 'http://hl7.org/fhir/ValueSet/care-team-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Active'.toFhirString,
   );
 
   /// suspended
   static final CareTeamStatus suspended = CareTeamStatus._(
     'suspended',
+    system: 'http://hl7.org/fhir/ValueSet/care-team-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Suspended'.toFhirString,
   );
 
   /// inactive
   static final CareTeamStatus inactive = CareTeamStatus._(
     'inactive',
+    system: 'http://hl7.org/fhir/ValueSet/care-team-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Inactive'.toFhirString,
   );
 
   /// entered_in_error
   static final CareTeamStatus entered_in_error = CareTeamStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/care-team-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

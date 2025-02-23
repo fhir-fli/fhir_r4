@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The status of the diagnostic report.
-class DiagnosticReportStatus extends FhirCode {
+class DiagnosticReportStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   DiagnosticReportStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,52 +43,82 @@ class DiagnosticReportStatus extends FhirCode {
   /// registered
   static final DiagnosticReportStatus registered = DiagnosticReportStatus._(
     'registered',
+    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Registered'.toFhirString,
   );
 
   /// partial
   static final DiagnosticReportStatus partial = DiagnosticReportStatus._(
     'partial',
+    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Partial'.toFhirString,
   );
 
   /// preliminary
   static final DiagnosticReportStatus preliminary = DiagnosticReportStatus._(
     'preliminary',
+    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Preliminary'.toFhirString,
   );
 
   /// final_
   static final DiagnosticReportStatus final_ = DiagnosticReportStatus._(
     'final',
+    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Final'.toFhirString,
   );
 
   /// amended
   static final DiagnosticReportStatus amended = DiagnosticReportStatus._(
     'amended',
+    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Amended'.toFhirString,
   );
 
   /// corrected
   static final DiagnosticReportStatus corrected = DiagnosticReportStatus._(
     'corrected',
+    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Corrected'.toFhirString,
   );
 
   /// appended
   static final DiagnosticReportStatus appended = DiagnosticReportStatus._(
     'appended',
+    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Appended'.toFhirString,
   );
 
   /// cancelled
   static final DiagnosticReportStatus cancelled = DiagnosticReportStatus._(
     'cancelled',
+    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Cancelled'.toFhirString,
   );
 
   /// entered_in_error
   static final DiagnosticReportStatus entered_in_error =
       DiagnosticReportStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// unknown
   static final DiagnosticReportStatus unknown = DiagnosticReportStatus._(
     'unknown',
+    system: 'http://hl7.org/fhir/ValueSet/diagnostic-report-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Unknown'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

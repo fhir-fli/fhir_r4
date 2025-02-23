@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of a property value.
-class PropertyTypeEnum extends FhirCode {
+class PropertyTypeEnum extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   PropertyTypeEnum._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,36 +43,57 @@ class PropertyTypeEnum extends FhirCode {
   /// code
   static final PropertyTypeEnum code = PropertyTypeEnum._(
     'code',
+    system: 'http://hl7.org/fhir/ValueSet/concept-property-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'code (internal reference)'.toFhirString,
   );
 
   /// Coding
   static final PropertyTypeEnum Coding = PropertyTypeEnum._(
     'Coding',
+    system: 'http://hl7.org/fhir/ValueSet/concept-property-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Coding (external reference)'.toFhirString,
   );
 
   /// string
   static final PropertyTypeEnum string = PropertyTypeEnum._(
     'string',
+    system: 'http://hl7.org/fhir/ValueSet/concept-property-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'string'.toFhirString,
   );
 
   /// integer
   static final PropertyTypeEnum integer = PropertyTypeEnum._(
     'integer',
+    system: 'http://hl7.org/fhir/ValueSet/concept-property-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'integer'.toFhirString,
   );
 
   /// boolean
   static final PropertyTypeEnum boolean = PropertyTypeEnum._(
     'boolean',
+    system: 'http://hl7.org/fhir/ValueSet/concept-property-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'boolean'.toFhirString,
   );
 
   /// dateTime
   static final PropertyTypeEnum dateTime = PropertyTypeEnum._(
     'dateTime',
+    system: 'http://hl7.org/fhir/ValueSet/concept-property-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'dateTime'.toFhirString,
   );
 
   /// decimal
   static final PropertyTypeEnum decimal = PropertyTypeEnum._(
     'decimal',
+    system: 'http://hl7.org/fhir/ValueSet/concept-property-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'decimal'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

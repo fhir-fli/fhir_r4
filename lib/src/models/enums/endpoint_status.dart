@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The status of the endpoint.
-class EndpointStatus extends FhirCode {
+class EndpointStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   EndpointStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,31 +43,49 @@ class EndpointStatus extends FhirCode {
   /// active
   static final EndpointStatus active = EndpointStatus._(
     'active',
+    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Active'.toFhirString,
   );
 
   /// suspended
   static final EndpointStatus suspended = EndpointStatus._(
     'suspended',
+    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Suspended'.toFhirString,
   );
 
   /// error
   static final EndpointStatus error = EndpointStatus._(
     'error',
+    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Error'.toFhirString,
   );
 
   /// off
   static final EndpointStatus off = EndpointStatus._(
     'off',
+    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Off'.toFhirString,
   );
 
   /// entered_in_error
   static final EndpointStatus entered_in_error = EndpointStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in error'.toFhirString,
   );
 
   /// test
   static final EndpointStatus test = EndpointStatus._(
     'test',
+    system: 'http://hl7.org/fhir/ValueSet/endpoint-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Test'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The possible sort directions, ascending or descending.
-class SortDirection extends FhirCode {
+class SortDirection extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   SortDirection._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,11 +43,17 @@ class SortDirection extends FhirCode {
   /// ascending
   static final SortDirection ascending = SortDirection._(
     'ascending',
+    system: 'http://hl7.org/fhir/ValueSet/sort-direction'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Ascending'.toFhirString,
   );
 
   /// descending
   static final SortDirection descending = SortDirection._(
     'descending',
+    system: 'http://hl7.org/fhir/ValueSet/sort-direction'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Descending'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

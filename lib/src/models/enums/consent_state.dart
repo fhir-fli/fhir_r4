@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Indicates the state of the consent.
-class ConsentState extends FhirCode {
+class ConsentState extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ConsentState._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,31 +43,49 @@ class ConsentState extends FhirCode {
   /// draft
   static final ConsentState draft = ConsentState._(
     'draft',
+    system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Pending'.toFhirString,
   );
 
   /// proposed
   static final ConsentState proposed = ConsentState._(
     'proposed',
+    system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Proposed'.toFhirString,
   );
 
   /// active
   static final ConsentState active = ConsentState._(
     'active',
+    system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Active'.toFhirString,
   );
 
   /// rejected
   static final ConsentState rejected = ConsentState._(
     'rejected',
+    system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Rejected'.toFhirString,
   );
 
   /// inactive
   static final ConsentState inactive = ConsentState._(
     'inactive',
+    system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Inactive'.toFhirString,
   );
 
   /// entered_in_error
   static final ConsentState entered_in_error = ConsentState._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/consent-state-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

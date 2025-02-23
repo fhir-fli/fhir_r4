@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The processing mode that applies to this list.
-class ListMode extends FhirCode {
+class ListMode extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ListMode._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,16 +43,25 @@ class ListMode extends FhirCode {
   /// working
   static final ListMode working = ListMode._(
     'working',
+    system: 'http://hl7.org/fhir/ValueSet/list-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Working List'.toFhirString,
   );
 
   /// snapshot
   static final ListMode snapshot = ListMode._(
     'snapshot',
+    system: 'http://hl7.org/fhir/ValueSet/list-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Snapshot List'.toFhirString,
   );
 
   /// changes
   static final ListMode changes = ListMode._(
     'changes',
+    system: 'http://hl7.org/fhir/ValueSet/list-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Change List'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Type if a sequence -- DNA, RNA, or amino acid sequence.
-class SequenceType extends FhirCode {
+class SequenceType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   SequenceType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,16 +43,25 @@ class SequenceType extends FhirCode {
   /// aa
   static final SequenceType aa = SequenceType._(
     'aa',
+    system: 'http://hl7.org/fhir/ValueSet/sequence-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'AA Sequence'.toFhirString,
   );
 
   /// dna
   static final SequenceType dna = SequenceType._(
     'dna',
+    system: 'http://hl7.org/fhir/ValueSet/sequence-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'DNA Sequence'.toFhirString,
   );
 
   /// rna
   static final SequenceType rna = SequenceType._(
     'rna',
+    system: 'http://hl7.org/fhir/ValueSet/sequence-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'RNA Sequence'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

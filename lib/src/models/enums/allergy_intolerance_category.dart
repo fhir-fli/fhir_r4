@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// Category of an identified substance associated with allergies or
 /// intolerances.
-class AllergyIntoleranceCategory extends FhirCode {
+class AllergyIntoleranceCategory extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   AllergyIntoleranceCategory._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -42,24 +45,40 @@ class AllergyIntoleranceCategory extends FhirCode {
   /// food
   static final AllergyIntoleranceCategory food = AllergyIntoleranceCategory._(
     'food',
+    system:
+        'http://hl7.org/fhir/ValueSet/allergy-intolerance-category'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Food'.toFhirString,
   );
 
   /// medication
   static final AllergyIntoleranceCategory medication =
       AllergyIntoleranceCategory._(
     'medication',
+    system:
+        'http://hl7.org/fhir/ValueSet/allergy-intolerance-category'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Medication'.toFhirString,
   );
 
   /// environment
   static final AllergyIntoleranceCategory environment =
       AllergyIntoleranceCategory._(
     'environment',
+    system:
+        'http://hl7.org/fhir/ValueSet/allergy-intolerance-category'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Environment'.toFhirString,
   );
 
   /// biologic
   static final AllergyIntoleranceCategory biologic =
       AllergyIntoleranceCategory._(
     'biologic',
+    system:
+        'http://hl7.org/fhir/ValueSet/allergy-intolerance-category'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Biologic'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes indicating the degree of authority/intentionality associated with
 /// a request.
-class RequestIntent extends FhirCode {
+class RequestIntent extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   RequestIntent._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,46 +44,73 @@ class RequestIntent extends FhirCode {
   /// proposal
   static final RequestIntent proposal = RequestIntent._(
     'proposal',
+    system: 'http://hl7.org/fhir/ValueSet/request-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Proposal'.toFhirString,
   );
 
   /// plan
   static final RequestIntent plan = RequestIntent._(
     'plan',
+    system: 'http://hl7.org/fhir/ValueSet/request-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Plan'.toFhirString,
   );
 
   /// directive
   static final RequestIntent directive = RequestIntent._(
     'directive',
+    system: 'http://hl7.org/fhir/ValueSet/request-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Directive'.toFhirString,
   );
 
   /// order
   static final RequestIntent order = RequestIntent._(
     'order',
+    system: 'http://hl7.org/fhir/ValueSet/request-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Order'.toFhirString,
   );
 
   /// original_order
   static final RequestIntent original_order = RequestIntent._(
     'original-order',
+    system: 'http://hl7.org/fhir/ValueSet/request-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Original Order'.toFhirString,
   );
 
   /// reflex_order
   static final RequestIntent reflex_order = RequestIntent._(
     'reflex-order',
+    system: 'http://hl7.org/fhir/ValueSet/request-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Reflex Order'.toFhirString,
   );
 
   /// filler_order
   static final RequestIntent filler_order = RequestIntent._(
     'filler-order',
+    system: 'http://hl7.org/fhir/ValueSet/request-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Filler Order'.toFhirString,
   );
 
   /// instance_order
   static final RequestIntent instance_order = RequestIntent._(
     'instance-order',
+    system: 'http://hl7.org/fhir/ValueSet/request-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Instance Order'.toFhirString,
   );
 
   /// option
   static final RequestIntent option = RequestIntent._(
     'option',
+    system: 'http://hl7.org/fhir/ValueSet/request-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Option'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

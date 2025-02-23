@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// MedicationStatement Status Codes
-class MedicationStatementStatusCodes extends FhirCode {
+class MedicationStatementStatusCodes extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   MedicationStatementStatusCodes._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -42,48 +45,80 @@ class MedicationStatementStatusCodes extends FhirCode {
   static final MedicationStatementStatusCodes active =
       MedicationStatementStatusCodes._(
     'active',
+    system:
+        'http://hl7.org/fhir/ValueSet/medication-statement-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Active'.toFhirString,
   );
 
   /// completed
   static final MedicationStatementStatusCodes completed =
       MedicationStatementStatusCodes._(
     'completed',
+    system:
+        'http://hl7.org/fhir/ValueSet/medication-statement-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Completed'.toFhirString,
   );
 
   /// entered_in_error
   static final MedicationStatementStatusCodes entered_in_error =
       MedicationStatementStatusCodes._(
     'entered-in-error',
+    system:
+        'http://hl7.org/fhir/ValueSet/medication-statement-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// intended
   static final MedicationStatementStatusCodes intended =
       MedicationStatementStatusCodes._(
     'intended',
+    system:
+        'http://hl7.org/fhir/ValueSet/medication-statement-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Intended'.toFhirString,
   );
 
   /// stopped
   static final MedicationStatementStatusCodes stopped =
       MedicationStatementStatusCodes._(
     'stopped',
+    system:
+        'http://hl7.org/fhir/ValueSet/medication-statement-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Stopped'.toFhirString,
   );
 
   /// on_hold
   static final MedicationStatementStatusCodes on_hold =
       MedicationStatementStatusCodes._(
     'on-hold',
+    system:
+        'http://hl7.org/fhir/ValueSet/medication-statement-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'On Hold'.toFhirString,
   );
 
   /// unknown
   static final MedicationStatementStatusCodes unknown =
       MedicationStatementStatusCodes._(
     'unknown',
+    system:
+        'http://hl7.org/fhir/ValueSet/medication-statement-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Unknown'.toFhirString,
   );
 
   /// not_taken
   static final MedicationStatementStatusCodes not_taken =
       MedicationStatementStatusCodes._(
     'not-taken',
+    system:
+        'http://hl7.org/fhir/ValueSet/medication-statement-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Not Taken'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

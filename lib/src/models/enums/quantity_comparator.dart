@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// How the Quantity should be understood and represented.
-class QuantityComparator extends FhirCode {
+class QuantityComparator extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   QuantityComparator._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,21 +43,33 @@ class QuantityComparator extends FhirCode {
   /// lt
   static final QuantityComparator lt = QuantityComparator._(
     '<',
+    system: 'http://hl7.org/fhir/ValueSet/quantity-comparator'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Less than'.toFhirString,
   );
 
   /// le
   static final QuantityComparator le = QuantityComparator._(
     '<=',
+    system: 'http://hl7.org/fhir/ValueSet/quantity-comparator'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Less or Equal to'.toFhirString,
   );
 
   /// ge
   static final QuantityComparator ge = QuantityComparator._(
     '>=',
+    system: 'http://hl7.org/fhir/ValueSet/quantity-comparator'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Greater or Equal to'.toFhirString,
   );
 
   /// gt
   static final QuantityComparator gt = QuantityComparator._(
     '>',
+    system: 'http://hl7.org/fhir/ValueSet/quantity-comparator'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Greater than'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

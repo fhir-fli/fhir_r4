@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes that convey the current status of the research study.
-class ResearchStudyStatus extends FhirCode {
+class ResearchStudyStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ResearchStudyStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,60 +43,93 @@ class ResearchStudyStatus extends FhirCode {
   /// active
   static final ResearchStudyStatus active = ResearchStudyStatus._(
     'active',
+    system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Active'.toFhirString,
   );
 
   /// administratively_completed
   static final ResearchStudyStatus administratively_completed =
       ResearchStudyStatus._(
     'administratively-completed',
+    system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Administratively Completed'.toFhirString,
   );
 
   /// approved
   static final ResearchStudyStatus approved = ResearchStudyStatus._(
     'approved',
+    system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Approved'.toFhirString,
   );
 
   /// closed_to_accrual
   static final ResearchStudyStatus closed_to_accrual = ResearchStudyStatus._(
     'closed-to-accrual',
+    system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Closed to Accrual'.toFhirString,
   );
 
   /// closed_to_accrual_and_intervention
   static final ResearchStudyStatus closed_to_accrual_and_intervention =
       ResearchStudyStatus._(
     'closed-to-accrual-and-intervention',
+    system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Closed to Accrual and Intervention'.toFhirString,
   );
 
   /// completed
   static final ResearchStudyStatus completed = ResearchStudyStatus._(
     'completed',
+    system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Completed'.toFhirString,
   );
 
   /// disapproved
   static final ResearchStudyStatus disapproved = ResearchStudyStatus._(
     'disapproved',
+    system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Disapproved'.toFhirString,
   );
 
   /// in_review
   static final ResearchStudyStatus in_review = ResearchStudyStatus._(
     'in-review',
+    system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'In Review'.toFhirString,
   );
 
   /// temporarily_closed_to_accrual
   static final ResearchStudyStatus temporarily_closed_to_accrual =
       ResearchStudyStatus._(
     'temporarily-closed-to-accrual',
+    system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Temporarily Closed to Accrual'.toFhirString,
   );
 
   /// temporarily_closed_to_accrual_and_intervention
   static final ResearchStudyStatus
       temporarily_closed_to_accrual_and_intervention = ResearchStudyStatus._(
     'temporarily-closed-to-accrual-and-intervention',
+    system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Temporarily Closed to Accrual and Intervention'.toFhirString,
   );
 
   /// withdrawn
   static final ResearchStudyStatus withdrawn = ResearchStudyStatus._(
     'withdrawn',
+    system: 'http://hl7.org/fhir/ValueSet/research-study-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Withdrawn'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

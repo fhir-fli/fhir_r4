@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The Participation status of an appointment.
-class ParticipationStatus extends FhirCode {
+class ParticipationStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ParticipationStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,21 +43,33 @@ class ParticipationStatus extends FhirCode {
   /// accepted
   static final ParticipationStatus accepted = ParticipationStatus._(
     'accepted',
+    system: 'http://hl7.org/fhir/ValueSet/participationstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Accepted'.toFhirString,
   );
 
   /// declined
   static final ParticipationStatus declined = ParticipationStatus._(
     'declined',
+    system: 'http://hl7.org/fhir/ValueSet/participationstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Declined'.toFhirString,
   );
 
   /// tentative
   static final ParticipationStatus tentative = ParticipationStatus._(
     'tentative',
+    system: 'http://hl7.org/fhir/ValueSet/participationstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Tentative'.toFhirString,
   );
 
   /// needs_action
   static final ParticipationStatus needs_action = ParticipationStatus._(
     'needs-action',
+    system: 'http://hl7.org/fhir/ValueSet/participationstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Needs Action'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

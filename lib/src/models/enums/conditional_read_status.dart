@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A code that indicates how the server supports conditional read.
-class ConditionalReadStatus extends FhirCode {
+class ConditionalReadStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ConditionalReadStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,21 +43,33 @@ class ConditionalReadStatus extends FhirCode {
   /// not_supported
   static final ConditionalReadStatus not_supported = ConditionalReadStatus._(
     'not-supported',
+    system: 'http://hl7.org/fhir/ValueSet/conditional-read-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Not Supported'.toFhirString,
   );
 
   /// modified_since
   static final ConditionalReadStatus modified_since = ConditionalReadStatus._(
     'modified-since',
+    system: 'http://hl7.org/fhir/ValueSet/conditional-read-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'If-Modified-Since'.toFhirString,
   );
 
   /// not_match
   static final ConditionalReadStatus not_match = ConditionalReadStatus._(
     'not-match',
+    system: 'http://hl7.org/fhir/ValueSet/conditional-read-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'If-None-Match'.toFhirString,
   );
 
   /// full_support
   static final ConditionalReadStatus full_support = ConditionalReadStatus._(
     'full-support',
+    system: 'http://hl7.org/fhir/ValueSet/conditional-read-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Full Support'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The purpose of the Claim: predetermination, preauthorization, claim.
-class Use extends FhirCode {
+class Use extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   Use._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,16 +43,25 @@ class Use extends FhirCode {
   /// claim
   static final Use claim = Use._(
     'claim',
+    system: 'http://hl7.org/fhir/ValueSet/claim-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Claim'.toFhirString,
   );
 
   /// preauthorization
   static final Use preauthorization = Use._(
     'preauthorization',
+    system: 'http://hl7.org/fhir/ValueSet/claim-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Preauthorization'.toFhirString,
   );
 
   /// predetermination
   static final Use predetermination = Use._(
     'predetermination',
+    system: 'http://hl7.org/fhir/ValueSet/claim-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Predetermination'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The status of a resource narrative.
-class NarrativeStatus extends FhirCode {
+class NarrativeStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   NarrativeStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,21 +43,33 @@ class NarrativeStatus extends FhirCode {
   /// generated
   static final NarrativeStatus generated = NarrativeStatus._(
     'generated',
+    system: 'http://hl7.org/fhir/ValueSet/narrative-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Generated'.toFhirString,
   );
 
   /// extensions
   static final NarrativeStatus extensions = NarrativeStatus._(
     'extensions',
+    system: 'http://hl7.org/fhir/ValueSet/narrative-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Extensions'.toFhirString,
   );
 
   /// additional
   static final NarrativeStatus additional = NarrativeStatus._(
     'additional',
+    system: 'http://hl7.org/fhir/ValueSet/narrative-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Additional'.toFhirString,
   );
 
   /// empty_
   static final NarrativeStatus empty_ = NarrativeStatus._(
     'empty',
+    system: 'http://hl7.org/fhir/ValueSet/narrative-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Empty'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

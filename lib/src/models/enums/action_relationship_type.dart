@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Defines the types of relationships between actions.
-class ActionRelationshipType extends FhirCode {
+class ActionRelationshipType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ActionRelationshipType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,48 +43,75 @@ class ActionRelationshipType extends FhirCode {
   /// before_start
   static final ActionRelationshipType before_start = ActionRelationshipType._(
     'before-start',
+    system: 'http://hl7.org/fhir/ValueSet/action-relationship-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Before Start'.toFhirString,
   );
 
   /// before
   static final ActionRelationshipType before = ActionRelationshipType._(
     'before',
+    system: 'http://hl7.org/fhir/ValueSet/action-relationship-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Before'.toFhirString,
   );
 
   /// before_end
   static final ActionRelationshipType before_end = ActionRelationshipType._(
     'before-end',
+    system: 'http://hl7.org/fhir/ValueSet/action-relationship-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Before End'.toFhirString,
   );
 
   /// concurrent_with_start
   static final ActionRelationshipType concurrent_with_start =
       ActionRelationshipType._(
     'concurrent-with-start',
+    system: 'http://hl7.org/fhir/ValueSet/action-relationship-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Concurrent With Start'.toFhirString,
   );
 
   /// concurrent
   static final ActionRelationshipType concurrent = ActionRelationshipType._(
     'concurrent',
+    system: 'http://hl7.org/fhir/ValueSet/action-relationship-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Concurrent'.toFhirString,
   );
 
   /// concurrent_with_end
   static final ActionRelationshipType concurrent_with_end =
       ActionRelationshipType._(
     'concurrent-with-end',
+    system: 'http://hl7.org/fhir/ValueSet/action-relationship-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Concurrent With End'.toFhirString,
   );
 
   /// after_start
   static final ActionRelationshipType after_start = ActionRelationshipType._(
     'after-start',
+    system: 'http://hl7.org/fhir/ValueSet/action-relationship-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'After Start'.toFhirString,
   );
 
   /// after
   static final ActionRelationshipType after = ActionRelationshipType._(
     'after',
+    system: 'http://hl7.org/fhir/ValueSet/action-relationship-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'After'.toFhirString,
   );
 
   /// after_end
   static final ActionRelationshipType after_end = ActionRelationshipType._(
     'after-end',
+    system: 'http://hl7.org/fhir/ValueSet/action-relationship-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'After End'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

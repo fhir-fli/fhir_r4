@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// How to interpret the context.
-class StructureMapContextType extends FhirCode {
+class StructureMapContextType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   StructureMapContextType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,11 +43,17 @@ class StructureMapContextType extends FhirCode {
   /// type
   static final StructureMapContextType type = StructureMapContextType._(
     'type',
+    system: 'http://hl7.org/fhir/ValueSet/map-context-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Type'.toFhirString,
   );
 
   /// variable
   static final StructureMapContextType variable = StructureMapContextType._(
     'variable',
+    system: 'http://hl7.org/fhir/ValueSet/map-context-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Variable'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

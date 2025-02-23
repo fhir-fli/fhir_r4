@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// SHALL applications comply with this constraint?
-class ConstraintSeverity extends FhirCode {
+class ConstraintSeverity extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ConstraintSeverity._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,11 +43,17 @@ class ConstraintSeverity extends FhirCode {
   /// error
   static final ConstraintSeverity error = ConstraintSeverity._(
     'error',
+    system: 'http://hl7.org/fhir/ValueSet/constraint-severity'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Error'.toFhirString,
   );
 
   /// warning
   static final ConstraintSeverity warning = ConstraintSeverity._(
     'warning',
+    system: 'http://hl7.org/fhir/ValueSet/constraint-severity'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Warning'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

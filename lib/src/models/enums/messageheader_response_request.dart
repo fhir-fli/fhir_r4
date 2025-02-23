@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// HL7-defined table of codes which identify conditions under which
 /// acknowledgments are required to be returned in response to a message.
-class MessageheaderResponseRequest extends FhirCode {
+class MessageheaderResponseRequest extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   MessageheaderResponseRequest._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -43,24 +46,40 @@ class MessageheaderResponseRequest extends FhirCode {
   static final MessageheaderResponseRequest always =
       MessageheaderResponseRequest._(
     'always',
+    system:
+        'http://hl7.org/fhir/ValueSet/messageheader-response-request'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Always'.toFhirString,
   );
 
   /// on_error
   static final MessageheaderResponseRequest on_error =
       MessageheaderResponseRequest._(
     'on-error',
+    system:
+        'http://hl7.org/fhir/ValueSet/messageheader-response-request'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Error/reject conditions only'.toFhirString,
   );
 
   /// never
   static final MessageheaderResponseRequest never =
       MessageheaderResponseRequest._(
     'never',
+    system:
+        'http://hl7.org/fhir/ValueSet/messageheader-response-request'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Never'.toFhirString,
   );
 
   /// on_success
   static final MessageheaderResponseRequest on_success =
       MessageheaderResponseRequest._(
     'on-success',
+    system:
+        'http://hl7.org/fhir/ValueSet/messageheader-response-request'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Successful completion only'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

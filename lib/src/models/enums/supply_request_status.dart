@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Status of the supply request.
-class SupplyRequestStatus extends FhirCode {
+class SupplyRequestStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   SupplyRequestStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,36 +43,57 @@ class SupplyRequestStatus extends FhirCode {
   /// draft
   static final SupplyRequestStatus draft = SupplyRequestStatus._(
     'draft',
+    system: 'http://hl7.org/fhir/ValueSet/supplyrequest-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Draft'.toFhirString,
   );
 
   /// active
   static final SupplyRequestStatus active = SupplyRequestStatus._(
     'active',
+    system: 'http://hl7.org/fhir/ValueSet/supplyrequest-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Active'.toFhirString,
   );
 
   /// suspended
   static final SupplyRequestStatus suspended = SupplyRequestStatus._(
     'suspended',
+    system: 'http://hl7.org/fhir/ValueSet/supplyrequest-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Suspended'.toFhirString,
   );
 
   /// cancelled
   static final SupplyRequestStatus cancelled = SupplyRequestStatus._(
     'cancelled',
+    system: 'http://hl7.org/fhir/ValueSet/supplyrequest-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Cancelled'.toFhirString,
   );
 
   /// completed
   static final SupplyRequestStatus completed = SupplyRequestStatus._(
     'completed',
+    system: 'http://hl7.org/fhir/ValueSet/supplyrequest-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Completed'.toFhirString,
   );
 
   /// entered_in_error
   static final SupplyRequestStatus entered_in_error = SupplyRequestStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/supplyrequest-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// unknown
   static final SupplyRequestStatus unknown = SupplyRequestStatus._(
     'unknown',
+    system: 'http://hl7.org/fhir/ValueSet/supplyrequest-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Unknown'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

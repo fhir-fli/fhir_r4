@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Whether the application produces or consumes documents.
-class DocumentMode extends FhirCode {
+class DocumentMode extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   DocumentMode._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,11 +43,17 @@ class DocumentMode extends FhirCode {
   /// producer
   static final DocumentMode producer = DocumentMode._(
     'producer',
+    system: 'http://hl7.org/fhir/ValueSet/document-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Producer'.toFhirString,
   );
 
   /// consumer
   static final DocumentMode consumer = DocumentMode._(
     'consumer',
+    system: 'http://hl7.org/fhir/ValueSet/document-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Consumer'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

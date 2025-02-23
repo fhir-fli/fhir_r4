@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The status of the episode of care.
-class EpisodeOfCareStatus extends FhirCode {
+class EpisodeOfCareStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   EpisodeOfCareStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,36 +43,57 @@ class EpisodeOfCareStatus extends FhirCode {
   /// planned
   static final EpisodeOfCareStatus planned = EpisodeOfCareStatus._(
     'planned',
+    system: 'http://hl7.org/fhir/ValueSet/episode-of-care-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Planned'.toFhirString,
   );
 
   /// waitlist
   static final EpisodeOfCareStatus waitlist = EpisodeOfCareStatus._(
     'waitlist',
+    system: 'http://hl7.org/fhir/ValueSet/episode-of-care-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Waitlist'.toFhirString,
   );
 
   /// active
   static final EpisodeOfCareStatus active = EpisodeOfCareStatus._(
     'active',
+    system: 'http://hl7.org/fhir/ValueSet/episode-of-care-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Active'.toFhirString,
   );
 
   /// onhold
   static final EpisodeOfCareStatus onhold = EpisodeOfCareStatus._(
     'onhold',
+    system: 'http://hl7.org/fhir/ValueSet/episode-of-care-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'On Hold'.toFhirString,
   );
 
   /// finished
   static final EpisodeOfCareStatus finished = EpisodeOfCareStatus._(
     'finished',
+    system: 'http://hl7.org/fhir/ValueSet/episode-of-care-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Finished'.toFhirString,
   );
 
   /// cancelled
   static final EpisodeOfCareStatus cancelled = EpisodeOfCareStatus._(
     'cancelled',
+    system: 'http://hl7.org/fhir/ValueSet/episode-of-care-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Cancelled'.toFhirString,
   );
 
   /// entered_in_error
   static final EpisodeOfCareStatus entered_in_error = EpisodeOfCareStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/episode-of-care-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

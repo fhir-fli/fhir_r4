@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// The level of confidence that this link represents the same actual
 /// person, based on NIST Authentication Levels.
-class IdentityAssuranceLevel extends FhirCode {
+class IdentityAssuranceLevel extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   IdentityAssuranceLevel._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,21 +44,33 @@ class IdentityAssuranceLevel extends FhirCode {
   /// level1
   static final IdentityAssuranceLevel level1 = IdentityAssuranceLevel._(
     'level1',
+    system: 'http://hl7.org/fhir/ValueSet/identity-assuranceLevel'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Level 1'.toFhirString,
   );
 
   /// level2
   static final IdentityAssuranceLevel level2 = IdentityAssuranceLevel._(
     'level2',
+    system: 'http://hl7.org/fhir/ValueSet/identity-assuranceLevel'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Level 2'.toFhirString,
   );
 
   /// level3
   static final IdentityAssuranceLevel level3 = IdentityAssuranceLevel._(
     'level3',
+    system: 'http://hl7.org/fhir/ValueSet/identity-assuranceLevel'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Level 3'.toFhirString,
   );
 
   /// level4
   static final IdentityAssuranceLevel level4 = IdentityAssuranceLevel._(
     'level4',
+    system: 'http://hl7.org/fhir/ValueSet/identity-assuranceLevel'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Level 4'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

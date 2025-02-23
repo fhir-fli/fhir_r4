@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A coded concept listing the eye codes.
-class VisionEyes extends FhirCode {
+class VisionEyes extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   VisionEyes._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,11 +43,17 @@ class VisionEyes extends FhirCode {
   /// right
   static final VisionEyes right = VisionEyes._(
     'right',
+    system: 'http://hl7.org/fhir/ValueSet/vision-eye-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Right Eye'.toFhirString,
   );
 
   /// left
   static final VisionEyes left = VisionEyes._(
     'left',
+    system: 'http://hl7.org/fhir/ValueSet/vision-eye-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Left Eye'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

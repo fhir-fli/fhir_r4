@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A coded concept indicating the current status of the Device Usage.
-class DeviceUseStatementStatus extends FhirCode {
+class DeviceUseStatementStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   DeviceUseStatementStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,32 +43,50 @@ class DeviceUseStatementStatus extends FhirCode {
   /// active
   static final DeviceUseStatementStatus active = DeviceUseStatementStatus._(
     'active',
+    system: 'http://hl7.org/fhir/ValueSet/device-statement-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Active'.toFhirString,
   );
 
   /// completed
   static final DeviceUseStatementStatus completed = DeviceUseStatementStatus._(
     'completed',
+    system: 'http://hl7.org/fhir/ValueSet/device-statement-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Completed'.toFhirString,
   );
 
   /// entered_in_error
   static final DeviceUseStatementStatus entered_in_error =
       DeviceUseStatementStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/device-statement-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// intended
   static final DeviceUseStatementStatus intended = DeviceUseStatementStatus._(
     'intended',
+    system: 'http://hl7.org/fhir/ValueSet/device-statement-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Intended'.toFhirString,
   );
 
   /// stopped
   static final DeviceUseStatementStatus stopped = DeviceUseStatementStatus._(
     'stopped',
+    system: 'http://hl7.org/fhir/ValueSet/device-statement-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Stopped'.toFhirString,
   );
 
   /// on_hold
   static final DeviceUseStatementStatus on_hold = DeviceUseStatementStatus._(
     'on-hold',
+    system: 'http://hl7.org/fhir/ValueSet/device-statement-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'On Hold'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

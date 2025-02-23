@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes that reflect the current state of a goal and whether the goal is
 /// still being targeted.
-class GoalLifecycleStatus extends FhirCode {
+class GoalLifecycleStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   GoalLifecycleStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,46 +44,73 @@ class GoalLifecycleStatus extends FhirCode {
   /// proposed
   static final GoalLifecycleStatus proposed = GoalLifecycleStatus._(
     'proposed',
+    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Proposed'.toFhirString,
   );
 
   /// planned
   static final GoalLifecycleStatus planned = GoalLifecycleStatus._(
     'planned',
+    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Planned'.toFhirString,
   );
 
   /// accepted
   static final GoalLifecycleStatus accepted = GoalLifecycleStatus._(
     'accepted',
+    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Accepted'.toFhirString,
   );
 
   /// active
   static final GoalLifecycleStatus active = GoalLifecycleStatus._(
     'active',
+    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Active'.toFhirString,
   );
 
   /// on_hold
   static final GoalLifecycleStatus on_hold = GoalLifecycleStatus._(
     'on-hold',
+    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'On Hold'.toFhirString,
   );
 
   /// completed
   static final GoalLifecycleStatus completed = GoalLifecycleStatus._(
     'completed',
+    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Completed'.toFhirString,
   );
 
   /// cancelled
   static final GoalLifecycleStatus cancelled = GoalLifecycleStatus._(
     'cancelled',
+    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Cancelled'.toFhirString,
   );
 
   /// entered_in_error
   static final GoalLifecycleStatus entered_in_error = GoalLifecycleStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// rejected
   static final GoalLifecycleStatus rejected = GoalLifecycleStatus._(
     'rejected',
+    system: 'http://hl7.org/fhir/ValueSet/goal-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Rejected'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

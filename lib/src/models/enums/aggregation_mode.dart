@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// How resource references can be aggregated.
-class AggregationMode extends FhirCode {
+class AggregationMode extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   AggregationMode._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,16 +43,25 @@ class AggregationMode extends FhirCode {
   /// contained
   static final AggregationMode contained = AggregationMode._(
     'contained',
+    system: 'http://hl7.org/fhir/ValueSet/resource-aggregation-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Contained'.toFhirString,
   );
 
   /// referenced
   static final AggregationMode referenced = AggregationMode._(
     'referenced',
+    system: 'http://hl7.org/fhir/ValueSet/resource-aggregation-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Referenced'.toFhirString,
   );
 
   /// bundled
   static final AggregationMode bundled = AggregationMode._(
     'bundled',
+    system: 'http://hl7.org/fhir/ValueSet/resource-aggregation-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Bundled'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

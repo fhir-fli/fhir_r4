@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Real world event relating to the schedule.
-class EventTiming extends FhirCode {
+class EventTiming extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   EventTiming._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,131 +43,209 @@ class EventTiming extends FhirCode {
   /// MORN
   static final EventTiming MORN = EventTiming._(
     'MORN',
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Morning'.toFhirString,
   );
 
   /// MORN_early
   static final EventTiming MORN_early = EventTiming._(
     'MORN.early',
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Early Morning'.toFhirString,
   );
 
   /// MORN_late
   static final EventTiming MORN_late = EventTiming._(
     'MORN.late',
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Late Morning'.toFhirString,
   );
 
   /// NOON
   static final EventTiming NOON = EventTiming._(
     'NOON',
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Noon'.toFhirString,
   );
 
   /// AFT
   static final EventTiming AFT = EventTiming._(
     'AFT',
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Afternoon'.toFhirString,
   );
 
   /// AFT_early
   static final EventTiming AFT_early = EventTiming._(
     'AFT.early',
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Early Afternoon'.toFhirString,
   );
 
   /// AFT_late
   static final EventTiming AFT_late = EventTiming._(
     'AFT.late',
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Late Afternoon'.toFhirString,
   );
 
   /// EVE
   static final EventTiming EVE = EventTiming._(
     'EVE',
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Evening'.toFhirString,
   );
 
   /// EVE_early
   static final EventTiming EVE_early = EventTiming._(
     'EVE.early',
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Early Evening'.toFhirString,
   );
 
   /// EVE_late
   static final EventTiming EVE_late = EventTiming._(
     'EVE.late',
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Late Evening'.toFhirString,
   );
 
   /// NIGHT
   static final EventTiming NIGHT = EventTiming._(
     'NIGHT',
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Night'.toFhirString,
   );
 
   /// PHS
   static final EventTiming PHS = EventTiming._(
     'PHS',
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'After Sleep'.toFhirString,
   );
 
   /// HS
   static final EventTiming HS = EventTiming._(
     'HS',
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: ''.toFhirString,
   );
 
   /// WAKE
   static final EventTiming WAKE = EventTiming._(
     'WAKE',
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: ''.toFhirString,
   );
 
   /// C
   static final EventTiming C = EventTiming._(
     'C',
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: ''.toFhirString,
   );
 
   /// CM
   static final EventTiming CM = EventTiming._(
     'CM',
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: ''.toFhirString,
   );
 
   /// CD
   static final EventTiming CD = EventTiming._(
     'CD',
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: ''.toFhirString,
   );
 
   /// CV
   static final EventTiming CV = EventTiming._(
     'CV',
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: ''.toFhirString,
   );
 
   /// AC
   static final EventTiming AC = EventTiming._(
     'AC',
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: ''.toFhirString,
   );
 
   /// ACM
   static final EventTiming ACM = EventTiming._(
     'ACM',
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: ''.toFhirString,
   );
 
   /// ACD
   static final EventTiming ACD = EventTiming._(
     'ACD',
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: ''.toFhirString,
   );
 
   /// ACV
   static final EventTiming ACV = EventTiming._(
     'ACV',
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: ''.toFhirString,
   );
 
   /// PC
   static final EventTiming PC = EventTiming._(
     'PC',
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: ''.toFhirString,
   );
 
   /// PCM
   static final EventTiming PCM = EventTiming._(
     'PCM',
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: ''.toFhirString,
   );
 
   /// PCD
   static final EventTiming PCD = EventTiming._(
     'PCD',
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: ''.toFhirString,
   );
 
   /// PCV
   static final EventTiming PCV = EventTiming._(
     'PCV',
+    system: 'http://hl7.org/fhir/ValueSet/event-timing'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: ''.toFhirString,
   );
 
   /// For instances where an Element is present but not value

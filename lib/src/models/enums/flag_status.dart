@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// Indicates whether this flag is active and needs to be displayed to a
 /// user, or whether it is no longer needed or was entered in error.
-class FlagStatus extends FhirCode {
+class FlagStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   FlagStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,16 +44,25 @@ class FlagStatus extends FhirCode {
   /// active
   static final FlagStatus active = FlagStatus._(
     'active',
+    system: 'http://hl7.org/fhir/ValueSet/flag-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Active'.toFhirString,
   );
 
   /// inactive
   static final FlagStatus inactive = FlagStatus._(
     'inactive',
+    system: 'http://hl7.org/fhir/ValueSet/flag-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Inactive'.toFhirString,
   );
 
   /// entered_in_error
   static final FlagStatus entered_in_error = FlagStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/flag-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

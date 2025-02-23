@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Permitted data type for observation value.
-class ObservationDataType extends FhirCode {
+class ObservationDataType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ObservationDataType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,56 +43,89 @@ class ObservationDataType extends FhirCode {
   /// Quantity
   static final ObservationDataType Quantity = ObservationDataType._(
     'Quantity',
+    system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Quantity'.toFhirString,
   );
 
   /// CodeableConcept
   static final ObservationDataType CodeableConcept = ObservationDataType._(
     'CodeableConcept',
+    system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'CodeableConcept'.toFhirString,
   );
 
   /// string
   static final ObservationDataType string = ObservationDataType._(
     'string',
+    system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'string'.toFhirString,
   );
 
   /// boolean
   static final ObservationDataType boolean = ObservationDataType._(
     'boolean',
+    system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'boolean'.toFhirString,
   );
 
   /// integer
   static final ObservationDataType integer = ObservationDataType._(
     'integer',
+    system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'integer'.toFhirString,
   );
 
   /// Range
   static final ObservationDataType Range = ObservationDataType._(
     'Range',
+    system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Range'.toFhirString,
   );
 
   /// Ratio
   static final ObservationDataType Ratio = ObservationDataType._(
     'Ratio',
+    system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Ratio'.toFhirString,
   );
 
   /// SampledData
   static final ObservationDataType SampledData = ObservationDataType._(
     'SampledData',
+    system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'SampledData'.toFhirString,
   );
 
   /// time
   static final ObservationDataType time = ObservationDataType._(
     'time',
+    system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'time'.toFhirString,
   );
 
   /// dateTime
   static final ObservationDataType dateTime = ObservationDataType._(
     'dateTime',
+    system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'dateTime'.toFhirString,
   );
 
   /// Period
   static final ObservationDataType Period = ObservationDataType._(
     'Period',
+    system: 'http://hl7.org/fhir/ValueSet/permitted-data-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Period'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

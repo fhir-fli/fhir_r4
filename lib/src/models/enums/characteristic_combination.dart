@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Logical grouping of characteristics.
-class CharacteristicCombination extends FhirCode {
+class CharacteristicCombination extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   CharacteristicCombination._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,11 +44,17 @@ class CharacteristicCombination extends FhirCode {
   static final CharacteristicCombination intersection =
       CharacteristicCombination._(
     'intersection',
+    system: 'http://hl7.org/fhir/ValueSet/characteristic-combination'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'intersection'.toFhirString,
   );
 
   /// union
   static final CharacteristicCombination union = CharacteristicCombination._(
     'union',
+    system: 'http://hl7.org/fhir/ValueSet/characteristic-combination'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'union'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The outcome of the processing.
-class RemittanceOutcome extends FhirCode {
+class RemittanceOutcome extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   RemittanceOutcome._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,21 +43,33 @@ class RemittanceOutcome extends FhirCode {
   /// queued
   static final RemittanceOutcome queued = RemittanceOutcome._(
     'queued',
+    system: 'http://hl7.org/fhir/ValueSet/remittance-outcome'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Queued'.toFhirString,
   );
 
   /// complete
   static final RemittanceOutcome complete = RemittanceOutcome._(
     'complete',
+    system: 'http://hl7.org/fhir/ValueSet/remittance-outcome'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Complete'.toFhirString,
   );
 
   /// error
   static final RemittanceOutcome error = RemittanceOutcome._(
     'error',
+    system: 'http://hl7.org/fhir/ValueSet/remittance-outcome'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Error'.toFhirString,
   );
 
   /// partial
   static final RemittanceOutcome partial = RemittanceOutcome._(
     'partial',
+    system: 'http://hl7.org/fhir/ValueSet/remittance-outcome'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Partial'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

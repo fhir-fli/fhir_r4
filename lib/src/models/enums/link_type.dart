@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of link between this patient resource and another patient
 /// resource.
-class LinkType extends FhirCode {
+class LinkType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   LinkType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,21 +44,33 @@ class LinkType extends FhirCode {
   /// replaced_by
   static final LinkType replaced_by = LinkType._(
     'replaced-by',
+    system: 'http://hl7.org/fhir/ValueSet/link-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Replaced-by'.toFhirString,
   );
 
   /// replaces
   static final LinkType replaces = LinkType._(
     'replaces',
+    system: 'http://hl7.org/fhir/ValueSet/link-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Replaces'.toFhirString,
   );
 
   /// refer
   static final LinkType refer = LinkType._(
     'refer',
+    system: 'http://hl7.org/fhir/ValueSet/link-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Refer'.toFhirString,
   );
 
   /// seealso
   static final LinkType seealso = LinkType._(
     'seealso',
+    system: 'http://hl7.org/fhir/ValueSet/link-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'See also'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

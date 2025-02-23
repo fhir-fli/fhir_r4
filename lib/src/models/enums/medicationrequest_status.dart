@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// MedicationRequest Status Codes
-class MedicationrequestStatus extends FhirCode {
+class MedicationrequestStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   MedicationrequestStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,42 +43,66 @@ class MedicationrequestStatus extends FhirCode {
   /// active
   static final MedicationrequestStatus active = MedicationrequestStatus._(
     'active',
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Active'.toFhirString,
   );
 
   /// on_hold
   static final MedicationrequestStatus on_hold = MedicationrequestStatus._(
     'on-hold',
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'On Hold'.toFhirString,
   );
 
   /// cancelled
   static final MedicationrequestStatus cancelled = MedicationrequestStatus._(
     'cancelled',
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Cancelled'.toFhirString,
   );
 
   /// completed
   static final MedicationrequestStatus completed = MedicationrequestStatus._(
     'completed',
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Completed'.toFhirString,
   );
 
   /// entered_in_error
   static final MedicationrequestStatus entered_in_error =
       MedicationrequestStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// stopped
   static final MedicationrequestStatus stopped = MedicationrequestStatus._(
     'stopped',
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Stopped'.toFhirString,
   );
 
   /// draft
   static final MedicationrequestStatus draft = MedicationrequestStatus._(
     'draft',
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Draft'.toFhirString,
   );
 
   /// unknown
   static final MedicationrequestStatus unknown = MedicationrequestStatus._(
     'unknown',
+    system: 'http://hl7.org/fhir/ValueSet/medicationrequest-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Unknown'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The allowable request method or HTTP operation codes.
-class TestScriptRequestMethodCode extends FhirCode {
+class TestScriptRequestMethodCode extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   TestScriptRequestMethodCode._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -42,38 +45,59 @@ class TestScriptRequestMethodCode extends FhirCode {
   static final TestScriptRequestMethodCode delete =
       TestScriptRequestMethodCode._(
     'delete',
+    system: 'http://hl7.org/fhir/ValueSet/http-operations'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'DELETE'.toFhirString,
   );
 
   /// get_
   static final TestScriptRequestMethodCode get_ = TestScriptRequestMethodCode._(
     'get',
+    system: 'http://hl7.org/fhir/ValueSet/http-operations'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'GET'.toFhirString,
   );
 
   /// options
   static final TestScriptRequestMethodCode options =
       TestScriptRequestMethodCode._(
     'options',
+    system: 'http://hl7.org/fhir/ValueSet/http-operations'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'OPTIONS'.toFhirString,
   );
 
   /// patch
   static final TestScriptRequestMethodCode patch =
       TestScriptRequestMethodCode._(
     'patch',
+    system: 'http://hl7.org/fhir/ValueSet/http-operations'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'PATCH'.toFhirString,
   );
 
   /// post
   static final TestScriptRequestMethodCode post = TestScriptRequestMethodCode._(
     'post',
+    system: 'http://hl7.org/fhir/ValueSet/http-operations'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'POST'.toFhirString,
   );
 
   /// put
   static final TestScriptRequestMethodCode put = TestScriptRequestMethodCode._(
     'put',
+    system: 'http://hl7.org/fhir/ValueSet/http-operations'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'PUT'.toFhirString,
   );
 
   /// head
   static final TestScriptRequestMethodCode head = TestScriptRequestMethodCode._(
     'head',
+    system: 'http://hl7.org/fhir/ValueSet/http-operations'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'HEAD'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

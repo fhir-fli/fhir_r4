@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// How slices are interpreted when evaluating an instance.
-class SlicingRules extends FhirCode {
+class SlicingRules extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   SlicingRules._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,16 +43,25 @@ class SlicingRules extends FhirCode {
   /// closed
   static final SlicingRules closed = SlicingRules._(
     'closed',
+    system: 'http://hl7.org/fhir/ValueSet/resource-slicing-rules'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Closed'.toFhirString,
   );
 
   /// open
   static final SlicingRules open = SlicingRules._(
     'open',
+    system: 'http://hl7.org/fhir/ValueSet/resource-slicing-rules'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Open'.toFhirString,
   );
 
   /// openAtEnd
   static final SlicingRules openAtEnd = SlicingRules._(
     'openAtEnd',
+    system: 'http://hl7.org/fhir/ValueSet/resource-slicing-rules'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Open at End'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// The extent of the content of the code system (the concepts and codes it
 /// defines) are represented in a code system resource.
-class CodeSystemContentMode extends FhirCode {
+class CodeSystemContentMode extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   CodeSystemContentMode._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,26 +44,41 @@ class CodeSystemContentMode extends FhirCode {
   /// not_present
   static final CodeSystemContentMode not_present = CodeSystemContentMode._(
     'not-present',
+    system: 'http://hl7.org/fhir/ValueSet/codesystem-content-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Not Present'.toFhirString,
   );
 
   /// example
   static final CodeSystemContentMode example = CodeSystemContentMode._(
     'example',
+    system: 'http://hl7.org/fhir/ValueSet/codesystem-content-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Example'.toFhirString,
   );
 
   /// fragment
   static final CodeSystemContentMode fragment = CodeSystemContentMode._(
     'fragment',
+    system: 'http://hl7.org/fhir/ValueSet/codesystem-content-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Fragment'.toFhirString,
   );
 
   /// complete
   static final CodeSystemContentMode complete = CodeSystemContentMode._(
     'complete',
+    system: 'http://hl7.org/fhir/ValueSet/codesystem-content-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Complete'.toFhirString,
   );
 
   /// supplement
   static final CodeSystemContentMode supplement = CodeSystemContentMode._(
     'supplement',
+    system: 'http://hl7.org/fhir/ValueSet/codesystem-content-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Supplement'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

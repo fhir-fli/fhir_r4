@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes identifying the lifecycle stage of an Invoice.
-class InvoiceStatus extends FhirCode {
+class InvoiceStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   InvoiceStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,26 +43,41 @@ class InvoiceStatus extends FhirCode {
   /// draft
   static final InvoiceStatus draft = InvoiceStatus._(
     'draft',
+    system: 'http://hl7.org/fhir/ValueSet/invoice-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'draft'.toFhirString,
   );
 
   /// issued
   static final InvoiceStatus issued = InvoiceStatus._(
     'issued',
+    system: 'http://hl7.org/fhir/ValueSet/invoice-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'issued'.toFhirString,
   );
 
   /// balanced
   static final InvoiceStatus balanced = InvoiceStatus._(
     'balanced',
+    system: 'http://hl7.org/fhir/ValueSet/invoice-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'balanced'.toFhirString,
   );
 
   /// cancelled
   static final InvoiceStatus cancelled = InvoiceStatus._(
     'cancelled',
+    system: 'http://hl7.org/fhir/ValueSet/invoice-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'cancelled'.toFhirString,
   );
 
   /// entered_in_error
   static final InvoiceStatus entered_in_error = InvoiceStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/invoice-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'entered in error'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

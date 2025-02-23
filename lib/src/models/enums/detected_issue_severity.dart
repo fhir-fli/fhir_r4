@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// Indicates the potential degree of impact of the identified issue on the
 /// patient.
-class DetectedIssueSeverity extends FhirCode {
+class DetectedIssueSeverity extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   DetectedIssueSeverity._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,16 +44,25 @@ class DetectedIssueSeverity extends FhirCode {
   /// high
   static final DetectedIssueSeverity high = DetectedIssueSeverity._(
     'high',
+    system: 'http://hl7.org/fhir/ValueSet/detectedissue-severity'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'High'.toFhirString,
   );
 
   /// moderate
   static final DetectedIssueSeverity moderate = DetectedIssueSeverity._(
     'moderate',
+    system: 'http://hl7.org/fhir/ValueSet/detectedissue-severity'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Moderate'.toFhirString,
   );
 
   /// low
   static final DetectedIssueSeverity low = DetectedIssueSeverity._(
     'low',
+    system: 'http://hl7.org/fhir/ValueSet/detectedissue-severity'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Low'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

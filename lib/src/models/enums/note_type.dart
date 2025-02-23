@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The presentation types of notes.
-class NoteType extends FhirCode {
+class NoteType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   NoteType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -37,19 +40,28 @@ class NoteType extends FhirCode {
     );
   }
 
-  /// display
-  static final NoteType display = NoteType._(
+  /// display_
+  static final NoteType display_ = NoteType._(
     'display',
+    system: 'http://hl7.org/fhir/ValueSet/note-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Display'.toFhirString,
   );
 
   /// print
   static final NoteType print = NoteType._(
     'print',
+    system: 'http://hl7.org/fhir/ValueSet/note-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Print (Form)'.toFhirString,
   );
 
   /// printoper
   static final NoteType printoper = NoteType._(
     'printoper',
+    system: 'http://hl7.org/fhir/ValueSet/note-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Print (Operator)'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
@@ -58,7 +70,7 @@ class NoteType extends FhirCode {
 
   /// List of all enum-like values
   static final List<NoteType> values = [
-    display,
+    display_,
     print,
     printoper,
   ];

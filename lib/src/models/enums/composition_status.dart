@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The workflow/clinical status of the composition.
-class CompositionStatus extends FhirCode {
+class CompositionStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   CompositionStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,21 +43,33 @@ class CompositionStatus extends FhirCode {
   /// preliminary
   static final CompositionStatus preliminary = CompositionStatus._(
     'preliminary',
+    system: 'http://hl7.org/fhir/ValueSet/composition-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Preliminary'.toFhirString,
   );
 
   /// final_
   static final CompositionStatus final_ = CompositionStatus._(
     'final',
+    system: 'http://hl7.org/fhir/ValueSet/composition-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Final'.toFhirString,
   );
 
   /// amended
   static final CompositionStatus amended = CompositionStatus._(
     'amended',
+    system: 'http://hl7.org/fhir/ValueSet/composition-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Amended'.toFhirString,
   );
 
   /// entered_in_error
   static final CompositionStatus entered_in_error = CompositionStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/composition-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

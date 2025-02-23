@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// How the system supports versioning for a resource.
-class ResourceVersionPolicy extends FhirCode {
+class ResourceVersionPolicy extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ResourceVersionPolicy._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,16 +43,25 @@ class ResourceVersionPolicy extends FhirCode {
   /// no_version
   static final ResourceVersionPolicy no_version = ResourceVersionPolicy._(
     'no-version',
+    system: 'http://hl7.org/fhir/ValueSet/versioning-policy'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'No VersionId Support'.toFhirString,
   );
 
   /// versioned
   static final ResourceVersionPolicy versioned = ResourceVersionPolicy._(
     'versioned',
+    system: 'http://hl7.org/fhir/ValueSet/versioning-policy'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Versioned'.toFhirString,
   );
 
   /// versioned_update
   static final ResourceVersionPolicy versioned_update = ResourceVersionPolicy._(
     'versioned-update',
+    system: 'http://hl7.org/fhir/ValueSet/versioning-policy'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'VersionId tracked fully'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Overall defining type of this clinical use definition.
-class ClinicalUseDefinitionType extends FhirCode {
+class ClinicalUseDefinitionType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ClinicalUseDefinitionType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,29 +44,49 @@ class ClinicalUseDefinitionType extends FhirCode {
   static final ClinicalUseDefinitionType indication =
       ClinicalUseDefinitionType._(
     'indication',
+    system:
+        'http://hl7.org/fhir/ValueSet/clinical-use-definition-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Indication'.toFhirString,
   );
 
   /// contraindication
   static final ClinicalUseDefinitionType contraindication =
       ClinicalUseDefinitionType._(
     'contraindication',
+    system:
+        'http://hl7.org/fhir/ValueSet/clinical-use-definition-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Contraindication'.toFhirString,
   );
 
   /// interaction
   static final ClinicalUseDefinitionType interaction =
       ClinicalUseDefinitionType._(
     'interaction',
+    system:
+        'http://hl7.org/fhir/ValueSet/clinical-use-definition-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Interaction'.toFhirString,
   );
 
   /// undesirable_effect
   static final ClinicalUseDefinitionType undesirable_effect =
       ClinicalUseDefinitionType._(
     'undesirable-effect',
+    system:
+        'http://hl7.org/fhir/ValueSet/clinical-use-definition-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Undesirable Effect'.toFhirString,
   );
 
   /// warning
   static final ClinicalUseDefinitionType warning = ClinicalUseDefinitionType._(
     'warning',
+    system:
+        'http://hl7.org/fhir/ValueSet/clinical-use-definition-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Warning'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

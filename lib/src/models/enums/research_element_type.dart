@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// The possible types of research elements (E.g. Population, Exposure,
 /// Outcome).
-class ResearchElementType extends FhirCode {
+class ResearchElementType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ResearchElementType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,16 +44,25 @@ class ResearchElementType extends FhirCode {
   /// population
   static final ResearchElementType population = ResearchElementType._(
     'population',
+    system: 'http://hl7.org/fhir/ValueSet/research-element-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Population'.toFhirString,
   );
 
   /// exposure
   static final ResearchElementType exposure = ResearchElementType._(
     'exposure',
+    system: 'http://hl7.org/fhir/ValueSet/research-element-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Exposure'.toFhirString,
   );
 
   /// outcome
   static final ResearchElementType outcome = ResearchElementType._(
     'outcome',
+    system: 'http://hl7.org/fhir/ValueSet/research-element-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Outcome'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

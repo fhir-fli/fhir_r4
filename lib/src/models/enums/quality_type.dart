@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Type for quality report.
-class QualityType extends FhirCode {
+class QualityType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   QualityType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,16 +43,25 @@ class QualityType extends FhirCode {
   /// indel
   static final QualityType indel = QualityType._(
     'indel',
+    system: 'http://hl7.org/fhir/ValueSet/quality-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'INDEL Comparison'.toFhirString,
   );
 
   /// snp
   static final QualityType snp = QualityType._(
     'snp',
+    system: 'http://hl7.org/fhir/ValueSet/quality-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'SNP Comparison'.toFhirString,
   );
 
   /// unknown
   static final QualityType unknown = QualityType._(
     'unknown',
+    system: 'http://hl7.org/fhir/ValueSet/quality-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'UNKNOWN Comparison'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

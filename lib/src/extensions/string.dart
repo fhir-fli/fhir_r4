@@ -849,6 +849,7 @@ extension StringExtensionForFHIR on String {
       case 'code':
       case 'fhircode':
       case 'fhir.code':
+      case 'fhircodeenum':
       case 'date':
       case 'fhirdate':
       case 'fhir.date':
@@ -898,6 +899,7 @@ extension StringExtensionForFHIR on String {
         'code',
         'fhircode',
         'fhir.code',
+        'fhircodeenum',
         'date',
         'fhirdate',
         'fhir.date',

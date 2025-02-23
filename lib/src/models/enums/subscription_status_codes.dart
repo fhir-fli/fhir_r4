@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The status of a subscription.
-class SubscriptionStatusCodes extends FhirCode {
+class SubscriptionStatusCodes extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   SubscriptionStatusCodes._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,21 +43,33 @@ class SubscriptionStatusCodes extends FhirCode {
   /// requested
   static final SubscriptionStatusCodes requested = SubscriptionStatusCodes._(
     'requested',
+    system: 'http://hl7.org/fhir/ValueSet/subscription-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Requested'.toFhirString,
   );
 
   /// active
   static final SubscriptionStatusCodes active = SubscriptionStatusCodes._(
     'active',
+    system: 'http://hl7.org/fhir/ValueSet/subscription-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Active'.toFhirString,
   );
 
   /// error
   static final SubscriptionStatusCodes error = SubscriptionStatusCodes._(
     'error',
+    system: 'http://hl7.org/fhir/ValueSet/subscription-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Error'.toFhirString,
   );
 
   /// off
   static final SubscriptionStatusCodes off = SubscriptionStatusCodes._(
     'off',
+    system: 'http://hl7.org/fhir/ValueSet/subscription-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Off'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

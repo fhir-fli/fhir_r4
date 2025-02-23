@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of relationship between reports.
-class ReportRelationshipType extends FhirCode {
+class ReportRelationshipType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ReportRelationshipType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,42 +43,66 @@ class ReportRelationshipType extends FhirCode {
   /// replaces
   static final ReportRelationshipType replaces = ReportRelationshipType._(
     'replaces',
+    system: 'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Replaces'.toFhirString,
   );
 
   /// amends
   static final ReportRelationshipType amends = ReportRelationshipType._(
     'amends',
+    system: 'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Amends'.toFhirString,
   );
 
   /// appends
   static final ReportRelationshipType appends = ReportRelationshipType._(
     'appends',
+    system: 'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Appends'.toFhirString,
   );
 
   /// transforms
   static final ReportRelationshipType transforms = ReportRelationshipType._(
     'transforms',
+    system: 'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Transforms'.toFhirString,
   );
 
   /// replacedWith
   static final ReportRelationshipType replacedWith = ReportRelationshipType._(
     'replacedWith',
+    system: 'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Replaced With'.toFhirString,
   );
 
   /// amendedWith
   static final ReportRelationshipType amendedWith = ReportRelationshipType._(
     'amendedWith',
+    system: 'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Amended With'.toFhirString,
   );
 
   /// appendedWith
   static final ReportRelationshipType appendedWith = ReportRelationshipType._(
     'appendedWith',
+    system: 'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Appended With'.toFhirString,
   );
 
   /// transformedWith
   static final ReportRelationshipType transformedWith =
       ReportRelationshipType._(
     'transformedWith',
+    system: 'http://hl7.org/fhir/ValueSet/report-relation-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Transformed With'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A code specifying the state of the resource instance.
-class ExplanationOfBenefitStatus extends FhirCode {
+class ExplanationOfBenefitStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ExplanationOfBenefitStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,23 +44,39 @@ class ExplanationOfBenefitStatus extends FhirCode {
   /// active
   static final ExplanationOfBenefitStatus active = ExplanationOfBenefitStatus._(
     'active',
+    system:
+        'http://hl7.org/fhir/ValueSet/explanationofbenefit-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Active'.toFhirString,
   );
 
   /// cancelled
   static final ExplanationOfBenefitStatus cancelled =
       ExplanationOfBenefitStatus._(
     'cancelled',
+    system:
+        'http://hl7.org/fhir/ValueSet/explanationofbenefit-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Cancelled'.toFhirString,
   );
 
   /// draft
   static final ExplanationOfBenefitStatus draft = ExplanationOfBenefitStatus._(
     'draft',
+    system:
+        'http://hl7.org/fhir/ValueSet/explanationofbenefit-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Draft'.toFhirString,
   );
 
   /// entered_in_error
   static final ExplanationOfBenefitStatus entered_in_error =
       ExplanationOfBenefitStatus._(
     'entered-in-error',
+    system:
+        'http://hl7.org/fhir/ValueSet/explanationofbenefit-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered In Error'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

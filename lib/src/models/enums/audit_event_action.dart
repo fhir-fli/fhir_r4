@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// Indicator for type of action performed during the event that generated
 /// the event.
-class AuditEventAction extends FhirCode {
+class AuditEventAction extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   AuditEventAction._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,26 +44,41 @@ class AuditEventAction extends FhirCode {
   /// C
   static final AuditEventAction C = AuditEventAction._(
     'C',
+    system: 'http://hl7.org/fhir/ValueSet/audit-event-action'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Create'.toFhirString,
   );
 
   /// R
   static final AuditEventAction R = AuditEventAction._(
     'R',
+    system: 'http://hl7.org/fhir/ValueSet/audit-event-action'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Read/View/Print'.toFhirString,
   );
 
   /// U
   static final AuditEventAction U = AuditEventAction._(
     'U',
+    system: 'http://hl7.org/fhir/ValueSet/audit-event-action'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Update'.toFhirString,
   );
 
   /// D
   static final AuditEventAction D = AuditEventAction._(
     'D',
+    system: 'http://hl7.org/fhir/ValueSet/audit-event-action'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Delete'.toFhirString,
   );
 
   /// E
   static final AuditEventAction E = AuditEventAction._(
     'E',
+    system: 'http://hl7.org/fhir/ValueSet/audit-event-action'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Execute'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

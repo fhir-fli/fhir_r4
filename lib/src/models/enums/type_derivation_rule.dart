@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// How a type relates to its baseDefinition.
-class TypeDerivationRule extends FhirCode {
+class TypeDerivationRule extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   TypeDerivationRule._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,11 +43,17 @@ class TypeDerivationRule extends FhirCode {
   /// specialization
   static final TypeDerivationRule specialization = TypeDerivationRule._(
     'specialization',
+    system: 'http://hl7.org/fhir/ValueSet/type-derivation-rule'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Specialization'.toFhirString,
   );
 
   /// constraint
   static final TypeDerivationRule constraint = TypeDerivationRule._(
     'constraint',
+    system: 'http://hl7.org/fhir/ValueSet/type-derivation-rule'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Constraint'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

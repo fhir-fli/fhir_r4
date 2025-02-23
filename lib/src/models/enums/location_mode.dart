@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// Indicates whether a resource instance represents a specific location or
 /// a class of locations.
-class LocationMode extends FhirCode {
+class LocationMode extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   LocationMode._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,11 +44,17 @@ class LocationMode extends FhirCode {
   /// instance
   static final LocationMode instance = LocationMode._(
     'instance',
+    system: 'http://hl7.org/fhir/ValueSet/location-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Instance'.toFhirString,
   );
 
   /// kind
   static final LocationMode kind = LocationMode._(
     'kind',
+    system: 'http://hl7.org/fhir/ValueSet/location-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Kind'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

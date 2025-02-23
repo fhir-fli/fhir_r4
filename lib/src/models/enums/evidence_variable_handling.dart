@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// The handling of the variable in statistical analysis for exposures or
 /// outcomes (E.g. Dichotomous, Continuous, Descriptive).
-class EvidenceVariableHandling extends FhirCode {
+class EvidenceVariableHandling extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   EvidenceVariableHandling._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,23 +44,35 @@ class EvidenceVariableHandling extends FhirCode {
   /// continuous
   static final EvidenceVariableHandling continuous = EvidenceVariableHandling._(
     'continuous',
+    system: 'http://hl7.org/fhir/ValueSet/variable-handling'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'continuous variable'.toFhirString,
   );
 
   /// dichotomous
   static final EvidenceVariableHandling dichotomous =
       EvidenceVariableHandling._(
     'dichotomous',
+    system: 'http://hl7.org/fhir/ValueSet/variable-handling'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'dichotomous variable'.toFhirString,
   );
 
   /// ordinal
   static final EvidenceVariableHandling ordinal = EvidenceVariableHandling._(
     'ordinal',
+    system: 'http://hl7.org/fhir/ValueSet/variable-handling'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'ordinal variable'.toFhirString,
   );
 
   /// polychotomous
   static final EvidenceVariableHandling polychotomous =
       EvidenceVariableHandling._(
     'polychotomous',
+    system: 'http://hl7.org/fhir/ValueSet/variable-handling'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'polychotomous variable'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

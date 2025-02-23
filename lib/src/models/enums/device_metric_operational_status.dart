@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Describes the operational status of the DeviceMetric.
-class DeviceMetricOperationalStatus extends FhirCode {
+class DeviceMetricOperationalStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   DeviceMetricOperationalStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -42,24 +45,36 @@ class DeviceMetricOperationalStatus extends FhirCode {
   static final DeviceMetricOperationalStatus on_ =
       DeviceMetricOperationalStatus._(
     'on',
+    system: 'http://hl7.org/fhir/ValueSet/metric-operational-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'On'.toFhirString,
   );
 
   /// off
   static final DeviceMetricOperationalStatus off =
       DeviceMetricOperationalStatus._(
     'off',
+    system: 'http://hl7.org/fhir/ValueSet/metric-operational-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Off'.toFhirString,
   );
 
   /// standby
   static final DeviceMetricOperationalStatus standby =
       DeviceMetricOperationalStatus._(
     'standby',
+    system: 'http://hl7.org/fhir/ValueSet/metric-operational-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Standby'.toFhirString,
   );
 
   /// entered_in_error
   static final DeviceMetricOperationalStatus entered_in_error =
       DeviceMetricOperationalStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/metric-operational-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered In Error'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

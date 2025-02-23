@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// How the referenced structure is used in this mapping.
-class StructureMapModelMode extends FhirCode {
+class StructureMapModelMode extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   StructureMapModelMode._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,21 +43,33 @@ class StructureMapModelMode extends FhirCode {
   /// source
   static final StructureMapModelMode source = StructureMapModelMode._(
     'source',
+    system: 'http://hl7.org/fhir/ValueSet/map-model-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Source Structure Definition'.toFhirString,
   );
 
   /// queried
   static final StructureMapModelMode queried = StructureMapModelMode._(
     'queried',
+    system: 'http://hl7.org/fhir/ValueSet/map-model-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Queried Structure Definition'.toFhirString,
   );
 
   /// target
   static final StructureMapModelMode target = StructureMapModelMode._(
     'target',
+    system: 'http://hl7.org/fhir/ValueSet/map-model-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Target Structure Definition'.toFhirString,
   );
 
   /// produced
   static final StructureMapModelMode produced = StructureMapModelMode._(
     'produced',
+    system: 'http://hl7.org/fhir/ValueSet/map-model-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Produced Structure Definition'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Defines which action to take if there is no match in the group.
-class ConceptMapGroupUnmappedMode extends FhirCode {
+class ConceptMapGroupUnmappedMode extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ConceptMapGroupUnmappedMode._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -42,18 +45,27 @@ class ConceptMapGroupUnmappedMode extends FhirCode {
   static final ConceptMapGroupUnmappedMode provided =
       ConceptMapGroupUnmappedMode._(
     'provided',
+    system: 'http://hl7.org/fhir/ValueSet/conceptmap-unmapped-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Provided Code'.toFhirString,
   );
 
   /// fixed
   static final ConceptMapGroupUnmappedMode fixed =
       ConceptMapGroupUnmappedMode._(
     'fixed',
+    system: 'http://hl7.org/fhir/ValueSet/conceptmap-unmapped-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Fixed Code'.toFhirString,
   );
 
   /// other_map
   static final ConceptMapGroupUnmappedMode other_map =
       ConceptMapGroupUnmappedMode._(
     'other-map',
+    system: 'http://hl7.org/fhir/ValueSet/conceptmap-unmapped-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Other Map'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

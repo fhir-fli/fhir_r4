@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Code of parameter that is input to the guide.
-class GuideParameterCode extends FhirCode {
+class GuideParameterCode extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   GuideParameterCode._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,51 +43,81 @@ class GuideParameterCode extends FhirCode {
   /// apply
   static final GuideParameterCode apply = GuideParameterCode._(
     'apply',
+    system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Apply Metadata Value'.toFhirString,
   );
 
   /// path_resource
   static final GuideParameterCode path_resource = GuideParameterCode._(
     'path-resource',
+    system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Resource Path'.toFhirString,
   );
 
   /// path_pages
   static final GuideParameterCode path_pages = GuideParameterCode._(
     'path-pages',
+    system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Pages Path'.toFhirString,
   );
 
   /// path_tx_cache
   static final GuideParameterCode path_tx_cache = GuideParameterCode._(
     'path-tx-cache',
+    system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Terminology Cache Path'.toFhirString,
   );
 
   /// expansion_parameter
   static final GuideParameterCode expansion_parameter = GuideParameterCode._(
     'expansion-parameter',
+    system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Expansion Profile'.toFhirString,
   );
 
   /// rule_broken_links
   static final GuideParameterCode rule_broken_links = GuideParameterCode._(
     'rule-broken-links',
+    system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Broken Links Rule'.toFhirString,
   );
 
   /// generate_xml
   static final GuideParameterCode generate_xml = GuideParameterCode._(
     'generate-xml',
+    system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Generate XML'.toFhirString,
   );
 
   /// generate_json
   static final GuideParameterCode generate_json = GuideParameterCode._(
     'generate-json',
+    system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Generate JSON'.toFhirString,
   );
 
   /// generate_turtle
   static final GuideParameterCode generate_turtle = GuideParameterCode._(
     'generate-turtle',
+    system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Generate Turtle'.toFhirString,
   );
 
   /// html_template
   static final GuideParameterCode html_template = GuideParameterCode._(
     'html-template',
+    system: 'http://hl7.org/fhir/ValueSet/guide-parameter-code'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'HTML Template'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

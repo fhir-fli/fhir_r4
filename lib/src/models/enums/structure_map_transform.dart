@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// How data is copied/created.
-class StructureMapTransform extends FhirCode {
+class StructureMapTransform extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   StructureMapTransform._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,86 +43,137 @@ class StructureMapTransform extends FhirCode {
   /// create
   static final StructureMapTransform create = StructureMapTransform._(
     'create',
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'create'.toFhirString,
   );
 
   /// copy
   static final StructureMapTransform copy_ = StructureMapTransform._(
     'copy',
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'copy'.toFhirString,
   );
 
   /// truncate
   static final StructureMapTransform truncate = StructureMapTransform._(
     'truncate',
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'truncate'.toFhirString,
   );
 
   /// escape
   static final StructureMapTransform escape = StructureMapTransform._(
     'escape',
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'escape'.toFhirString,
   );
 
   /// cast
   static final StructureMapTransform cast = StructureMapTransform._(
     'cast',
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'cast'.toFhirString,
   );
 
   /// append
   static final StructureMapTransform append = StructureMapTransform._(
     'append',
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'append'.toFhirString,
   );
 
   /// translate
   static final StructureMapTransform translate = StructureMapTransform._(
     'translate',
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'translate'.toFhirString,
   );
 
   /// reference
   static final StructureMapTransform reference = StructureMapTransform._(
     'reference',
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'reference'.toFhirString,
   );
 
   /// dateOp
   static final StructureMapTransform dateOp = StructureMapTransform._(
     'dateOp',
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'dateOp'.toFhirString,
   );
 
   /// uuid
   static final StructureMapTransform uuid = StructureMapTransform._(
     'uuid',
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'uuid'.toFhirString,
   );
 
   /// pointer
   static final StructureMapTransform pointer = StructureMapTransform._(
     'pointer',
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'pointer'.toFhirString,
   );
 
   /// evaluate
   static final StructureMapTransform evaluate = StructureMapTransform._(
     'evaluate',
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'evaluate'.toFhirString,
   );
 
   /// cc
   static final StructureMapTransform cc = StructureMapTransform._(
     'cc',
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'cc'.toFhirString,
   );
 
   /// c
   static final StructureMapTransform c = StructureMapTransform._(
     'c',
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'c'.toFhirString,
   );
 
   /// qty
   static final StructureMapTransform qty = StructureMapTransform._(
     'qty',
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'qty'.toFhirString,
   );
 
   /// id
   static final StructureMapTransform id_ = StructureMapTransform._(
     'id',
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'id'.toFhirString,
   );
 
   /// cp
   static final StructureMapTransform cp = StructureMapTransform._(
     'cp',
+    system: 'http://hl7.org/fhir/ValueSet/map-transform'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'cp'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

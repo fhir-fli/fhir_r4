@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Defines organization behavior of a group.
-class ActionGroupingBehavior extends FhirCode {
+class ActionGroupingBehavior extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ActionGroupingBehavior._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,16 +43,25 @@ class ActionGroupingBehavior extends FhirCode {
   /// visual_group
   static final ActionGroupingBehavior visual_group = ActionGroupingBehavior._(
     'visual-group',
+    system: 'http://hl7.org/fhir/ValueSet/action-grouping-behavior'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Visual Group'.toFhirString,
   );
 
   /// logical_group
   static final ActionGroupingBehavior logical_group = ActionGroupingBehavior._(
     'logical-group',
+    system: 'http://hl7.org/fhir/ValueSet/action-grouping-behavior'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Logical Group'.toFhirString,
   );
 
   /// sentence_group
   static final ActionGroupingBehavior sentence_group = ActionGroupingBehavior._(
     'sentence-group',
+    system: 'http://hl7.org/fhir/ValueSet/action-grouping-behavior'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Sentence Group'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

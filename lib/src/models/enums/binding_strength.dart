@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// Indication of the degree of conformance expectations associated with a
 /// binding.
-class BindingStrength extends FhirCode {
+class BindingStrength extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   BindingStrength._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,21 +44,33 @@ class BindingStrength extends FhirCode {
   /// required_
   static final BindingStrength required_ = BindingStrength._(
     'required',
+    system: 'http://hl7.org/fhir/ValueSet/binding-strength'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Required'.toFhirString,
   );
 
   /// extensible
   static final BindingStrength extensible = BindingStrength._(
     'extensible',
+    system: 'http://hl7.org/fhir/ValueSet/binding-strength'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Extensible'.toFhirString,
   );
 
   /// preferred
   static final BindingStrength preferred = BindingStrength._(
     'preferred',
+    system: 'http://hl7.org/fhir/ValueSet/binding-strength'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Preferred'.toFhirString,
   );
 
   /// example
   static final BindingStrength example = BindingStrength._(
     'example',
+    system: 'http://hl7.org/fhir/ValueSet/binding-strength'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Example'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

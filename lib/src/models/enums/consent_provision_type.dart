@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// How a rule statement is applied, such as adding additional consent or
 /// removing consent.
-class ConsentProvisionType extends FhirCode {
+class ConsentProvisionType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ConsentProvisionType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,11 +44,17 @@ class ConsentProvisionType extends FhirCode {
   /// deny
   static final ConsentProvisionType deny = ConsentProvisionType._(
     'deny',
+    system: 'http://hl7.org/fhir/ValueSet/consent-provision-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Opt Out'.toFhirString,
   );
 
   /// permit
   static final ConsentProvisionType permit = ConsentProvisionType._(
     'permit',
+    system: 'http://hl7.org/fhir/ValueSet/consent-provision-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Opt In'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

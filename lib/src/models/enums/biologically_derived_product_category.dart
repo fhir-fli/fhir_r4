@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Biologically Derived Product Category.
-class BiologicallyDerivedProductCategory extends FhirCode {
+class BiologicallyDerivedProductCategory extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   BiologicallyDerivedProductCategory._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -43,30 +46,45 @@ class BiologicallyDerivedProductCategory extends FhirCode {
   static final BiologicallyDerivedProductCategory organ =
       BiologicallyDerivedProductCategory._(
     'organ',
+    system: 'http://hl7.org/fhir/ValueSet/product-category'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Organ'.toFhirString,
   );
 
   /// tissue
   static final BiologicallyDerivedProductCategory tissue =
       BiologicallyDerivedProductCategory._(
     'tissue',
+    system: 'http://hl7.org/fhir/ValueSet/product-category'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Tissue'.toFhirString,
   );
 
   /// fluid
   static final BiologicallyDerivedProductCategory fluid =
       BiologicallyDerivedProductCategory._(
     'fluid',
+    system: 'http://hl7.org/fhir/ValueSet/product-category'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Fluid'.toFhirString,
   );
 
   /// cells
   static final BiologicallyDerivedProductCategory cells =
       BiologicallyDerivedProductCategory._(
     'cells',
+    system: 'http://hl7.org/fhir/ValueSet/product-category'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Cells'.toFhirString,
   );
 
   /// biologicalAgent
   static final BiologicallyDerivedProductCategory biologicalAgent =
       BiologicallyDerivedProductCategory._(
     'biologicalAgent',
+    system: 'http://hl7.org/fhir/ValueSet/product-category'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'BiologicalAgent'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

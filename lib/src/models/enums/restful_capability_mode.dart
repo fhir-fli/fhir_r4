@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The mode of a RESTful capability statement.
-class RestfulCapabilityMode extends FhirCode {
+class RestfulCapabilityMode extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   RestfulCapabilityMode._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,11 +43,17 @@ class RestfulCapabilityMode extends FhirCode {
   /// client
   static final RestfulCapabilityMode client = RestfulCapabilityMode._(
     'client',
+    system: 'http://hl7.org/fhir/ValueSet/restful-capability-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Client'.toFhirString,
   );
 
   /// server
   static final RestfulCapabilityMode server = RestfulCapabilityMode._(
     'server',
+    system: 'http://hl7.org/fhir/ValueSet/restful-capability-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Server'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
