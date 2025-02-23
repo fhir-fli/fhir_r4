@@ -804,6 +804,87 @@ extension StringExtensionForFHIR on String {
   }
 
   /// Returns `true` if the [String] represents a [PrimitiveType].
+  String get fhirPrimitiveToDartType {
+    switch (toLowerCase()) {
+      // boolean values
+      case 'bool':
+      case 'boolean':
+      case 'fhirboolean':
+      case 'fhir.boolean':
+        return 'bool';
+
+      // instants are dateTimes
+      case 'instant':
+      case 'fhirinstant':
+        return 'DateTime';
+
+      // double
+      case 'double':
+      case 'decimal':
+      case 'fhirdecimal':
+      case 'fhir.decimal':
+        return 'double';
+
+      // int
+      case 'int':
+      case 'integer':
+      case 'fhirinteger':
+      case 'fhir.integer':
+      case 'positiveint':
+      case 'fhirpositiveint':
+      case 'unsignedint':
+      case 'fhirunsignedint':
+        return 'int';
+
+      // num
+      case 'num':
+        return 'num';
+
+      // all of these are Strings
+      case 'base64binary':
+      case 'fhirbase64binary':
+      case 'fhir.base64binary':
+      case 'canonical':
+      case 'fhircanonical':
+      case 'code':
+      case 'fhircode':
+      case 'fhir.code':
+      case 'date':
+      case 'fhirdate':
+      case 'fhir.date':
+      case 'datetime':
+      case 'fhirdatetime':
+      case 'fhir.datetime':
+      case 'id':
+      case 'fhirid':
+      case 'integer64':
+      case 'fhirinteger64':
+      case 'markdown':
+      case 'fhirmarkdown':
+      case 'oid':
+      case 'fhiroid':
+      case 'string':
+      case 'fhirstring':
+      case 'fhir.string':
+      case 'time':
+      case 'fhirtime':
+      case 'fhir.time':
+      case 'uri':
+      case 'fhiruri':
+      case 'fhir.uri':
+      case 'url':
+      case 'fhirurl':
+      case 'uuid':
+      case 'fhiruuid':
+      case 'xhtml':
+      case 'fhirxhtml':
+      case 'http://hl7.org/fhirpath/system.string':
+        return 'String';
+    }
+    throw Exception('Unknown FHIR primitive type: $this');
+  }
+
+  /// Returns `true` if the [String] represents a [PrimitiveType].
   bool get isFhirPrimitive => const {
         'base64binary',
         'fhirbase64binary',
@@ -863,6 +944,10 @@ extension StringExtensionForFHIR on String {
         'fhirxhtml',
         'http://hl7.org/fhirpath/system.string',
       }.contains(toLowerCase());
+
+  /// Returns `true` if the [String] represents a [FhirInstant].
+  bool get isInstant =>
+      toLowerCase() == 'instant' || toLowerCase() == 'fhirinstant';
 
   /// Returns `true` if the [String] represents a [DataType].
   bool get isFhirDataType {
