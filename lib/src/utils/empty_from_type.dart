@@ -21,7 +21,7 @@ FhirBase? emptyFromType(String type) {
       return FhirCode.empty();
     case 'code':
       return FhirCode.empty();
-    case 'fhircodeenum': 
+    case 'fhircodeenum':
       return FhirCodeEnum.empty();
     case 'fhirdate':
       return FhirDate.empty();
