@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Defines the kinds of conditions that can appear on actions.
-class ActionConditionKind extends FhirCode {
+class ActionConditionKind extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ActionConditionKind._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,16 +43,25 @@ class ActionConditionKind extends FhirCode {
   /// applicability
   static final ActionConditionKind applicability = ActionConditionKind._(
     'applicability',
+    system: 'http://hl7.org/fhir/ValueSet/action-condition-kind'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Applicability'.toFhirString,
   );
 
   /// start
   static final ActionConditionKind start = ActionConditionKind._(
     'start',
+    system: 'http://hl7.org/fhir/ValueSet/action-condition-kind'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Start'.toFhirString,
   );
 
   /// stop
   static final ActionConditionKind stop = ActionConditionKind._(
     'stop',
+    system: 'http://hl7.org/fhir/ValueSet/action-condition-kind'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Stop'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

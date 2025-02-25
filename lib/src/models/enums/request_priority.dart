@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// Identifies the level of importance to be assigned to actioning the
 /// request.
-class RequestPriority extends FhirCode {
+class RequestPriority extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   RequestPriority._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,21 +44,33 @@ class RequestPriority extends FhirCode {
   /// routine
   static final RequestPriority routine = RequestPriority._(
     'routine',
+    system: 'http://hl7.org/fhir/ValueSet/request-priority'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Routine'.toFhirString,
   );
 
   /// urgent
   static final RequestPriority urgent = RequestPriority._(
     'urgent',
+    system: 'http://hl7.org/fhir/ValueSet/request-priority'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Urgent'.toFhirString,
   );
 
   /// asap
   static final RequestPriority asap = RequestPriority._(
     'asap',
+    system: 'http://hl7.org/fhir/ValueSet/request-priority'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'ASAP'.toFhirString,
   );
 
   /// stat
   static final RequestPriority stat = RequestPriority._(
     'stat',
+    system: 'http://hl7.org/fhir/ValueSet/request-priority'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'STAT'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

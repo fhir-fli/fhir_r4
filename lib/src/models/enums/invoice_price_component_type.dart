@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes indicating the kind of the price component.
-class InvoicePriceComponentType extends FhirCode {
+class InvoicePriceComponentType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   InvoicePriceComponentType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,34 +43,52 @@ class InvoicePriceComponentType extends FhirCode {
   /// base
   static final InvoicePriceComponentType base = InvoicePriceComponentType._(
     'base',
+    system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'base price'.toFhirString,
   );
 
   /// surcharge
   static final InvoicePriceComponentType surcharge =
       InvoicePriceComponentType._(
     'surcharge',
+    system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'surcharge'.toFhirString,
   );
 
   /// deduction
   static final InvoicePriceComponentType deduction =
       InvoicePriceComponentType._(
     'deduction',
+    system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'deduction'.toFhirString,
   );
 
   /// discount
   static final InvoicePriceComponentType discount = InvoicePriceComponentType._(
     'discount',
+    system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'discount'.toFhirString,
   );
 
   /// tax
   static final InvoicePriceComponentType tax = InvoicePriceComponentType._(
     'tax',
+    system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'tax'.toFhirString,
   );
 
   /// informational
   static final InvoicePriceComponentType informational =
       InvoicePriceComponentType._(
     'informational',
+    system: 'http://hl7.org/fhir/ValueSet/invoice-priceComponentType'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'informational'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

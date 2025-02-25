@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// How the issue affects the success of the action.
-class IssueSeverity extends FhirCode {
+class IssueSeverity extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   IssueSeverity._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,21 +43,33 @@ class IssueSeverity extends FhirCode {
   /// fatal
   static final IssueSeverity fatal = IssueSeverity._(
     'fatal',
+    system: 'http://hl7.org/fhir/ValueSet/issue-severity'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Fatal'.toFhirString,
   );
 
   /// error
   static final IssueSeverity error = IssueSeverity._(
     'error',
+    system: 'http://hl7.org/fhir/ValueSet/issue-severity'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Error'.toFhirString,
   );
 
   /// warning
   static final IssueSeverity warning = IssueSeverity._(
     'warning',
+    system: 'http://hl7.org/fhir/ValueSet/issue-severity'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Warning'.toFhirString,
   );
 
   /// information
   static final IssueSeverity information = IssueSeverity._(
     'information',
+    system: 'http://hl7.org/fhir/ValueSet/issue-severity'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Information'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

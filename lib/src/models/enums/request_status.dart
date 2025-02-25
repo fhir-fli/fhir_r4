@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes identifying the lifecycle stage of a request.
-class RequestStatus extends FhirCode {
+class RequestStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   RequestStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,36 +43,57 @@ class RequestStatus extends FhirCode {
   /// draft
   static final RequestStatus draft = RequestStatus._(
     'draft',
+    system: 'http://hl7.org/fhir/ValueSet/request-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Draft'.toFhirString,
   );
 
   /// active
   static final RequestStatus active = RequestStatus._(
     'active',
+    system: 'http://hl7.org/fhir/ValueSet/request-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Active'.toFhirString,
   );
 
   /// on_hold
   static final RequestStatus on_hold = RequestStatus._(
     'on-hold',
+    system: 'http://hl7.org/fhir/ValueSet/request-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'On Hold'.toFhirString,
   );
 
   /// revoked
   static final RequestStatus revoked = RequestStatus._(
     'revoked',
+    system: 'http://hl7.org/fhir/ValueSet/request-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Revoked'.toFhirString,
   );
 
   /// completed
   static final RequestStatus completed = RequestStatus._(
     'completed',
+    system: 'http://hl7.org/fhir/ValueSet/request-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Completed'.toFhirString,
   );
 
   /// entered_in_error
   static final RequestStatus entered_in_error = RequestStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/request-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// unknown
   static final RequestStatus unknown = RequestStatus._(
     'unknown',
+    system: 'http://hl7.org/fhir/ValueSet/request-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Unknown'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

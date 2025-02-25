@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// Used to distinguish different roles a resource can play within a set of
 /// linked resources.
-class LinkageType extends FhirCode {
+class LinkageType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   LinkageType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,16 +44,25 @@ class LinkageType extends FhirCode {
   /// source
   static final LinkageType source = LinkageType._(
     'source',
+    system: 'http://hl7.org/fhir/ValueSet/linkage-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Source of Truth'.toFhirString,
   );
 
   /// alternate
   static final LinkageType alternate = LinkageType._(
     'alternate',
+    system: 'http://hl7.org/fhir/ValueSet/linkage-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Alternate Record'.toFhirString,
   );
 
   /// historical
   static final LinkageType historical = LinkageType._(
     'historical',
+    system: 'http://hl7.org/fhir/ValueSet/linkage-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Historical/Obsolete Record'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

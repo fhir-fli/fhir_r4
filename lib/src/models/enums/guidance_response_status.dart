@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The status of a guidance response.
-class GuidanceResponseStatus extends FhirCode {
+class GuidanceResponseStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   GuidanceResponseStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,32 +43,50 @@ class GuidanceResponseStatus extends FhirCode {
   /// success
   static final GuidanceResponseStatus success = GuidanceResponseStatus._(
     'success',
+    system: 'http://hl7.org/fhir/ValueSet/guidance-response-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Success'.toFhirString,
   );
 
   /// data_requested
   static final GuidanceResponseStatus data_requested = GuidanceResponseStatus._(
     'data-requested',
+    system: 'http://hl7.org/fhir/ValueSet/guidance-response-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Data Requested'.toFhirString,
   );
 
   /// data_required
   static final GuidanceResponseStatus data_required = GuidanceResponseStatus._(
     'data-required',
+    system: 'http://hl7.org/fhir/ValueSet/guidance-response-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Data Required'.toFhirString,
   );
 
   /// in_progress
   static final GuidanceResponseStatus in_progress = GuidanceResponseStatus._(
     'in-progress',
+    system: 'http://hl7.org/fhir/ValueSet/guidance-response-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'In Progress'.toFhirString,
   );
 
   /// failure
   static final GuidanceResponseStatus failure = GuidanceResponseStatus._(
     'failure',
+    system: 'http://hl7.org/fhir/ValueSet/guidance-response-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Failure'.toFhirString,
   );
 
   /// entered_in_error
   static final GuidanceResponseStatus entered_in_error =
       GuidanceResponseStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/guidance-response-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered In Error'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The mode of a message capability statement.
-class EventCapabilityMode extends FhirCode {
+class EventCapabilityMode extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   EventCapabilityMode._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,11 +43,17 @@ class EventCapabilityMode extends FhirCode {
   /// sender
   static final EventCapabilityMode sender = EventCapabilityMode._(
     'sender',
+    system: 'http://hl7.org/fhir/ValueSet/event-capability-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Sender'.toFhirString,
   );
 
   /// receiver
   static final EventCapabilityMode receiver = EventCapabilityMode._(
     'receiver',
+    system: 'http://hl7.org/fhir/ValueSet/event-capability-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Receiver'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

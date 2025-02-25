@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of participant.
-class TestReportParticipantType extends FhirCode {
+class TestReportParticipantType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   TestReportParticipantType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,16 +44,25 @@ class TestReportParticipantType extends FhirCode {
   static final TestReportParticipantType test_engine =
       TestReportParticipantType._(
     'test-engine',
+    system: 'http://hl7.org/fhir/ValueSet/report-participant-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Test Engine'.toFhirString,
   );
 
   /// client
   static final TestReportParticipantType client = TestReportParticipantType._(
     'client',
+    system: 'http://hl7.org/fhir/ValueSet/report-participant-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Client'.toFhirString,
   );
 
   /// server
   static final TestReportParticipantType server = TestReportParticipantType._(
     'server',
+    system: 'http://hl7.org/fhir/ValueSet/report-participant-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Server'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

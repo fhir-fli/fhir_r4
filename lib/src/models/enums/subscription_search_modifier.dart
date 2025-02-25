@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// FHIR search modifiers allowed for use in Subscriptions and
 /// SubscriptionTopics.
-class SubscriptionSearchModifier extends FhirCode {
+class SubscriptionSearchModifier extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   SubscriptionSearchModifier._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -42,72 +45,128 @@ class SubscriptionSearchModifier extends FhirCode {
   /// eq
   static final SubscriptionSearchModifier eq = SubscriptionSearchModifier._(
     '=',
+    system:
+        'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: '='.toFhirString,
   );
 
   /// ne
   static final SubscriptionSearchModifier ne = SubscriptionSearchModifier._(
     'ne',
+    system:
+        'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Not Equal'.toFhirString,
   );
 
   /// gt
   static final SubscriptionSearchModifier gt = SubscriptionSearchModifier._(
     'gt',
+    system:
+        'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Greater Than'.toFhirString,
   );
 
   /// lt
   static final SubscriptionSearchModifier lt = SubscriptionSearchModifier._(
     'lt',
+    system:
+        'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Less Than'.toFhirString,
   );
 
   /// ge
   static final SubscriptionSearchModifier ge = SubscriptionSearchModifier._(
     'ge',
+    system:
+        'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Greater Than or Equal'.toFhirString,
   );
 
   /// le
   static final SubscriptionSearchModifier le = SubscriptionSearchModifier._(
     'le',
+    system:
+        'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Less Than or Equal'.toFhirString,
   );
 
   /// sa
   static final SubscriptionSearchModifier sa = SubscriptionSearchModifier._(
     'sa',
+    system:
+        'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Starts After'.toFhirString,
   );
 
   /// eb
   static final SubscriptionSearchModifier eb = SubscriptionSearchModifier._(
     'eb',
+    system:
+        'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Ends Before'.toFhirString,
   );
 
   /// ap
   static final SubscriptionSearchModifier ap = SubscriptionSearchModifier._(
     'ap',
+    system:
+        'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Approximately'.toFhirString,
   );
 
   /// above
   static final SubscriptionSearchModifier above = SubscriptionSearchModifier._(
     'above',
+    system:
+        'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Above'.toFhirString,
   );
 
   /// below
   static final SubscriptionSearchModifier below = SubscriptionSearchModifier._(
     'below',
+    system:
+        'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Below'.toFhirString,
   );
 
   /// in_
   static final SubscriptionSearchModifier in_ = SubscriptionSearchModifier._(
     'in',
+    system:
+        'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'In'.toFhirString,
   );
 
   /// not_in
   static final SubscriptionSearchModifier not_in = SubscriptionSearchModifier._(
     'not-in',
+    system:
+        'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Not In'.toFhirString,
   );
 
   /// of_type
   static final SubscriptionSearchModifier of_type =
       SubscriptionSearchModifier._(
     'of-type',
+    system:
+        'http://hl7.org/fhir/ValueSet/subscription-search-modifier'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Of Type'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

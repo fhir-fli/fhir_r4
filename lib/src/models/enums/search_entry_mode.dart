@@ -5,10 +5,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// Why an entry is in the result set - whether it's included as a match or
 /// because of an _include requirement, or to convey information or warning
 /// information about the search process.
-class SearchEntryMode extends FhirCode {
+class SearchEntryMode extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   SearchEntryMode._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -42,16 +45,25 @@ class SearchEntryMode extends FhirCode {
   /// match
   static final SearchEntryMode match = SearchEntryMode._(
     'match',
+    system: 'http://hl7.org/fhir/ValueSet/search-entry-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Match'.toFhirString,
   );
 
   /// include
   static final SearchEntryMode include = SearchEntryMode._(
     'include',
+    system: 'http://hl7.org/fhir/ValueSet/search-entry-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Include'.toFhirString,
   );
 
   /// outcome
   static final SearchEntryMode outcome = SearchEntryMode._(
     'outcome',
+    system: 'http://hl7.org/fhir/ValueSet/search-entry-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Outcome'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes providing the status of an observation.
-class ObservationStatus extends FhirCode {
+class ObservationStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ObservationStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,41 +43,65 @@ class ObservationStatus extends FhirCode {
   /// registered
   static final ObservationStatus registered = ObservationStatus._(
     'registered',
+    system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Registered'.toFhirString,
   );
 
   /// preliminary
   static final ObservationStatus preliminary = ObservationStatus._(
     'preliminary',
+    system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Preliminary'.toFhirString,
   );
 
   /// final_
   static final ObservationStatus final_ = ObservationStatus._(
     'final',
+    system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Final'.toFhirString,
   );
 
   /// amended
   static final ObservationStatus amended = ObservationStatus._(
     'amended',
+    system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Amended'.toFhirString,
   );
 
   /// corrected
   static final ObservationStatus corrected = ObservationStatus._(
     'corrected',
+    system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Corrected'.toFhirString,
   );
 
   /// cancelled
   static final ObservationStatus cancelled = ObservationStatus._(
     'cancelled',
+    system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Cancelled'.toFhirString,
   );
 
   /// entered_in_error
   static final ObservationStatus entered_in_error = ObservationStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// unknown
   static final ObservationStatus unknown = ObservationStatus._(
     'unknown',
+    system: 'http://hl7.org/fhir/ValueSet/observation-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Unknown'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

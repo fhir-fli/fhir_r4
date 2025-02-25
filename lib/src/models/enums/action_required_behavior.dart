@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// Defines expectations around whether an action or action group is
 /// required.
-class ActionRequiredBehavior extends FhirCode {
+class ActionRequiredBehavior extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ActionRequiredBehavior._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,17 +44,26 @@ class ActionRequiredBehavior extends FhirCode {
   /// must
   static final ActionRequiredBehavior must = ActionRequiredBehavior._(
     'must',
+    system: 'http://hl7.org/fhir/ValueSet/action-required-behavior'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Must'.toFhirString,
   );
 
   /// could
   static final ActionRequiredBehavior could = ActionRequiredBehavior._(
     'could',
+    system: 'http://hl7.org/fhir/ValueSet/action-required-behavior'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Could'.toFhirString,
   );
 
   /// must_unless_documented
   static final ActionRequiredBehavior must_unless_documented =
       ActionRequiredBehavior._(
     'must-unless-documented',
+    system: 'http://hl7.org/fhir/ValueSet/action-required-behavior'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Must Unless Documented'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

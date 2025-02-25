@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// MedicationDispense Status Codes
-class MedicationDispenseStatusCodes extends FhirCode {
+class MedicationDispenseStatusCodes extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   MedicationDispenseStatusCodes._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -42,54 +45,81 @@ class MedicationDispenseStatusCodes extends FhirCode {
   static final MedicationDispenseStatusCodes preparation =
       MedicationDispenseStatusCodes._(
     'preparation',
+    system: 'http://hl7.org/fhir/ValueSet/medicationdispense-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Preparation'.toFhirString,
   );
 
   /// in_progress
   static final MedicationDispenseStatusCodes in_progress =
       MedicationDispenseStatusCodes._(
     'in-progress',
+    system: 'http://hl7.org/fhir/ValueSet/medicationdispense-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'In Progress'.toFhirString,
   );
 
   /// cancelled
   static final MedicationDispenseStatusCodes cancelled =
       MedicationDispenseStatusCodes._(
     'cancelled',
+    system: 'http://hl7.org/fhir/ValueSet/medicationdispense-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Cancelled'.toFhirString,
   );
 
   /// on_hold
   static final MedicationDispenseStatusCodes on_hold =
       MedicationDispenseStatusCodes._(
     'on-hold',
+    system: 'http://hl7.org/fhir/ValueSet/medicationdispense-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'On Hold'.toFhirString,
   );
 
   /// completed
   static final MedicationDispenseStatusCodes completed =
       MedicationDispenseStatusCodes._(
     'completed',
+    system: 'http://hl7.org/fhir/ValueSet/medicationdispense-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Completed'.toFhirString,
   );
 
   /// entered_in_error
   static final MedicationDispenseStatusCodes entered_in_error =
       MedicationDispenseStatusCodes._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/medicationdispense-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// stopped
   static final MedicationDispenseStatusCodes stopped =
       MedicationDispenseStatusCodes._(
     'stopped',
+    system: 'http://hl7.org/fhir/ValueSet/medicationdispense-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Stopped'.toFhirString,
   );
 
   /// declined
   static final MedicationDispenseStatusCodes declined =
       MedicationDispenseStatusCodes._(
     'declined',
+    system: 'http://hl7.org/fhir/ValueSet/medicationdispense-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Declined'.toFhirString,
   );
 
   /// unknown
   static final MedicationDispenseStatusCodes unknown =
       MedicationDispenseStatusCodes._(
     'unknown',
+    system: 'http://hl7.org/fhir/ValueSet/medicationdispense-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Unknown'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

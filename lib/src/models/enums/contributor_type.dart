@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of contributor.
-class ContributorType extends FhirCode {
+class ContributorType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ContributorType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,21 +43,33 @@ class ContributorType extends FhirCode {
   /// author
   static final ContributorType author = ContributorType._(
     'author',
+    system: 'http://hl7.org/fhir/ValueSet/contributor-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Author'.toFhirString,
   );
 
   /// editor
   static final ContributorType editor = ContributorType._(
     'editor',
+    system: 'http://hl7.org/fhir/ValueSet/contributor-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Editor'.toFhirString,
   );
 
   /// reviewer
   static final ContributorType reviewer = ContributorType._(
     'reviewer',
+    system: 'http://hl7.org/fhir/ValueSet/contributor-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Reviewer'.toFhirString,
   );
 
   /// endorser
   static final ContributorType endorser = ContributorType._(
     'endorser',
+    system: 'http://hl7.org/fhir/ValueSet/contributor-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Endorser'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

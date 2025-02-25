@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes providing the status/availability of a specimen.
-class SpecimenStatus extends FhirCode {
+class SpecimenStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   SpecimenStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,21 +43,33 @@ class SpecimenStatus extends FhirCode {
   /// available
   static final SpecimenStatus available = SpecimenStatus._(
     'available',
+    system: 'http://hl7.org/fhir/ValueSet/specimen-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Available'.toFhirString,
   );
 
   /// unavailable
   static final SpecimenStatus unavailable = SpecimenStatus._(
     'unavailable',
+    system: 'http://hl7.org/fhir/ValueSet/specimen-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Unavailable'.toFhirString,
   );
 
   /// unsatisfactory
   static final SpecimenStatus unsatisfactory = SpecimenStatus._(
     'unsatisfactory',
+    system: 'http://hl7.org/fhir/ValueSet/specimen-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Unsatisfactory'.toFhirString,
   );
 
   /// entered_in_error
   static final SpecimenStatus entered_in_error = SpecimenStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/specimen-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

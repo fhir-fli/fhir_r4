@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes identifying the lifecycle stage of a ChargeItem.
-class ChargeItemStatus extends FhirCode {
+class ChargeItemStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ChargeItemStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,36 +43,57 @@ class ChargeItemStatus extends FhirCode {
   /// planned
   static final ChargeItemStatus planned = ChargeItemStatus._(
     'planned',
+    system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Planned'.toFhirString,
   );
 
   /// billable
   static final ChargeItemStatus billable = ChargeItemStatus._(
     'billable',
+    system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Billable'.toFhirString,
   );
 
   /// not_billable
   static final ChargeItemStatus not_billable = ChargeItemStatus._(
     'not-billable',
+    system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Not billable'.toFhirString,
   );
 
   /// aborted
   static final ChargeItemStatus aborted = ChargeItemStatus._(
     'aborted',
+    system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Aborted'.toFhirString,
   );
 
   /// billed
   static final ChargeItemStatus billed = ChargeItemStatus._(
     'billed',
+    system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Billed'.toFhirString,
   );
 
   /// entered_in_error
   static final ChargeItemStatus entered_in_error = ChargeItemStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// unknown
   static final ChargeItemStatus unknown = ChargeItemStatus._(
     'unknown',
+    system: 'http://hl7.org/fhir/ValueSet/chargeitem-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Unknown'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

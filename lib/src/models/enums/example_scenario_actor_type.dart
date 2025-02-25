@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of actor - system or human.
-class ExampleScenarioActorType extends FhirCode {
+class ExampleScenarioActorType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ExampleScenarioActorType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,11 +43,17 @@ class ExampleScenarioActorType extends FhirCode {
   /// person
   static final ExampleScenarioActorType person = ExampleScenarioActorType._(
     'person',
+    system: 'http://hl7.org/fhir/ValueSet/examplescenario-actor-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Person'.toFhirString,
   );
 
   /// entity
   static final ExampleScenarioActorType entity = ExampleScenarioActorType._(
     'entity',
+    system: 'http://hl7.org/fhir/ValueSet/examplescenario-actor-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'System'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

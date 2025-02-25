@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The kind of response to a message.
-class ResponseType extends FhirCode {
+class ResponseType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ResponseType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,16 +43,25 @@ class ResponseType extends FhirCode {
   /// ok
   static final ResponseType ok = ResponseType._(
     'ok',
+    system: 'http://hl7.org/fhir/ValueSet/response-code'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'OK'.toFhirString,
   );
 
   /// transient_error
   static final ResponseType transient_error = ResponseType._(
     'transient-error',
+    system: 'http://hl7.org/fhir/ValueSet/response-code'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Transient Error'.toFhirString,
   );
 
   /// fatal_error
   static final ResponseType fatal_error = ResponseType._(
     'fatal-error',
+    system: 'http://hl7.org/fhir/ValueSet/response-code'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Fatal Error'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

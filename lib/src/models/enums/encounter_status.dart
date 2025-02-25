@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Current state of the encounter.
-class EncounterStatus extends FhirCode {
+class EncounterStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   EncounterStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,46 +43,73 @@ class EncounterStatus extends FhirCode {
   /// planned
   static final EncounterStatus planned = EncounterStatus._(
     'planned',
+    system: 'http://hl7.org/fhir/ValueSet/encounter-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Planned'.toFhirString,
   );
 
   /// arrived
   static final EncounterStatus arrived = EncounterStatus._(
     'arrived',
+    system: 'http://hl7.org/fhir/ValueSet/encounter-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Arrived'.toFhirString,
   );
 
   /// triaged
   static final EncounterStatus triaged = EncounterStatus._(
     'triaged',
+    system: 'http://hl7.org/fhir/ValueSet/encounter-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Triaged'.toFhirString,
   );
 
   /// in_progress
   static final EncounterStatus in_progress = EncounterStatus._(
     'in-progress',
+    system: 'http://hl7.org/fhir/ValueSet/encounter-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'In Progress'.toFhirString,
   );
 
   /// onleave
   static final EncounterStatus onleave = EncounterStatus._(
     'onleave',
+    system: 'http://hl7.org/fhir/ValueSet/encounter-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'On Leave'.toFhirString,
   );
 
   /// finished
   static final EncounterStatus finished = EncounterStatus._(
     'finished',
+    system: 'http://hl7.org/fhir/ValueSet/encounter-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Finished'.toFhirString,
   );
 
   /// cancelled
   static final EncounterStatus cancelled = EncounterStatus._(
     'cancelled',
+    system: 'http://hl7.org/fhir/ValueSet/encounter-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Cancelled'.toFhirString,
   );
 
   /// entered_in_error
   static final EncounterStatus entered_in_error = EncounterStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/encounter-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// unknown
   static final EncounterStatus unknown = EncounterStatus._(
     'unknown',
+    system: 'http://hl7.org/fhir/ValueSet/encounter-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Unknown'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

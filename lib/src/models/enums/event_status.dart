@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes identifying the lifecycle stage of an event.
-class EventStatus extends FhirCode {
+class EventStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   EventStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,41 +43,65 @@ class EventStatus extends FhirCode {
   /// preparation
   static final EventStatus preparation = EventStatus._(
     'preparation',
+    system: 'http://hl7.org/fhir/ValueSet/event-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Preparation'.toFhirString,
   );
 
   /// in_progress
   static final EventStatus in_progress = EventStatus._(
     'in-progress',
+    system: 'http://hl7.org/fhir/ValueSet/event-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'In Progress'.toFhirString,
   );
 
   /// not_done
   static final EventStatus not_done = EventStatus._(
     'not-done',
+    system: 'http://hl7.org/fhir/ValueSet/event-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Not Done'.toFhirString,
   );
 
   /// on_hold
   static final EventStatus on_hold = EventStatus._(
     'on-hold',
+    system: 'http://hl7.org/fhir/ValueSet/event-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'On Hold'.toFhirString,
   );
 
   /// stopped
   static final EventStatus stopped = EventStatus._(
     'stopped',
+    system: 'http://hl7.org/fhir/ValueSet/event-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Stopped'.toFhirString,
   );
 
   /// completed
   static final EventStatus completed = EventStatus._(
     'completed',
+    system: 'http://hl7.org/fhir/ValueSet/event-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Completed'.toFhirString,
   );
 
   /// entered_in_error
   static final EventStatus entered_in_error = EventStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/event-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// unknown
   static final EventStatus unknown = EventStatus._(
     'unknown',
+    system: 'http://hl7.org/fhir/ValueSet/event-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Unknown'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

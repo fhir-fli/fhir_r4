@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of name the device is referred by.
-class DeviceNameType extends FhirCode {
+class DeviceNameType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   DeviceNameType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,31 +43,49 @@ class DeviceNameType extends FhirCode {
   /// udi_label_name
   static final DeviceNameType udi_label_name = DeviceNameType._(
     'udi-label-name',
+    system: 'http://hl7.org/fhir/ValueSet/device-nametype'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'UDI Label name'.toFhirString,
   );
 
   /// user_friendly_name
   static final DeviceNameType user_friendly_name = DeviceNameType._(
     'user-friendly-name',
+    system: 'http://hl7.org/fhir/ValueSet/device-nametype'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'User Friendly name'.toFhirString,
   );
 
   /// patient_reported_name
   static final DeviceNameType patient_reported_name = DeviceNameType._(
     'patient-reported-name',
+    system: 'http://hl7.org/fhir/ValueSet/device-nametype'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Patient Reported name'.toFhirString,
   );
 
   /// manufacturer_name
   static final DeviceNameType manufacturer_name = DeviceNameType._(
     'manufacturer-name',
+    system: 'http://hl7.org/fhir/ValueSet/device-nametype'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Manufacturer name'.toFhirString,
   );
 
   /// model_name
   static final DeviceNameType model_name = DeviceNameType._(
     'model-name',
+    system: 'http://hl7.org/fhir/ValueSet/device-nametype'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Model name'.toFhirString,
   );
 
   /// other
   static final DeviceNameType other = DeviceNameType._(
     'other',
+    system: 'http://hl7.org/fhir/ValueSet/device-nametype'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'other'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

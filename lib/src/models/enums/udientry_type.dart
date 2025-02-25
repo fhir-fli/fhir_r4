@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes to identify how UDI data was entered.
-class UDIEntryType extends FhirCode {
+class UDIEntryType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   UDIEntryType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,31 +43,49 @@ class UDIEntryType extends FhirCode {
   /// barcode
   static final UDIEntryType barcode = UDIEntryType._(
     'barcode',
+    system: 'http://hl7.org/fhir/ValueSet/udi-entry-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Barcode'.toFhirString,
   );
 
   /// rfid
   static final UDIEntryType rfid = UDIEntryType._(
     'rfid',
+    system: 'http://hl7.org/fhir/ValueSet/udi-entry-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'RFID'.toFhirString,
   );
 
   /// manual
   static final UDIEntryType manual = UDIEntryType._(
     'manual',
+    system: 'http://hl7.org/fhir/ValueSet/udi-entry-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Manual'.toFhirString,
   );
 
   /// card
   static final UDIEntryType card = UDIEntryType._(
     'card',
+    system: 'http://hl7.org/fhir/ValueSet/udi-entry-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Card'.toFhirString,
   );
 
   /// self_reported
   static final UDIEntryType self_reported = UDIEntryType._(
     'self-reported',
+    system: 'http://hl7.org/fhir/ValueSet/udi-entry-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Self Reported'.toFhirString,
   );
 
   /// unknown
   static final UDIEntryType unknown = UDIEntryType._(
     'unknown',
+    system: 'http://hl7.org/fhir/ValueSet/udi-entry-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Unknown'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

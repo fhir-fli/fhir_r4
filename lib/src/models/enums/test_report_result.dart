@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The reported execution result.
-class TestReportResult extends FhirCode {
+class TestReportResult extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   TestReportResult._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,16 +43,25 @@ class TestReportResult extends FhirCode {
   /// pass
   static final TestReportResult pass = TestReportResult._(
     'pass',
+    system: 'http://hl7.org/fhir/ValueSet/report-result-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Pass'.toFhirString,
   );
 
   /// fail
   static final TestReportResult fail = TestReportResult._(
     'fail',
+    system: 'http://hl7.org/fhir/ValueSet/report-result-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Fail'.toFhirString,
   );
 
   /// pending
   static final TestReportResult pending = TestReportResult._(
     'pending',
+    system: 'http://hl7.org/fhir/ValueSet/report-result-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Pending'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

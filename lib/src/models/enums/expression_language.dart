@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The media type of the expression language.
-class ExpressionLanguage extends FhirCode {
+class ExpressionLanguage extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ExpressionLanguage._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,27 +43,42 @@ class ExpressionLanguage extends FhirCode {
   /// text_cql
   static final ExpressionLanguage text_cql = ExpressionLanguage._(
     'text/cql',
+    system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'CQL'.toFhirString,
   );
 
   /// text_fhirpath
   static final ExpressionLanguage text_fhirpath = ExpressionLanguage._(
     'text/fhirpath',
+    system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'FHIRPath'.toFhirString,
   );
 
   /// application_x_fhir_query
   static final ExpressionLanguage application_x_fhir_query =
       ExpressionLanguage._(
     'application/x-fhir-query',
+    system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'FHIR Query'.toFhirString,
   );
 
   /// text_cql_identifier
   static final ExpressionLanguage text_cql_identifier = ExpressionLanguage._(
     'text/cql-identifier',
+    system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'CQL Identifier'.toFhirString,
   );
 
   /// text_cql_expression
   static final ExpressionLanguage text_cql_expression = ExpressionLanguage._(
     'text/cql-expression',
+    system: 'http://hl7.org/fhir/ValueSet/expression-language'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'CQL Expression'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

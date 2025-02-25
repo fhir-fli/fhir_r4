@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes that reflect the current state of a clinical impression within
 /// its overall lifecycle.
-class ClinicalImpressionStatus extends FhirCode {
+class ClinicalImpressionStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ClinicalImpressionStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -42,43 +45,67 @@ class ClinicalImpressionStatus extends FhirCode {
   static final ClinicalImpressionStatus preparation =
       ClinicalImpressionStatus._(
     'preparation',
+    system: 'http://hl7.org/fhir/ValueSet/clinicalimpression-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Preparation'.toFhirString,
   );
 
   /// in_progress
   static final ClinicalImpressionStatus in_progress =
       ClinicalImpressionStatus._(
     'in-progress',
+    system: 'http://hl7.org/fhir/ValueSet/clinicalimpression-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'In Progress'.toFhirString,
   );
 
   /// not_done
   static final ClinicalImpressionStatus not_done = ClinicalImpressionStatus._(
     'not-done',
+    system: 'http://hl7.org/fhir/ValueSet/clinicalimpression-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Not Done'.toFhirString,
   );
 
   /// on_hold
   static final ClinicalImpressionStatus on_hold = ClinicalImpressionStatus._(
     'on-hold',
+    system: 'http://hl7.org/fhir/ValueSet/clinicalimpression-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'On Hold'.toFhirString,
   );
 
   /// stopped
   static final ClinicalImpressionStatus stopped = ClinicalImpressionStatus._(
     'stopped',
+    system: 'http://hl7.org/fhir/ValueSet/clinicalimpression-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Stopped'.toFhirString,
   );
 
   /// completed
   static final ClinicalImpressionStatus completed = ClinicalImpressionStatus._(
     'completed',
+    system: 'http://hl7.org/fhir/ValueSet/clinicalimpression-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Completed'.toFhirString,
   );
 
   /// entered_in_error
   static final ClinicalImpressionStatus entered_in_error =
       ClinicalImpressionStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/clinicalimpression-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// unknown
   static final ClinicalImpressionStatus unknown = ClinicalImpressionStatus._(
     'unknown',
+    system: 'http://hl7.org/fhir/ValueSet/clinicalimpression-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Unknown'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// Identification of the underlying physiological mechanism for a Reaction
 /// Risk.
-class AllergyIntoleranceType extends FhirCode {
+class AllergyIntoleranceType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   AllergyIntoleranceType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,11 +44,17 @@ class AllergyIntoleranceType extends FhirCode {
   /// allergy
   static final AllergyIntoleranceType allergy = AllergyIntoleranceType._(
     'allergy',
+    system: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Allergy'.toFhirString,
   );
 
   /// intolerance
   static final AllergyIntoleranceType intolerance = AllergyIntoleranceType._(
     'intolerance',
+    system: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Intolerance'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

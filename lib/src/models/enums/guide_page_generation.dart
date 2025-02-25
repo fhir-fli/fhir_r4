@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A code that indicates how the page is generated.
-class GuidePageGeneration extends FhirCode {
+class GuidePageGeneration extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   GuidePageGeneration._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,21 +43,33 @@ class GuidePageGeneration extends FhirCode {
   /// html
   static final GuidePageGeneration html = GuidePageGeneration._(
     'html',
+    system: 'http://hl7.org/fhir/ValueSet/guide-page-generation'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'HTML'.toFhirString,
   );
 
   /// markdown
   static final GuidePageGeneration markdown = GuidePageGeneration._(
     'markdown',
+    system: 'http://hl7.org/fhir/ValueSet/guide-page-generation'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Markdown'.toFhirString,
   );
 
   /// xml
   static final GuidePageGeneration xml = GuidePageGeneration._(
     'xml',
+    system: 'http://hl7.org/fhir/ValueSet/guide-page-generation'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'XML'.toFhirString,
   );
 
   /// generated
   static final GuidePageGeneration generated = GuidePageGeneration._(
     'generated',
+    system: 'http://hl7.org/fhir/ValueSet/guide-page-generation'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Generated'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

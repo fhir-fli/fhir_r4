@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Biologically Derived Product Status.
-class BiologicallyDerivedProductStatus extends FhirCode {
+class BiologicallyDerivedProductStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   BiologicallyDerivedProductStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -42,12 +45,18 @@ class BiologicallyDerivedProductStatus extends FhirCode {
   static final BiologicallyDerivedProductStatus available =
       BiologicallyDerivedProductStatus._(
     'available',
+    system: 'http://hl7.org/fhir/ValueSet/product-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Available'.toFhirString,
   );
 
   /// unavailable
   static final BiologicallyDerivedProductStatus unavailable =
       BiologicallyDerivedProductStatus._(
     'unavailable',
+    system: 'http://hl7.org/fhir/ValueSet/product-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Unavailable'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

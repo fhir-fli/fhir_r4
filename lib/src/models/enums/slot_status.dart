@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The free/busy status of the slot.
-class SlotStatus extends FhirCode {
+class SlotStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   SlotStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,26 +43,41 @@ class SlotStatus extends FhirCode {
   /// busy
   static final SlotStatus busy = SlotStatus._(
     'busy',
+    system: 'http://hl7.org/fhir/ValueSet/slotstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Busy'.toFhirString,
   );
 
   /// free
   static final SlotStatus free = SlotStatus._(
     'free',
+    system: 'http://hl7.org/fhir/ValueSet/slotstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Free'.toFhirString,
   );
 
   /// busy_unavailable
   static final SlotStatus busy_unavailable = SlotStatus._(
     'busy-unavailable',
+    system: 'http://hl7.org/fhir/ValueSet/slotstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Busy (Unavailable)'.toFhirString,
   );
 
   /// busy_tentative
   static final SlotStatus busy_tentative = SlotStatus._(
     'busy-tentative',
+    system: 'http://hl7.org/fhir/ValueSet/slotstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Busy (Tentative)'.toFhirString,
   );
 
   /// entered_in_error
   static final SlotStatus entered_in_error = SlotStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/slotstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in error'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

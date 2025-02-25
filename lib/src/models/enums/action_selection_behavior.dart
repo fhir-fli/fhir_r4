@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Defines selection behavior of a group.
-class ActionSelectionBehavior extends FhirCode {
+class ActionSelectionBehavior extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ActionSelectionBehavior._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,31 +43,49 @@ class ActionSelectionBehavior extends FhirCode {
   /// any
   static final ActionSelectionBehavior any = ActionSelectionBehavior._(
     'any',
+    system: 'http://hl7.org/fhir/ValueSet/action-selection-behavior'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Any'.toFhirString,
   );
 
   /// all
   static final ActionSelectionBehavior all = ActionSelectionBehavior._(
     'all',
+    system: 'http://hl7.org/fhir/ValueSet/action-selection-behavior'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'All'.toFhirString,
   );
 
   /// all_or_none
   static final ActionSelectionBehavior all_or_none = ActionSelectionBehavior._(
     'all-or-none',
+    system: 'http://hl7.org/fhir/ValueSet/action-selection-behavior'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'All Or None'.toFhirString,
   );
 
   /// exactly_one
   static final ActionSelectionBehavior exactly_one = ActionSelectionBehavior._(
     'exactly-one',
+    system: 'http://hl7.org/fhir/ValueSet/action-selection-behavior'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Exactly One'.toFhirString,
   );
 
   /// at_most_one
   static final ActionSelectionBehavior at_most_one = ActionSelectionBehavior._(
     'at-most-one',
+    system: 'http://hl7.org/fhir/ValueSet/action-selection-behavior'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'At Most One'.toFhirString,
   );
 
   /// one_or_more
   static final ActionSelectionBehavior one_or_more = ActionSelectionBehavior._(
     'one-or-more',
+    system: 'http://hl7.org/fhir/ValueSet/action-selection-behavior'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'One Or More'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

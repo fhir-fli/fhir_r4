@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The status of the ImagingStudy.
-class ImagingStudyStatus extends FhirCode {
+class ImagingStudyStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ImagingStudyStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,26 +43,41 @@ class ImagingStudyStatus extends FhirCode {
   /// registered
   static final ImagingStudyStatus registered = ImagingStudyStatus._(
     'registered',
+    system: 'http://hl7.org/fhir/ValueSet/imagingstudy-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Registered'.toFhirString,
   );
 
   /// available
   static final ImagingStudyStatus available = ImagingStudyStatus._(
     'available',
+    system: 'http://hl7.org/fhir/ValueSet/imagingstudy-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Available'.toFhirString,
   );
 
   /// cancelled
   static final ImagingStudyStatus cancelled = ImagingStudyStatus._(
     'cancelled',
+    system: 'http://hl7.org/fhir/ValueSet/imagingstudy-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Cancelled'.toFhirString,
   );
 
   /// entered_in_error
   static final ImagingStudyStatus entered_in_error = ImagingStudyStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/imagingstudy-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// unknown
   static final ImagingStudyStatus unknown = ImagingStudyStatus._(
     'unknown',
+    system: 'http://hl7.org/fhir/ValueSet/imagingstudy-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Unknown'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

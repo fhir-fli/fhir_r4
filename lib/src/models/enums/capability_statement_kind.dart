@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// How a capability statement is intended to be used.
-class CapabilityStatementKind extends FhirCode {
+class CapabilityStatementKind extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   CapabilityStatementKind._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,16 +43,25 @@ class CapabilityStatementKind extends FhirCode {
   /// instance
   static final CapabilityStatementKind instance = CapabilityStatementKind._(
     'instance',
+    system: 'http://hl7.org/fhir/ValueSet/capability-statement-kind'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Instance'.toFhirString,
   );
 
   /// capability
   static final CapabilityStatementKind capability = CapabilityStatementKind._(
     'capability',
+    system: 'http://hl7.org/fhir/ValueSet/capability-statement-kind'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Capability'.toFhirString,
   );
 
   /// requirements
   static final CapabilityStatementKind requirements = CapabilityStatementKind._(
     'requirements',
+    system: 'http://hl7.org/fhir/ValueSet/capability-statement-kind'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Requirements'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

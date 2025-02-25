@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Overall nature of the adverse event, e.g. real or potential.
-class AdverseEventActuality extends FhirCode {
+class AdverseEventActuality extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   AdverseEventActuality._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,11 +43,17 @@ class AdverseEventActuality extends FhirCode {
   /// actual
   static final AdverseEventActuality actual = AdverseEventActuality._(
     'actual',
+    system: 'http://hl7.org/fhir/ValueSet/adverse-event-actuality'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Adverse Event'.toFhirString,
   );
 
   /// potential
   static final AdverseEventActuality potential = AdverseEventActuality._(
     'potential',
+    system: 'http://hl7.org/fhir/ValueSet/adverse-event-actuality'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Potential Adverse Event'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

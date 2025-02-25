@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Describes the type of a metric calibration.
-class DeviceMetricCalibrationType extends FhirCode {
+class DeviceMetricCalibrationType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   DeviceMetricCalibrationType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -42,23 +45,35 @@ class DeviceMetricCalibrationType extends FhirCode {
   static final DeviceMetricCalibrationType unspecified =
       DeviceMetricCalibrationType._(
     'unspecified',
+    system: 'http://hl7.org/fhir/ValueSet/metric-calibration-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Unspecified'.toFhirString,
   );
 
   /// offset
   static final DeviceMetricCalibrationType offset =
       DeviceMetricCalibrationType._(
     'offset',
+    system: 'http://hl7.org/fhir/ValueSet/metric-calibration-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Offset'.toFhirString,
   );
 
   /// gain
   static final DeviceMetricCalibrationType gain = DeviceMetricCalibrationType._(
     'gain',
+    system: 'http://hl7.org/fhir/ValueSet/metric-calibration-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Gain'.toFhirString,
   );
 
   /// two_point
   static final DeviceMetricCalibrationType two_point =
       DeviceMetricCalibrationType._(
     'two-point',
+    system: 'http://hl7.org/fhir/ValueSet/metric-calibration-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Two Point'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

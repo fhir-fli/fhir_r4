@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The current status of the test report.
-class TestReportStatus extends FhirCode {
+class TestReportStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   TestReportStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,26 +43,41 @@ class TestReportStatus extends FhirCode {
   /// completed
   static final TestReportStatus completed = TestReportStatus._(
     'completed',
+    system: 'http://hl7.org/fhir/ValueSet/report-status-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Completed'.toFhirString,
   );
 
   /// in_progress
   static final TestReportStatus in_progress = TestReportStatus._(
     'in-progress',
+    system: 'http://hl7.org/fhir/ValueSet/report-status-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'In Progress'.toFhirString,
   );
 
   /// waiting
   static final TestReportStatus waiting = TestReportStatus._(
     'waiting',
+    system: 'http://hl7.org/fhir/ValueSet/report-status-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Waiting'.toFhirString,
   );
 
   /// stopped
   static final TestReportStatus stopped = TestReportStatus._(
     'stopped',
+    system: 'http://hl7.org/fhir/ValueSet/report-status-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Stopped'.toFhirString,
   );
 
   /// entered_in_error
   static final TestReportStatus entered_in_error = TestReportStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/report-status-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered In Error'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

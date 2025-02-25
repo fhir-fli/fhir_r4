@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Indicates whether the location is still in use.
-class LocationStatus extends FhirCode {
+class LocationStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   LocationStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,16 +43,25 @@ class LocationStatus extends FhirCode {
   /// active
   static final LocationStatus active = LocationStatus._(
     'active',
+    system: 'http://hl7.org/fhir/ValueSet/location-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Active'.toFhirString,
   );
 
   /// suspended
   static final LocationStatus suspended = LocationStatus._(
     'suspended',
+    system: 'http://hl7.org/fhir/ValueSet/location-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Suspended'.toFhirString,
   );
 
   /// inactive
   static final LocationStatus inactive = LocationStatus._(
     'inactive',
+    system: 'http://hl7.org/fhir/ValueSet/location-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Inactive'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

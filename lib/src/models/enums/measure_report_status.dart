@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The status of the measure report.
-class MeasureReportStatus extends FhirCode {
+class MeasureReportStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   MeasureReportStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,16 +43,25 @@ class MeasureReportStatus extends FhirCode {
   /// complete
   static final MeasureReportStatus complete = MeasureReportStatus._(
     'complete',
+    system: 'http://hl7.org/fhir/ValueSet/measure-report-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Complete'.toFhirString,
   );
 
   /// pending
   static final MeasureReportStatus pending = MeasureReportStatus._(
     'pending',
+    system: 'http://hl7.org/fhir/ValueSet/measure-report-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Pending'.toFhirString,
   );
 
   /// error
   static final MeasureReportStatus error = MeasureReportStatus._(
     'error',
+    system: 'http://hl7.org/fhir/ValueSet/measure-report-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Error'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of an address (physical / postal).
-class AddressType extends FhirCode {
+class AddressType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   AddressType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,16 +43,25 @@ class AddressType extends FhirCode {
   /// postal
   static final AddressType postal = AddressType._(
     'postal',
+    system: 'http://hl7.org/fhir/ValueSet/address-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Postal'.toFhirString,
   );
 
   /// physical
   static final AddressType physical = AddressType._(
     'physical',
+    system: 'http://hl7.org/fhir/ValueSet/address-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Physical'.toFhirString,
   );
 
   /// both
   static final AddressType both = AddressType._(
     'both',
+    system: 'http://hl7.org/fhir/ValueSet/address-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Postal & Physical'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

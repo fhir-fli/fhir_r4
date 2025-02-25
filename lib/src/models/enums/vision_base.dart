@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A coded concept listing the base codes.
-class VisionBase extends FhirCode {
+class VisionBase extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   VisionBase._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,21 +43,33 @@ class VisionBase extends FhirCode {
   /// up
   static final VisionBase up = VisionBase._(
     'up',
+    system: 'http://hl7.org/fhir/ValueSet/vision-base-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Up'.toFhirString,
   );
 
   /// down
   static final VisionBase down = VisionBase._(
     'down',
+    system: 'http://hl7.org/fhir/ValueSet/vision-base-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Down'.toFhirString,
   );
 
   /// in_
   static final VisionBase in_ = VisionBase._(
     'in',
+    system: 'http://hl7.org/fhir/ValueSet/vision-base-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'In'.toFhirString,
   );
 
   /// out
   static final VisionBase out = VisionBase._(
     'out',
+    system: 'http://hl7.org/fhir/ValueSet/vision-base-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Out'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

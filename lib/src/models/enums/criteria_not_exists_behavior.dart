@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// Behavior a server can exhibit when a criteria state does not exist
 /// (e.g., state prior to a create or after a delete).
-class CriteriaNotExistsBehavior extends FhirCode {
+class CriteriaNotExistsBehavior extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   CriteriaNotExistsBehavior._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -42,12 +45,20 @@ class CriteriaNotExistsBehavior extends FhirCode {
   static final CriteriaNotExistsBehavior test_passes =
       CriteriaNotExistsBehavior._(
     'test-passes',
+    system:
+        'http://hl7.org/fhir/ValueSet/subscriptiontopic-cr-behavior'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'test passes'.toFhirString,
   );
 
   /// test_fails
   static final CriteriaNotExistsBehavior test_fails =
       CriteriaNotExistsBehavior._(
     'test-fails',
+    system:
+        'http://hl7.org/fhir/ValueSet/subscriptiontopic-cr-behavior'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'test fails'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

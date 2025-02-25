@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// Controls how multiple enableWhen values are interpreted - whether all
 /// or any must be true.
-class EnableWhenBehavior extends FhirCode {
+class EnableWhenBehavior extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   EnableWhenBehavior._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,11 +44,19 @@ class EnableWhenBehavior extends FhirCode {
   /// all
   static final EnableWhenBehavior all = EnableWhenBehavior._(
     'all',
+    system:
+        'http://hl7.org/fhir/ValueSet/questionnaire-enable-behavior'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'All'.toFhirString,
   );
 
   /// any
   static final EnableWhenBehavior any = EnableWhenBehavior._(
     'any',
+    system:
+        'http://hl7.org/fhir/ValueSet/questionnaire-enable-behavior'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Any'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of relations between entries.
-class CatalogEntryRelationType extends FhirCode {
+class CatalogEntryRelationType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   CatalogEntryRelationType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,12 +43,18 @@ class CatalogEntryRelationType extends FhirCode {
   /// triggers
   static final CatalogEntryRelationType triggers = CatalogEntryRelationType._(
     'triggers',
+    system: 'http://hl7.org/fhir/ValueSet/relation-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Triggers'.toFhirString,
   );
 
   /// is_replaced_by
   static final CatalogEntryRelationType is_replaced_by =
       CatalogEntryRelationType._(
     'is-replaced-by',
+    system: 'http://hl7.org/fhir/ValueSet/relation-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Replaced By'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

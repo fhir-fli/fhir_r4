@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Defines selection frequency behavior for an action or group.
-class ActionPrecheckBehavior extends FhirCode {
+class ActionPrecheckBehavior extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ActionPrecheckBehavior._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,11 +43,17 @@ class ActionPrecheckBehavior extends FhirCode {
   /// yes
   static final ActionPrecheckBehavior yes = ActionPrecheckBehavior._(
     'yes',
+    system: 'http://hl7.org/fhir/ValueSet/action-precheck-behavior'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Yes'.toFhirString,
   );
 
   /// no
   static final ActionPrecheckBehavior no = ActionPrecheckBehavior._(
     'no',
+    system: 'http://hl7.org/fhir/ValueSet/action-precheck-behavior'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'No'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

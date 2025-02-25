@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// How an extension context is interpreted.
-class ExtensionContextType extends FhirCode {
+class ExtensionContextType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ExtensionContextType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,16 +43,25 @@ class ExtensionContextType extends FhirCode {
   /// fhirpath
   static final ExtensionContextType fhirpath = ExtensionContextType._(
     'fhirpath',
+    system: 'http://hl7.org/fhir/ValueSet/extension-context-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'FHIRPath'.toFhirString,
   );
 
   /// element_
   static final ExtensionContextType element_ = ExtensionContextType._(
     'element',
+    system: 'http://hl7.org/fhir/ValueSet/extension-context-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Element ID'.toFhirString,
   );
 
   /// extension_
   static final ExtensionContextType extensionValue = ExtensionContextType._(
     'extension',
+    system: 'http://hl7.org/fhir/ValueSet/extension-context-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Extension URL'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Identifies the style of unique identifier used to identify a namespace.
-class NamingSystemIdentifierType extends FhirCode {
+class NamingSystemIdentifierType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   NamingSystemIdentifierType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,21 +44,37 @@ class NamingSystemIdentifierType extends FhirCode {
   /// oid
   static final NamingSystemIdentifierType oid = NamingSystemIdentifierType._(
     'oid',
+    system:
+        'http://hl7.org/fhir/ValueSet/namingsystem-identifier-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'OID'.toFhirString,
   );
 
   /// uuid
   static final NamingSystemIdentifierType uuid = NamingSystemIdentifierType._(
     'uuid',
+    system:
+        'http://hl7.org/fhir/ValueSet/namingsystem-identifier-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'UUID'.toFhirString,
   );
 
   /// uri
   static final NamingSystemIdentifierType uri = NamingSystemIdentifierType._(
     'uri',
+    system:
+        'http://hl7.org/fhir/ValueSet/namingsystem-identifier-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'URI'.toFhirString,
   );
 
   /// other
   static final NamingSystemIdentifierType other = NamingSystemIdentifierType._(
     'other',
+    system:
+        'http://hl7.org/fhir/ValueSet/namingsystem-identifier-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Other'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Distinguishes whether the task is a proposal, plan or full order.
-class TaskIntent extends FhirCode {
+class TaskIntent extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   TaskIntent._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,51 +43,81 @@ class TaskIntent extends FhirCode {
   /// unknown
   static final TaskIntent unknown = TaskIntent._(
     'unknown',
+    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Unknown'.toFhirString,
   );
 
   /// proposal
   static final TaskIntent proposal = TaskIntent._(
     'proposal',
+    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Proposal'.toFhirString,
   );
 
   /// plan
   static final TaskIntent plan = TaskIntent._(
     'plan',
+    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Plan'.toFhirString,
   );
 
   /// directive
   static final TaskIntent directive = TaskIntent._(
     'directive',
+    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Directive'.toFhirString,
   );
 
   /// order
   static final TaskIntent order = TaskIntent._(
     'order',
+    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Order'.toFhirString,
   );
 
   /// original_order
   static final TaskIntent original_order = TaskIntent._(
     'original-order',
+    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Original Order'.toFhirString,
   );
 
   /// reflex_order
   static final TaskIntent reflex_order = TaskIntent._(
     'reflex-order',
+    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Reflex Order'.toFhirString,
   );
 
   /// filler_order
   static final TaskIntent filler_order = TaskIntent._(
     'filler-order',
+    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Filler Order'.toFhirString,
   );
 
   /// instance_order
   static final TaskIntent instance_order = TaskIntent._(
     'instance-order',
+    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Instance Order'.toFhirString,
   );
 
   /// option
   static final TaskIntent option = TaskIntent._(
     'option',
+    system: 'http://hl7.org/fhir/ValueSet/task-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Option'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

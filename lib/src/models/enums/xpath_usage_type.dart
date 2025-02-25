@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// How a search parameter relates to the set of elements returned by
 /// evaluating its xpath query.
-class XPathUsageType extends FhirCode {
+class XPathUsageType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   XPathUsageType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,26 +44,41 @@ class XPathUsageType extends FhirCode {
   /// normal
   static final XPathUsageType normal = XPathUsageType._(
     'normal',
+    system: 'http://hl7.org/fhir/ValueSet/search-xpath-usage'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Normal'.toFhirString,
   );
 
   /// phonetic
   static final XPathUsageType phonetic = XPathUsageType._(
     'phonetic',
+    system: 'http://hl7.org/fhir/ValueSet/search-xpath-usage'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Phonetic'.toFhirString,
   );
 
   /// nearby
   static final XPathUsageType nearby = XPathUsageType._(
     'nearby',
+    system: 'http://hl7.org/fhir/ValueSet/search-xpath-usage'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Nearby'.toFhirString,
   );
 
   /// distance
   static final XPathUsageType distance = XPathUsageType._(
     'distance',
+    system: 'http://hl7.org/fhir/ValueSet/search-xpath-usage'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Distance'.toFhirString,
   );
 
   /// other
   static final XPathUsageType other = XPathUsageType._(
     'other',
+    system: 'http://hl7.org/fhir/ValueSet/search-xpath-usage'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Other'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

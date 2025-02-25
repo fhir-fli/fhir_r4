@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// Codes indicating the degree of authority/intentionality associated with
 /// a care plan.
-class CarePlanIntent extends FhirCode {
+class CarePlanIntent extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   CarePlanIntent._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,46 +44,73 @@ class CarePlanIntent extends FhirCode {
   /// proposal
   static final CarePlanIntent proposal = CarePlanIntent._(
     'proposal',
+    system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Proposal'.toFhirString,
   );
 
   /// plan
   static final CarePlanIntent plan = CarePlanIntent._(
     'plan',
+    system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Plan'.toFhirString,
   );
 
   /// directive
   static final CarePlanIntent directive = CarePlanIntent._(
     'directive',
+    system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Directive'.toFhirString,
   );
 
   /// order
   static final CarePlanIntent order = CarePlanIntent._(
     'order',
+    system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Order'.toFhirString,
   );
 
   /// original_order
   static final CarePlanIntent original_order = CarePlanIntent._(
     'original-order',
+    system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Original Order'.toFhirString,
   );
 
   /// reflex_order
   static final CarePlanIntent reflex_order = CarePlanIntent._(
     'reflex-order',
+    system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Reflex Order'.toFhirString,
   );
 
   /// filler_order
   static final CarePlanIntent filler_order = CarePlanIntent._(
     'filler-order',
+    system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Filler Order'.toFhirString,
   );
 
   /// instance_order
   static final CarePlanIntent instance_order = CarePlanIntent._(
     'instance-order',
+    system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Instance Order'.toFhirString,
   );
 
   /// option
   static final CarePlanIntent option = CarePlanIntent._(
     'option',
+    system: 'http://hl7.org/fhir/ValueSet/care-plan-intent'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Option'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

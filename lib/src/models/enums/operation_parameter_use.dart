@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Whether an operation parameter is an input or an output parameter.
-class OperationParameterUse extends FhirCode {
+class OperationParameterUse extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   OperationParameterUse._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,11 +43,17 @@ class OperationParameterUse extends FhirCode {
   /// in_
   static final OperationParameterUse in_ = OperationParameterUse._(
     'in',
+    system: 'http://hl7.org/fhir/ValueSet/operation-parameter-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'In'.toFhirString,
   );
 
   /// out
   static final OperationParameterUse out = OperationParameterUse._(
     'out',
+    system: 'http://hl7.org/fhir/ValueSet/operation-parameter-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Out'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

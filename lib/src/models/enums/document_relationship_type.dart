@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of relationship between documents.
-class DocumentRelationshipType extends FhirCode {
+class DocumentRelationshipType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   DocumentRelationshipType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,21 +43,33 @@ class DocumentRelationshipType extends FhirCode {
   /// replaces
   static final DocumentRelationshipType replaces = DocumentRelationshipType._(
     'replaces',
+    system: 'http://hl7.org/fhir/ValueSet/document-relationship-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Replaces'.toFhirString,
   );
 
   /// transforms
   static final DocumentRelationshipType transforms = DocumentRelationshipType._(
     'transforms',
+    system: 'http://hl7.org/fhir/ValueSet/document-relationship-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Transforms'.toFhirString,
   );
 
   /// signs
   static final DocumentRelationshipType signs = DocumentRelationshipType._(
     'signs',
+    system: 'http://hl7.org/fhir/ValueSet/document-relationship-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Signs'.toFhirString,
   );
 
   /// appends
   static final DocumentRelationshipType appends = DocumentRelationshipType._(
     'appends',
+    system: 'http://hl7.org/fhir/ValueSet/document-relationship-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Appends'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

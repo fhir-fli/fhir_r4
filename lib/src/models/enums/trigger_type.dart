@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of trigger.
-class TriggerType extends FhirCode {
+class TriggerType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   TriggerType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,41 +43,65 @@ class TriggerType extends FhirCode {
   /// named_event
   static final TriggerType named_event = TriggerType._(
     'named-event',
+    system: 'http://hl7.org/fhir/ValueSet/trigger-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Named Event'.toFhirString,
   );
 
   /// periodic
   static final TriggerType periodic = TriggerType._(
     'periodic',
+    system: 'http://hl7.org/fhir/ValueSet/trigger-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Periodic'.toFhirString,
   );
 
   /// data_changed
   static final TriggerType data_changed = TriggerType._(
     'data-changed',
+    system: 'http://hl7.org/fhir/ValueSet/trigger-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Data Changed'.toFhirString,
   );
 
   /// data_added
   static final TriggerType data_added = TriggerType._(
     'data-added',
+    system: 'http://hl7.org/fhir/ValueSet/trigger-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Data Added'.toFhirString,
   );
 
   /// data_modified
   static final TriggerType data_modified = TriggerType._(
     'data-modified',
+    system: 'http://hl7.org/fhir/ValueSet/trigger-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Data Updated'.toFhirString,
   );
 
   /// data_removed
   static final TriggerType data_removed = TriggerType._(
     'data-removed',
+    system: 'http://hl7.org/fhir/ValueSet/trigger-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Data Removed'.toFhirString,
   );
 
   /// data_accessed
   static final TriggerType data_accessed = TriggerType._(
     'data-accessed',
+    system: 'http://hl7.org/fhir/ValueSet/trigger-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Data Accessed'.toFhirString,
   );
 
   /// data_access_ended
   static final TriggerType data_access_ended = TriggerType._(
     'data-access-ended',
+    system: 'http://hl7.org/fhir/ValueSet/trigger-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Data Access Ended'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// The possible types of variables for exposures or outcomes (E.g.
 /// Dichotomous, Continuous, Descriptive).
-class VariableType extends FhirCode {
+class VariableType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   VariableType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,16 +44,25 @@ class VariableType extends FhirCode {
   /// dichotomous
   static final VariableType dichotomous = VariableType._(
     'dichotomous',
+    system: 'http://hl7.org/fhir/ValueSet/variable-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Dichotomous'.toFhirString,
   );
 
   /// continuous
   static final VariableType continuous = VariableType._(
     'continuous',
+    system: 'http://hl7.org/fhir/ValueSet/variable-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Continuous'.toFhirString,
   );
 
   /// descriptive
   static final VariableType descriptive = VariableType._(
     'descriptive',
+    system: 'http://hl7.org/fhir/ValueSet/variable-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Descriptive'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

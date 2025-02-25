@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// Estimate of the potential clinical harm, or seriousness, of a reaction
 /// to an identified substance.
-class AllergyIntoleranceCriticality extends FhirCode {
+class AllergyIntoleranceCriticality extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   AllergyIntoleranceCriticality._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -43,18 +46,30 @@ class AllergyIntoleranceCriticality extends FhirCode {
   static final AllergyIntoleranceCriticality low =
       AllergyIntoleranceCriticality._(
     'low',
+    system: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-criticality'
+        .toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Low Risk'.toFhirString,
   );
 
   /// high
   static final AllergyIntoleranceCriticality high =
       AllergyIntoleranceCriticality._(
     'high',
+    system: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-criticality'
+        .toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'High Risk'.toFhirString,
   );
 
   /// unable_to_assess
   static final AllergyIntoleranceCriticality unable_to_assess =
       AllergyIntoleranceCriticality._(
     'unable-to-assess',
+    system: 'http://hl7.org/fhir/ValueSet/allergy-intolerance-criticality'
+        .toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Unable to Assess Risk'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

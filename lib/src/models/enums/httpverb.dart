@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// HTTP verbs (in the HTTP command line). See [HTTP
 /// rfc](https://tools.ietf.org/html/rfc7231) for details.
-class HTTPVerb extends FhirCode {
+class HTTPVerb extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   HTTPVerb._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,31 +44,49 @@ class HTTPVerb extends FhirCode {
   /// GET
   static final HTTPVerb GET = HTTPVerb._(
     'GET',
+    system: 'http://hl7.org/fhir/ValueSet/http-verb'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'GET'.toFhirString,
   );
 
   /// HEAD
   static final HTTPVerb HEAD = HTTPVerb._(
     'HEAD',
+    system: 'http://hl7.org/fhir/ValueSet/http-verb'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'HEAD'.toFhirString,
   );
 
   /// POST
   static final HTTPVerb POST = HTTPVerb._(
     'POST',
+    system: 'http://hl7.org/fhir/ValueSet/http-verb'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'POST'.toFhirString,
   );
 
   /// PUT
   static final HTTPVerb PUT = HTTPVerb._(
     'PUT',
+    system: 'http://hl7.org/fhir/ValueSet/http-verb'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'PUT'.toFhirString,
   );
 
   /// DELETE
   static final HTTPVerb DELETE = HTTPVerb._(
     'DELETE',
+    system: 'http://hl7.org/fhir/ValueSet/http-verb'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'DELETE'.toFhirString,
   );
 
   /// PATCH
   static final HTTPVerb PATCH = HTTPVerb._(
     'PATCH',
+    system: 'http://hl7.org/fhir/ValueSet/http-verb'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'PATCH'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

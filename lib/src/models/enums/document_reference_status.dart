@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The status of the document reference.
-class DocumentReferenceStatus extends FhirCode {
+class DocumentReferenceStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   DocumentReferenceStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,17 +43,26 @@ class DocumentReferenceStatus extends FhirCode {
   /// current
   static final DocumentReferenceStatus current = DocumentReferenceStatus._(
     'current',
+    system: 'http://hl7.org/fhir/ValueSet/document-reference-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Current'.toFhirString,
   );
 
   /// superseded
   static final DocumentReferenceStatus superseded = DocumentReferenceStatus._(
     'superseded',
+    system: 'http://hl7.org/fhir/ValueSet/document-reference-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Superseded'.toFhirString,
   );
 
   /// entered_in_error
   static final DocumentReferenceStatus entered_in_error =
       DocumentReferenceStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/document-reference-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

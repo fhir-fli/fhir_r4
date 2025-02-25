@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Identifies the purpose for this identifier, if known .
-class IdentifierUse extends FhirCode {
+class IdentifierUse extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   IdentifierUse._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,26 +43,41 @@ class IdentifierUse extends FhirCode {
   /// usual
   static final IdentifierUse usual = IdentifierUse._(
     'usual',
+    system: 'http://hl7.org/fhir/ValueSet/identifier-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Usual'.toFhirString,
   );
 
   /// official
   static final IdentifierUse official = IdentifierUse._(
     'official',
+    system: 'http://hl7.org/fhir/ValueSet/identifier-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Official'.toFhirString,
   );
 
   /// temp
   static final IdentifierUse temp = IdentifierUse._(
     'temp',
+    system: 'http://hl7.org/fhir/ValueSet/identifier-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Temp'.toFhirString,
   );
 
   /// secondary
   static final IdentifierUse secondary = IdentifierUse._(
     'secondary',
+    system: 'http://hl7.org/fhir/ValueSet/identifier-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Secondary'.toFhirString,
   );
 
   /// old
   static final IdentifierUse old = IdentifierUse._(
     'old',
+    system: 'http://hl7.org/fhir/ValueSet/identifier-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Old'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

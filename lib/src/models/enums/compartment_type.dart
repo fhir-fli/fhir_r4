@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Which type a compartment definition describes.
-class CompartmentType extends FhirCode {
+class CompartmentType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   CompartmentType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,26 +43,41 @@ class CompartmentType extends FhirCode {
   /// Patient
   static final CompartmentType Patient = CompartmentType._(
     'Patient',
+    system: 'http://hl7.org/fhir/ValueSet/compartment-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Patient'.toFhirString,
   );
 
   /// Encounter
   static final CompartmentType Encounter = CompartmentType._(
     'Encounter',
+    system: 'http://hl7.org/fhir/ValueSet/compartment-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Encounter'.toFhirString,
   );
 
   /// RelatedPerson
   static final CompartmentType RelatedPerson = CompartmentType._(
     'RelatedPerson',
+    system: 'http://hl7.org/fhir/ValueSet/compartment-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'RelatedPerson'.toFhirString,
   );
 
   /// Practitioner
   static final CompartmentType Practitioner = CompartmentType._(
     'Practitioner',
+    system: 'http://hl7.org/fhir/ValueSet/compartment-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Practitioner'.toFhirString,
   );
 
   /// Device
   static final CompartmentType Device = CompartmentType._(
     'Device',
+    system: 'http://hl7.org/fhir/ValueSet/compartment-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Device'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

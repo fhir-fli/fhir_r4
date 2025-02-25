@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of method used to execute a subscription.
-class SubscriptionChannelType extends FhirCode {
+class SubscriptionChannelType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   SubscriptionChannelType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,26 +43,41 @@ class SubscriptionChannelType extends FhirCode {
   /// rest_hook
   static final SubscriptionChannelType rest_hook = SubscriptionChannelType._(
     'rest-hook',
+    system: 'http://hl7.org/fhir/ValueSet/subscription-channel-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Rest Hook'.toFhirString,
   );
 
   /// websocket
   static final SubscriptionChannelType websocket = SubscriptionChannelType._(
     'websocket',
+    system: 'http://hl7.org/fhir/ValueSet/subscription-channel-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Websocket'.toFhirString,
   );
 
   /// email
   static final SubscriptionChannelType email = SubscriptionChannelType._(
     'email',
+    system: 'http://hl7.org/fhir/ValueSet/subscription-channel-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Email'.toFhirString,
   );
 
   /// sms
   static final SubscriptionChannelType sms = SubscriptionChannelType._(
     'sms',
+    system: 'http://hl7.org/fhir/ValueSet/subscription-channel-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'SMS'.toFhirString,
   );
 
   /// message
   static final SubscriptionChannelType message = SubscriptionChannelType._(
     'message',
+    system: 'http://hl7.org/fhir/ValueSet/subscription-channel-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Message'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

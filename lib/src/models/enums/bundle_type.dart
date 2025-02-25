@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Indicates the purpose of a bundle - how it is intended to be used.
-class BundleType extends FhirCode {
+class BundleType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   BundleType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,46 +43,73 @@ class BundleType extends FhirCode {
   /// document
   static final BundleType document = BundleType._(
     'document',
+    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Document'.toFhirString,
   );
 
   /// message
   static final BundleType message = BundleType._(
     'message',
+    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Message'.toFhirString,
   );
 
   /// transaction
   static final BundleType transaction = BundleType._(
     'transaction',
+    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Transaction'.toFhirString,
   );
 
   /// transaction_response
   static final BundleType transaction_response = BundleType._(
     'transaction-response',
+    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Transaction Response'.toFhirString,
   );
 
   /// batch
   static final BundleType batch = BundleType._(
     'batch',
+    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Batch'.toFhirString,
   );
 
   /// batch_response
   static final BundleType batch_response = BundleType._(
     'batch-response',
+    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Batch Response'.toFhirString,
   );
 
   /// history
   static final BundleType history = BundleType._(
     'history',
+    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'History List'.toFhirString,
   );
 
   /// searchset
   static final BundleType searchset = BundleType._(
     'searchset',
+    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Search Results'.toFhirString,
   );
 
   /// collection
   static final BundleType collection = BundleType._(
     'collection',
+    system: 'http://hl7.org/fhir/ValueSet/bundle-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Collection'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

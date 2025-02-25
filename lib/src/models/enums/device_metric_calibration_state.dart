@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Describes the state of a metric calibration.
-class DeviceMetricCalibrationState extends FhirCode {
+class DeviceMetricCalibrationState extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   DeviceMetricCalibrationState._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -42,24 +45,36 @@ class DeviceMetricCalibrationState extends FhirCode {
   static final DeviceMetricCalibrationState not_calibrated =
       DeviceMetricCalibrationState._(
     'not-calibrated',
+    system: 'http://hl7.org/fhir/ValueSet/metric-calibration-state'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Not Calibrated'.toFhirString,
   );
 
   /// calibration_required
   static final DeviceMetricCalibrationState calibration_required =
       DeviceMetricCalibrationState._(
     'calibration-required',
+    system: 'http://hl7.org/fhir/ValueSet/metric-calibration-state'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Calibration Required'.toFhirString,
   );
 
   /// calibrated
   static final DeviceMetricCalibrationState calibrated =
       DeviceMetricCalibrationState._(
     'calibrated',
+    system: 'http://hl7.org/fhir/ValueSet/metric-calibration-state'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Calibrated'.toFhirString,
   );
 
   /// unspecified
   static final DeviceMetricCalibrationState unspecified =
       DeviceMetricCalibrationState._(
     'unspecified',
+    system: 'http://hl7.org/fhir/ValueSet/metric-calibration-state'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Unspecified'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

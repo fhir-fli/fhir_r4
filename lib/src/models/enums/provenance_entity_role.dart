@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// How an entity was used in an activity.
-class ProvenanceEntityRole extends FhirCode {
+class ProvenanceEntityRole extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ProvenanceEntityRole._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,26 +43,41 @@ class ProvenanceEntityRole extends FhirCode {
   /// derivation
   static final ProvenanceEntityRole derivation = ProvenanceEntityRole._(
     'derivation',
+    system: 'http://hl7.org/fhir/ValueSet/provenance-entity-role'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Derivation'.toFhirString,
   );
 
   /// revision
   static final ProvenanceEntityRole revision = ProvenanceEntityRole._(
     'revision',
+    system: 'http://hl7.org/fhir/ValueSet/provenance-entity-role'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Revision'.toFhirString,
   );
 
   /// quotation
   static final ProvenanceEntityRole quotation = ProvenanceEntityRole._(
     'quotation',
+    system: 'http://hl7.org/fhir/ValueSet/provenance-entity-role'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Quotation'.toFhirString,
   );
 
   /// source
   static final ProvenanceEntityRole source = ProvenanceEntityRole._(
     'source',
+    system: 'http://hl7.org/fhir/ValueSet/provenance-entity-role'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Source'.toFhirString,
   );
 
   /// removal
   static final ProvenanceEntityRole removal = ProvenanceEntityRole._(
     'removal',
+    system: 'http://hl7.org/fhir/ValueSet/provenance-entity-role'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Removal'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

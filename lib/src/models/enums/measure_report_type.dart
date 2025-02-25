@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of the measure report.
-class MeasureReportType extends FhirCode {
+class MeasureReportType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   MeasureReportType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,21 +43,33 @@ class MeasureReportType extends FhirCode {
   /// individual
   static final MeasureReportType individual = MeasureReportType._(
     'individual',
+    system: 'http://hl7.org/fhir/ValueSet/measure-report-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Individual'.toFhirString,
   );
 
   /// subject_list
   static final MeasureReportType subject_list = MeasureReportType._(
     'subject-list',
+    system: 'http://hl7.org/fhir/ValueSet/measure-report-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Subject List'.toFhirString,
   );
 
   /// summary
   static final MeasureReportType summary = MeasureReportType._(
     'summary',
+    system: 'http://hl7.org/fhir/ValueSet/measure-report-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Summary'.toFhirString,
   );
 
   /// data_collection
   static final MeasureReportType data_collection = MeasureReportType._(
     'data-collection',
+    system: 'http://hl7.org/fhir/ValueSet/measure-report-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Data Collection'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

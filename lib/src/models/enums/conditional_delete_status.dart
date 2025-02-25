@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A code that indicates how the server supports conditional delete.
-class ConditionalDeleteStatus extends FhirCode {
+class ConditionalDeleteStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ConditionalDeleteStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,16 +44,25 @@ class ConditionalDeleteStatus extends FhirCode {
   static final ConditionalDeleteStatus not_supported =
       ConditionalDeleteStatus._(
     'not-supported',
+    system: 'http://hl7.org/fhir/ValueSet/conditional-delete-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Not Supported'.toFhirString,
   );
 
   /// single
   static final ConditionalDeleteStatus single = ConditionalDeleteStatus._(
     'single',
+    system: 'http://hl7.org/fhir/ValueSet/conditional-delete-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Single Deletes Supported'.toFhirString,
   );
 
   /// multiple
   static final ConditionalDeleteStatus multiple = ConditionalDeleteStatus._(
     'multiple',
+    system: 'http://hl7.org/fhir/ValueSet/conditional-delete-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Multiple Deletes Supported'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

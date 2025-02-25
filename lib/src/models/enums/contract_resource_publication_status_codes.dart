@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set contract specific codes for status.
-class ContractResourcePublicationStatusCodes extends FhirCode {
+class ContractResourcePublicationStatusCodes extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ContractResourcePublicationStatusCodes._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -43,90 +46,135 @@ class ContractResourcePublicationStatusCodes extends FhirCode {
   static final ContractResourcePublicationStatusCodes amended =
       ContractResourcePublicationStatusCodes._(
     'amended',
+    system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Amended'.toFhirString,
   );
 
   /// appended
   static final ContractResourcePublicationStatusCodes appended =
       ContractResourcePublicationStatusCodes._(
     'appended',
+    system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Appended'.toFhirString,
   );
 
   /// cancelled
   static final ContractResourcePublicationStatusCodes cancelled =
       ContractResourcePublicationStatusCodes._(
     'cancelled',
+    system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Cancelled'.toFhirString,
   );
 
   /// disputed
   static final ContractResourcePublicationStatusCodes disputed =
       ContractResourcePublicationStatusCodes._(
     'disputed',
+    system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Disputed'.toFhirString,
   );
 
   /// entered_in_error
   static final ContractResourcePublicationStatusCodes entered_in_error =
       ContractResourcePublicationStatusCodes._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// executable
   static final ContractResourcePublicationStatusCodes executable =
       ContractResourcePublicationStatusCodes._(
     'executable',
+    system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Executable'.toFhirString,
   );
 
   /// executed
   static final ContractResourcePublicationStatusCodes executed =
       ContractResourcePublicationStatusCodes._(
     'executed',
+    system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Executed'.toFhirString,
   );
 
   /// negotiable
   static final ContractResourcePublicationStatusCodes negotiable =
       ContractResourcePublicationStatusCodes._(
     'negotiable',
+    system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Negotiable'.toFhirString,
   );
 
   /// offered
   static final ContractResourcePublicationStatusCodes offered =
       ContractResourcePublicationStatusCodes._(
     'offered',
+    system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Offered'.toFhirString,
   );
 
   /// policy
   static final ContractResourcePublicationStatusCodes policy =
       ContractResourcePublicationStatusCodes._(
     'policy',
+    system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Policy'.toFhirString,
   );
 
   /// rejected
   static final ContractResourcePublicationStatusCodes rejected =
       ContractResourcePublicationStatusCodes._(
     'rejected',
+    system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Rejected'.toFhirString,
   );
 
   /// renewed
   static final ContractResourcePublicationStatusCodes renewed =
       ContractResourcePublicationStatusCodes._(
     'renewed',
+    system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Renewed'.toFhirString,
   );
 
   /// revoked
   static final ContractResourcePublicationStatusCodes revoked =
       ContractResourcePublicationStatusCodes._(
     'revoked',
+    system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Revoked'.toFhirString,
   );
 
   /// resolved
   static final ContractResourcePublicationStatusCodes resolved =
       ContractResourcePublicationStatusCodes._(
     'resolved',
+    system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Resolved'.toFhirString,
   );
 
   /// terminated
   static final ContractResourcePublicationStatusCodes terminated =
       ContractResourcePublicationStatusCodes._(
     'terminated',
+    system: 'http://hl7.org/fhir/ValueSet/contract-publicationstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Terminated'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

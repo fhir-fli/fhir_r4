@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Defines the type of structure that a definition is describing.
-class StructureDefinitionKind extends FhirCode {
+class StructureDefinitionKind extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   StructureDefinitionKind._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,21 +44,33 @@ class StructureDefinitionKind extends FhirCode {
   static final StructureDefinitionKind primitive_type =
       StructureDefinitionKind._(
     'primitive-type',
+    system: 'http://hl7.org/fhir/ValueSet/structure-definition-kind'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Primitive Data Type'.toFhirString,
   );
 
   /// complex_type
   static final StructureDefinitionKind complex_type = StructureDefinitionKind._(
     'complex-type',
+    system: 'http://hl7.org/fhir/ValueSet/structure-definition-kind'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Complex Data Type'.toFhirString,
   );
 
   /// resource
   static final StructureDefinitionKind resource = StructureDefinitionKind._(
     'resource',
+    system: 'http://hl7.org/fhir/ValueSet/structure-definition-kind'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Resource'.toFhirString,
   );
 
   /// logical
   static final StructureDefinitionKind logical = StructureDefinitionKind._(
     'logical',
+    system: 'http://hl7.org/fhir/ValueSet/structure-definition-kind'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Logical'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

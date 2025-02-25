@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The current state of the list.
-class ListStatus extends FhirCode {
+class ListStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ListStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,16 +43,25 @@ class ListStatus extends FhirCode {
   /// current
   static final ListStatus current = ListStatus._(
     'current',
+    system: 'http://hl7.org/fhir/ValueSet/list-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Current'.toFhirString,
   );
 
   /// retired
   static final ListStatus retired = ListStatus._(
     'retired',
+    system: 'http://hl7.org/fhir/ValueSet/list-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Retired'.toFhirString,
   );
 
   /// entered_in_error
   static final ListStatus entered_in_error = ListStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/list-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered In Error'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// If this is the default rule set to apply for the source type, or this
 /// combination of types.
-class StructureMapGroupTypeMode extends FhirCode {
+class StructureMapGroupTypeMode extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   StructureMapGroupTypeMode._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,17 +44,26 @@ class StructureMapGroupTypeMode extends FhirCode {
   /// none
   static final StructureMapGroupTypeMode none = StructureMapGroupTypeMode._(
     'none',
+    system: 'http://hl7.org/fhir/ValueSet/map-group-type-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Not a Default'.toFhirString,
   );
 
   /// types
   static final StructureMapGroupTypeMode types = StructureMapGroupTypeMode._(
     'types',
+    system: 'http://hl7.org/fhir/ValueSet/map-group-type-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Default for Type Combination'.toFhirString,
   );
 
   /// type_and_types
   static final StructureMapGroupTypeMode type_and_types =
       StructureMapGroupTypeMode._(
     'type-and-types',
+    system: 'http://hl7.org/fhir/ValueSet/map-group-type-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Default for type + combination'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

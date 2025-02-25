@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// What Search Comparator Codes are supported in search.
-class SearchComparator extends FhirCode {
+class SearchComparator extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   SearchComparator._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,46 +43,73 @@ class SearchComparator extends FhirCode {
   /// eq
   static final SearchComparator eq = SearchComparator._(
     'eq',
+    system: 'http://hl7.org/fhir/ValueSet/search-comparator'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Equals'.toFhirString,
   );
 
   /// ne
   static final SearchComparator ne = SearchComparator._(
     'ne',
+    system: 'http://hl7.org/fhir/ValueSet/search-comparator'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Not Equals'.toFhirString,
   );
 
   /// gt
   static final SearchComparator gt = SearchComparator._(
     'gt',
+    system: 'http://hl7.org/fhir/ValueSet/search-comparator'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Greater Than'.toFhirString,
   );
 
   /// lt
   static final SearchComparator lt = SearchComparator._(
     'lt',
+    system: 'http://hl7.org/fhir/ValueSet/search-comparator'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Less Than'.toFhirString,
   );
 
   /// ge
   static final SearchComparator ge = SearchComparator._(
     'ge',
+    system: 'http://hl7.org/fhir/ValueSet/search-comparator'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Greater or Equals'.toFhirString,
   );
 
   /// le
   static final SearchComparator le = SearchComparator._(
     'le',
+    system: 'http://hl7.org/fhir/ValueSet/search-comparator'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Less of Equal'.toFhirString,
   );
 
   /// sa
   static final SearchComparator sa = SearchComparator._(
     'sa',
+    system: 'http://hl7.org/fhir/ValueSet/search-comparator'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Starts After'.toFhirString,
   );
 
   /// eb
   static final SearchComparator eb = SearchComparator._(
     'eb',
+    system: 'http://hl7.org/fhir/ValueSet/search-comparator'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Ends Before'.toFhirString,
   );
 
   /// ap
   static final SearchComparator ap = SearchComparator._(
     'ap',
+    system: 'http://hl7.org/fhir/ValueSet/search-comparator'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Approximately'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Indicates whether the account is available to be used.
-class AccountStatus extends FhirCode {
+class AccountStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   AccountStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,26 +43,41 @@ class AccountStatus extends FhirCode {
   /// active
   static final AccountStatus active = AccountStatus._(
     'active',
+    system: 'http://hl7.org/fhir/ValueSet/account-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Active'.toFhirString,
   );
 
   /// inactive
   static final AccountStatus inactive = AccountStatus._(
     'inactive',
+    system: 'http://hl7.org/fhir/ValueSet/account-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Inactive'.toFhirString,
   );
 
   /// entered_in_error
   static final AccountStatus entered_in_error = AccountStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/account-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in error'.toFhirString,
   );
 
   /// on_hold
   static final AccountStatus on_hold = AccountStatus._(
     'on-hold',
+    system: 'http://hl7.org/fhir/ValueSet/account-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'On Hold'.toFhirString,
   );
 
   /// unknown
   static final AccountStatus unknown = AccountStatus._(
     'unknown',
+    system: 'http://hl7.org/fhir/ValueSet/account-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Unknown'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

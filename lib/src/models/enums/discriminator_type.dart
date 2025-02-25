@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// How an element value is interpreted when discrimination is evaluated.
-class DiscriminatorType extends FhirCode {
+class DiscriminatorType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   DiscriminatorType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,26 +43,41 @@ class DiscriminatorType extends FhirCode {
   /// value
   static final DiscriminatorType value_ = DiscriminatorType._(
     'value',
+    system: 'http://hl7.org/fhir/ValueSet/discriminator-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Value'.toFhirString,
   );
 
   /// exists
   static final DiscriminatorType exists = DiscriminatorType._(
     'exists',
+    system: 'http://hl7.org/fhir/ValueSet/discriminator-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Exists'.toFhirString,
   );
 
   /// pattern
   static final DiscriminatorType pattern = DiscriminatorType._(
     'pattern',
+    system: 'http://hl7.org/fhir/ValueSet/discriminator-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Pattern'.toFhirString,
   );
 
   /// type
   static final DiscriminatorType type = DiscriminatorType._(
     'type',
+    system: 'http://hl7.org/fhir/ValueSet/discriminator-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Type'.toFhirString,
   );
 
   /// profile
   static final DiscriminatorType profile = DiscriminatorType._(
     'profile',
+    system: 'http://hl7.org/fhir/ValueSet/discriminator-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Profile'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

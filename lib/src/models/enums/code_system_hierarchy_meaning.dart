@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The meaning of the hierarchy of concepts in a code system.
-class CodeSystemHierarchyMeaning extends FhirCode {
+class CodeSystemHierarchyMeaning extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   CodeSystemHierarchyMeaning._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -42,23 +45,39 @@ class CodeSystemHierarchyMeaning extends FhirCode {
   static final CodeSystemHierarchyMeaning grouped_by =
       CodeSystemHierarchyMeaning._(
     'grouped-by',
+    system:
+        'http://hl7.org/fhir/ValueSet/codesystem-hierarchy-meaning'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Grouped By'.toFhirString,
   );
 
   /// is_a
   static final CodeSystemHierarchyMeaning is_a = CodeSystemHierarchyMeaning._(
     'is-a',
+    system:
+        'http://hl7.org/fhir/ValueSet/codesystem-hierarchy-meaning'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Is-A'.toFhirString,
   );
 
   /// part_of
   static final CodeSystemHierarchyMeaning part_of =
       CodeSystemHierarchyMeaning._(
     'part-of',
+    system:
+        'http://hl7.org/fhir/ValueSet/codesystem-hierarchy-meaning'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Part Of'.toFhirString,
   );
 
   /// classified_with
   static final CodeSystemHierarchyMeaning classified_with =
       CodeSystemHierarchyMeaning._(
     'classified-with',
+    system:
+        'http://hl7.org/fhir/ValueSet/codesystem-hierarchy-meaning'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Classified With'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

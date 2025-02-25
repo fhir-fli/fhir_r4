@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// This value set includes Status codes.
-class FinancialResourceStatusCodes extends FhirCode {
+class FinancialResourceStatusCodes extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   FinancialResourceStatusCodes._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -42,24 +45,36 @@ class FinancialResourceStatusCodes extends FhirCode {
   static final FinancialResourceStatusCodes active =
       FinancialResourceStatusCodes._(
     'active',
+    system: 'http://hl7.org/fhir/ValueSet/fm-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Active'.toFhirString,
   );
 
   /// cancelled
   static final FinancialResourceStatusCodes cancelled =
       FinancialResourceStatusCodes._(
     'cancelled',
+    system: 'http://hl7.org/fhir/ValueSet/fm-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Cancelled'.toFhirString,
   );
 
   /// draft
   static final FinancialResourceStatusCodes draft =
       FinancialResourceStatusCodes._(
     'draft',
+    system: 'http://hl7.org/fhir/ValueSet/fm-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Draft'.toFhirString,
   );
 
   /// entered_in_error
   static final FinancialResourceStatusCodes entered_in_error =
       FinancialResourceStatusCodes._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/fm-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

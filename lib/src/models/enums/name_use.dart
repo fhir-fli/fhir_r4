@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The use of a human name.
-class NameUse extends FhirCode {
+class NameUse extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   NameUse._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,36 +43,57 @@ class NameUse extends FhirCode {
   /// usual
   static final NameUse usual = NameUse._(
     'usual',
+    system: 'http://hl7.org/fhir/ValueSet/name-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Usual'.toFhirString,
   );
 
   /// official
   static final NameUse official = NameUse._(
     'official',
+    system: 'http://hl7.org/fhir/ValueSet/name-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Official'.toFhirString,
   );
 
   /// temp
   static final NameUse temp = NameUse._(
     'temp',
+    system: 'http://hl7.org/fhir/ValueSet/name-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Temp'.toFhirString,
   );
 
   /// nickname
   static final NameUse nickname = NameUse._(
     'nickname',
+    system: 'http://hl7.org/fhir/ValueSet/name-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Nickname'.toFhirString,
   );
 
   /// anonymous
   static final NameUse anonymous = NameUse._(
     'anonymous',
+    system: 'http://hl7.org/fhir/ValueSet/name-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Anonymous'.toFhirString,
   );
 
   /// old
   static final NameUse old = NameUse._(
     'old',
+    system: 'http://hl7.org/fhir/ValueSet/name-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Old'.toFhirString,
   );
 
   /// maiden
   static final NameUse maiden = NameUse._(
     'maiden',
+    system: 'http://hl7.org/fhir/ValueSet/name-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Name changed for Marriage'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

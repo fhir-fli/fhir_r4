@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Indicates the progression of a study subject through a study.
-class ResearchSubjectStatus extends FhirCode {
+class ResearchSubjectStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ResearchSubjectStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,69 +43,108 @@ class ResearchSubjectStatus extends FhirCode {
   /// candidate
   static final ResearchSubjectStatus candidate = ResearchSubjectStatus._(
     'candidate',
+    system: 'http://hl7.org/fhir/ValueSet/research-subject-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Candidate'.toFhirString,
   );
 
   /// eligible
   static final ResearchSubjectStatus eligible = ResearchSubjectStatus._(
     'eligible',
+    system: 'http://hl7.org/fhir/ValueSet/research-subject-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Eligible'.toFhirString,
   );
 
   /// follow_up
   static final ResearchSubjectStatus follow_up = ResearchSubjectStatus._(
     'follow-up',
+    system: 'http://hl7.org/fhir/ValueSet/research-subject-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Follow-up'.toFhirString,
   );
 
   /// ineligible
   static final ResearchSubjectStatus ineligible = ResearchSubjectStatus._(
     'ineligible',
+    system: 'http://hl7.org/fhir/ValueSet/research-subject-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Ineligible'.toFhirString,
   );
 
   /// not_registered
   static final ResearchSubjectStatus not_registered = ResearchSubjectStatus._(
     'not-registered',
+    system: 'http://hl7.org/fhir/ValueSet/research-subject-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Not Registered'.toFhirString,
   );
 
   /// off_study
   static final ResearchSubjectStatus off_study = ResearchSubjectStatus._(
     'off-study',
+    system: 'http://hl7.org/fhir/ValueSet/research-subject-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Off-study'.toFhirString,
   );
 
   /// on_study
   static final ResearchSubjectStatus on_study = ResearchSubjectStatus._(
     'on-study',
+    system: 'http://hl7.org/fhir/ValueSet/research-subject-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'On-study'.toFhirString,
   );
 
   /// on_study_intervention
   static final ResearchSubjectStatus on_study_intervention =
       ResearchSubjectStatus._(
     'on-study-intervention',
+    system: 'http://hl7.org/fhir/ValueSet/research-subject-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'On-study-intervention'.toFhirString,
   );
 
   /// on_study_observation
   static final ResearchSubjectStatus on_study_observation =
       ResearchSubjectStatus._(
     'on-study-observation',
+    system: 'http://hl7.org/fhir/ValueSet/research-subject-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'On-study-observation'.toFhirString,
   );
 
   /// pending_on_study
   static final ResearchSubjectStatus pending_on_study = ResearchSubjectStatus._(
     'pending-on-study',
+    system: 'http://hl7.org/fhir/ValueSet/research-subject-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Pending on-study'.toFhirString,
   );
 
   /// potential_candidate
   static final ResearchSubjectStatus potential_candidate =
       ResearchSubjectStatus._(
     'potential-candidate',
+    system: 'http://hl7.org/fhir/ValueSet/research-subject-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Potential Candidate'.toFhirString,
   );
 
   /// screening
   static final ResearchSubjectStatus screening = ResearchSubjectStatus._(
     'screening',
+    system: 'http://hl7.org/fhir/ValueSet/research-subject-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Screening'.toFhirString,
   );
 
   /// withdrawn
   static final ResearchSubjectStatus withdrawn = ResearchSubjectStatus._(
     'withdrawn',
+    system: 'http://hl7.org/fhir/ValueSet/research-subject-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Withdrawn'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The days of the week.
-class DaysOfWeek extends FhirCode {
+class DaysOfWeek extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   DaysOfWeek._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,36 +43,57 @@ class DaysOfWeek extends FhirCode {
   /// mon
   static final DaysOfWeek mon = DaysOfWeek._(
     'mon',
+    system: 'http://hl7.org/fhir/ValueSet/days-of-week'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Monday'.toFhirString,
   );
 
   /// tue
   static final DaysOfWeek tue = DaysOfWeek._(
     'tue',
+    system: 'http://hl7.org/fhir/ValueSet/days-of-week'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Tuesday'.toFhirString,
   );
 
   /// wed
   static final DaysOfWeek wed = DaysOfWeek._(
     'wed',
+    system: 'http://hl7.org/fhir/ValueSet/days-of-week'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Wednesday'.toFhirString,
   );
 
   /// thu
   static final DaysOfWeek thu = DaysOfWeek._(
     'thu',
+    system: 'http://hl7.org/fhir/ValueSet/days-of-week'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Thursday'.toFhirString,
   );
 
   /// fri
   static final DaysOfWeek fri = DaysOfWeek._(
     'fri',
+    system: 'http://hl7.org/fhir/ValueSet/days-of-week'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Friday'.toFhirString,
   );
 
   /// sat
   static final DaysOfWeek sat = DaysOfWeek._(
     'sat',
+    system: 'http://hl7.org/fhir/ValueSet/days-of-week'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Saturday'.toFhirString,
   );
 
   /// sun
   static final DaysOfWeek sun = DaysOfWeek._(
     'sun',
+    system: 'http://hl7.org/fhir/ValueSet/days-of-week'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Sunday'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

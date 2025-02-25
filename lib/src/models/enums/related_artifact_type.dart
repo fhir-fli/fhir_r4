@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of relationship to the related artifact.
-class RelatedArtifactType extends FhirCode {
+class RelatedArtifactType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   RelatedArtifactType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,41 +43,65 @@ class RelatedArtifactType extends FhirCode {
   /// documentation
   static final RelatedArtifactType documentation = RelatedArtifactType._(
     'documentation',
+    system: 'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Documentation'.toFhirString,
   );
 
   /// justification
   static final RelatedArtifactType justification = RelatedArtifactType._(
     'justification',
+    system: 'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Justification'.toFhirString,
   );
 
   /// citation
   static final RelatedArtifactType citation = RelatedArtifactType._(
     'citation',
+    system: 'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Citation'.toFhirString,
   );
 
   /// predecessor
   static final RelatedArtifactType predecessor = RelatedArtifactType._(
     'predecessor',
+    system: 'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Predecessor'.toFhirString,
   );
 
   /// successor
   static final RelatedArtifactType successor = RelatedArtifactType._(
     'successor',
+    system: 'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Successor'.toFhirString,
   );
 
   /// derived_from
   static final RelatedArtifactType derived_from = RelatedArtifactType._(
     'derived-from',
+    system: 'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Derived From'.toFhirString,
   );
 
   /// depends_on
   static final RelatedArtifactType depends_on = RelatedArtifactType._(
     'depends-on',
+    system: 'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Depends On'.toFhirString,
   );
 
   /// composed_of
   static final RelatedArtifactType composed_of = RelatedArtifactType._(
     'composed-of',
+    system: 'http://hl7.org/fhir/ValueSet/related-artifact-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Composed Of'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

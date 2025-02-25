@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Status of the supply delivery.
-class SupplyDeliveryStatus extends FhirCode {
+class SupplyDeliveryStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   SupplyDeliveryStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,21 +43,33 @@ class SupplyDeliveryStatus extends FhirCode {
   /// in_progress
   static final SupplyDeliveryStatus in_progress = SupplyDeliveryStatus._(
     'in-progress',
+    system: 'http://hl7.org/fhir/ValueSet/supplydelivery-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'In Progress'.toFhirString,
   );
 
   /// completed
   static final SupplyDeliveryStatus completed = SupplyDeliveryStatus._(
     'completed',
+    system: 'http://hl7.org/fhir/ValueSet/supplydelivery-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Delivered'.toFhirString,
   );
 
   /// abandoned
   static final SupplyDeliveryStatus abandoned = SupplyDeliveryStatus._(
     'abandoned',
+    system: 'http://hl7.org/fhir/ValueSet/supplydelivery-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Abandoned'.toFhirString,
   );
 
   /// entered_in_error
   static final SupplyDeliveryStatus entered_in_error = SupplyDeliveryStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/supplydelivery-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered In Error'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

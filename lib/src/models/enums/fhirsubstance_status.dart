@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A code to indicate if the substance is actively used.
-class FHIRSubstanceStatus extends FhirCode {
+class FHIRSubstanceStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   FHIRSubstanceStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,16 +43,25 @@ class FHIRSubstanceStatus extends FhirCode {
   /// active
   static final FHIRSubstanceStatus active = FHIRSubstanceStatus._(
     'active',
+    system: 'http://hl7.org/fhir/ValueSet/substance-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Active'.toFhirString,
   );
 
   /// inactive
   static final FHIRSubstanceStatus inactive = FHIRSubstanceStatus._(
     'inactive',
+    system: 'http://hl7.org/fhir/ValueSet/substance-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Inactive'.toFhirString,
   );
 
   /// entered_in_error
   static final FHIRSubstanceStatus entered_in_error = FHIRSubstanceStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/substance-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

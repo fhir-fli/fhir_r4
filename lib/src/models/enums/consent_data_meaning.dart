@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// How a resource reference is interpreted when testing consent
 /// restrictions.
-class ConsentDataMeaning extends FhirCode {
+class ConsentDataMeaning extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ConsentDataMeaning._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,21 +44,33 @@ class ConsentDataMeaning extends FhirCode {
   /// instance
   static final ConsentDataMeaning instance = ConsentDataMeaning._(
     'instance',
+    system: 'http://hl7.org/fhir/ValueSet/consent-data-meaning'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Instance'.toFhirString,
   );
 
   /// related
   static final ConsentDataMeaning related = ConsentDataMeaning._(
     'related',
+    system: 'http://hl7.org/fhir/ValueSet/consent-data-meaning'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Related'.toFhirString,
   );
 
   /// dependents
   static final ConsentDataMeaning dependents = ConsentDataMeaning._(
     'dependents',
+    system: 'http://hl7.org/fhir/ValueSet/consent-data-meaning'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Dependents'.toFhirString,
   );
 
   /// authoredby
   static final ConsentDataMeaning authoredby = ConsentDataMeaning._(
     'authoredby',
+    system: 'http://hl7.org/fhir/ValueSet/consent-data-meaning'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'AuthoredBy'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

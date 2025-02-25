@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The free/busy status of an appointment.
-class AppointmentStatus extends FhirCode {
+class AppointmentStatus extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   AppointmentStatus._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,51 +43,81 @@ class AppointmentStatus extends FhirCode {
   /// proposed
   static final AppointmentStatus proposed = AppointmentStatus._(
     'proposed',
+    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Proposed'.toFhirString,
   );
 
   /// pending
   static final AppointmentStatus pending = AppointmentStatus._(
     'pending',
+    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Pending'.toFhirString,
   );
 
   /// booked
   static final AppointmentStatus booked = AppointmentStatus._(
     'booked',
+    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Booked'.toFhirString,
   );
 
   /// arrived
   static final AppointmentStatus arrived = AppointmentStatus._(
     'arrived',
+    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Arrived'.toFhirString,
   );
 
   /// fulfilled
   static final AppointmentStatus fulfilled = AppointmentStatus._(
     'fulfilled',
+    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Fulfilled'.toFhirString,
   );
 
   /// cancelled
   static final AppointmentStatus cancelled = AppointmentStatus._(
     'cancelled',
+    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Cancelled'.toFhirString,
   );
 
   /// noshow
   static final AppointmentStatus noshow = AppointmentStatus._(
     'noshow',
+    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'No Show'.toFhirString,
   );
 
   /// entered_in_error
   static final AppointmentStatus entered_in_error = AppointmentStatus._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in error'.toFhirString,
   );
 
   /// checked_in
   static final AppointmentStatus checked_in = AppointmentStatus._(
     'checked-in',
+    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Checked In'.toFhirString,
   );
 
   /// waitlist
   static final AppointmentStatus waitlist = AppointmentStatus._(
     'waitlist',
+    system: 'http://hl7.org/fhir/ValueSet/appointmentstatus'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Waitlisted'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

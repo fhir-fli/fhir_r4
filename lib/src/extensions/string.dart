@@ -804,6 +804,88 @@ extension StringExtensionForFHIR on String {
   }
 
   /// Returns `true` if the [String] represents a [PrimitiveType].
+  String get fhirPrimitiveToDartType {
+    switch (toLowerCase()) {
+      // boolean values
+      case 'bool':
+      case 'boolean':
+      case 'fhirboolean':
+      case 'fhir.boolean':
+        return 'bool';
+
+      // instants are dateTimes
+      case 'instant':
+      case 'fhirinstant':
+        return 'DateTime';
+
+      // double
+      case 'double':
+      case 'decimal':
+      case 'fhirdecimal':
+      case 'fhir.decimal':
+        return 'double';
+
+      // int
+      case 'int':
+      case 'integer':
+      case 'fhirinteger':
+      case 'fhir.integer':
+      case 'positiveint':
+      case 'fhirpositiveint':
+      case 'unsignedint':
+      case 'fhirunsignedint':
+        return 'int';
+
+      // num
+      case 'num':
+        return 'num';
+
+      // all of these are Strings
+      case 'base64binary':
+      case 'fhirbase64binary':
+      case 'fhir.base64binary':
+      case 'canonical':
+      case 'fhircanonical':
+      case 'code':
+      case 'fhircode':
+      case 'fhir.code':
+      case 'fhircodeenum':
+      case 'date':
+      case 'fhirdate':
+      case 'fhir.date':
+      case 'datetime':
+      case 'fhirdatetime':
+      case 'fhir.datetime':
+      case 'id':
+      case 'fhirid':
+      case 'integer64':
+      case 'fhirinteger64':
+      case 'markdown':
+      case 'fhirmarkdown':
+      case 'oid':
+      case 'fhiroid':
+      case 'string':
+      case 'fhirstring':
+      case 'fhir.string':
+      case 'time':
+      case 'fhirtime':
+      case 'fhir.time':
+      case 'uri':
+      case 'fhiruri':
+      case 'fhir.uri':
+      case 'url':
+      case 'fhirurl':
+      case 'uuid':
+      case 'fhiruuid':
+      case 'xhtml':
+      case 'fhirxhtml':
+      case 'http://hl7.org/fhirpath/system.string':
+        return 'String';
+    }
+    throw Exception('Unknown FHIR primitive type: $this');
+  }
+
+  /// Returns `true` if the [String] represents a [PrimitiveType].
   bool get isFhirPrimitive => const {
         'base64binary',
         'fhirbase64binary',
@@ -817,6 +899,7 @@ extension StringExtensionForFHIR on String {
         'code',
         'fhircode',
         'fhir.code',
+        'fhircodeenum',
         'date',
         'fhirdate',
         'fhir.date',
@@ -863,6 +946,79 @@ extension StringExtensionForFHIR on String {
         'fhirxhtml',
         'http://hl7.org/fhirpath/system.string',
       }.contains(toLowerCase());
+
+  /// Easy getter for those types I changed from Official FHIR Named Types
+  String get toNamedDartType {
+    switch (toLowerCase()) {
+      case 'string':
+        return 'FhirString';
+      case 'base64binary':
+        return 'FhirBase64Binary';
+      case 'boolean':
+        return 'FhirBoolean';
+      case 'canonical':
+        return 'FhirCanonical';
+      case 'code':
+        return 'FhirCode';
+      case 'date':
+        return 'FhirDate';
+      case 'decimal':
+        return 'FhirDecimal';
+      case 'datetime':
+        return 'FhirDateTime';
+      case 'uri':
+        return 'FhirUri';
+      case 'url':
+        return 'FhirUrl';
+      case 'id':
+        return 'FhirId';
+      case 'instant':
+        return 'FhirInstant';
+      case 'integer':
+        return 'FhirInteger';
+      case 'integer64':
+        return 'FhirInteger64';
+      case 'markdown':
+        return 'FhirMarkdown';
+      case 'oid':
+        return 'FhirOid';
+      case 'positiveint':
+        return 'FhirPositiveInt';
+      case 'time':
+        return 'FhirTime';
+      case 'unsignedint':
+        return 'FhirUnsignedInt';
+      case 'uuid':
+        return 'FhirUuid';
+      case 'duration':
+        return 'FhirDuration';
+      case 'xhtml':
+        return 'FhirXhtml';
+      case 'meta':
+        return 'FhirMeta';
+      case 'list':
+        return 'FhirList';
+      case 'expression':
+        return 'FhirExpression';
+      case 'extension':
+        return 'FhirExtension';
+      case 'resourcelist':
+        return 'Resource';
+      case 'group':
+        return 'FhirGroup';
+      case 'endpoint':
+        return 'FhirEndpoint';
+      case 'http://hl7.org/fhirpath/system.string':
+        return 'FhirString';
+      case 'evidencevariable':
+        return 'EvidenceModelCharacteristicVariable';
+      default: return this;
+    }
+  }
+
+  /// Returns `true` if the [String] represents a [FhirInstant].
+  bool get isInstant =>
+      toLowerCase() == 'instant' || toLowerCase() == 'fhirinstant';
 
   /// Returns `true` if the [String] represents a [DataType].
   bool get isFhirDataType {
@@ -959,6 +1115,75 @@ extension StringExtensionForFHIR on String {
         'terminologycapabilities',
         'valueset',
       ].contains(toLowerCase());
+
+  /// Resolves reserved words in dart by appending an underscore
+  String get fhirFieldToDartName => const <String>[
+        'abstract',
+        'else',
+        'import',
+        'show',
+        'as',
+        'enum',
+        'in',
+        'static',
+        'assert',
+        'export',
+        'interface',
+        'super',
+        'async',
+        'extends',
+        'is',
+        'switch',
+        'await',
+        'extension',
+        'late',
+        'sync',
+        'break',
+        'external',
+        'library',
+        'this',
+        'case',
+        'factory',
+        'mixin',
+        'throw',
+        'catch',
+        'false',
+        'new',
+        'true',
+        'class',
+        'final',
+        'null',
+        'try',
+        'const',
+        'finally',
+        'on',
+        'typedef',
+        'continue',
+        'for',
+        'operator',
+        'var',
+        'covariant',
+        'function',
+        'part',
+        'void',
+        'default',
+        'get',
+        'required',
+        'while',
+        'deferred',
+        'hide',
+        'rethrow',
+        'with',
+        'do',
+        'if',
+        'return',
+        'yield',
+        'dynamic',
+        'implements',
+        'set',
+      ].contains(this)
+          ? '${this}_'
+          : this;
 
   /// Returns `true` if the [String] is a valid [R4ResourceType].
   bool get isFhirResourceType =>

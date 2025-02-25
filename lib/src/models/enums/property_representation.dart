@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// How a property is represented when serialized.
-class PropertyRepresentation extends FhirCode {
+class PropertyRepresentation extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   PropertyRepresentation._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,26 +43,41 @@ class PropertyRepresentation extends FhirCode {
   /// xmlAttr
   static final PropertyRepresentation xmlAttr = PropertyRepresentation._(
     'xmlAttr',
+    system: 'http://hl7.org/fhir/ValueSet/property-representation'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'XML Attribute'.toFhirString,
   );
 
   /// xmlText
   static final PropertyRepresentation xmlText = PropertyRepresentation._(
     'xmlText',
+    system: 'http://hl7.org/fhir/ValueSet/property-representation'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'XML Text'.toFhirString,
   );
 
   /// typeAttr
   static final PropertyRepresentation typeAttr = PropertyRepresentation._(
     'typeAttr',
+    system: 'http://hl7.org/fhir/ValueSet/property-representation'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Type Attribute'.toFhirString,
   );
 
   /// cdaText
   static final PropertyRepresentation cdaText = PropertyRepresentation._(
     'cdaText',
+    system: 'http://hl7.org/fhir/ValueSet/property-representation'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'CDA Text Format'.toFhirString,
   );
 
   /// xhtml
   static final PropertyRepresentation xhtml = PropertyRepresentation._(
     'xhtml',
+    system: 'http://hl7.org/fhir/ValueSet/property-representation'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'XHTML'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

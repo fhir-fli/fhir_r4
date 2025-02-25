@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// Whether a reference needs to be version specific or version
 /// independent, or whether either can be used.
-class ReferenceVersionRules extends FhirCode {
+class ReferenceVersionRules extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ReferenceVersionRules._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,16 +44,25 @@ class ReferenceVersionRules extends FhirCode {
   /// either
   static final ReferenceVersionRules either = ReferenceVersionRules._(
     'either',
+    system: 'http://hl7.org/fhir/ValueSet/reference-version-rules'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Either Specific or independent'.toFhirString,
   );
 
   /// independent
   static final ReferenceVersionRules independent = ReferenceVersionRules._(
     'independent',
+    system: 'http://hl7.org/fhir/ValueSet/reference-version-rules'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Version independent'.toFhirString,
   );
 
   /// specific
   static final ReferenceVersionRules specific = ReferenceVersionRules._(
     'specific',
+    system: 'http://hl7.org/fhir/ValueSet/reference-version-rules'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Version Specific'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

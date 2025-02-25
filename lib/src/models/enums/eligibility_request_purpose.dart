@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A code specifying the types of information being requested.
-class EligibilityRequestPurpose extends FhirCode {
+class EligibilityRequestPurpose extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   EligibilityRequestPurpose._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,23 +44,35 @@ class EligibilityRequestPurpose extends FhirCode {
   static final EligibilityRequestPurpose auth_requirements =
       EligibilityRequestPurpose._(
     'auth-requirements',
+    system: 'http://hl7.org/fhir/ValueSet/eligibilityrequest-purpose'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Coverage auth-requirements'.toFhirString,
   );
 
   /// benefits
   static final EligibilityRequestPurpose benefits = EligibilityRequestPurpose._(
     'benefits',
+    system: 'http://hl7.org/fhir/ValueSet/eligibilityrequest-purpose'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Coverage benefits'.toFhirString,
   );
 
   /// discovery
   static final EligibilityRequestPurpose discovery =
       EligibilityRequestPurpose._(
     'discovery',
+    system: 'http://hl7.org/fhir/ValueSet/eligibilityrequest-purpose'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Coverage Discovery'.toFhirString,
   );
 
   /// validation
   static final EligibilityRequestPurpose validation =
       EligibilityRequestPurpose._(
     'validation',
+    system: 'http://hl7.org/fhir/ValueSet/eligibilityrequest-purpose'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Coverage Validation'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

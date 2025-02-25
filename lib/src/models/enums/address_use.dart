@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The use of an address.
-class AddressUse extends FhirCode {
+class AddressUse extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   AddressUse._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,26 +43,41 @@ class AddressUse extends FhirCode {
   /// home
   static final AddressUse home = AddressUse._(
     'home',
+    system: 'http://hl7.org/fhir/ValueSet/address-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Home'.toFhirString,
   );
 
   /// work
   static final AddressUse work = AddressUse._(
     'work',
+    system: 'http://hl7.org/fhir/ValueSet/address-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Work'.toFhirString,
   );
 
   /// temp
   static final AddressUse temp = AddressUse._(
     'temp',
+    system: 'http://hl7.org/fhir/ValueSet/address-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Temporary'.toFhirString,
   );
 
   /// old
   static final AddressUse old = AddressUse._(
     'old',
+    system: 'http://hl7.org/fhir/ValueSet/address-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Old / Incorrect'.toFhirString,
   );
 
   /// billing
   static final AddressUse billing = AddressUse._(
     'billing',
+    system: 'http://hl7.org/fhir/ValueSet/address-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Billing'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

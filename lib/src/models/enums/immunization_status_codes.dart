@@ -6,10 +6,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 /// terminologically robust code system that consists of or contains
 /// concepts to support describing the current status of the administered
 /// dose of vaccine.
-class ImmunizationStatusCodes extends FhirCode {
+class ImmunizationStatusCodes extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ImmunizationStatusCodes._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -43,42 +46,66 @@ class ImmunizationStatusCodes extends FhirCode {
   /// preparation
   static final ImmunizationStatusCodes preparation = ImmunizationStatusCodes._(
     'preparation',
+    system: 'http://hl7.org/fhir/ValueSet/immunization-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Preparation'.toFhirString,
   );
 
   /// in_progress
   static final ImmunizationStatusCodes in_progress = ImmunizationStatusCodes._(
     'in-progress',
+    system: 'http://hl7.org/fhir/ValueSet/immunization-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'In Progress'.toFhirString,
   );
 
   /// not_done
   static final ImmunizationStatusCodes not_done = ImmunizationStatusCodes._(
     'not-done',
+    system: 'http://hl7.org/fhir/ValueSet/immunization-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Not Done'.toFhirString,
   );
 
   /// on_hold
   static final ImmunizationStatusCodes on_hold = ImmunizationStatusCodes._(
     'on-hold',
+    system: 'http://hl7.org/fhir/ValueSet/immunization-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'On Hold'.toFhirString,
   );
 
   /// stopped
   static final ImmunizationStatusCodes stopped = ImmunizationStatusCodes._(
     'stopped',
+    system: 'http://hl7.org/fhir/ValueSet/immunization-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Stopped'.toFhirString,
   );
 
   /// completed
   static final ImmunizationStatusCodes completed = ImmunizationStatusCodes._(
     'completed',
+    system: 'http://hl7.org/fhir/ValueSet/immunization-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Completed'.toFhirString,
   );
 
   /// entered_in_error
   static final ImmunizationStatusCodes entered_in_error =
       ImmunizationStatusCodes._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/immunization-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// unknown
   static final ImmunizationStatusCodes unknown = ImmunizationStatusCodes._(
     'unknown',
+    system: 'http://hl7.org/fhir/ValueSet/immunization-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Unknown'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

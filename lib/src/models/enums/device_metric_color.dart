@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Describes the typical color of representation.
-class DeviceMetricColor extends FhirCode {
+class DeviceMetricColor extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   DeviceMetricColor._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,41 +43,65 @@ class DeviceMetricColor extends FhirCode {
   /// black
   static final DeviceMetricColor black = DeviceMetricColor._(
     'black',
+    system: 'http://hl7.org/fhir/ValueSet/metric-color'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Color Black'.toFhirString,
   );
 
   /// red
   static final DeviceMetricColor red = DeviceMetricColor._(
     'red',
+    system: 'http://hl7.org/fhir/ValueSet/metric-color'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Color Red'.toFhirString,
   );
 
   /// green
   static final DeviceMetricColor green = DeviceMetricColor._(
     'green',
+    system: 'http://hl7.org/fhir/ValueSet/metric-color'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Color Green'.toFhirString,
   );
 
   /// yellow
   static final DeviceMetricColor yellow = DeviceMetricColor._(
     'yellow',
+    system: 'http://hl7.org/fhir/ValueSet/metric-color'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Color Yellow'.toFhirString,
   );
 
   /// blue
   static final DeviceMetricColor blue = DeviceMetricColor._(
     'blue',
+    system: 'http://hl7.org/fhir/ValueSet/metric-color'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Color Blue'.toFhirString,
   );
 
   /// magenta
   static final DeviceMetricColor magenta = DeviceMetricColor._(
     'magenta',
+    system: 'http://hl7.org/fhir/ValueSet/metric-color'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Color Magenta'.toFhirString,
   );
 
   /// cyan
   static final DeviceMetricColor cyan = DeviceMetricColor._(
     'cyan',
+    system: 'http://hl7.org/fhir/ValueSet/metric-color'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Color Cyan'.toFhirString,
   );
 
   /// white
   static final DeviceMetricColor white = DeviceMetricColor._(
     'white',
+    system: 'http://hl7.org/fhir/ValueSet/metric-color'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Color White'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Identifies the purpose of the naming system.
-class NamingSystemType extends FhirCode {
+class NamingSystemType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   NamingSystemType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,16 +43,25 @@ class NamingSystemType extends FhirCode {
   /// codesystem
   static final NamingSystemType codesystem = NamingSystemType._(
     'codesystem',
+    system: 'http://hl7.org/fhir/ValueSet/namingsystem-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Code System'.toFhirString,
   );
 
   /// identifier
   static final NamingSystemType identifier = NamingSystemType._(
     'identifier',
+    system: 'http://hl7.org/fhir/ValueSet/namingsystem-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Identifier'.toFhirString,
   );
 
   /// root
   static final NamingSystemType root = NamingSystemType._(
     'root',
+    system: 'http://hl7.org/fhir/ValueSet/namingsystem-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Root'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Mode for this instance of data.
-class StructureMapInputMode extends FhirCode {
+class StructureMapInputMode extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   StructureMapInputMode._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,11 +43,17 @@ class StructureMapInputMode extends FhirCode {
   /// source
   static final StructureMapInputMode source = StructureMapInputMode._(
     'source',
+    system: 'http://hl7.org/fhir/ValueSet/map-input-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Source Instance'.toFhirString,
   );
 
   /// target
   static final StructureMapInputMode target = StructureMapInputMode._(
     'target',
+    system: 'http://hl7.org/fhir/ValueSet/map-input-mode'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Target Instance'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

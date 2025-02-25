@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Type for strand.
-class StrandType extends FhirCode {
+class StrandType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   StrandType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,11 +43,17 @@ class StrandType extends FhirCode {
   /// watson
   static final StrandType watson = StrandType._(
     'watson',
+    system: 'http://hl7.org/fhir/ValueSet/strand-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Watson strand of referenceSeq'.toFhirString,
   );
 
   /// crick
   static final StrandType crick = StrandType._(
     'crick',
+    system: 'http://hl7.org/fhir/ValueSet/strand-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Crick strand of referenceSeq'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

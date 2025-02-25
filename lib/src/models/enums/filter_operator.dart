@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The kind of operation to perform as a part of a property based filter.
-class FilterOperator extends FhirCode {
+class FilterOperator extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   FilterOperator._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,46 +43,73 @@ class FilterOperator extends FhirCode {
   /// eq
   static final FilterOperator eq = FilterOperator._(
     '=',
+    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Equals'.toFhirString,
   );
 
   /// is_a
   static final FilterOperator is_a = FilterOperator._(
     'is-a',
+    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Is A (by subsumption)'.toFhirString,
   );
 
   /// descendent_of
   static final FilterOperator descendent_of = FilterOperator._(
     'descendent-of',
+    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Descendent Of (by subsumption)'.toFhirString,
   );
 
   /// is_not_a
   static final FilterOperator is_not_a = FilterOperator._(
     'is-not-a',
+    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Not (Is A) (by subsumption)'.toFhirString,
   );
 
   /// regex
   static final FilterOperator regex = FilterOperator._(
     'regex',
+    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Regular Expression'.toFhirString,
   );
 
   /// in_
   static final FilterOperator in_ = FilterOperator._(
     'in',
+    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'In Set'.toFhirString,
   );
 
   /// not_in
   static final FilterOperator not_in = FilterOperator._(
     'not-in',
+    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Not in Set'.toFhirString,
   );
 
   /// generalizes
   static final FilterOperator generalizes = FilterOperator._(
     'generalizes',
+    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Generalizes (by Subsumption)'.toFhirString,
   );
 
   /// exists
   static final FilterOperator exists = FilterOperator._(
     'exists',
+    system: 'http://hl7.org/fhir/ValueSet/filter-operator'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Exists'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

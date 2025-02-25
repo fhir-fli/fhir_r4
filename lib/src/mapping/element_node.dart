@@ -932,6 +932,7 @@
 //       case 'code':
 //       case 'fhircode':
 //       case 'fhir.code':
+//       case 'fhircodeenum':
 //       case 'canonical':
 //       case 'fhircanonical':
 //       case 'fhir.canonical':

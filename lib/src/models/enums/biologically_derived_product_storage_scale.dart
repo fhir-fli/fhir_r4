@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// BiologicallyDerived Product Storage Scale.
-class BiologicallyDerivedProductStorageScale extends FhirCode {
+class BiologicallyDerivedProductStorageScale extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   BiologicallyDerivedProductStorageScale._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -43,18 +46,27 @@ class BiologicallyDerivedProductStorageScale extends FhirCode {
   static final BiologicallyDerivedProductStorageScale farenheit =
       BiologicallyDerivedProductStorageScale._(
     'farenheit',
+    system: 'http://hl7.org/fhir/ValueSet/product-storage-scale'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Fahrenheit'.toFhirString,
   );
 
   /// celsius
   static final BiologicallyDerivedProductStorageScale celsius =
       BiologicallyDerivedProductStorageScale._(
     'celsius',
+    system: 'http://hl7.org/fhir/ValueSet/product-storage-scale'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Celsius'.toFhirString,
   );
 
   /// kelvin
   static final BiologicallyDerivedProductStorageScale kelvin =
       BiologicallyDerivedProductStorageScale._(
     'kelvin',
+    system: 'http://hl7.org/fhir/ValueSet/product-storage-scale'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Kelvin'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of operator to use for assertion.
-class AssertionOperatorType extends FhirCode {
+class AssertionOperatorType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   AssertionOperatorType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,56 +43,89 @@ class AssertionOperatorType extends FhirCode {
   /// equals
   static final AssertionOperatorType equals_ = AssertionOperatorType._(
     'equals',
+    system: 'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'equals'.toFhirString,
   );
 
   /// notEquals
   static final AssertionOperatorType notEquals = AssertionOperatorType._(
     'notEquals',
+    system: 'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'notEquals'.toFhirString,
   );
 
   /// in_
   static final AssertionOperatorType in_ = AssertionOperatorType._(
     'in',
+    system: 'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'in'.toFhirString,
   );
 
   /// notIn
   static final AssertionOperatorType notIn = AssertionOperatorType._(
     'notIn',
+    system: 'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'notIn'.toFhirString,
   );
 
   /// greaterThan
   static final AssertionOperatorType greaterThan = AssertionOperatorType._(
     'greaterThan',
+    system: 'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'greaterThan'.toFhirString,
   );
 
   /// lessThan
   static final AssertionOperatorType lessThan = AssertionOperatorType._(
     'lessThan',
+    system: 'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'lessThan'.toFhirString,
   );
 
   /// empty_
   static final AssertionOperatorType empty_ = AssertionOperatorType._(
     'empty',
+    system: 'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'empty'.toFhirString,
   );
 
   /// notEmpty
   static final AssertionOperatorType notEmpty = AssertionOperatorType._(
     'notEmpty',
+    system: 'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'notEmpty'.toFhirString,
   );
 
   /// contains
   static final AssertionOperatorType contains = AssertionOperatorType._(
     'contains',
+    system: 'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'contains'.toFhirString,
   );
 
   /// notContains
   static final AssertionOperatorType notContains = AssertionOperatorType._(
     'notContains',
+    system: 'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'notContains'.toFhirString,
   );
 
   /// eval
   static final AssertionOperatorType eval = AssertionOperatorType._(
     'eval',
+    system: 'http://hl7.org/fhir/ValueSet/assert-operator-codes'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'evaluate'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// Distinguishes groups from questions and display text and indicates data
 /// type for questions.
-class QuestionnaireItemType extends FhirCode {
+class QuestionnaireItemType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   QuestionnaireItemType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,86 +44,137 @@ class QuestionnaireItemType extends FhirCode {
   /// group
   static final QuestionnaireItemType group = QuestionnaireItemType._(
     'group',
+    system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Group'.toFhirString,
   );
 
-  /// display
-  static final QuestionnaireItemType display = QuestionnaireItemType._(
+  /// display_
+  static final QuestionnaireItemType display_ = QuestionnaireItemType._(
     'display',
+    system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Display'.toFhirString,
   );
 
   /// question
   static final QuestionnaireItemType question = QuestionnaireItemType._(
     'question',
+    system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Question'.toFhirString,
   );
 
   /// boolean
   static final QuestionnaireItemType boolean = QuestionnaireItemType._(
     'boolean',
+    system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Boolean'.toFhirString,
   );
 
   /// decimal
   static final QuestionnaireItemType decimal = QuestionnaireItemType._(
     'decimal',
+    system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Decimal'.toFhirString,
   );
 
   /// integer
   static final QuestionnaireItemType integer = QuestionnaireItemType._(
     'integer',
+    system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Integer'.toFhirString,
   );
 
   /// date
   static final QuestionnaireItemType date = QuestionnaireItemType._(
     'date',
+    system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Date'.toFhirString,
   );
 
   /// dateTime
   static final QuestionnaireItemType dateTime = QuestionnaireItemType._(
     'dateTime',
+    system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Date Time'.toFhirString,
   );
 
   /// time
   static final QuestionnaireItemType time = QuestionnaireItemType._(
     'time',
+    system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Time'.toFhirString,
   );
 
   /// string
   static final QuestionnaireItemType string = QuestionnaireItemType._(
     'string',
+    system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'String'.toFhirString,
   );
 
   /// text
   static final QuestionnaireItemType text = QuestionnaireItemType._(
     'text',
+    system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Text'.toFhirString,
   );
 
   /// url
   static final QuestionnaireItemType url = QuestionnaireItemType._(
     'url',
+    system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Url'.toFhirString,
   );
 
   /// choice
   static final QuestionnaireItemType choice = QuestionnaireItemType._(
     'choice',
+    system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Choice'.toFhirString,
   );
 
   /// open_choice
   static final QuestionnaireItemType open_choice = QuestionnaireItemType._(
     'open-choice',
+    system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Open Choice'.toFhirString,
   );
 
   /// attachment
   static final QuestionnaireItemType attachment = QuestionnaireItemType._(
     'attachment',
+    system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Attachment'.toFhirString,
   );
 
   /// reference
   static final QuestionnaireItemType reference = QuestionnaireItemType._(
     'reference',
+    system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Reference'.toFhirString,
   );
 
   /// quantity
   static final QuestionnaireItemType quantity = QuestionnaireItemType._(
     'quantity',
+    system: 'http://hl7.org/fhir/ValueSet/item-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Quantity'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
@@ -130,7 +184,7 @@ class QuestionnaireItemType extends FhirCode {
   /// List of all enum-like values
   static final List<QuestionnaireItemType> values = [
     group,
-    display,
+    display_,
     question,
     boolean,
     decimal,

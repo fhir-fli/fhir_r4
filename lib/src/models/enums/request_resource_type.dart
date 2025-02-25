@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// A list of all the request resource types defined in this version of the
 /// FHIR specification.
-class RequestResourceType extends FhirCode {
+class RequestResourceType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   RequestResourceType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,77 +44,122 @@ class RequestResourceType extends FhirCode {
   /// Appointment
   static final RequestResourceType Appointment = RequestResourceType._(
     'Appointment',
+    system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Appointment'.toFhirString,
   );
 
   /// AppointmentResponse
   static final RequestResourceType AppointmentResponse = RequestResourceType._(
     'AppointmentResponse',
+    system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'AppointmentResponse'.toFhirString,
   );
 
   /// CarePlan
   static final RequestResourceType CarePlan = RequestResourceType._(
     'CarePlan',
+    system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'CarePlan'.toFhirString,
   );
 
   /// Claim
   static final RequestResourceType Claim = RequestResourceType._(
     'Claim',
+    system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Claim'.toFhirString,
   );
 
   /// CommunicationRequest
   static final RequestResourceType CommunicationRequest = RequestResourceType._(
     'CommunicationRequest',
+    system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'CommunicationRequest'.toFhirString,
   );
 
   /// Contract
   static final RequestResourceType Contract = RequestResourceType._(
     'Contract',
+    system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Contract'.toFhirString,
   );
 
   /// DeviceRequest
   static final RequestResourceType DeviceRequest = RequestResourceType._(
     'DeviceRequest',
+    system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'DeviceRequest'.toFhirString,
   );
 
   /// EnrollmentRequest
   static final RequestResourceType EnrollmentRequest = RequestResourceType._(
     'EnrollmentRequest',
+    system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'EnrollmentRequest'.toFhirString,
   );
 
   /// ImmunizationRecommendation
   static final RequestResourceType ImmunizationRecommendation =
       RequestResourceType._(
     'ImmunizationRecommendation',
+    system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'ImmunizationRecommendation'.toFhirString,
   );
 
   /// MedicationRequest
   static final RequestResourceType MedicationRequest = RequestResourceType._(
     'MedicationRequest',
+    system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'MedicationRequest'.toFhirString,
   );
 
   /// NutritionOrder
   static final RequestResourceType NutritionOrder = RequestResourceType._(
     'NutritionOrder',
+    system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'NutritionOrder'.toFhirString,
   );
 
   /// ServiceRequest
   static final RequestResourceType ServiceRequest = RequestResourceType._(
     'ServiceRequest',
+    system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'ServiceRequest'.toFhirString,
   );
 
   /// SupplyRequest
   static final RequestResourceType SupplyRequest = RequestResourceType._(
     'SupplyRequest',
+    system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'SupplyRequest'.toFhirString,
   );
 
   /// Task
   static final RequestResourceType Task = RequestResourceType._(
     'Task',
+    system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Task'.toFhirString,
   );
 
   /// VisionPrescription
   static final RequestResourceType VisionPrescription = RequestResourceType._(
     'VisionPrescription',
+    system: 'http://hl7.org/fhir/ValueSet/request-resource-types'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'VisionPrescription'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

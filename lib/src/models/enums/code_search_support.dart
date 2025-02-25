@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// The degree to which the server supports the code search parameter on
 /// ValueSet, if it is supported.
-class CodeSearchSupport extends FhirCode {
+class CodeSearchSupport extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   CodeSearchSupport._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,11 +44,17 @@ class CodeSearchSupport extends FhirCode {
   /// explicit
   static final CodeSearchSupport explicit = CodeSearchSupport._(
     'explicit',
+    system: 'http://hl7.org/fhir/ValueSet/code-search-support'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Explicit Codes'.toFhirString,
   );
 
   /// all
   static final CodeSearchSupport all = CodeSearchSupport._(
     'all',
+    system: 'http://hl7.org/fhir/ValueSet/code-search-support'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Implicit Codes'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Medication Status Codes
-class MedicationStatusCodes extends FhirCode {
+class MedicationStatusCodes extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   MedicationStatusCodes._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,16 +43,25 @@ class MedicationStatusCodes extends FhirCode {
   /// active
   static final MedicationStatusCodes active = MedicationStatusCodes._(
     'active',
+    system: 'http://hl7.org/fhir/ValueSet/medication-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Active'.toFhirString,
   );
 
   /// inactive
   static final MedicationStatusCodes inactive = MedicationStatusCodes._(
     'inactive',
+    system: 'http://hl7.org/fhir/ValueSet/medication-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Inactive'.toFhirString,
   );
 
   /// entered_in_error
   static final MedicationStatusCodes entered_in_error = MedicationStatusCodes._(
     'entered-in-error',
+    system: 'http://hl7.org/fhir/ValueSet/medication-status'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Entered in Error'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

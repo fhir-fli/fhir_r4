@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A set of flags that defines how references are supported.
-class ReferenceHandlingPolicy extends FhirCode {
+class ReferenceHandlingPolicy extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ReferenceHandlingPolicy._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,26 +43,41 @@ class ReferenceHandlingPolicy extends FhirCode {
   /// literal
   static final ReferenceHandlingPolicy literal = ReferenceHandlingPolicy._(
     'literal',
+    system: 'http://hl7.org/fhir/ValueSet/reference-handling-policy'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Literal References'.toFhirString,
   );
 
   /// logical
   static final ReferenceHandlingPolicy logical = ReferenceHandlingPolicy._(
     'logical',
+    system: 'http://hl7.org/fhir/ValueSet/reference-handling-policy'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Logical References'.toFhirString,
   );
 
   /// resolves
   static final ReferenceHandlingPolicy resolves = ReferenceHandlingPolicy._(
     'resolves',
+    system: 'http://hl7.org/fhir/ValueSet/reference-handling-policy'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Resolves References'.toFhirString,
   );
 
   /// enforced
   static final ReferenceHandlingPolicy enforced = ReferenceHandlingPolicy._(
     'enforced',
+    system: 'http://hl7.org/fhir/ValueSet/reference-handling-policy'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Reference Integrity Enforced'.toFhirString,
   );
 
   /// local
   static final ReferenceHandlingPolicy local = ReferenceHandlingPolicy._(
     'local',
+    system: 'http://hl7.org/fhir/ValueSet/reference-handling-policy'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Local References Only'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

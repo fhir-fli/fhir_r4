@@ -4,10 +4,13 @@ import 'package:fhir_r4/fhir_r4.dart';
 
 /// Defines behavior for an action or a group for how many times that item
 /// may be repeated.
-class ActionCardinalityBehavior extends FhirCode {
+class ActionCardinalityBehavior extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ActionCardinalityBehavior._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,11 +44,19 @@ class ActionCardinalityBehavior extends FhirCode {
   /// single
   static final ActionCardinalityBehavior single = ActionCardinalityBehavior._(
     'single',
+    system:
+        'http://hl7.org/fhir/ValueSet/action-cardinality-behavior'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Single'.toFhirString,
   );
 
   /// multiple
   static final ActionCardinalityBehavior multiple = ActionCardinalityBehavior._(
     'multiple',
+    system:
+        'http://hl7.org/fhir/ValueSet/action-cardinality-behavior'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Multiple'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

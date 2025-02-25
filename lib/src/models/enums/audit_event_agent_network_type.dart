@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The type of network access point of this agent in the audit event.
-class AuditEventAgentNetworkType extends FhirCode {
+class AuditEventAgentNetworkType extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   AuditEventAgentNetworkType._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -41,26 +44,41 @@ class AuditEventAgentNetworkType extends FhirCode {
   /// value1
   static final AuditEventAgentNetworkType value1 = AuditEventAgentNetworkType._(
     '1',
+    system: 'http://hl7.org/fhir/ValueSet/network-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Machine Name'.toFhirString,
   );
 
   /// value2
   static final AuditEventAgentNetworkType value2 = AuditEventAgentNetworkType._(
     '2',
+    system: 'http://hl7.org/fhir/ValueSet/network-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'IP Address'.toFhirString,
   );
 
   /// value3
   static final AuditEventAgentNetworkType value3 = AuditEventAgentNetworkType._(
     '3',
+    system: 'http://hl7.org/fhir/ValueSet/network-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Telephone Number'.toFhirString,
   );
 
   /// value4
   static final AuditEventAgentNetworkType value4 = AuditEventAgentNetworkType._(
     '4',
+    system: 'http://hl7.org/fhir/ValueSet/network-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Email address'.toFhirString,
   );
 
   /// value5
   static final AuditEventAgentNetworkType value5 = AuditEventAgentNetworkType._(
     '5',
+    system: 'http://hl7.org/fhir/ValueSet/network-type'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'URI'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

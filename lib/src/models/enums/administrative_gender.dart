@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The gender of a person used for administrative purposes.
-class AdministrativeGender extends FhirCode {
+class AdministrativeGender extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   AdministrativeGender._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,21 +43,33 @@ class AdministrativeGender extends FhirCode {
   /// male
   static final AdministrativeGender male = AdministrativeGender._(
     'male',
+    system: 'http://hl7.org/fhir/ValueSet/administrative-gender'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Male'.toFhirString,
   );
 
   /// female
   static final AdministrativeGender female = AdministrativeGender._(
     'female',
+    system: 'http://hl7.org/fhir/ValueSet/administrative-gender'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Female'.toFhirString,
   );
 
   /// other
   static final AdministrativeGender other = AdministrativeGender._(
     'other',
+    system: 'http://hl7.org/fhir/ValueSet/administrative-gender'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Other'.toFhirString,
   );
 
   /// unknown
   static final AdministrativeGender unknown = AdministrativeGender._(
     'unknown',
+    system: 'http://hl7.org/fhir/ValueSet/administrative-gender'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Unknown'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Whether an operation is a normal operation or a query.
-class OperationKind extends FhirCode {
+class OperationKind extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   OperationKind._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,11 +43,17 @@ class OperationKind extends FhirCode {
   /// operation
   static final OperationKind operation = OperationKind._(
     'operation',
+    system: 'http://hl7.org/fhir/ValueSet/operation-kind'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Operation'.toFhirString,
   );
 
   /// query
   static final OperationKind query = OperationKind._(
     'query',
+    system: 'http://hl7.org/fhir/ValueSet/operation-kind'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Query'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

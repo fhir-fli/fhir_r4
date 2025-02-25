@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Telecommunications form for contact point.
-class ContactPointSystem extends FhirCode {
+class ContactPointSystem extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   ContactPointSystem._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,36 +43,57 @@ class ContactPointSystem extends FhirCode {
   /// phone
   static final ContactPointSystem phone = ContactPointSystem._(
     'phone',
+    system: 'http://hl7.org/fhir/ValueSet/contact-point-system'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Phone'.toFhirString,
   );
 
   /// fax
   static final ContactPointSystem fax = ContactPointSystem._(
     'fax',
+    system: 'http://hl7.org/fhir/ValueSet/contact-point-system'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Fax'.toFhirString,
   );
 
   /// email
   static final ContactPointSystem email = ContactPointSystem._(
     'email',
+    system: 'http://hl7.org/fhir/ValueSet/contact-point-system'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Email'.toFhirString,
   );
 
   /// pager
   static final ContactPointSystem pager = ContactPointSystem._(
     'pager',
+    system: 'http://hl7.org/fhir/ValueSet/contact-point-system'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Pager'.toFhirString,
   );
 
   /// url
   static final ContactPointSystem url = ContactPointSystem._(
     'url',
+    system: 'http://hl7.org/fhir/ValueSet/contact-point-system'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'URL'.toFhirString,
   );
 
   /// sms
   static final ContactPointSystem sms = ContactPointSystem._(
     'sms',
+    system: 'http://hl7.org/fhir/ValueSet/contact-point-system'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'SMS'.toFhirString,
   );
 
   /// other
   static final ContactPointSystem other = ContactPointSystem._(
     'other',
+    system: 'http://hl7.org/fhir/ValueSet/contact-point-system'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Other'.toFhirString,
   );
 
   /// For instances where an Element is present but not value

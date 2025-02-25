@@ -3,10 +3,13 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Defines how a compartment rule is used.
-class GraphCompartmentUse extends FhirCode {
+class GraphCompartmentUse extends FhirCodeEnum {
   // Private constructor for internal use (like enum)
   GraphCompartmentUse._(
     super.value, {
+    super.system,
+    super.version,
+    super.display,
     super.element,
     super.id,
     super.extension_,
@@ -40,11 +43,17 @@ class GraphCompartmentUse extends FhirCode {
   /// condition
   static final GraphCompartmentUse condition = GraphCompartmentUse._(
     'condition',
+    system: 'http://hl7.org/fhir/ValueSet/graph-compartment-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Condition'.toFhirString,
   );
 
   /// requirement
   static final GraphCompartmentUse requirement = GraphCompartmentUse._(
     'requirement',
+    system: 'http://hl7.org/fhir/ValueSet/graph-compartment-use'.toFhirUri,
+    version: '4.3.0'.toFhirString,
+    display: 'Requirement'.toFhirString,
   );
 
   /// For instances where an Element is present but not value
