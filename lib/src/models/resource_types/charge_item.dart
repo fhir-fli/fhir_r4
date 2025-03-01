@@ -1124,6 +1124,96 @@ class ChargeItem extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'definitionUri':
+        return ['FhirUri'];
+      case 'definitionCanonical':
+        return ['FhirCanonical'];
+      case 'status':
+        return ['FhirCode'];
+      case 'partOf':
+        return ['Reference'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'context':
+        return ['Reference'];
+      case 'occurrence':
+      case 'occurrenceX':
+        return ['FhirDateTime', 'Period', 'Timing'];
+      case 'occurrenceDateTime':
+        return ['FhirDateTime'];
+      case 'occurrencePeriod':
+        return ['Period'];
+      case 'occurrenceTiming':
+        return ['Timing'];
+      case 'performer':
+        return ['ChargeItemPerformer'];
+      case 'performingOrganization':
+        return ['Reference'];
+      case 'requestingOrganization':
+        return ['Reference'];
+      case 'costCenter':
+        return ['Reference'];
+      case 'quantity':
+        return ['Quantity'];
+      case 'bodysite':
+        return ['CodeableConcept'];
+      case 'factorOverride':
+        return ['FhirDecimal'];
+      case 'priceOverride':
+        return ['Money'];
+      case 'overrideReason':
+        return ['FhirString'];
+      case 'enterer':
+        return ['Reference'];
+      case 'enteredDate':
+        return ['FhirDateTime'];
+      case 'reason':
+        return ['CodeableConcept'];
+      case 'service':
+        return ['Reference'];
+      case 'product':
+      case 'productX':
+        return ['Reference', 'CodeableConcept'];
+      case 'productReference':
+        return ['Reference'];
+      case 'productCodeableConcept':
+        return ['CodeableConcept'];
+      case 'account':
+        return ['Reference'];
+      case 'note':
+        return ['Annotation'];
+      case 'supportingInformation':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ChargeItem clone() => throw UnimplementedError();
   @override
@@ -1783,6 +1873,26 @@ class ChargeItemPerformer extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'function':
+        return ['CodeableConcept'];
+      case 'actor':
+        return ['Reference'];
+      default:
+        return <String>[];
     }
   }
 

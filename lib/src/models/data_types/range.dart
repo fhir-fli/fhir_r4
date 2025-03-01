@@ -287,6 +287,24 @@ class Range extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'low':
+        return ['Quantity'];
+      case 'high':
+        return ['Quantity'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Range clone() => throw UnimplementedError();
   @override

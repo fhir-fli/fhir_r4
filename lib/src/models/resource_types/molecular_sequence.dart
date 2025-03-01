@@ -771,6 +771,64 @@ class MolecularSequence extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'type':
+        return ['FhirCode'];
+      case 'coordinateSystem':
+        return ['FhirInteger'];
+      case 'patient':
+        return ['Reference'];
+      case 'specimen':
+        return ['Reference'];
+      case 'device':
+        return ['Reference'];
+      case 'performer':
+        return ['Reference'];
+      case 'quantity':
+        return ['Quantity'];
+      case 'referenceSeq':
+        return ['MolecularSequenceReferenceSeq'];
+      case 'variant':
+        return ['MolecularSequenceVariant'];
+      case 'observedSeq':
+        return ['FhirString'];
+      case 'quality':
+        return ['MolecularSequenceQuality'];
+      case 'readCoverage':
+        return ['FhirInteger'];
+      case 'repository':
+        return ['MolecularSequenceRepository'];
+      case 'pointer':
+        return ['Reference'];
+      case 'structureVariant':
+        return ['MolecularSequenceStructureVariant'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MolecularSequence clone() => throw UnimplementedError();
   @override
@@ -1511,6 +1569,40 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'chromosome':
+        return ['CodeableConcept'];
+      case 'genomeBuild':
+        return ['FhirString'];
+      case 'orientation':
+        return ['FhirCode'];
+      case 'referenceSeqId':
+        return ['CodeableConcept'];
+      case 'referenceSeqPointer':
+        return ['Reference'];
+      case 'referenceSeqString':
+        return ['FhirString'];
+      case 'strand':
+        return ['FhirCode'];
+      case 'windowStart':
+        return ['FhirInteger'];
+      case 'windowEnd':
+        return ['FhirInteger'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MolecularSequenceReferenceSeq clone() => throw UnimplementedError();
   @override
@@ -2039,6 +2131,34 @@ class MolecularSequenceVariant extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'start':
+        return ['FhirInteger'];
+      case 'end':
+        return ['FhirInteger'];
+      case 'observedAllele':
+        return ['FhirString'];
+      case 'referenceAllele':
+        return ['FhirString'];
+      case 'cigar':
+        return ['FhirString'];
+      case 'variantPointer':
+        return ['Reference'];
+      default:
+        return <String>[];
     }
   }
 
@@ -2775,6 +2895,52 @@ class MolecularSequenceQuality extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirCode'];
+      case 'standardSequence':
+        return ['CodeableConcept'];
+      case 'start':
+        return ['FhirInteger'];
+      case 'end':
+        return ['FhirInteger'];
+      case 'score':
+        return ['Quantity'];
+      case 'method':
+        return ['CodeableConcept'];
+      case 'truthTP':
+        return ['FhirDecimal'];
+      case 'queryTP':
+        return ['FhirDecimal'];
+      case 'truthFN':
+        return ['FhirDecimal'];
+      case 'queryFP':
+        return ['FhirDecimal'];
+      case 'gtFP':
+        return ['FhirDecimal'];
+      case 'precision':
+        return ['FhirDecimal'];
+      case 'recall':
+        return ['FhirDecimal'];
+      case 'fScore':
+        return ['FhirDecimal'];
+      case 'roc':
+        return ['MolecularSequenceRoc'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MolecularSequenceQuality clone() => throw UnimplementedError();
   @override
@@ -3364,6 +3530,36 @@ class MolecularSequenceRoc extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'score':
+        return ['FhirInteger'];
+      case 'numTP':
+        return ['FhirInteger'];
+      case 'numFP':
+        return ['FhirInteger'];
+      case 'numFN':
+        return ['FhirInteger'];
+      case 'precision':
+        return ['FhirDecimal'];
+      case 'sensitivity':
+        return ['FhirDecimal'];
+      case 'fMeasure':
+        return ['FhirDecimal'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MolecularSequenceRoc clone() => throw UnimplementedError();
   @override
@@ -3913,6 +4109,34 @@ class MolecularSequenceRepository extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirCode'];
+      case 'url':
+        return ['FhirUri'];
+      case 'name':
+        return ['FhirString'];
+      case 'datasetId':
+        return ['FhirString'];
+      case 'variantsetId':
+        return ['FhirString'];
+      case 'readsetId':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MolecularSequenceRepository clone() => throw UnimplementedError();
   @override
@@ -4374,6 +4598,32 @@ class MolecularSequenceStructureVariant extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'variantType':
+        return ['CodeableConcept'];
+      case 'exact':
+        return ['FhirBoolean'];
+      case 'length':
+        return ['FhirInteger'];
+      case 'outer':
+        return ['MolecularSequenceOuter'];
+      case 'inner':
+        return ['MolecularSequenceInner'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MolecularSequenceStructureVariant clone() => throw UnimplementedError();
   @override
@@ -4754,6 +5004,26 @@ class MolecularSequenceOuter extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'start':
+        return ['FhirInteger'];
+      case 'end':
+        return ['FhirInteger'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MolecularSequenceOuter clone() => throw UnimplementedError();
   @override
@@ -5107,6 +5377,26 @@ class MolecularSequenceInner extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'start':
+        return ['FhirInteger'];
+      case 'end':
+        return ['FhirInteger'];
+      default:
+        return <String>[];
     }
   }
 

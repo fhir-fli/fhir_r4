@@ -994,6 +994,84 @@ class CodeSystem extends CanonicalResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      case 'caseSensitive':
+        return ['FhirBoolean'];
+      case 'valueSet':
+        return ['FhirCanonical'];
+      case 'hierarchyMeaning':
+        return ['FhirCode'];
+      case 'compositional':
+        return ['FhirBoolean'];
+      case 'versionNeeded':
+        return ['FhirBoolean'];
+      case 'content':
+        return ['FhirCode'];
+      case 'supplements':
+        return ['FhirCanonical'];
+      case 'count':
+        return ['FhirUnsignedInt'];
+      case 'filter':
+        return ['CodeSystemFilter'];
+      case 'property':
+        return ['CodeSystemProperty'];
+      case 'concept':
+        return ['CodeSystemConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CodeSystem clone() => throw UnimplementedError();
   @override
@@ -1676,6 +1754,30 @@ class CodeSystemFilter extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['FhirCode'];
+      case 'description':
+        return ['FhirString'];
+      case 'operator':
+        return ['FhirCode'];
+      case 'value':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CodeSystemFilter clone() => throw UnimplementedError();
   @override
@@ -2105,6 +2207,30 @@ class CodeSystemProperty extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['FhirCode'];
+      case 'uri':
+        return ['FhirUri'];
+      case 'description':
+        return ['FhirString'];
+      case 'type':
+        return ['FhirCode'];
+      default:
+        return <String>[];
     }
   }
 
@@ -2598,6 +2724,34 @@ class CodeSystemConcept extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['FhirCode'];
+      case 'display':
+        return ['FhirString'];
+      case 'definition':
+        return ['FhirString'];
+      case 'designation':
+        return ['CodeSystemDesignation'];
+      case 'property':
+        return ['CodeSystemProperty1'];
+      case 'concept':
+        return ['CodeSystemConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CodeSystemConcept clone() => throw UnimplementedError();
   @override
@@ -3026,6 +3180,28 @@ class CodeSystemDesignation extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'language':
+        return ['FhirCode'];
+      case 'use':
+        return ['Coding'];
+      case 'value':
+        return ['FhirString'];
+      default:
+        return <String>[];
     }
   }
 
@@ -3502,6 +3678,49 @@ class CodeSystemProperty1 extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['FhirCode'];
+      case 'value':
+      case 'valueX':
+        return [
+          'FhirCode',
+          'Coding',
+          'FhirString',
+          'FhirInteger',
+          'FhirBoolean',
+          'FhirDateTime',
+          'FhirDecimal',
+        ];
+      case 'valueCode':
+        return ['FhirCode'];
+      case 'valueCoding':
+        return ['Coding'];
+      case 'valueString':
+        return ['FhirString'];
+      case 'valueInteger':
+        return ['FhirInteger'];
+      case 'valueBoolean':
+        return ['FhirBoolean'];
+      case 'valueDateTime':
+        return ['FhirDateTime'];
+      case 'valueDecimal':
+        return ['FhirDecimal'];
+      default:
+        return <String>[];
     }
   }
 

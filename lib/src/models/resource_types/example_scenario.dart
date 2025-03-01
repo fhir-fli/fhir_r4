@@ -820,6 +820,66 @@ class ExampleScenario extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'actor':
+        return ['ExampleScenarioActor'];
+      case 'instance':
+        return ['ExampleScenarioInstance'];
+      case 'process':
+        return ['ExampleScenarioProcess'];
+      case 'workflow':
+        return ['FhirCanonical'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ExampleScenario clone() => throw UnimplementedError();
   @override
@@ -1436,6 +1496,30 @@ class ExampleScenarioActor extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'actorId':
+        return ['FhirString'];
+      case 'type':
+        return ['FhirCode'];
+      case 'name':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ExampleScenarioActor clone() => throw UnimplementedError();
   @override
@@ -1912,6 +1996,34 @@ class ExampleScenarioInstance extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'resourceId':
+        return ['FhirString'];
+      case 'resourceType':
+        return ['FhirCode'];
+      case 'name':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'version':
+        return ['ExampleScenarioVersion'];
+      case 'containedInstance':
+        return ['ExampleScenarioContainedInstance'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ExampleScenarioInstance clone() => throw UnimplementedError();
   @override
@@ -2309,6 +2421,26 @@ class ExampleScenarioVersion extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'versionId':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ExampleScenarioVersion clone() => throw UnimplementedError();
   @override
@@ -2660,6 +2792,26 @@ class ExampleScenarioContainedInstance extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'resourceId':
+        return ['FhirString'];
+      case 'versionId':
+        return ['FhirString'];
+      default:
+        return <String>[];
     }
   }
 
@@ -3091,6 +3243,32 @@ class ExampleScenarioProcess extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'title':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'preConditions':
+        return ['FhirMarkdown'];
+      case 'postConditions':
+        return ['FhirMarkdown'];
+      case 'step':
+        return ['ExampleScenarioStep'];
+      default:
+        return <String>[];
     }
   }
 
@@ -3533,6 +3711,30 @@ class ExampleScenarioStep extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'process':
+        return ['ExampleScenarioProcess'];
+      case 'pause':
+        return ['FhirBoolean'];
+      case 'operation':
+        return ['ExampleScenarioOperation'];
+      case 'alternative':
+        return ['ExampleScenarioAlternative'];
+      default:
+        return <String>[];
     }
   }
 
@@ -4118,6 +4320,42 @@ class ExampleScenarioOperation extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'number':
+        return ['FhirString'];
+      case 'type':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'initiator':
+        return ['FhirString'];
+      case 'receiver':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'initiatorActive':
+        return ['FhirBoolean'];
+      case 'receiverActive':
+        return ['FhirBoolean'];
+      case 'request':
+        return ['ExampleScenarioContainedInstance'];
+      case 'response':
+        return ['ExampleScenarioContainedInstance'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ExampleScenarioOperation clone() => throw UnimplementedError();
   @override
@@ -4563,6 +4801,28 @@ class ExampleScenarioAlternative extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'title':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'step':
+        return ['ExampleScenarioStep'];
+      default:
+        return <String>[];
     }
   }
 

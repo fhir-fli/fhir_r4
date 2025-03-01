@@ -480,6 +480,41 @@ class DataRequirement extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirCode'];
+      case 'profile':
+        return ['FhirCanonical'];
+      case 'subject':
+      case 'subjectX':
+        return ['CodeableConcept', 'Reference'];
+      case 'subjectCodeableConcept':
+        return ['CodeableConcept'];
+      case 'subjectReference':
+        return ['Reference'];
+      case 'mustSupport':
+        return ['FhirString'];
+      case 'codeFilter':
+        return ['DataRequirementCodeFilter'];
+      case 'dateFilter':
+        return ['DataRequirementDateFilter'];
+      case 'limit':
+        return ['FhirPositiveInt'];
+      case 'sort':
+        return ['DataRequirementSort'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   DataRequirement clone() => throw UnimplementedError();
   @override
@@ -948,6 +983,28 @@ class DataRequirementCodeFilter extends Element {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'path':
+        return ['FhirString'];
+      case 'searchParam':
+        return ['FhirString'];
+      case 'valueSet':
+        return ['FhirCanonical'];
+      case 'code':
+        return ['Coding'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   DataRequirementCodeFilter clone() => throw UnimplementedError();
   @override
@@ -1379,6 +1436,33 @@ class DataRequirementDateFilter extends Element {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'path':
+        return ['FhirString'];
+      case 'searchParam':
+        return ['FhirString'];
+      case 'value':
+      case 'valueX':
+        return ['FhirDateTime', 'Period', 'FhirDuration'];
+      case 'valueDateTime':
+        return ['FhirDateTime'];
+      case 'valuePeriod':
+        return ['Period'];
+      case 'valueDuration':
+        return ['FhirDuration'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   DataRequirementDateFilter clone() => throw UnimplementedError();
   @override
@@ -1698,6 +1782,24 @@ class DataRequirementSort extends Element {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'path':
+        return ['FhirString'];
+      case 'direction':
+        return ['FhirCode'];
+      default:
+        return <String>[];
     }
   }
 

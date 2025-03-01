@@ -523,6 +523,46 @@ class SubscriptionStatus extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'status':
+        return ['FhirCode'];
+      case 'type':
+        return ['FhirCode'];
+      case 'eventsSinceSubscriptionStart':
+        return ['FhirString'];
+      case 'notificationEvent':
+        return ['SubscriptionStatusNotificationEvent'];
+      case 'subscription':
+        return ['Reference'];
+      case 'topic':
+        return ['FhirCanonical'];
+      case 'error':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   SubscriptionStatus clone() => throw UnimplementedError();
   @override
@@ -1028,6 +1068,30 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'eventNumber':
+        return ['FhirString'];
+      case 'timestamp':
+        return ['FhirInstant'];
+      case 'focus':
+        return ['Reference'];
+      case 'additionalContext':
+        return ['Reference'];
+      default:
+        return <String>[];
     }
   }
 

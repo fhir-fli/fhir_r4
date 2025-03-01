@@ -826,6 +826,68 @@ class RequestGroup extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'instantiatesCanonical':
+        return ['FhirCanonical'];
+      case 'instantiatesUri':
+        return ['FhirUri'];
+      case 'basedOn':
+        return ['Reference'];
+      case 'replaces':
+        return ['Reference'];
+      case 'groupIdentifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'intent':
+        return ['FhirCode'];
+      case 'priority':
+        return ['FhirCode'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'authoredOn':
+        return ['FhirDateTime'];
+      case 'author':
+        return ['Reference'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'note':
+        return ['Annotation'];
+      case 'action':
+        return ['RequestGroupAction'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   RequestGroup clone() => throw UnimplementedError();
   @override
@@ -1970,6 +2032,80 @@ class RequestGroupAction extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'prefix':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirString'];
+      case 'textEquivalent':
+        return ['FhirString'];
+      case 'priority':
+        return ['FhirCode'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'documentation':
+        return ['RelatedArtifact'];
+      case 'condition':
+        return ['RequestGroupCondition'];
+      case 'relatedAction':
+        return ['RequestGroupRelatedAction'];
+      case 'timing':
+      case 'timingX':
+        return [
+          'FhirDateTime',
+          'Age',
+          'Period',
+          'FhirDuration',
+          'Range',
+          'Timing',
+        ];
+      case 'timingDateTime':
+        return ['FhirDateTime'];
+      case 'timingAge':
+        return ['Age'];
+      case 'timingPeriod':
+        return ['Period'];
+      case 'timingDuration':
+        return ['FhirDuration'];
+      case 'timingRange':
+        return ['Range'];
+      case 'timingTiming':
+        return ['Timing'];
+      case 'participant':
+        return ['Reference'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'groupingBehavior':
+        return ['FhirCode'];
+      case 'selectionBehavior':
+        return ['FhirCode'];
+      case 'requiredBehavior':
+        return ['FhirCode'];
+      case 'precheckBehavior':
+        return ['FhirCode'];
+      case 'cardinalityBehavior':
+        return ['FhirCode'];
+      case 'resource':
+        return ['Reference'];
+      case 'action':
+        return ['RequestGroupAction'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   RequestGroupAction clone() => throw UnimplementedError();
   @override
@@ -2502,6 +2638,26 @@ class RequestGroupCondition extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'kind':
+        return ['FhirCode'];
+      case 'expression':
+        return ['FhirExpression'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   RequestGroupCondition clone() => throw UnimplementedError();
   @override
@@ -2914,6 +3070,33 @@ class RequestGroupRelatedAction extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'actionId':
+        return ['FhirId'];
+      case 'relationship':
+        return ['FhirCode'];
+      case 'offset':
+      case 'offsetX':
+        return ['FhirDuration', 'Range'];
+      case 'offsetDuration':
+        return ['FhirDuration'];
+      case 'offsetRange':
+        return ['Range'];
+      default:
+        return <String>[];
     }
   }
 

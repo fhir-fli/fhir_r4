@@ -531,6 +531,46 @@ class ManufacturedItemDefinition extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'manufacturedDoseForm':
+        return ['CodeableConcept'];
+      case 'unitOfPresentation':
+        return ['CodeableConcept'];
+      case 'manufacturer':
+        return ['Reference'];
+      case 'ingredient':
+        return ['CodeableConcept'];
+      case 'property':
+        return ['ManufacturedItemDefinitionProperty'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ManufacturedItemDefinition clone() => throw UnimplementedError();
   @override
@@ -1074,6 +1114,43 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'value':
+      case 'valueX':
+        return [
+          'CodeableConcept',
+          'Quantity',
+          'FhirDate',
+          'FhirBoolean',
+          'Attachment',
+        ];
+      case 'valueCodeableConcept':
+        return ['CodeableConcept'];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueDate':
+        return ['FhirDate'];
+      case 'valueBoolean':
+        return ['FhirBoolean'];
+      case 'valueAttachment':
+        return ['Attachment'];
+      default:
+        return <String>[];
     }
   }
 

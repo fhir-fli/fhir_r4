@@ -889,6 +889,73 @@ class DiagnosticReport extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'basedOn':
+        return ['Reference'];
+      case 'status':
+        return ['FhirCode'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'effective':
+      case 'effectiveX':
+        return ['FhirDateTime', 'Period'];
+      case 'effectiveDateTime':
+        return ['FhirDateTime'];
+      case 'effectivePeriod':
+        return ['Period'];
+      case 'issued':
+        return ['FhirInstant'];
+      case 'performer':
+        return ['Reference'];
+      case 'resultsInterpreter':
+        return ['Reference'];
+      case 'specimen':
+        return ['Reference'];
+      case 'result':
+        return ['Reference'];
+      case 'imagingStudy':
+        return ['Reference'];
+      case 'media':
+        return ['DiagnosticReportMedia'];
+      case 'conclusion':
+        return ['FhirString'];
+      case 'conclusionCode':
+        return ['CodeableConcept'];
+      case 'presentedForm':
+        return ['Attachment'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   DiagnosticReport clone() => throw UnimplementedError();
   @override
@@ -1486,6 +1553,26 @@ class DiagnosticReportMedia extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'comment':
+        return ['FhirString'];
+      case 'link':
+        return ['Reference'];
+      default:
+        return <String>[];
     }
   }
 

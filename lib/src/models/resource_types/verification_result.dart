@@ -705,6 +705,60 @@ class VerificationResult extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'target':
+        return ['Reference'];
+      case 'targetLocation':
+        return ['FhirString'];
+      case 'need':
+        return ['CodeableConcept'];
+      case 'status':
+        return ['FhirCode'];
+      case 'statusDate':
+        return ['FhirDateTime'];
+      case 'validationType':
+        return ['CodeableConcept'];
+      case 'validationProcess':
+        return ['CodeableConcept'];
+      case 'frequency':
+        return ['Timing'];
+      case 'lastPerformed':
+        return ['FhirDateTime'];
+      case 'nextScheduled':
+        return ['FhirDate'];
+      case 'failureAction':
+        return ['CodeableConcept'];
+      case 'primarySource':
+        return ['VerificationResultPrimarySource'];
+      case 'attestation':
+        return ['VerificationResultAttestation'];
+      case 'validator':
+        return ['VerificationResultValidator'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   VerificationResult clone() => throw UnimplementedError();
   @override
@@ -1370,6 +1424,36 @@ class VerificationResultPrimarySource extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'who':
+        return ['Reference'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'communicationMethod':
+        return ['CodeableConcept'];
+      case 'validationStatus':
+        return ['CodeableConcept'];
+      case 'validationDate':
+        return ['FhirDateTime'];
+      case 'canPushUpdates':
+        return ['CodeableConcept'];
+      case 'pushTypeAvailable':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   VerificationResultPrimarySource clone() => throw UnimplementedError();
   @override
@@ -1940,6 +2024,38 @@ class VerificationResultAttestation extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'who':
+        return ['Reference'];
+      case 'onBehalfOf':
+        return ['Reference'];
+      case 'communicationMethod':
+        return ['CodeableConcept'];
+      case 'date':
+        return ['FhirDate'];
+      case 'sourceIdentityCertificate':
+        return ['FhirString'];
+      case 'proxyIdentityCertificate':
+        return ['FhirString'];
+      case 'proxySignature':
+        return ['Signature'];
+      case 'sourceSignature':
+        return ['Signature'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   VerificationResultAttestation clone() => throw UnimplementedError();
   @override
@@ -2365,6 +2481,28 @@ class VerificationResultValidator extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'organization':
+        return ['Reference'];
+      case 'identityCertificate':
+        return ['FhirString'];
+      case 'attestationSignature':
+        return ['Signature'];
+      default:
+        return <String>[];
     }
   }
 

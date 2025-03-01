@@ -747,6 +747,68 @@ class ImmunizationEvaluation extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'patient':
+        return ['Reference'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'authority':
+        return ['Reference'];
+      case 'targetDisease':
+        return ['CodeableConcept'];
+      case 'immunizationEvent':
+        return ['Reference'];
+      case 'doseStatus':
+        return ['CodeableConcept'];
+      case 'doseStatusReason':
+        return ['CodeableConcept'];
+      case 'description':
+        return ['FhirString'];
+      case 'series':
+        return ['FhirString'];
+      case 'doseNumber':
+      case 'doseNumberX':
+        return ['FhirPositiveInt', 'FhirString'];
+      case 'doseNumberPositiveInt':
+        return ['FhirPositiveInt'];
+      case 'doseNumberString':
+        return ['FhirString'];
+      case 'seriesDoses':
+      case 'seriesDosesX':
+        return ['FhirPositiveInt', 'FhirString'];
+      case 'seriesDosesPositiveInt':
+        return ['FhirPositiveInt'];
+      case 'seriesDosesString':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ImmunizationEvaluation clone() => throw UnimplementedError();
   @override

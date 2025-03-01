@@ -644,6 +644,52 @@ class AdministrableProductDefinition extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'formOf':
+        return ['Reference'];
+      case 'administrableDoseForm':
+        return ['CodeableConcept'];
+      case 'unitOfPresentation':
+        return ['CodeableConcept'];
+      case 'producedFrom':
+        return ['Reference'];
+      case 'ingredient':
+        return ['CodeableConcept'];
+      case 'device':
+        return ['Reference'];
+      case 'property':
+        return ['AdministrableProductDefinitionProperty'];
+      case 'routeOfAdministration':
+        return ['AdministrableProductDefinitionRouteOfAdministration'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   AdministrableProductDefinition clone() => throw UnimplementedError();
   @override
@@ -1254,6 +1300,45 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'value':
+      case 'valueX':
+        return [
+          'CodeableConcept',
+          'Quantity',
+          'FhirDate',
+          'FhirBoolean',
+          'Attachment',
+        ];
+      case 'valueCodeableConcept':
+        return ['CodeableConcept'];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueDate':
+        return ['FhirDate'];
+      case 'valueBoolean':
+        return ['FhirBoolean'];
+      case 'valueAttachment':
+        return ['Attachment'];
+      case 'status':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   AdministrableProductDefinitionProperty clone() => throw UnimplementedError();
   @override
@@ -1752,6 +1837,36 @@ class AdministrableProductDefinitionRouteOfAdministration
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'firstDose':
+        return ['Quantity'];
+      case 'maxSingleDose':
+        return ['Quantity'];
+      case 'maxDosePerDay':
+        return ['Quantity'];
+      case 'maxDosePerTreatmentPeriod':
+        return ['Ratio'];
+      case 'maxTreatmentPeriod':
+        return ['FhirDuration'];
+      case 'targetSpecies':
+        return ['AdministrableProductDefinitionTargetSpecies'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   AdministrableProductDefinitionRouteOfAdministration clone() =>
       throw UnimplementedError();
@@ -2161,6 +2276,26 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'withdrawalPeriod':
+        return ['AdministrableProductDefinitionWithdrawalPeriod'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   AdministrableProductDefinitionTargetSpecies clone() =>
       throw UnimplementedError();
@@ -2547,6 +2682,28 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'tissue':
+        return ['CodeableConcept'];
+      case 'value':
+        return ['Quantity'];
+      case 'supportingInformation':
+        return ['FhirString'];
+      default:
+        return <String>[];
     }
   }
 

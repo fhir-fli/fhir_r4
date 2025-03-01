@@ -913,6 +913,76 @@ class MedicationStatement extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'basedOn':
+        return ['Reference'];
+      case 'partOf':
+        return ['Reference'];
+      case 'status':
+        return ['FhirCode'];
+      case 'statusReason':
+        return ['CodeableConcept'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'medication':
+      case 'medicationX':
+        return ['CodeableConcept', 'Reference'];
+      case 'medicationCodeableConcept':
+        return ['CodeableConcept'];
+      case 'medicationReference':
+        return ['Reference'];
+      case 'subject':
+        return ['Reference'];
+      case 'context':
+        return ['Reference'];
+      case 'effective':
+      case 'effectiveX':
+        return ['FhirDateTime', 'Period'];
+      case 'effectiveDateTime':
+        return ['FhirDateTime'];
+      case 'effectivePeriod':
+        return ['Period'];
+      case 'dateAsserted':
+        return ['FhirDateTime'];
+      case 'informationSource':
+        return ['Reference'];
+      case 'derivedFrom':
+        return ['Reference'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'note':
+        return ['Annotation'];
+      case 'dosage':
+        return ['Dosage'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MedicationStatement clone() => throw UnimplementedError();
   @override

@@ -748,6 +748,65 @@ class CoverageEligibilityRequest extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'priority':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirCode'];
+      case 'patient':
+        return ['Reference'];
+      case 'serviced':
+      case 'servicedX':
+        return ['FhirDate', 'Period'];
+      case 'servicedDate':
+        return ['FhirDate'];
+      case 'servicedPeriod':
+        return ['Period'];
+      case 'created':
+        return ['FhirDateTime'];
+      case 'enterer':
+        return ['Reference'];
+      case 'provider':
+        return ['Reference'];
+      case 'insurer':
+        return ['Reference'];
+      case 'facility':
+        return ['Reference'];
+      case 'supportingInfo':
+        return ['CoverageEligibilityRequestSupportingInfo'];
+      case 'insurance':
+        return ['CoverageEligibilityRequestInsurance'];
+      case 'item':
+        return ['CoverageEligibilityRequestItem'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CoverageEligibilityRequest clone() => throw UnimplementedError();
   @override
@@ -1299,6 +1358,28 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'sequence':
+        return ['FhirPositiveInt'];
+      case 'information':
+        return ['Reference'];
+      case 'appliesToAll':
+        return ['FhirBoolean'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CoverageEligibilityRequestSupportingInfo clone() =>
       throw UnimplementedError();
@@ -1689,6 +1770,28 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'focal':
+        return ['FhirBoolean'];
+      case 'coverage':
+        return ['Reference'];
+      case 'businessArrangement':
+        return ['FhirString'];
+      default:
+        return <String>[];
     }
   }
 
@@ -2272,6 +2375,42 @@ class CoverageEligibilityRequestItem extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'supportingInfoSequence':
+        return ['FhirPositiveInt'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'productOrService':
+        return ['CodeableConcept'];
+      case 'modifier':
+        return ['CodeableConcept'];
+      case 'provider':
+        return ['Reference'];
+      case 'quantity':
+        return ['Quantity'];
+      case 'unitPrice':
+        return ['Money'];
+      case 'facility':
+        return ['Reference'];
+      case 'diagnosis':
+        return ['CoverageEligibilityRequestDiagnosis'];
+      case 'detail':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CoverageEligibilityRequestItem clone() => throw UnimplementedError();
   @override
@@ -2729,6 +2868,29 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'diagnosis':
+      case 'diagnosisX':
+        return ['CodeableConcept', 'Reference'];
+      case 'diagnosisCodeableConcept':
+        return ['CodeableConcept'];
+      case 'diagnosisReference':
+        return ['Reference'];
+      default:
+        return <String>[];
     }
   }
 

@@ -848,6 +848,78 @@ class ConceptMap extends CanonicalResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      case 'source':
+      case 'sourceX':
+        return ['FhirUri', 'FhirCanonical'];
+      case 'sourceUri':
+        return ['FhirUri'];
+      case 'sourceCanonical':
+        return ['FhirCanonical'];
+      case 'target':
+      case 'targetX':
+        return ['FhirUri', 'FhirCanonical'];
+      case 'targetUri':
+        return ['FhirUri'];
+      case 'targetCanonical':
+        return ['FhirCanonical'];
+      case 'group':
+        return ['ConceptMapGroup'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ConceptMap clone() => throw UnimplementedError();
   @override
@@ -1506,6 +1578,34 @@ class ConceptMapGroup extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'source':
+        return ['FhirUri'];
+      case 'sourceVersion':
+        return ['FhirString'];
+      case 'target':
+        return ['FhirUri'];
+      case 'targetVersion':
+        return ['FhirString'];
+      case 'element':
+        return ['ConceptMapElement'];
+      case 'unmapped':
+        return ['ConceptMapUnmapped'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ConceptMapGroup clone() => throw UnimplementedError();
   @override
@@ -1925,6 +2025,28 @@ class ConceptMapElement extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['FhirCode'];
+      case 'display':
+        return ['FhirString'];
+      case 'target':
+        return ['ConceptMapTarget'];
+      default:
+        return <String>[];
     }
   }
 
@@ -2413,6 +2535,34 @@ class ConceptMapTarget extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['FhirCode'];
+      case 'display':
+        return ['FhirString'];
+      case 'equivalence':
+        return ['FhirCode'];
+      case 'comment':
+        return ['FhirString'];
+      case 'dependsOn':
+        return ['ConceptMapDependsOn'];
+      case 'product':
+        return ['ConceptMapDependsOn'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ConceptMapTarget clone() => throw UnimplementedError();
   @override
@@ -2868,6 +3018,30 @@ class ConceptMapDependsOn extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'property':
+        return ['FhirUri'];
+      case 'system':
+        return ['FhirCanonical'];
+      case 'value':
+        return ['FhirString'];
+      case 'display':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ConceptMapDependsOn clone() => throw UnimplementedError();
   @override
@@ -3294,6 +3468,30 @@ class ConceptMapUnmapped extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'mode':
+        return ['FhirCode'];
+      case 'code':
+        return ['FhirCode'];
+      case 'display':
+        return ['FhirString'];
+      case 'url':
+        return ['FhirCanonical'];
+      default:
+        return <String>[];
     }
   }
 

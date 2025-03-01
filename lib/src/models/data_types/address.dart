@@ -476,6 +476,40 @@ class Address extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'use':
+        return ['FhirCode'];
+      case 'type':
+        return ['FhirCode'];
+      case 'text':
+        return ['FhirString'];
+      case 'line':
+        return ['FhirString'];
+      case 'city':
+        return ['FhirString'];
+      case 'district':
+        return ['FhirString'];
+      case 'state':
+        return ['FhirString'];
+      case 'postalCode':
+        return ['FhirString'];
+      case 'country':
+        return ['FhirString'];
+      case 'period':
+        return ['Period'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Address clone() => throw UnimplementedError();
   @override

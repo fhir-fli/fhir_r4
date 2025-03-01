@@ -690,6 +690,62 @@ class GraphDefinition extends CanonicalResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'start':
+        return ['FhirCode'];
+      case 'profile':
+        return ['FhirCanonical'];
+      case 'link':
+        return ['GraphDefinitionLink'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   GraphDefinition clone() => throw UnimplementedError();
   @override
@@ -1319,6 +1375,34 @@ class GraphDefinitionLink extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'path':
+        return ['FhirString'];
+      case 'sliceName':
+        return ['FhirString'];
+      case 'min':
+        return ['FhirInteger'];
+      case 'max':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirString'];
+      case 'target':
+        return ['GraphDefinitionTarget'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   GraphDefinitionLink clone() => throw UnimplementedError();
   @override
@@ -1793,6 +1877,32 @@ class GraphDefinitionTarget extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirCode'];
+      case 'params':
+        return ['FhirString'];
+      case 'profile':
+        return ['FhirCanonical'];
+      case 'compartment':
+        return ['GraphDefinitionCompartment'];
+      case 'link':
+        return ['GraphDefinitionLink'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   GraphDefinitionTarget clone() => throw UnimplementedError();
   @override
@@ -2255,6 +2365,32 @@ class GraphDefinitionCompartment extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'use':
+        return ['FhirCode'];
+      case 'code':
+        return ['FhirCode'];
+      case 'rule':
+        return ['FhirCode'];
+      case 'expression':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirString'];
+      default:
+        return <String>[];
     }
   }
 

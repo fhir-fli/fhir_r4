@@ -762,6 +762,67 @@ class CoverageEligibilityResponse extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'purpose':
+        return ['FhirCode'];
+      case 'patient':
+        return ['Reference'];
+      case 'serviced':
+      case 'servicedX':
+        return ['FhirDate', 'Period'];
+      case 'servicedDate':
+        return ['FhirDate'];
+      case 'servicedPeriod':
+        return ['Period'];
+      case 'created':
+        return ['FhirDateTime'];
+      case 'requestor':
+        return ['Reference'];
+      case 'request':
+        return ['Reference'];
+      case 'outcome':
+        return ['FhirCode'];
+      case 'disposition':
+        return ['FhirString'];
+      case 'insurer':
+        return ['Reference'];
+      case 'insurance':
+        return ['CoverageEligibilityResponseInsurance'];
+      case 'preAuthRef':
+        return ['FhirString'];
+      case 'form':
+        return ['CodeableConcept'];
+      case 'error':
+        return ['CoverageEligibilityResponseError'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CoverageEligibilityResponse clone() => throw UnimplementedError();
   @override
@@ -1344,6 +1405,30 @@ class CoverageEligibilityResponseInsurance extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'coverage':
+        return ['Reference'];
+      case 'inforce':
+        return ['FhirBoolean'];
+      case 'benefitPeriod':
+        return ['Period'];
+      case 'item':
+        return ['CoverageEligibilityResponseItem'];
+      default:
+        return <String>[];
     }
   }
 
@@ -2048,6 +2133,50 @@ class CoverageEligibilityResponseItem extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'productOrService':
+        return ['CodeableConcept'];
+      case 'modifier':
+        return ['CodeableConcept'];
+      case 'provider':
+        return ['Reference'];
+      case 'excluded':
+        return ['FhirBoolean'];
+      case 'name':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirString'];
+      case 'network':
+        return ['CodeableConcept'];
+      case 'unit':
+        return ['CodeableConcept'];
+      case 'term':
+        return ['CodeableConcept'];
+      case 'benefit':
+        return ['CoverageEligibilityResponseBenefit'];
+      case 'authorizationRequired':
+        return ['FhirBoolean'];
+      case 'authorizationSupporting':
+        return ['CodeableConcept'];
+      case 'authorizationUrl':
+        return ['FhirUri'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CoverageEligibilityResponseItem clone() => throw UnimplementedError();
   @override
@@ -2651,6 +2780,42 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'allowed':
+      case 'allowedX':
+        return ['FhirUnsignedInt', 'FhirString', 'Money'];
+      case 'allowedUnsignedInt':
+        return ['FhirUnsignedInt'];
+      case 'allowedString':
+        return ['FhirString'];
+      case 'allowedMoney':
+        return ['Money'];
+      case 'used':
+      case 'usedX':
+        return ['FhirUnsignedInt', 'FhirString', 'Money'];
+      case 'usedUnsignedInt':
+        return ['FhirUnsignedInt'];
+      case 'usedString':
+        return ['FhirString'];
+      case 'usedMoney':
+        return ['Money'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CoverageEligibilityResponseBenefit clone() => throw UnimplementedError();
   @override
@@ -2985,6 +3150,24 @@ class CoverageEligibilityResponseError extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
     }
   }
 

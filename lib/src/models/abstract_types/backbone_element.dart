@@ -132,4 +132,10 @@ abstract class BackboneElement extends DataType {
     List<dynamic>? annotations,
     String? objectPath,
   });
+
+  /// Retrieves the type of the object by element name.
+  @override
+  List<String> typeByElementName(String elementName) {
+    return <String>[];
+  }
 }

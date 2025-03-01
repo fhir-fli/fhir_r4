@@ -610,6 +610,53 @@ class Dosage extends BackboneType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'sequence':
+        return ['FhirInteger'];
+      case 'text':
+        return ['FhirString'];
+      case 'additionalInstruction':
+        return ['CodeableConcept'];
+      case 'patientInstruction':
+        return ['FhirString'];
+      case 'timing':
+        return ['Timing'];
+      case 'asNeeded':
+      case 'asNeededX':
+        return ['FhirBoolean', 'CodeableConcept'];
+      case 'asNeededBoolean':
+        return ['FhirBoolean'];
+      case 'asNeededCodeableConcept':
+        return ['CodeableConcept'];
+      case 'site':
+        return ['CodeableConcept'];
+      case 'route':
+        return ['CodeableConcept'];
+      case 'method':
+        return ['CodeableConcept'];
+      case 'doseAndRate':
+        return ['DosageDoseAndRate'];
+      case 'maxDosePerPeriod':
+        return ['Ratio'];
+      case 'maxDosePerAdministration':
+        return ['Quantity'];
+      case 'maxDosePerLifetime':
+        return ['Quantity'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Dosage clone() => throw UnimplementedError();
   @override
@@ -1151,6 +1198,38 @@ class DosageDoseAndRate extends Element {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'dose':
+      case 'doseX':
+        return ['Range', 'Quantity'];
+      case 'doseRange':
+        return ['Range'];
+      case 'doseQuantity':
+        return ['Quantity'];
+      case 'rate':
+      case 'rateX':
+        return ['Ratio', 'Range', 'Quantity'];
+      case 'rateRatio':
+        return ['Ratio'];
+      case 'rateRange':
+        return ['Range'];
+      case 'rateQuantity':
+        return ['Quantity'];
+      default:
+        return <String>[];
     }
   }
 

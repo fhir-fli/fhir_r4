@@ -981,6 +981,78 @@ class CarePlan extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'instantiatesCanonical':
+        return ['FhirCanonical'];
+      case 'instantiatesUri':
+        return ['FhirUri'];
+      case 'basedOn':
+        return ['Reference'];
+      case 'replaces':
+        return ['Reference'];
+      case 'partOf':
+        return ['Reference'];
+      case 'status':
+        return ['FhirCode'];
+      case 'intent':
+        return ['FhirCode'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'title':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirString'];
+      case 'subject':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'period':
+        return ['Period'];
+      case 'created':
+        return ['FhirDateTime'];
+      case 'author':
+        return ['Reference'];
+      case 'contributor':
+        return ['Reference'];
+      case 'careTeam':
+        return ['Reference'];
+      case 'addresses':
+        return ['Reference'];
+      case 'supportingInfo':
+        return ['Reference'];
+      case 'goal':
+        return ['Reference'];
+      case 'activity':
+        return ['CarePlanActivity'];
+      case 'note':
+        return ['Annotation'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CarePlan clone() => throw UnimplementedError();
   @override
@@ -1733,6 +1805,32 @@ class CarePlanActivity extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'outcomeCodeableConcept':
+        return ['CodeableConcept'];
+      case 'outcomeReference':
+        return ['Reference'];
+      case 'progress':
+        return ['Annotation'];
+      case 'reference':
+        return ['Reference'];
+      case 'detail':
+        return ['CarePlanDetail'];
+      default:
+        return <String>[];
     }
   }
 
@@ -2640,6 +2738,68 @@ class CarePlanDetail extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'kind':
+        return ['FhirCode'];
+      case 'instantiatesCanonical':
+        return ['FhirCanonical'];
+      case 'instantiatesUri':
+        return ['FhirUri'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'goal':
+        return ['Reference'];
+      case 'status':
+        return ['FhirCode'];
+      case 'statusReason':
+        return ['CodeableConcept'];
+      case 'doNotPerform':
+        return ['FhirBoolean'];
+      case 'scheduled':
+      case 'scheduledX':
+        return ['Timing', 'Period', 'FhirString'];
+      case 'scheduledTiming':
+        return ['Timing'];
+      case 'scheduledPeriod':
+        return ['Period'];
+      case 'scheduledString':
+        return ['FhirString'];
+      case 'location':
+        return ['Reference'];
+      case 'performer':
+        return ['Reference'];
+      case 'product':
+      case 'productX':
+        return ['CodeableConcept', 'Reference'];
+      case 'productCodeableConcept':
+        return ['CodeableConcept'];
+      case 'productReference':
+        return ['Reference'];
+      case 'dailyAmount':
+        return ['Quantity'];
+      case 'quantity':
+        return ['Quantity'];
+      case 'description':
+        return ['FhirString'];
+      default:
+        return <String>[];
     }
   }
 

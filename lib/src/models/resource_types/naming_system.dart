@@ -693,6 +693,58 @@ class NamingSystem extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'status':
+        return ['FhirCode'];
+      case 'kind':
+        return ['FhirCode'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'responsible':
+        return ['FhirString'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'usage':
+        return ['FhirString'];
+      case 'uniqueId':
+        return ['NamingSystemUniqueId'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   NamingSystem clone() => throw UnimplementedError();
   @override
@@ -1277,6 +1329,32 @@ class NamingSystemUniqueId extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirCode'];
+      case 'value':
+        return ['FhirString'];
+      case 'preferred':
+        return ['FhirBoolean'];
+      case 'comment':
+        return ['FhirString'];
+      case 'period':
+        return ['Period'];
+      default:
+        return <String>[];
     }
   }
 

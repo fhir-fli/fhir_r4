@@ -519,6 +519,46 @@ class Subscription extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'status':
+        return ['FhirCode'];
+      case 'contact':
+        return ['ContactPoint'];
+      case 'end':
+        return ['FhirInstant'];
+      case 'reason':
+        return ['FhirString'];
+      case 'criteria':
+        return ['FhirString'];
+      case 'error':
+        return ['FhirString'];
+      case 'channel':
+        return ['SubscriptionChannel'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Subscription clone() => throw UnimplementedError();
   @override
@@ -1008,6 +1048,30 @@ class SubscriptionChannel extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirCode'];
+      case 'endpoint':
+        return ['FhirUrl'];
+      case 'payload':
+        return ['FhirCode'];
+      case 'header':
+        return ['FhirString'];
+      default:
+        return <String>[];
     }
   }
 

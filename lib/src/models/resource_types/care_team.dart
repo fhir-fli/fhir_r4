@@ -701,6 +701,58 @@ class CareTeam extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'name':
+        return ['FhirString'];
+      case 'subject':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'period':
+        return ['Period'];
+      case 'participant':
+        return ['CareTeamParticipant'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'managingOrganization':
+        return ['Reference'];
+      case 'telecom':
+        return ['ContactPoint'];
+      case 'note':
+        return ['Annotation'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CareTeam clone() => throw UnimplementedError();
   @override
@@ -1292,6 +1344,30 @@ class CareTeamParticipant extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'role':
+        return ['CodeableConcept'];
+      case 'member':
+        return ['Reference'];
+      case 'onBehalfOf':
+        return ['Reference'];
+      case 'period':
+        return ['Period'];
+      default:
+        return <String>[];
     }
   }
 

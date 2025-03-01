@@ -667,6 +667,56 @@ class DocumentManifest extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'masterIdentifier':
+        return ['Identifier'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'created':
+        return ['FhirDateTime'];
+      case 'author':
+        return ['Reference'];
+      case 'recipient':
+        return ['Reference'];
+      case 'source':
+        return ['FhirUri'];
+      case 'description':
+        return ['FhirString'];
+      case 'content':
+        return ['Reference'];
+      case 'related':
+        return ['DocumentManifestRelated'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   DocumentManifest clone() => throw UnimplementedError();
   @override
@@ -1172,6 +1222,26 @@ class DocumentManifestRelated extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'ref':
+        return ['Reference'];
+      default:
+        return <String>[];
     }
   }
 

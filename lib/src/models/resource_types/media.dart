@@ -956,6 +956,81 @@ class Media extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'basedOn':
+        return ['Reference'];
+      case 'partOf':
+        return ['Reference'];
+      case 'status':
+        return ['FhirCode'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'modality':
+        return ['CodeableConcept'];
+      case 'view':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'created':
+      case 'createdX':
+        return ['FhirDateTime', 'Period'];
+      case 'createdDateTime':
+        return ['FhirDateTime'];
+      case 'createdPeriod':
+        return ['Period'];
+      case 'issued':
+        return ['FhirInstant'];
+      case 'operator':
+        return ['Reference'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'bodySite':
+        return ['CodeableConcept'];
+      case 'deviceName':
+        return ['FhirString'];
+      case 'device':
+        return ['Reference'];
+      case 'height':
+        return ['FhirPositiveInt'];
+      case 'width':
+        return ['FhirPositiveInt'];
+      case 'frames':
+        return ['FhirPositiveInt'];
+      case 'duration':
+        return ['FhirDecimal'];
+      case 'content':
+        return ['Attachment'];
+      case 'note':
+        return ['Annotation'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Media clone() => throw UnimplementedError();
   @override

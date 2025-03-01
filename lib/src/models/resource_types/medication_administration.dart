@@ -951,6 +951,80 @@ class MedicationAdministration extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'instantiates':
+        return ['FhirUri'];
+      case 'partOf':
+        return ['Reference'];
+      case 'status':
+        return ['FhirCode'];
+      case 'statusReason':
+        return ['CodeableConcept'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'medication':
+      case 'medicationX':
+        return ['CodeableConcept', 'Reference'];
+      case 'medicationCodeableConcept':
+        return ['CodeableConcept'];
+      case 'medicationReference':
+        return ['Reference'];
+      case 'subject':
+        return ['Reference'];
+      case 'context':
+        return ['Reference'];
+      case 'supportingInformation':
+        return ['Reference'];
+      case 'effective':
+      case 'effectiveX':
+        return ['FhirDateTime', 'Period'];
+      case 'effectiveDateTime':
+        return ['FhirDateTime'];
+      case 'effectivePeriod':
+        return ['Period'];
+      case 'performer':
+        return ['MedicationAdministrationPerformer'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'request':
+        return ['Reference'];
+      case 'device':
+        return ['Reference'];
+      case 'note':
+        return ['Annotation'];
+      case 'dosage':
+        return ['MedicationAdministrationDosage'];
+      case 'eventHistory':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MedicationAdministration clone() => throw UnimplementedError();
   @override
@@ -1558,6 +1632,26 @@ class MedicationAdministrationPerformer extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'function':
+        return ['CodeableConcept'];
+      case 'actor':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MedicationAdministrationPerformer clone() => throw UnimplementedError();
   @override
@@ -2061,6 +2155,39 @@ class MedicationAdministrationDosage extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'text':
+        return ['FhirString'];
+      case 'site':
+        return ['CodeableConcept'];
+      case 'route':
+        return ['CodeableConcept'];
+      case 'method':
+        return ['CodeableConcept'];
+      case 'dose':
+        return ['Quantity'];
+      case 'rate':
+      case 'rateX':
+        return ['Ratio', 'Quantity'];
+      case 'rateRatio':
+        return ['Ratio'];
+      case 'rateQuantity':
+        return ['Quantity'];
+      default:
+        return <String>[];
     }
   }
 

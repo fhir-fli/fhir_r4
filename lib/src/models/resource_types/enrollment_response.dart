@@ -540,6 +540,48 @@ class EnrollmentResponse extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'request':
+        return ['Reference'];
+      case 'outcome':
+        return ['FhirCode'];
+      case 'disposition':
+        return ['FhirString'];
+      case 'created':
+        return ['FhirDateTime'];
+      case 'organization':
+        return ['Reference'];
+      case 'requestProvider':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   EnrollmentResponse clone() => throw UnimplementedError();
   @override

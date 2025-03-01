@@ -1021,6 +1021,80 @@ class HealthcareService extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'active':
+        return ['FhirBoolean'];
+      case 'providedBy':
+        return ['Reference'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'specialty':
+        return ['CodeableConcept'];
+      case 'location':
+        return ['Reference'];
+      case 'name':
+        return ['FhirString'];
+      case 'comment':
+        return ['FhirString'];
+      case 'extraDetails':
+        return ['FhirMarkdown'];
+      case 'photo':
+        return ['Attachment'];
+      case 'telecom':
+        return ['ContactPoint'];
+      case 'coverageArea':
+        return ['Reference'];
+      case 'serviceProvisionCode':
+        return ['CodeableConcept'];
+      case 'eligibility':
+        return ['HealthcareServiceEligibility'];
+      case 'program':
+        return ['CodeableConcept'];
+      case 'characteristic':
+        return ['CodeableConcept'];
+      case 'communication':
+        return ['CodeableConcept'];
+      case 'referralMethod':
+        return ['CodeableConcept'];
+      case 'appointmentRequired':
+        return ['FhirBoolean'];
+      case 'availableTime':
+        return ['HealthcareServiceAvailableTime'];
+      case 'notAvailable':
+        return ['HealthcareServiceNotAvailable'];
+      case 'availabilityExceptions':
+        return ['FhirString'];
+      case 'endpoint':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   HealthcareService clone() => throw UnimplementedError();
   @override
@@ -1702,6 +1776,26 @@ class HealthcareServiceEligibility extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'comment':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   HealthcareServiceEligibility clone() => throw UnimplementedError();
   @override
@@ -2109,6 +2203,30 @@ class HealthcareServiceAvailableTime extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'daysOfWeek':
+        return ['FhirCode'];
+      case 'allDay':
+        return ['FhirBoolean'];
+      case 'availableStartTime':
+        return ['FhirTime'];
+      case 'availableEndTime':
+        return ['FhirTime'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   HealthcareServiceAvailableTime clone() => throw UnimplementedError();
   @override
@@ -2485,6 +2603,26 @@ class HealthcareServiceNotAvailable extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'description':
+        return ['FhirString'];
+      case 'during':
+        return ['Period'];
+      default:
+        return <String>[];
     }
   }
 

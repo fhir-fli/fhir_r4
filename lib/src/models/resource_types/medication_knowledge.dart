@@ -966,6 +966,76 @@ class MedicationKnowledge extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'status':
+        return ['FhirCode'];
+      case 'manufacturer':
+        return ['Reference'];
+      case 'doseForm':
+        return ['CodeableConcept'];
+      case 'amount':
+        return ['Quantity'];
+      case 'synonym':
+        return ['FhirString'];
+      case 'relatedMedicationKnowledge':
+        return ['MedicationKnowledgeRelatedMedicationKnowledge'];
+      case 'associatedMedication':
+        return ['Reference'];
+      case 'productType':
+        return ['CodeableConcept'];
+      case 'monograph':
+        return ['MedicationKnowledgeMonograph'];
+      case 'ingredient':
+        return ['MedicationKnowledgeIngredient'];
+      case 'preparationInstruction':
+        return ['FhirMarkdown'];
+      case 'intendedRoute':
+        return ['CodeableConcept'];
+      case 'cost':
+        return ['MedicationKnowledgeCost'];
+      case 'monitoringProgram':
+        return ['MedicationKnowledgeMonitoringProgram'];
+      case 'administrationGuidelines':
+        return ['MedicationKnowledgeAdministrationGuidelines'];
+      case 'medicineClassification':
+        return ['MedicationKnowledgeMedicineClassification'];
+      case 'packaging':
+        return ['MedicationKnowledgePackaging'];
+      case 'drugCharacteristic':
+        return ['MedicationKnowledgeDrugCharacteristic'];
+      case 'contraindication':
+        return ['Reference'];
+      case 'regulatory':
+        return ['MedicationKnowledgeRegulatory'];
+      case 'kinetics':
+        return ['MedicationKnowledgeKinetics'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MedicationKnowledge clone() => throw UnimplementedError();
   @override
@@ -1627,6 +1697,26 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'reference':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MedicationKnowledgeRelatedMedicationKnowledge clone() =>
       throw UnimplementedError();
@@ -1986,6 +2076,26 @@ class MedicationKnowledgeMonograph extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'source':
+        return ['Reference'];
+      default:
+        return <String>[];
     }
   }
 
@@ -2408,6 +2518,33 @@ class MedicationKnowledgeIngredient extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'item':
+      case 'itemX':
+        return ['CodeableConcept', 'Reference'];
+      case 'itemCodeableConcept':
+        return ['CodeableConcept'];
+      case 'itemReference':
+        return ['Reference'];
+      case 'isActive':
+        return ['FhirBoolean'];
+      case 'strength':
+        return ['Ratio'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MedicationKnowledgeIngredient clone() => throw UnimplementedError();
   @override
@@ -2793,6 +2930,28 @@ class MedicationKnowledgeCost extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'source':
+        return ['FhirString'];
+      case 'cost':
+        return ['Money'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MedicationKnowledgeCost clone() => throw UnimplementedError();
   @override
@@ -3151,6 +3310,26 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'name':
+        return ['FhirString'];
+      default:
+        return <String>[];
     }
   }
 
@@ -3581,6 +3760,33 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'dosage':
+        return ['MedicationKnowledgeDosage'];
+      case 'indication':
+      case 'indicationX':
+        return ['CodeableConcept', 'Reference'];
+      case 'indicationCodeableConcept':
+        return ['CodeableConcept'];
+      case 'indicationReference':
+        return ['Reference'];
+      case 'patientCharacteristics':
+        return ['MedicationKnowledgePatientCharacteristics'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MedicationKnowledgeAdministrationGuidelines clone() =>
       throw UnimplementedError();
@@ -3957,6 +4163,26 @@ class MedicationKnowledgeDosage extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'dosage':
+        return ['Dosage'];
+      default:
+        return <String>[];
     }
   }
 
@@ -4366,6 +4592,31 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'characteristic':
+      case 'characteristicX':
+        return ['CodeableConcept', 'Quantity'];
+      case 'characteristicCodeableConcept':
+        return ['CodeableConcept'];
+      case 'characteristicQuantity':
+        return ['Quantity'];
+      case 'value':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MedicationKnowledgePatientCharacteristics clone() =>
       throw UnimplementedError();
@@ -4734,6 +4985,26 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'classification':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MedicationKnowledgeMedicineClassification clone() =>
       throw UnimplementedError();
@@ -5093,6 +5364,26 @@ class MedicationKnowledgePackaging extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'quantity':
+        return ['Quantity'];
+      default:
+        return <String>[];
     }
   }
 
@@ -5521,6 +5812,40 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'value':
+      case 'valueX':
+        return [
+          'CodeableConcept',
+          'FhirString',
+          'Quantity',
+          'FhirBase64Binary',
+        ];
+      case 'valueCodeableConcept':
+        return ['CodeableConcept'];
+      case 'valueString':
+        return ['FhirString'];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueBase64Binary':
+        return ['FhirBase64Binary'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MedicationKnowledgeDrugCharacteristic clone() => throw UnimplementedError();
   @override
@@ -5934,6 +6259,30 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'regulatoryAuthority':
+        return ['Reference'];
+      case 'substitution':
+        return ['MedicationKnowledgeSubstitution'];
+      case 'schedule':
+        return ['MedicationKnowledgeSchedule'];
+      case 'maxDispense':
+        return ['MedicationKnowledgeMaxDispense'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MedicationKnowledgeRegulatory clone() => throw UnimplementedError();
   @override
@@ -6318,6 +6667,26 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'allowed':
+        return ['FhirBoolean'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MedicationKnowledgeSubstitution clone() => throw UnimplementedError();
   @override
@@ -6642,6 +7011,24 @@ class MedicationKnowledgeSchedule extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'schedule':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
     }
   }
 
@@ -6988,6 +7375,26 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'quantity':
+        return ['Quantity'];
+      case 'period':
+        return ['FhirDuration'];
+      default:
+        return <String>[];
     }
   }
 
@@ -7375,6 +7782,28 @@ class MedicationKnowledgeKinetics extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'areaUnderCurve':
+        return ['Quantity'];
+      case 'lethalDose50':
+        return ['Quantity'];
+      case 'halfLifePeriod':
+        return ['FhirDuration'];
+      default:
+        return <String>[];
     }
   }
 

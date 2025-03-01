@@ -670,6 +670,59 @@ class MessageHeader extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'event':
+      case 'eventX':
+        return ['Coding', 'FhirUri'];
+      case 'eventCoding':
+        return ['Coding'];
+      case 'eventUri':
+        return ['FhirUri'];
+      case 'destination':
+        return ['MessageHeaderDestination'];
+      case 'sender':
+        return ['Reference'];
+      case 'enterer':
+        return ['Reference'];
+      case 'author':
+        return ['Reference'];
+      case 'source':
+        return ['MessageHeaderSource'];
+      case 'responsible':
+        return ['Reference'];
+      case 'reason':
+        return ['CodeableConcept'];
+      case 'response':
+        return ['MessageHeaderResponse'];
+      case 'focus':
+        return ['Reference'];
+      case 'definition':
+        return ['FhirCanonical'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MessageHeader clone() => throw UnimplementedError();
   @override
@@ -1200,6 +1253,30 @@ class MessageHeaderDestination extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'target':
+        return ['Reference'];
+      case 'endpoint':
+        return ['FhirUrl'];
+      case 'receiver':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MessageHeaderDestination clone() => throw UnimplementedError();
   @override
@@ -1645,6 +1722,32 @@ class MessageHeaderSource extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'software':
+        return ['FhirString'];
+      case 'version':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactPoint'];
+      case 'endpoint':
+        return ['FhirUrl'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MessageHeaderSource clone() => throw UnimplementedError();
   @override
@@ -2045,6 +2148,28 @@ class MessageHeaderResponse extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['FhirId'];
+      case 'code':
+        return ['FhirCode'];
+      case 'details':
+        return ['Reference'];
+      default:
+        return <String>[];
     }
   }
 

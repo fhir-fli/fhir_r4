@@ -389,6 +389,34 @@ class ParameterDefinition extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirCode'];
+      case 'use':
+        return ['FhirCode'];
+      case 'min':
+        return ['FhirInteger'];
+      case 'max':
+        return ['FhirString'];
+      case 'documentation':
+        return ['FhirString'];
+      case 'type':
+        return ['FhirCode'];
+      case 'profile':
+        return ['FhirCanonical'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ParameterDefinition clone() => throw UnimplementedError();
   @override

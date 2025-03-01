@@ -719,6 +719,60 @@ class RegulatedAuthorization extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'subject':
+        return ['Reference'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'region':
+        return ['CodeableConcept'];
+      case 'status':
+        return ['CodeableConcept'];
+      case 'statusDate':
+        return ['FhirDateTime'];
+      case 'validityPeriod':
+        return ['Period'];
+      case 'indication':
+        return ['CodeableReference'];
+      case 'intendedUse':
+        return ['CodeableConcept'];
+      case 'basis':
+        return ['CodeableConcept'];
+      case 'holder':
+        return ['Reference'];
+      case 'regulator':
+        return ['Reference'];
+      case 'case':
+        return ['RegulatedAuthorizationCase'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   RegulatedAuthorization clone() => throw UnimplementedError();
   @override
@@ -1357,6 +1411,37 @@ class RegulatedAuthorizationCase extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'status':
+        return ['CodeableConcept'];
+      case 'date':
+      case 'dateX':
+        return ['Period', 'FhirDateTime'];
+      case 'datePeriod':
+        return ['Period'];
+      case 'dateDateTime':
+        return ['FhirDateTime'];
+      case 'application':
+        return ['RegulatedAuthorizationCase'];
+      default:
+        return <String>[];
     }
   }
 

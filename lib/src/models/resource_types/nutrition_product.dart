@@ -616,6 +616,52 @@ class NutritionProduct extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'status':
+        return ['FhirCode'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'manufacturer':
+        return ['Reference'];
+      case 'nutrient':
+        return ['NutritionProductNutrient'];
+      case 'ingredient':
+        return ['NutritionProductIngredient'];
+      case 'knownAllergen':
+        return ['CodeableReference'];
+      case 'productCharacteristic':
+        return ['NutritionProductProductCharacteristic'];
+      case 'instance':
+        return ['NutritionProductInstance'];
+      case 'note':
+        return ['Annotation'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   NutritionProduct clone() => throw UnimplementedError();
   @override
@@ -1125,6 +1171,26 @@ class NutritionProductNutrient extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'item':
+        return ['CodeableReference'];
+      case 'amount':
+        return ['Ratio'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   NutritionProductNutrient clone() => throw UnimplementedError();
   @override
@@ -1485,6 +1551,26 @@ class NutritionProductIngredient extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'item':
+        return ['CodeableReference'];
+      case 'amount':
+        return ['Ratio'];
+      default:
+        return <String>[];
     }
   }
 
@@ -1950,6 +2036,46 @@ class NutritionProductProductCharacteristic extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'value':
+      case 'valueX':
+        return [
+          'CodeableConcept',
+          'FhirString',
+          'Quantity',
+          'FhirBase64Binary',
+          'Attachment',
+          'FhirBoolean',
+        ];
+      case 'valueCodeableConcept':
+        return ['CodeableConcept'];
+      case 'valueString':
+        return ['FhirString'];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueBase64Binary':
+        return ['FhirBase64Binary'];
+      case 'valueAttachment':
+        return ['Attachment'];
+      case 'valueBoolean':
+        return ['FhirBoolean'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   NutritionProductProductCharacteristic clone() => throw UnimplementedError();
   @override
@@ -2382,6 +2508,32 @@ class NutritionProductInstance extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'quantity':
+        return ['Quantity'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'lotNumber':
+        return ['FhirString'];
+      case 'expiry':
+        return ['FhirDateTime'];
+      case 'useBy':
+        return ['FhirDateTime'];
+      default:
+        return <String>[];
     }
   }
 

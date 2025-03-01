@@ -618,6 +618,52 @@ class DeviceMetric extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'unit':
+        return ['CodeableConcept'];
+      case 'source':
+        return ['Reference'];
+      case 'parent':
+        return ['Reference'];
+      case 'operationalStatus':
+        return ['FhirCode'];
+      case 'color':
+        return ['FhirCode'];
+      case 'category':
+        return ['FhirCode'];
+      case 'measurementPeriod':
+        return ['Timing'];
+      case 'calibration':
+        return ['DeviceMetricCalibration'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   DeviceMetric clone() => throw UnimplementedError();
   @override
@@ -1110,6 +1156,28 @@ class DeviceMetricCalibration extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirCode'];
+      case 'state':
+        return ['FhirCode'];
+      case 'time':
+        return ['FhirInstant'];
+      default:
+        return <String>[];
     }
   }
 

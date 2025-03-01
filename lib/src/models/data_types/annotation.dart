@@ -320,6 +320,31 @@ class Annotation extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'author':
+      case 'authorX':
+        return ['Reference', 'FhirString'];
+      case 'authorReference':
+        return ['Reference'];
+      case 'authorString':
+        return ['FhirString'];
+      case 'time':
+        return ['FhirDateTime'];
+      case 'text':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Annotation clone() => throw UnimplementedError();
   @override

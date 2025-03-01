@@ -21,6 +21,24 @@ class Transformer {
   /// The main function to run the transformation
   final FHIRPathEngine fhirPathEngine = FHIRPathEngine(WorkerContext());
 
+  /// Creats a new empty FhirBase object from a type
+  FhirBase childFromParent(FhirBase? parent, String elementName) {
+    if (parent == null) {
+      throw Exception('Parent cannot be null');
+    }
+    final types = parent.typeByElementName(elementName);
+    if (types.isEmpty) {
+      throw Exception('No types found for element $elementName');
+    } else if (types.length > 1) {
+      throw Exception('Multiple types found for element $elementName');
+    }
+    final newObject = emptyFromType(types.first);
+    if (newObject == null) {
+      throw Exception('Could not create object for element $elementName');
+    }
+    return newObject;
+  }
+
   /// runTransform no longer handles create logic directly
   Future<FhirBase?> runTransform(
     String ruleId,
@@ -135,8 +153,7 @@ class Transformer {
     StructureMapGroup? group,
   ) async {
     if (target.parameter == null || target.parameter!.isEmpty) {
-      final possibleTypes =
-          await resolver.typesForElement(parent?.pathForResolver(elementName));
+      final possibleTypes = parent?.typeByElementName(elementName) ?? [];
       return _inferTypeFromSource(
         map,
         group,
@@ -193,18 +210,27 @@ class Transformer {
     final isResource = typeName.isFhirResourceType;
     final isDataType = typeName.isFhirDataType;
     if (isPrimitive) {
-      return FhirBase.newNode<LeafNode>(elementName, parent);
+      return childFromParent(parent, elementName);
     } else if (isResource) {
       return _createFhirResourceNode(elementName, typeName, parent, target);
     } else if (isDataType) {
       return _createDataTypeNode(elementName, typeName, parent, target);
     }
 
-    final newLocation = parent == null
-        ? elementName
-        : '${parent.globalPath ?? ''}.$elementName';
+    final type = parent?.typeByElementName(elementName);
+    if (type == null) {
+      throw Exception('Cannot determine type for element: $elementName');
+    } else if (type.isEmpty) {
+      throw Exception('Cannot determine type for element: $elementName');
+    } else if (type.length > 1) {
+      throw Exception('Cannot determine type for element: $elementName');
+    }
 
-    return MapNode(elementName, newLocation, typeName, []);
+    final newObject = emptyFromType(type.first);
+    if (newObject == null) {
+      throw Exception('Cannot determine type for element: $elementName');
+    }
+    return newObject;
   }
 
   Future<FhirBase> _createDataTypeNode(
@@ -213,8 +239,19 @@ class Transformer {
     FhirBase? parent,
     StructureMapTarget target,
   ) async {
-    final globalPath = parent?.childGlobalPath;
-    return DataTypeNode(elementName, globalPath, typeName, []);
+    final type = parent?.typeByElementName(elementName);
+    if (type == null) {
+      throw Exception('Cannot determine type for element: $elementName');
+    } else if (type.isEmpty) {
+      throw Exception('Cannot determine type for element: $elementName');
+    } else if (type.length > 1) {
+      throw Exception('Cannot determine type for element: $elementName');
+    }
+    final newObject = emptyFromType(type.first);
+    if (newObject == null) {
+      throw Exception('Cannot determine type for element: $elementName');
+    }
+    return newObject;
   }
 
   Future<FhirBase> _createFhirResourceNode(

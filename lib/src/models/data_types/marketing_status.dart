@@ -369,6 +369,32 @@ class MarketingStatus extends BackboneType {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'country':
+        return ['CodeableConcept'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'status':
+        return ['CodeableConcept'];
+      case 'dateRange':
+        return ['Period'];
+      case 'restoreDate':
+        return ['FhirDateTime'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MarketingStatus clone() => throw UnimplementedError();
   @override

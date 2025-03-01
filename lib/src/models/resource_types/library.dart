@@ -1191,6 +1191,99 @@ class Library extends CanonicalResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'subtitle':
+        return ['FhirString'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'subject':
+      case 'subjectX':
+        return ['CodeableConcept', 'Reference'];
+      case 'subjectCodeableConcept':
+        return ['CodeableConcept'];
+      case 'subjectReference':
+        return ['Reference'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'usage':
+        return ['FhirString'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      case 'approvalDate':
+        return ['FhirDate'];
+      case 'lastReviewDate':
+        return ['FhirDate'];
+      case 'effectivePeriod':
+        return ['Period'];
+      case 'topic':
+        return ['CodeableConcept'];
+      case 'author':
+        return ['ContactDetail'];
+      case 'editor':
+        return ['ContactDetail'];
+      case 'reviewer':
+        return ['ContactDetail'];
+      case 'endorser':
+        return ['ContactDetail'];
+      case 'relatedArtifact':
+        return ['RelatedArtifact'];
+      case 'parameter':
+        return ['ParameterDefinition'];
+      case 'dataRequirement':
+        return ['DataRequirement'];
+      case 'content':
+        return ['Attachment'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Library clone() => throw UnimplementedError();
   @override

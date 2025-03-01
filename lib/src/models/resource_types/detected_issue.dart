@@ -700,6 +700,61 @@ class DetectedIssue extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'severity':
+        return ['FhirCode'];
+      case 'patient':
+        return ['Reference'];
+      case 'identified':
+      case 'identifiedX':
+        return ['FhirDateTime', 'Period'];
+      case 'identifiedDateTime':
+        return ['FhirDateTime'];
+      case 'identifiedPeriod':
+        return ['Period'];
+      case 'author':
+        return ['Reference'];
+      case 'implicated':
+        return ['Reference'];
+      case 'evidence':
+        return ['DetectedIssueEvidence'];
+      case 'detail':
+        return ['FhirString'];
+      case 'reference':
+        return ['FhirUri'];
+      case 'mitigation':
+        return ['DetectedIssueMitigation'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   DetectedIssue clone() => throw UnimplementedError();
   @override
@@ -1210,6 +1265,26 @@ class DetectedIssueEvidence extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'detail':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   DetectedIssueEvidence clone() => throw UnimplementedError();
   @override
@@ -1603,6 +1678,28 @@ class DetectedIssueMitigation extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'action':
+        return ['CodeableConcept'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'author':
+        return ['Reference'];
+      default:
+        return <String>[];
     }
   }
 

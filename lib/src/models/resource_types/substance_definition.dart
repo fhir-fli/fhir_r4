@@ -870,6 +870,70 @@ class SubstanceDefinition extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'version':
+        return ['FhirString'];
+      case 'status':
+        return ['CodeableConcept'];
+      case 'classification':
+        return ['CodeableConcept'];
+      case 'domain':
+        return ['CodeableConcept'];
+      case 'grade':
+        return ['CodeableConcept'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'informationSource':
+        return ['Reference'];
+      case 'note':
+        return ['Annotation'];
+      case 'manufacturer':
+        return ['Reference'];
+      case 'supplier':
+        return ['Reference'];
+      case 'moiety':
+        return ['SubstanceDefinitionMoiety'];
+      case 'property':
+        return ['SubstanceDefinitionProperty'];
+      case 'molecularWeight':
+        return ['SubstanceDefinitionMolecularWeight'];
+      case 'structure':
+        return ['SubstanceDefinitionStructure'];
+      case 'code':
+        return ['SubstanceDefinitionCode'];
+      case 'name':
+        return ['SubstanceDefinitionName'];
+      case 'relationship':
+        return ['SubstanceDefinitionRelationship'];
+      case 'sourceMaterial':
+        return ['SubstanceDefinitionSourceMaterial'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   SubstanceDefinition clone() => throw UnimplementedError();
   @override
@@ -1679,6 +1743,43 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'role':
+        return ['CodeableConcept'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'name':
+        return ['FhirString'];
+      case 'stereochemistry':
+        return ['CodeableConcept'];
+      case 'opticalActivity':
+        return ['CodeableConcept'];
+      case 'molecularFormula':
+        return ['FhirString'];
+      case 'amount':
+      case 'amountX':
+        return ['Quantity', 'FhirString'];
+      case 'amountQuantity':
+        return ['Quantity'];
+      case 'amountString':
+        return ['FhirString'];
+      case 'measurementType':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   SubstanceDefinitionMoiety clone() => throw UnimplementedError();
   @override
@@ -2164,6 +2265,43 @@ class SubstanceDefinitionProperty extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'value':
+      case 'valueX':
+        return [
+          'CodeableConcept',
+          'Quantity',
+          'FhirDate',
+          'FhirBoolean',
+          'Attachment',
+        ];
+      case 'valueCodeableConcept':
+        return ['CodeableConcept'];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueDate':
+        return ['FhirDate'];
+      case 'valueBoolean':
+        return ['FhirBoolean'];
+      case 'valueAttachment':
+        return ['Attachment'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   SubstanceDefinitionProperty clone() => throw UnimplementedError();
   @override
@@ -2544,6 +2682,28 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'method':
+        return ['CodeableConcept'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'amount':
+        return ['Quantity'];
+      default:
+        return <String>[];
     }
   }
 
@@ -3075,6 +3235,38 @@ class SubstanceDefinitionStructure extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'stereochemistry':
+        return ['CodeableConcept'];
+      case 'opticalActivity':
+        return ['CodeableConcept'];
+      case 'molecularFormula':
+        return ['FhirString'];
+      case 'molecularFormulaByMoiety':
+        return ['FhirString'];
+      case 'molecularWeight':
+        return ['SubstanceDefinitionMolecularWeight'];
+      case 'technique':
+        return ['CodeableConcept'];
+      case 'sourceDocument':
+        return ['Reference'];
+      case 'representation':
+        return ['SubstanceDefinitionRepresentation'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   SubstanceDefinitionStructure clone() => throw UnimplementedError();
   @override
@@ -3553,6 +3745,30 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'representation':
+        return ['FhirString'];
+      case 'format':
+        return ['CodeableConcept'];
+      case 'document':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   SubstanceDefinitionRepresentation clone() => throw UnimplementedError();
   @override
@@ -4002,6 +4218,32 @@ class SubstanceDefinitionCode extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'status':
+        return ['CodeableConcept'];
+      case 'statusDate':
+        return ['FhirDateTime'];
+      case 'note':
+        return ['Annotation'];
+      case 'source':
+        return ['Reference'];
+      default:
+        return <String>[];
     }
   }
 
@@ -4650,6 +4892,44 @@ class SubstanceDefinitionName extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'status':
+        return ['CodeableConcept'];
+      case 'preferred':
+        return ['FhirBoolean'];
+      case 'language':
+        return ['CodeableConcept'];
+      case 'domain':
+        return ['CodeableConcept'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'synonym':
+        return ['SubstanceDefinitionName'];
+      case 'translation':
+        return ['SubstanceDefinitionName'];
+      case 'official':
+        return ['SubstanceDefinitionOfficial'];
+      case 'source':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   SubstanceDefinitionName clone() => throw UnimplementedError();
   @override
@@ -5146,6 +5426,28 @@ class SubstanceDefinitionOfficial extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'authority':
+        return ['CodeableConcept'];
+      case 'status':
+        return ['CodeableConcept'];
+      case 'date':
+        return ['FhirDateTime'];
+      default:
+        return <String>[];
     }
   }
 
@@ -5743,6 +6045,48 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'substanceDefinition':
+      case 'substanceDefinitionX':
+        return ['Reference', 'CodeableConcept'];
+      case 'substanceDefinitionReference':
+        return ['Reference'];
+      case 'substanceDefinitionCodeableConcept':
+        return ['CodeableConcept'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'isDefining':
+        return ['FhirBoolean'];
+      case 'amount':
+      case 'amountX':
+        return ['Quantity', 'Ratio', 'FhirString'];
+      case 'amountQuantity':
+        return ['Quantity'];
+      case 'amountRatio':
+        return ['Ratio'];
+      case 'amountString':
+        return ['FhirString'];
+      case 'ratioHighLimitAmount':
+        return ['Ratio'];
+      case 'comparator':
+        return ['CodeableConcept'];
+      case 'source':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   SubstanceDefinitionRelationship clone() => throw UnimplementedError();
   @override
@@ -6222,6 +6566,32 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'genus':
+        return ['CodeableConcept'];
+      case 'species':
+        return ['CodeableConcept'];
+      case 'part':
+        return ['CodeableConcept'];
+      case 'countryOfOrigin':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
     }
   }
 

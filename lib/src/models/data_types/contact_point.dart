@@ -337,6 +337,30 @@ class ContactPoint extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'system':
+        return ['FhirCode'];
+      case 'value':
+        return ['FhirString'];
+      case 'use':
+        return ['FhirCode'];
+      case 'rank':
+        return ['FhirPositiveInt'];
+      case 'period':
+        return ['Period'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ContactPoint clone() => throw UnimplementedError();
   @override

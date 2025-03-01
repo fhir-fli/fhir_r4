@@ -1153,6 +1153,90 @@ class Citation extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      case 'approvalDate':
+        return ['FhirDate'];
+      case 'lastReviewDate':
+        return ['FhirDate'];
+      case 'effectivePeriod':
+        return ['Period'];
+      case 'author':
+        return ['ContactDetail'];
+      case 'editor':
+        return ['ContactDetail'];
+      case 'reviewer':
+        return ['ContactDetail'];
+      case 'endorser':
+        return ['ContactDetail'];
+      case 'summary':
+        return ['CitationSummary'];
+      case 'classification':
+        return ['CitationClassification'];
+      case 'note':
+        return ['Annotation'];
+      case 'currentState':
+        return ['CodeableConcept'];
+      case 'statusDate':
+        return ['CitationStatusDate'];
+      case 'relatesTo':
+        return ['CitationRelatesTo'];
+      case 'citedArtifact':
+        return ['CitationCitedArtifact'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Citation clone() => throw UnimplementedError();
   @override
@@ -1858,6 +1942,26 @@ class CitationSummary extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'style':
+        return ['CodeableConcept'];
+      case 'text':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CitationSummary clone() => throw UnimplementedError();
   @override
@@ -2211,6 +2315,26 @@ class CitationClassification extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'classifier':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
     }
   }
 
@@ -2594,6 +2718,28 @@ class CitationStatusDate extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'activity':
+        return ['CodeableConcept'];
+      case 'actual':
+        return ['FhirBoolean'];
+      case 'period':
+        return ['Period'];
+      default:
+        return <String>[];
     }
   }
 
@@ -3051,6 +3197,37 @@ class CitationRelatesTo extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'relationshipType':
+        return ['CodeableConcept'];
+      case 'targetClassifier':
+        return ['CodeableConcept'];
+      case 'target':
+      case 'targetX':
+        return ['FhirUri', 'Identifier', 'Reference', 'Attachment'];
+      case 'targetUri':
+        return ['FhirUri'];
+      case 'targetIdentifier':
+        return ['Identifier'];
+      case 'targetReference':
+        return ['Reference'];
+      case 'targetAttachment':
+        return ['Attachment'];
+      default:
+        return <String>[];
     }
   }
 
@@ -3795,6 +3972,52 @@ class CitationCitedArtifact extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'relatedIdentifier':
+        return ['Identifier'];
+      case 'dateAccessed':
+        return ['FhirDateTime'];
+      case 'version':
+        return ['CitationVersion'];
+      case 'currentState':
+        return ['CodeableConcept'];
+      case 'statusDate':
+        return ['CitationStatusDate'];
+      case 'title':
+        return ['CitationTitle'];
+      case 'abstract':
+        return ['CitationAbstract'];
+      case 'part':
+        return ['CitationPart'];
+      case 'relatesTo':
+        return ['CitationRelatesTo'];
+      case 'publicationForm':
+        return ['CitationPublicationForm'];
+      case 'webLocation':
+        return ['CitationWebLocation'];
+      case 'classification':
+        return ['CitationClassification'];
+      case 'contributorship':
+        return ['CitationContributorship'];
+      case 'note':
+        return ['Annotation'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CitationCitedArtifact clone() => throw UnimplementedError();
   @override
@@ -4328,6 +4551,26 @@ class CitationVersion extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'value':
+        return ['FhirString'];
+      case 'baseCitation':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CitationVersion clone() => throw UnimplementedError();
   @override
@@ -4701,6 +4944,28 @@ class CitationStatusDate1 extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'activity':
+        return ['CodeableConcept'];
+      case 'actual':
+        return ['FhirBoolean'];
+      case 'period':
+        return ['Period'];
+      default:
+        return <String>[];
     }
   }
 
@@ -5090,6 +5355,28 @@ class CitationTitle extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'language':
+        return ['CodeableConcept'];
+      case 'text':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
     }
   }
 
@@ -5510,6 +5797,30 @@ class CitationAbstract extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'language':
+        return ['CodeableConcept'];
+      case 'text':
+        return ['FhirMarkdown'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CitationAbstract clone() => throw UnimplementedError();
   @override
@@ -5900,6 +6211,28 @@ class CitationPart extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'value':
+        return ['FhirString'];
+      case 'baseCitation':
+        return ['Reference'];
+      default:
+        return <String>[];
     }
   }
 
@@ -6357,6 +6690,37 @@ class CitationRelatesTo1 extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'relationshipType':
+        return ['CodeableConcept'];
+      case 'targetClassifier':
+        return ['CodeableConcept'];
+      case 'target':
+      case 'targetX':
+        return ['FhirUri', 'Identifier', 'Reference', 'Attachment'];
+      case 'targetUri':
+        return ['FhirUri'];
+      case 'targetIdentifier':
+        return ['Identifier'];
+      case 'targetReference':
+        return ['Reference'];
+      case 'targetAttachment':
+        return ['Attachment'];
+      default:
+        return <String>[];
     }
   }
 
@@ -6959,6 +7323,44 @@ class CitationPublicationForm extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'publishedIn':
+        return ['CitationPublishedIn'];
+      case 'periodicRelease':
+        return ['CitationPeriodicRelease'];
+      case 'articleDate':
+        return ['FhirDateTime'];
+      case 'lastRevisionDate':
+        return ['FhirDateTime'];
+      case 'language':
+        return ['CodeableConcept'];
+      case 'accessionNumber':
+        return ['FhirString'];
+      case 'pageString':
+        return ['FhirString'];
+      case 'firstPage':
+        return ['FhirString'];
+      case 'lastPage':
+        return ['FhirString'];
+      case 'pageCount':
+        return ['FhirString'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CitationPublicationForm clone() => throw UnimplementedError();
   @override
@@ -7470,6 +7872,32 @@ class CitationPublishedIn extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'title':
+        return ['FhirString'];
+      case 'publisher':
+        return ['Reference'];
+      case 'publisherLocation':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CitationPublishedIn clone() => throw UnimplementedError();
   @override
@@ -7901,6 +8329,30 @@ class CitationPeriodicRelease extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'citedMedium':
+        return ['CodeableConcept'];
+      case 'volume':
+        return ['FhirString'];
+      case 'issue':
+        return ['FhirString'];
+      case 'dateOfPublication':
+        return ['CitationDateOfPublication'];
+      default:
+        return <String>[];
     }
   }
 
@@ -8375,6 +8827,34 @@ class CitationDateOfPublication extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'date':
+        return ['FhirDate'];
+      case 'year':
+        return ['FhirString'];
+      case 'month':
+        return ['FhirString'];
+      case 'day':
+        return ['FhirString'];
+      case 'season':
+        return ['FhirString'];
+      case 'text':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CitationDateOfPublication clone() => throw UnimplementedError();
   @override
@@ -8759,6 +9239,26 @@ class CitationWebLocation extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'url':
+        return ['FhirUri'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CitationWebLocation clone() => throw UnimplementedError();
   @override
@@ -9137,6 +9637,28 @@ class CitationClassification1 extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'classifier':
+        return ['CodeableConcept'];
+      case 'whoClassified':
+        return ['CitationWhoClassified'];
+      default:
+        return <String>[];
     }
   }
 
@@ -9583,6 +10105,32 @@ class CitationWhoClassified extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'person':
+        return ['Reference'];
+      case 'organization':
+        return ['Reference'];
+      case 'publisher':
+        return ['Reference'];
+      case 'classifierCopyright':
+        return ['FhirString'];
+      case 'freeToShare':
+        return ['FhirBoolean'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CitationWhoClassified clone() => throw UnimplementedError();
   @override
@@ -9991,6 +10539,28 @@ class CitationContributorship extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'complete':
+        return ['FhirBoolean'];
+      case 'entry':
+        return ['CitationEntry'];
+      case 'summary':
+        return ['CitationSummary'];
+      default:
+        return <String>[];
     }
   }
 
@@ -10644,6 +11214,46 @@ class CitationEntry extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['HumanName'];
+      case 'initials':
+        return ['FhirString'];
+      case 'collectiveName':
+        return ['FhirString'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'affiliationInfo':
+        return ['CitationAffiliationInfo'];
+      case 'address':
+        return ['Address'];
+      case 'telecom':
+        return ['ContactPoint'];
+      case 'contributionType':
+        return ['CodeableConcept'];
+      case 'role':
+        return ['CodeableConcept'];
+      case 'contributionInstance':
+        return ['CitationContributionInstance'];
+      case 'correspondingContact':
+        return ['FhirBoolean'];
+      case 'listOrder':
+        return ['FhirPositiveInt'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CitationEntry clone() => throw UnimplementedError();
   @override
@@ -11149,6 +11759,28 @@ class CitationAffiliationInfo extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'affiliation':
+        return ['FhirString'];
+      case 'role':
+        return ['FhirString'];
+      case 'identifier':
+        return ['Identifier'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CitationAffiliationInfo clone() => throw UnimplementedError();
   @override
@@ -11515,6 +12147,26 @@ class CitationContributionInstance extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'time':
+        return ['FhirDateTime'];
+      default:
+        return <String>[];
     }
   }
 
@@ -11920,6 +12572,30 @@ class CitationSummary1 extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'style':
+        return ['CodeableConcept'];
+      case 'source':
+        return ['CodeableConcept'];
+      case 'value':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
     }
   }
 

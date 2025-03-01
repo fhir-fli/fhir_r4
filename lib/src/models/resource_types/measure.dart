@@ -1453,6 +1453,119 @@ class Measure extends CanonicalResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'subtitle':
+        return ['FhirString'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'subject':
+      case 'subjectX':
+        return ['CodeableConcept', 'Reference'];
+      case 'subjectCodeableConcept':
+        return ['CodeableConcept'];
+      case 'subjectReference':
+        return ['Reference'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'usage':
+        return ['FhirString'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      case 'approvalDate':
+        return ['FhirDate'];
+      case 'lastReviewDate':
+        return ['FhirDate'];
+      case 'effectivePeriod':
+        return ['Period'];
+      case 'topic':
+        return ['CodeableConcept'];
+      case 'author':
+        return ['ContactDetail'];
+      case 'editor':
+        return ['ContactDetail'];
+      case 'reviewer':
+        return ['ContactDetail'];
+      case 'endorser':
+        return ['ContactDetail'];
+      case 'relatedArtifact':
+        return ['RelatedArtifact'];
+      case 'library':
+        return ['FhirCanonical'];
+      case 'disclaimer':
+        return ['FhirMarkdown'];
+      case 'scoring':
+        return ['CodeableConcept'];
+      case 'compositeScoring':
+        return ['CodeableConcept'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'riskAdjustment':
+        return ['FhirString'];
+      case 'rateAggregation':
+        return ['FhirString'];
+      case 'rationale':
+        return ['FhirMarkdown'];
+      case 'clinicalRecommendationStatement':
+        return ['FhirMarkdown'];
+      case 'improvementNotation':
+        return ['CodeableConcept'];
+      case 'definition':
+        return ['FhirMarkdown'];
+      case 'guidance':
+        return ['FhirMarkdown'];
+      case 'group':
+        return ['MeasureGroup'];
+      case 'supplementalData':
+        return ['MeasureSupplementalData'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Measure clone() => throw UnimplementedError();
   @override
@@ -2325,6 +2438,30 @@ class MeasureGroup extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'description':
+        return ['FhirString'];
+      case 'population':
+        return ['MeasurePopulation'];
+      case 'stratifier':
+        return ['MeasureStratifier'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MeasureGroup clone() => throw UnimplementedError();
   @override
@@ -2730,6 +2867,28 @@ class MeasurePopulation extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'description':
+        return ['FhirString'];
+      case 'criteria':
+        return ['FhirExpression'];
+      default:
+        return <String>[];
     }
   }
 
@@ -3156,6 +3315,30 @@ class MeasureStratifier extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'description':
+        return ['FhirString'];
+      case 'criteria':
+        return ['FhirExpression'];
+      case 'component':
+        return ['MeasureComponent'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MeasureStratifier clone() => throw UnimplementedError();
   @override
@@ -3561,6 +3744,28 @@ class MeasureComponent extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'description':
+        return ['FhirString'];
+      case 'criteria':
+        return ['FhirExpression'];
+      default:
+        return <String>[];
     }
   }
 
@@ -3988,6 +4193,30 @@ class MeasureSupplementalData extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'usage':
+        return ['CodeableConcept'];
+      case 'description':
+        return ['FhirString'];
+      case 'criteria':
+        return ['FhirExpression'];
+      default:
+        return <String>[];
     }
   }
 

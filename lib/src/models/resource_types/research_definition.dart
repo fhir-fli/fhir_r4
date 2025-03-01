@@ -1323,6 +1323,105 @@ class ResearchDefinition extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'shortTitle':
+        return ['FhirString'];
+      case 'subtitle':
+        return ['FhirString'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'subject':
+      case 'subjectX':
+        return ['CodeableConcept', 'Reference'];
+      case 'subjectCodeableConcept':
+        return ['CodeableConcept'];
+      case 'subjectReference':
+        return ['Reference'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'comment':
+        return ['FhirString'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'usage':
+        return ['FhirString'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      case 'approvalDate':
+        return ['FhirDate'];
+      case 'lastReviewDate':
+        return ['FhirDate'];
+      case 'effectivePeriod':
+        return ['Period'];
+      case 'topic':
+        return ['CodeableConcept'];
+      case 'author':
+        return ['ContactDetail'];
+      case 'editor':
+        return ['ContactDetail'];
+      case 'reviewer':
+        return ['ContactDetail'];
+      case 'endorser':
+        return ['ContactDetail'];
+      case 'relatedArtifact':
+        return ['RelatedArtifact'];
+      case 'library':
+        return ['FhirCanonical'];
+      case 'population':
+        return ['Reference'];
+      case 'exposure':
+        return ['Reference'];
+      case 'exposureAlternative':
+        return ['Reference'];
+      case 'outcome':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ResearchDefinition clone() => throw UnimplementedError();
   @override

@@ -1302,6 +1302,103 @@ class ResearchElementDefinition extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'shortTitle':
+        return ['FhirString'];
+      case 'subtitle':
+        return ['FhirString'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'subject':
+      case 'subjectX':
+        return ['CodeableConcept', 'Reference'];
+      case 'subjectCodeableConcept':
+        return ['CodeableConcept'];
+      case 'subjectReference':
+        return ['Reference'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'comment':
+        return ['FhirString'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'usage':
+        return ['FhirString'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      case 'approvalDate':
+        return ['FhirDate'];
+      case 'lastReviewDate':
+        return ['FhirDate'];
+      case 'effectivePeriod':
+        return ['Period'];
+      case 'topic':
+        return ['CodeableConcept'];
+      case 'author':
+        return ['ContactDetail'];
+      case 'editor':
+        return ['ContactDetail'];
+      case 'reviewer':
+        return ['ContactDetail'];
+      case 'endorser':
+        return ['ContactDetail'];
+      case 'relatedArtifact':
+        return ['RelatedArtifact'];
+      case 'library':
+        return ['FhirCanonical'];
+      case 'type':
+        return ['FhirCode'];
+      case 'variableType':
+        return ['FhirCode'];
+      case 'characteristic':
+        return ['ResearchElementDefinitionCharacteristic'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ResearchElementDefinition clone() => throw UnimplementedError();
   @override
@@ -2517,6 +2614,78 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'definition':
+      case 'definitionX':
+        return [
+          'CodeableConcept',
+          'FhirCanonical',
+          'FhirExpression',
+          'DataRequirement',
+        ];
+      case 'definitionCodeableConcept':
+        return ['CodeableConcept'];
+      case 'definitionCanonical':
+        return ['FhirCanonical'];
+      case 'definitionExpression':
+        return ['FhirExpression'];
+      case 'definitionDataRequirement':
+        return ['DataRequirement'];
+      case 'usageContext':
+        return ['UsageContext'];
+      case 'exclude':
+        return ['FhirBoolean'];
+      case 'unitOfMeasure':
+        return ['CodeableConcept'];
+      case 'studyEffectiveDescription':
+        return ['FhirString'];
+      case 'studyEffective':
+      case 'studyEffectiveX':
+        return ['FhirDateTime', 'Period', 'FhirDuration', 'Timing'];
+      case 'studyEffectiveDateTime':
+        return ['FhirDateTime'];
+      case 'studyEffectivePeriod':
+        return ['Period'];
+      case 'studyEffectiveDuration':
+        return ['FhirDuration'];
+      case 'studyEffectiveTiming':
+        return ['Timing'];
+      case 'studyEffectiveTimeFromStart':
+        return ['FhirDuration'];
+      case 'studyEffectiveGroupMeasure':
+        return ['FhirCode'];
+      case 'participantEffectiveDescription':
+        return ['FhirString'];
+      case 'participantEffective':
+      case 'participantEffectiveX':
+        return ['FhirDateTime', 'Period', 'FhirDuration', 'Timing'];
+      case 'participantEffectiveDateTime':
+        return ['FhirDateTime'];
+      case 'participantEffectivePeriod':
+        return ['Period'];
+      case 'participantEffectiveDuration':
+        return ['FhirDuration'];
+      case 'participantEffectiveTiming':
+        return ['Timing'];
+      case 'participantEffectiveTimeFromStart':
+        return ['FhirDuration'];
+      case 'participantEffectiveGroupMeasure':
+        return ['FhirCode'];
+      default:
+        return <String>[];
     }
   }
 

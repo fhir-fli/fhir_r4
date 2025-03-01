@@ -636,6 +636,56 @@ class PaymentNotice extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'request':
+        return ['Reference'];
+      case 'response':
+        return ['Reference'];
+      case 'created':
+        return ['FhirDateTime'];
+      case 'provider':
+        return ['Reference'];
+      case 'payment':
+        return ['Reference'];
+      case 'paymentDate':
+        return ['FhirDate'];
+      case 'payee':
+        return ['Reference'];
+      case 'recipient':
+        return ['Reference'];
+      case 'amount':
+        return ['Money'];
+      case 'paymentStatus':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   PaymentNotice clone() => throw UnimplementedError();
   @override

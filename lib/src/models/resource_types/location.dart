@@ -796,6 +796,66 @@ class Location extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'operationalStatus':
+        return ['Coding'];
+      case 'name':
+        return ['FhirString'];
+      case 'alias':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirString'];
+      case 'mode':
+        return ['FhirCode'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'telecom':
+        return ['ContactPoint'];
+      case 'address':
+        return ['Address'];
+      case 'physicalType':
+        return ['CodeableConcept'];
+      case 'position':
+        return ['LocationPosition'];
+      case 'managingOrganization':
+        return ['Reference'];
+      case 'partOf':
+        return ['Reference'];
+      case 'hoursOfOperation':
+        return ['LocationHoursOfOperation'];
+      case 'availabilityExceptions':
+        return ['FhirString'];
+      case 'endpoint':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Location clone() => throw UnimplementedError();
   @override
@@ -1377,6 +1437,28 @@ class LocationPosition extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'longitude':
+        return ['FhirDecimal'];
+      case 'latitude':
+        return ['FhirDecimal'];
+      case 'altitude':
+        return ['FhirDecimal'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   LocationPosition clone() => throw UnimplementedError();
   @override
@@ -1785,6 +1867,30 @@ class LocationHoursOfOperation extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'daysOfWeek':
+        return ['FhirCode'];
+      case 'allDay':
+        return ['FhirBoolean'];
+      case 'openingTime':
+        return ['FhirTime'];
+      case 'closingTime':
+        return ['FhirTime'];
+      default:
+        return <String>[];
     }
   }
 

@@ -777,6 +777,68 @@ class ValueSet extends CanonicalResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'immutable':
+        return ['FhirBoolean'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      case 'compose':
+        return ['ValueSetCompose'];
+      case 'expansion':
+        return ['ValueSetExpansion'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ValueSet clone() => throw UnimplementedError();
   @override
@@ -1394,6 +1456,30 @@ class ValueSetCompose extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'lockedDate':
+        return ['FhirDate'];
+      case 'inactive':
+        return ['FhirBoolean'];
+      case 'include':
+        return ['ValueSetInclude'];
+      case 'exclude':
+        return ['ValueSetInclude'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ValueSetCompose clone() => throw UnimplementedError();
   @override
@@ -1867,6 +1953,32 @@ class ValueSetInclude extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'system':
+        return ['FhirUri'];
+      case 'version':
+        return ['FhirString'];
+      case 'concept':
+        return ['ValueSetConcept'];
+      case 'filter':
+        return ['ValueSetFilter'];
+      case 'valueSet':
+        return ['FhirCanonical'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ValueSetInclude clone() => throw UnimplementedError();
   @override
@@ -2297,6 +2409,28 @@ class ValueSetConcept extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['FhirCode'];
+      case 'display':
+        return ['FhirString'];
+      case 'designation':
+        return ['ValueSetDesignation'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ValueSetConcept clone() => throw UnimplementedError();
   @override
@@ -2691,6 +2825,28 @@ class ValueSetDesignation extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'language':
+        return ['FhirCode'];
+      case 'use':
+        return ['Coding'];
+      case 'value':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ValueSetDesignation clone() => throw UnimplementedError();
   @override
@@ -3080,6 +3236,28 @@ class ValueSetFilter extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'property':
+        return ['FhirCode'];
+      case 'op':
+        return ['FhirCode'];
+      case 'value':
+        return ['FhirString'];
+      default:
+        return <String>[];
     }
   }
 
@@ -3561,6 +3739,34 @@ class ValueSetExpansion extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['FhirUri'];
+      case 'timestamp':
+        return ['FhirDateTime'];
+      case 'total':
+        return ['FhirInteger'];
+      case 'offset':
+        return ['FhirInteger'];
+      case 'parameter':
+        return ['ValueSetParameter'];
+      case 'contains':
+        return ['ValueSetContains'];
+      default:
+        return <String>[];
     }
   }
 
@@ -4080,6 +4286,49 @@ class ValueSetParameter extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'value':
+      case 'valueX':
+        return [
+          'FhirString',
+          'FhirBoolean',
+          'FhirInteger',
+          'FhirDecimal',
+          'FhirUri',
+          'FhirCode',
+          'FhirDateTime',
+        ];
+      case 'valueString':
+        return ['FhirString'];
+      case 'valueBoolean':
+        return ['FhirBoolean'];
+      case 'valueInteger':
+        return ['FhirInteger'];
+      case 'valueDecimal':
+        return ['FhirDecimal'];
+      case 'valueUri':
+        return ['FhirUri'];
+      case 'valueCode':
+        return ['FhirCode'];
+      case 'valueDateTime':
+        return ['FhirDateTime'];
+      default:
+        return <String>[];
     }
   }
 
@@ -4606,6 +4855,38 @@ class ValueSetContains extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'system':
+        return ['FhirUri'];
+      case 'abstract':
+        return ['FhirBoolean'];
+      case 'inactive':
+        return ['FhirBoolean'];
+      case 'version':
+        return ['FhirString'];
+      case 'code':
+        return ['FhirCode'];
+      case 'display':
+        return ['FhirString'];
+      case 'designation':
+        return ['ValueSetDesignation'];
+      case 'contains':
+        return ['ValueSetContains'];
+      default:
+        return <String>[];
     }
   }
 

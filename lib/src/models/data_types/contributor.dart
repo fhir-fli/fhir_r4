@@ -288,6 +288,26 @@ class Contributor extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirCode'];
+      case 'name':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Contributor clone() => throw UnimplementedError();
   @override

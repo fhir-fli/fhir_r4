@@ -468,6 +468,42 @@ class Basic extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'created':
+        return ['FhirDate'];
+      case 'author':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Basic clone() => throw UnimplementedError();
   @override

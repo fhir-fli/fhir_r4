@@ -991,6 +991,78 @@ class Encounter extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'statusHistory':
+        return ['EncounterStatusHistory'];
+      case 'class':
+        return ['Coding'];
+      case 'classHistory':
+        return ['EncounterClassHistory'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'serviceType':
+        return ['CodeableConcept'];
+      case 'priority':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'episodeOfCare':
+        return ['Reference'];
+      case 'basedOn':
+        return ['Reference'];
+      case 'participant':
+        return ['EncounterParticipant'];
+      case 'appointment':
+        return ['Reference'];
+      case 'period':
+        return ['Period'];
+      case 'length':
+        return ['FhirDuration'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'diagnosis':
+        return ['EncounterDiagnosis'];
+      case 'account':
+        return ['Reference'];
+      case 'hospitalization':
+        return ['EncounterHospitalization'];
+      case 'location':
+        return ['EncounterLocation'];
+      case 'serviceProvider':
+        return ['Reference'];
+      case 'partOf':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Encounter clone() => throw UnimplementedError();
   @override
@@ -1643,6 +1715,26 @@ class EncounterStatusHistory extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'status':
+        return ['FhirCode'];
+      case 'period':
+        return ['Period'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   EncounterStatusHistory clone() => throw UnimplementedError();
   @override
@@ -1997,6 +2089,26 @@ class EncounterClassHistory extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'class':
+        return ['Coding'];
+      case 'period':
+        return ['Period'];
+      default:
+        return <String>[];
     }
   }
 
@@ -2380,6 +2492,28 @@ class EncounterParticipant extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'period':
+        return ['Period'];
+      case 'individual':
+        return ['Reference'];
+      default:
+        return <String>[];
     }
   }
 
@@ -2776,6 +2910,28 @@ class EncounterDiagnosis extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'condition':
+        return ['Reference'];
+      case 'use':
+        return ['CodeableConcept'];
+      case 'rank':
+        return ['FhirPositiveInt'];
+      default:
+        return <String>[];
     }
   }
 
@@ -3327,6 +3483,40 @@ class EncounterHospitalization extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'preAdmissionIdentifier':
+        return ['Identifier'];
+      case 'origin':
+        return ['Reference'];
+      case 'admitSource':
+        return ['CodeableConcept'];
+      case 'reAdmission':
+        return ['CodeableConcept'];
+      case 'dietPreference':
+        return ['CodeableConcept'];
+      case 'specialCourtesy':
+        return ['CodeableConcept'];
+      case 'specialArrangement':
+        return ['CodeableConcept'];
+      case 'destination':
+        return ['Reference'];
+      case 'dischargeDisposition':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   EncounterHospitalization clone() => throw UnimplementedError();
   @override
@@ -3806,6 +3996,30 @@ class EncounterLocation extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'location':
+        return ['Reference'];
+      case 'status':
+        return ['FhirCode'];
+      case 'physicalType':
+        return ['CodeableConcept'];
+      case 'period':
+        return ['Period'];
+      default:
+        return <String>[];
     }
   }
 

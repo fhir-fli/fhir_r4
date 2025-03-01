@@ -681,6 +681,58 @@ class ObservationDefinition extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'permittedDataType':
+        return ['FhirCode'];
+      case 'multipleResultsAllowed':
+        return ['FhirBoolean'];
+      case 'method':
+        return ['CodeableConcept'];
+      case 'preferredReportName':
+        return ['FhirString'];
+      case 'quantitativeDetails':
+        return ['ObservationDefinitionQuantitativeDetails'];
+      case 'qualifiedInterval':
+        return ['ObservationDefinitionQualifiedInterval'];
+      case 'validCodedValueSet':
+        return ['Reference'];
+      case 'normalCodedValueSet':
+        return ['Reference'];
+      case 'abnormalCodedValueSet':
+        return ['Reference'];
+      case 'criticalCodedValueSet':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ObservationDefinition clone() => throw UnimplementedError();
   @override
@@ -1243,6 +1295,30 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'customaryUnit':
+        return ['CodeableConcept'];
+      case 'unit':
+        return ['CodeableConcept'];
+      case 'conversionFactor':
+        return ['FhirDecimal'];
+      case 'decimalPrecision':
+        return ['FhirInteger'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ObservationDefinitionQuantitativeDetails clone() =>
       throw UnimplementedError();
@@ -1771,6 +1847,38 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'category':
+        return ['FhirCode'];
+      case 'range':
+        return ['Range'];
+      case 'context':
+        return ['CodeableConcept'];
+      case 'appliesTo':
+        return ['CodeableConcept'];
+      case 'gender':
+        return ['FhirCode'];
+      case 'age':
+        return ['Range'];
+      case 'gestationalAge':
+        return ['Range'];
+      case 'condition':
+        return ['FhirString'];
+      default:
+        return <String>[];
     }
   }
 

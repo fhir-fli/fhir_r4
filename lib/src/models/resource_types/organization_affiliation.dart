@@ -677,6 +677,56 @@ class OrganizationAffiliation extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'active':
+        return ['FhirBoolean'];
+      case 'period':
+        return ['Period'];
+      case 'organization':
+        return ['Reference'];
+      case 'participatingOrganization':
+        return ['Reference'];
+      case 'network':
+        return ['Reference'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'specialty':
+        return ['CodeableConcept'];
+      case 'location':
+        return ['Reference'];
+      case 'healthcareService':
+        return ['Reference'];
+      case 'telecom':
+        return ['ContactPoint'];
+      case 'endpoint':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   OrganizationAffiliation clone() => throw UnimplementedError();
   @override

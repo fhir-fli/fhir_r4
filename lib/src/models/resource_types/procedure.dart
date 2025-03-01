@@ -1209,6 +1209,99 @@ class Procedure extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'instantiatesCanonical':
+        return ['FhirCanonical'];
+      case 'instantiatesUri':
+        return ['FhirUri'];
+      case 'basedOn':
+        return ['Reference'];
+      case 'partOf':
+        return ['Reference'];
+      case 'status':
+        return ['FhirCode'];
+      case 'statusReason':
+        return ['CodeableConcept'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'performed':
+      case 'performedX':
+        return ['FhirDateTime', 'Period', 'FhirString', 'Age', 'Range'];
+      case 'performedDateTime':
+        return ['FhirDateTime'];
+      case 'performedPeriod':
+        return ['Period'];
+      case 'performedString':
+        return ['FhirString'];
+      case 'performedAge':
+        return ['Age'];
+      case 'performedRange':
+        return ['Range'];
+      case 'recorder':
+        return ['Reference'];
+      case 'asserter':
+        return ['Reference'];
+      case 'performer':
+        return ['ProcedurePerformer'];
+      case 'location':
+        return ['Reference'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'bodySite':
+        return ['CodeableConcept'];
+      case 'outcome':
+        return ['CodeableConcept'];
+      case 'report':
+        return ['Reference'];
+      case 'complication':
+        return ['CodeableConcept'];
+      case 'complicationDetail':
+        return ['Reference'];
+      case 'followUp':
+        return ['CodeableConcept'];
+      case 'note':
+        return ['Annotation'];
+      case 'focalDevice':
+        return ['ProcedureFocalDevice'];
+      case 'usedReference':
+        return ['Reference'];
+      case 'usedCode':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Procedure clone() => throw UnimplementedError();
   @override
@@ -1953,6 +2046,28 @@ class ProcedurePerformer extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'function':
+        return ['CodeableConcept'];
+      case 'actor':
+        return ['Reference'];
+      case 'onBehalfOf':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ProcedurePerformer clone() => throw UnimplementedError();
   @override
@@ -2312,6 +2427,26 @@ class ProcedureFocalDevice extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'action':
+        return ['CodeableConcept'];
+      case 'manipulated':
+        return ['Reference'];
+      default:
+        return <String>[];
     }
   }
 

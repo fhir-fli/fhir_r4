@@ -996,6 +996,84 @@ class CapabilityStatement extends CanonicalResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      case 'kind':
+        return ['FhirCode'];
+      case 'instantiates':
+        return ['FhirCanonical'];
+      case 'imports':
+        return ['FhirCanonical'];
+      case 'software':
+        return ['CapabilityStatementSoftware'];
+      case 'implementation':
+        return ['CapabilityStatementImplementation'];
+      case 'fhirVersion':
+        return ['FhirCode'];
+      case 'format':
+        return ['FhirCode'];
+      case 'patchFormat':
+        return ['FhirCode'];
+      case 'implementationGuide':
+        return ['FhirCanonical'];
+      case 'rest':
+        return ['CapabilityStatementRest'];
+      case 'messaging':
+        return ['CapabilityStatementMessaging'];
+      case 'document':
+        return ['CapabilityStatementDocument'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CapabilityStatement clone() => throw UnimplementedError();
   @override
@@ -1683,6 +1761,28 @@ class CapabilityStatementSoftware extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'version':
+        return ['FhirString'];
+      case 'releaseDate':
+        return ['FhirDateTime'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CapabilityStatementSoftware clone() => throw UnimplementedError();
   @override
@@ -2071,6 +2171,28 @@ class CapabilityStatementImplementation extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'description':
+        return ['FhirString'];
+      case 'url':
+        return ['FhirUrl'];
+      case 'custodian':
+        return ['Reference'];
+      default:
+        return <String>[];
     }
   }
 
@@ -2610,6 +2732,38 @@ class CapabilityStatementRest extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'mode':
+        return ['FhirCode'];
+      case 'documentation':
+        return ['FhirMarkdown'];
+      case 'security':
+        return ['CapabilityStatementSecurity'];
+      case 'resource':
+        return ['CapabilityStatementResource'];
+      case 'interaction':
+        return ['CapabilityStatementInteraction'];
+      case 'searchParam':
+        return ['CapabilityStatementSearchParam'];
+      case 'operation':
+        return ['CapabilityStatementOperation'];
+      case 'compartment':
+        return ['FhirCanonical'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CapabilityStatementRest clone() => throw UnimplementedError();
   @override
@@ -3073,6 +3227,28 @@ class CapabilityStatementSecurity extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'cors':
+        return ['FhirBoolean'];
+      case 'service':
+        return ['CodeableConcept'];
+      case 'description':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
     }
   }
 
@@ -3856,6 +4032,56 @@ class CapabilityStatementResource extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirCode'];
+      case 'profile':
+        return ['FhirCanonical'];
+      case 'supportedProfile':
+        return ['FhirCanonical'];
+      case 'documentation':
+        return ['FhirMarkdown'];
+      case 'interaction':
+        return ['CapabilityStatementInteraction'];
+      case 'versioning':
+        return ['FhirCode'];
+      case 'readHistory':
+        return ['FhirBoolean'];
+      case 'updateCreate':
+        return ['FhirBoolean'];
+      case 'conditionalCreate':
+        return ['FhirBoolean'];
+      case 'conditionalRead':
+        return ['FhirCode'];
+      case 'conditionalUpdate':
+        return ['FhirBoolean'];
+      case 'conditionalDelete':
+        return ['FhirCode'];
+      case 'referencePolicy':
+        return ['FhirCode'];
+      case 'searchInclude':
+        return ['FhirString'];
+      case 'searchRevInclude':
+        return ['FhirString'];
+      case 'searchParam':
+        return ['CapabilityStatementSearchParam'];
+      case 'operation':
+        return ['CapabilityStatementOperation'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CapabilityStatementResource clone() => throw UnimplementedError();
   @override
@@ -4380,6 +4606,26 @@ class CapabilityStatementInteraction extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['FhirCode'];
+      case 'documentation':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CapabilityStatementInteraction clone() => throw UnimplementedError();
   @override
@@ -4792,6 +5038,30 @@ class CapabilityStatementSearchParam extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'definition':
+        return ['FhirCanonical'];
+      case 'type':
+        return ['FhirCode'];
+      case 'documentation':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CapabilityStatementSearchParam clone() => throw UnimplementedError();
   @override
@@ -5199,6 +5469,28 @@ class CapabilityStatementOperation extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'definition':
+        return ['FhirCanonical'];
+      case 'documentation':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CapabilityStatementOperation clone() => throw UnimplementedError();
   @override
@@ -5559,6 +5851,26 @@ class CapabilityStatementInteraction1 extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['FhirCode'];
+      case 'documentation':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
     }
   }
 
@@ -5980,6 +6292,30 @@ class CapabilityStatementMessaging extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'endpoint':
+        return ['CapabilityStatementEndpoint'];
+      case 'reliableCache':
+        return ['FhirUnsignedInt'];
+      case 'documentation':
+        return ['FhirMarkdown'];
+      case 'supportedMessage':
+        return ['CapabilityStatementSupportedMessage'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CapabilityStatementMessaging clone() => throw UnimplementedError();
   @override
@@ -6364,6 +6700,26 @@ class CapabilityStatementEndpoint extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'protocol':
+        return ['Coding'];
+      case 'address':
+        return ['FhirUrl'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CapabilityStatementEndpoint clone() => throw UnimplementedError();
   @override
@@ -6716,6 +7072,26 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'mode':
+        return ['FhirCode'];
+      case 'definition':
+        return ['FhirCanonical'];
+      default:
+        return <String>[];
     }
   }
 
@@ -7096,6 +7472,28 @@ class CapabilityStatementDocument extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'mode':
+        return ['FhirCode'];
+      case 'documentation':
+        return ['FhirMarkdown'];
+      case 'profile':
+        return ['FhirCanonical'];
+      default:
+        return <String>[];
     }
   }
 

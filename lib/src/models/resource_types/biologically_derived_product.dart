@@ -641,6 +641,54 @@ class BiologicallyDerivedProduct extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'productCategory':
+        return ['FhirCode'];
+      case 'productCode':
+        return ['CodeableConcept'];
+      case 'status':
+        return ['FhirCode'];
+      case 'request':
+        return ['Reference'];
+      case 'quantity':
+        return ['FhirInteger'];
+      case 'parent':
+        return ['Reference'];
+      case 'collection':
+        return ['BiologicallyDerivedProductCollection'];
+      case 'processing':
+        return ['BiologicallyDerivedProductProcessing'];
+      case 'manipulation':
+        return ['BiologicallyDerivedProductManipulation'];
+      case 'storage':
+        return ['BiologicallyDerivedProductStorage'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   BiologicallyDerivedProduct clone() => throw UnimplementedError();
   @override
@@ -1204,6 +1252,33 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'collector':
+        return ['Reference'];
+      case 'source':
+        return ['Reference'];
+      case 'collected':
+      case 'collectedX':
+        return ['FhirDateTime', 'Period'];
+      case 'collectedDateTime':
+        return ['FhirDateTime'];
+      case 'collectedPeriod':
+        return ['Period'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   BiologicallyDerivedProductCollection clone() => throw UnimplementedError();
   @override
@@ -1655,6 +1730,35 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'description':
+        return ['FhirString'];
+      case 'procedure':
+        return ['CodeableConcept'];
+      case 'additive':
+        return ['Reference'];
+      case 'time':
+      case 'timeX':
+        return ['FhirDateTime', 'Period'];
+      case 'timeDateTime':
+        return ['FhirDateTime'];
+      case 'timePeriod':
+        return ['Period'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   BiologicallyDerivedProductProcessing clone() => throw UnimplementedError();
   @override
@@ -2064,6 +2168,31 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'description':
+        return ['FhirString'];
+      case 'time':
+      case 'timeX':
+        return ['FhirDateTime', 'Period'];
+      case 'timeDateTime':
+        return ['FhirDateTime'];
+      case 'timePeriod':
+        return ['Period'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   BiologicallyDerivedProductManipulation clone() => throw UnimplementedError();
   @override
@@ -2464,6 +2593,30 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'description':
+        return ['FhirString'];
+      case 'temperature':
+        return ['FhirDecimal'];
+      case 'scale':
+        return ['FhirCode'];
+      case 'duration':
+        return ['Period'];
+      default:
+        return <String>[];
     }
   }
 

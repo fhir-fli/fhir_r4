@@ -825,6 +825,74 @@ class SupplyRequest extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'priority':
+        return ['FhirCode'];
+      case 'item':
+      case 'itemX':
+        return ['CodeableConcept', 'Reference'];
+      case 'itemCodeableConcept':
+        return ['CodeableConcept'];
+      case 'itemReference':
+        return ['Reference'];
+      case 'quantity':
+        return ['Quantity'];
+      case 'parameter':
+        return ['SupplyRequestParameter'];
+      case 'occurrence':
+      case 'occurrenceX':
+        return ['FhirDateTime', 'Period', 'Timing'];
+      case 'occurrenceDateTime':
+        return ['FhirDateTime'];
+      case 'occurrencePeriod':
+        return ['Period'];
+      case 'occurrenceTiming':
+        return ['Timing'];
+      case 'authoredOn':
+        return ['FhirDateTime'];
+      case 'requester':
+        return ['Reference'];
+      case 'supplier':
+        return ['Reference'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'deliverFrom':
+        return ['Reference'];
+      case 'deliverTo':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   SupplyRequest clone() => throw UnimplementedError();
   @override
@@ -1422,6 +1490,35 @@ class SupplyRequestParameter extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'value':
+      case 'valueX':
+        return ['CodeableConcept', 'Quantity', 'Range', 'FhirBoolean'];
+      case 'valueCodeableConcept':
+        return ['CodeableConcept'];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueRange':
+        return ['Range'];
+      case 'valueBoolean':
+        return ['FhirBoolean'];
+      default:
+        return <String>[];
     }
   }
 

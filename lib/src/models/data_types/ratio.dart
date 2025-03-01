@@ -269,6 +269,24 @@ class Ratio extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'numerator':
+        return ['Quantity'];
+      case 'denominator':
+        return ['Quantity'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Ratio clone() => throw UnimplementedError();
   @override

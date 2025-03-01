@@ -726,6 +726,60 @@ class InsurancePlan extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'name':
+        return ['FhirString'];
+      case 'alias':
+        return ['FhirString'];
+      case 'period':
+        return ['Period'];
+      case 'ownedBy':
+        return ['Reference'];
+      case 'administeredBy':
+        return ['Reference'];
+      case 'coverageArea':
+        return ['Reference'];
+      case 'contact':
+        return ['InsurancePlanContact'];
+      case 'endpoint':
+        return ['Reference'];
+      case 'network':
+        return ['Reference'];
+      case 'coverage':
+        return ['InsurancePlanCoverage'];
+      case 'plan':
+        return ['InsurancePlanPlan'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   InsurancePlan clone() => throw UnimplementedError();
   @override
@@ -1331,6 +1385,30 @@ class InsurancePlanContact extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'purpose':
+        return ['CodeableConcept'];
+      case 'name':
+        return ['HumanName'];
+      case 'telecom':
+        return ['ContactPoint'];
+      case 'address':
+        return ['Address'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   InsurancePlanContact clone() => throw UnimplementedError();
   @override
@@ -1739,6 +1817,28 @@ class InsurancePlanCoverage extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'network':
+        return ['Reference'];
+      case 'benefit':
+        return ['InsurancePlanBenefit'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   InsurancePlanCoverage clone() => throw UnimplementedError();
   @override
@@ -2142,6 +2242,28 @@ class InsurancePlanBenefit extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'requirement':
+        return ['FhirString'];
+      case 'limit':
+        return ['InsurancePlanLimit'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   InsurancePlanBenefit clone() => throw UnimplementedError();
   @override
@@ -2507,6 +2629,26 @@ class InsurancePlanLimit extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'value':
+        return ['Quantity'];
+      case 'code':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
     }
   }
 
@@ -2985,6 +3127,34 @@ class InsurancePlanPlan extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'coverageArea':
+        return ['Reference'];
+      case 'network':
+        return ['Reference'];
+      case 'generalCost':
+        return ['InsurancePlanGeneralCost'];
+      case 'specificCost':
+        return ['InsurancePlanSpecificCost'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   InsurancePlanPlan clone() => throw UnimplementedError();
   @override
@@ -3455,6 +3625,30 @@ class InsurancePlanGeneralCost extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'groupSize':
+        return ['FhirPositiveInt'];
+      case 'cost':
+        return ['Money'];
+      case 'comment':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   InsurancePlanGeneralCost clone() => throw UnimplementedError();
   @override
@@ -3828,6 +4022,26 @@ class InsurancePlanSpecificCost extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'benefit':
+        return ['InsurancePlanBenefit'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   InsurancePlanSpecificCost clone() => throw UnimplementedError();
   @override
@@ -4189,6 +4403,26 @@ class InsurancePlanBenefit1 extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'cost':
+        return ['InsurancePlanCost'];
+      default:
+        return <String>[];
     }
   }
 
@@ -4606,6 +4840,30 @@ class InsurancePlanCost extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'applicability':
+        return ['CodeableConcept'];
+      case 'qualifiers':
+        return ['CodeableConcept'];
+      case 'value':
+        return ['Quantity'];
+      default:
+        return <String>[];
     }
   }
 

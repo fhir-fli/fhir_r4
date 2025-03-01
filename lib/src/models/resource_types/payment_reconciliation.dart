@@ -723,6 +723,62 @@ class PaymentReconciliation extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'period':
+        return ['Period'];
+      case 'created':
+        return ['FhirDateTime'];
+      case 'paymentIssuer':
+        return ['Reference'];
+      case 'request':
+        return ['Reference'];
+      case 'requestor':
+        return ['Reference'];
+      case 'outcome':
+        return ['FhirCode'];
+      case 'disposition':
+        return ['FhirString'];
+      case 'paymentDate':
+        return ['FhirDate'];
+      case 'paymentAmount':
+        return ['Money'];
+      case 'paymentIdentifier':
+        return ['Identifier'];
+      case 'detail':
+        return ['PaymentReconciliationDetail'];
+      case 'formCode':
+        return ['CodeableConcept'];
+      case 'processNote':
+        return ['PaymentReconciliationProcessNote'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   PaymentReconciliation clone() => throw UnimplementedError();
   @override
@@ -1445,6 +1501,42 @@ class PaymentReconciliationDetail extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'predecessor':
+        return ['Identifier'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'request':
+        return ['Reference'];
+      case 'submitter':
+        return ['Reference'];
+      case 'response':
+        return ['Reference'];
+      case 'date':
+        return ['FhirDate'];
+      case 'responsible':
+        return ['Reference'];
+      case 'payee':
+        return ['Reference'];
+      case 'amount':
+        return ['Money'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   PaymentReconciliationDetail clone() => throw UnimplementedError();
   @override
@@ -1860,6 +1952,26 @@ class PaymentReconciliationProcessNote extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirCode'];
+      case 'text':
+        return ['FhirString'];
+      default:
+        return <String>[];
     }
   }
 

@@ -656,6 +656,57 @@ class Provenance extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'target':
+        return ['Reference'];
+      case 'occurred':
+      case 'occurredX':
+        return ['Period', 'FhirDateTime'];
+      case 'occurredPeriod':
+        return ['Period'];
+      case 'occurredDateTime':
+        return ['FhirDateTime'];
+      case 'recorded':
+        return ['FhirInstant'];
+      case 'policy':
+        return ['FhirUri'];
+      case 'location':
+        return ['Reference'];
+      case 'reason':
+        return ['CodeableConcept'];
+      case 'activity':
+        return ['CodeableConcept'];
+      case 'agent':
+        return ['ProvenanceAgent'];
+      case 'entity':
+        return ['ProvenanceEntity'];
+      case 'signature':
+        return ['Signature'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Provenance clone() => throw UnimplementedError();
   @override
@@ -1209,6 +1260,30 @@ class ProvenanceAgent extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'role':
+        return ['CodeableConcept'];
+      case 'who':
+        return ['Reference'];
+      case 'onBehalfOf':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ProvenanceAgent clone() => throw UnimplementedError();
   @override
@@ -1613,6 +1688,28 @@ class ProvenanceEntity extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'role':
+        return ['FhirCode'];
+      case 'what':
+        return ['Reference'];
+      case 'agent':
+        return ['ProvenanceAgent'];
+      default:
+        return <String>[];
     }
   }
 

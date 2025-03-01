@@ -887,6 +887,76 @@ class Questionnaire extends CanonicalResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'derivedFrom':
+        return ['FhirCanonical'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'subjectType':
+        return ['FhirCode'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      case 'approvalDate':
+        return ['FhirDate'];
+      case 'lastReviewDate':
+        return ['FhirDate'];
+      case 'effectivePeriod':
+        return ['Period'];
+      case 'code':
+        return ['Coding'];
+      case 'item':
+        return ['QuestionnaireItem'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Questionnaire clone() => throw UnimplementedError();
   @override
@@ -1898,6 +1968,54 @@ class QuestionnaireItem extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'linkId':
+        return ['FhirString'];
+      case 'definition':
+        return ['FhirUri'];
+      case 'code':
+        return ['Coding'];
+      case 'prefix':
+        return ['FhirString'];
+      case 'text':
+        return ['FhirString'];
+      case 'type':
+        return ['FhirCode'];
+      case 'enableWhen':
+        return ['QuestionnaireEnableWhen'];
+      case 'enableBehavior':
+        return ['FhirCode'];
+      case 'required':
+        return ['FhirBoolean'];
+      case 'repeats':
+        return ['FhirBoolean'];
+      case 'readOnly':
+        return ['FhirBoolean'];
+      case 'maxLength':
+        return ['FhirInteger'];
+      case 'answerValueSet':
+        return ['FhirCanonical'];
+      case 'answerOption':
+        return ['QuestionnaireAnswerOption'];
+      case 'initial':
+        return ['QuestionnaireInitial'];
+      case 'item':
+        return ['QuestionnaireItem'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   QuestionnaireItem clone() => throw UnimplementedError();
   @override
@@ -2589,6 +2707,60 @@ class QuestionnaireEnableWhen extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'question':
+        return ['FhirString'];
+      case 'operator':
+        return ['FhirCode'];
+      case 'answer':
+      case 'answerX':
+        return [
+          'FhirBoolean',
+          'FhirDecimal',
+          'FhirInteger',
+          'FhirDate',
+          'FhirDateTime',
+          'FhirTime',
+          'FhirString',
+          'Coding',
+          'Quantity',
+          'Reference',
+        ];
+      case 'answerBoolean':
+        return ['FhirBoolean'];
+      case 'answerDecimal':
+        return ['FhirDecimal'];
+      case 'answerInteger':
+        return ['FhirInteger'];
+      case 'answerDate':
+        return ['FhirDate'];
+      case 'answerDateTime':
+        return ['FhirDateTime'];
+      case 'answerTime':
+        return ['FhirTime'];
+      case 'answerString':
+        return ['FhirString'];
+      case 'answerCoding':
+        return ['Coding'];
+      case 'answerQuantity':
+        return ['Quantity'];
+      case 'answerReference':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   QuestionnaireEnableWhen clone() => throw UnimplementedError();
   @override
@@ -3048,6 +3220,46 @@ class QuestionnaireAnswerOption extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'value':
+      case 'valueX':
+        return [
+          'FhirInteger',
+          'FhirDate',
+          'FhirTime',
+          'FhirString',
+          'Coding',
+          'Reference',
+        ];
+      case 'valueInteger':
+        return ['FhirInteger'];
+      case 'valueDate':
+        return ['FhirDate'];
+      case 'valueTime':
+        return ['FhirTime'];
+      case 'valueString':
+        return ['FhirString'];
+      case 'valueCoding':
+        return ['Coding'];
+      case 'valueReference':
+        return ['Reference'];
+      case 'initialSelected':
+        return ['FhirBoolean'];
+      default:
+        return <String>[];
     }
   }
 
@@ -3573,6 +3785,62 @@ class QuestionnaireInitial extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'value':
+      case 'valueX':
+        return [
+          'FhirBoolean',
+          'FhirDecimal',
+          'FhirInteger',
+          'FhirDate',
+          'FhirDateTime',
+          'FhirTime',
+          'FhirString',
+          'FhirUri',
+          'Attachment',
+          'Coding',
+          'Quantity',
+          'Reference',
+        ];
+      case 'valueBoolean':
+        return ['FhirBoolean'];
+      case 'valueDecimal':
+        return ['FhirDecimal'];
+      case 'valueInteger':
+        return ['FhirInteger'];
+      case 'valueDate':
+        return ['FhirDate'];
+      case 'valueDateTime':
+        return ['FhirDateTime'];
+      case 'valueTime':
+        return ['FhirTime'];
+      case 'valueString':
+        return ['FhirString'];
+      case 'valueUri':
+        return ['FhirUri'];
+      case 'valueAttachment':
+        return ['Attachment'];
+      case 'valueCoding':
+        return ['Coding'];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueReference':
+        return ['Reference'];
+      default:
+        return <String>[];
     }
   }
 

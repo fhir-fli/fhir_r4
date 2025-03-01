@@ -627,6 +627,54 @@ class AuditEvent extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['Coding'];
+      case 'subtype':
+        return ['Coding'];
+      case 'action':
+        return ['FhirCode'];
+      case 'period':
+        return ['Period'];
+      case 'recorded':
+        return ['FhirInstant'];
+      case 'outcome':
+        return ['FhirCode'];
+      case 'outcomeDesc':
+        return ['FhirString'];
+      case 'purposeOfEvent':
+        return ['CodeableConcept'];
+      case 'agent':
+        return ['AuditEventAgent'];
+      case 'source':
+        return ['AuditEventSource'];
+      case 'entity':
+        return ['AuditEventEntity'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   AuditEvent clone() => throw UnimplementedError();
   @override
@@ -1364,6 +1412,44 @@ class AuditEventAgent extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'role':
+        return ['CodeableConcept'];
+      case 'who':
+        return ['Reference'];
+      case 'altId':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'requestor':
+        return ['FhirBoolean'];
+      case 'location':
+        return ['Reference'];
+      case 'policy':
+        return ['FhirUri'];
+      case 'media':
+        return ['Coding'];
+      case 'network':
+        return ['AuditEventNetwork'];
+      case 'purposeOfUse':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   AuditEventAgent clone() => throw UnimplementedError();
   @override
@@ -1812,6 +1898,26 @@ class AuditEventNetwork extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'address':
+        return ['FhirString'];
+      case 'type':
+        return ['FhirCode'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   AuditEventNetwork clone() => throw UnimplementedError();
   @override
@@ -2192,6 +2298,28 @@ class AuditEventSource extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'site':
+        return ['FhirString'];
+      case 'observer':
+        return ['Reference'];
+      case 'type':
+        return ['Coding'];
+      default:
+        return <String>[];
     }
   }
 
@@ -2748,6 +2876,40 @@ class AuditEventEntity extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'what':
+        return ['Reference'];
+      case 'type':
+        return ['Coding'];
+      case 'role':
+        return ['Coding'];
+      case 'lifecycle':
+        return ['Coding'];
+      case 'securityLabel':
+        return ['Coding'];
+      case 'name':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirString'];
+      case 'query':
+        return ['FhirBase64Binary'];
+      case 'detail':
+        return ['AuditEventDetail'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   AuditEventEntity clone() => throw UnimplementedError();
   @override
@@ -3204,6 +3366,31 @@ class AuditEventDetail extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirString'];
+      case 'value':
+      case 'valueX':
+        return ['FhirString', 'FhirBase64Binary'];
+      case 'valueString':
+        return ['FhirString'];
+      case 'valueBase64Binary':
+        return ['FhirBase64Binary'];
+      default:
+        return <String>[];
     }
   }
 

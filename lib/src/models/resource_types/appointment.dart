@@ -968,6 +968,76 @@ class Appointment extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'cancelationReason':
+        return ['CodeableConcept'];
+      case 'serviceCategory':
+        return ['CodeableConcept'];
+      case 'serviceType':
+        return ['CodeableConcept'];
+      case 'specialty':
+        return ['CodeableConcept'];
+      case 'appointmentType':
+        return ['CodeableConcept'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'priority':
+        return ['FhirUnsignedInt'];
+      case 'description':
+        return ['FhirString'];
+      case 'supportingInformation':
+        return ['Reference'];
+      case 'start':
+        return ['FhirInstant'];
+      case 'end':
+        return ['FhirInstant'];
+      case 'minutesDuration':
+        return ['FhirPositiveInt'];
+      case 'slot':
+        return ['Reference'];
+      case 'created':
+        return ['FhirDateTime'];
+      case 'comment':
+        return ['FhirString'];
+      case 'patientInstruction':
+        return ['FhirString'];
+      case 'basedOn':
+        return ['Reference'];
+      case 'participant':
+        return ['AppointmentParticipant'];
+      case 'requestedPeriod':
+        return ['Period'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Appointment clone() => throw UnimplementedError();
   @override
@@ -1675,6 +1745,32 @@ class AppointmentParticipant extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'actor':
+        return ['Reference'];
+      case 'required':
+        return ['FhirCode'];
+      case 'status':
+        return ['FhirCode'];
+      case 'period':
+        return ['Period'];
+      default:
+        return <String>[];
     }
   }
 

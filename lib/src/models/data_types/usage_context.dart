@@ -330,6 +330,33 @@ class UsageContext extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['Coding'];
+      case 'value':
+      case 'valueX':
+        return ['CodeableConcept', 'Quantity', 'Range', 'Reference'];
+      case 'valueCodeableConcept':
+        return ['CodeableConcept'];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueRange':
+        return ['Range'];
+      case 'valueReference':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   UsageContext clone() => throw UnimplementedError();
   @override

@@ -325,6 +325,30 @@ class Binary extends Resource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'contentType':
+        return ['FhirCode'];
+      case 'securityContext':
+        return ['Reference'];
+      case 'data':
+        return ['FhirBase64Binary'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Binary clone() => throw UnimplementedError();
   @override

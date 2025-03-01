@@ -542,6 +542,48 @@ class VisionPrescription extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'created':
+        return ['FhirDateTime'];
+      case 'patient':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'dateWritten':
+        return ['FhirDateTime'];
+      case 'prescriber':
+        return ['Reference'];
+      case 'lensSpecification':
+        return ['VisionPrescriptionLensSpecification'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   VisionPrescription clone() => throw UnimplementedError();
   @override
@@ -1306,6 +1348,50 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'product':
+        return ['CodeableConcept'];
+      case 'eye':
+        return ['FhirCode'];
+      case 'sphere':
+        return ['FhirDecimal'];
+      case 'cylinder':
+        return ['FhirDecimal'];
+      case 'axis':
+        return ['FhirInteger'];
+      case 'prism':
+        return ['VisionPrescriptionPrism'];
+      case 'add':
+        return ['FhirDecimal'];
+      case 'power':
+        return ['FhirDecimal'];
+      case 'backCurve':
+        return ['FhirDecimal'];
+      case 'diameter':
+        return ['FhirDecimal'];
+      case 'duration':
+        return ['Quantity'];
+      case 'color':
+        return ['FhirString'];
+      case 'brand':
+        return ['FhirString'];
+      case 'note':
+        return ['Annotation'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   VisionPrescriptionLensSpecification clone() => throw UnimplementedError();
   @override
@@ -1764,6 +1850,26 @@ class VisionPrescriptionPrism extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'amount':
+        return ['FhirDecimal'];
+      case 'base':
+        return ['FhirCode'];
+      default:
+        return <String>[];
     }
   }
 

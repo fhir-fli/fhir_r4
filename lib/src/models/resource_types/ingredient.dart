@@ -557,6 +557,48 @@ class Ingredient extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'for':
+        return ['Reference'];
+      case 'role':
+        return ['CodeableConcept'];
+      case 'function':
+        return ['CodeableConcept'];
+      case 'allergenicIndicator':
+        return ['FhirBoolean'];
+      case 'manufacturer':
+        return ['IngredientManufacturer'];
+      case 'substance':
+        return ['IngredientSubstance'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Ingredient clone() => throw UnimplementedError();
   @override
@@ -1025,6 +1067,26 @@ class IngredientManufacturer extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'role':
+        return ['FhirCode'];
+      case 'manufacturer':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   IngredientManufacturer clone() => throw UnimplementedError();
   @override
@@ -1382,6 +1444,26 @@ class IngredientSubstance extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableReference'];
+      case 'strength':
+        return ['IngredientStrength'];
+      default:
+        return <String>[];
     }
   }
 
@@ -1975,6 +2057,46 @@ class IngredientStrength extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'presentation':
+      case 'presentationX':
+        return ['Ratio', 'RatioRange'];
+      case 'presentationRatio':
+        return ['Ratio'];
+      case 'presentationRatioRange':
+        return ['RatioRange'];
+      case 'textPresentation':
+        return ['FhirString'];
+      case 'concentration':
+      case 'concentrationX':
+        return ['Ratio', 'RatioRange'];
+      case 'concentrationRatio':
+        return ['Ratio'];
+      case 'concentrationRatioRange':
+        return ['RatioRange'];
+      case 'textConcentration':
+        return ['FhirString'];
+      case 'measurementPoint':
+        return ['FhirString'];
+      case 'country':
+        return ['CodeableConcept'];
+      case 'referenceStrength':
+        return ['IngredientReferenceStrength'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   IngredientStrength clone() => throw UnimplementedError();
   @override
@@ -2476,6 +2598,35 @@ class IngredientReferenceStrength extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'substance':
+        return ['CodeableReference'];
+      case 'strength':
+      case 'strengthX':
+        return ['Ratio', 'RatioRange'];
+      case 'strengthRatio':
+        return ['Ratio'];
+      case 'strengthRatioRange':
+        return ['RatioRange'];
+      case 'measurementPoint':
+        return ['FhirString'];
+      case 'country':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
     }
   }
 

@@ -881,6 +881,72 @@ class AdverseEvent extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'actuality':
+        return ['FhirCode'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'event':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'detected':
+        return ['FhirDateTime'];
+      case 'recordedDate':
+        return ['FhirDateTime'];
+      case 'resultingCondition':
+        return ['Reference'];
+      case 'location':
+        return ['Reference'];
+      case 'seriousness':
+        return ['CodeableConcept'];
+      case 'severity':
+        return ['CodeableConcept'];
+      case 'outcome':
+        return ['CodeableConcept'];
+      case 'recorder':
+        return ['Reference'];
+      case 'contributor':
+        return ['Reference'];
+      case 'suspectEntity':
+        return ['AdverseEventSuspectEntity'];
+      case 'subjectMedicalHistory':
+        return ['Reference'];
+      case 'referenceDocument':
+        return ['Reference'];
+      case 'study':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   AdverseEvent clone() => throw UnimplementedError();
   @override
@@ -1472,6 +1538,26 @@ class AdverseEventSuspectEntity extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'instance':
+        return ['Reference'];
+      case 'causality':
+        return ['AdverseEventCausality'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   AdverseEventSuspectEntity clone() => throw UnimplementedError();
   @override
@@ -1878,6 +1964,30 @@ class AdverseEventCausality extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'assessment':
+        return ['CodeableConcept'];
+      case 'productRelatedness':
+        return ['FhirString'];
+      case 'author':
+        return ['Reference'];
+      case 'method':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
     }
   }
 

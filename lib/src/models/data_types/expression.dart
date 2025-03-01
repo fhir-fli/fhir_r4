@@ -339,6 +339,30 @@ class FhirExpression extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'description':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirId'];
+      case 'language':
+        return ['FhirCode'];
+      case 'expression':
+        return ['FhirString'];
+      case 'reference':
+        return ['FhirUri'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   FhirExpression clone() => throw UnimplementedError();
   @override

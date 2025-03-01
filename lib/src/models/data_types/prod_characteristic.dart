@@ -528,6 +528,44 @@ class ProdCharacteristic extends BackboneType {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'height':
+        return ['Quantity'];
+      case 'width':
+        return ['Quantity'];
+      case 'depth':
+        return ['Quantity'];
+      case 'weight':
+        return ['Quantity'];
+      case 'nominalVolume':
+        return ['Quantity'];
+      case 'externalDiameter':
+        return ['Quantity'];
+      case 'shape':
+        return ['FhirString'];
+      case 'color':
+        return ['FhirString'];
+      case 'imprint':
+        return ['FhirString'];
+      case 'image':
+        return ['Attachment'];
+      case 'scoring':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ProdCharacteristic clone() => throw UnimplementedError();
   @override

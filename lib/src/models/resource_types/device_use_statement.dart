@@ -744,6 +744,65 @@ class DeviceUseStatement extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'basedOn':
+        return ['Reference'];
+      case 'status':
+        return ['FhirCode'];
+      case 'subject':
+        return ['Reference'];
+      case 'derivedFrom':
+        return ['Reference'];
+      case 'timing':
+      case 'timingX':
+        return ['Timing', 'Period', 'FhirDateTime'];
+      case 'timingTiming':
+        return ['Timing'];
+      case 'timingPeriod':
+        return ['Period'];
+      case 'timingDateTime':
+        return ['FhirDateTime'];
+      case 'recordedOn':
+        return ['FhirDateTime'];
+      case 'source':
+        return ['Reference'];
+      case 'device':
+        return ['Reference'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'bodySite':
+        return ['CodeableConcept'];
+      case 'note':
+        return ['Annotation'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   DeviceUseStatement clone() => throw UnimplementedError();
   @override

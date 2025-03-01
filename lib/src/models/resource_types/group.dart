@@ -604,6 +604,52 @@ class FhirGroup extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'active':
+        return ['FhirBoolean'];
+      case 'type':
+        return ['FhirCode'];
+      case 'actual':
+        return ['FhirBoolean'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'name':
+        return ['FhirString'];
+      case 'quantity':
+        return ['FhirUnsignedInt'];
+      case 'managingEntity':
+        return ['Reference'];
+      case 'characteristic':
+        return ['GroupCharacteristic'];
+      case 'member':
+        return ['GroupMember'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   FhirGroup clone() => throw UnimplementedError();
   @override
@@ -1217,6 +1263,47 @@ class GroupCharacteristic extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'value':
+      case 'valueX':
+        return [
+          'CodeableConcept',
+          'FhirBoolean',
+          'Quantity',
+          'Range',
+          'Reference',
+        ];
+      case 'valueCodeableConcept':
+        return ['CodeableConcept'];
+      case 'valueBoolean':
+        return ['FhirBoolean'];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueRange':
+        return ['Range'];
+      case 'valueReference':
+        return ['Reference'];
+      case 'exclude':
+        return ['FhirBoolean'];
+      case 'period':
+        return ['Period'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   GroupCharacteristic clone() => throw UnimplementedError();
   @override
@@ -1610,6 +1697,28 @@ class GroupMember extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'entity':
+        return ['Reference'];
+      case 'period':
+        return ['Period'];
+      case 'inactive':
+        return ['FhirBoolean'];
+      default:
+        return <String>[];
     }
   }
 

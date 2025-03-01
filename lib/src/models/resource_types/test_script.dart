@@ -1006,6 +1006,80 @@ class TestScript extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      case 'origin':
+        return ['TestScriptOrigin'];
+      case 'destination':
+        return ['TestScriptDestination'];
+      case 'metadata':
+        return ['TestScriptMetadata'];
+      case 'fixture':
+        return ['TestScriptFixture'];
+      case 'profile':
+        return ['Reference'];
+      case 'variable':
+        return ['TestScriptVariable'];
+      case 'setup':
+        return ['TestScriptSetup'];
+      case 'test':
+        return ['TestScriptTest'];
+      case 'teardown':
+        return ['TestScriptTeardown'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   TestScript clone() => throw UnimplementedError();
   @override
@@ -1637,6 +1711,26 @@ class TestScriptOrigin extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'index':
+        return ['FhirInteger'];
+      case 'profile':
+        return ['Coding'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   TestScriptOrigin clone() => throw UnimplementedError();
   @override
@@ -1987,6 +2081,26 @@ class TestScriptDestination extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'index':
+        return ['FhirInteger'];
+      case 'profile':
+        return ['Coding'];
+      default:
+        return <String>[];
     }
   }
 
@@ -2349,6 +2463,26 @@ class TestScriptMetadata extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'link':
+        return ['TestScriptLink'];
+      case 'capability':
+        return ['TestScriptCapability'];
+      default:
+        return <String>[];
     }
   }
 
@@ -2716,6 +2850,26 @@ class TestScriptLink extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'description':
+        return ['FhirString'];
+      default:
+        return <String>[];
     }
   }
 
@@ -3201,6 +3355,36 @@ class TestScriptCapability extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'required':
+        return ['FhirBoolean'];
+      case 'validated':
+        return ['FhirBoolean'];
+      case 'description':
+        return ['FhirString'];
+      case 'origin':
+        return ['FhirInteger'];
+      case 'destination':
+        return ['FhirInteger'];
+      case 'link':
+        return ['FhirUri'];
+      case 'capabilities':
+        return ['FhirCanonical'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   TestScriptCapability clone() => throw UnimplementedError();
   @override
@@ -3636,6 +3820,28 @@ class TestScriptFixture extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'autocreate':
+        return ['FhirBoolean'];
+      case 'autodelete':
+        return ['FhirBoolean'];
+      case 'resource':
+        return ['Reference'];
+      default:
+        return <String>[];
     }
   }
 
@@ -4158,6 +4364,38 @@ class TestScriptVariable extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'defaultValue':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirString'];
+      case 'expression':
+        return ['FhirString'];
+      case 'headerField':
+        return ['FhirString'];
+      case 'hint':
+        return ['FhirString'];
+      case 'path':
+        return ['FhirString'];
+      case 'sourceId':
+        return ['FhirId'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   TestScriptVariable clone() => throw UnimplementedError();
   @override
@@ -4537,6 +4775,24 @@ class TestScriptSetup extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'action':
+        return ['TestScriptAction'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   TestScriptSetup clone() => throw UnimplementedError();
   @override
@@ -4886,6 +5142,26 @@ class TestScriptAction extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'operation':
+        return ['TestScriptOperation'];
+      case 'assert':
+        return ['TestScriptAssert'];
+      default:
+        return <String>[];
     }
   }
 
@@ -5630,6 +5906,56 @@ class TestScriptOperation extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['Coding'];
+      case 'resource':
+        return ['FhirCode'];
+      case 'label':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirString'];
+      case 'accept':
+        return ['FhirCode'];
+      case 'contentType':
+        return ['FhirCode'];
+      case 'destination':
+        return ['FhirInteger'];
+      case 'encodeRequestUrl':
+        return ['FhirBoolean'];
+      case 'method':
+        return ['FhirCode'];
+      case 'origin':
+        return ['FhirInteger'];
+      case 'params':
+        return ['FhirString'];
+      case 'requestHeader':
+        return ['TestScriptRequestHeader'];
+      case 'requestId':
+        return ['FhirId'];
+      case 'responseId':
+        return ['FhirId'];
+      case 'sourceId':
+        return ['FhirId'];
+      case 'targetId':
+        return ['FhirId'];
+      case 'url':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   TestScriptOperation clone() => throw UnimplementedError();
   @override
@@ -6105,6 +6431,26 @@ class TestScriptRequestHeader extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'field':
+        return ['FhirString'];
+      case 'value':
+        return ['FhirString'];
+      default:
+        return <String>[];
     }
   }
 
@@ -6978,6 +7324,66 @@ class TestScriptAssert extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'label':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirString'];
+      case 'direction':
+        return ['FhirCode'];
+      case 'compareToSourceId':
+        return ['FhirString'];
+      case 'compareToSourceExpression':
+        return ['FhirString'];
+      case 'compareToSourcePath':
+        return ['FhirString'];
+      case 'contentType':
+        return ['FhirCode'];
+      case 'expression':
+        return ['FhirString'];
+      case 'headerField':
+        return ['FhirString'];
+      case 'minimumId':
+        return ['FhirString'];
+      case 'navigationLinks':
+        return ['FhirBoolean'];
+      case 'operator':
+        return ['FhirCode'];
+      case 'path':
+        return ['FhirString'];
+      case 'requestMethod':
+        return ['FhirCode'];
+      case 'requestURL':
+        return ['FhirString'];
+      case 'resource':
+        return ['FhirCode'];
+      case 'response':
+        return ['FhirCode'];
+      case 'responseCode':
+        return ['FhirString'];
+      case 'sourceId':
+        return ['FhirId'];
+      case 'validateProfileId':
+        return ['FhirId'];
+      case 'value':
+        return ['FhirString'];
+      case 'warningOnly':
+        return ['FhirBoolean'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   TestScriptAssert clone() => throw UnimplementedError();
   @override
@@ -7522,6 +7928,28 @@ class TestScriptTest extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirString'];
+      case 'action':
+        return ['TestScriptAction'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   TestScriptTest clone() => throw UnimplementedError();
   @override
@@ -7890,6 +8318,26 @@ class TestScriptAction1 extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'operation':
+        return ['TestScriptOperation'];
+      case 'assert':
+        return ['TestScriptAssert'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   TestScriptAction1 clone() => throw UnimplementedError();
   @override
@@ -8222,6 +8670,24 @@ class TestScriptTeardown extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'action':
+        return ['TestScriptAction'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   TestScriptTeardown clone() => throw UnimplementedError();
   @override
@@ -8545,6 +9011,24 @@ class TestScriptAction2 extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'operation':
+        return ['TestScriptOperation'];
+      default:
+        return <String>[];
     }
   }
 

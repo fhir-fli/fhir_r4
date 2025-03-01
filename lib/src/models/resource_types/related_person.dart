@@ -668,6 +668,56 @@ class RelatedPerson extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'active':
+        return ['FhirBoolean'];
+      case 'patient':
+        return ['Reference'];
+      case 'relationship':
+        return ['CodeableConcept'];
+      case 'name':
+        return ['HumanName'];
+      case 'telecom':
+        return ['ContactPoint'];
+      case 'gender':
+        return ['FhirCode'];
+      case 'birthDate':
+        return ['FhirDate'];
+      case 'address':
+        return ['Address'];
+      case 'photo':
+        return ['Attachment'];
+      case 'period':
+        return ['Period'];
+      case 'communication':
+        return ['RelatedPersonCommunication'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   RelatedPerson clone() => throw UnimplementedError();
   @override
@@ -1190,6 +1240,26 @@ class RelatedPersonCommunication extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'language':
+        return ['CodeableConcept'];
+      case 'preferred':
+        return ['FhirBoolean'];
+      default:
+        return <String>[];
     }
   }
 

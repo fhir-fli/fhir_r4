@@ -466,6 +466,42 @@ class ImmunizationRecommendation extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'patient':
+        return ['Reference'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'authority':
+        return ['Reference'];
+      case 'recommendation':
+        return ['ImmunizationRecommendationRecommendation'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ImmunizationRecommendation clone() => throw UnimplementedError();
   @override
@@ -1258,6 +1294,56 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'vaccineCode':
+        return ['CodeableConcept'];
+      case 'targetDisease':
+        return ['CodeableConcept'];
+      case 'contraindicatedVaccineCode':
+        return ['CodeableConcept'];
+      case 'forecastStatus':
+        return ['CodeableConcept'];
+      case 'forecastReason':
+        return ['CodeableConcept'];
+      case 'dateCriterion':
+        return ['ImmunizationRecommendationDateCriterion'];
+      case 'description':
+        return ['FhirString'];
+      case 'series':
+        return ['FhirString'];
+      case 'doseNumber':
+      case 'doseNumberX':
+        return ['FhirPositiveInt', 'FhirString'];
+      case 'doseNumberPositiveInt':
+        return ['FhirPositiveInt'];
+      case 'doseNumberString':
+        return ['FhirString'];
+      case 'seriesDoses':
+      case 'seriesDosesX':
+        return ['FhirPositiveInt', 'FhirString'];
+      case 'seriesDosesPositiveInt':
+        return ['FhirPositiveInt'];
+      case 'seriesDosesString':
+        return ['FhirString'];
+      case 'supportingImmunization':
+        return ['Reference'];
+      case 'supportingPatientInformation':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ImmunizationRecommendationRecommendation clone() =>
       throw UnimplementedError();
@@ -1733,6 +1819,26 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'value':
+        return ['FhirDateTime'];
+      default:
+        return <String>[];
     }
   }
 

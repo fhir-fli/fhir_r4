@@ -389,6 +389,34 @@ class RelatedArtifact extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirCode'];
+      case 'label':
+        return ['FhirString'];
+      case 'display':
+        return ['FhirString'];
+      case 'citation':
+        return ['FhirMarkdown'];
+      case 'url':
+        return ['FhirUrl'];
+      case 'document':
+        return ['Attachment'];
+      case 'resource':
+        return ['FhirCanonical'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   RelatedArtifact clone() => throw UnimplementedError();
   @override

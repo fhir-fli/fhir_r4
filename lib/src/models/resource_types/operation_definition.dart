@@ -976,6 +976,84 @@ class OperationDefinition extends CanonicalResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'status':
+        return ['FhirCode'];
+      case 'kind':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'affectsState':
+        return ['FhirBoolean'];
+      case 'code':
+        return ['FhirCode'];
+      case 'comment':
+        return ['FhirMarkdown'];
+      case 'base':
+        return ['FhirCanonical'];
+      case 'resource':
+        return ['FhirCode'];
+      case 'system':
+        return ['FhirBoolean'];
+      case 'type':
+        return ['FhirBoolean'];
+      case 'instance':
+        return ['FhirBoolean'];
+      case 'inputProfile':
+        return ['FhirCanonical'];
+      case 'outputProfile':
+        return ['FhirCanonical'];
+      case 'parameter':
+        return ['OperationDefinitionParameter'];
+      case 'overload':
+        return ['OperationDefinitionOverload'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   OperationDefinition clone() => throw UnimplementedError();
   @override
@@ -1843,6 +1921,44 @@ class OperationDefinitionParameter extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirCode'];
+      case 'use':
+        return ['FhirCode'];
+      case 'min':
+        return ['FhirInteger'];
+      case 'max':
+        return ['FhirString'];
+      case 'documentation':
+        return ['FhirString'];
+      case 'type':
+        return ['FhirCode'];
+      case 'targetProfile':
+        return ['FhirCanonical'];
+      case 'searchType':
+        return ['FhirCode'];
+      case 'binding':
+        return ['OperationDefinitionBinding'];
+      case 'referencedFrom':
+        return ['OperationDefinitionReferencedFrom'];
+      case 'part':
+        return ['OperationDefinitionParameter'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   OperationDefinitionParameter clone() => throw UnimplementedError();
   @override
@@ -2291,6 +2407,26 @@ class OperationDefinitionBinding extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'strength':
+        return ['FhirCode'];
+      case 'valueSet':
+        return ['FhirCanonical'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   OperationDefinitionBinding clone() => throw UnimplementedError();
   @override
@@ -2648,6 +2784,26 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'source':
+        return ['FhirString'];
+      case 'sourceId':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   OperationDefinitionReferencedFrom clone() => throw UnimplementedError();
   @override
@@ -2999,6 +3155,26 @@ class OperationDefinitionOverload extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'parameterName':
+        return ['FhirString'];
+      case 'comment':
+        return ['FhirString'];
+      default:
+        return <String>[];
     }
   }
 

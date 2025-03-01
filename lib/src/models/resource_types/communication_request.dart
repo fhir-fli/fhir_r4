@@ -984,6 +984,81 @@ class CommunicationRequest extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'basedOn':
+        return ['Reference'];
+      case 'replaces':
+        return ['Reference'];
+      case 'groupIdentifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'statusReason':
+        return ['CodeableConcept'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'priority':
+        return ['FhirCode'];
+      case 'doNotPerform':
+        return ['FhirBoolean'];
+      case 'medium':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'about':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'payload':
+        return ['CommunicationRequestPayload'];
+      case 'occurrence':
+      case 'occurrenceX':
+        return ['FhirDateTime', 'Period'];
+      case 'occurrenceDateTime':
+        return ['FhirDateTime'];
+      case 'occurrencePeriod':
+        return ['Period'];
+      case 'authoredOn':
+        return ['FhirDateTime'];
+      case 'requester':
+        return ['Reference'];
+      case 'recipient':
+        return ['Reference'];
+      case 'sender':
+        return ['Reference'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'note':
+        return ['Annotation'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CommunicationRequest clone() => throw UnimplementedError();
   @override
@@ -1640,6 +1715,31 @@ class CommunicationRequestPayload extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'content':
+      case 'contentX':
+        return ['FhirString', 'Attachment', 'Reference'];
+      case 'contentString':
+        return ['FhirString'];
+      case 'contentAttachment':
+        return ['Attachment'];
+      case 'contentReference':
+        return ['Reference'];
+      default:
+        return <String>[];
     }
   }
 

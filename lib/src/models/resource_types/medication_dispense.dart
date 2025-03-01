@@ -1081,6 +1081,90 @@ class MedicationDispense extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'partOf':
+        return ['Reference'];
+      case 'status':
+        return ['FhirCode'];
+      case 'statusReason':
+      case 'statusReasonX':
+        return ['CodeableConcept', 'Reference'];
+      case 'statusReasonCodeableConcept':
+        return ['CodeableConcept'];
+      case 'statusReasonReference':
+        return ['Reference'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'medication':
+      case 'medicationX':
+        return ['CodeableConcept', 'Reference'];
+      case 'medicationCodeableConcept':
+        return ['CodeableConcept'];
+      case 'medicationReference':
+        return ['Reference'];
+      case 'subject':
+        return ['Reference'];
+      case 'context':
+        return ['Reference'];
+      case 'supportingInformation':
+        return ['Reference'];
+      case 'performer':
+        return ['MedicationDispensePerformer'];
+      case 'location':
+        return ['Reference'];
+      case 'authorizingPrescription':
+        return ['Reference'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'quantity':
+        return ['Quantity'];
+      case 'daysSupply':
+        return ['Quantity'];
+      case 'whenPrepared':
+        return ['FhirDateTime'];
+      case 'whenHandedOver':
+        return ['FhirDateTime'];
+      case 'destination':
+        return ['Reference'];
+      case 'receiver':
+        return ['Reference'];
+      case 'note':
+        return ['Annotation'];
+      case 'dosageInstruction':
+        return ['Dosage'];
+      case 'substitution':
+        return ['MedicationDispenseSubstitution'];
+      case 'detectedIssue':
+        return ['Reference'];
+      case 'eventHistory':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MedicationDispense clone() => throw UnimplementedError();
   @override
@@ -1720,6 +1804,26 @@ class MedicationDispensePerformer extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'function':
+        return ['CodeableConcept'];
+      case 'actor':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MedicationDispensePerformer clone() => throw UnimplementedError();
   @override
@@ -2136,6 +2240,30 @@ class MedicationDispenseSubstitution extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'wasSubstituted':
+        return ['FhirBoolean'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'reason':
+        return ['CodeableConcept'];
+      case 'responsibleParty':
+        return ['Reference'];
+      default:
+        return <String>[];
     }
   }
 

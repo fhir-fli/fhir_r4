@@ -1078,6 +1078,87 @@ class Evidence extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'version':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'citeAs':
+      case 'citeAsX':
+        return ['Reference', 'FhirMarkdown'];
+      case 'citeAsReference':
+        return ['Reference'];
+      case 'citeAsMarkdown':
+        return ['FhirMarkdown'];
+      case 'status':
+        return ['FhirCode'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'approvalDate':
+        return ['FhirDate'];
+      case 'lastReviewDate':
+        return ['FhirDate'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'author':
+        return ['ContactDetail'];
+      case 'editor':
+        return ['ContactDetail'];
+      case 'reviewer':
+        return ['ContactDetail'];
+      case 'endorser':
+        return ['ContactDetail'];
+      case 'relatedArtifact':
+        return ['RelatedArtifact'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'assertion':
+        return ['FhirMarkdown'];
+      case 'note':
+        return ['Annotation'];
+      case 'variableDefinition':
+        return ['EvidenceVariableDefinition'];
+      case 'synthesisType':
+        return ['CodeableConcept'];
+      case 'studyType':
+        return ['CodeableConcept'];
+      case 'statistic':
+        return ['EvidenceStatistic'];
+      case 'certainty':
+        return ['EvidenceCertainty'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Evidence clone() => throw UnimplementedError();
   @override
@@ -1843,6 +1924,34 @@ class EvidenceVariableDefinition extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'note':
+        return ['Annotation'];
+      case 'variableRole':
+        return ['CodeableConcept'];
+      case 'observed':
+        return ['Reference'];
+      case 'intended':
+        return ['Reference'];
+      case 'directnessMatch':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   EvidenceVariableDefinition clone() => throw UnimplementedError();
   @override
@@ -2451,6 +2560,42 @@ class EvidenceStatistic extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'description':
+        return ['FhirString'];
+      case 'note':
+        return ['Annotation'];
+      case 'statisticType':
+        return ['CodeableConcept'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'quantity':
+        return ['Quantity'];
+      case 'numberOfEvents':
+        return ['FhirUnsignedInt'];
+      case 'numberAffected':
+        return ['FhirUnsignedInt'];
+      case 'sampleSize':
+        return ['EvidenceSampleSize'];
+      case 'attributeEstimate':
+        return ['EvidenceAttributeEstimate'];
+      case 'modelCharacteristic':
+        return ['EvidenceModelCharacteristic'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   EvidenceStatistic clone() => throw UnimplementedError();
   @override
@@ -2965,6 +3110,32 @@ class EvidenceSampleSize extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'description':
+        return ['FhirString'];
+      case 'note':
+        return ['Annotation'];
+      case 'numberOfStudies':
+        return ['FhirUnsignedInt'];
+      case 'numberOfParticipants':
+        return ['FhirUnsignedInt'];
+      case 'knownDataCount':
+        return ['FhirUnsignedInt'];
+      default:
+        return <String>[];
     }
   }
 
@@ -3488,6 +3659,36 @@ class EvidenceAttributeEstimate extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'description':
+        return ['FhirString'];
+      case 'note':
+        return ['Annotation'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'quantity':
+        return ['Quantity'];
+      case 'level':
+        return ['FhirDecimal'];
+      case 'range':
+        return ['Range'];
+      case 'attributeEstimate':
+        return ['EvidenceAttributeEstimate'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   EvidenceAttributeEstimate clone() => throw UnimplementedError();
   @override
@@ -3950,6 +4151,30 @@ class EvidenceModelCharacteristic extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'value':
+        return ['Quantity'];
+      case 'variable':
+        return ['EvidenceModelCharacteristicVariable'];
+      case 'attributeEstimate':
+        return ['EvidenceAttributeEstimate'];
+      default:
+        return <String>[];
     }
   }
 
@@ -4420,6 +4645,32 @@ class EvidenceModelCharacteristicVariable extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'variableDefinition':
+        return ['Reference'];
+      case 'handling':
+        return ['FhirCode'];
+      case 'valueCategory':
+        return ['CodeableConcept'];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueRange':
+        return ['Range'];
+      default:
+        return <String>[];
     }
   }
 
@@ -4926,6 +5177,34 @@ class EvidenceCertainty extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'description':
+        return ['FhirString'];
+      case 'note':
+        return ['Annotation'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'rating':
+        return ['CodeableConcept'];
+      case 'rater':
+        return ['FhirString'];
+      case 'subcomponent':
+        return ['EvidenceCertainty'];
+      default:
+        return <String>[];
     }
   }
 

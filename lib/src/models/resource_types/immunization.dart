@@ -1125,6 +1125,93 @@ class Immunization extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'statusReason':
+        return ['CodeableConcept'];
+      case 'vaccineCode':
+        return ['CodeableConcept'];
+      case 'patient':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'occurrence':
+      case 'occurrenceX':
+        return ['FhirDateTime', 'FhirString'];
+      case 'occurrenceDateTime':
+        return ['FhirDateTime'];
+      case 'occurrenceString':
+        return ['FhirString'];
+      case 'recorded':
+        return ['FhirDateTime'];
+      case 'primarySource':
+        return ['FhirBoolean'];
+      case 'reportOrigin':
+        return ['CodeableConcept'];
+      case 'location':
+        return ['Reference'];
+      case 'manufacturer':
+        return ['Reference'];
+      case 'lotNumber':
+        return ['FhirString'];
+      case 'expirationDate':
+        return ['FhirDate'];
+      case 'site':
+        return ['CodeableConcept'];
+      case 'route':
+        return ['CodeableConcept'];
+      case 'doseQuantity':
+        return ['Quantity'];
+      case 'performer':
+        return ['ImmunizationPerformer'];
+      case 'note':
+        return ['Annotation'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'isSubpotent':
+        return ['FhirBoolean'];
+      case 'subpotentReason':
+        return ['CodeableConcept'];
+      case 'education':
+        return ['ImmunizationEducation'];
+      case 'programEligibility':
+        return ['CodeableConcept'];
+      case 'fundingSource':
+        return ['CodeableConcept'];
+      case 'reaction':
+        return ['ImmunizationReaction'];
+      case 'protocolApplied':
+        return ['ImmunizationProtocolApplied'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Immunization clone() => throw UnimplementedError();
   @override
@@ -1795,6 +1882,26 @@ class ImmunizationPerformer extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'function':
+        return ['CodeableConcept'];
+      case 'actor':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ImmunizationPerformer clone() => throw UnimplementedError();
   @override
@@ -2199,6 +2306,30 @@ class ImmunizationEducation extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'documentType':
+        return ['FhirString'];
+      case 'reference':
+        return ['FhirUri'];
+      case 'publicationDate':
+        return ['FhirDateTime'];
+      case 'presentationDate':
+        return ['FhirDateTime'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ImmunizationEducation clone() => throw UnimplementedError();
   @override
@@ -2590,6 +2721,28 @@ class ImmunizationReaction extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'detail':
+        return ['Reference'];
+      case 'reported':
+        return ['FhirBoolean'];
+      default:
+        return <String>[];
     }
   }
 
@@ -3110,6 +3263,42 @@ class ImmunizationProtocolApplied extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'series':
+        return ['FhirString'];
+      case 'authority':
+        return ['Reference'];
+      case 'targetDisease':
+        return ['CodeableConcept'];
+      case 'doseNumber':
+      case 'doseNumberX':
+        return ['FhirPositiveInt', 'FhirString'];
+      case 'doseNumberPositiveInt':
+        return ['FhirPositiveInt'];
+      case 'doseNumberString':
+        return ['FhirString'];
+      case 'seriesDoses':
+      case 'seriesDosesX':
+        return ['FhirPositiveInt', 'FhirString'];
+      case 'seriesDosesPositiveInt':
+        return ['FhirPositiveInt'];
+      case 'seriesDosesString':
+        return ['FhirString'];
+      default:
+        return <String>[];
     }
   }
 

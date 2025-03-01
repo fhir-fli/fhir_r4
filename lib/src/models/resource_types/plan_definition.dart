@@ -1213,6 +1213,101 @@ class PlanDefinition extends CanonicalResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'subtitle':
+        return ['FhirString'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'subject':
+      case 'subjectX':
+        return ['CodeableConcept', 'Reference', 'FhirCanonical'];
+      case 'subjectCodeableConcept':
+        return ['CodeableConcept'];
+      case 'subjectReference':
+        return ['Reference'];
+      case 'subjectCanonical':
+        return ['FhirCanonical'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'usage':
+        return ['FhirString'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      case 'approvalDate':
+        return ['FhirDate'];
+      case 'lastReviewDate':
+        return ['FhirDate'];
+      case 'effectivePeriod':
+        return ['Period'];
+      case 'topic':
+        return ['CodeableConcept'];
+      case 'author':
+        return ['ContactDetail'];
+      case 'editor':
+        return ['ContactDetail'];
+      case 'reviewer':
+        return ['ContactDetail'];
+      case 'endorser':
+        return ['ContactDetail'];
+      case 'relatedArtifact':
+        return ['RelatedArtifact'];
+      case 'library':
+        return ['FhirCanonical'];
+      case 'goal':
+        return ['PlanDefinitionGoal'];
+      case 'action':
+        return ['PlanDefinitionAction'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   PlanDefinition clone() => throw UnimplementedError();
   @override
@@ -2075,6 +2170,36 @@ class PlanDefinitionGoal extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'description':
+        return ['CodeableConcept'];
+      case 'priority':
+        return ['CodeableConcept'];
+      case 'start':
+        return ['CodeableConcept'];
+      case 'addresses':
+        return ['CodeableConcept'];
+      case 'documentation':
+        return ['RelatedArtifact'];
+      case 'target':
+        return ['PlanDefinitionTarget'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   PlanDefinitionGoal clone() => throw UnimplementedError();
   @override
@@ -2572,6 +2697,35 @@ class PlanDefinitionTarget extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'measure':
+        return ['CodeableConcept'];
+      case 'detail':
+      case 'detailX':
+        return ['Quantity', 'Range', 'CodeableConcept'];
+      case 'detailQuantity':
+        return ['Quantity'];
+      case 'detailRange':
+        return ['Range'];
+      case 'detailCodeableConcept':
+        return ['CodeableConcept'];
+      case 'due':
+        return ['FhirDuration'];
+      default:
+        return <String>[];
     }
   }
 
@@ -3835,6 +3989,108 @@ class PlanDefinitionAction extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'prefix':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirString'];
+      case 'textEquivalent':
+        return ['FhirString'];
+      case 'priority':
+        return ['FhirCode'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'reason':
+        return ['CodeableConcept'];
+      case 'documentation':
+        return ['RelatedArtifact'];
+      case 'goalId':
+        return ['FhirId'];
+      case 'subject':
+      case 'subjectX':
+        return ['CodeableConcept', 'Reference', 'FhirCanonical'];
+      case 'subjectCodeableConcept':
+        return ['CodeableConcept'];
+      case 'subjectReference':
+        return ['Reference'];
+      case 'subjectCanonical':
+        return ['FhirCanonical'];
+      case 'trigger':
+        return ['TriggerDefinition'];
+      case 'condition':
+        return ['PlanDefinitionCondition'];
+      case 'input':
+        return ['DataRequirement'];
+      case 'output':
+        return ['DataRequirement'];
+      case 'relatedAction':
+        return ['PlanDefinitionRelatedAction'];
+      case 'timing':
+      case 'timingX':
+        return [
+          'FhirDateTime',
+          'Age',
+          'Period',
+          'FhirDuration',
+          'Range',
+          'Timing',
+        ];
+      case 'timingDateTime':
+        return ['FhirDateTime'];
+      case 'timingAge':
+        return ['Age'];
+      case 'timingPeriod':
+        return ['Period'];
+      case 'timingDuration':
+        return ['FhirDuration'];
+      case 'timingRange':
+        return ['Range'];
+      case 'timingTiming':
+        return ['Timing'];
+      case 'participant':
+        return ['PlanDefinitionParticipant'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'groupingBehavior':
+        return ['FhirCode'];
+      case 'selectionBehavior':
+        return ['FhirCode'];
+      case 'requiredBehavior':
+        return ['FhirCode'];
+      case 'precheckBehavior':
+        return ['FhirCode'];
+      case 'cardinalityBehavior':
+        return ['FhirCode'];
+      case 'definition':
+      case 'definitionX':
+        return ['FhirCanonical', 'FhirUri'];
+      case 'definitionCanonical':
+        return ['FhirCanonical'];
+      case 'definitionUri':
+        return ['FhirUri'];
+      case 'transform':
+        return ['FhirCanonical'];
+      case 'dynamicValue':
+        return ['PlanDefinitionDynamicValue'];
+      case 'action':
+        return ['PlanDefinitionAction'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   PlanDefinitionAction clone() => throw UnimplementedError();
   @override
@@ -4473,6 +4729,26 @@ class PlanDefinitionCondition extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'kind':
+        return ['FhirCode'];
+      case 'expression':
+        return ['FhirExpression'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   PlanDefinitionCondition clone() => throw UnimplementedError();
   @override
@@ -4888,6 +5164,33 @@ class PlanDefinitionRelatedAction extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'actionId':
+        return ['FhirId'];
+      case 'relationship':
+        return ['FhirCode'];
+      case 'offset':
+      case 'offsetX':
+        return ['FhirDuration', 'Range'];
+      case 'offsetDuration':
+        return ['FhirDuration'];
+      case 'offsetRange':
+        return ['Range'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   PlanDefinitionRelatedAction clone() => throw UnimplementedError();
   @override
@@ -5246,6 +5549,26 @@ class PlanDefinitionParticipant extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirCode'];
+      case 'role':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
     }
   }
 
@@ -5610,6 +5933,26 @@ class PlanDefinitionDynamicValue extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'path':
+        return ['FhirString'];
+      case 'expression':
+        return ['FhirExpression'];
+      default:
+        return <String>[];
     }
   }
 

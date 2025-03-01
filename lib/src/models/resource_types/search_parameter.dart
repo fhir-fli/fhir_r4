@@ -981,6 +981,84 @@ class SearchParameter extends CanonicalResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'derivedFrom':
+        return ['FhirCanonical'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'code':
+        return ['FhirCode'];
+      case 'base':
+        return ['FhirCode'];
+      case 'type':
+        return ['FhirCode'];
+      case 'expression':
+        return ['FhirString'];
+      case 'xpath':
+        return ['FhirString'];
+      case 'xpathUsage':
+        return ['FhirCode'];
+      case 'target':
+        return ['FhirCode'];
+      case 'multipleOr':
+        return ['FhirBoolean'];
+      case 'multipleAnd':
+        return ['FhirBoolean'];
+      case 'comparator':
+        return ['FhirCode'];
+      case 'modifier':
+        return ['FhirCode'];
+      case 'chain':
+        return ['FhirString'];
+      case 'component':
+        return ['SearchParameterComponent'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   SearchParameter clone() => throw UnimplementedError();
   @override
@@ -1624,6 +1702,26 @@ class SearchParameterComponent extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'definition':
+        return ['FhirCanonical'];
+      case 'expression':
+        return ['FhirString'];
+      default:
+        return <String>[];
     }
   }
 

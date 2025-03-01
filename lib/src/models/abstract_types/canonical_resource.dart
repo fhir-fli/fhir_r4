@@ -155,4 +155,10 @@ abstract class CanonicalResource extends DomainResource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   });
+
+  /// Retrieves the type of the object by element name.
+  @override
+  List<String> typeByElementName(String elementName) {
+    return <String>[];
+  }
 }

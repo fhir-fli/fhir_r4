@@ -1269,6 +1269,124 @@ class Observation extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'basedOn':
+        return ['Reference'];
+      case 'partOf':
+        return ['Reference'];
+      case 'status':
+        return ['FhirCode'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'focus':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'effective':
+      case 'effectiveX':
+        return ['FhirDateTime', 'Period', 'Timing', 'FhirInstant'];
+      case 'effectiveDateTime':
+        return ['FhirDateTime'];
+      case 'effectivePeriod':
+        return ['Period'];
+      case 'effectiveTiming':
+        return ['Timing'];
+      case 'effectiveInstant':
+        return ['FhirInstant'];
+      case 'issued':
+        return ['FhirInstant'];
+      case 'performer':
+        return ['Reference'];
+      case 'value':
+      case 'valueX':
+        return [
+          'Quantity',
+          'CodeableConcept',
+          'FhirString',
+          'FhirBoolean',
+          'FhirInteger',
+          'Range',
+          'Ratio',
+          'SampledData',
+          'FhirTime',
+          'FhirDateTime',
+          'Period',
+        ];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueCodeableConcept':
+        return ['CodeableConcept'];
+      case 'valueString':
+        return ['FhirString'];
+      case 'valueBoolean':
+        return ['FhirBoolean'];
+      case 'valueInteger':
+        return ['FhirInteger'];
+      case 'valueRange':
+        return ['Range'];
+      case 'valueRatio':
+        return ['Ratio'];
+      case 'valueSampledData':
+        return ['SampledData'];
+      case 'valueTime':
+        return ['FhirTime'];
+      case 'valueDateTime':
+        return ['FhirDateTime'];
+      case 'valuePeriod':
+        return ['Period'];
+      case 'dataAbsentReason':
+        return ['CodeableConcept'];
+      case 'interpretation':
+        return ['CodeableConcept'];
+      case 'note':
+        return ['Annotation'];
+      case 'bodySite':
+        return ['CodeableConcept'];
+      case 'method':
+        return ['CodeableConcept'];
+      case 'specimen':
+        return ['Reference'];
+      case 'device':
+        return ['Reference'];
+      case 'referenceRange':
+        return ['ObservationReferenceRange'];
+      case 'hasMember':
+        return ['Reference'];
+      case 'derivedFrom':
+        return ['Reference'];
+      case 'component':
+        return ['ObservationComponent'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Observation clone() => throw UnimplementedError();
   @override
@@ -2043,6 +2161,34 @@ class ObservationReferenceRange extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'low':
+        return ['Quantity'];
+      case 'high':
+        return ['Quantity'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'appliesTo':
+        return ['CodeableConcept'];
+      case 'age':
+        return ['Range'];
+      case 'text':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ObservationReferenceRange clone() => throw UnimplementedError();
   @override
@@ -2704,6 +2850,67 @@ class ObservationComponent extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'value':
+      case 'valueX':
+        return [
+          'Quantity',
+          'CodeableConcept',
+          'FhirString',
+          'FhirBoolean',
+          'FhirInteger',
+          'Range',
+          'Ratio',
+          'SampledData',
+          'FhirTime',
+          'FhirDateTime',
+          'Period',
+        ];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueCodeableConcept':
+        return ['CodeableConcept'];
+      case 'valueString':
+        return ['FhirString'];
+      case 'valueBoolean':
+        return ['FhirBoolean'];
+      case 'valueInteger':
+        return ['FhirInteger'];
+      case 'valueRange':
+        return ['Range'];
+      case 'valueRatio':
+        return ['Ratio'];
+      case 'valueSampledData':
+        return ['SampledData'];
+      case 'valueTime':
+        return ['FhirTime'];
+      case 'valueDateTime':
+        return ['FhirDateTime'];
+      case 'valuePeriod':
+        return ['Period'];
+      case 'dataAbsentReason':
+        return ['CodeableConcept'];
+      case 'interpretation':
+        return ['CodeableConcept'];
+      case 'referenceRange':
+        return ['ObservationReferenceRange'];
+      default:
+        return <String>[];
     }
   }
 

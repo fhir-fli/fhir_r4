@@ -735,6 +735,63 @@ class Consent extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'scope':
+        return ['CodeableConcept'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'patient':
+        return ['Reference'];
+      case 'dateTime':
+        return ['FhirDateTime'];
+      case 'performer':
+        return ['Reference'];
+      case 'organization':
+        return ['Reference'];
+      case 'source':
+      case 'sourceX':
+        return ['Attachment', 'Reference'];
+      case 'sourceAttachment':
+        return ['Attachment'];
+      case 'sourceReference':
+        return ['Reference'];
+      case 'policy':
+        return ['ConsentPolicy'];
+      case 'policyRule':
+        return ['CodeableConcept'];
+      case 'verification':
+        return ['ConsentVerification'];
+      case 'provision':
+        return ['ConsentProvision'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Consent clone() => throw UnimplementedError();
   @override
@@ -1261,6 +1318,26 @@ class ConsentPolicy extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'authority':
+        return ['FhirUri'];
+      case 'uri':
+        return ['FhirUri'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ConsentPolicy clone() => throw UnimplementedError();
   @override
@@ -1638,6 +1715,28 @@ class ConsentVerification extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'verified':
+        return ['FhirBoolean'];
+      case 'verifiedWith':
+        return ['Reference'];
+      case 'verificationDate':
+        return ['FhirDateTime'];
+      default:
+        return <String>[];
     }
   }
 
@@ -2267,6 +2366,44 @@ class ConsentProvision extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirCode'];
+      case 'period':
+        return ['Period'];
+      case 'actor':
+        return ['ConsentActor'];
+      case 'action':
+        return ['CodeableConcept'];
+      case 'securityLabel':
+        return ['Coding'];
+      case 'purpose':
+        return ['Coding'];
+      case 'class':
+        return ['Coding'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'dataPeriod':
+        return ['Period'];
+      case 'data':
+        return ['ConsentData'];
+      case 'provision':
+        return ['ConsentProvision'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ConsentProvision clone() => throw UnimplementedError();
   @override
@@ -2750,6 +2887,26 @@ class ConsentActor extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'role':
+        return ['CodeableConcept'];
+      case 'reference':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ConsentActor clone() => throw UnimplementedError();
   @override
@@ -3101,6 +3258,26 @@ class ConsentData extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'meaning':
+        return ['FhirCode'];
+      case 'reference':
+        return ['Reference'];
+      default:
+        return <String>[];
     }
   }
 

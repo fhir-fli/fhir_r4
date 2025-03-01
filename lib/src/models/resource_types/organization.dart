@@ -613,6 +613,52 @@ class Organization extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'active':
+        return ['FhirBoolean'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'name':
+        return ['FhirString'];
+      case 'alias':
+        return ['FhirString'];
+      case 'telecom':
+        return ['ContactPoint'];
+      case 'address':
+        return ['Address'];
+      case 'partOf':
+        return ['Reference'];
+      case 'contact':
+        return ['OrganizationContact'];
+      case 'endpoint':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Organization clone() => throw UnimplementedError();
   @override
@@ -1169,6 +1215,30 @@ class OrganizationContact extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'purpose':
+        return ['CodeableConcept'];
+      case 'name':
+        return ['HumanName'];
+      case 'telecom':
+        return ['ContactPoint'];
+      case 'address':
+        return ['Address'];
+      default:
+        return <String>[];
     }
   }
 

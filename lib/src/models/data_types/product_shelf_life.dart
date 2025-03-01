@@ -338,6 +338,30 @@ class ProductShelfLife extends BackboneType {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'period':
+        return ['Quantity'];
+      case 'specialPrecautionsForStorage':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ProductShelfLife clone() => throw UnimplementedError();
   @override

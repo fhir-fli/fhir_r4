@@ -897,6 +897,72 @@ class ImagingStudy extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'modality':
+        return ['Coding'];
+      case 'subject':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'started':
+        return ['FhirDateTime'];
+      case 'basedOn':
+        return ['Reference'];
+      case 'referrer':
+        return ['Reference'];
+      case 'interpreter':
+        return ['Reference'];
+      case 'endpoint':
+        return ['Reference'];
+      case 'numberOfSeries':
+        return ['FhirUnsignedInt'];
+      case 'numberOfInstances':
+        return ['FhirUnsignedInt'];
+      case 'procedureReference':
+        return ['Reference'];
+      case 'procedureCode':
+        return ['CodeableConcept'];
+      case 'location':
+        return ['Reference'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'note':
+        return ['Annotation'];
+      case 'description':
+        return ['FhirString'];
+      case 'series':
+        return ['ImagingStudySeries'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ImagingStudy clone() => throw UnimplementedError();
   @override
@@ -1781,6 +1847,46 @@ class ImagingStudySeries extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'uid':
+        return ['FhirId'];
+      case 'number':
+        return ['FhirUnsignedInt'];
+      case 'modality':
+        return ['Coding'];
+      case 'description':
+        return ['FhirString'];
+      case 'numberOfInstances':
+        return ['FhirUnsignedInt'];
+      case 'endpoint':
+        return ['Reference'];
+      case 'bodySite':
+        return ['Coding'];
+      case 'laterality':
+        return ['Coding'];
+      case 'specimen':
+        return ['Reference'];
+      case 'started':
+        return ['FhirDateTime'];
+      case 'performer':
+        return ['ImagingStudyPerformer'];
+      case 'instance':
+        return ['ImagingStudyInstance'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ImagingStudySeries clone() => throw UnimplementedError();
   @override
@@ -2241,6 +2347,26 @@ class ImagingStudyPerformer extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'function':
+        return ['CodeableConcept'];
+      case 'actor':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ImagingStudyPerformer clone() => throw UnimplementedError();
   @override
@@ -2640,6 +2766,30 @@ class ImagingStudyInstance extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'uid':
+        return ['FhirId'];
+      case 'sopClass':
+        return ['Coding'];
+      case 'number':
+        return ['FhirUnsignedInt'];
+      case 'title':
+        return ['FhirString'];
+      default:
+        return <String>[];
     }
   }
 

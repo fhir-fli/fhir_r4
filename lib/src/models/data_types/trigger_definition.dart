@@ -412,6 +412,39 @@ class TriggerDefinition extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirCode'];
+      case 'name':
+        return ['FhirString'];
+      case 'timing':
+      case 'timingX':
+        return ['Timing', 'Reference', 'FhirDate', 'FhirDateTime'];
+      case 'timingTiming':
+        return ['Timing'];
+      case 'timingReference':
+        return ['Reference'];
+      case 'timingDate':
+        return ['FhirDate'];
+      case 'timingDateTime':
+        return ['FhirDateTime'];
+      case 'data':
+        return ['DataRequirement'];
+      case 'condition':
+        return ['FhirExpression'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   TriggerDefinition clone() => throw UnimplementedError();
   @override

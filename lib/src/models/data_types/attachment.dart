@@ -432,6 +432,36 @@ class Attachment extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'contentType':
+        return ['FhirCode'];
+      case 'language':
+        return ['FhirCode'];
+      case 'data':
+        return ['FhirBase64Binary'];
+      case 'url':
+        return ['FhirUrl'];
+      case 'size':
+        return ['FhirUnsignedInt'];
+      case 'hash':
+        return ['FhirBase64Binary'];
+      case 'title':
+        return ['FhirString'];
+      case 'creation':
+        return ['FhirDateTime'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Attachment clone() => throw UnimplementedError();
   @override

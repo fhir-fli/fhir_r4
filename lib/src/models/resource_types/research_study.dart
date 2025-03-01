@@ -1026,6 +1026,80 @@ class ResearchStudy extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'title':
+        return ['FhirString'];
+      case 'protocol':
+        return ['Reference'];
+      case 'partOf':
+        return ['Reference'];
+      case 'status':
+        return ['FhirCode'];
+      case 'primaryPurposeType':
+        return ['CodeableConcept'];
+      case 'phase':
+        return ['CodeableConcept'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'focus':
+        return ['CodeableConcept'];
+      case 'condition':
+        return ['CodeableConcept'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'relatedArtifact':
+        return ['RelatedArtifact'];
+      case 'keyword':
+        return ['CodeableConcept'];
+      case 'location':
+        return ['CodeableConcept'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'enrollment':
+        return ['Reference'];
+      case 'period':
+        return ['Period'];
+      case 'sponsor':
+        return ['Reference'];
+      case 'principalInvestigator':
+        return ['Reference'];
+      case 'site':
+        return ['Reference'];
+      case 'reasonStopped':
+        return ['CodeableConcept'];
+      case 'note':
+        return ['Annotation'];
+      case 'arm':
+        return ['ResearchStudyArm'];
+      case 'objective':
+        return ['ResearchStudyObjective'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ResearchStudy clone() => throw UnimplementedError();
   @override
@@ -1727,6 +1801,28 @@ class ResearchStudyArm extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'description':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ResearchStudyArm clone() => throw UnimplementedError();
   @override
@@ -2086,6 +2182,26 @@ class ResearchStudyObjective extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'type':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
     }
   }
 

@@ -809,6 +809,69 @@ class Goal extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'lifecycleStatus':
+        return ['FhirCode'];
+      case 'achievementStatus':
+        return ['CodeableConcept'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'priority':
+        return ['CodeableConcept'];
+      case 'description':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'start':
+      case 'startX':
+        return ['FhirDate', 'CodeableConcept'];
+      case 'startDate':
+        return ['FhirDate'];
+      case 'startCodeableConcept':
+        return ['CodeableConcept'];
+      case 'target':
+        return ['GoalTarget'];
+      case 'statusDate':
+        return ['FhirDate'];
+      case 'statusReason':
+        return ['FhirString'];
+      case 'expressedBy':
+        return ['Reference'];
+      case 'addresses':
+        return ['Reference'];
+      case 'note':
+        return ['Annotation'];
+      case 'outcomeCode':
+        return ['CodeableConcept'];
+      case 'outcomeReference':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Goal clone() => throw UnimplementedError();
   @override
@@ -1545,6 +1608,56 @@ class GoalTarget extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'measure':
+        return ['CodeableConcept'];
+      case 'detail':
+      case 'detailX':
+        return [
+          'Quantity',
+          'Range',
+          'CodeableConcept',
+          'FhirString',
+          'FhirBoolean',
+          'FhirInteger',
+          'Ratio',
+        ];
+      case 'detailQuantity':
+        return ['Quantity'];
+      case 'detailRange':
+        return ['Range'];
+      case 'detailCodeableConcept':
+        return ['CodeableConcept'];
+      case 'detailString':
+        return ['FhirString'];
+      case 'detailBoolean':
+        return ['FhirBoolean'];
+      case 'detailInteger':
+        return ['FhirInteger'];
+      case 'detailRatio':
+        return ['Ratio'];
+      case 'due':
+      case 'dueX':
+        return ['FhirDate', 'FhirDuration'];
+      case 'dueDate':
+        return ['FhirDate'];
+      case 'dueDuration':
+        return ['FhirDuration'];
+      default:
+        return <String>[];
     }
   }
 

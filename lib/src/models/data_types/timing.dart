@@ -333,6 +333,28 @@ class Timing extends BackboneType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'event':
+        return ['FhirDateTime'];
+      case 'repeat':
+        return ['TimingRepeat'];
+      case 'code':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Timing clone() => throw UnimplementedError();
   @override
@@ -1070,6 +1092,57 @@ class TimingRepeat extends Element {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'bounds':
+      case 'boundsX':
+        return ['FhirDuration', 'Range', 'Period'];
+      case 'boundsDuration':
+        return ['FhirDuration'];
+      case 'boundsRange':
+        return ['Range'];
+      case 'boundsPeriod':
+        return ['Period'];
+      case 'count':
+        return ['FhirPositiveInt'];
+      case 'countMax':
+        return ['FhirPositiveInt'];
+      case 'duration':
+        return ['FhirDecimal'];
+      case 'durationMax':
+        return ['FhirDecimal'];
+      case 'durationUnit':
+        return ['FhirCode'];
+      case 'frequency':
+        return ['FhirPositiveInt'];
+      case 'frequencyMax':
+        return ['FhirPositiveInt'];
+      case 'period':
+        return ['FhirDecimal'];
+      case 'periodMax':
+        return ['FhirDecimal'];
+      case 'periodUnit':
+        return ['FhirCode'];
+      case 'dayOfWeek':
+        return ['FhirCode'];
+      case 'timeOfDay':
+        return ['FhirTime'];
+      case 'when':
+        return ['FhirCode'];
+      case 'offset':
+        return ['FhirUnsignedInt'];
+      default:
+        return <String>[];
     }
   }
 

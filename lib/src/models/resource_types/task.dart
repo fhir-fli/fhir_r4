@@ -1167,6 +1167,94 @@ class Task extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'instantiatesCanonical':
+        return ['FhirCanonical'];
+      case 'instantiatesUri':
+        return ['FhirUri'];
+      case 'basedOn':
+        return ['Reference'];
+      case 'groupIdentifier':
+        return ['Identifier'];
+      case 'partOf':
+        return ['Reference'];
+      case 'status':
+        return ['FhirCode'];
+      case 'statusReason':
+        return ['CodeableConcept'];
+      case 'businessStatus':
+        return ['CodeableConcept'];
+      case 'intent':
+        return ['FhirCode'];
+      case 'priority':
+        return ['FhirCode'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'description':
+        return ['FhirString'];
+      case 'focus':
+        return ['Reference'];
+      case 'for':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'executionPeriod':
+        return ['Period'];
+      case 'authoredOn':
+        return ['FhirDateTime'];
+      case 'lastModified':
+        return ['FhirDateTime'];
+      case 'requester':
+        return ['Reference'];
+      case 'performerType':
+        return ['CodeableConcept'];
+      case 'owner':
+        return ['Reference'];
+      case 'location':
+        return ['Reference'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'insurance':
+        return ['Reference'];
+      case 'note':
+        return ['Annotation'];
+      case 'relevantHistory':
+        return ['Reference'];
+      case 'restriction':
+        return ['TaskRestriction'];
+      case 'input':
+        return ['TaskInput'];
+      case 'output':
+        return ['TaskOutput'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Task clone() => throw UnimplementedError();
   @override
@@ -1883,6 +1971,28 @@ class TaskRestriction extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'repetitions':
+        return ['FhirPositiveInt'];
+      case 'period':
+        return ['Period'];
+      case 'recipient':
+        return ['Reference'];
+      default:
+        return <String>[];
     }
   }
 
@@ -3060,6 +3170,178 @@ class TaskInput extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'value':
+      case 'valueX':
+        return [
+          'FhirBase64Binary',
+          'FhirBoolean',
+          'FhirCanonical',
+          'FhirCode',
+          'FhirDate',
+          'FhirDateTime',
+          'FhirDecimal',
+          'FhirId',
+          'FhirInstant',
+          'FhirInteger',
+          'FhirMarkdown',
+          'FhirOid',
+          'FhirPositiveInt',
+          'FhirString',
+          'FhirTime',
+          'FhirUnsignedInt',
+          'FhirUri',
+          'FhirUrl',
+          'FhirUuid',
+          'Address',
+          'Age',
+          'Annotation',
+          'Attachment',
+          'CodeableConcept',
+          'Coding',
+          'ContactPoint',
+          'Count',
+          'Distance',
+          'FhirDuration',
+          'HumanName',
+          'Identifier',
+          'Money',
+          'Period',
+          'Quantity',
+          'Range',
+          'Ratio',
+          'Reference',
+          'SampledData',
+          'Signature',
+          'Timing',
+          'ContactDetail',
+          'Contributor',
+          'DataRequirement',
+          'FhirExpression',
+          'ParameterDefinition',
+          'RelatedArtifact',
+          'TriggerDefinition',
+          'UsageContext',
+          'Dosage',
+          'FhirMeta',
+        ];
+      case 'valueBase64Binary':
+        return ['FhirBase64Binary'];
+      case 'valueBoolean':
+        return ['FhirBoolean'];
+      case 'valueCanonical':
+        return ['FhirCanonical'];
+      case 'valueCode':
+        return ['FhirCode'];
+      case 'valueDate':
+        return ['FhirDate'];
+      case 'valueDateTime':
+        return ['FhirDateTime'];
+      case 'valueDecimal':
+        return ['FhirDecimal'];
+      case 'valueId':
+        return ['FhirId'];
+      case 'valueInstant':
+        return ['FhirInstant'];
+      case 'valueInteger':
+        return ['FhirInteger'];
+      case 'valueMarkdown':
+        return ['FhirMarkdown'];
+      case 'valueOid':
+        return ['FhirOid'];
+      case 'valuePositiveInt':
+        return ['FhirPositiveInt'];
+      case 'valueString':
+        return ['FhirString'];
+      case 'valueTime':
+        return ['FhirTime'];
+      case 'valueUnsignedInt':
+        return ['FhirUnsignedInt'];
+      case 'valueUri':
+        return ['FhirUri'];
+      case 'valueUrl':
+        return ['FhirUrl'];
+      case 'valueUuid':
+        return ['FhirUuid'];
+      case 'valueAddress':
+        return ['Address'];
+      case 'valueAge':
+        return ['Age'];
+      case 'valueAnnotation':
+        return ['Annotation'];
+      case 'valueAttachment':
+        return ['Attachment'];
+      case 'valueCodeableConcept':
+        return ['CodeableConcept'];
+      case 'valueCoding':
+        return ['Coding'];
+      case 'valueContactPoint':
+        return ['ContactPoint'];
+      case 'valueCount':
+        return ['Count'];
+      case 'valueDistance':
+        return ['Distance'];
+      case 'valueDuration':
+        return ['FhirDuration'];
+      case 'valueHumanName':
+        return ['HumanName'];
+      case 'valueIdentifier':
+        return ['Identifier'];
+      case 'valueMoney':
+        return ['Money'];
+      case 'valuePeriod':
+        return ['Period'];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueRange':
+        return ['Range'];
+      case 'valueRatio':
+        return ['Ratio'];
+      case 'valueReference':
+        return ['Reference'];
+      case 'valueSampledData':
+        return ['SampledData'];
+      case 'valueSignature':
+        return ['Signature'];
+      case 'valueTiming':
+        return ['Timing'];
+      case 'valueContactDetail':
+        return ['ContactDetail'];
+      case 'valueContributor':
+        return ['Contributor'];
+      case 'valueDataRequirement':
+        return ['DataRequirement'];
+      case 'valueExpression':
+        return ['FhirExpression'];
+      case 'valueParameterDefinition':
+        return ['ParameterDefinition'];
+      case 'valueRelatedArtifact':
+        return ['RelatedArtifact'];
+      case 'valueTriggerDefinition':
+        return ['TriggerDefinition'];
+      case 'valueUsageContext':
+        return ['UsageContext'];
+      case 'valueDosage':
+        return ['Dosage'];
+      case 'valueMeta':
+        return ['FhirMeta'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   TaskInput clone() => throw UnimplementedError();
   @override
@@ -4215,6 +4497,178 @@ class TaskOutput extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'value':
+      case 'valueX':
+        return [
+          'FhirBase64Binary',
+          'FhirBoolean',
+          'FhirCanonical',
+          'FhirCode',
+          'FhirDate',
+          'FhirDateTime',
+          'FhirDecimal',
+          'FhirId',
+          'FhirInstant',
+          'FhirInteger',
+          'FhirMarkdown',
+          'FhirOid',
+          'FhirPositiveInt',
+          'FhirString',
+          'FhirTime',
+          'FhirUnsignedInt',
+          'FhirUri',
+          'FhirUrl',
+          'FhirUuid',
+          'Address',
+          'Age',
+          'Annotation',
+          'Attachment',
+          'CodeableConcept',
+          'Coding',
+          'ContactPoint',
+          'Count',
+          'Distance',
+          'FhirDuration',
+          'HumanName',
+          'Identifier',
+          'Money',
+          'Period',
+          'Quantity',
+          'Range',
+          'Ratio',
+          'Reference',
+          'SampledData',
+          'Signature',
+          'Timing',
+          'ContactDetail',
+          'Contributor',
+          'DataRequirement',
+          'FhirExpression',
+          'ParameterDefinition',
+          'RelatedArtifact',
+          'TriggerDefinition',
+          'UsageContext',
+          'Dosage',
+          'FhirMeta',
+        ];
+      case 'valueBase64Binary':
+        return ['FhirBase64Binary'];
+      case 'valueBoolean':
+        return ['FhirBoolean'];
+      case 'valueCanonical':
+        return ['FhirCanonical'];
+      case 'valueCode':
+        return ['FhirCode'];
+      case 'valueDate':
+        return ['FhirDate'];
+      case 'valueDateTime':
+        return ['FhirDateTime'];
+      case 'valueDecimal':
+        return ['FhirDecimal'];
+      case 'valueId':
+        return ['FhirId'];
+      case 'valueInstant':
+        return ['FhirInstant'];
+      case 'valueInteger':
+        return ['FhirInteger'];
+      case 'valueMarkdown':
+        return ['FhirMarkdown'];
+      case 'valueOid':
+        return ['FhirOid'];
+      case 'valuePositiveInt':
+        return ['FhirPositiveInt'];
+      case 'valueString':
+        return ['FhirString'];
+      case 'valueTime':
+        return ['FhirTime'];
+      case 'valueUnsignedInt':
+        return ['FhirUnsignedInt'];
+      case 'valueUri':
+        return ['FhirUri'];
+      case 'valueUrl':
+        return ['FhirUrl'];
+      case 'valueUuid':
+        return ['FhirUuid'];
+      case 'valueAddress':
+        return ['Address'];
+      case 'valueAge':
+        return ['Age'];
+      case 'valueAnnotation':
+        return ['Annotation'];
+      case 'valueAttachment':
+        return ['Attachment'];
+      case 'valueCodeableConcept':
+        return ['CodeableConcept'];
+      case 'valueCoding':
+        return ['Coding'];
+      case 'valueContactPoint':
+        return ['ContactPoint'];
+      case 'valueCount':
+        return ['Count'];
+      case 'valueDistance':
+        return ['Distance'];
+      case 'valueDuration':
+        return ['FhirDuration'];
+      case 'valueHumanName':
+        return ['HumanName'];
+      case 'valueIdentifier':
+        return ['Identifier'];
+      case 'valueMoney':
+        return ['Money'];
+      case 'valuePeriod':
+        return ['Period'];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueRange':
+        return ['Range'];
+      case 'valueRatio':
+        return ['Ratio'];
+      case 'valueReference':
+        return ['Reference'];
+      case 'valueSampledData':
+        return ['SampledData'];
+      case 'valueSignature':
+        return ['Signature'];
+      case 'valueTiming':
+        return ['Timing'];
+      case 'valueContactDetail':
+        return ['ContactDetail'];
+      case 'valueContributor':
+        return ['Contributor'];
+      case 'valueDataRequirement':
+        return ['DataRequirement'];
+      case 'valueExpression':
+        return ['FhirExpression'];
+      case 'valueParameterDefinition':
+        return ['ParameterDefinition'];
+      case 'valueRelatedArtifact':
+        return ['RelatedArtifact'];
+      case 'valueTriggerDefinition':
+        return ['TriggerDefinition'];
+      case 'valueUsageContext':
+        return ['UsageContext'];
+      case 'valueDosage':
+        return ['Dosage'];
+      case 'valueMeta':
+        return ['FhirMeta'];
+      default:
+        return <String>[];
     }
   }
 

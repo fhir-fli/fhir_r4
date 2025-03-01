@@ -925,6 +925,77 @@ class ClinicalImpression extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'statusReason':
+        return ['CodeableConcept'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'description':
+        return ['FhirString'];
+      case 'subject':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'effective':
+      case 'effectiveX':
+        return ['FhirDateTime', 'Period'];
+      case 'effectiveDateTime':
+        return ['FhirDateTime'];
+      case 'effectivePeriod':
+        return ['Period'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'assessor':
+        return ['Reference'];
+      case 'previous':
+        return ['Reference'];
+      case 'problem':
+        return ['Reference'];
+      case 'investigation':
+        return ['ClinicalImpressionInvestigation'];
+      case 'protocol':
+        return ['FhirUri'];
+      case 'summary':
+        return ['FhirString'];
+      case 'finding':
+        return ['ClinicalImpressionFinding'];
+      case 'prognosisCodeableConcept':
+        return ['CodeableConcept'];
+      case 'prognosisReference':
+        return ['Reference'];
+      case 'supportingInfo':
+        return ['Reference'];
+      case 'note':
+        return ['Annotation'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ClinicalImpression clone() => throw UnimplementedError();
   @override
@@ -1535,6 +1606,26 @@ class ClinicalImpressionInvestigation extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'item':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ClinicalImpressionInvestigation clone() => throw UnimplementedError();
   @override
@@ -1919,6 +2010,28 @@ class ClinicalImpressionFinding extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'itemCodeableConcept':
+        return ['CodeableConcept'];
+      case 'itemReference':
+        return ['Reference'];
+      case 'basis':
+        return ['FhirString'];
+      default:
+        return <String>[];
     }
   }
 

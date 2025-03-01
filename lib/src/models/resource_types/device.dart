@@ -1043,6 +1043,84 @@ class Device extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'definition':
+        return ['Reference'];
+      case 'udiCarrier':
+        return ['DeviceUdiCarrier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'statusReason':
+        return ['CodeableConcept'];
+      case 'distinctIdentifier':
+        return ['FhirString'];
+      case 'manufacturer':
+        return ['FhirString'];
+      case 'manufactureDate':
+        return ['FhirDateTime'];
+      case 'expirationDate':
+        return ['FhirDateTime'];
+      case 'lotNumber':
+        return ['FhirString'];
+      case 'serialNumber':
+        return ['FhirString'];
+      case 'deviceName':
+        return ['DeviceDeviceName'];
+      case 'modelNumber':
+        return ['FhirString'];
+      case 'partNumber':
+        return ['FhirString'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'specialization':
+        return ['DeviceSpecialization'];
+      case 'version':
+        return ['DeviceVersion'];
+      case 'property':
+        return ['DeviceProperty'];
+      case 'patient':
+        return ['Reference'];
+      case 'owner':
+        return ['Reference'];
+      case 'contact':
+        return ['ContactPoint'];
+      case 'location':
+        return ['Reference'];
+      case 'url':
+        return ['FhirUri'];
+      case 'note':
+        return ['Annotation'];
+      case 'safety':
+        return ['CodeableConcept'];
+      case 'parent':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Device clone() => throw UnimplementedError();
   @override
@@ -1818,6 +1896,34 @@ class DeviceUdiCarrier extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'deviceIdentifier':
+        return ['FhirString'];
+      case 'issuer':
+        return ['FhirUri'];
+      case 'jurisdiction':
+        return ['FhirUri'];
+      case 'carrierAIDC':
+        return ['FhirBase64Binary'];
+      case 'carrierHRF':
+        return ['FhirString'];
+      case 'entryType':
+        return ['FhirCode'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   DeviceUdiCarrier clone() => throw UnimplementedError();
   @override
@@ -2206,6 +2312,26 @@ class DeviceDeviceName extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'type':
+        return ['FhirCode'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   DeviceDeviceName clone() => throw UnimplementedError();
   @override
@@ -2557,6 +2683,26 @@ class DeviceSpecialization extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'systemType':
+        return ['CodeableConcept'];
+      case 'version':
+        return ['FhirString'];
+      default:
+        return <String>[];
     }
   }
 
@@ -2935,6 +3081,28 @@ class DeviceVersion extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'component':
+        return ['Identifier'];
+      case 'value':
+        return ['FhirString'];
+      default:
+        return <String>[];
     }
   }
 
@@ -3330,6 +3498,28 @@ class DeviceProperty extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueCode':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
     }
   }
 

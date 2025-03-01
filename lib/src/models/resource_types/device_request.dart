@@ -1083,6 +1083,92 @@ class DeviceRequest extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'instantiatesCanonical':
+        return ['FhirCanonical'];
+      case 'instantiatesUri':
+        return ['FhirUri'];
+      case 'basedOn':
+        return ['Reference'];
+      case 'priorRequest':
+        return ['Reference'];
+      case 'groupIdentifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'intent':
+        return ['FhirCode'];
+      case 'priority':
+        return ['FhirCode'];
+      case 'code':
+      case 'codeX':
+        return ['Reference', 'CodeableConcept'];
+      case 'codeReference':
+        return ['Reference'];
+      case 'codeCodeableConcept':
+        return ['CodeableConcept'];
+      case 'parameter':
+        return ['DeviceRequestParameter'];
+      case 'subject':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'occurrence':
+      case 'occurrenceX':
+        return ['FhirDateTime', 'Period', 'Timing'];
+      case 'occurrenceDateTime':
+        return ['FhirDateTime'];
+      case 'occurrencePeriod':
+        return ['Period'];
+      case 'occurrenceTiming':
+        return ['Timing'];
+      case 'authoredOn':
+        return ['FhirDateTime'];
+      case 'requester':
+        return ['Reference'];
+      case 'performerType':
+        return ['CodeableConcept'];
+      case 'performer':
+        return ['Reference'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'insurance':
+        return ['Reference'];
+      case 'supportingInfo':
+        return ['Reference'];
+      case 'note':
+        return ['Annotation'];
+      case 'relevantHistory':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   DeviceRequest clone() => throw UnimplementedError();
   @override
@@ -1801,6 +1887,35 @@ class DeviceRequestParameter extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'value':
+      case 'valueX':
+        return ['CodeableConcept', 'Quantity', 'Range', 'FhirBoolean'];
+      case 'valueCodeableConcept':
+        return ['CodeableConcept'];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueRange':
+        return ['Range'];
+      case 'valueBoolean':
+        return ['FhirBoolean'];
+      default:
+        return <String>[];
     }
   }
 

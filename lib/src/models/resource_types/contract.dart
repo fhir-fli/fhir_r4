@@ -1345,6 +1345,108 @@ class Contract extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'url':
+        return ['FhirUri'];
+      case 'version':
+        return ['FhirString'];
+      case 'status':
+        return ['FhirCode'];
+      case 'legalState':
+        return ['CodeableConcept'];
+      case 'instantiatesCanonical':
+        return ['Reference'];
+      case 'instantiatesUri':
+        return ['FhirUri'];
+      case 'contentDerivative':
+        return ['CodeableConcept'];
+      case 'issued':
+        return ['FhirDateTime'];
+      case 'applies':
+        return ['Period'];
+      case 'expirationType':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'authority':
+        return ['Reference'];
+      case 'domain':
+        return ['Reference'];
+      case 'site':
+        return ['Reference'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'subtitle':
+        return ['FhirString'];
+      case 'alias':
+        return ['FhirString'];
+      case 'author':
+        return ['Reference'];
+      case 'scope':
+        return ['CodeableConcept'];
+      case 'topic':
+      case 'topicX':
+        return ['CodeableConcept', 'Reference'];
+      case 'topicCodeableConcept':
+        return ['CodeableConcept'];
+      case 'topicReference':
+        return ['Reference'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'subType':
+        return ['CodeableConcept'];
+      case 'contentDefinition':
+        return ['ContractContentDefinition'];
+      case 'term':
+        return ['ContractTerm'];
+      case 'supportingInfo':
+        return ['Reference'];
+      case 'relevantHistory':
+        return ['Reference'];
+      case 'signer':
+        return ['ContractSigner'];
+      case 'friendly':
+        return ['ContractFriendly'];
+      case 'legal':
+        return ['ContractLegal'];
+      case 'rule':
+        return ['ContractRule'];
+      case 'legallyBinding':
+      case 'legallyBindingX':
+        return ['Attachment', 'Reference'];
+      case 'legallyBindingAttachment':
+        return ['Attachment'];
+      case 'legallyBindingReference':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Contract clone() => throw UnimplementedError();
   @override
@@ -2194,6 +2296,34 @@ class ContractContentDefinition extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'subType':
+        return ['CodeableConcept'];
+      case 'publisher':
+        return ['Reference'];
+      case 'publicationDate':
+        return ['FhirDateTime'];
+      case 'publicationStatus':
+        return ['FhirCode'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ContractContentDefinition clone() => throw UnimplementedError();
   @override
@@ -2889,6 +3019,51 @@ class ContractTerm extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'issued':
+        return ['FhirDateTime'];
+      case 'applies':
+        return ['Period'];
+      case 'topic':
+      case 'topicX':
+        return ['CodeableConcept', 'Reference'];
+      case 'topicCodeableConcept':
+        return ['CodeableConcept'];
+      case 'topicReference':
+        return ['Reference'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'subType':
+        return ['CodeableConcept'];
+      case 'text':
+        return ['FhirString'];
+      case 'securityLabel':
+        return ['ContractSecurityLabel'];
+      case 'offer':
+        return ['ContractOffer'];
+      case 'asset':
+        return ['ContractAsset'];
+      case 'action':
+        return ['ContractAction'];
+      case 'group':
+        return ['ContractTerm'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ContractTerm clone() => throw UnimplementedError();
   @override
@@ -3409,6 +3584,30 @@ class ContractSecurityLabel extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'number':
+        return ['FhirUnsignedInt'];
+      case 'classification':
+        return ['Coding'];
+      case 'category':
+        return ['Coding'];
+      case 'control':
+        return ['Coding'];
+      default:
+        return <String>[];
     }
   }
 
@@ -4022,6 +4221,42 @@ class ContractOffer extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'party':
+        return ['ContractParty'];
+      case 'topic':
+        return ['Reference'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'decision':
+        return ['CodeableConcept'];
+      case 'decisionMode':
+        return ['CodeableConcept'];
+      case 'answer':
+        return ['ContractAnswer'];
+      case 'text':
+        return ['FhirString'];
+      case 'linkId':
+        return ['FhirString'];
+      case 'securityLabelNumber':
+        return ['FhirUnsignedInt'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ContractOffer clone() => throw UnimplementedError();
   @override
@@ -4480,6 +4715,26 @@ class ContractParty extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'reference':
+        return ['Reference'];
+      case 'role':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
     }
   }
 
@@ -5014,6 +5269,62 @@ class ContractAnswer extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'value':
+      case 'valueX':
+        return [
+          'FhirBoolean',
+          'FhirDecimal',
+          'FhirInteger',
+          'FhirDate',
+          'FhirDateTime',
+          'FhirTime',
+          'FhirString',
+          'FhirUri',
+          'Attachment',
+          'Coding',
+          'Quantity',
+          'Reference',
+        ];
+      case 'valueBoolean':
+        return ['FhirBoolean'];
+      case 'valueDecimal':
+        return ['FhirDecimal'];
+      case 'valueInteger':
+        return ['FhirInteger'];
+      case 'valueDate':
+        return ['FhirDate'];
+      case 'valueDateTime':
+        return ['FhirDateTime'];
+      case 'valueTime':
+        return ['FhirTime'];
+      case 'valueString':
+        return ['FhirString'];
+      case 'valueUri':
+        return ['FhirUri'];
+      case 'valueAttachment':
+        return ['Attachment'];
+      case 'valueCoding':
+        return ['Coding'];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueReference':
+        return ['Reference'];
+      default:
+        return <String>[];
     }
   }
 
@@ -5728,6 +6039,52 @@ class ContractAsset extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'scope':
+        return ['CodeableConcept'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'typeReference':
+        return ['Reference'];
+      case 'subtype':
+        return ['CodeableConcept'];
+      case 'relationship':
+        return ['Coding'];
+      case 'context':
+        return ['ContractContext'];
+      case 'condition':
+        return ['FhirString'];
+      case 'periodType':
+        return ['CodeableConcept'];
+      case 'period':
+        return ['Period'];
+      case 'usePeriod':
+        return ['Period'];
+      case 'text':
+        return ['FhirString'];
+      case 'linkId':
+        return ['FhirString'];
+      case 'answer':
+        return ['ContractAnswer'];
+      case 'securityLabelNumber':
+        return ['FhirUnsignedInt'];
+      case 'valuedItem':
+        return ['ContractValuedItem'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ContractAsset clone() => throw UnimplementedError();
   @override
@@ -6290,6 +6647,28 @@ class ContractContext extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'reference':
+        return ['Reference'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'text':
+        return ['FhirString'];
+      default:
+        return <String>[];
     }
   }
 
@@ -7010,6 +7389,55 @@ class ContractValuedItem extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'entity':
+      case 'entityX':
+        return ['CodeableConcept', 'Reference'];
+      case 'entityCodeableConcept':
+        return ['CodeableConcept'];
+      case 'entityReference':
+        return ['Reference'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'effectiveTime':
+        return ['FhirDateTime'];
+      case 'quantity':
+        return ['Quantity'];
+      case 'unitPrice':
+        return ['Money'];
+      case 'factor':
+        return ['FhirDecimal'];
+      case 'points':
+        return ['FhirDecimal'];
+      case 'net':
+        return ['Money'];
+      case 'payment':
+        return ['FhirString'];
+      case 'paymentDate':
+        return ['FhirDateTime'];
+      case 'responsible':
+        return ['Reference'];
+      case 'recipient':
+        return ['Reference'];
+      case 'linkId':
+        return ['FhirString'];
+      case 'securityLabelNumber':
+        return ['FhirUnsignedInt'];
+      default:
+        return <String>[];
     }
   }
 
@@ -8045,6 +8473,71 @@ class ContractAction extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'doNotPerform':
+        return ['FhirBoolean'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['ContractSubject'];
+      case 'intent':
+        return ['CodeableConcept'];
+      case 'linkId':
+        return ['FhirString'];
+      case 'status':
+        return ['CodeableConcept'];
+      case 'context':
+        return ['Reference'];
+      case 'contextLinkId':
+        return ['FhirString'];
+      case 'occurrence':
+      case 'occurrenceX':
+        return ['FhirDateTime', 'Period', 'Timing'];
+      case 'occurrenceDateTime':
+        return ['FhirDateTime'];
+      case 'occurrencePeriod':
+        return ['Period'];
+      case 'occurrenceTiming':
+        return ['Timing'];
+      case 'requester':
+        return ['Reference'];
+      case 'requesterLinkId':
+        return ['FhirString'];
+      case 'performerType':
+        return ['CodeableConcept'];
+      case 'performerRole':
+        return ['CodeableConcept'];
+      case 'performer':
+        return ['Reference'];
+      case 'performerLinkId':
+        return ['FhirString'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'reason':
+        return ['FhirString'];
+      case 'reasonLinkId':
+        return ['FhirString'];
+      case 'note':
+        return ['Annotation'];
+      case 'securityLabelNumber':
+        return ['FhirUnsignedInt'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ContractAction clone() => throw UnimplementedError();
   @override
@@ -8644,6 +9137,26 @@ class ContractSubject extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'reference':
+        return ['Reference'];
+      case 'role':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ContractSubject clone() => throw UnimplementedError();
   @override
@@ -9030,6 +9543,28 @@ class ContractSigner extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['Coding'];
+      case 'party':
+        return ['Reference'];
+      case 'signature':
+        return ['Signature'];
+      default:
+        return <String>[];
     }
   }
 
@@ -9420,6 +9955,29 @@ class ContractFriendly extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'content':
+      case 'contentX':
+        return ['Attachment', 'Reference'];
+      case 'contentAttachment':
+        return ['Attachment'];
+      case 'contentReference':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ContractFriendly clone() => throw UnimplementedError();
   @override
@@ -9773,6 +10331,29 @@ class ContractLegal extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'content':
+      case 'contentX':
+        return ['Attachment', 'Reference'];
+      case 'contentAttachment':
+        return ['Attachment'];
+      case 'contentReference':
+        return ['Reference'];
+      default:
+        return <String>[];
     }
   }
 
@@ -10131,6 +10712,29 @@ class ContractRule extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'content':
+      case 'contentX':
+        return ['Attachment', 'Reference'];
+      case 'contentAttachment':
+        return ['Attachment'];
+      case 'contentReference':
+        return ['Reference'];
+      default:
+        return <String>[];
     }
   }
 

@@ -779,6 +779,68 @@ class StructureMap extends CanonicalResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      case 'structure':
+        return ['StructureMapStructure'];
+      case 'import':
+        return ['FhirCanonical'];
+      case 'group':
+        return ['StructureMapGroup'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   StructureMap clone() => throw UnimplementedError();
   @override
@@ -1398,6 +1460,30 @@ class StructureMapStructure extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirCanonical'];
+      case 'mode':
+        return ['FhirCode'];
+      case 'alias':
+        return ['FhirString'];
+      case 'documentation':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   StructureMapStructure clone() => throw UnimplementedError();
   @override
@@ -1875,6 +1961,34 @@ class StructureMapGroup extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirId'];
+      case 'extends':
+        return ['FhirId'];
+      case 'typeMode':
+        return ['FhirCode'];
+      case 'documentation':
+        return ['FhirString'];
+      case 'input':
+        return ['StructureMapInput'];
+      case 'rule':
+        return ['StructureMapRule'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   StructureMapGroup clone() => throw UnimplementedError();
   @override
@@ -2320,6 +2434,30 @@ class StructureMapInput extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirId'];
+      case 'type':
+        return ['FhirString'];
+      case 'mode':
+        return ['FhirCode'];
+      case 'documentation':
+        return ['FhirString'];
+      default:
+        return <String>[];
     }
   }
 
@@ -2803,6 +2941,34 @@ class StructureMapRule extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirId'];
+      case 'source':
+        return ['StructureMapSource'];
+      case 'target':
+        return ['StructureMapTarget'];
+      case 'rule':
+        return ['StructureMapRule'];
+      case 'dependent':
+        return ['StructureMapDependent'];
+      case 'documentation':
+        return ['FhirString'];
+      default:
+        return <String>[];
     }
   }
 
@@ -4270,6 +4436,196 @@ class StructureMapSource extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'context':
+        return ['FhirId'];
+      case 'min':
+        return ['FhirInteger'];
+      case 'max':
+        return ['FhirString'];
+      case 'type':
+        return ['FhirString'];
+      case 'defaultValue':
+      case 'defaultValueX':
+        return [
+          'FhirBase64Binary',
+          'FhirBoolean',
+          'FhirCanonical',
+          'FhirCode',
+          'FhirDate',
+          'FhirDateTime',
+          'FhirDecimal',
+          'FhirId',
+          'FhirInstant',
+          'FhirInteger',
+          'FhirMarkdown',
+          'FhirOid',
+          'FhirPositiveInt',
+          'FhirString',
+          'FhirTime',
+          'FhirUnsignedInt',
+          'FhirUri',
+          'FhirUrl',
+          'FhirUuid',
+          'Address',
+          'Age',
+          'Annotation',
+          'Attachment',
+          'CodeableConcept',
+          'Coding',
+          'ContactPoint',
+          'Count',
+          'Distance',
+          'FhirDuration',
+          'HumanName',
+          'Identifier',
+          'Money',
+          'Period',
+          'Quantity',
+          'Range',
+          'Ratio',
+          'Reference',
+          'SampledData',
+          'Signature',
+          'Timing',
+          'ContactDetail',
+          'Contributor',
+          'DataRequirement',
+          'FhirExpression',
+          'ParameterDefinition',
+          'RelatedArtifact',
+          'TriggerDefinition',
+          'UsageContext',
+          'Dosage',
+          'FhirMeta',
+        ];
+      case 'defaultValueBase64Binary':
+        return ['FhirBase64Binary'];
+      case 'defaultValueBoolean':
+        return ['FhirBoolean'];
+      case 'defaultValueCanonical':
+        return ['FhirCanonical'];
+      case 'defaultValueCode':
+        return ['FhirCode'];
+      case 'defaultValueDate':
+        return ['FhirDate'];
+      case 'defaultValueDateTime':
+        return ['FhirDateTime'];
+      case 'defaultValueDecimal':
+        return ['FhirDecimal'];
+      case 'defaultValueId':
+        return ['FhirId'];
+      case 'defaultValueInstant':
+        return ['FhirInstant'];
+      case 'defaultValueInteger':
+        return ['FhirInteger'];
+      case 'defaultValueMarkdown':
+        return ['FhirMarkdown'];
+      case 'defaultValueOid':
+        return ['FhirOid'];
+      case 'defaultValuePositiveInt':
+        return ['FhirPositiveInt'];
+      case 'defaultValueString':
+        return ['FhirString'];
+      case 'defaultValueTime':
+        return ['FhirTime'];
+      case 'defaultValueUnsignedInt':
+        return ['FhirUnsignedInt'];
+      case 'defaultValueUri':
+        return ['FhirUri'];
+      case 'defaultValueUrl':
+        return ['FhirUrl'];
+      case 'defaultValueUuid':
+        return ['FhirUuid'];
+      case 'defaultValueAddress':
+        return ['Address'];
+      case 'defaultValueAge':
+        return ['Age'];
+      case 'defaultValueAnnotation':
+        return ['Annotation'];
+      case 'defaultValueAttachment':
+        return ['Attachment'];
+      case 'defaultValueCodeableConcept':
+        return ['CodeableConcept'];
+      case 'defaultValueCoding':
+        return ['Coding'];
+      case 'defaultValueContactPoint':
+        return ['ContactPoint'];
+      case 'defaultValueCount':
+        return ['Count'];
+      case 'defaultValueDistance':
+        return ['Distance'];
+      case 'defaultValueDuration':
+        return ['FhirDuration'];
+      case 'defaultValueHumanName':
+        return ['HumanName'];
+      case 'defaultValueIdentifier':
+        return ['Identifier'];
+      case 'defaultValueMoney':
+        return ['Money'];
+      case 'defaultValuePeriod':
+        return ['Period'];
+      case 'defaultValueQuantity':
+        return ['Quantity'];
+      case 'defaultValueRange':
+        return ['Range'];
+      case 'defaultValueRatio':
+        return ['Ratio'];
+      case 'defaultValueReference':
+        return ['Reference'];
+      case 'defaultValueSampledData':
+        return ['SampledData'];
+      case 'defaultValueSignature':
+        return ['Signature'];
+      case 'defaultValueTiming':
+        return ['Timing'];
+      case 'defaultValueContactDetail':
+        return ['ContactDetail'];
+      case 'defaultValueContributor':
+        return ['Contributor'];
+      case 'defaultValueDataRequirement':
+        return ['DataRequirement'];
+      case 'defaultValueExpression':
+        return ['FhirExpression'];
+      case 'defaultValueParameterDefinition':
+        return ['ParameterDefinition'];
+      case 'defaultValueRelatedArtifact':
+        return ['RelatedArtifact'];
+      case 'defaultValueTriggerDefinition':
+        return ['TriggerDefinition'];
+      case 'defaultValueUsageContext':
+        return ['UsageContext'];
+      case 'defaultValueDosage':
+        return ['Dosage'];
+      case 'defaultValueMeta':
+        return ['FhirMeta'];
+      case 'element':
+        return ['FhirString'];
+      case 'listMode':
+        return ['FhirCode'];
+      case 'variable':
+        return ['FhirId'];
+      case 'condition':
+        return ['FhirString'];
+      case 'check':
+        return ['FhirString'];
+      case 'logMessage':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   StructureMapSource clone() => throw UnimplementedError();
   @override
@@ -4848,6 +5204,38 @@ class StructureMapTarget extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'context':
+        return ['FhirId'];
+      case 'contextType':
+        return ['FhirCode'];
+      case 'element':
+        return ['FhirString'];
+      case 'variable':
+        return ['FhirId'];
+      case 'listMode':
+        return ['FhirCode'];
+      case 'listRuleId':
+        return ['FhirId'];
+      case 'transform':
+        return ['FhirCode'];
+      case 'parameter':
+        return ['StructureMapParameter'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   StructureMapTarget clone() => throw UnimplementedError();
   @override
@@ -5322,6 +5710,41 @@ class StructureMapParameter extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'value':
+      case 'valueX':
+        return [
+          'FhirId',
+          'FhirString',
+          'FhirBoolean',
+          'FhirInteger',
+          'FhirDecimal',
+        ];
+      case 'valueId':
+        return ['FhirId'];
+      case 'valueString':
+        return ['FhirString'];
+      case 'valueBoolean':
+        return ['FhirBoolean'];
+      case 'valueInteger':
+        return ['FhirInteger'];
+      case 'valueDecimal':
+        return ['FhirDecimal'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   StructureMapParameter clone() => throw UnimplementedError();
   @override
@@ -5662,6 +6085,26 @@ class StructureMapDependent extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirId'];
+      case 'variable':
+        return ['FhirString'];
+      default:
+        return <String>[];
     }
   }
 

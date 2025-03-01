@@ -1026,6 +1026,86 @@ class StructureDefinition extends CanonicalResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      case 'keyword':
+        return ['Coding'];
+      case 'fhirVersion':
+        return ['FhirCode'];
+      case 'mapping':
+        return ['StructureDefinitionMapping'];
+      case 'kind':
+        return ['FhirCode'];
+      case 'abstract':
+        return ['FhirBoolean'];
+      case 'context':
+        return ['StructureDefinitionContext'];
+      case 'contextInvariant':
+        return ['FhirString'];
+      case 'type':
+        return ['FhirUri'];
+      case 'baseDefinition':
+        return ['FhirCanonical'];
+      case 'derivation':
+        return ['FhirCode'];
+      case 'snapshot':
+        return ['StructureDefinitionSnapshot'];
+      case 'differential':
+        return ['StructureDefinitionDifferential'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   StructureDefinition clone() => throw UnimplementedError();
   @override
@@ -1726,6 +1806,30 @@ class StructureDefinitionMapping extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identity':
+        return ['FhirId'];
+      case 'uri':
+        return ['FhirUri'];
+      case 'name':
+        return ['FhirString'];
+      case 'comment':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   StructureDefinitionMapping clone() => throw UnimplementedError();
   @override
@@ -2095,6 +2199,26 @@ class StructureDefinitionContext extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirCode'];
+      case 'expression':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   StructureDefinitionContext clone() => throw UnimplementedError();
   @override
@@ -2427,6 +2551,24 @@ class StructureDefinitionSnapshot extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'element':
+        return ['ElementDefinition'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   StructureDefinitionSnapshot clone() => throw UnimplementedError();
   @override
@@ -2756,6 +2898,24 @@ class StructureDefinitionDifferential extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'element':
+        return ['ElementDefinition'];
+      default:
+        return <String>[];
     }
   }
 

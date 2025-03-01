@@ -970,6 +970,88 @@ class Condition extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'clinicalStatus':
+        return ['CodeableConcept'];
+      case 'verificationStatus':
+        return ['CodeableConcept'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'severity':
+        return ['CodeableConcept'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'bodySite':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'onset':
+      case 'onsetX':
+        return ['FhirDateTime', 'Age', 'Period', 'Range', 'FhirString'];
+      case 'onsetDateTime':
+        return ['FhirDateTime'];
+      case 'onsetAge':
+        return ['Age'];
+      case 'onsetPeriod':
+        return ['Period'];
+      case 'onsetRange':
+        return ['Range'];
+      case 'onsetString':
+        return ['FhirString'];
+      case 'abatement':
+      case 'abatementX':
+        return ['FhirDateTime', 'Age', 'Period', 'Range', 'FhirString'];
+      case 'abatementDateTime':
+        return ['FhirDateTime'];
+      case 'abatementAge':
+        return ['Age'];
+      case 'abatementPeriod':
+        return ['Period'];
+      case 'abatementRange':
+        return ['Range'];
+      case 'abatementString':
+        return ['FhirString'];
+      case 'recordedDate':
+        return ['FhirDateTime'];
+      case 'recorder':
+        return ['Reference'];
+      case 'asserter':
+        return ['Reference'];
+      case 'stage':
+        return ['ConditionStage'];
+      case 'evidence':
+        return ['ConditionEvidence'];
+      case 'note':
+        return ['Annotation'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Condition clone() => throw UnimplementedError();
   @override
@@ -1555,6 +1637,28 @@ class ConditionStage extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'summary':
+        return ['CodeableConcept'];
+      case 'assessment':
+        return ['Reference'];
+      case 'type':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ConditionStage clone() => throw UnimplementedError();
   @override
@@ -1929,6 +2033,26 @@ class ConditionEvidence extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'detail':
+        return ['Reference'];
+      default:
+        return <String>[];
     }
   }
 

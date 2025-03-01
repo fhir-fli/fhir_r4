@@ -365,6 +365,32 @@ class Identifier extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'use':
+        return ['FhirCode'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'system':
+        return ['FhirUri'];
+      case 'value':
+        return ['FhirString'];
+      case 'period':
+        return ['Period'];
+      case 'assigner':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Identifier clone() => throw UnimplementedError();
   @override

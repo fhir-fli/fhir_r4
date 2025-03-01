@@ -1303,6 +1303,106 @@ class MedicationRequest extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'statusReason':
+        return ['CodeableConcept'];
+      case 'intent':
+        return ['FhirCode'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'priority':
+        return ['FhirCode'];
+      case 'doNotPerform':
+        return ['FhirBoolean'];
+      case 'reported':
+      case 'reportedX':
+        return ['FhirBoolean', 'Reference'];
+      case 'reportedBoolean':
+        return ['FhirBoolean'];
+      case 'reportedReference':
+        return ['Reference'];
+      case 'medication':
+      case 'medicationX':
+        return ['CodeableConcept', 'Reference'];
+      case 'medicationCodeableConcept':
+        return ['CodeableConcept'];
+      case 'medicationReference':
+        return ['Reference'];
+      case 'subject':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'supportingInformation':
+        return ['Reference'];
+      case 'authoredOn':
+        return ['FhirDateTime'];
+      case 'requester':
+        return ['Reference'];
+      case 'performer':
+        return ['Reference'];
+      case 'performerType':
+        return ['CodeableConcept'];
+      case 'recorder':
+        return ['Reference'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'instantiatesCanonical':
+        return ['FhirCanonical'];
+      case 'instantiatesUri':
+        return ['FhirUri'];
+      case 'basedOn':
+        return ['Reference'];
+      case 'groupIdentifier':
+        return ['Identifier'];
+      case 'courseOfTherapyType':
+        return ['CodeableConcept'];
+      case 'insurance':
+        return ['Reference'];
+      case 'note':
+        return ['Annotation'];
+      case 'dosageInstruction':
+        return ['Dosage'];
+      case 'dispenseRequest':
+        return ['MedicationRequestDispenseRequest'];
+      case 'substitution':
+        return ['MedicationRequestSubstitution'];
+      case 'priorPrescription':
+        return ['Reference'];
+      case 'detectedIssue':
+        return ['Reference'];
+      case 'eventHistory':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MedicationRequest clone() => throw UnimplementedError();
   @override
@@ -2168,6 +2268,36 @@ class MedicationRequestDispenseRequest extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'initialFill':
+        return ['MedicationRequestInitialFill'];
+      case 'dispenseInterval':
+        return ['FhirDuration'];
+      case 'validityPeriod':
+        return ['Period'];
+      case 'numberOfRepeatsAllowed':
+        return ['FhirUnsignedInt'];
+      case 'quantity':
+        return ['Quantity'];
+      case 'expectedSupplyDuration':
+        return ['FhirDuration'];
+      case 'performer':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   MedicationRequestDispenseRequest clone() => throw UnimplementedError();
   @override
@@ -2559,6 +2689,26 @@ class MedicationRequestInitialFill extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'quantity':
+        return ['Quantity'];
+      case 'duration':
+        return ['FhirDuration'];
+      default:
+        return <String>[];
     }
   }
 
@@ -2956,6 +3106,31 @@ class MedicationRequestSubstitution extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'allowed':
+      case 'allowedX':
+        return ['FhirBoolean', 'CodeableConcept'];
+      case 'allowedBoolean':
+        return ['FhirBoolean'];
+      case 'allowedCodeableConcept':
+        return ['CodeableConcept'];
+      case 'reason':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
     }
   }
 

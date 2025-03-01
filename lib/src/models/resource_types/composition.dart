@@ -753,6 +753,62 @@ class Composition extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'author':
+        return ['Reference'];
+      case 'title':
+        return ['FhirString'];
+      case 'confidentiality':
+        return ['FhirCode'];
+      case 'attester':
+        return ['CompositionAttester'];
+      case 'custodian':
+        return ['Reference'];
+      case 'relatesTo':
+        return ['CompositionRelatesTo'];
+      case 'event':
+        return ['CompositionEvent'];
+      case 'section':
+        return ['CompositionSection'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Composition clone() => throw UnimplementedError();
   @override
@@ -1316,6 +1372,28 @@ class CompositionAttester extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'mode':
+        return ['FhirCode'];
+      case 'time':
+        return ['FhirDateTime'];
+      case 'party':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CompositionAttester clone() => throw UnimplementedError();
   @override
@@ -1714,6 +1792,31 @@ class CompositionRelatesTo extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['FhirCode'];
+      case 'target':
+      case 'targetX':
+        return ['Identifier', 'Reference'];
+      case 'targetIdentifier':
+        return ['Identifier'];
+      case 'targetReference':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CompositionRelatesTo clone() => throw UnimplementedError();
   @override
@@ -2105,6 +2208,28 @@ class CompositionEvent extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'period':
+        return ['Period'];
+      case 'detail':
+        return ['Reference'];
+      default:
+        return <String>[];
     }
   }
 
@@ -2712,6 +2837,42 @@ class CompositionSection extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'title':
+        return ['FhirString'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'author':
+        return ['Reference'];
+      case 'focus':
+        return ['Reference'];
+      case 'text':
+        return ['Narrative'];
+      case 'mode':
+        return ['FhirCode'];
+      case 'orderedBy':
+        return ['CodeableConcept'];
+      case 'entry':
+        return ['Reference'];
+      case 'emptyReason':
+        return ['CodeableConcept'];
+      case 'section':
+        return ['CompositionSection'];
+      default:
+        return <String>[];
     }
   }
 

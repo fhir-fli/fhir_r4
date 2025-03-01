@@ -1012,6 +1012,93 @@ class FamilyMemberHistory extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'instantiatesCanonical':
+        return ['FhirCanonical'];
+      case 'instantiatesUri':
+        return ['FhirUri'];
+      case 'status':
+        return ['FhirCode'];
+      case 'dataAbsentReason':
+        return ['CodeableConcept'];
+      case 'patient':
+        return ['Reference'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'name':
+        return ['FhirString'];
+      case 'relationship':
+        return ['CodeableConcept'];
+      case 'sex':
+        return ['CodeableConcept'];
+      case 'born':
+      case 'bornX':
+        return ['Period', 'FhirDate', 'FhirString'];
+      case 'bornPeriod':
+        return ['Period'];
+      case 'bornDate':
+        return ['FhirDate'];
+      case 'bornString':
+        return ['FhirString'];
+      case 'age':
+      case 'ageX':
+        return ['Age', 'Range', 'FhirString'];
+      case 'ageAge':
+        return ['Age'];
+      case 'ageRange':
+        return ['Range'];
+      case 'ageString':
+        return ['FhirString'];
+      case 'estimatedAge':
+        return ['FhirBoolean'];
+      case 'deceased':
+      case 'deceasedX':
+        return ['FhirBoolean', 'Age', 'Range', 'FhirDate', 'FhirString'];
+      case 'deceasedBoolean':
+        return ['FhirBoolean'];
+      case 'deceasedAge':
+        return ['Age'];
+      case 'deceasedRange':
+        return ['Range'];
+      case 'deceasedDate':
+        return ['FhirDate'];
+      case 'deceasedString':
+        return ['FhirString'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'note':
+        return ['Annotation'];
+      case 'condition':
+        return ['FamilyMemberHistoryCondition'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   FamilyMemberHistory clone() => throw UnimplementedError();
   @override
@@ -1736,6 +1823,41 @@ class FamilyMemberHistoryCondition extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'outcome':
+        return ['CodeableConcept'];
+      case 'contributedToDeath':
+        return ['FhirBoolean'];
+      case 'onset':
+      case 'onsetX':
+        return ['Age', 'Range', 'Period', 'FhirString'];
+      case 'onsetAge':
+        return ['Age'];
+      case 'onsetRange':
+        return ['Range'];
+      case 'onsetPeriod':
+        return ['Period'];
+      case 'onsetString':
+        return ['FhirString'];
+      case 'note':
+        return ['Annotation'];
+      default:
+        return <String>[];
     }
   }
 

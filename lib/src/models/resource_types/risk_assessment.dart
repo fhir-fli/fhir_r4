@@ -824,6 +824,71 @@ class RiskAssessment extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'basedOn':
+        return ['Reference'];
+      case 'parent':
+        return ['Reference'];
+      case 'status':
+        return ['FhirCode'];
+      case 'method':
+        return ['CodeableConcept'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'occurrence':
+      case 'occurrenceX':
+        return ['FhirDateTime', 'Period'];
+      case 'occurrenceDateTime':
+        return ['FhirDateTime'];
+      case 'occurrencePeriod':
+        return ['Period'];
+      case 'condition':
+        return ['Reference'];
+      case 'performer':
+        return ['Reference'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'basis':
+        return ['Reference'];
+      case 'prediction':
+        return ['RiskAssessmentPrediction'];
+      case 'mitigation':
+        return ['FhirString'];
+      case 'note':
+        return ['Annotation'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   RiskAssessment clone() => throw UnimplementedError();
   @override
@@ -1555,6 +1620,44 @@ class RiskAssessmentPrediction extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'outcome':
+        return ['CodeableConcept'];
+      case 'probability':
+      case 'probabilityX':
+        return ['FhirDecimal', 'Range'];
+      case 'probabilityDecimal':
+        return ['FhirDecimal'];
+      case 'probabilityRange':
+        return ['Range'];
+      case 'qualitativeRisk':
+        return ['CodeableConcept'];
+      case 'relativeRisk':
+        return ['FhirDecimal'];
+      case 'when':
+      case 'whenX':
+        return ['Period', 'Range'];
+      case 'whenPeriod':
+        return ['Period'];
+      case 'whenRange':
+        return ['Range'];
+      case 'rationale':
+        return ['FhirString'];
+      default:
+        return <String>[];
     }
   }
 

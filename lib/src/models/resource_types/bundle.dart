@@ -426,6 +426,38 @@ class Bundle extends Resource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'type':
+        return ['FhirCode'];
+      case 'timestamp':
+        return ['FhirInstant'];
+      case 'total':
+        return ['FhirUnsignedInt'];
+      case 'link':
+        return ['BundleLink'];
+      case 'entry':
+        return ['BundleEntry'];
+      case 'signature':
+        return ['Signature'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Bundle clone() => throw UnimplementedError();
   @override
@@ -822,6 +854,26 @@ class BundleLink extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'relation':
+        return ['FhirString'];
+      case 'url':
+        return ['FhirUri'];
+      default:
+        return <String>[];
     }
   }
 
@@ -1296,6 +1348,34 @@ class BundleEntry extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'link':
+        return ['BundleLink'];
+      case 'fullUrl':
+        return ['FhirUri'];
+      case 'resource':
+        return ['Resource'];
+      case 'search':
+        return ['BundleSearch'];
+      case 'request':
+        return ['BundleRequest'];
+      case 'response':
+        return ['BundleResponse'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   BundleEntry clone() => throw UnimplementedError();
   @override
@@ -1684,6 +1764,26 @@ class BundleSearch extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'mode':
+        return ['FhirCode'];
+      case 'score':
+        return ['FhirDecimal'];
+      default:
+        return <String>[];
     }
   }
 
@@ -2147,6 +2247,34 @@ class BundleRequest extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'method':
+        return ['FhirCode'];
+      case 'url':
+        return ['FhirUri'];
+      case 'ifNoneMatch':
+        return ['FhirString'];
+      case 'ifModifiedSince':
+        return ['FhirInstant'];
+      case 'ifMatch':
+        return ['FhirString'];
+      case 'ifNoneExist':
+        return ['FhirString'];
+      default:
+        return <String>[];
     }
   }
 
@@ -2615,6 +2743,32 @@ class BundleResponse extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'status':
+        return ['FhirString'];
+      case 'location':
+        return ['FhirUri'];
+      case 'etag':
+        return ['FhirString'];
+      case 'lastModified':
+        return ['FhirInstant'];
+      case 'outcome':
+        return ['Resource'];
+      default:
+        return <String>[];
     }
   }
 

@@ -360,6 +360,35 @@ class Population extends BackboneType {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'age':
+      case 'ageX':
+        return ['Range', 'CodeableConcept'];
+      case 'ageRange':
+        return ['Range'];
+      case 'ageCodeableConcept':
+        return ['CodeableConcept'];
+      case 'gender':
+        return ['CodeableConcept'];
+      case 'race':
+        return ['CodeableConcept'];
+      case 'physiologicalCondition':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Population clone() => throw UnimplementedError();
   @override

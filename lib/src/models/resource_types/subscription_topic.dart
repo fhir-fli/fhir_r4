@@ -899,6 +899,76 @@ class SubscriptionTopic extends CanonicalResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'version':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'derivedFrom':
+        return ['FhirCanonical'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      case 'approvalDate':
+        return ['FhirDate'];
+      case 'lastReviewDate':
+        return ['FhirDate'];
+      case 'effectivePeriod':
+        return ['Period'];
+      case 'resourceTrigger':
+        return ['SubscriptionTopicResourceTrigger'];
+      case 'eventTrigger':
+        return ['SubscriptionTopicEventTrigger'];
+      case 'canFilterBy':
+        return ['SubscriptionTopicCanFilterBy'];
+      case 'notificationShape':
+        return ['SubscriptionTopicNotificationShape'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   SubscriptionTopic clone() => throw UnimplementedError();
   @override
@@ -1606,6 +1676,32 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'resource':
+        return ['FhirUri'];
+      case 'supportedInteraction':
+        return ['FhirCode'];
+      case 'queryCriteria':
+        return ['SubscriptionTopicQueryCriteria'];
+      case 'fhirPathCriteria':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   SubscriptionTopicResourceTrigger clone() => throw UnimplementedError();
   @override
@@ -2072,6 +2168,32 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'previous':
+        return ['FhirString'];
+      case 'resultForCreate':
+        return ['FhirCode'];
+      case 'current':
+        return ['FhirString'];
+      case 'resultForDelete':
+        return ['FhirCode'];
+      case 'requireBoth':
+        return ['FhirBoolean'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   SubscriptionTopicQueryCriteria clone() => throw UnimplementedError();
   @override
@@ -2480,6 +2602,28 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'event':
+        return ['CodeableConcept'];
+      case 'resource':
+        return ['FhirUri'];
+      default:
+        return <String>[];
     }
   }
 
@@ -2934,6 +3078,32 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'resource':
+        return ['FhirUri'];
+      case 'filterParameter':
+        return ['FhirString'];
+      case 'filterDefinition':
+        return ['FhirUri'];
+      case 'modifier':
+        return ['FhirCode'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   SubscriptionTopicCanFilterBy clone() => throw UnimplementedError();
   @override
@@ -3354,6 +3524,28 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'resource':
+        return ['FhirUri'];
+      case 'include':
+        return ['FhirString'];
+      case 'revInclude':
+        return ['FhirString'];
+      default:
+        return <String>[];
     }
   }
 

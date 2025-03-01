@@ -496,6 +496,44 @@ class SpecimenDefinition extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'typeCollected':
+        return ['CodeableConcept'];
+      case 'patientPreparation':
+        return ['CodeableConcept'];
+      case 'timeAspect':
+        return ['FhirString'];
+      case 'collection':
+        return ['CodeableConcept'];
+      case 'typeTested':
+        return ['SpecimenDefinitionTypeTested'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   SpecimenDefinition clone() => throw UnimplementedError();
   @override
@@ -1100,6 +1138,38 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'isDerived':
+        return ['FhirBoolean'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'preference':
+        return ['FhirCode'];
+      case 'container':
+        return ['SpecimenDefinitionContainer'];
+      case 'requirement':
+        return ['FhirString'];
+      case 'retentionTime':
+        return ['FhirDuration'];
+      case 'rejectionCriterion':
+        return ['CodeableConcept'];
+      case 'handling':
+        return ['SpecimenDefinitionHandling'];
+      default:
+        return <String>[];
     }
   }
 
@@ -1711,6 +1781,43 @@ class SpecimenDefinitionContainer extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'material':
+        return ['CodeableConcept'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'cap':
+        return ['CodeableConcept'];
+      case 'description':
+        return ['FhirString'];
+      case 'capacity':
+        return ['Quantity'];
+      case 'minimumVolume':
+      case 'minimumVolumeX':
+        return ['Quantity', 'FhirString'];
+      case 'minimumVolumeQuantity':
+        return ['Quantity'];
+      case 'minimumVolumeString':
+        return ['FhirString'];
+      case 'additive':
+        return ['SpecimenDefinitionAdditive'];
+      case 'preparation':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   SpecimenDefinitionContainer clone() => throw UnimplementedError();
   @override
@@ -2134,6 +2241,29 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'additive':
+      case 'additiveX':
+        return ['CodeableConcept', 'Reference'];
+      case 'additiveCodeableConcept':
+        return ['CodeableConcept'];
+      case 'additiveReference':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   SpecimenDefinitionAdditive clone() => throw UnimplementedError();
   @override
@@ -2530,6 +2660,30 @@ class SpecimenDefinitionHandling extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'temperatureQualifier':
+        return ['CodeableConcept'];
+      case 'temperatureRange':
+        return ['Range'];
+      case 'maxDuration':
+        return ['FhirDuration'];
+      case 'instruction':
+        return ['FhirString'];
+      default:
+        return <String>[];
     }
   }
 

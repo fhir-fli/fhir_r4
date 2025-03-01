@@ -673,6 +673,56 @@ class EpisodeOfCare extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'statusHistory':
+        return ['EpisodeOfCareStatusHistory'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'diagnosis':
+        return ['EpisodeOfCareDiagnosis'];
+      case 'patient':
+        return ['Reference'];
+      case 'managingOrganization':
+        return ['Reference'];
+      case 'period':
+        return ['Period'];
+      case 'referralRequest':
+        return ['Reference'];
+      case 'careManager':
+        return ['Reference'];
+      case 'team':
+        return ['Reference'];
+      case 'account':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   EpisodeOfCare clone() => throw UnimplementedError();
   @override
@@ -1193,6 +1243,26 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'status':
+        return ['FhirCode'];
+      case 'period':
+        return ['Period'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   EpisodeOfCareStatusHistory clone() => throw UnimplementedError();
   @override
@@ -1569,6 +1639,28 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'condition':
+        return ['Reference'];
+      case 'role':
+        return ['CodeableConcept'];
+      case 'rank':
+        return ['FhirPositiveInt'];
+      default:
+        return <String>[];
     }
   }
 

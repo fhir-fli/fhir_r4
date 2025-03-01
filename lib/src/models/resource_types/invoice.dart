@@ -766,6 +766,64 @@ class Invoice extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'cancelledReason':
+        return ['FhirString'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'recipient':
+        return ['Reference'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'participant':
+        return ['InvoiceParticipant'];
+      case 'issuer':
+        return ['Reference'];
+      case 'account':
+        return ['Reference'];
+      case 'lineItem':
+        return ['InvoiceLineItem'];
+      case 'totalPriceComponent':
+        return ['InvoicePriceComponent'];
+      case 'totalNet':
+        return ['Money'];
+      case 'totalGross':
+        return ['Money'];
+      case 'paymentTerms':
+        return ['FhirMarkdown'];
+      case 'note':
+        return ['Annotation'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Invoice clone() => throw UnimplementedError();
   @override
@@ -1307,6 +1365,26 @@ class InvoiceParticipant extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'role':
+        return ['CodeableConcept'];
+      case 'actor':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   InvoiceParticipant clone() => throw UnimplementedError();
   @override
@@ -1736,6 +1814,33 @@ class InvoiceLineItem extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'sequence':
+        return ['FhirPositiveInt'];
+      case 'chargeItem':
+      case 'chargeItemX':
+        return ['Reference', 'CodeableConcept'];
+      case 'chargeItemReference':
+        return ['Reference'];
+      case 'chargeItemCodeableConcept':
+        return ['CodeableConcept'];
+      case 'priceComponent':
+        return ['InvoicePriceComponent'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   InvoiceLineItem clone() => throw UnimplementedError();
   @override
@@ -2157,6 +2262,30 @@ class InvoicePriceComponent extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirCode'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'factor':
+        return ['FhirDecimal'];
+      case 'amount':
+        return ['Money'];
+      default:
+        return <String>[];
     }
   }
 

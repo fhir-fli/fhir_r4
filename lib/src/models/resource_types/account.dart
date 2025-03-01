@@ -634,6 +634,54 @@ class Account extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'name':
+        return ['FhirString'];
+      case 'subject':
+        return ['Reference'];
+      case 'servicePeriod':
+        return ['Period'];
+      case 'coverage':
+        return ['AccountCoverage'];
+      case 'owner':
+        return ['Reference'];
+      case 'description':
+        return ['FhirString'];
+      case 'guarantor':
+        return ['AccountGuarantor'];
+      case 'partOf':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Account clone() => throw UnimplementedError();
   @override
@@ -1131,6 +1179,26 @@ class AccountCoverage extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'coverage':
+        return ['Reference'];
+      case 'priority':
+        return ['FhirPositiveInt'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   AccountCoverage clone() => throw UnimplementedError();
   @override
@@ -1508,6 +1576,28 @@ class AccountGuarantor extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'party':
+        return ['Reference'];
+      case 'onHold':
+        return ['FhirBoolean'];
+      case 'period':
+        return ['Period'];
+      default:
+        return <String>[];
     }
   }
 

@@ -688,6 +688,58 @@ class CatalogEntry extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'orderable':
+        return ['FhirBoolean'];
+      case 'referencedItem':
+        return ['Reference'];
+      case 'additionalIdentifier':
+        return ['Identifier'];
+      case 'classification':
+        return ['CodeableConcept'];
+      case 'status':
+        return ['FhirCode'];
+      case 'validityPeriod':
+        return ['Period'];
+      case 'validTo':
+        return ['FhirDateTime'];
+      case 'lastUpdated':
+        return ['FhirDateTime'];
+      case 'additionalCharacteristic':
+        return ['CodeableConcept'];
+      case 'additionalClassification':
+        return ['CodeableConcept'];
+      case 'relatedEntry':
+        return ['CatalogEntryRelatedEntry'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   CatalogEntry clone() => throw UnimplementedError();
   @override
@@ -1207,6 +1259,26 @@ class CatalogEntryRelatedEntry extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'relationtype':
+        return ['FhirCode'];
+      case 'item':
+        return ['Reference'];
+      default:
+        return <String>[];
     }
   }
 

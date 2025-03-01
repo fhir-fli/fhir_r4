@@ -393,6 +393,34 @@ class SampledData extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'origin':
+        return ['Quantity'];
+      case 'period':
+        return ['FhirDecimal'];
+      case 'factor':
+        return ['FhirDecimal'];
+      case 'lowerLimit':
+        return ['FhirDecimal'];
+      case 'upperLimit':
+        return ['FhirDecimal'];
+      case 'dimensions':
+        return ['FhirPositiveInt'];
+      case 'data':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   SampledData clone() => throw UnimplementedError();
   @override

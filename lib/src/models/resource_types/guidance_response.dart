@@ -816,6 +816,69 @@ class GuidanceResponse extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'requestIdentifier':
+        return ['Identifier'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'module':
+      case 'moduleX':
+        return ['FhirUri', 'FhirCanonical', 'CodeableConcept'];
+      case 'moduleUri':
+        return ['FhirUri'];
+      case 'moduleCanonical':
+        return ['FhirCanonical'];
+      case 'moduleCodeableConcept':
+        return ['CodeableConcept'];
+      case 'status':
+        return ['FhirCode'];
+      case 'subject':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'occurrenceDateTime':
+        return ['FhirDateTime'];
+      case 'performer':
+        return ['Reference'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'note':
+        return ['Annotation'];
+      case 'evaluationMessage':
+        return ['Reference'];
+      case 'outputParameters':
+        return ['Reference'];
+      case 'result':
+        return ['Reference'];
+      case 'dataRequirement':
+        return ['DataRequirement'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   GuidanceResponse clone() => throw UnimplementedError();
   @override

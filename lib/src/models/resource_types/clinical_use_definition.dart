@@ -635,6 +635,54 @@ class ClinicalUseDefinition extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'type':
+        return ['FhirCode'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'status':
+        return ['CodeableConcept'];
+      case 'contraindication':
+        return ['ClinicalUseDefinitionContraindication'];
+      case 'indication':
+        return ['ClinicalUseDefinitionIndication'];
+      case 'interaction':
+        return ['ClinicalUseDefinitionInteraction'];
+      case 'population':
+        return ['Reference'];
+      case 'undesirableEffect':
+        return ['ClinicalUseDefinitionUndesirableEffect'];
+      case 'warning':
+        return ['ClinicalUseDefinitionWarning'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ClinicalUseDefinition clone() => throw UnimplementedError();
   @override
@@ -1217,6 +1265,32 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'diseaseSymptomProcedure':
+        return ['CodeableReference'];
+      case 'diseaseStatus':
+        return ['CodeableReference'];
+      case 'comorbidity':
+        return ['CodeableReference'];
+      case 'indication':
+        return ['Reference'];
+      case 'otherTherapy':
+        return ['ClinicalUseDefinitionOtherTherapy'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ClinicalUseDefinitionContraindication clone() => throw UnimplementedError();
   @override
@@ -1615,6 +1689,26 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'relationshipType':
+        return ['CodeableConcept'];
+      case 'therapy':
+        return ['CodeableReference'];
+      default:
+        return <String>[];
     }
   }
 
@@ -2153,6 +2247,41 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'diseaseSymptomProcedure':
+        return ['CodeableReference'];
+      case 'diseaseStatus':
+        return ['CodeableReference'];
+      case 'comorbidity':
+        return ['CodeableReference'];
+      case 'intendedEffect':
+        return ['CodeableReference'];
+      case 'duration':
+      case 'durationX':
+        return ['Range', 'FhirString'];
+      case 'durationRange':
+        return ['Range'];
+      case 'durationString':
+        return ['FhirString'];
+      case 'undesirableEffect':
+        return ['Reference'];
+      case 'otherTherapy':
+        return ['ClinicalUseDefinitionOtherTherapy'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ClinicalUseDefinitionIndication clone() => throw UnimplementedError();
   @override
@@ -2654,6 +2783,32 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'interactant':
+        return ['ClinicalUseDefinitionInteractant'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'effect':
+        return ['CodeableReference'];
+      case 'incidence':
+        return ['CodeableConcept'];
+      case 'management':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ClinicalUseDefinitionInteraction clone() => throw UnimplementedError();
   @override
@@ -3058,6 +3213,29 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'item':
+      case 'itemX':
+        return ['Reference', 'CodeableConcept'];
+      case 'itemReference':
+        return ['Reference'];
+      case 'itemCodeableConcept':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ClinicalUseDefinitionInteractant clone() => throw UnimplementedError();
   @override
@@ -3429,6 +3607,28 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'symptomConditionEffect':
+        return ['CodeableReference'];
+      case 'classification':
+        return ['CodeableConcept'];
+      case 'frequencyOfOccurrence':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   ClinicalUseDefinitionUndesirableEffect clone() => throw UnimplementedError();
   @override
@@ -3790,6 +3990,26 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'code':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
     }
   }
 

@@ -859,6 +859,75 @@ class AllergyIntolerance extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'clinicalStatus':
+        return ['CodeableConcept'];
+      case 'verificationStatus':
+        return ['CodeableConcept'];
+      case 'type':
+        return ['FhirCode'];
+      case 'category':
+        return ['FhirCode'];
+      case 'criticality':
+        return ['FhirCode'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'patient':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'onset':
+      case 'onsetX':
+        return ['FhirDateTime', 'Age', 'Period', 'Range', 'FhirString'];
+      case 'onsetDateTime':
+        return ['FhirDateTime'];
+      case 'onsetAge':
+        return ['Age'];
+      case 'onsetPeriod':
+        return ['Period'];
+      case 'onsetRange':
+        return ['Range'];
+      case 'onsetString':
+        return ['FhirString'];
+      case 'recordedDate':
+        return ['FhirDateTime'];
+      case 'recorder':
+        return ['Reference'];
+      case 'asserter':
+        return ['Reference'];
+      case 'lastOccurrence':
+        return ['FhirDateTime'];
+      case 'note':
+        return ['Annotation'];
+      case 'reaction':
+        return ['AllergyIntoleranceReaction'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   AllergyIntolerance clone() => throw UnimplementedError();
   @override
@@ -1536,6 +1605,36 @@ class AllergyIntoleranceReaction extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'substance':
+        return ['CodeableConcept'];
+      case 'manifestation':
+        return ['CodeableConcept'];
+      case 'description':
+        return ['FhirString'];
+      case 'onset':
+        return ['FhirDateTime'];
+      case 'severity':
+        return ['FhirCode'];
+      case 'exposureRoute':
+        return ['CodeableConcept'];
+      case 'note':
+        return ['Annotation'];
+      default:
+        return <String>[];
     }
   }
 

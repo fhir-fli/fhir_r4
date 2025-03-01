@@ -856,6 +856,74 @@ class Patient extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'active':
+        return ['FhirBoolean'];
+      case 'name':
+        return ['HumanName'];
+      case 'telecom':
+        return ['ContactPoint'];
+      case 'gender':
+        return ['FhirCode'];
+      case 'birthDate':
+        return ['FhirDate'];
+      case 'deceased':
+      case 'deceasedX':
+        return ['FhirBoolean', 'FhirDateTime'];
+      case 'deceasedBoolean':
+        return ['FhirBoolean'];
+      case 'deceasedDateTime':
+        return ['FhirDateTime'];
+      case 'address':
+        return ['Address'];
+      case 'maritalStatus':
+        return ['CodeableConcept'];
+      case 'multipleBirth':
+      case 'multipleBirthX':
+        return ['FhirBoolean', 'FhirInteger'];
+      case 'multipleBirthBoolean':
+        return ['FhirBoolean'];
+      case 'multipleBirthInteger':
+        return ['FhirInteger'];
+      case 'photo':
+        return ['Attachment'];
+      case 'contact':
+        return ['PatientContact'];
+      case 'communication':
+        return ['PatientCommunication'];
+      case 'generalPractitioner':
+        return ['Reference'];
+      case 'managingOrganization':
+        return ['Reference'];
+      case 'link':
+        return ['PatientLink'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   Patient clone() => throw UnimplementedError();
   @override
@@ -1560,6 +1628,36 @@ class PatientContact extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'relationship':
+        return ['CodeableConcept'];
+      case 'name':
+        return ['HumanName'];
+      case 'telecom':
+        return ['ContactPoint'];
+      case 'address':
+        return ['Address'];
+      case 'gender':
+        return ['FhirCode'];
+      case 'organization':
+        return ['Reference'];
+      case 'period':
+        return ['Period'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   PatientContact clone() => throw UnimplementedError();
   @override
@@ -1971,6 +2069,26 @@ class PatientCommunication extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'language':
+        return ['CodeableConcept'];
+      case 'preferred':
+        return ['FhirBoolean'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   PatientCommunication clone() => throw UnimplementedError();
   @override
@@ -2320,6 +2438,26 @@ class PatientLink extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'other':
+        return ['Reference'];
+      case 'type':
+        return ['FhirCode'];
+      default:
+        return <String>[];
     }
   }
 

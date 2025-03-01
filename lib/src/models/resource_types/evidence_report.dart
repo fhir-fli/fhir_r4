@@ -893,6 +893,73 @@ class EvidenceReport extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'status':
+        return ['FhirCode'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'relatedIdentifier':
+        return ['Identifier'];
+      case 'citeAs':
+      case 'citeAsX':
+        return ['Reference', 'FhirMarkdown'];
+      case 'citeAsReference':
+        return ['Reference'];
+      case 'citeAsMarkdown':
+        return ['FhirMarkdown'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'note':
+        return ['Annotation'];
+      case 'relatedArtifact':
+        return ['RelatedArtifact'];
+      case 'subject':
+        return ['EvidenceReportSubject'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'author':
+        return ['ContactDetail'];
+      case 'editor':
+        return ['ContactDetail'];
+      case 'reviewer':
+        return ['ContactDetail'];
+      case 'endorser':
+        return ['ContactDetail'];
+      case 'relatesTo':
+        return ['EvidenceReportRelatesTo'];
+      case 'section':
+        return ['EvidenceReportSection'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   EvidenceReport clone() => throw UnimplementedError();
   @override
@@ -1505,6 +1572,26 @@ class EvidenceReportSubject extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'characteristic':
+        return ['EvidenceReportCharacteristic'];
+      case 'note':
+        return ['Annotation'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   EvidenceReportSubject clone() => throw UnimplementedError();
   @override
@@ -2005,6 +2092,47 @@ class EvidenceReportCharacteristic extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'value':
+      case 'valueX':
+        return [
+          'Reference',
+          'CodeableConcept',
+          'FhirBoolean',
+          'Quantity',
+          'Range',
+        ];
+      case 'valueReference':
+        return ['Reference'];
+      case 'valueCodeableConcept':
+        return ['CodeableConcept'];
+      case 'valueBoolean':
+        return ['FhirBoolean'];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueRange':
+        return ['Range'];
+      case 'exclude':
+        return ['FhirBoolean'];
+      case 'period':
+        return ['Period'];
+      default:
+        return <String>[];
+    }
+  }
+
   @override
   EvidenceReportCharacteristic clone() => throw UnimplementedError();
   @override
@@ -2408,6 +2536,31 @@ class EvidenceReportRelatesTo extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['FhirCode'];
+      case 'target':
+      case 'targetX':
+        return ['Identifier', 'Reference'];
+      case 'targetIdentifier':
+        return ['Identifier'];
+      case 'targetReference':
+        return ['Reference'];
+      default:
+        return <String>[];
     }
   }
 
@@ -3044,6 +3197,46 @@ class EvidenceReportSection extends BackboneElement {
         }
       default:
         throw Exception('Cannot set child value for $name');
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'title':
+        return ['FhirString'];
+      case 'focus':
+        return ['CodeableConcept'];
+      case 'focusReference':
+        return ['Reference'];
+      case 'author':
+        return ['Reference'];
+      case 'text':
+        return ['Narrative'];
+      case 'mode':
+        return ['FhirCode'];
+      case 'orderedBy':
+        return ['CodeableConcept'];
+      case 'entryClassifier':
+        return ['CodeableConcept'];
+      case 'entryReference':
+        return ['Reference'];
+      case 'entryQuantity':
+        return ['Quantity'];
+      case 'emptyReason':
+        return ['CodeableConcept'];
+      case 'section':
+        return ['EvidenceReportSection'];
+      default:
+        return <String>[];
     }
   }
 
