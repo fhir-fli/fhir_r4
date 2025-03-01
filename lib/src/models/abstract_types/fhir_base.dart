@@ -150,6 +150,11 @@ abstract class FhirBase {
     throw Exception('Cannot set child value for $name');
   }
 
+  /// Retrieves the type of the object by element name.
+  List<String> typeByElementName(String elementName) {
+    return <String>[];
+  }
+
   /// Sets the properties of the object.
   FhirBase setChildrenByName(Map<String, FhirBase> children) {
     var updated = this;

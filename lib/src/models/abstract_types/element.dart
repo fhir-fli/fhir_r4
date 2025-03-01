@@ -300,4 +300,17 @@ class Element extends FhirBase {
     }
     throw Exception('Cannot set child value for $name');
   }
+
+  /// Retrieves the type of the object by element name.
+  @override
+  List<String> typeByElementName(String elementName) {
+    switch (elementName) {
+      case 'id':
+        return <String>['FhirString'];
+      case 'extension':
+        return <String>['FhirExtension'];
+      default:
+        return <String>[];
+    }
+  }
 }
