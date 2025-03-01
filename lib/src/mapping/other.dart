@@ -291,3 +291,12 @@ class StructureMapService {
         .toList();
   }
 }
+
+/// Represents the context for a transformation operation.
+class TransformContext {
+  /// Creates a [TransformContext] with an [appInfo] object.
+  TransformContext(this.appInfo);
+
+  /// Creates a [TransformContext] with an [appInfo] object.
+  final Object appInfo;
+}

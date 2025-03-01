@@ -264,29 +264,19 @@ class Transformer {
         _getResourceTypeFromMapOrTarget(target, typeName) ?? typeName;
     final resourceId = _generateId();
 
-    final globalPath = parent?.childGlobalPath ?? resourceType;
-    final childGlobalPath = '$globalPath.$elementName';
-    return ResourceNode(
-      elementName,
-      globalPath,
-      resourceType,
-      [
-        LeafNode.withCast(
-          'resourceType',
-          childGlobalPath,
-          resourceType,
-          resourceType,
-          'http://hl7.org/fhirpath/System.String',
-        ),
-        LeafNode.withCast(
-          'id',
-          childGlobalPath,
-          resourceType,
-          resourceId,
-          'http://hl7.org/fhirpath/System.String',
-        ),
-      ],
-    );
+    final adult = parent ?? emptyFromType(resourceType);
+    if (adult == null) {
+      throw Exception('Cannot determine type for element: $elementName');
+    }
+
+    final newObject = childFromParent(adult, elementName);
+    if (newObject is! MapNode) {
+      throw Exception('Cannot create resource node for element: $elementName');
+    }
+    if (newObject is Resource) {
+      return newObject.copyWith(id: FhirString(resourceId));
+    }
+    return newObject;
   }
 
   String? _getResourceTypeFromMapOrTarget(
@@ -315,7 +305,7 @@ class Transformer {
     FhirBase baseNode,
     List<String> possibleTypes,
   ) async {
-    final baseType = (await baseNode.getInstanceType(resolver)) ?? '';
+    final baseType = baseNode.fhirType;
     final cacheKey = 'type^$baseType';
 
     // Check for a cached result
@@ -419,7 +409,7 @@ class Transformer {
     final sourceNode = _getParam(variables, target.parameter!.first);
     final lengthNode = _getParam(variables, target.parameter![1]);
 
-    if (sourceNode is! LeafNode || sourceNode.value is! String) {
+    if (sourceNode is! PrimitiveType) {
       throw FHIRException(
         message: 'Source for truncate must be a string LeafNode',
       );
@@ -466,7 +456,7 @@ class Transformer {
         case 'string':
         case 'fhirstring':
         case 'fhir.string':
-          return LeafNode(null, null, null, castValue, 'string');
+          return castValue.toFhirString;
 
         case 'integer':
         case 'fhirinteger':

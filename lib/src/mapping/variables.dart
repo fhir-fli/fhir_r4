@@ -85,10 +85,12 @@ class Variables {
   }
 
   /// Adds an input variable to the collection
-  FhirBase? get(VariableMode mode, String name) {
-    return _variables
-        .firstWhereOrNull((v) => v.mode == mode && v.name == name)
-        ?.base;
+  FhirBase? get(VariableMode mode, String? name) {
+    return name == null
+        ? null
+        : _variables
+            .firstWhereOrNull((v) => v.mode == mode && v.name == name)
+            ?.base;
   }
 
   /// Retrieves an input variable from the collection
