@@ -207,4 +207,8 @@ class FhirPositiveInt extends FhirNumber
       objectPath: objectPath ?? this.objectPath,
     );
   }
+
+  /// Creates an empty property in the object
+  @override
+  FhirPositiveInt createProperty(String propertyName) => this;
 }

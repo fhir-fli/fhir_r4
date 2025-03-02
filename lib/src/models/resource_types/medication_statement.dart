@@ -983,6 +983,130 @@ class MedicationStatement extends DomainResource {
     }
   }
 
+  /// Creates a new [MedicationStatement]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationStatement createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'basedOn':
+        {
+          return copyWith(basedOn: <Reference>[]);
+        }
+      case 'partOf':
+        {
+          return copyWith(partOf: <Reference>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: MedicationStatementStatusCodes.empty());
+        }
+      case 'statusReason':
+        {
+          return copyWith(statusReason: <CodeableConcept>[]);
+        }
+      case 'category':
+        {
+          return copyWith(category: CodeableConcept.empty());
+        }
+      case 'medication':
+      case 'medicationX':
+      case 'medicationCodeableConcept':
+        {
+          return copyWith(medicationX: CodeableConcept.empty());
+        }
+      case 'medicationReference':
+        {
+          return copyWith(medicationX: Reference.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'context':
+        {
+          return copyWith(context: Reference.empty());
+        }
+      case 'effective':
+      case 'effectiveX':
+      case 'effectiveDateTime':
+        {
+          return copyWith(effectiveX: FhirDateTime.empty());
+        }
+      case 'effectivePeriod':
+        {
+          return copyWith(effectiveX: Period.empty());
+        }
+      case 'dateAsserted':
+        {
+          return copyWith(dateAsserted: FhirDateTime.empty());
+        }
+      case 'informationSource':
+        {
+          return copyWith(informationSource: Reference.empty());
+        }
+      case 'derivedFrom':
+        {
+          return copyWith(derivedFrom: <Reference>[]);
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: <CodeableConcept>[]);
+        }
+      case 'reasonReference':
+        {
+          return copyWith(reasonReference: <Reference>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'dosage':
+        {
+          return copyWith(dosage: <Dosage>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MedicationStatement clone() => throw UnimplementedError();
   @override

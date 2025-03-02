@@ -1036,6 +1036,143 @@ class MedicationKnowledge extends DomainResource {
     }
   }
 
+  /// Creates a new [MedicationKnowledge]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledge createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: MedicationKnowledgeStatusCodes.empty());
+        }
+      case 'manufacturer':
+        {
+          return copyWith(manufacturer: Reference.empty());
+        }
+      case 'doseForm':
+        {
+          return copyWith(doseForm: CodeableConcept.empty());
+        }
+      case 'amount':
+        {
+          return copyWith(amount: Quantity.empty());
+        }
+      case 'synonym':
+        {
+          return copyWith(synonym: <FhirString>[]);
+        }
+      case 'relatedMedicationKnowledge':
+        {
+          return copyWith(
+              relatedMedicationKnowledge: <MedicationKnowledgeRelatedMedicationKnowledge>[],);
+        }
+      case 'associatedMedication':
+        {
+          return copyWith(associatedMedication: <Reference>[]);
+        }
+      case 'productType':
+        {
+          return copyWith(productType: <CodeableConcept>[]);
+        }
+      case 'monograph':
+        {
+          return copyWith(monograph: <MedicationKnowledgeMonograph>[]);
+        }
+      case 'ingredient':
+        {
+          return copyWith(ingredient: <MedicationKnowledgeIngredient>[]);
+        }
+      case 'preparationInstruction':
+        {
+          return copyWith(preparationInstruction: FhirMarkdown.empty());
+        }
+      case 'intendedRoute':
+        {
+          return copyWith(intendedRoute: <CodeableConcept>[]);
+        }
+      case 'cost':
+        {
+          return copyWith(cost: <MedicationKnowledgeCost>[]);
+        }
+      case 'monitoringProgram':
+        {
+          return copyWith(
+              monitoringProgram: <MedicationKnowledgeMonitoringProgram>[],);
+        }
+      case 'administrationGuidelines':
+        {
+          return copyWith(
+              administrationGuidelines: <MedicationKnowledgeAdministrationGuidelines>[],);
+        }
+      case 'medicineClassification':
+        {
+          return copyWith(
+              medicineClassification: <MedicationKnowledgeMedicineClassification>[],);
+        }
+      case 'packaging':
+        {
+          return copyWith(packaging: MedicationKnowledgePackaging.empty());
+        }
+      case 'drugCharacteristic':
+        {
+          return copyWith(
+              drugCharacteristic: <MedicationKnowledgeDrugCharacteristic>[],);
+        }
+      case 'contraindication':
+        {
+          return copyWith(contraindication: <Reference>[]);
+        }
+      case 'regulatory':
+        {
+          return copyWith(regulatory: <MedicationKnowledgeRegulatory>[]);
+        }
+      case 'kinetics':
+        {
+          return copyWith(kinetics: <MedicationKnowledgeKinetics>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MedicationKnowledge clone() => throw UnimplementedError();
   @override
@@ -1717,6 +1854,39 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
     }
   }
 
+  /// Creates a new [MedicationKnowledgeRelatedMedicationKnowledge]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgeRelatedMedicationKnowledge createProperty(
+      String propertyName,) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'reference':
+        {
+          return copyWith(reference: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MedicationKnowledgeRelatedMedicationKnowledge clone() =>
       throw UnimplementedError();
@@ -2096,6 +2266,38 @@ class MedicationKnowledgeMonograph extends BackboneElement {
         return ['Reference'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationKnowledgeMonograph]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgeMonograph createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'source':
+        {
+          return copyWith(source: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2545,6 +2747,48 @@ class MedicationKnowledgeIngredient extends BackboneElement {
     }
   }
 
+  /// Creates a new [MedicationKnowledgeIngredient]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgeIngredient createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'item':
+      case 'itemX':
+      case 'itemCodeableConcept':
+        {
+          return copyWith(itemX: CodeableConcept.empty());
+        }
+      case 'itemReference':
+        {
+          return copyWith(itemX: Reference.empty());
+        }
+      case 'isActive':
+        {
+          return copyWith(isActive: FhirBoolean.empty());
+        }
+      case 'strength':
+        {
+          return copyWith(strength: Ratio.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MedicationKnowledgeIngredient clone() => throw UnimplementedError();
   @override
@@ -2952,6 +3196,42 @@ class MedicationKnowledgeCost extends BackboneElement {
     }
   }
 
+  /// Creates a new [MedicationKnowledgeCost]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgeCost createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'source':
+        {
+          return copyWith(source: FhirString.empty());
+        }
+      case 'cost':
+        {
+          return copyWith(cost: Money.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MedicationKnowledgeCost clone() => throw UnimplementedError();
   @override
@@ -3330,6 +3610,38 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationKnowledgeMonitoringProgram]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgeMonitoringProgram createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -3787,6 +4099,50 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
     }
   }
 
+  /// Creates a new [MedicationKnowledgeAdministrationGuidelines]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgeAdministrationGuidelines createProperty(
+      String propertyName,) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'dosage':
+        {
+          return copyWith(dosage: <MedicationKnowledgeDosage>[]);
+        }
+      case 'indication':
+      case 'indicationX':
+      case 'indicationCodeableConcept':
+        {
+          return copyWith(indicationX: CodeableConcept.empty());
+        }
+      case 'indicationReference':
+        {
+          return copyWith(indicationX: Reference.empty());
+        }
+      case 'patientCharacteristics':
+        {
+          return copyWith(
+              patientCharacteristics: <MedicationKnowledgePatientCharacteristics>[],);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MedicationKnowledgeAdministrationGuidelines clone() =>
       throw UnimplementedError();
@@ -4183,6 +4539,38 @@ class MedicationKnowledgeDosage extends BackboneElement {
         return ['Dosage'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationKnowledgeDosage]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgeDosage createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'dosage':
+        {
+          return copyWith(dosage: <Dosage>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -4617,6 +5005,45 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
     }
   }
 
+  /// Creates a new [MedicationKnowledgePatientCharacteristics]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgePatientCharacteristics createProperty(
+      String propertyName,) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'characteristic':
+      case 'characteristicX':
+      case 'characteristicCodeableConcept':
+        {
+          return copyWith(characteristicX: CodeableConcept.empty());
+        }
+      case 'characteristicQuantity':
+        {
+          return copyWith(characteristicX: Quantity.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: <FhirString>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MedicationKnowledgePatientCharacteristics clone() =>
       throw UnimplementedError();
@@ -5005,6 +5432,39 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
     }
   }
 
+  /// Creates a new [MedicationKnowledgeMedicineClassification]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgeMedicineClassification createProperty(
+      String propertyName,) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'classification':
+        {
+          return copyWith(classification: <CodeableConcept>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MedicationKnowledgeMedicineClassification clone() =>
       throw UnimplementedError();
@@ -5384,6 +5844,38 @@ class MedicationKnowledgePackaging extends BackboneElement {
         return ['Quantity'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationKnowledgePackaging]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgePackaging createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -5846,6 +6338,52 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
     }
   }
 
+  /// Creates a new [MedicationKnowledgeDrugCharacteristic]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgeDrugCharacteristic createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueCodeableConcept':
+        {
+          return copyWith(valueX: CodeableConcept.empty());
+        }
+      case 'valueString':
+        {
+          return copyWith(valueX: FhirString.empty());
+        }
+      case 'valueQuantity':
+        {
+          return copyWith(valueX: Quantity.empty());
+        }
+      case 'valueBase64Binary':
+        {
+          return copyWith(valueX: FhirBase64Binary.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MedicationKnowledgeDrugCharacteristic clone() => throw UnimplementedError();
   @override
@@ -6283,6 +6821,46 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
     }
   }
 
+  /// Creates a new [MedicationKnowledgeRegulatory]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgeRegulatory createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'regulatoryAuthority':
+        {
+          return copyWith(regulatoryAuthority: Reference.empty());
+        }
+      case 'substitution':
+        {
+          return copyWith(substitution: <MedicationKnowledgeSubstitution>[]);
+        }
+      case 'schedule':
+        {
+          return copyWith(schedule: <MedicationKnowledgeSchedule>[]);
+        }
+      case 'maxDispense':
+        {
+          return copyWith(maxDispense: MedicationKnowledgeMaxDispense.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MedicationKnowledgeRegulatory clone() => throw UnimplementedError();
   @override
@@ -6687,6 +7265,38 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
     }
   }
 
+  /// Creates a new [MedicationKnowledgeSubstitution]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgeSubstitution createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'allowed':
+        {
+          return copyWith(allowed: FhirBoolean.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MedicationKnowledgeSubstitution clone() => throw UnimplementedError();
   @override
@@ -7029,6 +7639,34 @@ class MedicationKnowledgeSchedule extends BackboneElement {
         return ['CodeableConcept'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationKnowledgeSchedule]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgeSchedule createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'schedule':
+        {
+          return copyWith(schedule: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -7395,6 +8033,38 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
         return ['FhirDuration'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationKnowledgeMaxDispense]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgeMaxDispense createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: FhirDuration.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -7804,6 +8474,42 @@ class MedicationKnowledgeKinetics extends BackboneElement {
         return ['FhirDuration'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationKnowledgeKinetics]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgeKinetics createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'areaUnderCurve':
+        {
+          return copyWith(areaUnderCurve: <Quantity>[]);
+        }
+      case 'lethalDose50':
+        {
+          return copyWith(lethalDose50: <Quantity>[]);
+        }
+      case 'halfLifePeriod':
+        {
+          return copyWith(halfLifePeriod: FhirDuration.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

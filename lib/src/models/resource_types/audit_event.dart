@@ -675,6 +675,94 @@ class AuditEvent extends DomainResource {
     }
   }
 
+  /// Creates a new [AuditEvent]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AuditEvent createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: Coding.empty());
+        }
+      case 'subtype':
+        {
+          return copyWith(subtype: <Coding>[]);
+        }
+      case 'action':
+        {
+          return copyWith(action: AuditEventAction.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      case 'recorded':
+        {
+          return copyWith(recorded: FhirInstant.empty());
+        }
+      case 'outcome':
+        {
+          return copyWith(outcome: AuditEventOutcome.empty());
+        }
+      case 'outcomeDesc':
+        {
+          return copyWith(outcomeDesc: FhirString.empty());
+        }
+      case 'purposeOfEvent':
+        {
+          return copyWith(purposeOfEvent: <CodeableConcept>[]);
+        }
+      case 'agent':
+        {
+          return copyWith(agent: <AuditEventAgent>[]);
+        }
+      case 'source':
+        {
+          return copyWith(source: AuditEventSource.empty());
+        }
+      case 'entity':
+        {
+          return copyWith(entity: <AuditEventEntity>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   AuditEvent clone() => throw UnimplementedError();
   @override
@@ -1450,6 +1538,74 @@ class AuditEventAgent extends BackboneElement {
     }
   }
 
+  /// Creates a new [AuditEventAgent]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AuditEventAgent createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'role':
+        {
+          return copyWith(role: <CodeableConcept>[]);
+        }
+      case 'who':
+        {
+          return copyWith(who: Reference.empty());
+        }
+      case 'altId':
+        {
+          return copyWith(altId: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'requestor':
+        {
+          return copyWith(requestor: FhirBoolean.empty());
+        }
+      case 'location':
+        {
+          return copyWith(location: Reference.empty());
+        }
+      case 'policy':
+        {
+          return copyWith(policy: <FhirUri>[]);
+        }
+      case 'media':
+        {
+          return copyWith(media: Coding.empty());
+        }
+      case 'network':
+        {
+          return copyWith(network: AuditEventNetwork.empty());
+        }
+      case 'purposeOfUse':
+        {
+          return copyWith(purposeOfUse: <CodeableConcept>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   AuditEventAgent clone() => throw UnimplementedError();
   @override
@@ -1918,6 +2074,38 @@ class AuditEventNetwork extends BackboneElement {
     }
   }
 
+  /// Creates a new [AuditEventNetwork]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AuditEventNetwork createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'address':
+        {
+          return copyWith(address: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: AuditEventAgentNetworkType.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   AuditEventNetwork clone() => throw UnimplementedError();
   @override
@@ -2320,6 +2508,42 @@ class AuditEventSource extends BackboneElement {
         return ['Coding'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [AuditEventSource]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AuditEventSource createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'site':
+        {
+          return copyWith(site: FhirString.empty());
+        }
+      case 'observer':
+        {
+          return copyWith(observer: Reference.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: <Coding>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2910,6 +3134,66 @@ class AuditEventEntity extends BackboneElement {
     }
   }
 
+  /// Creates a new [AuditEventEntity]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AuditEventEntity createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'what':
+        {
+          return copyWith(what: Reference.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: Coding.empty());
+        }
+      case 'role':
+        {
+          return copyWith(role: Coding.empty());
+        }
+      case 'lifecycle':
+        {
+          return copyWith(lifecycle: Coding.empty());
+        }
+      case 'securityLabel':
+        {
+          return copyWith(securityLabel: <Coding>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'query':
+        {
+          return copyWith(query: FhirBase64Binary.empty());
+        }
+      case 'detail':
+        {
+          return copyWith(detail: <AuditEventDetail>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   AuditEventEntity clone() => throw UnimplementedError();
   @override
@@ -3391,6 +3675,44 @@ class AuditEventDetail extends BackboneElement {
         return ['FhirBase64Binary'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [AuditEventDetail]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AuditEventDetail createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: FhirString.empty());
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueString':
+        {
+          return copyWith(valueX: FhirString.empty());
+        }
+      case 'valueBase64Binary':
+        {
+          return copyWith(valueX: FhirBase64Binary.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

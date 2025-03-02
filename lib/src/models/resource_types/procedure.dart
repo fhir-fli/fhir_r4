@@ -1302,6 +1302,180 @@ class Procedure extends DomainResource {
     }
   }
 
+  /// Creates a new [Procedure]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Procedure createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'instantiatesCanonical':
+        {
+          return copyWith(instantiatesCanonical: <FhirCanonical>[]);
+        }
+      case 'instantiatesUri':
+        {
+          return copyWith(instantiatesUri: <FhirUri>[]);
+        }
+      case 'basedOn':
+        {
+          return copyWith(basedOn: <Reference>[]);
+        }
+      case 'partOf':
+        {
+          return copyWith(partOf: <Reference>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: EventStatus.empty());
+        }
+      case 'statusReason':
+        {
+          return copyWith(statusReason: CodeableConcept.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: CodeableConcept.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'performed':
+      case 'performedX':
+      case 'performedDateTime':
+        {
+          return copyWith(performedX: FhirDateTime.empty());
+        }
+      case 'performedPeriod':
+        {
+          return copyWith(performedX: Period.empty());
+        }
+      case 'performedString':
+        {
+          return copyWith(performedX: FhirString.empty());
+        }
+      case 'performedAge':
+        {
+          return copyWith(performedX: Age.empty());
+        }
+      case 'performedRange':
+        {
+          return copyWith(performedX: Range.empty());
+        }
+      case 'recorder':
+        {
+          return copyWith(recorder: Reference.empty());
+        }
+      case 'asserter':
+        {
+          return copyWith(asserter: Reference.empty());
+        }
+      case 'performer':
+        {
+          return copyWith(performer: <ProcedurePerformer>[]);
+        }
+      case 'location':
+        {
+          return copyWith(location: Reference.empty());
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: <CodeableConcept>[]);
+        }
+      case 'reasonReference':
+        {
+          return copyWith(reasonReference: <Reference>[]);
+        }
+      case 'bodySite':
+        {
+          return copyWith(bodySite: <CodeableConcept>[]);
+        }
+      case 'outcome':
+        {
+          return copyWith(outcome: CodeableConcept.empty());
+        }
+      case 'report':
+        {
+          return copyWith(report: <Reference>[]);
+        }
+      case 'complication':
+        {
+          return copyWith(complication: <CodeableConcept>[]);
+        }
+      case 'complicationDetail':
+        {
+          return copyWith(complicationDetail: <Reference>[]);
+        }
+      case 'followUp':
+        {
+          return copyWith(followUp: <CodeableConcept>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'focalDevice':
+        {
+          return copyWith(focalDevice: <ProcedureFocalDevice>[]);
+        }
+      case 'usedReference':
+        {
+          return copyWith(usedReference: <Reference>[]);
+        }
+      case 'usedCode':
+        {
+          return copyWith(usedCode: <CodeableConcept>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Procedure clone() => throw UnimplementedError();
   @override
@@ -2068,6 +2242,42 @@ class ProcedurePerformer extends BackboneElement {
     }
   }
 
+  /// Creates a new [ProcedurePerformer]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ProcedurePerformer createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'function':
+        {
+          return copyWith(function_: CodeableConcept.empty());
+        }
+      case 'actor':
+        {
+          return copyWith(actor: Reference.empty());
+        }
+      case 'onBehalfOf':
+        {
+          return copyWith(onBehalfOf: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ProcedurePerformer clone() => throw UnimplementedError();
   @override
@@ -2447,6 +2657,38 @@ class ProcedureFocalDevice extends BackboneElement {
         return ['Reference'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ProcedureFocalDevice]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ProcedureFocalDevice createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'action':
+        {
+          return copyWith(action: CodeableConcept.empty());
+        }
+      case 'manipulated':
+        {
+          return copyWith(manipulated: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

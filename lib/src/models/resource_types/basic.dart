@@ -504,6 +504,70 @@ class Basic extends DomainResource {
     }
   }
 
+  /// Creates a new [Basic]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Basic createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'created':
+        {
+          return copyWith(created: FhirDate.empty());
+        }
+      case 'author':
+        {
+          return copyWith(author: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Basic clone() => throw UnimplementedError();
   @override

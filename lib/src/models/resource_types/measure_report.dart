@@ -680,6 +680,94 @@ class MeasureReport extends DomainResource {
     }
   }
 
+  /// Creates a new [MeasureReport]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MeasureReport createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: MeasureReportStatus.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: MeasureReportType.empty());
+        }
+      case 'measure':
+        {
+          return copyWith(measure: FhirCanonical.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'reporter':
+        {
+          return copyWith(reporter: Reference.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      case 'improvementNotation':
+        {
+          return copyWith(improvementNotation: CodeableConcept.empty());
+        }
+      case 'group':
+        {
+          return copyWith(group: <MeasureReportGroup>[]);
+        }
+      case 'evaluatedResource':
+        {
+          return copyWith(evaluatedResource: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MeasureReport clone() => throw UnimplementedError();
   @override
@@ -1252,6 +1340,46 @@ class MeasureReportGroup extends BackboneElement {
     }
   }
 
+  /// Creates a new [MeasureReportGroup]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MeasureReportGroup createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'population':
+        {
+          return copyWith(population: <MeasureReportPopulation>[]);
+        }
+      case 'measureScore':
+        {
+          return copyWith(measureScore: Quantity.empty());
+        }
+      case 'stratifier':
+        {
+          return copyWith(stratifier: <MeasureReportStratifier>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MeasureReportGroup clone() => throw UnimplementedError();
   @override
@@ -1683,6 +1811,42 @@ class MeasureReportPopulation extends BackboneElement {
     }
   }
 
+  /// Creates a new [MeasureReportPopulation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MeasureReportPopulation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'count':
+        {
+          return copyWith(count: FhirInteger.empty());
+        }
+      case 'subjectResults':
+        {
+          return copyWith(subjectResults: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MeasureReportPopulation clone() => throw UnimplementedError();
   @override
@@ -2071,6 +2235,38 @@ class MeasureReportStratifier extends BackboneElement {
         return ['MeasureReportStratum'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [MeasureReportStratifier]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MeasureReportStratifier createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: <CodeableConcept>[]);
+        }
+      case 'stratum':
+        {
+          return copyWith(stratum: <MeasureReportStratum>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2529,6 +2725,46 @@ class MeasureReportStratum extends BackboneElement {
     }
   }
 
+  /// Creates a new [MeasureReportStratum]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MeasureReportStratum createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'value':
+        {
+          return copyWith(value: CodeableConcept.empty());
+        }
+      case 'component':
+        {
+          return copyWith(component: <MeasureReportComponent>[]);
+        }
+      case 'population':
+        {
+          return copyWith(population: <MeasureReportPopulation>[]);
+        }
+      case 'measureScore':
+        {
+          return copyWith(measureScore: Quantity.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MeasureReportStratum clone() => throw UnimplementedError();
   @override
@@ -2930,6 +3166,38 @@ class MeasureReportComponent extends BackboneElement {
     }
   }
 
+  /// Creates a new [MeasureReportComponent]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MeasureReportComponent createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MeasureReportComponent clone() => throw UnimplementedError();
   @override
@@ -3328,6 +3596,42 @@ class MeasureReportPopulation1 extends BackboneElement {
         return ['Reference'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [MeasureReportPopulation1]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MeasureReportPopulation1 createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'count':
+        {
+          return copyWith(count: FhirInteger.empty());
+        }
+      case 'subjectResults':
+        {
+          return copyWith(subjectResults: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

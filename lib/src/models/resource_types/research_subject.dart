@@ -581,6 +581,82 @@ class ResearchSubject extends DomainResource {
     }
   }
 
+  /// Creates a new [ResearchSubject]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ResearchSubject createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: ResearchSubjectStatus.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      case 'study':
+        {
+          return copyWith(study: Reference.empty());
+        }
+      case 'individual':
+        {
+          return copyWith(individual: Reference.empty());
+        }
+      case 'assignedArm':
+        {
+          return copyWith(assignedArm: FhirString.empty());
+        }
+      case 'actualArm':
+        {
+          return copyWith(actualArm: FhirString.empty());
+        }
+      case 'consent':
+        {
+          return copyWith(consent: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ResearchSubject clone() => throw UnimplementedError();
   @override

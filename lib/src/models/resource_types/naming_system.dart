@@ -745,6 +745,102 @@ class NamingSystem extends DomainResource {
     }
   }
 
+  /// Creates a new [NamingSystem]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  NamingSystem createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'kind':
+        {
+          return copyWith(kind: NamingSystemType.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'responsible':
+        {
+          return copyWith(responsible: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'usage':
+        {
+          return copyWith(usage: FhirString.empty());
+        }
+      case 'uniqueId':
+        {
+          return copyWith(uniqueId: <NamingSystemUniqueId>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   NamingSystem clone() => throw UnimplementedError();
   @override
@@ -1355,6 +1451,50 @@ class NamingSystemUniqueId extends BackboneElement {
         return ['Period'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [NamingSystemUniqueId]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  NamingSystemUniqueId createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: NamingSystemIdentifierType.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirString.empty());
+        }
+      case 'preferred':
+        {
+          return copyWith(preferred: FhirBoolean.empty());
+        }
+      case 'comment':
+        {
+          return copyWith(comment: FhirString.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

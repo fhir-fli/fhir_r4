@@ -1399,6 +1399,189 @@ class ResearchElementDefinition extends DomainResource {
     }
   }
 
+  /// Creates a new [ResearchElementDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ResearchElementDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'shortTitle':
+        {
+          return copyWith(shortTitle: FhirString.empty());
+        }
+      case 'subtitle':
+        {
+          return copyWith(subtitle: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'subject':
+      case 'subjectX':
+      case 'subjectCodeableConcept':
+        {
+          return copyWith(subjectX: CodeableConcept.empty());
+        }
+      case 'subjectReference':
+        {
+          return copyWith(subjectX: Reference.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'comment':
+        {
+          return copyWith(comment: <FhirString>[]);
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'usage':
+        {
+          return copyWith(usage: FhirString.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'approvalDate':
+        {
+          return copyWith(approvalDate: FhirDate.empty());
+        }
+      case 'lastReviewDate':
+        {
+          return copyWith(lastReviewDate: FhirDate.empty());
+        }
+      case 'effectivePeriod':
+        {
+          return copyWith(effectivePeriod: Period.empty());
+        }
+      case 'topic':
+        {
+          return copyWith(topic: <CodeableConcept>[]);
+        }
+      case 'author':
+        {
+          return copyWith(author: <ContactDetail>[]);
+        }
+      case 'editor':
+        {
+          return copyWith(editor: <ContactDetail>[]);
+        }
+      case 'reviewer':
+        {
+          return copyWith(reviewer: <ContactDetail>[]);
+        }
+      case 'endorser':
+        {
+          return copyWith(endorser: <ContactDetail>[]);
+        }
+      case 'relatedArtifact':
+        {
+          return copyWith(relatedArtifact: <RelatedArtifact>[]);
+        }
+      case 'library':
+        {
+          return copyWith(library_: <FhirCanonical>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: ResearchElementType.empty());
+        }
+      case 'variableType':
+        {
+          return copyWith(variableType: VariableType.empty());
+        }
+      case 'characteristic':
+        {
+          return copyWith(
+              characteristic: <ResearchElementDefinitionCharacteristic>[],);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ResearchElementDefinition clone() => throw UnimplementedError();
   @override
@@ -2686,6 +2869,122 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
         return ['FhirCode'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ResearchElementDefinitionCharacteristic]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ResearchElementDefinitionCharacteristic createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'definition':
+      case 'definitionX':
+      case 'definitionCodeableConcept':
+        {
+          return copyWith(definitionX: CodeableConcept.empty());
+        }
+      case 'definitionCanonical':
+        {
+          return copyWith(definitionX: FhirCanonical.empty());
+        }
+      case 'definitionExpression':
+        {
+          return copyWith(definitionX: FhirExpression.empty());
+        }
+      case 'definitionDataRequirement':
+        {
+          return copyWith(definitionX: DataRequirement.empty());
+        }
+      case 'usageContext':
+        {
+          return copyWith(usageContext: <UsageContext>[]);
+        }
+      case 'exclude':
+        {
+          return copyWith(exclude: FhirBoolean.empty());
+        }
+      case 'unitOfMeasure':
+        {
+          return copyWith(unitOfMeasure: CodeableConcept.empty());
+        }
+      case 'studyEffectiveDescription':
+        {
+          return copyWith(studyEffectiveDescription: FhirString.empty());
+        }
+      case 'studyEffective':
+      case 'studyEffectiveX':
+      case 'studyEffectiveDateTime':
+        {
+          return copyWith(studyEffectiveX: FhirDateTime.empty());
+        }
+      case 'studyEffectivePeriod':
+        {
+          return copyWith(studyEffectiveX: Period.empty());
+        }
+      case 'studyEffectiveDuration':
+        {
+          return copyWith(studyEffectiveX: FhirDuration.empty());
+        }
+      case 'studyEffectiveTiming':
+        {
+          return copyWith(studyEffectiveX: Timing.empty());
+        }
+      case 'studyEffectiveTimeFromStart':
+        {
+          return copyWith(studyEffectiveTimeFromStart: FhirDuration.empty());
+        }
+      case 'studyEffectiveGroupMeasure':
+        {
+          return copyWith(studyEffectiveGroupMeasure: GroupMeasure.empty());
+        }
+      case 'participantEffectiveDescription':
+        {
+          return copyWith(participantEffectiveDescription: FhirString.empty());
+        }
+      case 'participantEffective':
+      case 'participantEffectiveX':
+      case 'participantEffectiveDateTime':
+        {
+          return copyWith(participantEffectiveX: FhirDateTime.empty());
+        }
+      case 'participantEffectivePeriod':
+        {
+          return copyWith(participantEffectiveX: Period.empty());
+        }
+      case 'participantEffectiveDuration':
+        {
+          return copyWith(participantEffectiveX: FhirDuration.empty());
+        }
+      case 'participantEffectiveTiming':
+        {
+          return copyWith(participantEffectiveX: Timing.empty());
+        }
+      case 'participantEffectiveTimeFromStart':
+        {
+          return copyWith(
+              participantEffectiveTimeFromStart: FhirDuration.empty(),);
+        }
+      case 'participantEffectiveGroupMeasure':
+        {
+          return copyWith(
+              participantEffectiveGroupMeasure: GroupMeasure.empty(),);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

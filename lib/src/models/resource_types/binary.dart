@@ -349,6 +349,46 @@ class Binary extends Resource {
     }
   }
 
+  /// Creates a new [Binary]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Binary createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'contentType':
+        {
+          return copyWith(contentType: FhirCode.empty());
+        }
+      case 'securityContext':
+        {
+          return copyWith(securityContext: Reference.empty());
+        }
+      case 'data':
+        {
+          return copyWith(data: FhirBase64Binary.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Binary clone() => throw UnimplementedError();
   @override

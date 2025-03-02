@@ -151,4 +151,8 @@ abstract class DomainResource extends Resource {
   List<String> typeByElementName(String elementName) {
     return <String>[];
   }
+
+  /// Creates an empty property in the object
+  @override
+  DomainResource createProperty(String propertyName);
 }

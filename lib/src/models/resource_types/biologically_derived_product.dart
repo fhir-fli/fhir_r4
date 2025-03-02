@@ -689,6 +689,97 @@ class BiologicallyDerivedProduct extends DomainResource {
     }
   }
 
+  /// Creates a new [BiologicallyDerivedProduct]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  BiologicallyDerivedProduct createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'productCategory':
+        {
+          return copyWith(
+              productCategory: BiologicallyDerivedProductCategory.empty(),);
+        }
+      case 'productCode':
+        {
+          return copyWith(productCode: CodeableConcept.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: BiologicallyDerivedProductStatus.empty());
+        }
+      case 'request':
+        {
+          return copyWith(request: <Reference>[]);
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: FhirInteger.empty());
+        }
+      case 'parent':
+        {
+          return copyWith(parent: <Reference>[]);
+        }
+      case 'collection':
+        {
+          return copyWith(
+              collection: BiologicallyDerivedProductCollection.empty(),);
+        }
+      case 'processing':
+        {
+          return copyWith(processing: <BiologicallyDerivedProductProcessing>[]);
+        }
+      case 'manipulation':
+        {
+          return copyWith(
+              manipulation: BiologicallyDerivedProductManipulation.empty(),);
+        }
+      case 'storage':
+        {
+          return copyWith(storage: <BiologicallyDerivedProductStorage>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   BiologicallyDerivedProduct clone() => throw UnimplementedError();
   @override
@@ -1279,6 +1370,48 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
     }
   }
 
+  /// Creates a new [BiologicallyDerivedProductCollection]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  BiologicallyDerivedProductCollection createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'collector':
+        {
+          return copyWith(collector: Reference.empty());
+        }
+      case 'source':
+        {
+          return copyWith(source: Reference.empty());
+        }
+      case 'collected':
+      case 'collectedX':
+      case 'collectedDateTime':
+        {
+          return copyWith(collectedX: FhirDateTime.empty());
+        }
+      case 'collectedPeriod':
+        {
+          return copyWith(collectedX: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   BiologicallyDerivedProductCollection clone() => throw UnimplementedError();
   @override
@@ -1759,6 +1892,52 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
     }
   }
 
+  /// Creates a new [BiologicallyDerivedProductProcessing]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  BiologicallyDerivedProductProcessing createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'procedure':
+        {
+          return copyWith(procedure: CodeableConcept.empty());
+        }
+      case 'additive':
+        {
+          return copyWith(additive: Reference.empty());
+        }
+      case 'time':
+      case 'timeX':
+      case 'timeDateTime':
+        {
+          return copyWith(timeX: FhirDateTime.empty());
+        }
+      case 'timePeriod':
+        {
+          return copyWith(timeX: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   BiologicallyDerivedProductProcessing clone() => throw UnimplementedError();
   @override
@@ -2193,6 +2372,44 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
     }
   }
 
+  /// Creates a new [BiologicallyDerivedProductManipulation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  BiologicallyDerivedProductManipulation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'time':
+      case 'timeX':
+      case 'timeDateTime':
+        {
+          return copyWith(timeX: FhirDateTime.empty());
+        }
+      case 'timePeriod':
+        {
+          return copyWith(timeX: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   BiologicallyDerivedProductManipulation clone() => throw UnimplementedError();
   @override
@@ -2617,6 +2834,47 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
         return ['Period'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [BiologicallyDerivedProductStorage]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  BiologicallyDerivedProductStorage createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'temperature':
+        {
+          return copyWith(temperature: FhirDecimal.empty());
+        }
+      case 'scale':
+        {
+          return copyWith(
+              scale: BiologicallyDerivedProductStorageScale.empty(),);
+        }
+      case 'duration':
+        {
+          return copyWith(duration: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

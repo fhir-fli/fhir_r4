@@ -888,6 +888,122 @@ class RequestGroup extends DomainResource {
     }
   }
 
+  /// Creates a new [RequestGroup]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  RequestGroup createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'instantiatesCanonical':
+        {
+          return copyWith(instantiatesCanonical: <FhirCanonical>[]);
+        }
+      case 'instantiatesUri':
+        {
+          return copyWith(instantiatesUri: <FhirUri>[]);
+        }
+      case 'basedOn':
+        {
+          return copyWith(basedOn: <Reference>[]);
+        }
+      case 'replaces':
+        {
+          return copyWith(replaces: <Reference>[]);
+        }
+      case 'groupIdentifier':
+        {
+          return copyWith(groupIdentifier: Identifier.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: RequestStatus.empty());
+        }
+      case 'intent':
+        {
+          return copyWith(intent: RequestIntent.empty());
+        }
+      case 'priority':
+        {
+          return copyWith(priority: RequestPriority.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'authoredOn':
+        {
+          return copyWith(authoredOn: FhirDateTime.empty());
+        }
+      case 'author':
+        {
+          return copyWith(author: Reference.empty());
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: <CodeableConcept>[]);
+        }
+      case 'reasonReference':
+        {
+          return copyWith(reasonReference: <Reference>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'action':
+        {
+          return copyWith(action: <RequestGroupAction>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   RequestGroup clone() => throw UnimplementedError();
   @override
@@ -2106,6 +2222,129 @@ class RequestGroupAction extends BackboneElement {
     }
   }
 
+  /// Creates a new [RequestGroupAction]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  RequestGroupAction createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'prefix':
+        {
+          return copyWith(prefix: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'textEquivalent':
+        {
+          return copyWith(textEquivalent: FhirString.empty());
+        }
+      case 'priority':
+        {
+          return copyWith(priority: RequestPriority.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: <CodeableConcept>[]);
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: <RelatedArtifact>[]);
+        }
+      case 'condition':
+        {
+          return copyWith(condition: <RequestGroupCondition>[]);
+        }
+      case 'relatedAction':
+        {
+          return copyWith(relatedAction: <RequestGroupRelatedAction>[]);
+        }
+      case 'timing':
+      case 'timingX':
+      case 'timingDateTime':
+        {
+          return copyWith(timingX: FhirDateTime.empty());
+        }
+      case 'timingAge':
+        {
+          return copyWith(timingX: Age.empty());
+        }
+      case 'timingPeriod':
+        {
+          return copyWith(timingX: Period.empty());
+        }
+      case 'timingDuration':
+        {
+          return copyWith(timingX: FhirDuration.empty());
+        }
+      case 'timingRange':
+        {
+          return copyWith(timingX: Range.empty());
+        }
+      case 'timingTiming':
+        {
+          return copyWith(timingX: Timing.empty());
+        }
+      case 'participant':
+        {
+          return copyWith(participant: <Reference>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'groupingBehavior':
+        {
+          return copyWith(groupingBehavior: ActionGroupingBehavior.empty());
+        }
+      case 'selectionBehavior':
+        {
+          return copyWith(selectionBehavior: ActionSelectionBehavior.empty());
+        }
+      case 'requiredBehavior':
+        {
+          return copyWith(requiredBehavior: ActionRequiredBehavior.empty());
+        }
+      case 'precheckBehavior':
+        {
+          return copyWith(precheckBehavior: ActionPrecheckBehavior.empty());
+        }
+      case 'cardinalityBehavior':
+        {
+          return copyWith(
+              cardinalityBehavior: ActionCardinalityBehavior.empty(),);
+        }
+      case 'resource':
+        {
+          return copyWith(resource: Reference.empty());
+        }
+      case 'action':
+        {
+          return copyWith(action: <RequestGroupAction>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   RequestGroupAction clone() => throw UnimplementedError();
   @override
@@ -2658,6 +2897,38 @@ class RequestGroupCondition extends BackboneElement {
     }
   }
 
+  /// Creates a new [RequestGroupCondition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  RequestGroupCondition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'kind':
+        {
+          return copyWith(kind: ActionConditionKind.empty());
+        }
+      case 'expression':
+        {
+          return copyWith(expression: FhirExpression.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   RequestGroupCondition clone() => throw UnimplementedError();
   @override
@@ -3097,6 +3368,48 @@ class RequestGroupRelatedAction extends BackboneElement {
         return ['Range'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [RequestGroupRelatedAction]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  RequestGroupRelatedAction createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'actionId':
+        {
+          return copyWith(actionId: FhirId.empty());
+        }
+      case 'relationship':
+        {
+          return copyWith(relationship: ActionRelationshipType.empty());
+        }
+      case 'offset':
+      case 'offsetX':
+      case 'offsetDuration':
+        {
+          return copyWith(offsetX: FhirDuration.empty());
+        }
+      case 'offsetRange':
+        {
+          return copyWith(offsetX: Range.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

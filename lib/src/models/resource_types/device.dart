@@ -1121,6 +1121,154 @@ class Device extends DomainResource {
     }
   }
 
+  /// Creates a new [Device]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Device createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'definition':
+        {
+          return copyWith(definition: Reference.empty());
+        }
+      case 'udiCarrier':
+        {
+          return copyWith(udiCarrier: <DeviceUdiCarrier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: FHIRDeviceStatus.empty());
+        }
+      case 'statusReason':
+        {
+          return copyWith(statusReason: <CodeableConcept>[]);
+        }
+      case 'distinctIdentifier':
+        {
+          return copyWith(distinctIdentifier: FhirString.empty());
+        }
+      case 'manufacturer':
+        {
+          return copyWith(manufacturer: FhirString.empty());
+        }
+      case 'manufactureDate':
+        {
+          return copyWith(manufactureDate: FhirDateTime.empty());
+        }
+      case 'expirationDate':
+        {
+          return copyWith(expirationDate: FhirDateTime.empty());
+        }
+      case 'lotNumber':
+        {
+          return copyWith(lotNumber: FhirString.empty());
+        }
+      case 'serialNumber':
+        {
+          return copyWith(serialNumber: FhirString.empty());
+        }
+      case 'deviceName':
+        {
+          return copyWith(deviceName: <DeviceDeviceName>[]);
+        }
+      case 'modelNumber':
+        {
+          return copyWith(modelNumber: FhirString.empty());
+        }
+      case 'partNumber':
+        {
+          return copyWith(partNumber: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'specialization':
+        {
+          return copyWith(specialization: <DeviceSpecialization>[]);
+        }
+      case 'version':
+        {
+          return copyWith(version: <DeviceVersion>[]);
+        }
+      case 'property':
+        {
+          return copyWith(property: <DeviceProperty>[]);
+        }
+      case 'patient':
+        {
+          return copyWith(patient: Reference.empty());
+        }
+      case 'owner':
+        {
+          return copyWith(owner: Reference.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactPoint>[]);
+        }
+      case 'location':
+        {
+          return copyWith(location: Reference.empty());
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'safety':
+        {
+          return copyWith(safety: <CodeableConcept>[]);
+        }
+      case 'parent':
+        {
+          return copyWith(parent: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Device clone() => throw UnimplementedError();
   @override
@@ -1924,6 +2072,54 @@ class DeviceUdiCarrier extends BackboneElement {
     }
   }
 
+  /// Creates a new [DeviceUdiCarrier]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DeviceUdiCarrier createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'deviceIdentifier':
+        {
+          return copyWith(deviceIdentifier: FhirString.empty());
+        }
+      case 'issuer':
+        {
+          return copyWith(issuer: FhirUri.empty());
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: FhirUri.empty());
+        }
+      case 'carrierAIDC':
+        {
+          return copyWith(carrierAIDC: FhirBase64Binary.empty());
+        }
+      case 'carrierHRF':
+        {
+          return copyWith(carrierHRF: FhirString.empty());
+        }
+      case 'entryType':
+        {
+          return copyWith(entryType: UDIEntryType.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   DeviceUdiCarrier clone() => throw UnimplementedError();
   @override
@@ -2332,6 +2528,38 @@ class DeviceDeviceName extends BackboneElement {
     }
   }
 
+  /// Creates a new [DeviceDeviceName]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DeviceDeviceName createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: DeviceNameType.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   DeviceDeviceName clone() => throw UnimplementedError();
   @override
@@ -2703,6 +2931,38 @@ class DeviceSpecialization extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [DeviceSpecialization]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DeviceSpecialization createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'systemType':
+        {
+          return copyWith(systemType: CodeableConcept.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -3103,6 +3363,42 @@ class DeviceVersion extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [DeviceVersion]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DeviceVersion createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'component':
+        {
+          return copyWith(component: Identifier.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -3520,6 +3816,42 @@ class DeviceProperty extends BackboneElement {
         return ['CodeableConcept'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [DeviceProperty]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DeviceProperty createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'valueQuantity':
+        {
+          return copyWith(valueQuantity: <Quantity>[]);
+        }
+      case 'valueCode':
+        {
+          return copyWith(valueCode: <CodeableConcept>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

@@ -458,6 +458,62 @@ class Bundle extends Resource {
     }
   }
 
+  /// Creates a new [Bundle]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Bundle createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: Identifier.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: BundleType.empty());
+        }
+      case 'timestamp':
+        {
+          return copyWith(timestamp: FhirInstant.empty());
+        }
+      case 'total':
+        {
+          return copyWith(total: FhirUnsignedInt.empty());
+        }
+      case 'link':
+        {
+          return copyWith(link: <BundleLink>[]);
+        }
+      case 'entry':
+        {
+          return copyWith(entry: <BundleEntry>[]);
+        }
+      case 'signature':
+        {
+          return copyWith(signature: Signature.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Bundle clone() => throw UnimplementedError();
   @override
@@ -874,6 +930,38 @@ class BundleLink extends BackboneElement {
         return ['FhirUri'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [BundleLink]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  BundleLink createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'relation':
+        {
+          return copyWith(relation: FhirString.empty());
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -1376,6 +1464,54 @@ class BundleEntry extends BackboneElement {
     }
   }
 
+  /// Creates a new [BundleEntry]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  BundleEntry createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'link':
+        {
+          return copyWith(link: <BundleLink>[]);
+        }
+      case 'fullUrl':
+        {
+          return copyWith(fullUrl: FhirUri.empty());
+        }
+      case 'resource':
+        {
+          return copyWith(resource: Resource.empty());
+        }
+      case 'search':
+        {
+          return copyWith(search: BundleSearch.empty());
+        }
+      case 'request':
+        {
+          return copyWith(request: BundleRequest.empty());
+        }
+      case 'response':
+        {
+          return copyWith(response: BundleResponse.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   BundleEntry clone() => throw UnimplementedError();
   @override
@@ -1784,6 +1920,38 @@ class BundleSearch extends BackboneElement {
         return ['FhirDecimal'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [BundleSearch]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  BundleSearch createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'mode':
+        {
+          return copyWith(mode: SearchEntryMode.empty());
+        }
+      case 'score':
+        {
+          return copyWith(score: FhirDecimal.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2278,6 +2446,54 @@ class BundleRequest extends BackboneElement {
     }
   }
 
+  /// Creates a new [BundleRequest]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  BundleRequest createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'method':
+        {
+          return copyWith(method: HTTPVerb.empty());
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'ifNoneMatch':
+        {
+          return copyWith(ifNoneMatch: FhirString.empty());
+        }
+      case 'ifModifiedSince':
+        {
+          return copyWith(ifModifiedSince: FhirInstant.empty());
+        }
+      case 'ifMatch':
+        {
+          return copyWith(ifMatch: FhirString.empty());
+        }
+      case 'ifNoneExist':
+        {
+          return copyWith(ifNoneExist: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   BundleRequest clone() => throw UnimplementedError();
   @override
@@ -2769,6 +2985,50 @@ class BundleResponse extends BackboneElement {
         return ['Resource'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [BundleResponse]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  BundleResponse createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: FhirString.empty());
+        }
+      case 'location':
+        {
+          return copyWith(location: FhirUri.empty());
+        }
+      case 'etag':
+        {
+          return copyWith(etag: FhirString.empty());
+        }
+      case 'lastModified':
+        {
+          return copyWith(lastModified: FhirInstant.empty());
+        }
+      case 'outcome':
+        {
+          return copyWith(outcome: Resource.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

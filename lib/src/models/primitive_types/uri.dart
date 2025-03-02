@@ -277,4 +277,8 @@ class FhirUri extends PrimitiveType<Uri>
   static String decodeQueryComponent(String text, {Encoding encoding = utf8}) {
     return Uri.decodeQueryComponent(text, encoding: encoding);
   }
+
+  /// Creates an empty property in the object
+  @override
+  FhirUri createProperty(String propertyName) => this;
 }

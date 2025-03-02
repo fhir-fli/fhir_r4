@@ -1054,6 +1054,154 @@ class OperationDefinition extends CanonicalResource {
     }
   }
 
+  /// Creates a new [OperationDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  OperationDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'kind':
+        {
+          return copyWith(kind: OperationKind.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'affectsState':
+        {
+          return copyWith(affectsState: FhirBoolean.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: FhirCode.empty());
+        }
+      case 'comment':
+        {
+          return copyWith(comment: FhirMarkdown.empty());
+        }
+      case 'base':
+        {
+          return copyWith(base: FhirCanonical.empty());
+        }
+      case 'resource':
+        {
+          return copyWith(resource: <FhirCode>[]);
+        }
+      case 'system':
+        {
+          return copyWith(system: FhirBoolean.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: FhirBoolean.empty());
+        }
+      case 'instance':
+        {
+          return copyWith(instance: FhirBoolean.empty());
+        }
+      case 'inputProfile':
+        {
+          return copyWith(inputProfile: FhirCanonical.empty());
+        }
+      case 'outputProfile':
+        {
+          return copyWith(outputProfile: FhirCanonical.empty());
+        }
+      case 'parameter':
+        {
+          return copyWith(parameter: <OperationDefinitionParameter>[]);
+        }
+      case 'overload':
+        {
+          return copyWith(overload: <OperationDefinitionOverload>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   OperationDefinition clone() => throw UnimplementedError();
   @override
@@ -1959,6 +2107,75 @@ class OperationDefinitionParameter extends BackboneElement {
     }
   }
 
+  /// Creates a new [OperationDefinitionParameter]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  OperationDefinitionParameter createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirCode.empty());
+        }
+      case 'use':
+        {
+          return copyWith(use: OperationParameterUse.empty());
+        }
+      case 'min':
+        {
+          return copyWith(min: FhirInteger.empty());
+        }
+      case 'max':
+        {
+          return copyWith(max: FhirString.empty());
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: FHIRAllTypes.empty());
+        }
+      case 'targetProfile':
+        {
+          return copyWith(targetProfile: <FhirCanonical>[]);
+        }
+      case 'searchType':
+        {
+          return copyWith(searchType: SearchParamType.empty());
+        }
+      case 'binding':
+        {
+          return copyWith(binding: OperationDefinitionBinding.empty());
+        }
+      case 'referencedFrom':
+        {
+          return copyWith(
+              referencedFrom: <OperationDefinitionReferencedFrom>[],);
+        }
+      case 'part':
+        {
+          return copyWith(part_: <OperationDefinitionParameter>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   OperationDefinitionParameter clone() => throw UnimplementedError();
   @override
@@ -2427,6 +2644,38 @@ class OperationDefinitionBinding extends BackboneElement {
     }
   }
 
+  /// Creates a new [OperationDefinitionBinding]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  OperationDefinitionBinding createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'strength':
+        {
+          return copyWith(strength: BindingStrength.empty());
+        }
+      case 'valueSet':
+        {
+          return copyWith(valueSet: FhirCanonical.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   OperationDefinitionBinding clone() => throw UnimplementedError();
   @override
@@ -2804,6 +3053,38 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
     }
   }
 
+  /// Creates a new [OperationDefinitionReferencedFrom]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  OperationDefinitionReferencedFrom createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'source':
+        {
+          return copyWith(source: FhirString.empty());
+        }
+      case 'sourceId':
+        {
+          return copyWith(sourceId: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   OperationDefinitionReferencedFrom clone() => throw UnimplementedError();
   @override
@@ -3175,6 +3456,38 @@ class OperationDefinitionOverload extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [OperationDefinitionOverload]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  OperationDefinitionOverload createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'parameterName':
+        {
+          return copyWith(parameterName: <FhirString>[]);
+        }
+      case 'comment':
+        {
+          return copyWith(comment: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

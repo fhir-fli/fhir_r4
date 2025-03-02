@@ -1100,6 +1100,146 @@ class ResearchStudy extends DomainResource {
     }
   }
 
+  /// Creates a new [ResearchStudy]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ResearchStudy createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'protocol':
+        {
+          return copyWith(protocol: <Reference>[]);
+        }
+      case 'partOf':
+        {
+          return copyWith(partOf: <Reference>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: ResearchStudyStatus.empty());
+        }
+      case 'primaryPurposeType':
+        {
+          return copyWith(primaryPurposeType: CodeableConcept.empty());
+        }
+      case 'phase':
+        {
+          return copyWith(phase: CodeableConcept.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'focus':
+        {
+          return copyWith(focus: <CodeableConcept>[]);
+        }
+      case 'condition':
+        {
+          return copyWith(condition: <CodeableConcept>[]);
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'relatedArtifact':
+        {
+          return copyWith(relatedArtifact: <RelatedArtifact>[]);
+        }
+      case 'keyword':
+        {
+          return copyWith(keyword: <CodeableConcept>[]);
+        }
+      case 'location':
+        {
+          return copyWith(location: <CodeableConcept>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'enrollment':
+        {
+          return copyWith(enrollment: <Reference>[]);
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      case 'sponsor':
+        {
+          return copyWith(sponsor: Reference.empty());
+        }
+      case 'principalInvestigator':
+        {
+          return copyWith(principalInvestigator: Reference.empty());
+        }
+      case 'site':
+        {
+          return copyWith(site: <Reference>[]);
+        }
+      case 'reasonStopped':
+        {
+          return copyWith(reasonStopped: CodeableConcept.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'arm':
+        {
+          return copyWith(arm: <ResearchStudyArm>[]);
+        }
+      case 'objective':
+        {
+          return copyWith(objective: <ResearchStudyObjective>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ResearchStudy clone() => throw UnimplementedError();
   @override
@@ -1823,6 +1963,42 @@ class ResearchStudyArm extends BackboneElement {
     }
   }
 
+  /// Creates a new [ResearchStudyArm]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ResearchStudyArm createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ResearchStudyArm clone() => throw UnimplementedError();
   @override
@@ -2202,6 +2378,38 @@ class ResearchStudyObjective extends BackboneElement {
         return ['CodeableConcept'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ResearchStudyObjective]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ResearchStudyObjective createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

@@ -809,6 +809,110 @@ class Composition extends DomainResource {
     }
   }
 
+  /// Creates a new [Composition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Composition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: Identifier.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: CompositionStatus.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'author':
+        {
+          return copyWith(author: <Reference>[]);
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'confidentiality':
+        {
+          return copyWith(confidentiality: FhirCode.empty());
+        }
+      case 'attester':
+        {
+          return copyWith(attester: <CompositionAttester>[]);
+        }
+      case 'custodian':
+        {
+          return copyWith(custodian: Reference.empty());
+        }
+      case 'relatesTo':
+        {
+          return copyWith(relatesTo: <CompositionRelatesTo>[]);
+        }
+      case 'event':
+        {
+          return copyWith(event: <CompositionEvent>[]);
+        }
+      case 'section':
+        {
+          return copyWith(section: <CompositionSection>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Composition clone() => throw UnimplementedError();
   @override
@@ -1394,6 +1498,42 @@ class CompositionAttester extends BackboneElement {
     }
   }
 
+  /// Creates a new [CompositionAttester]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CompositionAttester createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'mode':
+        {
+          return copyWith(mode: CompositionAttestationMode.empty());
+        }
+      case 'time':
+        {
+          return copyWith(time: FhirDateTime.empty());
+        }
+      case 'party':
+        {
+          return copyWith(party: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CompositionAttester clone() => throw UnimplementedError();
   @override
@@ -1817,6 +1957,44 @@ class CompositionRelatesTo extends BackboneElement {
     }
   }
 
+  /// Creates a new [CompositionRelatesTo]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CompositionRelatesTo createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: DocumentRelationshipType.empty());
+        }
+      case 'target':
+      case 'targetX':
+      case 'targetIdentifier':
+        {
+          return copyWith(targetX: Identifier.empty());
+        }
+      case 'targetReference':
+        {
+          return copyWith(targetX: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CompositionRelatesTo clone() => throw UnimplementedError();
   @override
@@ -2230,6 +2408,42 @@ class CompositionEvent extends BackboneElement {
         return ['Reference'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [CompositionEvent]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CompositionEvent createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: <CodeableConcept>[]);
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      case 'detail':
+        {
+          return copyWith(detail: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2873,6 +3087,70 @@ class CompositionSection extends BackboneElement {
         return ['CompositionSection'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [CompositionSection]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CompositionSection createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'author':
+        {
+          return copyWith(author: <Reference>[]);
+        }
+      case 'focus':
+        {
+          return copyWith(focus: Reference.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'mode':
+        {
+          return copyWith(mode: ListMode.empty());
+        }
+      case 'orderedBy':
+        {
+          return copyWith(orderedBy: CodeableConcept.empty());
+        }
+      case 'entry':
+        {
+          return copyWith(entry: <Reference>[]);
+        }
+      case 'emptyReason':
+        {
+          return copyWith(emptyReason: CodeableConcept.empty());
+        }
+      case 'section':
+        {
+          return copyWith(section: <CompositionSection>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

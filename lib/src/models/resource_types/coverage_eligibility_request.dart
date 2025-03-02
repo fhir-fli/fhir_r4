@@ -807,6 +807,113 @@ class CoverageEligibilityRequest extends DomainResource {
     }
   }
 
+  /// Creates a new [CoverageEligibilityRequest]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CoverageEligibilityRequest createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: FinancialResourceStatusCodes.empty());
+        }
+      case 'priority':
+        {
+          return copyWith(priority: CodeableConcept.empty());
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: <EligibilityRequestPurpose>[]);
+        }
+      case 'patient':
+        {
+          return copyWith(patient: Reference.empty());
+        }
+      case 'serviced':
+      case 'servicedX':
+      case 'servicedDate':
+        {
+          return copyWith(servicedX: FhirDate.empty());
+        }
+      case 'servicedPeriod':
+        {
+          return copyWith(servicedX: Period.empty());
+        }
+      case 'created':
+        {
+          return copyWith(created: FhirDateTime.empty());
+        }
+      case 'enterer':
+        {
+          return copyWith(enterer: Reference.empty());
+        }
+      case 'provider':
+        {
+          return copyWith(provider: Reference.empty());
+        }
+      case 'insurer':
+        {
+          return copyWith(insurer: Reference.empty());
+        }
+      case 'facility':
+        {
+          return copyWith(facility: Reference.empty());
+        }
+      case 'supportingInfo':
+        {
+          return copyWith(
+              supportingInfo: <CoverageEligibilityRequestSupportingInfo>[],);
+        }
+      case 'insurance':
+        {
+          return copyWith(insurance: <CoverageEligibilityRequestInsurance>[]);
+        }
+      case 'item':
+        {
+          return copyWith(item: <CoverageEligibilityRequestItem>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CoverageEligibilityRequest clone() => throw UnimplementedError();
   @override
@@ -1380,6 +1487,42 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
     }
   }
 
+  /// Creates a new [CoverageEligibilityRequestSupportingInfo]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CoverageEligibilityRequestSupportingInfo createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'sequence':
+        {
+          return copyWith(sequence: FhirPositiveInt.empty());
+        }
+      case 'information':
+        {
+          return copyWith(information: Reference.empty());
+        }
+      case 'appliesToAll':
+        {
+          return copyWith(appliesToAll: FhirBoolean.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CoverageEligibilityRequestSupportingInfo clone() =>
       throw UnimplementedError();
@@ -1792,6 +1935,42 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [CoverageEligibilityRequestInsurance]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CoverageEligibilityRequestInsurance createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'focal':
+        {
+          return copyWith(focal: FhirBoolean.empty());
+        }
+      case 'coverage':
+        {
+          return copyWith(coverage: Reference.empty());
+        }
+      case 'businessArrangement':
+        {
+          return copyWith(businessArrangement: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2411,6 +2590,70 @@ class CoverageEligibilityRequestItem extends BackboneElement {
     }
   }
 
+  /// Creates a new [CoverageEligibilityRequestItem]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CoverageEligibilityRequestItem createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'supportingInfoSequence':
+        {
+          return copyWith(supportingInfoSequence: <FhirPositiveInt>[]);
+        }
+      case 'category':
+        {
+          return copyWith(category: CodeableConcept.empty());
+        }
+      case 'productOrService':
+        {
+          return copyWith(productOrService: CodeableConcept.empty());
+        }
+      case 'modifier':
+        {
+          return copyWith(modifier: <CodeableConcept>[]);
+        }
+      case 'provider':
+        {
+          return copyWith(provider: Reference.empty());
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'unitPrice':
+        {
+          return copyWith(unitPrice: Money.empty());
+        }
+      case 'facility':
+        {
+          return copyWith(facility: Reference.empty());
+        }
+      case 'diagnosis':
+        {
+          return copyWith(diagnosis: <CoverageEligibilityRequestDiagnosis>[]);
+        }
+      case 'detail':
+        {
+          return copyWith(detail: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CoverageEligibilityRequestItem clone() => throw UnimplementedError();
   @override
@@ -2891,6 +3134,40 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
         return ['Reference'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [CoverageEligibilityRequestDiagnosis]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CoverageEligibilityRequestDiagnosis createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'diagnosis':
+      case 'diagnosisX':
+      case 'diagnosisCodeableConcept':
+        {
+          return copyWith(diagnosisX: CodeableConcept.empty());
+        }
+      case 'diagnosisReference':
+        {
+          return copyWith(diagnosisX: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

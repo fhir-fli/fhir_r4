@@ -856,6 +856,118 @@ class Location extends DomainResource {
     }
   }
 
+  /// Creates a new [Location]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Location createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: LocationStatus.empty());
+        }
+      case 'operationalStatus':
+        {
+          return copyWith(operationalStatus: Coding.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'alias':
+        {
+          return copyWith(alias: <FhirString>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'mode':
+        {
+          return copyWith(mode: LocationMode.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: <CodeableConcept>[]);
+        }
+      case 'telecom':
+        {
+          return copyWith(telecom: <ContactPoint>[]);
+        }
+      case 'address':
+        {
+          return copyWith(address: Address.empty());
+        }
+      case 'physicalType':
+        {
+          return copyWith(physicalType: CodeableConcept.empty());
+        }
+      case 'position':
+        {
+          return copyWith(position: LocationPosition.empty());
+        }
+      case 'managingOrganization':
+        {
+          return copyWith(managingOrganization: Reference.empty());
+        }
+      case 'partOf':
+        {
+          return copyWith(partOf: Reference.empty());
+        }
+      case 'hoursOfOperation':
+        {
+          return copyWith(hoursOfOperation: <LocationHoursOfOperation>[]);
+        }
+      case 'availabilityExceptions':
+        {
+          return copyWith(availabilityExceptions: FhirString.empty());
+        }
+      case 'endpoint':
+        {
+          return copyWith(endpoint: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Location clone() => throw UnimplementedError();
   @override
@@ -1459,6 +1571,42 @@ class LocationPosition extends BackboneElement {
     }
   }
 
+  /// Creates a new [LocationPosition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  LocationPosition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'longitude':
+        {
+          return copyWith(longitude: FhirDecimal.empty());
+        }
+      case 'latitude':
+        {
+          return copyWith(latitude: FhirDecimal.empty());
+        }
+      case 'altitude':
+        {
+          return copyWith(altitude: FhirDecimal.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   LocationPosition clone() => throw UnimplementedError();
   @override
@@ -1891,6 +2039,46 @@ class LocationHoursOfOperation extends BackboneElement {
         return ['FhirTime'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [LocationHoursOfOperation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  LocationHoursOfOperation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'daysOfWeek':
+        {
+          return copyWith(daysOfWeek: <DaysOfWeek>[]);
+        }
+      case 'allDay':
+        {
+          return copyWith(allDay: FhirBoolean.empty());
+        }
+      case 'openingTime':
+        {
+          return copyWith(openingTime: FhirTime.empty());
+        }
+      case 'closingTime':
+        {
+          return copyWith(closingTime: FhirTime.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

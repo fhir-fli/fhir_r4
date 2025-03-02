@@ -963,6 +963,130 @@ class ImagingStudy extends DomainResource {
     }
   }
 
+  /// Creates a new [ImagingStudy]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImagingStudy createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: ImagingStudyStatus.empty());
+        }
+      case 'modality':
+        {
+          return copyWith(modality: <Coding>[]);
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'started':
+        {
+          return copyWith(started: FhirDateTime.empty());
+        }
+      case 'basedOn':
+        {
+          return copyWith(basedOn: <Reference>[]);
+        }
+      case 'referrer':
+        {
+          return copyWith(referrer: Reference.empty());
+        }
+      case 'interpreter':
+        {
+          return copyWith(interpreter: <Reference>[]);
+        }
+      case 'endpoint':
+        {
+          return copyWith(endpoint: <Reference>[]);
+        }
+      case 'numberOfSeries':
+        {
+          return copyWith(numberOfSeries: FhirUnsignedInt.empty());
+        }
+      case 'numberOfInstances':
+        {
+          return copyWith(numberOfInstances: FhirUnsignedInt.empty());
+        }
+      case 'procedureReference':
+        {
+          return copyWith(procedureReference: Reference.empty());
+        }
+      case 'procedureCode':
+        {
+          return copyWith(procedureCode: <CodeableConcept>[]);
+        }
+      case 'location':
+        {
+          return copyWith(location: Reference.empty());
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: <CodeableConcept>[]);
+        }
+      case 'reasonReference':
+        {
+          return copyWith(reasonReference: <Reference>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'series':
+        {
+          return copyWith(series: <ImagingStudySeries>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ImagingStudy clone() => throw UnimplementedError();
   @override
@@ -1887,6 +2011,78 @@ class ImagingStudySeries extends BackboneElement {
     }
   }
 
+  /// Creates a new [ImagingStudySeries]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImagingStudySeries createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'uid':
+        {
+          return copyWith(uid: FhirId.empty());
+        }
+      case 'number':
+        {
+          return copyWith(number: FhirUnsignedInt.empty());
+        }
+      case 'modality':
+        {
+          return copyWith(modality: Coding.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'numberOfInstances':
+        {
+          return copyWith(numberOfInstances: FhirUnsignedInt.empty());
+        }
+      case 'endpoint':
+        {
+          return copyWith(endpoint: <Reference>[]);
+        }
+      case 'bodySite':
+        {
+          return copyWith(bodySite: Coding.empty());
+        }
+      case 'laterality':
+        {
+          return copyWith(laterality: Coding.empty());
+        }
+      case 'specimen':
+        {
+          return copyWith(specimen: <Reference>[]);
+        }
+      case 'started':
+        {
+          return copyWith(started: FhirDateTime.empty());
+        }
+      case 'performer':
+        {
+          return copyWith(performer: <ImagingStudyPerformer>[]);
+        }
+      case 'instance':
+        {
+          return copyWith(instance: <ImagingStudyInstance>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ImagingStudySeries clone() => throw UnimplementedError();
   @override
@@ -2367,6 +2563,38 @@ class ImagingStudyPerformer extends BackboneElement {
     }
   }
 
+  /// Creates a new [ImagingStudyPerformer]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImagingStudyPerformer createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'function':
+        {
+          return copyWith(function_: CodeableConcept.empty());
+        }
+      case 'actor':
+        {
+          return copyWith(actor: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ImagingStudyPerformer clone() => throw UnimplementedError();
   @override
@@ -2790,6 +3018,46 @@ class ImagingStudyInstance extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ImagingStudyInstance]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImagingStudyInstance createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'uid':
+        {
+          return copyWith(uid: FhirId.empty());
+        }
+      case 'sopClass':
+        {
+          return copyWith(sopClass: Coding.empty());
+        }
+      case 'number':
+        {
+          return copyWith(number: FhirUnsignedInt.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

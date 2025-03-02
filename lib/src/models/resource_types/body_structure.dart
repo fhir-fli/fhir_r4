@@ -593,6 +593,82 @@ class BodyStructure extends DomainResource {
     }
   }
 
+  /// Creates a new [BodyStructure]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  BodyStructure createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'active':
+        {
+          return copyWith(active: FhirBoolean.empty());
+        }
+      case 'morphology':
+        {
+          return copyWith(morphology: CodeableConcept.empty());
+        }
+      case 'location':
+        {
+          return copyWith(location: CodeableConcept.empty());
+        }
+      case 'locationQualifier':
+        {
+          return copyWith(locationQualifier: <CodeableConcept>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'image':
+        {
+          return copyWith(image: <Attachment>[]);
+        }
+      case 'patient':
+        {
+          return copyWith(patient: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   BodyStructure clone() => throw UnimplementedError();
   @override

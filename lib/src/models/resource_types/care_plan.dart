@@ -1053,6 +1053,142 @@ class CarePlan extends DomainResource {
     }
   }
 
+  /// Creates a new [CarePlan]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CarePlan createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'instantiatesCanonical':
+        {
+          return copyWith(instantiatesCanonical: <FhirCanonical>[]);
+        }
+      case 'instantiatesUri':
+        {
+          return copyWith(instantiatesUri: <FhirUri>[]);
+        }
+      case 'basedOn':
+        {
+          return copyWith(basedOn: <Reference>[]);
+        }
+      case 'replaces':
+        {
+          return copyWith(replaces: <Reference>[]);
+        }
+      case 'partOf':
+        {
+          return copyWith(partOf: <Reference>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: RequestStatus.empty());
+        }
+      case 'intent':
+        {
+          return copyWith(intent: CarePlanIntent.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      case 'created':
+        {
+          return copyWith(created: FhirDateTime.empty());
+        }
+      case 'author':
+        {
+          return copyWith(author: Reference.empty());
+        }
+      case 'contributor':
+        {
+          return copyWith(contributor: <Reference>[]);
+        }
+      case 'careTeam':
+        {
+          return copyWith(careTeam: <Reference>[]);
+        }
+      case 'addresses':
+        {
+          return copyWith(addresses: <Reference>[]);
+        }
+      case 'supportingInfo':
+        {
+          return copyWith(supportingInfo: <Reference>[]);
+        }
+      case 'goal':
+        {
+          return copyWith(goal: <Reference>[]);
+        }
+      case 'activity':
+        {
+          return copyWith(activity: <CarePlanActivity>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CarePlan clone() => throw UnimplementedError();
   @override
@@ -1831,6 +1967,50 @@ class CarePlanActivity extends BackboneElement {
         return ['CarePlanDetail'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [CarePlanActivity]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CarePlanActivity createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'outcomeCodeableConcept':
+        {
+          return copyWith(outcomeCodeableConcept: <CodeableConcept>[]);
+        }
+      case 'outcomeReference':
+        {
+          return copyWith(outcomeReference: <Reference>[]);
+        }
+      case 'progress':
+        {
+          return copyWith(progress: <Annotation>[]);
+        }
+      case 'reference':
+        {
+          return copyWith(reference: Reference.empty());
+        }
+      case 'detail':
+        {
+          return copyWith(detail: CarePlanDetail.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2800,6 +2980,114 @@ class CarePlanDetail extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [CarePlanDetail]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CarePlanDetail createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'kind':
+        {
+          return copyWith(kind: CarePlanActivityKind.empty());
+        }
+      case 'instantiatesCanonical':
+        {
+          return copyWith(instantiatesCanonical: <FhirCanonical>[]);
+        }
+      case 'instantiatesUri':
+        {
+          return copyWith(instantiatesUri: <FhirUri>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: <CodeableConcept>[]);
+        }
+      case 'reasonReference':
+        {
+          return copyWith(reasonReference: <Reference>[]);
+        }
+      case 'goal':
+        {
+          return copyWith(goal: <Reference>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: CarePlanActivityStatus.empty());
+        }
+      case 'statusReason':
+        {
+          return copyWith(statusReason: CodeableConcept.empty());
+        }
+      case 'doNotPerform':
+        {
+          return copyWith(doNotPerform: FhirBoolean.empty());
+        }
+      case 'scheduled':
+      case 'scheduledX':
+      case 'scheduledTiming':
+        {
+          return copyWith(scheduledX: Timing.empty());
+        }
+      case 'scheduledPeriod':
+        {
+          return copyWith(scheduledX: Period.empty());
+        }
+      case 'scheduledString':
+        {
+          return copyWith(scheduledX: FhirString.empty());
+        }
+      case 'location':
+        {
+          return copyWith(location: Reference.empty());
+        }
+      case 'performer':
+        {
+          return copyWith(performer: <Reference>[]);
+        }
+      case 'product':
+      case 'productX':
+      case 'productCodeableConcept':
+        {
+          return copyWith(productX: CodeableConcept.empty());
+        }
+      case 'productReference':
+        {
+          return copyWith(productX: Reference.empty());
+        }
+      case 'dailyAmount':
+        {
+          return copyWith(dailyAmount: Quantity.empty());
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

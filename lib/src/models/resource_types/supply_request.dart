@@ -893,6 +893,126 @@ class SupplyRequest extends DomainResource {
     }
   }
 
+  /// Creates a new [SupplyRequest]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SupplyRequest createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: SupplyRequestStatus.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: CodeableConcept.empty());
+        }
+      case 'priority':
+        {
+          return copyWith(priority: RequestPriority.empty());
+        }
+      case 'item':
+      case 'itemX':
+      case 'itemCodeableConcept':
+        {
+          return copyWith(itemX: CodeableConcept.empty());
+        }
+      case 'itemReference':
+        {
+          return copyWith(itemX: Reference.empty());
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'parameter':
+        {
+          return copyWith(parameter: <SupplyRequestParameter>[]);
+        }
+      case 'occurrence':
+      case 'occurrenceX':
+      case 'occurrenceDateTime':
+        {
+          return copyWith(occurrenceX: FhirDateTime.empty());
+        }
+      case 'occurrencePeriod':
+        {
+          return copyWith(occurrenceX: Period.empty());
+        }
+      case 'occurrenceTiming':
+        {
+          return copyWith(occurrenceX: Timing.empty());
+        }
+      case 'authoredOn':
+        {
+          return copyWith(authoredOn: FhirDateTime.empty());
+        }
+      case 'requester':
+        {
+          return copyWith(requester: Reference.empty());
+        }
+      case 'supplier':
+        {
+          return copyWith(supplier: <Reference>[]);
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: <CodeableConcept>[]);
+        }
+      case 'reasonReference':
+        {
+          return copyWith(reasonReference: <Reference>[]);
+        }
+      case 'deliverFrom':
+        {
+          return copyWith(deliverFrom: Reference.empty());
+        }
+      case 'deliverTo':
+        {
+          return copyWith(deliverTo: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   SupplyRequest clone() => throw UnimplementedError();
   @override
@@ -1519,6 +1639,52 @@ class SupplyRequestParameter extends BackboneElement {
         return ['FhirBoolean'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [SupplyRequestParameter]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SupplyRequestParameter createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueCodeableConcept':
+        {
+          return copyWith(valueX: CodeableConcept.empty());
+        }
+      case 'valueQuantity':
+        {
+          return copyWith(valueX: Quantity.empty());
+        }
+      case 'valueRange':
+        {
+          return copyWith(valueX: Range.empty());
+        }
+      case 'valueBoolean':
+        {
+          return copyWith(valueX: FhirBoolean.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

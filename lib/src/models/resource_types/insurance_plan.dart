@@ -780,6 +780,106 @@ class InsurancePlan extends DomainResource {
     }
   }
 
+  /// Creates a new [InsurancePlan]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  InsurancePlan createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: <CodeableConcept>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'alias':
+        {
+          return copyWith(alias: <FhirString>[]);
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      case 'ownedBy':
+        {
+          return copyWith(ownedBy: Reference.empty());
+        }
+      case 'administeredBy':
+        {
+          return copyWith(administeredBy: Reference.empty());
+        }
+      case 'coverageArea':
+        {
+          return copyWith(coverageArea: <Reference>[]);
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <InsurancePlanContact>[]);
+        }
+      case 'endpoint':
+        {
+          return copyWith(endpoint: <Reference>[]);
+        }
+      case 'network':
+        {
+          return copyWith(network: <Reference>[]);
+        }
+      case 'coverage':
+        {
+          return copyWith(coverage: <InsurancePlanCoverage>[]);
+        }
+      case 'plan':
+        {
+          return copyWith(plan: <InsurancePlanPlan>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   InsurancePlan clone() => throw UnimplementedError();
   @override
@@ -1409,6 +1509,46 @@ class InsurancePlanContact extends BackboneElement {
     }
   }
 
+  /// Creates a new [InsurancePlanContact]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  InsurancePlanContact createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: CodeableConcept.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: HumanName.empty());
+        }
+      case 'telecom':
+        {
+          return copyWith(telecom: <ContactPoint>[]);
+        }
+      case 'address':
+        {
+          return copyWith(address: Address.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   InsurancePlanContact clone() => throw UnimplementedError();
   @override
@@ -1839,6 +1979,42 @@ class InsurancePlanCoverage extends BackboneElement {
     }
   }
 
+  /// Creates a new [InsurancePlanCoverage]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  InsurancePlanCoverage createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'network':
+        {
+          return copyWith(network: <Reference>[]);
+        }
+      case 'benefit':
+        {
+          return copyWith(benefit: <InsurancePlanBenefit>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   InsurancePlanCoverage clone() => throw UnimplementedError();
   @override
@@ -2264,6 +2440,42 @@ class InsurancePlanBenefit extends BackboneElement {
     }
   }
 
+  /// Creates a new [InsurancePlanBenefit]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  InsurancePlanBenefit createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'requirement':
+        {
+          return copyWith(requirement: FhirString.empty());
+        }
+      case 'limit':
+        {
+          return copyWith(limit: <InsurancePlanLimit>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   InsurancePlanBenefit clone() => throw UnimplementedError();
   @override
@@ -2649,6 +2861,38 @@ class InsurancePlanLimit extends BackboneElement {
         return ['CodeableConcept'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [InsurancePlanLimit]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  InsurancePlanLimit createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'value':
+        {
+          return copyWith(value: Quantity.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -3155,6 +3399,54 @@ class InsurancePlanPlan extends BackboneElement {
     }
   }
 
+  /// Creates a new [InsurancePlanPlan]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  InsurancePlanPlan createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'coverageArea':
+        {
+          return copyWith(coverageArea: <Reference>[]);
+        }
+      case 'network':
+        {
+          return copyWith(network: <Reference>[]);
+        }
+      case 'generalCost':
+        {
+          return copyWith(generalCost: <InsurancePlanGeneralCost>[]);
+        }
+      case 'specificCost':
+        {
+          return copyWith(specificCost: <InsurancePlanSpecificCost>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   InsurancePlanPlan clone() => throw UnimplementedError();
   @override
@@ -3649,6 +3941,46 @@ class InsurancePlanGeneralCost extends BackboneElement {
     }
   }
 
+  /// Creates a new [InsurancePlanGeneralCost]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  InsurancePlanGeneralCost createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'groupSize':
+        {
+          return copyWith(groupSize: FhirPositiveInt.empty());
+        }
+      case 'cost':
+        {
+          return copyWith(cost: Money.empty());
+        }
+      case 'comment':
+        {
+          return copyWith(comment: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   InsurancePlanGeneralCost clone() => throw UnimplementedError();
   @override
@@ -4042,6 +4374,38 @@ class InsurancePlanSpecificCost extends BackboneElement {
     }
   }
 
+  /// Creates a new [InsurancePlanSpecificCost]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  InsurancePlanSpecificCost createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'category':
+        {
+          return copyWith(category: CodeableConcept.empty());
+        }
+      case 'benefit':
+        {
+          return copyWith(benefit: <InsurancePlanBenefit>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   InsurancePlanSpecificCost clone() => throw UnimplementedError();
   @override
@@ -4423,6 +4787,38 @@ class InsurancePlanBenefit1 extends BackboneElement {
         return ['InsurancePlanCost'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [InsurancePlanBenefit1]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  InsurancePlanBenefit1 createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'cost':
+        {
+          return copyWith(cost: <InsurancePlanCost>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -4864,6 +5260,46 @@ class InsurancePlanCost extends BackboneElement {
         return ['Quantity'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [InsurancePlanCost]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  InsurancePlanCost createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'applicability':
+        {
+          return copyWith(applicability: CodeableConcept.empty());
+        }
+      case 'qualifiers':
+        {
+          return copyWith(qualifiers: <CodeableConcept>[]);
+        }
+      case 'value':
+        {
+          return copyWith(value: Quantity.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

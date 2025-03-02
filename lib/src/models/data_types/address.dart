@@ -510,6 +510,66 @@ class Address extends DataType
     }
   }
 
+  /// Creates a new [Address]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Address createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'use':
+        {
+          return copyWith(use: AddressUse.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: AddressType.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: FhirString.empty());
+        }
+      case 'line':
+        {
+          return copyWith(line: <FhirString>[]);
+        }
+      case 'city':
+        {
+          return copyWith(city: FhirString.empty());
+        }
+      case 'district':
+        {
+          return copyWith(district: FhirString.empty());
+        }
+      case 'state':
+        {
+          return copyWith(state: FhirString.empty());
+        }
+      case 'postalCode':
+        {
+          return copyWith(postalCode: FhirString.empty());
+        }
+      case 'country':
+        {
+          return copyWith(country: FhirString.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Address clone() => throw UnimplementedError();
   @override

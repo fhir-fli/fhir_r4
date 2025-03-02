@@ -462,6 +462,58 @@ class Attachment extends DataType
     }
   }
 
+  /// Creates a new [Attachment]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Attachment createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'contentType':
+        {
+          return copyWith(contentType: FhirCode.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'data':
+        {
+          return copyWith(data: FhirBase64Binary.empty());
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUrl.empty());
+        }
+      case 'size':
+        {
+          return copyWith(size: FhirUnsignedInt.empty());
+        }
+      case 'hash':
+        {
+          return copyWith(hash: FhirBase64Binary.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'creation':
+        {
+          return copyWith(creation: FhirDateTime.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Attachment clone() => throw UnimplementedError();
   @override

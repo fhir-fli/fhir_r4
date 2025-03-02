@@ -1058,6 +1058,142 @@ class ChargeItemDefinition extends DomainResource {
     }
   }
 
+  /// Creates a new [ChargeItemDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ChargeItemDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'derivedFromUri':
+        {
+          return copyWith(derivedFromUri: <FhirUri>[]);
+        }
+      case 'partOf':
+        {
+          return copyWith(partOf: <FhirCanonical>[]);
+        }
+      case 'replaces':
+        {
+          return copyWith(replaces: <FhirCanonical>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'approvalDate':
+        {
+          return copyWith(approvalDate: FhirDate.empty());
+        }
+      case 'lastReviewDate':
+        {
+          return copyWith(lastReviewDate: FhirDate.empty());
+        }
+      case 'effectivePeriod':
+        {
+          return copyWith(effectivePeriod: Period.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'instance':
+        {
+          return copyWith(instance: <Reference>[]);
+        }
+      case 'applicability':
+        {
+          return copyWith(applicability: <ChargeItemDefinitionApplicability>[]);
+        }
+      case 'propertyGroup':
+        {
+          return copyWith(propertyGroup: <ChargeItemDefinitionPropertyGroup>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ChargeItemDefinition clone() => throw UnimplementedError();
   @override
@@ -1741,6 +1877,42 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
     }
   }
 
+  /// Creates a new [ChargeItemDefinitionApplicability]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ChargeItemDefinitionApplicability createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: FhirString.empty());
+        }
+      case 'expression':
+        {
+          return copyWith(expression: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ChargeItemDefinitionApplicability clone() => throw UnimplementedError();
   @override
@@ -2135,6 +2307,39 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
         return ['ChargeItemDefinitionPriceComponent'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ChargeItemDefinitionPropertyGroup]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ChargeItemDefinitionPropertyGroup createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'applicability':
+        {
+          return copyWith(applicability: <ChargeItemDefinitionApplicability>[]);
+        }
+      case 'priceComponent':
+        {
+          return copyWith(
+              priceComponent: <ChargeItemDefinitionPriceComponent>[],);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2583,6 +2788,46 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
         return ['Money'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ChargeItemDefinitionPriceComponent]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ChargeItemDefinitionPriceComponent createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: InvoicePriceComponentType.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'factor':
+        {
+          return copyWith(factor: FhirDecimal.empty());
+        }
+      case 'amount':
+        {
+          return copyWith(amount: Money.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

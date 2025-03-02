@@ -389,6 +389,52 @@ class Population extends BackboneType {
     }
   }
 
+  /// Creates a new [Population]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Population createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'age':
+      case 'ageX':
+      case 'ageRange':
+        {
+          return copyWith(ageX: Range.empty());
+        }
+      case 'ageCodeableConcept':
+        {
+          return copyWith(ageX: CodeableConcept.empty());
+        }
+      case 'gender':
+        {
+          return copyWith(gender: CodeableConcept.empty());
+        }
+      case 'race':
+        {
+          return copyWith(race: CodeableConcept.empty());
+        }
+      case 'physiologicalCondition':
+        {
+          return copyWith(physiologicalCondition: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Population clone() => throw UnimplementedError();
   @override

@@ -355,6 +355,42 @@ class Timing extends BackboneType
     }
   }
 
+  /// Creates a new [Timing]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Timing createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'event':
+        {
+          return copyWith(event: <FhirDateTime>[]);
+        }
+      case 'repeat':
+        {
+          return copyWith(repeat: TimingRepeat.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Timing clone() => throw UnimplementedError();
   @override
@@ -1143,6 +1179,96 @@ class TimingRepeat extends Element {
         return ['FhirUnsignedInt'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [TimingRepeat]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TimingRepeat createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'bounds':
+      case 'boundsX':
+      case 'boundsDuration':
+        {
+          return copyWith(boundsX: FhirDuration.empty());
+        }
+      case 'boundsRange':
+        {
+          return copyWith(boundsX: Range.empty());
+        }
+      case 'boundsPeriod':
+        {
+          return copyWith(boundsX: Period.empty());
+        }
+      case 'count':
+        {
+          return copyWith(count: FhirPositiveInt.empty());
+        }
+      case 'countMax':
+        {
+          return copyWith(countMax: FhirPositiveInt.empty());
+        }
+      case 'duration':
+        {
+          return copyWith(duration: FhirDecimal.empty());
+        }
+      case 'durationMax':
+        {
+          return copyWith(durationMax: FhirDecimal.empty());
+        }
+      case 'durationUnit':
+        {
+          return copyWith(durationUnit: UnitsOfTime.empty());
+        }
+      case 'frequency':
+        {
+          return copyWith(frequency: FhirPositiveInt.empty());
+        }
+      case 'frequencyMax':
+        {
+          return copyWith(frequencyMax: FhirPositiveInt.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: FhirDecimal.empty());
+        }
+      case 'periodMax':
+        {
+          return copyWith(periodMax: FhirDecimal.empty());
+        }
+      case 'periodUnit':
+        {
+          return copyWith(periodUnit: UnitsOfTime.empty());
+        }
+      case 'dayOfWeek':
+        {
+          return copyWith(dayOfWeek: <DaysOfWeek>[]);
+        }
+      case 'timeOfDay':
+        {
+          return copyWith(timeOfDay: <FhirTime>[]);
+        }
+      case 'when':
+        {
+          return copyWith(when: <EventTiming>[]);
+        }
+      case 'offset':
+        {
+          return copyWith(offset: FhirUnsignedInt.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

@@ -322,4 +322,8 @@ class FhirString extends PrimitiveType<String>
       '_value': strings.map((string) => string.element?.toJson()).toList(),
     };
   }
+
+  /// Creates an empty property in the object
+  @override
+  FhirString createProperty(String propertyName) => this;
 }

@@ -824,6 +824,114 @@ class Invoice extends DomainResource {
     }
   }
 
+  /// Creates a new [Invoice]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Invoice createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: InvoiceStatus.empty());
+        }
+      case 'cancelledReason':
+        {
+          return copyWith(cancelledReason: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'recipient':
+        {
+          return copyWith(recipient: Reference.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'participant':
+        {
+          return copyWith(participant: <InvoiceParticipant>[]);
+        }
+      case 'issuer':
+        {
+          return copyWith(issuer: Reference.empty());
+        }
+      case 'account':
+        {
+          return copyWith(account: Reference.empty());
+        }
+      case 'lineItem':
+        {
+          return copyWith(lineItem: <InvoiceLineItem>[]);
+        }
+      case 'totalPriceComponent':
+        {
+          return copyWith(totalPriceComponent: <InvoicePriceComponent>[]);
+        }
+      case 'totalNet':
+        {
+          return copyWith(totalNet: Money.empty());
+        }
+      case 'totalGross':
+        {
+          return copyWith(totalGross: Money.empty());
+        }
+      case 'paymentTerms':
+        {
+          return copyWith(paymentTerms: FhirMarkdown.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Invoice clone() => throw UnimplementedError();
   @override
@@ -1385,6 +1493,38 @@ class InvoiceParticipant extends BackboneElement {
     }
   }
 
+  /// Creates a new [InvoiceParticipant]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  InvoiceParticipant createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'role':
+        {
+          return copyWith(role: CodeableConcept.empty());
+        }
+      case 'actor':
+        {
+          return copyWith(actor: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   InvoiceParticipant clone() => throw UnimplementedError();
   @override
@@ -1841,6 +1981,48 @@ class InvoiceLineItem extends BackboneElement {
     }
   }
 
+  /// Creates a new [InvoiceLineItem]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  InvoiceLineItem createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'sequence':
+        {
+          return copyWith(sequence: FhirPositiveInt.empty());
+        }
+      case 'chargeItem':
+      case 'chargeItemX':
+      case 'chargeItemReference':
+        {
+          return copyWith(chargeItemX: Reference.empty());
+        }
+      case 'chargeItemCodeableConcept':
+        {
+          return copyWith(chargeItemX: CodeableConcept.empty());
+        }
+      case 'priceComponent':
+        {
+          return copyWith(priceComponent: <InvoicePriceComponent>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   InvoiceLineItem clone() => throw UnimplementedError();
   @override
@@ -2286,6 +2468,46 @@ class InvoicePriceComponent extends BackboneElement {
         return ['Money'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [InvoicePriceComponent]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  InvoicePriceComponent createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: InvoicePriceComponentType.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'factor':
+        {
+          return copyWith(factor: FhirDecimal.empty());
+        }
+      case 'amount':
+        {
+          return copyWith(amount: Money.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

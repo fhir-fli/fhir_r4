@@ -879,6 +879,120 @@ class GuidanceResponse extends DomainResource {
     }
   }
 
+  /// Creates a new [GuidanceResponse]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  GuidanceResponse createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'requestIdentifier':
+        {
+          return copyWith(requestIdentifier: Identifier.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'module':
+      case 'moduleX':
+      case 'moduleUri':
+        {
+          return copyWith(moduleX: FhirUri.empty());
+        }
+      case 'moduleCanonical':
+        {
+          return copyWith(moduleX: FhirCanonical.empty());
+        }
+      case 'moduleCodeableConcept':
+        {
+          return copyWith(moduleX: CodeableConcept.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: GuidanceResponseStatus.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'occurrenceDateTime':
+        {
+          return copyWith(occurrenceDateTime: FhirDateTime.empty());
+        }
+      case 'performer':
+        {
+          return copyWith(performer: Reference.empty());
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: <CodeableConcept>[]);
+        }
+      case 'reasonReference':
+        {
+          return copyWith(reasonReference: <Reference>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'evaluationMessage':
+        {
+          return copyWith(evaluationMessage: <Reference>[]);
+        }
+      case 'outputParameters':
+        {
+          return copyWith(outputParameters: Reference.empty());
+        }
+      case 'result':
+        {
+          return copyWith(result: Reference.empty());
+        }
+      case 'dataRequirement':
+        {
+          return copyWith(dataRequirement: <DataRequirement>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   GuidanceResponse clone() => throw UnimplementedError();
   @override

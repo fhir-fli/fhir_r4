@@ -1054,6 +1054,154 @@ class MessageDefinition extends CanonicalResource {
     }
   }
 
+  /// Creates a new [MessageDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MessageDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'replaces':
+        {
+          return copyWith(replaces: <FhirCanonical>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'base':
+        {
+          return copyWith(base: FhirCanonical.empty());
+        }
+      case 'parent':
+        {
+          return copyWith(parent: <FhirCanonical>[]);
+        }
+      case 'event':
+      case 'eventX':
+      case 'eventCoding':
+        {
+          return copyWith(eventX: Coding.empty());
+        }
+      case 'eventUri':
+        {
+          return copyWith(eventX: FhirUri.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: MessageSignificanceCategory.empty());
+        }
+      case 'focus':
+        {
+          return copyWith(focus: <MessageDefinitionFocus>[]);
+        }
+      case 'responseRequired':
+        {
+          return copyWith(
+              responseRequired: MessageheaderResponseRequest.empty(),);
+        }
+      case 'allowedResponse':
+        {
+          return copyWith(
+              allowedResponse: <MessageDefinitionAllowedResponse>[],);
+        }
+      case 'graph':
+        {
+          return copyWith(graph: <FhirCanonical>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MessageDefinition clone() => throw UnimplementedError();
   @override
@@ -1764,6 +1912,46 @@ class MessageDefinitionFocus extends BackboneElement {
     }
   }
 
+  /// Creates a new [MessageDefinitionFocus]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MessageDefinitionFocus createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: FhirCode.empty());
+        }
+      case 'profile':
+        {
+          return copyWith(profile: FhirCanonical.empty());
+        }
+      case 'min':
+        {
+          return copyWith(min: FhirUnsignedInt.empty());
+        }
+      case 'max':
+        {
+          return copyWith(max: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MessageDefinitionFocus clone() => throw UnimplementedError();
   @override
@@ -2153,6 +2341,38 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
         return ['FhirMarkdown'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [MessageDefinitionAllowedResponse]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MessageDefinitionAllowedResponse createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'message':
+        {
+          return copyWith(message: FhirCanonical.empty());
+        }
+      case 'situation':
+        {
+          return copyWith(situation: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

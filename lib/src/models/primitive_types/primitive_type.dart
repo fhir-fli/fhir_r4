@@ -103,4 +103,8 @@ abstract class PrimitiveType<T> extends DataType {
     List<dynamic>? annotations,
     String? objectPath,
   });
+
+  /// Creates an empty property in the object
+  @override
+  PrimitiveType<T> createProperty(String propertyName);
 }

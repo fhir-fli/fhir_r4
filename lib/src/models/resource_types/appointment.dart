@@ -1038,6 +1038,138 @@ class Appointment extends DomainResource {
     }
   }
 
+  /// Creates a new [Appointment]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Appointment createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: AppointmentStatus.empty());
+        }
+      case 'cancelationReason':
+        {
+          return copyWith(cancelationReason: CodeableConcept.empty());
+        }
+      case 'serviceCategory':
+        {
+          return copyWith(serviceCategory: <CodeableConcept>[]);
+        }
+      case 'serviceType':
+        {
+          return copyWith(serviceType: <CodeableConcept>[]);
+        }
+      case 'specialty':
+        {
+          return copyWith(specialty: <CodeableConcept>[]);
+        }
+      case 'appointmentType':
+        {
+          return copyWith(appointmentType: CodeableConcept.empty());
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: <CodeableConcept>[]);
+        }
+      case 'reasonReference':
+        {
+          return copyWith(reasonReference: <Reference>[]);
+        }
+      case 'priority':
+        {
+          return copyWith(priority: FhirUnsignedInt.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'supportingInformation':
+        {
+          return copyWith(supportingInformation: <Reference>[]);
+        }
+      case 'start':
+        {
+          return copyWith(start: FhirInstant.empty());
+        }
+      case 'end':
+        {
+          return copyWith(end: FhirInstant.empty());
+        }
+      case 'minutesDuration':
+        {
+          return copyWith(minutesDuration: FhirPositiveInt.empty());
+        }
+      case 'slot':
+        {
+          return copyWith(slot: <Reference>[]);
+        }
+      case 'created':
+        {
+          return copyWith(created: FhirDateTime.empty());
+        }
+      case 'comment':
+        {
+          return copyWith(comment: FhirString.empty());
+        }
+      case 'patientInstruction':
+        {
+          return copyWith(patientInstruction: FhirString.empty());
+        }
+      case 'basedOn':
+        {
+          return copyWith(basedOn: <Reference>[]);
+        }
+      case 'participant':
+        {
+          return copyWith(participant: <AppointmentParticipant>[]);
+        }
+      case 'requestedPeriod':
+        {
+          return copyWith(requestedPeriod: <Period>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Appointment clone() => throw UnimplementedError();
   @override
@@ -1771,6 +1903,50 @@ class AppointmentParticipant extends BackboneElement {
         return ['Period'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [AppointmentParticipant]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AppointmentParticipant createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: <CodeableConcept>[]);
+        }
+      case 'actor':
+        {
+          return copyWith(actor: Reference.empty());
+        }
+      case 'required':
+        {
+          return copyWith(required_: ParticipantRequired.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: ParticipationStatus.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

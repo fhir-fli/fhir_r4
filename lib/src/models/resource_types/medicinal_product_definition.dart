@@ -1243,6 +1243,166 @@ class MedicinalProductDefinition extends DomainResource {
     }
   }
 
+  /// Creates a new [MedicinalProductDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicinalProductDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'domain':
+        {
+          return copyWith(domain: CodeableConcept.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: CodeableConcept.empty());
+        }
+      case 'statusDate':
+        {
+          return copyWith(statusDate: FhirDateTime.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'combinedPharmaceuticalDoseForm':
+        {
+          return copyWith(
+              combinedPharmaceuticalDoseForm: CodeableConcept.empty(),);
+        }
+      case 'route':
+        {
+          return copyWith(route: <CodeableConcept>[]);
+        }
+      case 'indication':
+        {
+          return copyWith(indication: FhirMarkdown.empty());
+        }
+      case 'legalStatusOfSupply':
+        {
+          return copyWith(legalStatusOfSupply: CodeableConcept.empty());
+        }
+      case 'additionalMonitoringIndicator':
+        {
+          return copyWith(
+              additionalMonitoringIndicator: CodeableConcept.empty(),);
+        }
+      case 'specialMeasures':
+        {
+          return copyWith(specialMeasures: <CodeableConcept>[]);
+        }
+      case 'pediatricUseIndicator':
+        {
+          return copyWith(pediatricUseIndicator: CodeableConcept.empty());
+        }
+      case 'classification':
+        {
+          return copyWith(classification: <CodeableConcept>[]);
+        }
+      case 'marketingStatus':
+        {
+          return copyWith(marketingStatus: <MarketingStatus>[]);
+        }
+      case 'packagedMedicinalProduct':
+        {
+          return copyWith(packagedMedicinalProduct: <CodeableConcept>[]);
+        }
+      case 'ingredient':
+        {
+          return copyWith(ingredient: <CodeableConcept>[]);
+        }
+      case 'impurity':
+        {
+          return copyWith(impurity: <CodeableReference>[]);
+        }
+      case 'attachedDocument':
+        {
+          return copyWith(attachedDocument: <Reference>[]);
+        }
+      case 'masterFile':
+        {
+          return copyWith(masterFile: <Reference>[]);
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <MedicinalProductDefinitionContact>[]);
+        }
+      case 'clinicalTrial':
+        {
+          return copyWith(clinicalTrial: <Reference>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: <Coding>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: <MedicinalProductDefinitionName>[]);
+        }
+      case 'crossReference':
+        {
+          return copyWith(
+              crossReference: <MedicinalProductDefinitionCrossReference>[],);
+        }
+      case 'operation':
+        {
+          return copyWith(operation: <MedicinalProductDefinitionOperation>[]);
+        }
+      case 'characteristic':
+        {
+          return copyWith(
+              characteristic: <MedicinalProductDefinitionCharacteristic>[],);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MedicinalProductDefinition clone() => throw UnimplementedError();
   @override
@@ -1985,6 +2145,38 @@ class MedicinalProductDefinitionContact extends BackboneElement {
     }
   }
 
+  /// Creates a new [MedicinalProductDefinitionContact]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicinalProductDefinitionContact createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MedicinalProductDefinitionContact clone() => throw UnimplementedError();
   @override
@@ -2421,6 +2613,47 @@ class MedicinalProductDefinitionName extends BackboneElement {
     }
   }
 
+  /// Creates a new [MedicinalProductDefinitionName]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicinalProductDefinitionName createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'productName':
+        {
+          return copyWith(productName: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'namePart':
+        {
+          return copyWith(namePart: <MedicinalProductDefinitionNamePart>[]);
+        }
+      case 'countryLanguage':
+        {
+          return copyWith(
+              countryLanguage: <MedicinalProductDefinitionCountryLanguage>[],);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MedicinalProductDefinitionName clone() => throw UnimplementedError();
   @override
@@ -2820,6 +3053,38 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
         return ['CodeableConcept'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicinalProductDefinitionNamePart]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicinalProductDefinitionNamePart createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'part':
+        {
+          return copyWith(part_: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -3224,6 +3489,43 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
     }
   }
 
+  /// Creates a new [MedicinalProductDefinitionCountryLanguage]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicinalProductDefinitionCountryLanguage createProperty(
+      String propertyName,) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'country':
+        {
+          return copyWith(country: CodeableConcept.empty());
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: CodeableConcept.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MedicinalProductDefinitionCountryLanguage clone() =>
       throw UnimplementedError();
@@ -3607,6 +3909,38 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
         return ['CodeableConcept'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicinalProductDefinitionCrossReference]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicinalProductDefinitionCrossReference createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'product':
+        {
+          return copyWith(product: CodeableReference.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -4045,6 +4379,46 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
         return ['CodeableConcept'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicinalProductDefinitionOperation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicinalProductDefinitionOperation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableReference.empty());
+        }
+      case 'effectiveDate':
+        {
+          return copyWith(effectiveDate: Period.empty());
+        }
+      case 'organization':
+        {
+          return copyWith(organization: <Reference>[]);
+        }
+      case 'confidentialityIndicator':
+        {
+          return copyWith(confidentialityIndicator: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -4546,6 +4920,56 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
         return ['Attachment'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicinalProductDefinitionCharacteristic]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicinalProductDefinitionCharacteristic createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueCodeableConcept':
+        {
+          return copyWith(valueX: CodeableConcept.empty());
+        }
+      case 'valueQuantity':
+        {
+          return copyWith(valueX: Quantity.empty());
+        }
+      case 'valueDate':
+        {
+          return copyWith(valueX: FhirDate.empty());
+        }
+      case 'valueBoolean':
+        {
+          return copyWith(valueX: FhirBoolean.empty());
+        }
+      case 'valueAttachment':
+        {
+          return copyWith(valueX: Attachment.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

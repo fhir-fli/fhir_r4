@@ -326,6 +326,34 @@ class Period extends DataType
     }
   }
 
+  /// Creates a new [Period]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Period createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'start':
+        {
+          return copyWith(start: FhirDateTime.empty());
+        }
+      case 'end':
+        {
+          return copyWith(end: FhirDateTime.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Period clone() => throw UnimplementedError();
   @override

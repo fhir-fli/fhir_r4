@@ -664,6 +664,91 @@ class DeviceMetric extends DomainResource {
     }
   }
 
+  /// Creates a new [DeviceMetric]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DeviceMetric createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'unit':
+        {
+          return copyWith(unit: CodeableConcept.empty());
+        }
+      case 'source':
+        {
+          return copyWith(source: Reference.empty());
+        }
+      case 'parent':
+        {
+          return copyWith(parent: Reference.empty());
+        }
+      case 'operationalStatus':
+        {
+          return copyWith(
+              operationalStatus: DeviceMetricOperationalStatus.empty(),);
+        }
+      case 'color':
+        {
+          return copyWith(color: DeviceMetricColor.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: DeviceMetricCategory.empty());
+        }
+      case 'measurementPeriod':
+        {
+          return copyWith(measurementPeriod: Timing.empty());
+        }
+      case 'calibration':
+        {
+          return copyWith(calibration: <DeviceMetricCalibration>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   DeviceMetric clone() => throw UnimplementedError();
   @override
@@ -1178,6 +1263,42 @@ class DeviceMetricCalibration extends BackboneElement {
         return ['FhirInstant'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [DeviceMetricCalibration]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DeviceMetricCalibration createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: DeviceMetricCalibrationType.empty());
+        }
+      case 'state':
+        {
+          return copyWith(state: DeviceMetricCalibrationState.empty());
+        }
+      case 'time':
+        {
+          return copyWith(time: FhirInstant.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

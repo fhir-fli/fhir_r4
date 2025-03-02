@@ -872,6 +872,120 @@ class Goal extends DomainResource {
     }
   }
 
+  /// Creates a new [Goal]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Goal createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'lifecycleStatus':
+        {
+          return copyWith(lifecycleStatus: GoalLifecycleStatus.empty());
+        }
+      case 'achievementStatus':
+        {
+          return copyWith(achievementStatus: CodeableConcept.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'priority':
+        {
+          return copyWith(priority: CodeableConcept.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: CodeableConcept.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'start':
+      case 'startX':
+      case 'startDate':
+        {
+          return copyWith(startX: FhirDate.empty());
+        }
+      case 'startCodeableConcept':
+        {
+          return copyWith(startX: CodeableConcept.empty());
+        }
+      case 'target':
+        {
+          return copyWith(target: <GoalTarget>[]);
+        }
+      case 'statusDate':
+        {
+          return copyWith(statusDate: FhirDate.empty());
+        }
+      case 'statusReason':
+        {
+          return copyWith(statusReason: FhirString.empty());
+        }
+      case 'expressedBy':
+        {
+          return copyWith(expressedBy: Reference.empty());
+        }
+      case 'addresses':
+        {
+          return copyWith(addresses: <Reference>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'outcomeCode':
+        {
+          return copyWith(outcomeCode: <CodeableConcept>[]);
+        }
+      case 'outcomeReference':
+        {
+          return copyWith(outcomeReference: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Goal clone() => throw UnimplementedError();
   @override
@@ -1658,6 +1772,74 @@ class GoalTarget extends BackboneElement {
         return ['FhirDuration'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [GoalTarget]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  GoalTarget createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'measure':
+        {
+          return copyWith(measure: CodeableConcept.empty());
+        }
+      case 'detail':
+      case 'detailX':
+      case 'detailQuantity':
+        {
+          return copyWith(detailX: Quantity.empty());
+        }
+      case 'detailRange':
+        {
+          return copyWith(detailX: Range.empty());
+        }
+      case 'detailCodeableConcept':
+        {
+          return copyWith(detailX: CodeableConcept.empty());
+        }
+      case 'detailString':
+        {
+          return copyWith(detailX: FhirString.empty());
+        }
+      case 'detailBoolean':
+        {
+          return copyWith(detailX: FhirBoolean.empty());
+        }
+      case 'detailInteger':
+        {
+          return copyWith(detailX: FhirInteger.empty());
+        }
+      case 'detailRatio':
+        {
+          return copyWith(detailX: Ratio.empty());
+        }
+      case 'due':
+      case 'dueX':
+      case 'dueDate':
+        {
+          return copyWith(dueX: FhirDate.empty());
+        }
+      case 'dueDuration':
+        {
+          return copyWith(dueX: FhirDuration.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

@@ -928,6 +928,132 @@ class AllergyIntolerance extends DomainResource {
     }
   }
 
+  /// Creates a new [AllergyIntolerance]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AllergyIntolerance createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'clinicalStatus':
+        {
+          return copyWith(clinicalStatus: CodeableConcept.empty());
+        }
+      case 'verificationStatus':
+        {
+          return copyWith(verificationStatus: CodeableConcept.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: AllergyIntoleranceType.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <AllergyIntoleranceCategory>[]);
+        }
+      case 'criticality':
+        {
+          return copyWith(criticality: AllergyIntoleranceCriticality.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'patient':
+        {
+          return copyWith(patient: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'onset':
+      case 'onsetX':
+      case 'onsetDateTime':
+        {
+          return copyWith(onsetX: FhirDateTime.empty());
+        }
+      case 'onsetAge':
+        {
+          return copyWith(onsetX: Age.empty());
+        }
+      case 'onsetPeriod':
+        {
+          return copyWith(onsetX: Period.empty());
+        }
+      case 'onsetRange':
+        {
+          return copyWith(onsetX: Range.empty());
+        }
+      case 'onsetString':
+        {
+          return copyWith(onsetX: FhirString.empty());
+        }
+      case 'recordedDate':
+        {
+          return copyWith(recordedDate: FhirDateTime.empty());
+        }
+      case 'recorder':
+        {
+          return copyWith(recorder: Reference.empty());
+        }
+      case 'asserter':
+        {
+          return copyWith(asserter: Reference.empty());
+        }
+      case 'lastOccurrence':
+        {
+          return copyWith(lastOccurrence: FhirDateTime.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'reaction':
+        {
+          return copyWith(reaction: <AllergyIntoleranceReaction>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   AllergyIntolerance clone() => throw UnimplementedError();
   @override
@@ -1635,6 +1761,58 @@ class AllergyIntoleranceReaction extends BackboneElement {
         return ['Annotation'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [AllergyIntoleranceReaction]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AllergyIntoleranceReaction createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'substance':
+        {
+          return copyWith(substance: CodeableConcept.empty());
+        }
+      case 'manifestation':
+        {
+          return copyWith(manifestation: <CodeableConcept>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'onset':
+        {
+          return copyWith(onset: FhirDateTime.empty());
+        }
+      case 'severity':
+        {
+          return copyWith(severity: AllergyIntoleranceSeverity.empty());
+        }
+      case 'exposureRoute':
+        {
+          return copyWith(exposureRoute: CodeableConcept.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

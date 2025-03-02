@@ -594,6 +594,82 @@ class AppointmentResponse extends DomainResource {
     }
   }
 
+  /// Creates a new [AppointmentResponse]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AppointmentResponse createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'appointment':
+        {
+          return copyWith(appointment: Reference.empty());
+        }
+      case 'start':
+        {
+          return copyWith(start: FhirInstant.empty());
+        }
+      case 'end':
+        {
+          return copyWith(end: FhirInstant.empty());
+        }
+      case 'participantType':
+        {
+          return copyWith(participantType: <CodeableConcept>[]);
+        }
+      case 'actor':
+        {
+          return copyWith(actor: Reference.empty());
+        }
+      case 'participantStatus':
+        {
+          return copyWith(participantStatus: ParticipationStatus.empty());
+        }
+      case 'comment':
+        {
+          return copyWith(comment: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   AppointmentResponse clone() => throw UnimplementedError();
   @override

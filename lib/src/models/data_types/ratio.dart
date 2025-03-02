@@ -287,6 +287,34 @@ class Ratio extends DataType
     }
   }
 
+  /// Creates a new [Ratio]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Ratio createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'numerator':
+        {
+          return copyWith(numerator: Quantity.empty());
+        }
+      case 'denominator':
+        {
+          return copyWith(denominator: Quantity.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Ratio clone() => throw UnimplementedError();
   @override

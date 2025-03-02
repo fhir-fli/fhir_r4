@@ -395,6 +395,50 @@ class MarketingStatus extends BackboneType {
     }
   }
 
+  /// Creates a new [MarketingStatus]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MarketingStatus createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'country':
+        {
+          return copyWith(country: CodeableConcept.empty());
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: CodeableConcept.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: CodeableConcept.empty());
+        }
+      case 'dateRange':
+        {
+          return copyWith(dateRange: Period.empty());
+        }
+      case 'restoreDate':
+        {
+          return copyWith(restoreDate: FhirDateTime.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MarketingStatus clone() => throw UnimplementedError();
   @override

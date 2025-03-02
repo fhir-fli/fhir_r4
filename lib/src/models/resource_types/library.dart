@@ -1284,6 +1284,180 @@ class Library extends CanonicalResource {
     }
   }
 
+  /// Creates a new [Library]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Library createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'subtitle':
+        {
+          return copyWith(subtitle: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'subject':
+      case 'subjectX':
+      case 'subjectCodeableConcept':
+        {
+          return copyWith(subjectX: CodeableConcept.empty());
+        }
+      case 'subjectReference':
+        {
+          return copyWith(subjectX: Reference.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'usage':
+        {
+          return copyWith(usage: FhirString.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'approvalDate':
+        {
+          return copyWith(approvalDate: FhirDate.empty());
+        }
+      case 'lastReviewDate':
+        {
+          return copyWith(lastReviewDate: FhirDate.empty());
+        }
+      case 'effectivePeriod':
+        {
+          return copyWith(effectivePeriod: Period.empty());
+        }
+      case 'topic':
+        {
+          return copyWith(topic: <CodeableConcept>[]);
+        }
+      case 'author':
+        {
+          return copyWith(author: <ContactDetail>[]);
+        }
+      case 'editor':
+        {
+          return copyWith(editor: <ContactDetail>[]);
+        }
+      case 'reviewer':
+        {
+          return copyWith(reviewer: <ContactDetail>[]);
+        }
+      case 'endorser':
+        {
+          return copyWith(endorser: <ContactDetail>[]);
+        }
+      case 'relatedArtifact':
+        {
+          return copyWith(relatedArtifact: <RelatedArtifact>[]);
+        }
+      case 'parameter':
+        {
+          return copyWith(parameter: <ParameterDefinition>[]);
+        }
+      case 'dataRequirement':
+        {
+          return copyWith(dataRequirement: <DataRequirement>[]);
+        }
+      case 'content':
+        {
+          return copyWith(content: <Attachment>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Library clone() => throw UnimplementedError();
   @override

@@ -1009,6 +1009,149 @@ class TerminologyCapabilities extends CanonicalResource {
     }
   }
 
+  /// Creates a new [TerminologyCapabilities]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TerminologyCapabilities createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'kind':
+        {
+          return copyWith(kind: CapabilityStatementKind.empty());
+        }
+      case 'software':
+        {
+          return copyWith(software: TerminologyCapabilitiesSoftware.empty());
+        }
+      case 'implementation':
+        {
+          return copyWith(
+              implementation: TerminologyCapabilitiesImplementation.empty(),);
+        }
+      case 'lockedDate':
+        {
+          return copyWith(lockedDate: FhirBoolean.empty());
+        }
+      case 'codeSystem':
+        {
+          return copyWith(codeSystem: <TerminologyCapabilitiesCodeSystem>[]);
+        }
+      case 'expansion':
+        {
+          return copyWith(expansion: TerminologyCapabilitiesExpansion.empty());
+        }
+      case 'codeSearch':
+        {
+          return copyWith(codeSearch: CodeSearchSupport.empty());
+        }
+      case 'validateCode':
+        {
+          return copyWith(
+              validateCode: TerminologyCapabilitiesValidateCode.empty(),);
+        }
+      case 'translation':
+        {
+          return copyWith(
+              translation: TerminologyCapabilitiesTranslation.empty(),);
+        }
+      case 'closure':
+        {
+          return copyWith(closure: TerminologyCapabilitiesClosure.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   TerminologyCapabilities clone() => throw UnimplementedError();
   @override
@@ -1627,6 +1770,38 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
     }
   }
 
+  /// Creates a new [TerminologyCapabilitiesSoftware]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TerminologyCapabilitiesSoftware createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   TerminologyCapabilitiesSoftware clone() => throw UnimplementedError();
   @override
@@ -2000,6 +2175,38 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
         return ['FhirUrl'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [TerminologyCapabilitiesImplementation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TerminologyCapabilitiesImplementation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUrl.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2407,6 +2614,42 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
         return ['FhirBoolean'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [TerminologyCapabilitiesCodeSystem]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TerminologyCapabilitiesCodeSystem createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'uri':
+        {
+          return copyWith(uri: FhirCanonical.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: <TerminologyCapabilitiesVersion>[]);
+        }
+      case 'subsumption':
+        {
+          return copyWith(subsumption: FhirBoolean.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2912,6 +3155,54 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
     }
   }
 
+  /// Creates a new [TerminologyCapabilitiesVersion]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TerminologyCapabilitiesVersion createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: FhirString.empty());
+        }
+      case 'isDefault':
+        {
+          return copyWith(isDefault: FhirBoolean.empty());
+        }
+      case 'compositional':
+        {
+          return copyWith(compositional: FhirBoolean.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: <FhirCode>[]);
+        }
+      case 'filter':
+        {
+          return copyWith(filter: <TerminologyCapabilitiesFilter>[]);
+        }
+      case 'property':
+        {
+          return copyWith(property: <FhirCode>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   TerminologyCapabilitiesVersion clone() => throw UnimplementedError();
   @override
@@ -3334,6 +3625,38 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
         return ['FhirCode'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [TerminologyCapabilitiesFilter]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TerminologyCapabilitiesFilter createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: FhirCode.empty());
+        }
+      case 'op':
+        {
+          return copyWith(op: <FhirCode>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -3803,6 +4126,50 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
     }
   }
 
+  /// Creates a new [TerminologyCapabilitiesExpansion]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TerminologyCapabilitiesExpansion createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'hierarchical':
+        {
+          return copyWith(hierarchical: FhirBoolean.empty());
+        }
+      case 'paging':
+        {
+          return copyWith(paging: FhirBoolean.empty());
+        }
+      case 'incomplete':
+        {
+          return copyWith(incomplete: FhirBoolean.empty());
+        }
+      case 'parameter':
+        {
+          return copyWith(parameter: <TerminologyCapabilitiesParameter>[]);
+        }
+      case 'textFilter':
+        {
+          return copyWith(textFilter: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   TerminologyCapabilitiesExpansion clone() => throw UnimplementedError();
   @override
@@ -4207,6 +4574,38 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
     }
   }
 
+  /// Creates a new [TerminologyCapabilitiesParameter]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TerminologyCapabilitiesParameter createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirCode.empty());
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   TerminologyCapabilitiesParameter clone() => throw UnimplementedError();
   @override
@@ -4555,6 +4954,34 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
     }
   }
 
+  /// Creates a new [TerminologyCapabilitiesValidateCode]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TerminologyCapabilitiesValidateCode createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'translations':
+        {
+          return copyWith(translations: FhirBoolean.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   TerminologyCapabilitiesValidateCode clone() => throw UnimplementedError();
   @override
@@ -4894,6 +5321,34 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
     }
   }
 
+  /// Creates a new [TerminologyCapabilitiesTranslation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TerminologyCapabilitiesTranslation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'needsMap':
+        {
+          return copyWith(needsMap: FhirBoolean.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   TerminologyCapabilitiesTranslation clone() => throw UnimplementedError();
   @override
@@ -5229,6 +5684,34 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
         return ['FhirBoolean'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [TerminologyCapabilitiesClosure]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TerminologyCapabilitiesClosure createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'translation':
+        {
+          return copyWith(translation: FhirBoolean.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

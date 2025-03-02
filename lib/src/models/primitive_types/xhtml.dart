@@ -275,4 +275,8 @@ class FhirXhtml extends PrimitiveType<String?> {
 
   /// Returns a new [FhirXhtml] with extensions disallowed.
   FhirXhtml noExtensions() => copyWith(disallowExtensions: true);
+
+  /// Creates an empty property in the object
+  @override
+  FhirXhtml createProperty(String propertyName) => this;
 }

@@ -210,4 +210,8 @@ class FhirDecimal extends FhirNumber
       objectPath: objectPath ?? this.objectPath,
     );
   }
+
+  /// Creates an empty property in the object
+  @override
+  FhirDecimal createProperty(String propertyName) => this;
 }

@@ -747,6 +747,102 @@ class Specimen extends DomainResource {
     }
   }
 
+  /// Creates a new [Specimen]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Specimen createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'accessionIdentifier':
+        {
+          return copyWith(accessionIdentifier: Identifier.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: SpecimenStatus.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'receivedTime':
+        {
+          return copyWith(receivedTime: FhirDateTime.empty());
+        }
+      case 'parent':
+        {
+          return copyWith(parent: <Reference>[]);
+        }
+      case 'request':
+        {
+          return copyWith(request: <Reference>[]);
+        }
+      case 'collection':
+        {
+          return copyWith(collection: SpecimenCollection.empty());
+        }
+      case 'processing':
+        {
+          return copyWith(processing: <SpecimenProcessing>[]);
+        }
+      case 'container':
+        {
+          return copyWith(container: <SpecimenContainer>[]);
+        }
+      case 'condition':
+        {
+          return copyWith(condition: <CodeableConcept>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Specimen clone() => throw UnimplementedError();
   @override
@@ -1523,6 +1619,70 @@ class SpecimenCollection extends BackboneElement {
     }
   }
 
+  /// Creates a new [SpecimenCollection]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SpecimenCollection createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'collector':
+        {
+          return copyWith(collector: Reference.empty());
+        }
+      case 'collected':
+      case 'collectedX':
+      case 'collectedDateTime':
+        {
+          return copyWith(collectedX: FhirDateTime.empty());
+        }
+      case 'collectedPeriod':
+        {
+          return copyWith(collectedX: Period.empty());
+        }
+      case 'duration':
+        {
+          return copyWith(duration: FhirDuration.empty());
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'method':
+        {
+          return copyWith(method: CodeableConcept.empty());
+        }
+      case 'bodySite':
+        {
+          return copyWith(bodySite: CodeableConcept.empty());
+        }
+      case 'fastingStatus':
+      case 'fastingStatusX':
+      case 'fastingStatusCodeableConcept':
+        {
+          return copyWith(fastingStatusX: CodeableConcept.empty());
+        }
+      case 'fastingStatusDuration':
+        {
+          return copyWith(fastingStatusX: FhirDuration.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   SpecimenCollection clone() => throw UnimplementedError();
   @override
@@ -2034,6 +2194,52 @@ class SpecimenProcessing extends BackboneElement {
         return ['Period'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [SpecimenProcessing]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SpecimenProcessing createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'procedure':
+        {
+          return copyWith(procedure: CodeableConcept.empty());
+        }
+      case 'additive':
+        {
+          return copyWith(additive: <Reference>[]);
+        }
+      case 'time':
+      case 'timeX':
+      case 'timeDateTime':
+        {
+          return copyWith(timeX: FhirDateTime.empty());
+        }
+      case 'timePeriod':
+        {
+          return copyWith(timeX: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2590,6 +2796,60 @@ class SpecimenContainer extends BackboneElement {
         return ['Reference'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [SpecimenContainer]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SpecimenContainer createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'capacity':
+        {
+          return copyWith(capacity: Quantity.empty());
+        }
+      case 'specimenQuantity':
+        {
+          return copyWith(specimenQuantity: Quantity.empty());
+        }
+      case 'additive':
+      case 'additiveX':
+      case 'additiveCodeableConcept':
+        {
+          return copyWith(additiveX: CodeableConcept.empty());
+        }
+      case 'additiveReference':
+        {
+          return copyWith(additiveX: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

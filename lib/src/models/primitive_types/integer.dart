@@ -203,4 +203,8 @@ class FhirInteger extends FhirNumber
       objectPath: objectPath ?? this.objectPath,
     );
   }
+
+  /// Creates an empty property in the object
+  @override
+  FhirInteger createProperty(String propertyName) => this;
 }

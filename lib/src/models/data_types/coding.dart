@@ -373,6 +373,46 @@ class Coding extends DataType
     }
   }
 
+  /// Creates a new [Coding]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Coding createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'system':
+        {
+          return copyWith(system: FhirUri.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: FhirCode.empty());
+        }
+      case 'display':
+        {
+          return copyWith(display: FhirString.empty());
+        }
+      case 'userSelected':
+        {
+          return copyWith(userSelected: FhirBoolean.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Coding clone() => throw UnimplementedError();
   @override

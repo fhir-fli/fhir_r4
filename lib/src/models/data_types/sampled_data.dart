@@ -421,6 +421,54 @@ class SampledData extends DataType
     }
   }
 
+  /// Creates a new [SampledData]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SampledData createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'origin':
+        {
+          return copyWith(origin: Quantity.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: FhirDecimal.empty());
+        }
+      case 'factor':
+        {
+          return copyWith(factor: FhirDecimal.empty());
+        }
+      case 'lowerLimit':
+        {
+          return copyWith(lowerLimit: FhirDecimal.empty());
+        }
+      case 'upperLimit':
+        {
+          return copyWith(upperLimit: FhirDecimal.empty());
+        }
+      case 'dimensions':
+        {
+          return copyWith(dimensions: FhirPositiveInt.empty());
+        }
+      case 'data':
+        {
+          return copyWith(data: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   SampledData clone() => throw UnimplementedError();
   @override

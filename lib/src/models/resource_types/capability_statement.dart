@@ -1074,6 +1074,155 @@ class CapabilityStatement extends CanonicalResource {
     }
   }
 
+  /// Creates a new [CapabilityStatement]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CapabilityStatement createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'kind':
+        {
+          return copyWith(kind: CapabilityStatementKind.empty());
+        }
+      case 'instantiates':
+        {
+          return copyWith(instantiates: <FhirCanonical>[]);
+        }
+      case 'imports':
+        {
+          return copyWith(imports: <FhirCanonical>[]);
+        }
+      case 'software':
+        {
+          return copyWith(software: CapabilityStatementSoftware.empty());
+        }
+      case 'implementation':
+        {
+          return copyWith(
+              implementation: CapabilityStatementImplementation.empty(),);
+        }
+      case 'fhirVersion':
+        {
+          return copyWith(fhirVersion: FHIRVersion.empty());
+        }
+      case 'format':
+        {
+          return copyWith(format: <FhirCode>[]);
+        }
+      case 'patchFormat':
+        {
+          return copyWith(patchFormat: <FhirCode>[]);
+        }
+      case 'implementationGuide':
+        {
+          return copyWith(implementationGuide: <FhirCanonical>[]);
+        }
+      case 'rest':
+        {
+          return copyWith(rest: <CapabilityStatementRest>[]);
+        }
+      case 'messaging':
+        {
+          return copyWith(messaging: <CapabilityStatementMessaging>[]);
+        }
+      case 'document':
+        {
+          return copyWith(document: <CapabilityStatementDocument>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CapabilityStatement clone() => throw UnimplementedError();
   @override
@@ -1783,6 +1932,42 @@ class CapabilityStatementSoftware extends BackboneElement {
     }
   }
 
+  /// Creates a new [CapabilityStatementSoftware]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CapabilityStatementSoftware createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'releaseDate':
+        {
+          return copyWith(releaseDate: FhirDateTime.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CapabilityStatementSoftware clone() => throw UnimplementedError();
   @override
@@ -2193,6 +2378,42 @@ class CapabilityStatementImplementation extends BackboneElement {
         return ['Reference'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [CapabilityStatementImplementation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CapabilityStatementImplementation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUrl.empty());
+        }
+      case 'custodian':
+        {
+          return copyWith(custodian: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2764,6 +2985,62 @@ class CapabilityStatementRest extends BackboneElement {
     }
   }
 
+  /// Creates a new [CapabilityStatementRest]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CapabilityStatementRest createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'mode':
+        {
+          return copyWith(mode: RestfulCapabilityMode.empty());
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: FhirMarkdown.empty());
+        }
+      case 'security':
+        {
+          return copyWith(security: CapabilityStatementSecurity.empty());
+        }
+      case 'resource':
+        {
+          return copyWith(resource: <CapabilityStatementResource>[]);
+        }
+      case 'interaction':
+        {
+          return copyWith(interaction: <CapabilityStatementInteraction>[]);
+        }
+      case 'searchParam':
+        {
+          return copyWith(searchParam: <CapabilityStatementSearchParam>[]);
+        }
+      case 'operation':
+        {
+          return copyWith(operation: <CapabilityStatementOperation>[]);
+        }
+      case 'compartment':
+        {
+          return copyWith(compartment: <FhirCanonical>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CapabilityStatementRest clone() => throw UnimplementedError();
   @override
@@ -3249,6 +3526,42 @@ class CapabilityStatementSecurity extends BackboneElement {
         return ['FhirMarkdown'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [CapabilityStatementSecurity]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CapabilityStatementSecurity createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'cors':
+        {
+          return copyWith(cors: FhirBoolean.empty());
+        }
+      case 'service':
+        {
+          return copyWith(service: <CodeableConcept>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -4082,6 +4395,98 @@ class CapabilityStatementResource extends BackboneElement {
     }
   }
 
+  /// Creates a new [CapabilityStatementResource]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CapabilityStatementResource createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: FhirCode.empty());
+        }
+      case 'profile':
+        {
+          return copyWith(profile: FhirCanonical.empty());
+        }
+      case 'supportedProfile':
+        {
+          return copyWith(supportedProfile: <FhirCanonical>[]);
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: FhirMarkdown.empty());
+        }
+      case 'interaction':
+        {
+          return copyWith(interaction: <CapabilityStatementInteraction>[]);
+        }
+      case 'versioning':
+        {
+          return copyWith(versioning: ResourceVersionPolicy.empty());
+        }
+      case 'readHistory':
+        {
+          return copyWith(readHistory: FhirBoolean.empty());
+        }
+      case 'updateCreate':
+        {
+          return copyWith(updateCreate: FhirBoolean.empty());
+        }
+      case 'conditionalCreate':
+        {
+          return copyWith(conditionalCreate: FhirBoolean.empty());
+        }
+      case 'conditionalRead':
+        {
+          return copyWith(conditionalRead: ConditionalReadStatus.empty());
+        }
+      case 'conditionalUpdate':
+        {
+          return copyWith(conditionalUpdate: FhirBoolean.empty());
+        }
+      case 'conditionalDelete':
+        {
+          return copyWith(conditionalDelete: ConditionalDeleteStatus.empty());
+        }
+      case 'referencePolicy':
+        {
+          return copyWith(referencePolicy: <ReferenceHandlingPolicy>[]);
+        }
+      case 'searchInclude':
+        {
+          return copyWith(searchInclude: <FhirString>[]);
+        }
+      case 'searchRevInclude':
+        {
+          return copyWith(searchRevInclude: <FhirString>[]);
+        }
+      case 'searchParam':
+        {
+          return copyWith(searchParam: <CapabilityStatementSearchParam>[]);
+        }
+      case 'operation':
+        {
+          return copyWith(operation: <CapabilityStatementOperation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CapabilityStatementResource clone() => throw UnimplementedError();
   @override
@@ -4626,6 +5031,38 @@ class CapabilityStatementInteraction extends BackboneElement {
     }
   }
 
+  /// Creates a new [CapabilityStatementInteraction]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CapabilityStatementInteraction createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: TypeRestfulInteraction.empty());
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CapabilityStatementInteraction clone() => throw UnimplementedError();
   @override
@@ -5062,6 +5499,46 @@ class CapabilityStatementSearchParam extends BackboneElement {
     }
   }
 
+  /// Creates a new [CapabilityStatementSearchParam]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CapabilityStatementSearchParam createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'definition':
+        {
+          return copyWith(definition: FhirCanonical.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: SearchParamType.empty());
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CapabilityStatementSearchParam clone() => throw UnimplementedError();
   @override
@@ -5491,6 +5968,42 @@ class CapabilityStatementOperation extends BackboneElement {
     }
   }
 
+  /// Creates a new [CapabilityStatementOperation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CapabilityStatementOperation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'definition':
+        {
+          return copyWith(definition: FhirCanonical.empty());
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CapabilityStatementOperation clone() => throw UnimplementedError();
   @override
@@ -5871,6 +6384,38 @@ class CapabilityStatementInteraction1 extends BackboneElement {
         return ['FhirMarkdown'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [CapabilityStatementInteraction1]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CapabilityStatementInteraction1 createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: SystemRestfulInteraction.empty());
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -6316,6 +6861,47 @@ class CapabilityStatementMessaging extends BackboneElement {
     }
   }
 
+  /// Creates a new [CapabilityStatementMessaging]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CapabilityStatementMessaging createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'endpoint':
+        {
+          return copyWith(endpoint: <CapabilityStatementEndpoint>[]);
+        }
+      case 'reliableCache':
+        {
+          return copyWith(reliableCache: FhirUnsignedInt.empty());
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: FhirMarkdown.empty());
+        }
+      case 'supportedMessage':
+        {
+          return copyWith(
+              supportedMessage: <CapabilityStatementSupportedMessage>[],);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CapabilityStatementMessaging clone() => throw UnimplementedError();
   @override
@@ -6720,6 +7306,38 @@ class CapabilityStatementEndpoint extends BackboneElement {
     }
   }
 
+  /// Creates a new [CapabilityStatementEndpoint]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CapabilityStatementEndpoint createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'protocol':
+        {
+          return copyWith(protocol: Coding.empty());
+        }
+      case 'address':
+        {
+          return copyWith(address: FhirUrl.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CapabilityStatementEndpoint clone() => throw UnimplementedError();
   @override
@@ -7092,6 +7710,38 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
         return ['FhirCanonical'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [CapabilityStatementSupportedMessage]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CapabilityStatementSupportedMessage createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'mode':
+        {
+          return copyWith(mode: EventCapabilityMode.empty());
+        }
+      case 'definition':
+        {
+          return copyWith(definition: FhirCanonical.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -7494,6 +8144,42 @@ class CapabilityStatementDocument extends BackboneElement {
         return ['FhirCanonical'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [CapabilityStatementDocument]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CapabilityStatementDocument createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'mode':
+        {
+          return copyWith(mode: DocumentMode.empty());
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: FhirMarkdown.empty());
+        }
+      case 'profile':
+        {
+          return copyWith(profile: FhirCanonical.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

@@ -417,6 +417,54 @@ class RelatedArtifact extends DataType
     }
   }
 
+  /// Creates a new [RelatedArtifact]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  RelatedArtifact createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: RelatedArtifactType.empty());
+        }
+      case 'label':
+        {
+          return copyWith(label: FhirString.empty());
+        }
+      case 'display':
+        {
+          return copyWith(display: FhirString.empty());
+        }
+      case 'citation':
+        {
+          return copyWith(citation: FhirMarkdown.empty());
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUrl.empty());
+        }
+      case 'document':
+        {
+          return copyWith(document: Attachment.empty());
+        }
+      case 'resource':
+        {
+          return copyWith(resource: FhirCanonical.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   RelatedArtifact clone() => throw UnimplementedError();
   @override

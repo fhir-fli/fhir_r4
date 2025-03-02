@@ -391,6 +391,50 @@ class Identifier extends DataType
     }
   }
 
+  /// Creates a new [Identifier]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Identifier createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'use':
+        {
+          return copyWith(use: IdentifierUse.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'system':
+        {
+          return copyWith(system: FhirUri.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirString.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      case 'assigner':
+        {
+          return copyWith(assigner: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Identifier clone() => throw UnimplementedError();
   @override

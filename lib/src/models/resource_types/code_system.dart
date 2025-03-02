@@ -1072,6 +1072,154 @@ class CodeSystem extends CanonicalResource {
     }
   }
 
+  /// Creates a new [CodeSystem]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CodeSystem createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'caseSensitive':
+        {
+          return copyWith(caseSensitive: FhirBoolean.empty());
+        }
+      case 'valueSet':
+        {
+          return copyWith(valueSet: FhirCanonical.empty());
+        }
+      case 'hierarchyMeaning':
+        {
+          return copyWith(hierarchyMeaning: CodeSystemHierarchyMeaning.empty());
+        }
+      case 'compositional':
+        {
+          return copyWith(compositional: FhirBoolean.empty());
+        }
+      case 'versionNeeded':
+        {
+          return copyWith(versionNeeded: FhirBoolean.empty());
+        }
+      case 'content':
+        {
+          return copyWith(content: CodeSystemContentMode.empty());
+        }
+      case 'supplements':
+        {
+          return copyWith(supplements: FhirCanonical.empty());
+        }
+      case 'count':
+        {
+          return copyWith(count: FhirUnsignedInt.empty());
+        }
+      case 'filter':
+        {
+          return copyWith(filter: <CodeSystemFilter>[]);
+        }
+      case 'property':
+        {
+          return copyWith(property: <CodeSystemProperty>[]);
+        }
+      case 'concept':
+        {
+          return copyWith(concept: <CodeSystemConcept>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CodeSystem clone() => throw UnimplementedError();
   @override
@@ -1778,6 +1926,46 @@ class CodeSystemFilter extends BackboneElement {
     }
   }
 
+  /// Creates a new [CodeSystemFilter]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CodeSystemFilter createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: FhirCode.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'operator':
+        {
+          return copyWith(operator_: <FilterOperator>[]);
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CodeSystemFilter clone() => throw UnimplementedError();
   @override
@@ -2231,6 +2419,46 @@ class CodeSystemProperty extends BackboneElement {
         return ['FhirCode'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [CodeSystemProperty]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CodeSystemProperty createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: FhirCode.empty());
+        }
+      case 'uri':
+        {
+          return copyWith(uri: FhirUri.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: PropertyTypeEnum.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2752,6 +2980,54 @@ class CodeSystemConcept extends BackboneElement {
     }
   }
 
+  /// Creates a new [CodeSystemConcept]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CodeSystemConcept createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: FhirCode.empty());
+        }
+      case 'display':
+        {
+          return copyWith(display: FhirString.empty());
+        }
+      case 'definition':
+        {
+          return copyWith(definition: FhirString.empty());
+        }
+      case 'designation':
+        {
+          return copyWith(designation: <CodeSystemDesignation>[]);
+        }
+      case 'property':
+        {
+          return copyWith(property: <CodeSystemProperty1>[]);
+        }
+      case 'concept':
+        {
+          return copyWith(concept: <CodeSystemConcept>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CodeSystemConcept clone() => throw UnimplementedError();
   @override
@@ -3202,6 +3478,42 @@ class CodeSystemDesignation extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [CodeSystemDesignation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CodeSystemDesignation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'use':
+        {
+          return copyWith(use: Coding.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -3721,6 +4033,64 @@ class CodeSystemProperty1 extends BackboneElement {
         return ['FhirDecimal'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [CodeSystemProperty1]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CodeSystemProperty1 createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: FhirCode.empty());
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueCode':
+        {
+          return copyWith(valueX: FhirCode.empty());
+        }
+      case 'valueCoding':
+        {
+          return copyWith(valueX: Coding.empty());
+        }
+      case 'valueString':
+        {
+          return copyWith(valueX: FhirString.empty());
+        }
+      case 'valueInteger':
+        {
+          return copyWith(valueX: FhirInteger.empty());
+        }
+      case 'valueBoolean':
+        {
+          return copyWith(valueX: FhirBoolean.empty());
+        }
+      case 'valueDateTime':
+        {
+          return copyWith(valueX: FhirDateTime.empty());
+        }
+      case 'valueDecimal':
+        {
+          return copyWith(valueX: FhirDecimal.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

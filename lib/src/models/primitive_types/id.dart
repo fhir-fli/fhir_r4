@@ -196,4 +196,8 @@ class FhirId extends PrimitiveType<String>
 
   /// Returns a new [FhirId] with extensions disallowed.
   FhirId noExtensions() => copyWith(disallowExtensions: true);
+
+  /// Creates an empty property in the object
+  @override
+  FhirId createProperty(String propertyName) => this;
 }

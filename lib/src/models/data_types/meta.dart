@@ -401,6 +401,50 @@ class FhirMeta extends DataType
     }
   }
 
+  /// Creates a new [FhirMeta]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  FhirMeta createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'versionId':
+        {
+          return copyWith(versionId: FhirId.empty());
+        }
+      case 'lastUpdated':
+        {
+          return copyWith(lastUpdated: FhirInstant.empty());
+        }
+      case 'source':
+        {
+          return copyWith(source: FhirUri.empty());
+        }
+      case 'profile':
+        {
+          return copyWith(profile: <FhirCanonical>[]);
+        }
+      case 'security':
+        {
+          return copyWith(security: <Coding>[]);
+        }
+      case 'tag':
+        {
+          return copyWith(tag: <Coding>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   FhirMeta clone() => throw UnimplementedError();
   @override

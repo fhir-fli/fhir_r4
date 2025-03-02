@@ -960,6 +960,128 @@ class EvidenceReport extends DomainResource {
     }
   }
 
+  /// Creates a new [EvidenceReport]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EvidenceReport createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'relatedIdentifier':
+        {
+          return copyWith(relatedIdentifier: <Identifier>[]);
+        }
+      case 'citeAs':
+      case 'citeAsX':
+      case 'citeAsReference':
+        {
+          return copyWith(citeAsX: Reference.empty());
+        }
+      case 'citeAsMarkdown':
+        {
+          return copyWith(citeAsX: FhirMarkdown.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'relatedArtifact':
+        {
+          return copyWith(relatedArtifact: <RelatedArtifact>[]);
+        }
+      case 'subject':
+        {
+          return copyWith(subject: EvidenceReportSubject.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'author':
+        {
+          return copyWith(author: <ContactDetail>[]);
+        }
+      case 'editor':
+        {
+          return copyWith(editor: <ContactDetail>[]);
+        }
+      case 'reviewer':
+        {
+          return copyWith(reviewer: <ContactDetail>[]);
+        }
+      case 'endorser':
+        {
+          return copyWith(endorser: <ContactDetail>[]);
+        }
+      case 'relatesTo':
+        {
+          return copyWith(relatesTo: <EvidenceReportRelatesTo>[]);
+        }
+      case 'section':
+        {
+          return copyWith(section: <EvidenceReportSection>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   EvidenceReport clone() => throw UnimplementedError();
   @override
@@ -1592,6 +1714,38 @@ class EvidenceReportSubject extends BackboneElement {
     }
   }
 
+  /// Creates a new [EvidenceReportSubject]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EvidenceReportSubject createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'characteristic':
+        {
+          return copyWith(characteristic: <EvidenceReportCharacteristic>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   EvidenceReportSubject clone() => throw UnimplementedError();
   @override
@@ -2133,6 +2287,64 @@ class EvidenceReportCharacteristic extends BackboneElement {
     }
   }
 
+  /// Creates a new [EvidenceReportCharacteristic]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EvidenceReportCharacteristic createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueReference':
+        {
+          return copyWith(valueX: Reference.empty());
+        }
+      case 'valueCodeableConcept':
+        {
+          return copyWith(valueX: CodeableConcept.empty());
+        }
+      case 'valueBoolean':
+        {
+          return copyWith(valueX: FhirBoolean.empty());
+        }
+      case 'valueQuantity':
+        {
+          return copyWith(valueX: Quantity.empty());
+        }
+      case 'valueRange':
+        {
+          return copyWith(valueX: Range.empty());
+        }
+      case 'exclude':
+        {
+          return copyWith(exclude: FhirBoolean.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   EvidenceReportCharacteristic clone() => throw UnimplementedError();
   @override
@@ -2561,6 +2773,44 @@ class EvidenceReportRelatesTo extends BackboneElement {
         return ['Reference'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [EvidenceReportRelatesTo]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EvidenceReportRelatesTo createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: ReportRelationshipType.empty());
+        }
+      case 'target':
+      case 'targetX':
+      case 'targetIdentifier':
+        {
+          return copyWith(targetX: Identifier.empty());
+        }
+      case 'targetReference':
+        {
+          return copyWith(targetX: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -3237,6 +3487,78 @@ class EvidenceReportSection extends BackboneElement {
         return ['EvidenceReportSection'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [EvidenceReportSection]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EvidenceReportSection createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'focus':
+        {
+          return copyWith(focus: CodeableConcept.empty());
+        }
+      case 'focusReference':
+        {
+          return copyWith(focusReference: Reference.empty());
+        }
+      case 'author':
+        {
+          return copyWith(author: <Reference>[]);
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'mode':
+        {
+          return copyWith(mode: ListMode.empty());
+        }
+      case 'orderedBy':
+        {
+          return copyWith(orderedBy: CodeableConcept.empty());
+        }
+      case 'entryClassifier':
+        {
+          return copyWith(entryClassifier: <CodeableConcept>[]);
+        }
+      case 'entryReference':
+        {
+          return copyWith(entryReference: <Reference>[]);
+        }
+      case 'entryQuantity':
+        {
+          return copyWith(entryQuantity: <Quantity>[]);
+        }
+      case 'emptyReason':
+        {
+          return copyWith(emptyReason: CodeableConcept.empty());
+        }
+      case 'section':
+        {
+          return copyWith(section: <EvidenceReportSection>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

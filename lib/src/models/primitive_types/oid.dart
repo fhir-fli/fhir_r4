@@ -184,4 +184,8 @@ class FhirOid extends PrimitiveType<String>
       '_value': oids.map((oid) => oid.element?.toJson()).toList(),
     };
   }
+
+  /// Creates an empty property in the object
+  @override
+  FhirOid createProperty(String propertyName) => this;
 }

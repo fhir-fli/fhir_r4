@@ -838,6 +838,114 @@ class DocumentReference extends DomainResource {
     }
   }
 
+  /// Creates a new [DocumentReference]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DocumentReference createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'masterIdentifier':
+        {
+          return copyWith(masterIdentifier: Identifier.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: DocumentReferenceStatus.empty());
+        }
+      case 'docStatus':
+        {
+          return copyWith(docStatus: CompositionStatus.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirInstant.empty());
+        }
+      case 'author':
+        {
+          return copyWith(author: <Reference>[]);
+        }
+      case 'authenticator':
+        {
+          return copyWith(authenticator: Reference.empty());
+        }
+      case 'custodian':
+        {
+          return copyWith(custodian: Reference.empty());
+        }
+      case 'relatesTo':
+        {
+          return copyWith(relatesTo: <DocumentReferenceRelatesTo>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'securityLabel':
+        {
+          return copyWith(securityLabel: <CodeableConcept>[]);
+        }
+      case 'content':
+        {
+          return copyWith(content: <DocumentReferenceContent>[]);
+        }
+      case 'context':
+        {
+          return copyWith(context: DocumentReferenceContext.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   DocumentReference clone() => throw UnimplementedError();
   @override
@@ -1403,6 +1511,38 @@ class DocumentReferenceRelatesTo extends BackboneElement {
     }
   }
 
+  /// Creates a new [DocumentReferenceRelatesTo]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DocumentReferenceRelatesTo createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: DocumentRelationshipType.empty());
+        }
+      case 'target':
+        {
+          return copyWith(target: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   DocumentReferenceRelatesTo clone() => throw UnimplementedError();
   @override
@@ -1776,6 +1916,38 @@ class DocumentReferenceContent extends BackboneElement {
         return ['Coding'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [DocumentReferenceContent]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DocumentReferenceContent createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'attachment':
+        {
+          return copyWith(attachment: Attachment.empty());
+        }
+      case 'format':
+        {
+          return copyWith(format: Coding.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2303,6 +2475,58 @@ class DocumentReferenceContext extends BackboneElement {
         return ['Reference'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [DocumentReferenceContext]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DocumentReferenceContext createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: <Reference>[]);
+        }
+      case 'event':
+        {
+          return copyWith(event: <CodeableConcept>[]);
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      case 'facilityType':
+        {
+          return copyWith(facilityType: CodeableConcept.empty());
+        }
+      case 'practiceSetting':
+        {
+          return copyWith(practiceSetting: CodeableConcept.empty());
+        }
+      case 'sourcePatientInfo':
+        {
+          return copyWith(sourcePatientInfo: Reference.empty());
+        }
+      case 'related':
+        {
+          return copyWith(related: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

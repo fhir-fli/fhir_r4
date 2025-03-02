@@ -425,6 +425,42 @@ class Reference extends DataType
     }
   }
 
+  /// Creates a new [Reference]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Reference createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'reference':
+        {
+          return copyWith(reference: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: FhirUri.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: Identifier.empty());
+        }
+      case 'display':
+        {
+          return copyWith(display: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Reference clone() => throw UnimplementedError();
   @override

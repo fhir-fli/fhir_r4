@@ -1308,6 +1308,184 @@ class PlanDefinition extends CanonicalResource {
     }
   }
 
+  /// Creates a new [PlanDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  PlanDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'subtitle':
+        {
+          return copyWith(subtitle: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'subject':
+      case 'subjectX':
+      case 'subjectCodeableConcept':
+        {
+          return copyWith(subjectX: CodeableConcept.empty());
+        }
+      case 'subjectReference':
+        {
+          return copyWith(subjectX: Reference.empty());
+        }
+      case 'subjectCanonical':
+        {
+          return copyWith(subjectX: FhirCanonical.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'usage':
+        {
+          return copyWith(usage: FhirString.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'approvalDate':
+        {
+          return copyWith(approvalDate: FhirDate.empty());
+        }
+      case 'lastReviewDate':
+        {
+          return copyWith(lastReviewDate: FhirDate.empty());
+        }
+      case 'effectivePeriod':
+        {
+          return copyWith(effectivePeriod: Period.empty());
+        }
+      case 'topic':
+        {
+          return copyWith(topic: <CodeableConcept>[]);
+        }
+      case 'author':
+        {
+          return copyWith(author: <ContactDetail>[]);
+        }
+      case 'editor':
+        {
+          return copyWith(editor: <ContactDetail>[]);
+        }
+      case 'reviewer':
+        {
+          return copyWith(reviewer: <ContactDetail>[]);
+        }
+      case 'endorser':
+        {
+          return copyWith(endorser: <ContactDetail>[]);
+        }
+      case 'relatedArtifact':
+        {
+          return copyWith(relatedArtifact: <RelatedArtifact>[]);
+        }
+      case 'library':
+        {
+          return copyWith(library_: <FhirCanonical>[]);
+        }
+      case 'goal':
+        {
+          return copyWith(goal: <PlanDefinitionGoal>[]);
+        }
+      case 'action':
+        {
+          return copyWith(action: <PlanDefinitionAction>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   PlanDefinition clone() => throw UnimplementedError();
   @override
@@ -2200,6 +2378,58 @@ class PlanDefinitionGoal extends BackboneElement {
     }
   }
 
+  /// Creates a new [PlanDefinitionGoal]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  PlanDefinitionGoal createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'category':
+        {
+          return copyWith(category: CodeableConcept.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: CodeableConcept.empty());
+        }
+      case 'priority':
+        {
+          return copyWith(priority: CodeableConcept.empty());
+        }
+      case 'start':
+        {
+          return copyWith(start: CodeableConcept.empty());
+        }
+      case 'addresses':
+        {
+          return copyWith(addresses: <CodeableConcept>[]);
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: <RelatedArtifact>[]);
+        }
+      case 'target':
+        {
+          return copyWith(target: <PlanDefinitionTarget>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   PlanDefinitionGoal clone() => throw UnimplementedError();
   @override
@@ -2726,6 +2956,52 @@ class PlanDefinitionTarget extends BackboneElement {
         return ['FhirDuration'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [PlanDefinitionTarget]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  PlanDefinitionTarget createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'measure':
+        {
+          return copyWith(measure: CodeableConcept.empty());
+        }
+      case 'detail':
+      case 'detailX':
+      case 'detailQuantity':
+        {
+          return copyWith(detailX: Quantity.empty());
+        }
+      case 'detailRange':
+        {
+          return copyWith(detailX: Range.empty());
+        }
+      case 'detailCodeableConcept':
+        {
+          return copyWith(detailX: CodeableConcept.empty());
+        }
+      case 'due':
+        {
+          return copyWith(due: FhirDuration.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -4091,6 +4367,177 @@ class PlanDefinitionAction extends BackboneElement {
     }
   }
 
+  /// Creates a new [PlanDefinitionAction]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  PlanDefinitionAction createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'prefix':
+        {
+          return copyWith(prefix: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'textEquivalent':
+        {
+          return copyWith(textEquivalent: FhirString.empty());
+        }
+      case 'priority':
+        {
+          return copyWith(priority: RequestPriority.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: <CodeableConcept>[]);
+        }
+      case 'reason':
+        {
+          return copyWith(reason: <CodeableConcept>[]);
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: <RelatedArtifact>[]);
+        }
+      case 'goalId':
+        {
+          return copyWith(goalId: <FhirId>[]);
+        }
+      case 'subject':
+      case 'subjectX':
+      case 'subjectCodeableConcept':
+        {
+          return copyWith(subjectX: CodeableConcept.empty());
+        }
+      case 'subjectReference':
+        {
+          return copyWith(subjectX: Reference.empty());
+        }
+      case 'subjectCanonical':
+        {
+          return copyWith(subjectX: FhirCanonical.empty());
+        }
+      case 'trigger':
+        {
+          return copyWith(trigger: <TriggerDefinition>[]);
+        }
+      case 'condition':
+        {
+          return copyWith(condition: <PlanDefinitionCondition>[]);
+        }
+      case 'input':
+        {
+          return copyWith(input: <DataRequirement>[]);
+        }
+      case 'output':
+        {
+          return copyWith(output: <DataRequirement>[]);
+        }
+      case 'relatedAction':
+        {
+          return copyWith(relatedAction: <PlanDefinitionRelatedAction>[]);
+        }
+      case 'timing':
+      case 'timingX':
+      case 'timingDateTime':
+        {
+          return copyWith(timingX: FhirDateTime.empty());
+        }
+      case 'timingAge':
+        {
+          return copyWith(timingX: Age.empty());
+        }
+      case 'timingPeriod':
+        {
+          return copyWith(timingX: Period.empty());
+        }
+      case 'timingDuration':
+        {
+          return copyWith(timingX: FhirDuration.empty());
+        }
+      case 'timingRange':
+        {
+          return copyWith(timingX: Range.empty());
+        }
+      case 'timingTiming':
+        {
+          return copyWith(timingX: Timing.empty());
+        }
+      case 'participant':
+        {
+          return copyWith(participant: <PlanDefinitionParticipant>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'groupingBehavior':
+        {
+          return copyWith(groupingBehavior: ActionGroupingBehavior.empty());
+        }
+      case 'selectionBehavior':
+        {
+          return copyWith(selectionBehavior: ActionSelectionBehavior.empty());
+        }
+      case 'requiredBehavior':
+        {
+          return copyWith(requiredBehavior: ActionRequiredBehavior.empty());
+        }
+      case 'precheckBehavior':
+        {
+          return copyWith(precheckBehavior: ActionPrecheckBehavior.empty());
+        }
+      case 'cardinalityBehavior':
+        {
+          return copyWith(
+              cardinalityBehavior: ActionCardinalityBehavior.empty(),);
+        }
+      case 'definition':
+      case 'definitionX':
+      case 'definitionCanonical':
+        {
+          return copyWith(definitionX: FhirCanonical.empty());
+        }
+      case 'definitionUri':
+        {
+          return copyWith(definitionX: FhirUri.empty());
+        }
+      case 'transform':
+        {
+          return copyWith(transform: FhirCanonical.empty());
+        }
+      case 'dynamicValue':
+        {
+          return copyWith(dynamicValue: <PlanDefinitionDynamicValue>[]);
+        }
+      case 'action':
+        {
+          return copyWith(action: <PlanDefinitionAction>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   PlanDefinitionAction clone() => throw UnimplementedError();
   @override
@@ -4749,6 +5196,38 @@ class PlanDefinitionCondition extends BackboneElement {
     }
   }
 
+  /// Creates a new [PlanDefinitionCondition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  PlanDefinitionCondition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'kind':
+        {
+          return copyWith(kind: ActionConditionKind.empty());
+        }
+      case 'expression':
+        {
+          return copyWith(expression: FhirExpression.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   PlanDefinitionCondition clone() => throw UnimplementedError();
   @override
@@ -5191,6 +5670,48 @@ class PlanDefinitionRelatedAction extends BackboneElement {
     }
   }
 
+  /// Creates a new [PlanDefinitionRelatedAction]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  PlanDefinitionRelatedAction createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'actionId':
+        {
+          return copyWith(actionId: FhirId.empty());
+        }
+      case 'relationship':
+        {
+          return copyWith(relationship: ActionRelationshipType.empty());
+        }
+      case 'offset':
+      case 'offsetX':
+      case 'offsetDuration':
+        {
+          return copyWith(offsetX: FhirDuration.empty());
+        }
+      case 'offsetRange':
+        {
+          return copyWith(offsetX: Range.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   PlanDefinitionRelatedAction clone() => throw UnimplementedError();
   @override
@@ -5569,6 +6090,38 @@ class PlanDefinitionParticipant extends BackboneElement {
         return ['CodeableConcept'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [PlanDefinitionParticipant]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  PlanDefinitionParticipant createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: ActionParticipantType.empty());
+        }
+      case 'role':
+        {
+          return copyWith(role: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -5953,6 +6506,38 @@ class PlanDefinitionDynamicValue extends BackboneElement {
         return ['FhirExpression'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [PlanDefinitionDynamicValue]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  PlanDefinitionDynamicValue createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'path':
+        {
+          return copyWith(path: FhirString.empty());
+        }
+      case 'expression':
+        {
+          return copyWith(expression: FhirExpression.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

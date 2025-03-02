@@ -361,6 +361,46 @@ class ContactPoint extends DataType
     }
   }
 
+  /// Creates a new [ContactPoint]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContactPoint createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'system':
+        {
+          return copyWith(system: ContactPointSystem.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirString.empty());
+        }
+      case 'use':
+        {
+          return copyWith(use: ContactPointUse.empty());
+        }
+      case 'rank':
+        {
+          return copyWith(rank: FhirPositiveInt.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ContactPoint clone() => throw UnimplementedError();
   @override

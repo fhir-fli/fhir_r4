@@ -313,4 +313,17 @@ class Element extends FhirBase {
         return <String>[];
     }
   }
+
+  /// Creates an empty property in the object
+  @override
+  Element createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        return copyWith(id: FhirString.empty());
+      case 'extension':
+        return copyWith(extension_: <FhirExtension>[]);
+      default:
+        throw Exception('Cannot make property for $propertyName');
+    }
+  }
 }

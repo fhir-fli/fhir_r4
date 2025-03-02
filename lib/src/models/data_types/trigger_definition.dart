@@ -445,6 +445,60 @@ class TriggerDefinition extends DataType
     }
   }
 
+  /// Creates a new [TriggerDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TriggerDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: TriggerType.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'timing':
+      case 'timingX':
+      case 'timingTiming':
+        {
+          return copyWith(timingX: Timing.empty());
+        }
+      case 'timingReference':
+        {
+          return copyWith(timingX: Reference.empty());
+        }
+      case 'timingDate':
+        {
+          return copyWith(timingX: FhirDate.empty());
+        }
+      case 'timingDateTime':
+        {
+          return copyWith(timingX: FhirDateTime.empty());
+        }
+      case 'data':
+        {
+          return copyWith(data: <DataRequirement>[]);
+        }
+      case 'condition':
+        {
+          return copyWith(condition: FhirExpression.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   TriggerDefinition clone() => throw UnimplementedError();
   @override

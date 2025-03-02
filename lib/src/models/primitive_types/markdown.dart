@@ -190,4 +190,8 @@ class FhirMarkdown extends PrimitiveType<String>
           markdowns.map((markdown) => markdown.element?.toJson()).toList(),
     };
   }
+
+  /// Creates an empty property in the object
+  @override
+  FhirMarkdown createProperty(String propertyName) => this;
 }

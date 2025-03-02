@@ -427,6 +427,54 @@ class Signature extends DataType
     }
   }
 
+  /// Creates a new [Signature]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Signature createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: <Coding>[]);
+        }
+      case 'when':
+        {
+          return copyWith(when: FhirInstant.empty());
+        }
+      case 'who':
+        {
+          return copyWith(who: Reference.empty());
+        }
+      case 'onBehalfOf':
+        {
+          return copyWith(onBehalfOf: Reference.empty());
+        }
+      case 'targetFormat':
+        {
+          return copyWith(targetFormat: FhirCode.empty());
+        }
+      case 'sigFormat':
+        {
+          return copyWith(sigFormat: FhirCode.empty());
+        }
+      case 'data':
+        {
+          return copyWith(data: FhirBase64Binary.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Signature clone() => throw UnimplementedError();
   @override

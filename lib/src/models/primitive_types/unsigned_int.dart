@@ -205,4 +205,8 @@ class FhirUnsignedInt extends FhirNumber
       objectPath: objectPath ?? this.objectPath,
     );
   }
+
+  /// Creates an empty property in the object
+  @override
+  FhirUnsignedInt createProperty(String propertyName) => this;
 }

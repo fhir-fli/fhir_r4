@@ -880,6 +880,118 @@ class ExampleScenario extends DomainResource {
     }
   }
 
+  /// Creates a new [ExampleScenario]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ExampleScenario createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'actor':
+        {
+          return copyWith(actor: <ExampleScenarioActor>[]);
+        }
+      case 'instance':
+        {
+          return copyWith(instance: <ExampleScenarioInstance>[]);
+        }
+      case 'process':
+        {
+          return copyWith(process: <ExampleScenarioProcess>[]);
+        }
+      case 'workflow':
+        {
+          return copyWith(workflow: <FhirCanonical>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ExampleScenario clone() => throw UnimplementedError();
   @override
@@ -1520,6 +1632,46 @@ class ExampleScenarioActor extends BackboneElement {
     }
   }
 
+  /// Creates a new [ExampleScenarioActor]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ExampleScenarioActor createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'actorId':
+        {
+          return copyWith(actorId: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: ExampleScenarioActorType.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ExampleScenarioActor clone() => throw UnimplementedError();
   @override
@@ -2024,6 +2176,55 @@ class ExampleScenarioInstance extends BackboneElement {
     }
   }
 
+  /// Creates a new [ExampleScenarioInstance]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ExampleScenarioInstance createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'resourceId':
+        {
+          return copyWith(resourceId: FhirString.empty());
+        }
+      case 'resourceType':
+        {
+          return copyWith(resourceType: FhirCode.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: <ExampleScenarioVersion>[]);
+        }
+      case 'containedInstance':
+        {
+          return copyWith(
+              containedInstance: <ExampleScenarioContainedInstance>[],);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ExampleScenarioInstance clone() => throw UnimplementedError();
   @override
@@ -2441,6 +2642,38 @@ class ExampleScenarioVersion extends BackboneElement {
     }
   }
 
+  /// Creates a new [ExampleScenarioVersion]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ExampleScenarioVersion createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'versionId':
+        {
+          return copyWith(versionId: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ExampleScenarioVersion clone() => throw UnimplementedError();
   @override
@@ -2812,6 +3045,38 @@ class ExampleScenarioContainedInstance extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ExampleScenarioContainedInstance]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ExampleScenarioContainedInstance createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'resourceId':
+        {
+          return copyWith(resourceId: FhirString.empty());
+        }
+      case 'versionId':
+        {
+          return copyWith(versionId: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -3269,6 +3534,50 @@ class ExampleScenarioProcess extends BackboneElement {
         return ['ExampleScenarioStep'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ExampleScenarioProcess]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ExampleScenarioProcess createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'preConditions':
+        {
+          return copyWith(preConditions: FhirMarkdown.empty());
+        }
+      case 'postConditions':
+        {
+          return copyWith(postConditions: FhirMarkdown.empty());
+        }
+      case 'step':
+        {
+          return copyWith(step: <ExampleScenarioStep>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -3735,6 +4044,46 @@ class ExampleScenarioStep extends BackboneElement {
         return ['ExampleScenarioAlternative'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ExampleScenarioStep]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ExampleScenarioStep createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'process':
+        {
+          return copyWith(process: <ExampleScenarioProcess>[]);
+        }
+      case 'pause':
+        {
+          return copyWith(pause: FhirBoolean.empty());
+        }
+      case 'operation':
+        {
+          return copyWith(operation: ExampleScenarioOperation.empty());
+        }
+      case 'alternative':
+        {
+          return copyWith(alternative: <ExampleScenarioAlternative>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -4356,6 +4705,70 @@ class ExampleScenarioOperation extends BackboneElement {
     }
   }
 
+  /// Creates a new [ExampleScenarioOperation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ExampleScenarioOperation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'number':
+        {
+          return copyWith(number: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'initiator':
+        {
+          return copyWith(initiator: FhirString.empty());
+        }
+      case 'receiver':
+        {
+          return copyWith(receiver: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'initiatorActive':
+        {
+          return copyWith(initiatorActive: FhirBoolean.empty());
+        }
+      case 'receiverActive':
+        {
+          return copyWith(receiverActive: FhirBoolean.empty());
+        }
+      case 'request':
+        {
+          return copyWith(request: ExampleScenarioContainedInstance.empty());
+        }
+      case 'response':
+        {
+          return copyWith(response: ExampleScenarioContainedInstance.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ExampleScenarioOperation clone() => throw UnimplementedError();
   @override
@@ -4823,6 +5236,42 @@ class ExampleScenarioAlternative extends BackboneElement {
         return ['ExampleScenarioStep'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ExampleScenarioAlternative]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ExampleScenarioAlternative createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'step':
+        {
+          return copyWith(step: <ExampleScenarioStep>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

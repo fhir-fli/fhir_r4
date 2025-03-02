@@ -679,6 +679,94 @@ class Slot extends DomainResource {
     }
   }
 
+  /// Creates a new [Slot]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Slot createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'serviceCategory':
+        {
+          return copyWith(serviceCategory: <CodeableConcept>[]);
+        }
+      case 'serviceType':
+        {
+          return copyWith(serviceType: <CodeableConcept>[]);
+        }
+      case 'specialty':
+        {
+          return copyWith(specialty: <CodeableConcept>[]);
+        }
+      case 'appointmentType':
+        {
+          return copyWith(appointmentType: CodeableConcept.empty());
+        }
+      case 'schedule':
+        {
+          return copyWith(schedule: Reference.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: SlotStatus.empty());
+        }
+      case 'start':
+        {
+          return copyWith(start: FhirInstant.empty());
+        }
+      case 'end':
+        {
+          return copyWith(end: FhirInstant.empty());
+        }
+      case 'overbooked':
+        {
+          return copyWith(overbooked: FhirBoolean.empty());
+        }
+      case 'comment':
+        {
+          return copyWith(comment: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Slot clone() => throw UnimplementedError();
   @override

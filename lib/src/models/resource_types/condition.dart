@@ -1052,6 +1052,154 @@ class Condition extends DomainResource {
     }
   }
 
+  /// Creates a new [Condition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Condition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'clinicalStatus':
+        {
+          return copyWith(clinicalStatus: CodeableConcept.empty());
+        }
+      case 'verificationStatus':
+        {
+          return copyWith(verificationStatus: CodeableConcept.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'severity':
+        {
+          return copyWith(severity: CodeableConcept.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'bodySite':
+        {
+          return copyWith(bodySite: <CodeableConcept>[]);
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'onset':
+      case 'onsetX':
+      case 'onsetDateTime':
+        {
+          return copyWith(onsetX: FhirDateTime.empty());
+        }
+      case 'onsetAge':
+        {
+          return copyWith(onsetX: Age.empty());
+        }
+      case 'onsetPeriod':
+        {
+          return copyWith(onsetX: Period.empty());
+        }
+      case 'onsetRange':
+        {
+          return copyWith(onsetX: Range.empty());
+        }
+      case 'onsetString':
+        {
+          return copyWith(onsetX: FhirString.empty());
+        }
+      case 'abatement':
+      case 'abatementX':
+      case 'abatementDateTime':
+        {
+          return copyWith(abatementX: FhirDateTime.empty());
+        }
+      case 'abatementAge':
+        {
+          return copyWith(abatementX: Age.empty());
+        }
+      case 'abatementPeriod':
+        {
+          return copyWith(abatementX: Period.empty());
+        }
+      case 'abatementRange':
+        {
+          return copyWith(abatementX: Range.empty());
+        }
+      case 'abatementString':
+        {
+          return copyWith(abatementX: FhirString.empty());
+        }
+      case 'recordedDate':
+        {
+          return copyWith(recordedDate: FhirDateTime.empty());
+        }
+      case 'recorder':
+        {
+          return copyWith(recorder: Reference.empty());
+        }
+      case 'asserter':
+        {
+          return copyWith(asserter: Reference.empty());
+        }
+      case 'stage':
+        {
+          return copyWith(stage: <ConditionStage>[]);
+        }
+      case 'evidence':
+        {
+          return copyWith(evidence: <ConditionEvidence>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Condition clone() => throw UnimplementedError();
   @override
@@ -1659,6 +1807,42 @@ class ConditionStage extends BackboneElement {
     }
   }
 
+  /// Creates a new [ConditionStage]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ConditionStage createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'summary':
+        {
+          return copyWith(summary: CodeableConcept.empty());
+        }
+      case 'assessment':
+        {
+          return copyWith(assessment: <Reference>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ConditionStage clone() => throw UnimplementedError();
   @override
@@ -2053,6 +2237,38 @@ class ConditionEvidence extends BackboneElement {
         return ['Reference'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ConditionEvidence]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ConditionEvidence createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: <CodeableConcept>[]);
+        }
+      case 'detail':
+        {
+          return copyWith(detail: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

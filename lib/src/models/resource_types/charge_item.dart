@@ -1214,6 +1214,170 @@ class ChargeItem extends DomainResource {
     }
   }
 
+  /// Creates a new [ChargeItem]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ChargeItem createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'definitionUri':
+        {
+          return copyWith(definitionUri: <FhirUri>[]);
+        }
+      case 'definitionCanonical':
+        {
+          return copyWith(definitionCanonical: <FhirCanonical>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: ChargeItemStatus.empty());
+        }
+      case 'partOf':
+        {
+          return copyWith(partOf: <Reference>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'context':
+        {
+          return copyWith(context: Reference.empty());
+        }
+      case 'occurrence':
+      case 'occurrenceX':
+      case 'occurrenceDateTime':
+        {
+          return copyWith(occurrenceX: FhirDateTime.empty());
+        }
+      case 'occurrencePeriod':
+        {
+          return copyWith(occurrenceX: Period.empty());
+        }
+      case 'occurrenceTiming':
+        {
+          return copyWith(occurrenceX: Timing.empty());
+        }
+      case 'performer':
+        {
+          return copyWith(performer: <ChargeItemPerformer>[]);
+        }
+      case 'performingOrganization':
+        {
+          return copyWith(performingOrganization: Reference.empty());
+        }
+      case 'requestingOrganization':
+        {
+          return copyWith(requestingOrganization: Reference.empty());
+        }
+      case 'costCenter':
+        {
+          return copyWith(costCenter: Reference.empty());
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'bodysite':
+        {
+          return copyWith(bodysite: <CodeableConcept>[]);
+        }
+      case 'factorOverride':
+        {
+          return copyWith(factorOverride: FhirDecimal.empty());
+        }
+      case 'priceOverride':
+        {
+          return copyWith(priceOverride: Money.empty());
+        }
+      case 'overrideReason':
+        {
+          return copyWith(overrideReason: FhirString.empty());
+        }
+      case 'enterer':
+        {
+          return copyWith(enterer: Reference.empty());
+        }
+      case 'enteredDate':
+        {
+          return copyWith(enteredDate: FhirDateTime.empty());
+        }
+      case 'reason':
+        {
+          return copyWith(reason: <CodeableConcept>[]);
+        }
+      case 'service':
+        {
+          return copyWith(service: <Reference>[]);
+        }
+      case 'product':
+      case 'productX':
+      case 'productReference':
+        {
+          return copyWith(productX: Reference.empty());
+        }
+      case 'productCodeableConcept':
+        {
+          return copyWith(productX: CodeableConcept.empty());
+        }
+      case 'account':
+        {
+          return copyWith(account: <Reference>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'supportingInformation':
+        {
+          return copyWith(supportingInformation: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ChargeItem clone() => throw UnimplementedError();
   @override
@@ -1893,6 +2057,38 @@ class ChargeItemPerformer extends BackboneElement {
         return ['Reference'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ChargeItemPerformer]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ChargeItemPerformer createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'function':
+        {
+          return copyWith(function_: CodeableConcept.empty());
+        }
+      case 'actor':
+        {
+          return copyWith(actor: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

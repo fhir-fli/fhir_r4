@@ -707,6 +707,96 @@ class Provenance extends DomainResource {
     }
   }
 
+  /// Creates a new [Provenance]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Provenance createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'target':
+        {
+          return copyWith(target: <Reference>[]);
+        }
+      case 'occurred':
+      case 'occurredX':
+      case 'occurredPeriod':
+        {
+          return copyWith(occurredX: Period.empty());
+        }
+      case 'occurredDateTime':
+        {
+          return copyWith(occurredX: FhirDateTime.empty());
+        }
+      case 'recorded':
+        {
+          return copyWith(recorded: FhirInstant.empty());
+        }
+      case 'policy':
+        {
+          return copyWith(policy: <FhirUri>[]);
+        }
+      case 'location':
+        {
+          return copyWith(location: Reference.empty());
+        }
+      case 'reason':
+        {
+          return copyWith(reason: <CodeableConcept>[]);
+        }
+      case 'activity':
+        {
+          return copyWith(activity: CodeableConcept.empty());
+        }
+      case 'agent':
+        {
+          return copyWith(agent: <ProvenanceAgent>[]);
+        }
+      case 'entity':
+        {
+          return copyWith(entity: <ProvenanceEntity>[]);
+        }
+      case 'signature':
+        {
+          return copyWith(signature: <Signature>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Provenance clone() => throw UnimplementedError();
   @override
@@ -1284,6 +1374,46 @@ class ProvenanceAgent extends BackboneElement {
     }
   }
 
+  /// Creates a new [ProvenanceAgent]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ProvenanceAgent createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'role':
+        {
+          return copyWith(role: <CodeableConcept>[]);
+        }
+      case 'who':
+        {
+          return copyWith(who: Reference.empty());
+        }
+      case 'onBehalfOf':
+        {
+          return copyWith(onBehalfOf: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ProvenanceAgent clone() => throw UnimplementedError();
   @override
@@ -1710,6 +1840,42 @@ class ProvenanceEntity extends BackboneElement {
         return ['ProvenanceAgent'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ProvenanceEntity]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ProvenanceEntity createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'role':
+        {
+          return copyWith(role: ProvenanceEntityRole.empty());
+        }
+      case 'what':
+        {
+          return copyWith(what: Reference.empty());
+        }
+      case 'agent':
+        {
+          return copyWith(agent: <ProvenanceAgent>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

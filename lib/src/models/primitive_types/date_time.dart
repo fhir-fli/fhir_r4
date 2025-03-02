@@ -335,4 +335,8 @@ class FhirDateTime extends FhirDateTimeBase
 
   /// Returns a new [FhirDateTime] with extensions disallowed.
   FhirDateTime noExtensions() => copyWith(disallowExtensions: true);
+
+  /// Creates an empty property in the object
+  @override
+  FhirDateTime createProperty(String propertyName) => this;
 }

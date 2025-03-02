@@ -996,6 +996,136 @@ class ClinicalImpression extends DomainResource {
     }
   }
 
+  /// Creates a new [ClinicalImpression]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClinicalImpression createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: ClinicalImpressionStatus.empty());
+        }
+      case 'statusReason':
+        {
+          return copyWith(statusReason: CodeableConcept.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'effective':
+      case 'effectiveX':
+      case 'effectiveDateTime':
+        {
+          return copyWith(effectiveX: FhirDateTime.empty());
+        }
+      case 'effectivePeriod':
+        {
+          return copyWith(effectiveX: Period.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'assessor':
+        {
+          return copyWith(assessor: Reference.empty());
+        }
+      case 'previous':
+        {
+          return copyWith(previous: Reference.empty());
+        }
+      case 'problem':
+        {
+          return copyWith(problem: <Reference>[]);
+        }
+      case 'investigation':
+        {
+          return copyWith(investigation: <ClinicalImpressionInvestigation>[]);
+        }
+      case 'protocol':
+        {
+          return copyWith(protocol: <FhirUri>[]);
+        }
+      case 'summary':
+        {
+          return copyWith(summary: FhirString.empty());
+        }
+      case 'finding':
+        {
+          return copyWith(finding: <ClinicalImpressionFinding>[]);
+        }
+      case 'prognosisCodeableConcept':
+        {
+          return copyWith(prognosisCodeableConcept: <CodeableConcept>[]);
+        }
+      case 'prognosisReference':
+        {
+          return copyWith(prognosisReference: <Reference>[]);
+        }
+      case 'supportingInfo':
+        {
+          return copyWith(supportingInfo: <Reference>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ClinicalImpression clone() => throw UnimplementedError();
   @override
@@ -1626,6 +1756,38 @@ class ClinicalImpressionInvestigation extends BackboneElement {
     }
   }
 
+  /// Creates a new [ClinicalImpressionInvestigation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClinicalImpressionInvestigation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'item':
+        {
+          return copyWith(item: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ClinicalImpressionInvestigation clone() => throw UnimplementedError();
   @override
@@ -2032,6 +2194,42 @@ class ClinicalImpressionFinding extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ClinicalImpressionFinding]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClinicalImpressionFinding createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'itemCodeableConcept':
+        {
+          return copyWith(itemCodeableConcept: CodeableConcept.empty());
+        }
+      case 'itemReference':
+        {
+          return copyWith(itemReference: Reference.empty());
+        }
+      case 'basis':
+        {
+          return copyWith(basis: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

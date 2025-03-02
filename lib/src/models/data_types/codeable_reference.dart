@@ -274,6 +274,34 @@ class CodeableReference extends DataType
     }
   }
 
+  /// Creates a new [CodeableReference]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CodeableReference createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'concept':
+        {
+          return copyWith(concept: CodeableConcept.empty());
+        }
+      case 'reference':
+        {
+          return copyWith(reference: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CodeableReference clone() => throw UnimplementedError();
   @override

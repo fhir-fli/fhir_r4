@@ -723,6 +723,100 @@ class MessageHeader extends DomainResource {
     }
   }
 
+  /// Creates a new [MessageHeader]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MessageHeader createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'event':
+      case 'eventX':
+      case 'eventCoding':
+        {
+          return copyWith(eventX: Coding.empty());
+        }
+      case 'eventUri':
+        {
+          return copyWith(eventX: FhirUri.empty());
+        }
+      case 'destination':
+        {
+          return copyWith(destination: <MessageHeaderDestination>[]);
+        }
+      case 'sender':
+        {
+          return copyWith(sender: Reference.empty());
+        }
+      case 'enterer':
+        {
+          return copyWith(enterer: Reference.empty());
+        }
+      case 'author':
+        {
+          return copyWith(author: Reference.empty());
+        }
+      case 'source':
+        {
+          return copyWith(source: MessageHeaderSource.empty());
+        }
+      case 'responsible':
+        {
+          return copyWith(responsible: Reference.empty());
+        }
+      case 'reason':
+        {
+          return copyWith(reason: CodeableConcept.empty());
+        }
+      case 'response':
+        {
+          return copyWith(response: MessageHeaderResponse.empty());
+        }
+      case 'focus':
+        {
+          return copyWith(focus: <Reference>[]);
+        }
+      case 'definition':
+        {
+          return copyWith(definition: FhirCanonical.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MessageHeader clone() => throw UnimplementedError();
   @override
@@ -1277,6 +1371,46 @@ class MessageHeaderDestination extends BackboneElement {
     }
   }
 
+  /// Creates a new [MessageHeaderDestination]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MessageHeaderDestination createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'target':
+        {
+          return copyWith(target: Reference.empty());
+        }
+      case 'endpoint':
+        {
+          return copyWith(endpoint: FhirUrl.empty());
+        }
+      case 'receiver':
+        {
+          return copyWith(receiver: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MessageHeaderDestination clone() => throw UnimplementedError();
   @override
@@ -1748,6 +1882,50 @@ class MessageHeaderSource extends BackboneElement {
     }
   }
 
+  /// Creates a new [MessageHeaderSource]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MessageHeaderSource createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'software':
+        {
+          return copyWith(software: FhirString.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: ContactPoint.empty());
+        }
+      case 'endpoint':
+        {
+          return copyWith(endpoint: FhirUrl.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MessageHeaderSource clone() => throw UnimplementedError();
   @override
@@ -2170,6 +2348,42 @@ class MessageHeaderResponse extends BackboneElement {
         return ['Reference'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [MessageHeaderResponse]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MessageHeaderResponse createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: FhirId.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: ResponseType.empty());
+        }
+      case 'details':
+        {
+          return copyWith(details: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

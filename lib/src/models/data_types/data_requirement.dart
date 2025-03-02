@@ -515,6 +515,64 @@ class DataRequirement extends DataType
     }
   }
 
+  /// Creates a new [DataRequirement]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DataRequirement createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: FHIRAllTypes.empty());
+        }
+      case 'profile':
+        {
+          return copyWith(profile: <FhirCanonical>[]);
+        }
+      case 'subject':
+      case 'subjectX':
+      case 'subjectCodeableConcept':
+        {
+          return copyWith(subjectX: CodeableConcept.empty());
+        }
+      case 'subjectReference':
+        {
+          return copyWith(subjectX: Reference.empty());
+        }
+      case 'mustSupport':
+        {
+          return copyWith(mustSupport: <FhirString>[]);
+        }
+      case 'codeFilter':
+        {
+          return copyWith(codeFilter: <DataRequirementCodeFilter>[]);
+        }
+      case 'dateFilter':
+        {
+          return copyWith(dateFilter: <DataRequirementDateFilter>[]);
+        }
+      case 'limit':
+        {
+          return copyWith(limit: FhirPositiveInt.empty());
+        }
+      case 'sort':
+        {
+          return copyWith(sort: <DataRequirementSort>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   DataRequirement clone() => throw UnimplementedError();
   @override
@@ -1005,6 +1063,42 @@ class DataRequirementCodeFilter extends Element {
     }
   }
 
+  /// Creates a new [DataRequirementCodeFilter]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DataRequirementCodeFilter createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'path':
+        {
+          return copyWith(path: FhirString.empty());
+        }
+      case 'searchParam':
+        {
+          return copyWith(searchParam: FhirString.empty());
+        }
+      case 'valueSet':
+        {
+          return copyWith(valueSet: FhirCanonical.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: <Coding>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   DataRequirementCodeFilter clone() => throw UnimplementedError();
   @override
@@ -1463,6 +1557,48 @@ class DataRequirementDateFilter extends Element {
     }
   }
 
+  /// Creates a new [DataRequirementDateFilter]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DataRequirementDateFilter createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'path':
+        {
+          return copyWith(path: FhirString.empty());
+        }
+      case 'searchParam':
+        {
+          return copyWith(searchParam: FhirString.empty());
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueDateTime':
+        {
+          return copyWith(valueX: FhirDateTime.empty());
+        }
+      case 'valuePeriod':
+        {
+          return copyWith(valueX: Period.empty());
+        }
+      case 'valueDuration':
+        {
+          return copyWith(valueX: FhirDuration.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   DataRequirementDateFilter clone() => throw UnimplementedError();
   @override
@@ -1800,6 +1936,34 @@ class DataRequirementSort extends Element {
         return ['FhirCode'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [DataRequirementSort]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DataRequirementSort createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'path':
+        {
+          return copyWith(path: FhirString.empty());
+        }
+      case 'direction':
+        {
+          return copyWith(direction: SortDirection.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

@@ -1566,6 +1566,221 @@ class Measure extends CanonicalResource {
     }
   }
 
+  /// Creates a new [Measure]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Measure createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'subtitle':
+        {
+          return copyWith(subtitle: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'subject':
+      case 'subjectX':
+      case 'subjectCodeableConcept':
+        {
+          return copyWith(subjectX: CodeableConcept.empty());
+        }
+      case 'subjectReference':
+        {
+          return copyWith(subjectX: Reference.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'usage':
+        {
+          return copyWith(usage: FhirString.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'approvalDate':
+        {
+          return copyWith(approvalDate: FhirDate.empty());
+        }
+      case 'lastReviewDate':
+        {
+          return copyWith(lastReviewDate: FhirDate.empty());
+        }
+      case 'effectivePeriod':
+        {
+          return copyWith(effectivePeriod: Period.empty());
+        }
+      case 'topic':
+        {
+          return copyWith(topic: <CodeableConcept>[]);
+        }
+      case 'author':
+        {
+          return copyWith(author: <ContactDetail>[]);
+        }
+      case 'editor':
+        {
+          return copyWith(editor: <ContactDetail>[]);
+        }
+      case 'reviewer':
+        {
+          return copyWith(reviewer: <ContactDetail>[]);
+        }
+      case 'endorser':
+        {
+          return copyWith(endorser: <ContactDetail>[]);
+        }
+      case 'relatedArtifact':
+        {
+          return copyWith(relatedArtifact: <RelatedArtifact>[]);
+        }
+      case 'library':
+        {
+          return copyWith(library_: <FhirCanonical>[]);
+        }
+      case 'disclaimer':
+        {
+          return copyWith(disclaimer: FhirMarkdown.empty());
+        }
+      case 'scoring':
+        {
+          return copyWith(scoring: CodeableConcept.empty());
+        }
+      case 'compositeScoring':
+        {
+          return copyWith(compositeScoring: CodeableConcept.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: <CodeableConcept>[]);
+        }
+      case 'riskAdjustment':
+        {
+          return copyWith(riskAdjustment: FhirString.empty());
+        }
+      case 'rateAggregation':
+        {
+          return copyWith(rateAggregation: FhirString.empty());
+        }
+      case 'rationale':
+        {
+          return copyWith(rationale: FhirMarkdown.empty());
+        }
+      case 'clinicalRecommendationStatement':
+        {
+          return copyWith(
+              clinicalRecommendationStatement: FhirMarkdown.empty(),);
+        }
+      case 'improvementNotation':
+        {
+          return copyWith(improvementNotation: CodeableConcept.empty());
+        }
+      case 'definition':
+        {
+          return copyWith(definition: <FhirMarkdown>[]);
+        }
+      case 'guidance':
+        {
+          return copyWith(guidance: FhirMarkdown.empty());
+        }
+      case 'group':
+        {
+          return copyWith(group: <MeasureGroup>[]);
+        }
+      case 'supplementalData':
+        {
+          return copyWith(supplementalData: <MeasureSupplementalData>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Measure clone() => throw UnimplementedError();
   @override
@@ -2462,6 +2677,46 @@ class MeasureGroup extends BackboneElement {
     }
   }
 
+  /// Creates a new [MeasureGroup]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MeasureGroup createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'population':
+        {
+          return copyWith(population: <MeasurePopulation>[]);
+        }
+      case 'stratifier':
+        {
+          return copyWith(stratifier: <MeasureStratifier>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MeasureGroup clone() => throw UnimplementedError();
   @override
@@ -2889,6 +3144,42 @@ class MeasurePopulation extends BackboneElement {
         return ['FhirExpression'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [MeasurePopulation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MeasurePopulation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'criteria':
+        {
+          return copyWith(criteria: FhirExpression.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -3339,6 +3630,46 @@ class MeasureStratifier extends BackboneElement {
     }
   }
 
+  /// Creates a new [MeasureStratifier]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MeasureStratifier createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'criteria':
+        {
+          return copyWith(criteria: FhirExpression.empty());
+        }
+      case 'component':
+        {
+          return copyWith(component: <MeasureComponent>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MeasureStratifier clone() => throw UnimplementedError();
   @override
@@ -3766,6 +4097,42 @@ class MeasureComponent extends BackboneElement {
         return ['FhirExpression'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [MeasureComponent]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MeasureComponent createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'criteria':
+        {
+          return copyWith(criteria: FhirExpression.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -4217,6 +4584,46 @@ class MeasureSupplementalData extends BackboneElement {
         return ['FhirExpression'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [MeasureSupplementalData]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MeasureSupplementalData createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'usage':
+        {
+          return copyWith(usage: <CodeableConcept>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'criteria':
+        {
+          return copyWith(criteria: FhirExpression.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

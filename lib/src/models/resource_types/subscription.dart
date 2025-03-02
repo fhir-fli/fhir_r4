@@ -559,6 +559,78 @@ class Subscription extends DomainResource {
     }
   }
 
+  /// Creates a new [Subscription]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Subscription createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: SubscriptionStatusCodes.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactPoint>[]);
+        }
+      case 'end':
+        {
+          return copyWith(end: FhirInstant.empty());
+        }
+      case 'reason':
+        {
+          return copyWith(reason: FhirString.empty());
+        }
+      case 'criteria':
+        {
+          return copyWith(criteria: FhirString.empty());
+        }
+      case 'error':
+        {
+          return copyWith(error: FhirString.empty());
+        }
+      case 'channel':
+        {
+          return copyWith(channel: SubscriptionChannel.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Subscription clone() => throw UnimplementedError();
   @override
@@ -1072,6 +1144,46 @@ class SubscriptionChannel extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [SubscriptionChannel]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubscriptionChannel createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: SubscriptionChannelType.empty());
+        }
+      case 'endpoint':
+        {
+          return copyWith(endpoint: FhirUrl.empty());
+        }
+      case 'payload':
+        {
+          return copyWith(payload: FhirCode.empty());
+        }
+      case 'header':
+        {
+          return copyWith(header: <FhirString>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

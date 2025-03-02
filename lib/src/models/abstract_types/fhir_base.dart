@@ -164,6 +164,9 @@ abstract class FhirBase {
     return updated;
   }
 
+  /// Creates an empty property in the object
+  FhirBase createProperty(String propertyName);
+
   /// Deep equality check.
   bool equalsDeep(FhirBase? o) {
     return o != null;

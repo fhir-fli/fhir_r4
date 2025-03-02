@@ -305,6 +305,34 @@ class Range extends DataType
     }
   }
 
+  /// Creates a new [Range]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Range createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'low':
+        {
+          return copyWith(low: Quantity.empty());
+        }
+      case 'high':
+        {
+          return copyWith(high: Quantity.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Range clone() => throw UnimplementedError();
   @override

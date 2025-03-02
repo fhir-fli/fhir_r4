@@ -920,6 +920,134 @@ class ConceptMap extends CanonicalResource {
     }
   }
 
+  /// Creates a new [ConceptMap]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ConceptMap createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: Identifier.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'source':
+      case 'sourceX':
+      case 'sourceUri':
+        {
+          return copyWith(sourceX: FhirUri.empty());
+        }
+      case 'sourceCanonical':
+        {
+          return copyWith(sourceX: FhirCanonical.empty());
+        }
+      case 'target':
+      case 'targetX':
+      case 'targetUri':
+        {
+          return copyWith(targetX: FhirUri.empty());
+        }
+      case 'targetCanonical':
+        {
+          return copyWith(targetX: FhirCanonical.empty());
+        }
+      case 'group':
+        {
+          return copyWith(group: <ConceptMapGroup>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ConceptMap clone() => throw UnimplementedError();
   @override
@@ -1606,6 +1734,54 @@ class ConceptMapGroup extends BackboneElement {
     }
   }
 
+  /// Creates a new [ConceptMapGroup]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ConceptMapGroup createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'source':
+        {
+          return copyWith(source: FhirUri.empty());
+        }
+      case 'sourceVersion':
+        {
+          return copyWith(sourceVersion: FhirString.empty());
+        }
+      case 'target':
+        {
+          return copyWith(target: FhirUri.empty());
+        }
+      case 'targetVersion':
+        {
+          return copyWith(targetVersion: FhirString.empty());
+        }
+      case 'element':
+        {
+          return copyWith(element: <ConceptMapElement>[]);
+        }
+      case 'unmapped':
+        {
+          return copyWith(unmapped: ConceptMapUnmapped.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ConceptMapGroup clone() => throw UnimplementedError();
   @override
@@ -2047,6 +2223,42 @@ class ConceptMapElement extends BackboneElement {
         return ['ConceptMapTarget'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ConceptMapElement]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ConceptMapElement createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: FhirCode.empty());
+        }
+      case 'display':
+        {
+          return copyWith(display: FhirString.empty());
+        }
+      case 'target':
+        {
+          return copyWith(target: <ConceptMapTarget>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2563,6 +2775,54 @@ class ConceptMapTarget extends BackboneElement {
     }
   }
 
+  /// Creates a new [ConceptMapTarget]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ConceptMapTarget createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: FhirCode.empty());
+        }
+      case 'display':
+        {
+          return copyWith(display: FhirString.empty());
+        }
+      case 'equivalence':
+        {
+          return copyWith(equivalence: ConceptMapEquivalence.empty());
+        }
+      case 'comment':
+        {
+          return copyWith(comment: FhirString.empty());
+        }
+      case 'dependsOn':
+        {
+          return copyWith(dependsOn: <ConceptMapDependsOn>[]);
+        }
+      case 'product':
+        {
+          return copyWith(product: <ConceptMapDependsOn>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ConceptMapTarget clone() => throw UnimplementedError();
   @override
@@ -3042,6 +3302,46 @@ class ConceptMapDependsOn extends BackboneElement {
     }
   }
 
+  /// Creates a new [ConceptMapDependsOn]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ConceptMapDependsOn createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'property':
+        {
+          return copyWith(property: FhirUri.empty());
+        }
+      case 'system':
+        {
+          return copyWith(system: FhirCanonical.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirString.empty());
+        }
+      case 'display':
+        {
+          return copyWith(display: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ConceptMapDependsOn clone() => throw UnimplementedError();
   @override
@@ -3492,6 +3792,46 @@ class ConceptMapUnmapped extends BackboneElement {
         return ['FhirCanonical'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ConceptMapUnmapped]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ConceptMapUnmapped createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'mode':
+        {
+          return copyWith(mode: ConceptMapGroupUnmappedMode.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: FhirCode.empty());
+        }
+      case 'display':
+        {
+          return copyWith(display: FhirString.empty());
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirCanonical.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

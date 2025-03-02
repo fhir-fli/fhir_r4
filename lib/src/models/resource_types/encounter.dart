@@ -1063,6 +1063,142 @@ class Encounter extends DomainResource {
     }
   }
 
+  /// Creates a new [Encounter]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Encounter createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: EncounterStatus.empty());
+        }
+      case 'statusHistory':
+        {
+          return copyWith(statusHistory: <EncounterStatusHistory>[]);
+        }
+      case 'class':
+        {
+          return copyWith(class_: Coding.empty());
+        }
+      case 'classHistory':
+        {
+          return copyWith(classHistory: <EncounterClassHistory>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: <CodeableConcept>[]);
+        }
+      case 'serviceType':
+        {
+          return copyWith(serviceType: CodeableConcept.empty());
+        }
+      case 'priority':
+        {
+          return copyWith(priority: CodeableConcept.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'episodeOfCare':
+        {
+          return copyWith(episodeOfCare: <Reference>[]);
+        }
+      case 'basedOn':
+        {
+          return copyWith(basedOn: <Reference>[]);
+        }
+      case 'participant':
+        {
+          return copyWith(participant: <EncounterParticipant>[]);
+        }
+      case 'appointment':
+        {
+          return copyWith(appointment: <Reference>[]);
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      case 'length':
+        {
+          return copyWith(length: FhirDuration.empty());
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: <CodeableConcept>[]);
+        }
+      case 'reasonReference':
+        {
+          return copyWith(reasonReference: <Reference>[]);
+        }
+      case 'diagnosis':
+        {
+          return copyWith(diagnosis: <EncounterDiagnosis>[]);
+        }
+      case 'account':
+        {
+          return copyWith(account: <Reference>[]);
+        }
+      case 'hospitalization':
+        {
+          return copyWith(hospitalization: EncounterHospitalization.empty());
+        }
+      case 'location':
+        {
+          return copyWith(location: <EncounterLocation>[]);
+        }
+      case 'serviceProvider':
+        {
+          return copyWith(serviceProvider: Reference.empty());
+        }
+      case 'partOf':
+        {
+          return copyWith(partOf: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Encounter clone() => throw UnimplementedError();
   @override
@@ -1735,6 +1871,38 @@ class EncounterStatusHistory extends BackboneElement {
     }
   }
 
+  /// Creates a new [EncounterStatusHistory]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EncounterStatusHistory createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: EncounterStatus.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   EncounterStatusHistory clone() => throw UnimplementedError();
   @override
@@ -2109,6 +2277,38 @@ class EncounterClassHistory extends BackboneElement {
         return ['Period'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [EncounterClassHistory]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EncounterClassHistory createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'class':
+        {
+          return copyWith(class_: Coding.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2514,6 +2714,42 @@ class EncounterParticipant extends BackboneElement {
         return ['Reference'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [EncounterParticipant]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EncounterParticipant createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: <CodeableConcept>[]);
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      case 'individual':
+        {
+          return copyWith(individual: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2932,6 +3168,42 @@ class EncounterDiagnosis extends BackboneElement {
         return ['FhirPositiveInt'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [EncounterDiagnosis]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EncounterDiagnosis createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'condition':
+        {
+          return copyWith(condition: Reference.empty());
+        }
+      case 'use':
+        {
+          return copyWith(use: CodeableConcept.empty());
+        }
+      case 'rank':
+        {
+          return copyWith(rank: FhirPositiveInt.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -3517,6 +3789,66 @@ class EncounterHospitalization extends BackboneElement {
     }
   }
 
+  /// Creates a new [EncounterHospitalization]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EncounterHospitalization createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'preAdmissionIdentifier':
+        {
+          return copyWith(preAdmissionIdentifier: Identifier.empty());
+        }
+      case 'origin':
+        {
+          return copyWith(origin: Reference.empty());
+        }
+      case 'admitSource':
+        {
+          return copyWith(admitSource: CodeableConcept.empty());
+        }
+      case 'reAdmission':
+        {
+          return copyWith(reAdmission: CodeableConcept.empty());
+        }
+      case 'dietPreference':
+        {
+          return copyWith(dietPreference: <CodeableConcept>[]);
+        }
+      case 'specialCourtesy':
+        {
+          return copyWith(specialCourtesy: <CodeableConcept>[]);
+        }
+      case 'specialArrangement':
+        {
+          return copyWith(specialArrangement: <CodeableConcept>[]);
+        }
+      case 'destination':
+        {
+          return copyWith(destination: Reference.empty());
+        }
+      case 'dischargeDisposition':
+        {
+          return copyWith(dischargeDisposition: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   EncounterHospitalization clone() => throw UnimplementedError();
   @override
@@ -4020,6 +4352,46 @@ class EncounterLocation extends BackboneElement {
         return ['Period'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [EncounterLocation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EncounterLocation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'location':
+        {
+          return copyWith(location: Reference.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: EncounterLocationStatus.empty());
+        }
+      case 'physicalType':
+        {
+          return copyWith(physicalType: CodeableConcept.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

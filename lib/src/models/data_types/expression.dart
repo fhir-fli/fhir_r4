@@ -363,6 +363,46 @@ class FhirExpression extends DataType
     }
   }
 
+  /// Creates a new [FhirExpression]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  FhirExpression createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirId.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: ExpressionLanguage.empty());
+        }
+      case 'expression':
+        {
+          return copyWith(expression: FhirString.empty());
+        }
+      case 'reference':
+        {
+          return copyWith(reference: FhirUri.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   FhirExpression clone() => throw UnimplementedError();
   @override

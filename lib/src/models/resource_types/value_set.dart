@@ -839,6 +839,122 @@ class ValueSet extends CanonicalResource {
     }
   }
 
+  /// Creates a new [ValueSet]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ValueSet createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'immutable':
+        {
+          return copyWith(immutable: FhirBoolean.empty());
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'compose':
+        {
+          return copyWith(compose: ValueSetCompose.empty());
+        }
+      case 'expansion':
+        {
+          return copyWith(expansion: ValueSetExpansion.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ValueSet clone() => throw UnimplementedError();
   @override
@@ -1480,6 +1596,46 @@ class ValueSetCompose extends BackboneElement {
     }
   }
 
+  /// Creates a new [ValueSetCompose]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ValueSetCompose createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'lockedDate':
+        {
+          return copyWith(lockedDate: FhirDate.empty());
+        }
+      case 'inactive':
+        {
+          return copyWith(inactive: FhirBoolean.empty());
+        }
+      case 'include':
+        {
+          return copyWith(include: <ValueSetInclude>[]);
+        }
+      case 'exclude':
+        {
+          return copyWith(exclude: <ValueSetInclude>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ValueSetCompose clone() => throw UnimplementedError();
   @override
@@ -1979,6 +2135,50 @@ class ValueSetInclude extends BackboneElement {
     }
   }
 
+  /// Creates a new [ValueSetInclude]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ValueSetInclude createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'system':
+        {
+          return copyWith(system: FhirUri.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'concept':
+        {
+          return copyWith(concept: <ValueSetConcept>[]);
+        }
+      case 'filter':
+        {
+          return copyWith(filter: <ValueSetFilter>[]);
+        }
+      case 'valueSet':
+        {
+          return copyWith(valueSet: <FhirCanonical>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ValueSetInclude clone() => throw UnimplementedError();
   @override
@@ -2431,6 +2631,42 @@ class ValueSetConcept extends BackboneElement {
     }
   }
 
+  /// Creates a new [ValueSetConcept]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ValueSetConcept createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: FhirCode.empty());
+        }
+      case 'display':
+        {
+          return copyWith(display: FhirString.empty());
+        }
+      case 'designation':
+        {
+          return copyWith(designation: <ValueSetDesignation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ValueSetConcept clone() => throw UnimplementedError();
   @override
@@ -2847,6 +3083,42 @@ class ValueSetDesignation extends BackboneElement {
     }
   }
 
+  /// Creates a new [ValueSetDesignation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ValueSetDesignation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'use':
+        {
+          return copyWith(use: Coding.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ValueSetDesignation clone() => throw UnimplementedError();
   @override
@@ -3258,6 +3530,42 @@ class ValueSetFilter extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ValueSetFilter]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ValueSetFilter createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'property':
+        {
+          return copyWith(property: FhirCode.empty());
+        }
+      case 'op':
+        {
+          return copyWith(op: FilterOperator.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -3767,6 +4075,54 @@ class ValueSetExpansion extends BackboneElement {
         return ['ValueSetContains'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ValueSetExpansion]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ValueSetExpansion createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: FhirUri.empty());
+        }
+      case 'timestamp':
+        {
+          return copyWith(timestamp: FhirDateTime.empty());
+        }
+      case 'total':
+        {
+          return copyWith(total: FhirInteger.empty());
+        }
+      case 'offset':
+        {
+          return copyWith(offset: FhirInteger.empty());
+        }
+      case 'parameter':
+        {
+          return copyWith(parameter: <ValueSetParameter>[]);
+        }
+      case 'contains':
+        {
+          return copyWith(contains: <ValueSetContains>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -4332,6 +4688,64 @@ class ValueSetParameter extends BackboneElement {
     }
   }
 
+  /// Creates a new [ValueSetParameter]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ValueSetParameter createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueString':
+        {
+          return copyWith(valueX: FhirString.empty());
+        }
+      case 'valueBoolean':
+        {
+          return copyWith(valueX: FhirBoolean.empty());
+        }
+      case 'valueInteger':
+        {
+          return copyWith(valueX: FhirInteger.empty());
+        }
+      case 'valueDecimal':
+        {
+          return copyWith(valueX: FhirDecimal.empty());
+        }
+      case 'valueUri':
+        {
+          return copyWith(valueX: FhirUri.empty());
+        }
+      case 'valueCode':
+        {
+          return copyWith(valueX: FhirCode.empty());
+        }
+      case 'valueDateTime':
+        {
+          return copyWith(valueX: FhirDateTime.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ValueSetParameter clone() => throw UnimplementedError();
   @override
@@ -4887,6 +5301,62 @@ class ValueSetContains extends BackboneElement {
         return ['ValueSetContains'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ValueSetContains]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ValueSetContains createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'system':
+        {
+          return copyWith(system: FhirUri.empty());
+        }
+      case 'abstract':
+        {
+          return copyWith(abstract_: FhirBoolean.empty());
+        }
+      case 'inactive':
+        {
+          return copyWith(inactive: FhirBoolean.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: FhirCode.empty());
+        }
+      case 'display':
+        {
+          return copyWith(display: FhirString.empty());
+        }
+      case 'designation':
+        {
+          return copyWith(designation: <ValueSetDesignation>[]);
+        }
+      case 'contains':
+        {
+          return copyWith(contains: <ValueSetContains>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

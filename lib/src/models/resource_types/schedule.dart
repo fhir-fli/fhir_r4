@@ -605,6 +605,82 @@ class Schedule extends DomainResource {
     }
   }
 
+  /// Creates a new [Schedule]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Schedule createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'active':
+        {
+          return copyWith(active: FhirBoolean.empty());
+        }
+      case 'serviceCategory':
+        {
+          return copyWith(serviceCategory: <CodeableConcept>[]);
+        }
+      case 'serviceType':
+        {
+          return copyWith(serviceType: <CodeableConcept>[]);
+        }
+      case 'specialty':
+        {
+          return copyWith(specialty: <CodeableConcept>[]);
+        }
+      case 'actor':
+        {
+          return copyWith(actor: <Reference>[]);
+        }
+      case 'planningHorizon':
+        {
+          return copyWith(planningHorizon: Period.empty());
+        }
+      case 'comment':
+        {
+          return copyWith(comment: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Schedule clone() => throw UnimplementedError();
   @override

@@ -1052,6 +1052,142 @@ class Communication extends DomainResource {
     }
   }
 
+  /// Creates a new [Communication]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Communication createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'instantiatesCanonical':
+        {
+          return copyWith(instantiatesCanonical: <FhirCanonical>[]);
+        }
+      case 'instantiatesUri':
+        {
+          return copyWith(instantiatesUri: <FhirUri>[]);
+        }
+      case 'basedOn':
+        {
+          return copyWith(basedOn: <Reference>[]);
+        }
+      case 'partOf':
+        {
+          return copyWith(partOf: <Reference>[]);
+        }
+      case 'inResponseTo':
+        {
+          return copyWith(inResponseTo: <Reference>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: EventStatus.empty());
+        }
+      case 'statusReason':
+        {
+          return copyWith(statusReason: CodeableConcept.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'priority':
+        {
+          return copyWith(priority: RequestPriority.empty());
+        }
+      case 'medium':
+        {
+          return copyWith(medium: <CodeableConcept>[]);
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'topic':
+        {
+          return copyWith(topic: CodeableConcept.empty());
+        }
+      case 'about':
+        {
+          return copyWith(about: <Reference>[]);
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'sent':
+        {
+          return copyWith(sent: FhirDateTime.empty());
+        }
+      case 'received':
+        {
+          return copyWith(received: FhirDateTime.empty());
+        }
+      case 'recipient':
+        {
+          return copyWith(recipient: <Reference>[]);
+        }
+      case 'sender':
+        {
+          return copyWith(sender: Reference.empty());
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: <CodeableConcept>[]);
+        }
+      case 'reasonReference':
+        {
+          return copyWith(reasonReference: <Reference>[]);
+        }
+      case 'payload':
+        {
+          return copyWith(payload: <CommunicationPayload>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Communication clone() => throw UnimplementedError();
   @override
@@ -1761,6 +1897,44 @@ class CommunicationPayload extends BackboneElement {
         return ['Reference'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [CommunicationPayload]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CommunicationPayload createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'content':
+      case 'contentX':
+      case 'contentString':
+        {
+          return copyWith(contentX: FhirString.empty());
+        }
+      case 'contentAttachment':
+        {
+          return copyWith(contentX: Attachment.empty());
+        }
+      case 'contentReference':
+        {
+          return copyWith(contentX: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

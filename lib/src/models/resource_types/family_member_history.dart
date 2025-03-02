@@ -1099,6 +1099,160 @@ class FamilyMemberHistory extends DomainResource {
     }
   }
 
+  /// Creates a new [FamilyMemberHistory]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  FamilyMemberHistory createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'instantiatesCanonical':
+        {
+          return copyWith(instantiatesCanonical: <FhirCanonical>[]);
+        }
+      case 'instantiatesUri':
+        {
+          return copyWith(instantiatesUri: <FhirUri>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: FamilyHistoryStatus.empty());
+        }
+      case 'dataAbsentReason':
+        {
+          return copyWith(dataAbsentReason: CodeableConcept.empty());
+        }
+      case 'patient':
+        {
+          return copyWith(patient: Reference.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'relationship':
+        {
+          return copyWith(relationship: CodeableConcept.empty());
+        }
+      case 'sex':
+        {
+          return copyWith(sex: CodeableConcept.empty());
+        }
+      case 'born':
+      case 'bornX':
+      case 'bornPeriod':
+        {
+          return copyWith(bornX: Period.empty());
+        }
+      case 'bornDate':
+        {
+          return copyWith(bornX: FhirDate.empty());
+        }
+      case 'bornString':
+        {
+          return copyWith(bornX: FhirString.empty());
+        }
+      case 'age':
+      case 'ageX':
+      case 'ageAge':
+        {
+          return copyWith(ageX: Age.empty());
+        }
+      case 'ageRange':
+        {
+          return copyWith(ageX: Range.empty());
+        }
+      case 'ageString':
+        {
+          return copyWith(ageX: FhirString.empty());
+        }
+      case 'estimatedAge':
+        {
+          return copyWith(estimatedAge: FhirBoolean.empty());
+        }
+      case 'deceased':
+      case 'deceasedX':
+      case 'deceasedBoolean':
+        {
+          return copyWith(deceasedX: FhirBoolean.empty());
+        }
+      case 'deceasedAge':
+        {
+          return copyWith(deceasedX: Age.empty());
+        }
+      case 'deceasedRange':
+        {
+          return copyWith(deceasedX: Range.empty());
+        }
+      case 'deceasedDate':
+        {
+          return copyWith(deceasedX: FhirDate.empty());
+        }
+      case 'deceasedString':
+        {
+          return copyWith(deceasedX: FhirString.empty());
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: <CodeableConcept>[]);
+        }
+      case 'reasonReference':
+        {
+          return copyWith(reasonReference: <Reference>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'condition':
+        {
+          return copyWith(condition: <FamilyMemberHistoryCondition>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   FamilyMemberHistory clone() => throw UnimplementedError();
   @override
@@ -1858,6 +2012,64 @@ class FamilyMemberHistoryCondition extends BackboneElement {
         return ['Annotation'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [FamilyMemberHistoryCondition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  FamilyMemberHistoryCondition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'outcome':
+        {
+          return copyWith(outcome: CodeableConcept.empty());
+        }
+      case 'contributedToDeath':
+        {
+          return copyWith(contributedToDeath: FhirBoolean.empty());
+        }
+      case 'onset':
+      case 'onsetX':
+      case 'onsetAge':
+        {
+          return copyWith(onsetX: Age.empty());
+        }
+      case 'onsetRange':
+        {
+          return copyWith(onsetX: Range.empty());
+        }
+      case 'onsetPeriod':
+        {
+          return copyWith(onsetX: Period.empty());
+        }
+      case 'onsetString':
+        {
+          return copyWith(onsetX: FhirString.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

@@ -1031,6 +1031,144 @@ class Media extends DomainResource {
     }
   }
 
+  /// Creates a new [Media]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Media createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'basedOn':
+        {
+          return copyWith(basedOn: <Reference>[]);
+        }
+      case 'partOf':
+        {
+          return copyWith(partOf: <Reference>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: EventStatus.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'modality':
+        {
+          return copyWith(modality: CodeableConcept.empty());
+        }
+      case 'view':
+        {
+          return copyWith(view: CodeableConcept.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'created':
+      case 'createdX':
+      case 'createdDateTime':
+        {
+          return copyWith(createdX: FhirDateTime.empty());
+        }
+      case 'createdPeriod':
+        {
+          return copyWith(createdX: Period.empty());
+        }
+      case 'issued':
+        {
+          return copyWith(issued: FhirInstant.empty());
+        }
+      case 'operator':
+        {
+          return copyWith(operator_: Reference.empty());
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: <CodeableConcept>[]);
+        }
+      case 'bodySite':
+        {
+          return copyWith(bodySite: CodeableConcept.empty());
+        }
+      case 'deviceName':
+        {
+          return copyWith(deviceName: FhirString.empty());
+        }
+      case 'device':
+        {
+          return copyWith(device: Reference.empty());
+        }
+      case 'height':
+        {
+          return copyWith(height: FhirPositiveInt.empty());
+        }
+      case 'width':
+        {
+          return copyWith(width: FhirPositiveInt.empty());
+        }
+      case 'frames':
+        {
+          return copyWith(frames: FhirPositiveInt.empty());
+        }
+      case 'duration':
+        {
+          return copyWith(duration: FhirDecimal.empty());
+        }
+      case 'content':
+        {
+          return copyWith(content: Attachment.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Media clone() => throw UnimplementedError();
   @override

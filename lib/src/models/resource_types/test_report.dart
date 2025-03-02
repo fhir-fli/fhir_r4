@@ -697,6 +697,98 @@ class TestReport extends DomainResource {
     }
   }
 
+  /// Creates a new [TestReport]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestReport createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: Identifier.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: TestReportStatus.empty());
+        }
+      case 'testScript':
+        {
+          return copyWith(testScript: Reference.empty());
+        }
+      case 'result':
+        {
+          return copyWith(result: TestReportResult.empty());
+        }
+      case 'score':
+        {
+          return copyWith(score: FhirDecimal.empty());
+        }
+      case 'tester':
+        {
+          return copyWith(tester: FhirString.empty());
+        }
+      case 'issued':
+        {
+          return copyWith(issued: FhirDateTime.empty());
+        }
+      case 'participant':
+        {
+          return copyWith(participant: <TestReportParticipant>[]);
+        }
+      case 'setup':
+        {
+          return copyWith(setup: TestReportSetup.empty());
+        }
+      case 'test':
+        {
+          return copyWith(test: <TestReportTest>[]);
+        }
+      case 'teardown':
+        {
+          return copyWith(teardown: TestReportTeardown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   TestReport clone() => throw UnimplementedError();
   @override
@@ -1229,6 +1321,42 @@ class TestReportParticipant extends BackboneElement {
     }
   }
 
+  /// Creates a new [TestReportParticipant]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestReportParticipant createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: TestReportParticipantType.empty());
+        }
+      case 'uri':
+        {
+          return copyWith(uri: FhirUri.empty());
+        }
+      case 'display':
+        {
+          return copyWith(display: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   TestReportParticipant clone() => throw UnimplementedError();
   @override
@@ -1584,6 +1712,34 @@ class TestReportSetup extends BackboneElement {
         return ['TestReportAction'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [TestReportSetup]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestReportSetup createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'action':
+        {
+          return copyWith(action: <TestReportAction>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -1955,6 +2111,38 @@ class TestReportAction extends BackboneElement {
         return ['TestReportAssert'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [TestReportAction]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestReportAction createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'operation':
+        {
+          return copyWith(operation: TestReportOperation.empty());
+        }
+      case 'assert':
+        {
+          return copyWith(assert_: TestReportAssert.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2354,6 +2542,42 @@ class TestReportOperation extends BackboneElement {
         return ['FhirUri'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [TestReportOperation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestReportOperation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'result':
+        {
+          return copyWith(result: TestReportActionResult.empty());
+        }
+      case 'message':
+        {
+          return copyWith(message: FhirMarkdown.empty());
+        }
+      case 'detail':
+        {
+          return copyWith(detail: FhirUri.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2761,6 +2985,42 @@ class TestReportAssert extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [TestReportAssert]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestReportAssert createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'result':
+        {
+          return copyWith(result: TestReportActionResult.empty());
+        }
+      case 'message':
+        {
+          return copyWith(message: FhirMarkdown.empty());
+        }
+      case 'detail':
+        {
+          return copyWith(detail: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -3177,6 +3437,42 @@ class TestReportTest extends BackboneElement {
     }
   }
 
+  /// Creates a new [TestReportTest]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestReportTest createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'action':
+        {
+          return copyWith(action: <TestReportAction>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   TestReportTest clone() => throw UnimplementedError();
   @override
@@ -3564,6 +3860,38 @@ class TestReportAction1 extends BackboneElement {
     }
   }
 
+  /// Creates a new [TestReportAction1]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestReportAction1 createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'operation':
+        {
+          return copyWith(operation: TestReportOperation.empty());
+        }
+      case 'assert':
+        {
+          return copyWith(assert_: TestReportAssert.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   TestReportAction1 clone() => throw UnimplementedError();
   @override
@@ -3914,6 +4242,34 @@ class TestReportTeardown extends BackboneElement {
     }
   }
 
+  /// Creates a new [TestReportTeardown]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestReportTeardown createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'action':
+        {
+          return copyWith(action: <TestReportAction>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   TestReportTeardown clone() => throw UnimplementedError();
   @override
@@ -4255,6 +4611,34 @@ class TestReportAction2 extends BackboneElement {
         return ['TestReportOperation'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [TestReportAction2]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestReportAction2 createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'operation':
+        {
+          return copyWith(operation: TestReportOperation.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

@@ -809,6 +809,114 @@ class ImmunizationEvaluation extends DomainResource {
     }
   }
 
+  /// Creates a new [ImmunizationEvaluation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImmunizationEvaluation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: ImmunizationEvaluationStatusCodes.empty());
+        }
+      case 'patient':
+        {
+          return copyWith(patient: Reference.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'authority':
+        {
+          return copyWith(authority: Reference.empty());
+        }
+      case 'targetDisease':
+        {
+          return copyWith(targetDisease: CodeableConcept.empty());
+        }
+      case 'immunizationEvent':
+        {
+          return copyWith(immunizationEvent: Reference.empty());
+        }
+      case 'doseStatus':
+        {
+          return copyWith(doseStatus: CodeableConcept.empty());
+        }
+      case 'doseStatusReason':
+        {
+          return copyWith(doseStatusReason: <CodeableConcept>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'series':
+        {
+          return copyWith(series: FhirString.empty());
+        }
+      case 'doseNumber':
+      case 'doseNumberX':
+      case 'doseNumberPositiveInt':
+        {
+          return copyWith(doseNumberX: FhirPositiveInt.empty());
+        }
+      case 'doseNumberString':
+        {
+          return copyWith(doseNumberX: FhirString.empty());
+        }
+      case 'seriesDoses':
+      case 'seriesDosesX':
+      case 'seriesDosesPositiveInt':
+        {
+          return copyWith(seriesDosesX: FhirPositiveInt.empty());
+        }
+      case 'seriesDosesString':
+        {
+          return copyWith(seriesDosesX: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ImmunizationEvaluation clone() => throw UnimplementedError();
   @override

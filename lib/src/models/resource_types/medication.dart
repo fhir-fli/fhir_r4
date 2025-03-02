@@ -596,6 +596,82 @@ class Medication extends DomainResource {
     }
   }
 
+  /// Creates a new [Medication]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Medication createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: MedicationStatusCodes.empty());
+        }
+      case 'manufacturer':
+        {
+          return copyWith(manufacturer: Reference.empty());
+        }
+      case 'form':
+        {
+          return copyWith(form: CodeableConcept.empty());
+        }
+      case 'amount':
+        {
+          return copyWith(amount: Ratio.empty());
+        }
+      case 'ingredient':
+        {
+          return copyWith(ingredient: <MedicationIngredient>[]);
+        }
+      case 'batch':
+        {
+          return copyWith(batch: MedicationBatch.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Medication clone() => throw UnimplementedError();
   @override
@@ -1142,6 +1218,48 @@ class MedicationIngredient extends BackboneElement {
     }
   }
 
+  /// Creates a new [MedicationIngredient]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationIngredient createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'item':
+      case 'itemX':
+      case 'itemCodeableConcept':
+        {
+          return copyWith(itemX: CodeableConcept.empty());
+        }
+      case 'itemReference':
+        {
+          return copyWith(itemX: Reference.empty());
+        }
+      case 'isActive':
+        {
+          return copyWith(isActive: FhirBoolean.empty());
+        }
+      case 'strength':
+        {
+          return copyWith(strength: Ratio.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MedicationIngredient clone() => throw UnimplementedError();
   @override
@@ -1519,6 +1637,38 @@ class MedicationBatch extends BackboneElement {
         return ['FhirDateTime'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationBatch]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationBatch createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'lotNumber':
+        {
+          return copyWith(lotNumber: FhirString.empty());
+        }
+      case 'expirationDate':
+        {
+          return copyWith(expirationDate: FhirDateTime.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

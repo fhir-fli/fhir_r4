@@ -733,6 +733,105 @@ class ObservationDefinition extends DomainResource {
     }
   }
 
+  /// Creates a new [ObservationDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ObservationDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'permittedDataType':
+        {
+          return copyWith(permittedDataType: <ObservationDataType>[]);
+        }
+      case 'multipleResultsAllowed':
+        {
+          return copyWith(multipleResultsAllowed: FhirBoolean.empty());
+        }
+      case 'method':
+        {
+          return copyWith(method: CodeableConcept.empty());
+        }
+      case 'preferredReportName':
+        {
+          return copyWith(preferredReportName: FhirString.empty());
+        }
+      case 'quantitativeDetails':
+        {
+          return copyWith(
+              quantitativeDetails:
+                  ObservationDefinitionQuantitativeDetails.empty(),);
+        }
+      case 'qualifiedInterval':
+        {
+          return copyWith(
+              qualifiedInterval: <ObservationDefinitionQualifiedInterval>[],);
+        }
+      case 'validCodedValueSet':
+        {
+          return copyWith(validCodedValueSet: Reference.empty());
+        }
+      case 'normalCodedValueSet':
+        {
+          return copyWith(normalCodedValueSet: Reference.empty());
+        }
+      case 'abnormalCodedValueSet':
+        {
+          return copyWith(abnormalCodedValueSet: Reference.empty());
+        }
+      case 'criticalCodedValueSet':
+        {
+          return copyWith(criticalCodedValueSet: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ObservationDefinition clone() => throw UnimplementedError();
   @override
@@ -1319,6 +1418,46 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
     }
   }
 
+  /// Creates a new [ObservationDefinitionQuantitativeDetails]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ObservationDefinitionQuantitativeDetails createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'customaryUnit':
+        {
+          return copyWith(customaryUnit: CodeableConcept.empty());
+        }
+      case 'unit':
+        {
+          return copyWith(unit: CodeableConcept.empty());
+        }
+      case 'conversionFactor':
+        {
+          return copyWith(conversionFactor: FhirDecimal.empty());
+        }
+      case 'decimalPrecision':
+        {
+          return copyWith(decimalPrecision: FhirInteger.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ObservationDefinitionQuantitativeDetails clone() =>
       throw UnimplementedError();
@@ -1879,6 +2018,62 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ObservationDefinitionQualifiedInterval]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ObservationDefinitionQualifiedInterval createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'category':
+        {
+          return copyWith(category: ObservationRangeCategory.empty());
+        }
+      case 'range':
+        {
+          return copyWith(range: Range.empty());
+        }
+      case 'context':
+        {
+          return copyWith(context: CodeableConcept.empty());
+        }
+      case 'appliesTo':
+        {
+          return copyWith(appliesTo: <CodeableConcept>[]);
+        }
+      case 'gender':
+        {
+          return copyWith(gender: AdministrativeGender.empty());
+        }
+      case 'age':
+        {
+          return copyWith(age: Range.empty());
+        }
+      case 'gestationalAge':
+        {
+          return copyWith(gestationalAge: Range.empty());
+        }
+      case 'condition':
+        {
+          return copyWith(condition: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

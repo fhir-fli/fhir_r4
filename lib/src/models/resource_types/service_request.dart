@@ -1520,6 +1520,208 @@ class ServiceRequest extends DomainResource {
     }
   }
 
+  /// Creates a new [ServiceRequest]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ServiceRequest createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'instantiatesCanonical':
+        {
+          return copyWith(instantiatesCanonical: <FhirCanonical>[]);
+        }
+      case 'instantiatesUri':
+        {
+          return copyWith(instantiatesUri: <FhirUri>[]);
+        }
+      case 'basedOn':
+        {
+          return copyWith(basedOn: <Reference>[]);
+        }
+      case 'replaces':
+        {
+          return copyWith(replaces: <Reference>[]);
+        }
+      case 'requisition':
+        {
+          return copyWith(requisition: Identifier.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: RequestStatus.empty());
+        }
+      case 'intent':
+        {
+          return copyWith(intent: RequestIntent.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'priority':
+        {
+          return copyWith(priority: RequestPriority.empty());
+        }
+      case 'doNotPerform':
+        {
+          return copyWith(doNotPerform: FhirBoolean.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'orderDetail':
+        {
+          return copyWith(orderDetail: <CodeableConcept>[]);
+        }
+      case 'quantity':
+      case 'quantityX':
+      case 'quantityQuantity':
+        {
+          return copyWith(quantityX: Quantity.empty());
+        }
+      case 'quantityRatio':
+        {
+          return copyWith(quantityX: Ratio.empty());
+        }
+      case 'quantityRange':
+        {
+          return copyWith(quantityX: Range.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'occurrence':
+      case 'occurrenceX':
+      case 'occurrenceDateTime':
+        {
+          return copyWith(occurrenceX: FhirDateTime.empty());
+        }
+      case 'occurrencePeriod':
+        {
+          return copyWith(occurrenceX: Period.empty());
+        }
+      case 'occurrenceTiming':
+        {
+          return copyWith(occurrenceX: Timing.empty());
+        }
+      case 'asNeeded':
+      case 'asNeededX':
+      case 'asNeededBoolean':
+        {
+          return copyWith(asNeededX: FhirBoolean.empty());
+        }
+      case 'asNeededCodeableConcept':
+        {
+          return copyWith(asNeededX: CodeableConcept.empty());
+        }
+      case 'authoredOn':
+        {
+          return copyWith(authoredOn: FhirDateTime.empty());
+        }
+      case 'requester':
+        {
+          return copyWith(requester: Reference.empty());
+        }
+      case 'performerType':
+        {
+          return copyWith(performerType: CodeableConcept.empty());
+        }
+      case 'performer':
+        {
+          return copyWith(performer: <Reference>[]);
+        }
+      case 'locationCode':
+        {
+          return copyWith(locationCode: <CodeableConcept>[]);
+        }
+      case 'locationReference':
+        {
+          return copyWith(locationReference: <Reference>[]);
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: <CodeableConcept>[]);
+        }
+      case 'reasonReference':
+        {
+          return copyWith(reasonReference: <Reference>[]);
+        }
+      case 'insurance':
+        {
+          return copyWith(insurance: <Reference>[]);
+        }
+      case 'supportingInfo':
+        {
+          return copyWith(supportingInfo: <Reference>[]);
+        }
+      case 'specimen':
+        {
+          return copyWith(specimen: <Reference>[]);
+        }
+      case 'bodySite':
+        {
+          return copyWith(bodySite: <CodeableConcept>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'patientInstruction':
+        {
+          return copyWith(patientInstruction: FhirString.empty());
+        }
+      case 'relevantHistory':
+        {
+          return copyWith(relevantHistory: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ServiceRequest clone() => throw UnimplementedError();
   @override

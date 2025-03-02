@@ -362,6 +362,46 @@ class ProductShelfLife extends BackboneType {
     }
   }
 
+  /// Creates a new [ProductShelfLife]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ProductShelfLife createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: Identifier.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Quantity.empty());
+        }
+      case 'specialPrecautionsForStorage':
+        {
+          return copyWith(specialPrecautionsForStorage: <CodeableConcept>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ProductShelfLife clone() => throw UnimplementedError();
   @override

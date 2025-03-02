@@ -718,6 +718,98 @@ class RelatedPerson extends DomainResource {
     }
   }
 
+  /// Creates a new [RelatedPerson]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  RelatedPerson createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'active':
+        {
+          return copyWith(active: FhirBoolean.empty());
+        }
+      case 'patient':
+        {
+          return copyWith(patient: Reference.empty());
+        }
+      case 'relationship':
+        {
+          return copyWith(relationship: <CodeableConcept>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: <HumanName>[]);
+        }
+      case 'telecom':
+        {
+          return copyWith(telecom: <ContactPoint>[]);
+        }
+      case 'gender':
+        {
+          return copyWith(gender: AdministrativeGender.empty());
+        }
+      case 'birthDate':
+        {
+          return copyWith(birthDate: FhirDate.empty());
+        }
+      case 'address':
+        {
+          return copyWith(address: <Address>[]);
+        }
+      case 'photo':
+        {
+          return copyWith(photo: <Attachment>[]);
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      case 'communication':
+        {
+          return copyWith(communication: <RelatedPersonCommunication>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   RelatedPerson clone() => throw UnimplementedError();
   @override
@@ -1260,6 +1352,38 @@ class RelatedPersonCommunication extends BackboneElement {
         return ['FhirBoolean'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [RelatedPersonCommunication]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  RelatedPersonCommunication createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'language':
+        {
+          return copyWith(language: CodeableConcept.empty());
+        }
+      case 'preferred':
+        {
+          return copyWith(preferred: FhirBoolean.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

@@ -867,6 +867,118 @@ class NutritionOrder extends DomainResource {
     }
   }
 
+  /// Creates a new [NutritionOrder]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  NutritionOrder createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'instantiatesCanonical':
+        {
+          return copyWith(instantiatesCanonical: <FhirCanonical>[]);
+        }
+      case 'instantiatesUri':
+        {
+          return copyWith(instantiatesUri: <FhirUri>[]);
+        }
+      case 'instantiates':
+        {
+          return copyWith(instantiates: <FhirUri>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: RequestStatus.empty());
+        }
+      case 'intent':
+        {
+          return copyWith(intent: RequestIntent.empty());
+        }
+      case 'patient':
+        {
+          return copyWith(patient: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'dateTime':
+        {
+          return copyWith(dateTime: FhirDateTime.empty());
+        }
+      case 'orderer':
+        {
+          return copyWith(orderer: Reference.empty());
+        }
+      case 'allergyIntolerance':
+        {
+          return copyWith(allergyIntolerance: <Reference>[]);
+        }
+      case 'foodPreferenceModifier':
+        {
+          return copyWith(foodPreferenceModifier: <CodeableConcept>[]);
+        }
+      case 'excludeFoodModifier':
+        {
+          return copyWith(excludeFoodModifier: <CodeableConcept>[]);
+        }
+      case 'oralDiet':
+        {
+          return copyWith(oralDiet: NutritionOrderOralDiet.empty());
+        }
+      case 'supplement':
+        {
+          return copyWith(supplement: <NutritionOrderSupplement>[]);
+        }
+      case 'enteralFormula':
+        {
+          return copyWith(enteralFormula: NutritionOrderEnteralFormula.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   NutritionOrder clone() => throw UnimplementedError();
   @override
@@ -1596,6 +1708,54 @@ class NutritionOrderOralDiet extends BackboneElement {
     }
   }
 
+  /// Creates a new [NutritionOrderOralDiet]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  NutritionOrderOralDiet createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: <CodeableConcept>[]);
+        }
+      case 'schedule':
+        {
+          return copyWith(schedule: <Timing>[]);
+        }
+      case 'nutrient':
+        {
+          return copyWith(nutrient: <NutritionOrderNutrient>[]);
+        }
+      case 'texture':
+        {
+          return copyWith(texture: <NutritionOrderTexture>[]);
+        }
+      case 'fluidConsistencyType':
+        {
+          return copyWith(fluidConsistencyType: <CodeableConcept>[]);
+        }
+      case 'instruction':
+        {
+          return copyWith(instruction: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   NutritionOrderOralDiet clone() => throw UnimplementedError();
   @override
@@ -2036,6 +2196,38 @@ class NutritionOrderNutrient extends BackboneElement {
     }
   }
 
+  /// Creates a new [NutritionOrderNutrient]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  NutritionOrderNutrient createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'modifier':
+        {
+          return copyWith(modifier: CodeableConcept.empty());
+        }
+      case 'amount':
+        {
+          return copyWith(amount: Quantity.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   NutritionOrderNutrient clone() => throw UnimplementedError();
   @override
@@ -2408,6 +2600,38 @@ class NutritionOrderTexture extends BackboneElement {
         return ['CodeableConcept'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [NutritionOrderTexture]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  NutritionOrderTexture createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'modifier':
+        {
+          return copyWith(modifier: CodeableConcept.empty());
+        }
+      case 'foodType':
+        {
+          return copyWith(foodType: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2871,6 +3095,50 @@ class NutritionOrderSupplement extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [NutritionOrderSupplement]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  NutritionOrderSupplement createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'productName':
+        {
+          return copyWith(productName: FhirString.empty());
+        }
+      case 'schedule':
+        {
+          return copyWith(schedule: <Timing>[]);
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'instruction':
+        {
+          return copyWith(instruction: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -3488,6 +3756,66 @@ class NutritionOrderEnteralFormula extends BackboneElement {
     }
   }
 
+  /// Creates a new [NutritionOrderEnteralFormula]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  NutritionOrderEnteralFormula createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'baseFormulaType':
+        {
+          return copyWith(baseFormulaType: CodeableConcept.empty());
+        }
+      case 'baseFormulaProductName':
+        {
+          return copyWith(baseFormulaProductName: FhirString.empty());
+        }
+      case 'additiveType':
+        {
+          return copyWith(additiveType: CodeableConcept.empty());
+        }
+      case 'additiveProductName':
+        {
+          return copyWith(additiveProductName: FhirString.empty());
+        }
+      case 'caloricDensity':
+        {
+          return copyWith(caloricDensity: Quantity.empty());
+        }
+      case 'routeofAdministration':
+        {
+          return copyWith(routeofAdministration: CodeableConcept.empty());
+        }
+      case 'administration':
+        {
+          return copyWith(administration: <NutritionOrderAdministration>[]);
+        }
+      case 'maxVolumeToDeliver':
+        {
+          return copyWith(maxVolumeToDeliver: Quantity.empty());
+        }
+      case 'administrationInstruction':
+        {
+          return copyWith(administrationInstruction: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   NutritionOrderEnteralFormula clone() => throw UnimplementedError();
   @override
@@ -3998,6 +4326,48 @@ class NutritionOrderAdministration extends BackboneElement {
         return ['Ratio'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [NutritionOrderAdministration]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  NutritionOrderAdministration createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'schedule':
+        {
+          return copyWith(schedule: Timing.empty());
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'rate':
+      case 'rateX':
+      case 'rateQuantity':
+        {
+          return copyWith(rateX: Quantity.empty());
+        }
+      case 'rateRatio':
+        {
+          return copyWith(rateX: Ratio.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

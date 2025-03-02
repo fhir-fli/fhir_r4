@@ -755,6 +755,104 @@ class DetectedIssue extends DomainResource {
     }
   }
 
+  /// Creates a new [DetectedIssue]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DetectedIssue createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: ObservationStatus.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'severity':
+        {
+          return copyWith(severity: DetectedIssueSeverity.empty());
+        }
+      case 'patient':
+        {
+          return copyWith(patient: Reference.empty());
+        }
+      case 'identified':
+      case 'identifiedX':
+      case 'identifiedDateTime':
+        {
+          return copyWith(identifiedX: FhirDateTime.empty());
+        }
+      case 'identifiedPeriod':
+        {
+          return copyWith(identifiedX: Period.empty());
+        }
+      case 'author':
+        {
+          return copyWith(author: Reference.empty());
+        }
+      case 'implicated':
+        {
+          return copyWith(implicated: <Reference>[]);
+        }
+      case 'evidence':
+        {
+          return copyWith(evidence: <DetectedIssueEvidence>[]);
+        }
+      case 'detail':
+        {
+          return copyWith(detail: FhirString.empty());
+        }
+      case 'reference':
+        {
+          return copyWith(reference: FhirUri.empty());
+        }
+      case 'mitigation':
+        {
+          return copyWith(mitigation: <DetectedIssueMitigation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   DetectedIssue clone() => throw UnimplementedError();
   @override
@@ -1285,6 +1383,38 @@ class DetectedIssueEvidence extends BackboneElement {
     }
   }
 
+  /// Creates a new [DetectedIssueEvidence]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DetectedIssueEvidence createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: <CodeableConcept>[]);
+        }
+      case 'detail':
+        {
+          return copyWith(detail: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   DetectedIssueEvidence clone() => throw UnimplementedError();
   @override
@@ -1700,6 +1830,42 @@ class DetectedIssueMitigation extends BackboneElement {
         return ['Reference'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [DetectedIssueMitigation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DetectedIssueMitigation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'action':
+        {
+          return copyWith(action: CodeableConcept.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'author':
+        {
+          return copyWith(author: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

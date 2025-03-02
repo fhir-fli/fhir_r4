@@ -233,6 +233,10 @@ class FhirBase64Binary extends PrimitiveType<String?>
 
   /// Returns a new [FhirBase64Binary] with extensions disallowed.
   FhirBase64Binary noExtensions() => copyWith(disallowExtensions: true);
+
+  /// Creates an empty property in the object
+  @override
+  FhirBase64Binary createProperty(String propertyName) => this;
 }
 
 /// Enum for the detected file type

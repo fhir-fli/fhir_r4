@@ -683,6 +683,94 @@ class QuestionnaireResponse extends DomainResource {
     }
   }
 
+  /// Creates a new [QuestionnaireResponse]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  QuestionnaireResponse createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: Identifier.empty());
+        }
+      case 'basedOn':
+        {
+          return copyWith(basedOn: <Reference>[]);
+        }
+      case 'partOf':
+        {
+          return copyWith(partOf: <Reference>[]);
+        }
+      case 'questionnaire':
+        {
+          return copyWith(questionnaire: FhirCanonical.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: QuestionnaireResponseStatus.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'authored':
+        {
+          return copyWith(authored: FhirDateTime.empty());
+        }
+      case 'author':
+        {
+          return copyWith(author: Reference.empty());
+        }
+      case 'source':
+        {
+          return copyWith(source: Reference.empty());
+        }
+      case 'item':
+        {
+          return copyWith(item: <QuestionnaireResponseItem>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   QuestionnaireResponse clone() => throw UnimplementedError();
   @override
@@ -1277,6 +1365,50 @@ class QuestionnaireResponseItem extends BackboneElement {
         return ['QuestionnaireResponseItem'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [QuestionnaireResponseItem]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  QuestionnaireResponseItem createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'linkId':
+        {
+          return copyWith(linkId: FhirString.empty());
+        }
+      case 'definition':
+        {
+          return copyWith(definition: FhirUri.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: FhirString.empty());
+        }
+      case 'answer':
+        {
+          return copyWith(answer: <QuestionnaireResponseAnswer>[]);
+        }
+      case 'item':
+        {
+          return copyWith(item: <QuestionnaireResponseItem>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -1927,6 +2059,84 @@ class QuestionnaireResponseAnswer extends BackboneElement {
         return ['QuestionnaireResponseItem'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [QuestionnaireResponseAnswer]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  QuestionnaireResponseAnswer createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueBoolean':
+        {
+          return copyWith(valueX: FhirBoolean.empty());
+        }
+      case 'valueDecimal':
+        {
+          return copyWith(valueX: FhirDecimal.empty());
+        }
+      case 'valueInteger':
+        {
+          return copyWith(valueX: FhirInteger.empty());
+        }
+      case 'valueDate':
+        {
+          return copyWith(valueX: FhirDate.empty());
+        }
+      case 'valueDateTime':
+        {
+          return copyWith(valueX: FhirDateTime.empty());
+        }
+      case 'valueTime':
+        {
+          return copyWith(valueX: FhirTime.empty());
+        }
+      case 'valueString':
+        {
+          return copyWith(valueX: FhirString.empty());
+        }
+      case 'valueUri':
+        {
+          return copyWith(valueX: FhirUri.empty());
+        }
+      case 'valueAttachment':
+        {
+          return copyWith(valueX: Attachment.empty());
+        }
+      case 'valueCoding':
+        {
+          return copyWith(valueX: Coding.empty());
+        }
+      case 'valueQuantity':
+        {
+          return copyWith(valueX: Quantity.empty());
+        }
+      case 'valueReference':
+        {
+          return copyWith(valueX: Reference.empty());
+        }
+      case 'item':
+        {
+          return copyWith(item: <QuestionnaireResponseItem>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

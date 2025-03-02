@@ -1403,6 +1403,191 @@ class MedicationRequest extends DomainResource {
     }
   }
 
+  /// Creates a new [MedicationRequest]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationRequest createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: MedicationrequestStatus.empty());
+        }
+      case 'statusReason':
+        {
+          return copyWith(statusReason: CodeableConcept.empty());
+        }
+      case 'intent':
+        {
+          return copyWith(intent: MedicationRequestIntent.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'priority':
+        {
+          return copyWith(priority: RequestPriority.empty());
+        }
+      case 'doNotPerform':
+        {
+          return copyWith(doNotPerform: FhirBoolean.empty());
+        }
+      case 'reported':
+      case 'reportedX':
+      case 'reportedBoolean':
+        {
+          return copyWith(reportedX: FhirBoolean.empty());
+        }
+      case 'reportedReference':
+        {
+          return copyWith(reportedX: Reference.empty());
+        }
+      case 'medication':
+      case 'medicationX':
+      case 'medicationCodeableConcept':
+        {
+          return copyWith(medicationX: CodeableConcept.empty());
+        }
+      case 'medicationReference':
+        {
+          return copyWith(medicationX: Reference.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'supportingInformation':
+        {
+          return copyWith(supportingInformation: <Reference>[]);
+        }
+      case 'authoredOn':
+        {
+          return copyWith(authoredOn: FhirDateTime.empty());
+        }
+      case 'requester':
+        {
+          return copyWith(requester: Reference.empty());
+        }
+      case 'performer':
+        {
+          return copyWith(performer: Reference.empty());
+        }
+      case 'performerType':
+        {
+          return copyWith(performerType: CodeableConcept.empty());
+        }
+      case 'recorder':
+        {
+          return copyWith(recorder: Reference.empty());
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: <CodeableConcept>[]);
+        }
+      case 'reasonReference':
+        {
+          return copyWith(reasonReference: <Reference>[]);
+        }
+      case 'instantiatesCanonical':
+        {
+          return copyWith(instantiatesCanonical: <FhirCanonical>[]);
+        }
+      case 'instantiatesUri':
+        {
+          return copyWith(instantiatesUri: <FhirUri>[]);
+        }
+      case 'basedOn':
+        {
+          return copyWith(basedOn: <Reference>[]);
+        }
+      case 'groupIdentifier':
+        {
+          return copyWith(groupIdentifier: Identifier.empty());
+        }
+      case 'courseOfTherapyType':
+        {
+          return copyWith(courseOfTherapyType: CodeableConcept.empty());
+        }
+      case 'insurance':
+        {
+          return copyWith(insurance: <Reference>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'dosageInstruction':
+        {
+          return copyWith(dosageInstruction: <Dosage>[]);
+        }
+      case 'dispenseRequest':
+        {
+          return copyWith(
+              dispenseRequest: MedicationRequestDispenseRequest.empty(),);
+        }
+      case 'substitution':
+        {
+          return copyWith(substitution: MedicationRequestSubstitution.empty());
+        }
+      case 'priorPrescription':
+        {
+          return copyWith(priorPrescription: Reference.empty());
+        }
+      case 'detectedIssue':
+        {
+          return copyWith(detectedIssue: <Reference>[]);
+        }
+      case 'eventHistory':
+        {
+          return copyWith(eventHistory: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MedicationRequest clone() => throw UnimplementedError();
   @override
@@ -2298,6 +2483,58 @@ class MedicationRequestDispenseRequest extends BackboneElement {
     }
   }
 
+  /// Creates a new [MedicationRequestDispenseRequest]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationRequestDispenseRequest createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'initialFill':
+        {
+          return copyWith(initialFill: MedicationRequestInitialFill.empty());
+        }
+      case 'dispenseInterval':
+        {
+          return copyWith(dispenseInterval: FhirDuration.empty());
+        }
+      case 'validityPeriod':
+        {
+          return copyWith(validityPeriod: Period.empty());
+        }
+      case 'numberOfRepeatsAllowed':
+        {
+          return copyWith(numberOfRepeatsAllowed: FhirUnsignedInt.empty());
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'expectedSupplyDuration':
+        {
+          return copyWith(expectedSupplyDuration: FhirDuration.empty());
+        }
+      case 'performer':
+        {
+          return copyWith(performer: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MedicationRequestDispenseRequest clone() => throw UnimplementedError();
   @override
@@ -2709,6 +2946,38 @@ class MedicationRequestInitialFill extends BackboneElement {
         return ['FhirDuration'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationRequestInitialFill]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationRequestInitialFill createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'duration':
+        {
+          return copyWith(duration: FhirDuration.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -3131,6 +3400,44 @@ class MedicationRequestSubstitution extends BackboneElement {
         return ['CodeableConcept'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationRequestSubstitution]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationRequestSubstitution createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'allowed':
+      case 'allowedX':
+      case 'allowedBoolean':
+        {
+          return copyWith(allowedX: FhirBoolean.empty());
+        }
+      case 'allowedCodeableConcept':
+        {
+          return copyWith(allowedX: CodeableConcept.empty());
+        }
+      case 'reason':
+        {
+          return copyWith(reason: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

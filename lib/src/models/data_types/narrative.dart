@@ -267,6 +267,34 @@ class Narrative extends DataType {
     }
   }
 
+  /// Creates a new [Narrative]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Narrative createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: NarrativeStatus.empty());
+        }
+      case 'div':
+        {
+          return copyWith(div: FhirXhtml.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Narrative clone() => throw UnimplementedError();
   @override

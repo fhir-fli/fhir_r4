@@ -690,6 +690,91 @@ class AdministrableProductDefinition extends DomainResource {
     }
   }
 
+  /// Creates a new [AdministrableProductDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AdministrableProductDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'formOf':
+        {
+          return copyWith(formOf: <Reference>[]);
+        }
+      case 'administrableDoseForm':
+        {
+          return copyWith(administrableDoseForm: CodeableConcept.empty());
+        }
+      case 'unitOfPresentation':
+        {
+          return copyWith(unitOfPresentation: CodeableConcept.empty());
+        }
+      case 'producedFrom':
+        {
+          return copyWith(producedFrom: <Reference>[]);
+        }
+      case 'ingredient':
+        {
+          return copyWith(ingredient: <CodeableConcept>[]);
+        }
+      case 'device':
+        {
+          return copyWith(device: Reference.empty());
+        }
+      case 'property':
+        {
+          return copyWith(property: <AdministrableProductDefinitionProperty>[]);
+        }
+      case 'routeOfAdministration':
+        {
+          return copyWith(
+              routeOfAdministration: <AdministrableProductDefinitionRouteOfAdministration>[],);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   AdministrableProductDefinition clone() => throw UnimplementedError();
   @override
@@ -1339,6 +1424,60 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
     }
   }
 
+  /// Creates a new [AdministrableProductDefinitionProperty]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AdministrableProductDefinitionProperty createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueCodeableConcept':
+        {
+          return copyWith(valueX: CodeableConcept.empty());
+        }
+      case 'valueQuantity':
+        {
+          return copyWith(valueX: Quantity.empty());
+        }
+      case 'valueDate':
+        {
+          return copyWith(valueX: FhirDate.empty());
+        }
+      case 'valueBoolean':
+        {
+          return copyWith(valueX: FhirBoolean.empty());
+        }
+      case 'valueAttachment':
+        {
+          return copyWith(valueX: Attachment.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   AdministrableProductDefinitionProperty clone() => throw UnimplementedError();
   @override
@@ -1867,6 +2006,60 @@ class AdministrableProductDefinitionRouteOfAdministration
     }
   }
 
+  /// Creates a new [AdministrableProductDefinitionRouteOfAdministration]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AdministrableProductDefinitionRouteOfAdministration createProperty(
+      String propertyName,) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'firstDose':
+        {
+          return copyWith(firstDose: Quantity.empty());
+        }
+      case 'maxSingleDose':
+        {
+          return copyWith(maxSingleDose: Quantity.empty());
+        }
+      case 'maxDosePerDay':
+        {
+          return copyWith(maxDosePerDay: Quantity.empty());
+        }
+      case 'maxDosePerTreatmentPeriod':
+        {
+          return copyWith(maxDosePerTreatmentPeriod: Ratio.empty());
+        }
+      case 'maxTreatmentPeriod':
+        {
+          return copyWith(maxTreatmentPeriod: FhirDuration.empty());
+        }
+      case 'targetSpecies':
+        {
+          return copyWith(
+              targetSpecies: <AdministrableProductDefinitionTargetSpecies>[],);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   AdministrableProductDefinitionRouteOfAdministration clone() =>
       throw UnimplementedError();
@@ -2296,6 +2489,40 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
     }
   }
 
+  /// Creates a new [AdministrableProductDefinitionTargetSpecies]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AdministrableProductDefinitionTargetSpecies createProperty(
+      String propertyName,) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'withdrawalPeriod':
+        {
+          return copyWith(
+              withdrawalPeriod: <AdministrableProductDefinitionWithdrawalPeriod>[],);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   AdministrableProductDefinitionTargetSpecies clone() =>
       throw UnimplementedError();
@@ -2704,6 +2931,43 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [AdministrableProductDefinitionWithdrawalPeriod]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AdministrableProductDefinitionWithdrawalPeriod createProperty(
+      String propertyName,) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'tissue':
+        {
+          return copyWith(tissue: CodeableConcept.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: Quantity.empty());
+        }
+      case 'supportingInformation':
+        {
+          return copyWith(supportingInformation: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

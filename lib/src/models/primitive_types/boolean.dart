@@ -214,4 +214,8 @@ class FhirBoolean extends PrimitiveType<bool>
       objectPath: objectPath ?? this.objectPath,
     );
   }
+
+  /// Creates an empty property in the object
+  @override
+  FhirBoolean createProperty(String propertyName) => this;
 }

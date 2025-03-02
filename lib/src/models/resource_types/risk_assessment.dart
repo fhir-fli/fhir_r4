@@ -889,6 +889,124 @@ class RiskAssessment extends DomainResource {
     }
   }
 
+  /// Creates a new [RiskAssessment]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  RiskAssessment createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'basedOn':
+        {
+          return copyWith(basedOn: Reference.empty());
+        }
+      case 'parent':
+        {
+          return copyWith(parent: Reference.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: ObservationStatus.empty());
+        }
+      case 'method':
+        {
+          return copyWith(method: CodeableConcept.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'occurrence':
+      case 'occurrenceX':
+      case 'occurrenceDateTime':
+        {
+          return copyWith(occurrenceX: FhirDateTime.empty());
+        }
+      case 'occurrencePeriod':
+        {
+          return copyWith(occurrenceX: Period.empty());
+        }
+      case 'condition':
+        {
+          return copyWith(condition: Reference.empty());
+        }
+      case 'performer':
+        {
+          return copyWith(performer: Reference.empty());
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: <CodeableConcept>[]);
+        }
+      case 'reasonReference':
+        {
+          return copyWith(reasonReference: <Reference>[]);
+        }
+      case 'basis':
+        {
+          return copyWith(basis: <Reference>[]);
+        }
+      case 'prediction':
+        {
+          return copyWith(prediction: <RiskAssessmentPrediction>[]);
+        }
+      case 'mitigation':
+        {
+          return copyWith(mitigation: FhirString.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   RiskAssessment clone() => throw UnimplementedError();
   @override
@@ -1658,6 +1776,66 @@ class RiskAssessmentPrediction extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [RiskAssessmentPrediction]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  RiskAssessmentPrediction createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'outcome':
+        {
+          return copyWith(outcome: CodeableConcept.empty());
+        }
+      case 'probability':
+      case 'probabilityX':
+      case 'probabilityDecimal':
+        {
+          return copyWith(probabilityX: FhirDecimal.empty());
+        }
+      case 'probabilityRange':
+        {
+          return copyWith(probabilityX: Range.empty());
+        }
+      case 'qualitativeRisk':
+        {
+          return copyWith(qualitativeRisk: CodeableConcept.empty());
+        }
+      case 'relativeRisk':
+        {
+          return copyWith(relativeRisk: FhirDecimal.empty());
+        }
+      case 'when':
+      case 'whenX':
+      case 'whenPeriod':
+        {
+          return copyWith(whenX: Period.empty());
+        }
+      case 'whenRange':
+        {
+          return copyWith(whenX: Range.empty());
+        }
+      case 'rationale':
+        {
+          return copyWith(rationale: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

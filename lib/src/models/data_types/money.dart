@@ -280,6 +280,34 @@ class Money extends DataType
     }
   }
 
+  /// Creates a new [Money]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Money createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirDecimal.empty());
+        }
+      case 'currency':
+        {
+          return copyWith(currency: FhirCode.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Money clone() => throw UnimplementedError();
   @override

@@ -652,6 +652,90 @@ class Person extends DomainResource {
     }
   }
 
+  /// Creates a new [Person]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Person createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: <HumanName>[]);
+        }
+      case 'telecom':
+        {
+          return copyWith(telecom: <ContactPoint>[]);
+        }
+      case 'gender':
+        {
+          return copyWith(gender: AdministrativeGender.empty());
+        }
+      case 'birthDate':
+        {
+          return copyWith(birthDate: FhirDate.empty());
+        }
+      case 'address':
+        {
+          return copyWith(address: <Address>[]);
+        }
+      case 'photo':
+        {
+          return copyWith(photo: Attachment.empty());
+        }
+      case 'managingOrganization':
+        {
+          return copyWith(managingOrganization: Reference.empty());
+        }
+      case 'active':
+        {
+          return copyWith(active: FhirBoolean.empty());
+        }
+      case 'link':
+        {
+          return copyWith(link: <PersonLink>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Person clone() => throw UnimplementedError();
   @override
@@ -1160,6 +1244,38 @@ class PersonLink extends BackboneElement {
         return ['FhirCode'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [PersonLink]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  PersonLink createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'target':
+        {
+          return copyWith(target: Reference.empty());
+        }
+      case 'assurance':
+        {
+          return copyWith(assurance: IdentityAssuranceLevel.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

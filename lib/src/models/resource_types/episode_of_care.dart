@@ -723,6 +723,98 @@ class EpisodeOfCare extends DomainResource {
     }
   }
 
+  /// Creates a new [EpisodeOfCare]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EpisodeOfCare createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: EpisodeOfCareStatus.empty());
+        }
+      case 'statusHistory':
+        {
+          return copyWith(statusHistory: <EpisodeOfCareStatusHistory>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: <CodeableConcept>[]);
+        }
+      case 'diagnosis':
+        {
+          return copyWith(diagnosis: <EpisodeOfCareDiagnosis>[]);
+        }
+      case 'patient':
+        {
+          return copyWith(patient: Reference.empty());
+        }
+      case 'managingOrganization':
+        {
+          return copyWith(managingOrganization: Reference.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      case 'referralRequest':
+        {
+          return copyWith(referralRequest: <Reference>[]);
+        }
+      case 'careManager':
+        {
+          return copyWith(careManager: Reference.empty());
+        }
+      case 'team':
+        {
+          return copyWith(team: <Reference>[]);
+        }
+      case 'account':
+        {
+          return copyWith(account: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   EpisodeOfCare clone() => throw UnimplementedError();
   @override
@@ -1263,6 +1355,38 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
     }
   }
 
+  /// Creates a new [EpisodeOfCareStatusHistory]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EpisodeOfCareStatusHistory createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: EpisodeOfCareStatus.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   EpisodeOfCareStatusHistory clone() => throw UnimplementedError();
   @override
@@ -1661,6 +1785,42 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
         return ['FhirPositiveInt'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [EpisodeOfCareDiagnosis]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EpisodeOfCareDiagnosis createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'condition':
+        {
+          return copyWith(condition: Reference.empty());
+        }
+      case 'role':
+        {
+          return copyWith(role: CodeableConcept.empty());
+        }
+      case 'rank':
+        {
+          return copyWith(rank: FhirPositiveInt.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

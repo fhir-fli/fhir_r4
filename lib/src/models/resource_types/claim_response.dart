@@ -1138,6 +1138,158 @@ class ClaimResponse extends DomainResource {
     }
   }
 
+  /// Creates a new [ClaimResponse]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClaimResponse createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: FinancialResourceStatusCodes.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'subType':
+        {
+          return copyWith(subType: CodeableConcept.empty());
+        }
+      case 'use':
+        {
+          return copyWith(use: Use.empty());
+        }
+      case 'patient':
+        {
+          return copyWith(patient: Reference.empty());
+        }
+      case 'created':
+        {
+          return copyWith(created: FhirDateTime.empty());
+        }
+      case 'insurer':
+        {
+          return copyWith(insurer: Reference.empty());
+        }
+      case 'requestor':
+        {
+          return copyWith(requestor: Reference.empty());
+        }
+      case 'request':
+        {
+          return copyWith(request: Reference.empty());
+        }
+      case 'outcome':
+        {
+          return copyWith(outcome: RemittanceOutcome.empty());
+        }
+      case 'disposition':
+        {
+          return copyWith(disposition: FhirString.empty());
+        }
+      case 'preAuthRef':
+        {
+          return copyWith(preAuthRef: FhirString.empty());
+        }
+      case 'preAuthPeriod':
+        {
+          return copyWith(preAuthPeriod: Period.empty());
+        }
+      case 'payeeType':
+        {
+          return copyWith(payeeType: CodeableConcept.empty());
+        }
+      case 'item':
+        {
+          return copyWith(item: <ClaimResponseItem>[]);
+        }
+      case 'addItem':
+        {
+          return copyWith(addItem: <ClaimResponseAddItem>[]);
+        }
+      case 'adjudication':
+        {
+          return copyWith(adjudication: <ClaimResponseAdjudication>[]);
+        }
+      case 'total':
+        {
+          return copyWith(total: <ClaimResponseTotal>[]);
+        }
+      case 'payment':
+        {
+          return copyWith(payment: ClaimResponsePayment.empty());
+        }
+      case 'fundsReserve':
+        {
+          return copyWith(fundsReserve: CodeableConcept.empty());
+        }
+      case 'formCode':
+        {
+          return copyWith(formCode: CodeableConcept.empty());
+        }
+      case 'form':
+        {
+          return copyWith(form: Attachment.empty());
+        }
+      case 'processNote':
+        {
+          return copyWith(processNote: <ClaimResponseProcessNote>[]);
+        }
+      case 'communicationRequest':
+        {
+          return copyWith(communicationRequest: <Reference>[]);
+        }
+      case 'insurance':
+        {
+          return copyWith(insurance: <ClaimResponseInsurance>[]);
+        }
+      case 'error':
+        {
+          return copyWith(error: <ClaimResponseError>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ClaimResponse clone() => throw UnimplementedError();
   @override
@@ -1878,6 +2030,46 @@ class ClaimResponseItem extends BackboneElement {
     }
   }
 
+  /// Creates a new [ClaimResponseItem]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClaimResponseItem createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'itemSequence':
+        {
+          return copyWith(itemSequence: FhirPositiveInt.empty());
+        }
+      case 'noteNumber':
+        {
+          return copyWith(noteNumber: <FhirPositiveInt>[]);
+        }
+      case 'adjudication':
+        {
+          return copyWith(adjudication: <ClaimResponseAdjudication>[]);
+        }
+      case 'detail':
+        {
+          return copyWith(detail: <ClaimResponseDetail>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ClaimResponseItem clone() => throw UnimplementedError();
   @override
@@ -2350,6 +2542,46 @@ class ClaimResponseAdjudication extends BackboneElement {
     }
   }
 
+  /// Creates a new [ClaimResponseAdjudication]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClaimResponseAdjudication createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'category':
+        {
+          return copyWith(category: CodeableConcept.empty());
+        }
+      case 'reason':
+        {
+          return copyWith(reason: CodeableConcept.empty());
+        }
+      case 'amount':
+        {
+          return copyWith(amount: Money.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirDecimal.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ClaimResponseAdjudication clone() => throw UnimplementedError();
   @override
@@ -2801,6 +3033,46 @@ class ClaimResponseDetail extends BackboneElement {
     }
   }
 
+  /// Creates a new [ClaimResponseDetail]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClaimResponseDetail createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'detailSequence':
+        {
+          return copyWith(detailSequence: FhirPositiveInt.empty());
+        }
+      case 'noteNumber':
+        {
+          return copyWith(noteNumber: <FhirPositiveInt>[]);
+        }
+      case 'adjudication':
+        {
+          return copyWith(adjudication: <ClaimResponseAdjudication>[]);
+        }
+      case 'subDetail':
+        {
+          return copyWith(subDetail: <ClaimResponseSubDetail>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ClaimResponseDetail clone() => throw UnimplementedError();
   @override
@@ -3239,6 +3511,42 @@ class ClaimResponseSubDetail extends BackboneElement {
         return ['ClaimResponseAdjudication'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ClaimResponseSubDetail]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClaimResponseSubDetail createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'subDetailSequence':
+        {
+          return copyWith(subDetailSequence: FhirPositiveInt.empty());
+        }
+      case 'noteNumber':
+        {
+          return copyWith(noteNumber: <FhirPositiveInt>[]);
+        }
+      case 'adjudication':
+        {
+          return copyWith(adjudication: <ClaimResponseAdjudication>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -4210,6 +4518,118 @@ class ClaimResponseAddItem extends BackboneElement {
     }
   }
 
+  /// Creates a new [ClaimResponseAddItem]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClaimResponseAddItem createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'itemSequence':
+        {
+          return copyWith(itemSequence: <FhirPositiveInt>[]);
+        }
+      case 'detailSequence':
+        {
+          return copyWith(detailSequence: <FhirPositiveInt>[]);
+        }
+      case 'subdetailSequence':
+        {
+          return copyWith(subdetailSequence: <FhirPositiveInt>[]);
+        }
+      case 'provider':
+        {
+          return copyWith(provider: <Reference>[]);
+        }
+      case 'productOrService':
+        {
+          return copyWith(productOrService: CodeableConcept.empty());
+        }
+      case 'modifier':
+        {
+          return copyWith(modifier: <CodeableConcept>[]);
+        }
+      case 'programCode':
+        {
+          return copyWith(programCode: <CodeableConcept>[]);
+        }
+      case 'serviced':
+      case 'servicedX':
+      case 'servicedDate':
+        {
+          return copyWith(servicedX: FhirDate.empty());
+        }
+      case 'servicedPeriod':
+        {
+          return copyWith(servicedX: Period.empty());
+        }
+      case 'location':
+      case 'locationX':
+      case 'locationCodeableConcept':
+        {
+          return copyWith(locationX: CodeableConcept.empty());
+        }
+      case 'locationAddress':
+        {
+          return copyWith(locationX: Address.empty());
+        }
+      case 'locationReference':
+        {
+          return copyWith(locationX: Reference.empty());
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'unitPrice':
+        {
+          return copyWith(unitPrice: Money.empty());
+        }
+      case 'factor':
+        {
+          return copyWith(factor: FhirDecimal.empty());
+        }
+      case 'net':
+        {
+          return copyWith(net: Money.empty());
+        }
+      case 'bodySite':
+        {
+          return copyWith(bodySite: CodeableConcept.empty());
+        }
+      case 'subSite':
+        {
+          return copyWith(subSite: <CodeableConcept>[]);
+        }
+      case 'noteNumber':
+        {
+          return copyWith(noteNumber: <FhirPositiveInt>[]);
+        }
+      case 'adjudication':
+        {
+          return copyWith(adjudication: <ClaimResponseAdjudication>[]);
+        }
+      case 'detail':
+        {
+          return copyWith(detail: <ClaimResponseDetail>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ClaimResponseAddItem clone() => throw UnimplementedError();
   @override
@@ -4990,6 +5410,66 @@ class ClaimResponseDetail1 extends BackboneElement {
     }
   }
 
+  /// Creates a new [ClaimResponseDetail1]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClaimResponseDetail1 createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'productOrService':
+        {
+          return copyWith(productOrService: CodeableConcept.empty());
+        }
+      case 'modifier':
+        {
+          return copyWith(modifier: <CodeableConcept>[]);
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'unitPrice':
+        {
+          return copyWith(unitPrice: Money.empty());
+        }
+      case 'factor':
+        {
+          return copyWith(factor: FhirDecimal.empty());
+        }
+      case 'net':
+        {
+          return copyWith(net: Money.empty());
+        }
+      case 'noteNumber':
+        {
+          return copyWith(noteNumber: <FhirPositiveInt>[]);
+        }
+      case 'adjudication':
+        {
+          return copyWith(adjudication: <ClaimResponseAdjudication>[]);
+        }
+      case 'subDetail':
+        {
+          return copyWith(subDetail: <ClaimResponseSubDetail>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ClaimResponseDetail1 clone() => throw UnimplementedError();
   @override
@@ -5625,6 +6105,62 @@ class ClaimResponseSubDetail1 extends BackboneElement {
     }
   }
 
+  /// Creates a new [ClaimResponseSubDetail1]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClaimResponseSubDetail1 createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'productOrService':
+        {
+          return copyWith(productOrService: CodeableConcept.empty());
+        }
+      case 'modifier':
+        {
+          return copyWith(modifier: <CodeableConcept>[]);
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'unitPrice':
+        {
+          return copyWith(unitPrice: Money.empty());
+        }
+      case 'factor':
+        {
+          return copyWith(factor: FhirDecimal.empty());
+        }
+      case 'net':
+        {
+          return copyWith(net: Money.empty());
+        }
+      case 'noteNumber':
+        {
+          return copyWith(noteNumber: <FhirPositiveInt>[]);
+        }
+      case 'adjudication':
+        {
+          return copyWith(adjudication: <ClaimResponseAdjudication>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ClaimResponseSubDetail1 clone() => throw UnimplementedError();
   @override
@@ -6066,6 +6602,38 @@ class ClaimResponseTotal extends BackboneElement {
         return ['Money'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ClaimResponseTotal]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClaimResponseTotal createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'category':
+        {
+          return copyWith(category: CodeableConcept.empty());
+        }
+      case 'amount':
+        {
+          return copyWith(amount: Money.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -6551,6 +7119,54 @@ class ClaimResponsePayment extends BackboneElement {
     }
   }
 
+  /// Creates a new [ClaimResponsePayment]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClaimResponsePayment createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'adjustment':
+        {
+          return copyWith(adjustment: Money.empty());
+        }
+      case 'adjustmentReason':
+        {
+          return copyWith(adjustmentReason: CodeableConcept.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDate.empty());
+        }
+      case 'amount':
+        {
+          return copyWith(amount: Money.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: Identifier.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ClaimResponsePayment clone() => throw UnimplementedError();
   @override
@@ -7007,6 +7623,46 @@ class ClaimResponseProcessNote extends BackboneElement {
         return ['CodeableConcept'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ClaimResponseProcessNote]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClaimResponseProcessNote createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'number':
+        {
+          return copyWith(number: FhirPositiveInt.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: NoteType.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: FhirString.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -7485,6 +8141,50 @@ class ClaimResponseInsurance extends BackboneElement {
     }
   }
 
+  /// Creates a new [ClaimResponseInsurance]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClaimResponseInsurance createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'sequence':
+        {
+          return copyWith(sequence: FhirPositiveInt.empty());
+        }
+      case 'focal':
+        {
+          return copyWith(focal: FhirBoolean.empty());
+        }
+      case 'coverage':
+        {
+          return copyWith(coverage: Reference.empty());
+        }
+      case 'businessArrangement':
+        {
+          return copyWith(businessArrangement: FhirString.empty());
+        }
+      case 'claimResponse':
+        {
+          return copyWith(claimResponse: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ClaimResponseInsurance clone() => throw UnimplementedError();
   @override
@@ -7939,6 +8639,46 @@ class ClaimResponseError extends BackboneElement {
         return ['CodeableConcept'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ClaimResponseError]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClaimResponseError createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'itemSequence':
+        {
+          return copyWith(itemSequence: FhirPositiveInt.empty());
+        }
+      case 'detailSequence':
+        {
+          return copyWith(detailSequence: FhirPositiveInt.empty());
+        }
+      case 'subDetailSequence':
+        {
+          return copyWith(subDetailSequence: FhirPositiveInt.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

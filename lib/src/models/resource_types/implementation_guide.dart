@@ -899,6 +899,130 @@ class ImplementationGuide extends CanonicalResource {
     }
   }
 
+  /// Creates a new [ImplementationGuide]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImplementationGuide createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'packageId':
+        {
+          return copyWith(packageId: FhirId.empty());
+        }
+      case 'license':
+        {
+          return copyWith(license: SPDXLicense.empty());
+        }
+      case 'fhirVersion':
+        {
+          return copyWith(fhirVersion: <FHIRVersion>[]);
+        }
+      case 'dependsOn':
+        {
+          return copyWith(dependsOn: <ImplementationGuideDependsOn>[]);
+        }
+      case 'global':
+        {
+          return copyWith(global: <ImplementationGuideGlobal>[]);
+        }
+      case 'definition':
+        {
+          return copyWith(definition: ImplementationGuideDefinition.empty());
+        }
+      case 'manifest':
+        {
+          return copyWith(manifest: ImplementationGuideManifest.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ImplementationGuide clone() => throw UnimplementedError();
   @override
@@ -1527,6 +1651,42 @@ class ImplementationGuideDependsOn extends BackboneElement {
     }
   }
 
+  /// Creates a new [ImplementationGuideDependsOn]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImplementationGuideDependsOn createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'uri':
+        {
+          return copyWith(uri: FhirCanonical.empty());
+        }
+      case 'packageId':
+        {
+          return copyWith(packageId: FhirId.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ImplementationGuideDependsOn clone() => throw UnimplementedError();
   @override
@@ -1904,6 +2064,38 @@ class ImplementationGuideGlobal extends BackboneElement {
         return ['FhirCanonical'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ImplementationGuideGlobal]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImplementationGuideGlobal createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: FhirCode.empty());
+        }
+      case 'profile':
+        {
+          return copyWith(profile: FhirCanonical.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2383,6 +2575,50 @@ class ImplementationGuideDefinition extends BackboneElement {
     }
   }
 
+  /// Creates a new [ImplementationGuideDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImplementationGuideDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'grouping':
+        {
+          return copyWith(grouping: <ImplementationGuideGrouping>[]);
+        }
+      case 'resource':
+        {
+          return copyWith(resource: <ImplementationGuideResource>[]);
+        }
+      case 'page':
+        {
+          return copyWith(page: ImplementationGuidePage.empty());
+        }
+      case 'parameter':
+        {
+          return copyWith(parameter: <ImplementationGuideParameter>[]);
+        }
+      case 'template':
+        {
+          return copyWith(template: <ImplementationGuideTemplate>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ImplementationGuideDefinition clone() => throw UnimplementedError();
   @override
@@ -2806,6 +3042,38 @@ class ImplementationGuideGrouping extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ImplementationGuideGrouping]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImplementationGuideGrouping createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -3342,6 +3610,60 @@ class ImplementationGuideResource extends BackboneElement {
     }
   }
 
+  /// Creates a new [ImplementationGuideResource]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImplementationGuideResource createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'reference':
+        {
+          return copyWith(reference: Reference.empty());
+        }
+      case 'fhirVersion':
+        {
+          return copyWith(fhirVersion: <FHIRVersion>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'example':
+      case 'exampleX':
+      case 'exampleBoolean':
+        {
+          return copyWith(exampleX: FhirBoolean.empty());
+        }
+      case 'exampleCanonical':
+        {
+          return copyWith(exampleX: FhirCanonical.empty());
+        }
+      case 'groupingId':
+        {
+          return copyWith(groupingId: FhirId.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ImplementationGuideResource clone() => throw UnimplementedError();
   @override
@@ -3853,6 +4175,52 @@ class ImplementationGuidePage extends BackboneElement {
     }
   }
 
+  /// Creates a new [ImplementationGuidePage]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImplementationGuidePage createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+      case 'nameX':
+      case 'nameUrl':
+        {
+          return copyWith(nameX: FhirUrl.empty());
+        }
+      case 'nameReference':
+        {
+          return copyWith(nameX: Reference.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'generation':
+        {
+          return copyWith(generation: GuidePageGeneration.empty());
+        }
+      case 'page':
+        {
+          return copyWith(page: <ImplementationGuidePage>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ImplementationGuidePage clone() => throw UnimplementedError();
   @override
@@ -4246,6 +4614,38 @@ class ImplementationGuideParameter extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ImplementationGuideParameter]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImplementationGuideParameter createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: GuideParameterCode.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -4644,6 +5044,42 @@ class ImplementationGuideTemplate extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ImplementationGuideTemplate]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImplementationGuideTemplate createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: FhirCode.empty());
+        }
+      case 'source':
+        {
+          return copyWith(source: FhirString.empty());
+        }
+      case 'scope':
+        {
+          return copyWith(scope: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -5120,6 +5556,50 @@ class ImplementationGuideManifest extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ImplementationGuideManifest]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImplementationGuideManifest createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'rendering':
+        {
+          return copyWith(rendering: FhirUrl.empty());
+        }
+      case 'resource':
+        {
+          return copyWith(resource: <ImplementationGuideResource1>[]);
+        }
+      case 'page':
+        {
+          return copyWith(page: <ImplementationGuidePage1>[]);
+        }
+      case 'image':
+        {
+          return copyWith(image: <FhirString>[]);
+        }
+      case 'other':
+        {
+          return copyWith(other: <FhirString>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -5622,6 +6102,48 @@ class ImplementationGuideResource1 extends BackboneElement {
     }
   }
 
+  /// Creates a new [ImplementationGuideResource1]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImplementationGuideResource1 createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'reference':
+        {
+          return copyWith(reference: Reference.empty());
+        }
+      case 'example':
+      case 'exampleX':
+      case 'exampleBoolean':
+        {
+          return copyWith(exampleX: FhirBoolean.empty());
+        }
+      case 'exampleCanonical':
+        {
+          return copyWith(exampleX: FhirCanonical.empty());
+        }
+      case 'relativePath':
+        {
+          return copyWith(relativePath: FhirUrl.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ImplementationGuideResource1 clone() => throw UnimplementedError();
   @override
@@ -6026,6 +6548,42 @@ class ImplementationGuidePage1 extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ImplementationGuidePage1]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImplementationGuidePage1 createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'anchor':
+        {
+          return copyWith(anchor: <FhirString>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

@@ -1237,6 +1237,166 @@ class Citation extends DomainResource {
     }
   }
 
+  /// Creates a new [Citation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Citation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'approvalDate':
+        {
+          return copyWith(approvalDate: FhirDate.empty());
+        }
+      case 'lastReviewDate':
+        {
+          return copyWith(lastReviewDate: FhirDate.empty());
+        }
+      case 'effectivePeriod':
+        {
+          return copyWith(effectivePeriod: Period.empty());
+        }
+      case 'author':
+        {
+          return copyWith(author: <ContactDetail>[]);
+        }
+      case 'editor':
+        {
+          return copyWith(editor: <ContactDetail>[]);
+        }
+      case 'reviewer':
+        {
+          return copyWith(reviewer: <ContactDetail>[]);
+        }
+      case 'endorser':
+        {
+          return copyWith(endorser: <ContactDetail>[]);
+        }
+      case 'summary':
+        {
+          return copyWith(summary: <CitationSummary>[]);
+        }
+      case 'classification':
+        {
+          return copyWith(classification: <CitationClassification>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'currentState':
+        {
+          return copyWith(currentState: <CodeableConcept>[]);
+        }
+      case 'statusDate':
+        {
+          return copyWith(statusDate: <CitationStatusDate>[]);
+        }
+      case 'relatesTo':
+        {
+          return copyWith(relatesTo: <CitationRelatesTo>[]);
+        }
+      case 'citedArtifact':
+        {
+          return copyWith(citedArtifact: CitationCitedArtifact.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Citation clone() => throw UnimplementedError();
   @override
@@ -1962,6 +2122,38 @@ class CitationSummary extends BackboneElement {
     }
   }
 
+  /// Creates a new [CitationSummary]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationSummary createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'style':
+        {
+          return copyWith(style: CodeableConcept.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CitationSummary clone() => throw UnimplementedError();
   @override
@@ -2335,6 +2527,38 @@ class CitationClassification extends BackboneElement {
         return ['CodeableConcept'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationClassification]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationClassification createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'classifier':
+        {
+          return copyWith(classifier: <CodeableConcept>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2740,6 +2964,42 @@ class CitationStatusDate extends BackboneElement {
         return ['Period'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationStatusDate]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationStatusDate createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'activity':
+        {
+          return copyWith(activity: CodeableConcept.empty());
+        }
+      case 'actual':
+        {
+          return copyWith(actual: FhirBoolean.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -3228,6 +3488,56 @@ class CitationRelatesTo extends BackboneElement {
         return ['Attachment'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationRelatesTo]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationRelatesTo createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'relationshipType':
+        {
+          return copyWith(relationshipType: CodeableConcept.empty());
+        }
+      case 'targetClassifier':
+        {
+          return copyWith(targetClassifier: <CodeableConcept>[]);
+        }
+      case 'target':
+      case 'targetX':
+      case 'targetUri':
+        {
+          return copyWith(targetX: FhirUri.empty());
+        }
+      case 'targetIdentifier':
+        {
+          return copyWith(targetX: Identifier.empty());
+        }
+      case 'targetReference':
+        {
+          return copyWith(targetX: Reference.empty());
+        }
+      case 'targetAttachment':
+        {
+          return copyWith(targetX: Attachment.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -4018,6 +4328,90 @@ class CitationCitedArtifact extends BackboneElement {
     }
   }
 
+  /// Creates a new [CitationCitedArtifact]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationCitedArtifact createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'relatedIdentifier':
+        {
+          return copyWith(relatedIdentifier: <Identifier>[]);
+        }
+      case 'dateAccessed':
+        {
+          return copyWith(dateAccessed: FhirDateTime.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: CitationVersion.empty());
+        }
+      case 'currentState':
+        {
+          return copyWith(currentState: <CodeableConcept>[]);
+        }
+      case 'statusDate':
+        {
+          return copyWith(statusDate: <CitationStatusDate>[]);
+        }
+      case 'title':
+        {
+          return copyWith(title: <CitationTitle>[]);
+        }
+      case 'abstract':
+        {
+          return copyWith(abstract_: <CitationAbstract>[]);
+        }
+      case 'part':
+        {
+          return copyWith(part_: CitationPart.empty());
+        }
+      case 'relatesTo':
+        {
+          return copyWith(relatesTo: <CitationRelatesTo>[]);
+        }
+      case 'publicationForm':
+        {
+          return copyWith(publicationForm: <CitationPublicationForm>[]);
+        }
+      case 'webLocation':
+        {
+          return copyWith(webLocation: <CitationWebLocation>[]);
+        }
+      case 'classification':
+        {
+          return copyWith(classification: <CitationClassification>[]);
+        }
+      case 'contributorship':
+        {
+          return copyWith(contributorship: CitationContributorship.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CitationCitedArtifact clone() => throw UnimplementedError();
   @override
@@ -4571,6 +4965,38 @@ class CitationVersion extends BackboneElement {
     }
   }
 
+  /// Creates a new [CitationVersion]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationVersion createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirString.empty());
+        }
+      case 'baseCitation':
+        {
+          return copyWith(baseCitation: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CitationVersion clone() => throw UnimplementedError();
   @override
@@ -4966,6 +5392,42 @@ class CitationStatusDate1 extends BackboneElement {
         return ['Period'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationStatusDate1]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationStatusDate1 createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'activity':
+        {
+          return copyWith(activity: CodeableConcept.empty());
+        }
+      case 'actual':
+        {
+          return copyWith(actual: FhirBoolean.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -5377,6 +5839,42 @@ class CitationTitle extends BackboneElement {
         return ['FhirMarkdown'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationTitle]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationTitle createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: <CodeableConcept>[]);
+        }
+      case 'language':
+        {
+          return copyWith(language: CodeableConcept.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -5821,6 +6319,46 @@ class CitationAbstract extends BackboneElement {
     }
   }
 
+  /// Creates a new [CitationAbstract]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationAbstract createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CodeableConcept.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: FhirMarkdown.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CitationAbstract clone() => throw UnimplementedError();
   @override
@@ -6233,6 +6771,42 @@ class CitationPart extends BackboneElement {
         return ['Reference'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationPart]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationPart createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirString.empty());
+        }
+      case 'baseCitation':
+        {
+          return copyWith(baseCitation: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -6721,6 +7295,56 @@ class CitationRelatesTo1 extends BackboneElement {
         return ['Attachment'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationRelatesTo1]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationRelatesTo1 createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'relationshipType':
+        {
+          return copyWith(relationshipType: CodeableConcept.empty());
+        }
+      case 'targetClassifier':
+        {
+          return copyWith(targetClassifier: <CodeableConcept>[]);
+        }
+      case 'target':
+      case 'targetX':
+      case 'targetUri':
+        {
+          return copyWith(targetX: FhirUri.empty());
+        }
+      case 'targetIdentifier':
+        {
+          return copyWith(targetX: Identifier.empty());
+        }
+      case 'targetReference':
+        {
+          return copyWith(targetX: Reference.empty());
+        }
+      case 'targetAttachment':
+        {
+          return copyWith(targetX: Attachment.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -7361,6 +7985,74 @@ class CitationPublicationForm extends BackboneElement {
     }
   }
 
+  /// Creates a new [CitationPublicationForm]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationPublicationForm createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'publishedIn':
+        {
+          return copyWith(publishedIn: CitationPublishedIn.empty());
+        }
+      case 'periodicRelease':
+        {
+          return copyWith(periodicRelease: CitationPeriodicRelease.empty());
+        }
+      case 'articleDate':
+        {
+          return copyWith(articleDate: FhirDateTime.empty());
+        }
+      case 'lastRevisionDate':
+        {
+          return copyWith(lastRevisionDate: FhirDateTime.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: <CodeableConcept>[]);
+        }
+      case 'accessionNumber':
+        {
+          return copyWith(accessionNumber: FhirString.empty());
+        }
+      case 'pageString':
+        {
+          return copyWith(pageString: FhirString.empty());
+        }
+      case 'firstPage':
+        {
+          return copyWith(firstPage: FhirString.empty());
+        }
+      case 'lastPage':
+        {
+          return copyWith(lastPage: FhirString.empty());
+        }
+      case 'pageCount':
+        {
+          return copyWith(pageCount: FhirString.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CitationPublicationForm clone() => throw UnimplementedError();
   @override
@@ -7898,6 +8590,50 @@ class CitationPublishedIn extends BackboneElement {
     }
   }
 
+  /// Creates a new [CitationPublishedIn]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationPublishedIn createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: Reference.empty());
+        }
+      case 'publisherLocation':
+        {
+          return copyWith(publisherLocation: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CitationPublishedIn clone() => throw UnimplementedError();
   @override
@@ -8353,6 +9089,46 @@ class CitationPeriodicRelease extends BackboneElement {
         return ['CitationDateOfPublication'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationPeriodicRelease]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationPeriodicRelease createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'citedMedium':
+        {
+          return copyWith(citedMedium: CodeableConcept.empty());
+        }
+      case 'volume':
+        {
+          return copyWith(volume: FhirString.empty());
+        }
+      case 'issue':
+        {
+          return copyWith(issue: FhirString.empty());
+        }
+      case 'dateOfPublication':
+        {
+          return copyWith(dateOfPublication: CitationDateOfPublication.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -8855,6 +9631,54 @@ class CitationDateOfPublication extends BackboneElement {
     }
   }
 
+  /// Creates a new [CitationDateOfPublication]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationDateOfPublication createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDate.empty());
+        }
+      case 'year':
+        {
+          return copyWith(year: FhirString.empty());
+        }
+      case 'month':
+        {
+          return copyWith(month: FhirString.empty());
+        }
+      case 'day':
+        {
+          return copyWith(day: FhirString.empty());
+        }
+      case 'season':
+        {
+          return copyWith(season: FhirString.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CitationDateOfPublication clone() => throw UnimplementedError();
   @override
@@ -9259,6 +10083,38 @@ class CitationWebLocation extends BackboneElement {
     }
   }
 
+  /// Creates a new [CitationWebLocation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationWebLocation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CitationWebLocation clone() => throw UnimplementedError();
   @override
@@ -9659,6 +10515,42 @@ class CitationClassification1 extends BackboneElement {
         return ['CitationWhoClassified'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationClassification1]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationClassification1 createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'classifier':
+        {
+          return copyWith(classifier: <CodeableConcept>[]);
+        }
+      case 'whoClassified':
+        {
+          return copyWith(whoClassified: CitationWhoClassified.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -10131,6 +11023,50 @@ class CitationWhoClassified extends BackboneElement {
     }
   }
 
+  /// Creates a new [CitationWhoClassified]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationWhoClassified createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'person':
+        {
+          return copyWith(person: Reference.empty());
+        }
+      case 'organization':
+        {
+          return copyWith(organization: Reference.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: Reference.empty());
+        }
+      case 'classifierCopyright':
+        {
+          return copyWith(classifierCopyright: FhirString.empty());
+        }
+      case 'freeToShare':
+        {
+          return copyWith(freeToShare: FhirBoolean.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CitationWhoClassified clone() => throw UnimplementedError();
   @override
@@ -10561,6 +11497,42 @@ class CitationContributorship extends BackboneElement {
         return ['CitationSummary'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationContributorship]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationContributorship createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'complete':
+        {
+          return copyWith(complete: FhirBoolean.empty());
+        }
+      case 'entry':
+        {
+          return copyWith(entry: <CitationEntry>[]);
+        }
+      case 'summary':
+        {
+          return copyWith(summary: <CitationSummary>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -11254,6 +12226,79 @@ class CitationEntry extends BackboneElement {
     }
   }
 
+  /// Creates a new [CitationEntry]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationEntry createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: HumanName.empty());
+        }
+      case 'initials':
+        {
+          return copyWith(initials: FhirString.empty());
+        }
+      case 'collectiveName':
+        {
+          return copyWith(collectiveName: FhirString.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'affiliationInfo':
+        {
+          return copyWith(affiliationInfo: <CitationAffiliationInfo>[]);
+        }
+      case 'address':
+        {
+          return copyWith(address: <Address>[]);
+        }
+      case 'telecom':
+        {
+          return copyWith(telecom: <ContactPoint>[]);
+        }
+      case 'contributionType':
+        {
+          return copyWith(contributionType: <CodeableConcept>[]);
+        }
+      case 'role':
+        {
+          return copyWith(role: CodeableConcept.empty());
+        }
+      case 'contributionInstance':
+        {
+          return copyWith(
+              contributionInstance: <CitationContributionInstance>[],);
+        }
+      case 'correspondingContact':
+        {
+          return copyWith(correspondingContact: FhirBoolean.empty());
+        }
+      case 'listOrder':
+        {
+          return copyWith(listOrder: FhirPositiveInt.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CitationEntry clone() => throw UnimplementedError();
   @override
@@ -11781,6 +12826,42 @@ class CitationAffiliationInfo extends BackboneElement {
     }
   }
 
+  /// Creates a new [CitationAffiliationInfo]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationAffiliationInfo createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'affiliation':
+        {
+          return copyWith(affiliation: FhirString.empty());
+        }
+      case 'role':
+        {
+          return copyWith(role: FhirString.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   CitationAffiliationInfo clone() => throw UnimplementedError();
   @override
@@ -12167,6 +13248,38 @@ class CitationContributionInstance extends BackboneElement {
         return ['FhirDateTime'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationContributionInstance]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationContributionInstance createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'time':
+        {
+          return copyWith(time: FhirDateTime.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -12596,6 +13709,46 @@ class CitationSummary1 extends BackboneElement {
         return ['FhirMarkdown'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationSummary1]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationSummary1 createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'style':
+        {
+          return copyWith(style: CodeableConcept.empty());
+        }
+      case 'source':
+        {
+          return copyWith(source: CodeableConcept.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

@@ -144,4 +144,8 @@ abstract class Resource extends FhirBase {
   List<String> typeByElementName(String elementName) {
     return <String>[];
   }
+
+  /// Creates an empty property in the object
+  @override
+  Resource createProperty(String propertyName);
 }

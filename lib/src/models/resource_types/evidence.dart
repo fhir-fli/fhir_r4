@@ -1159,6 +1159,156 @@ class Evidence extends DomainResource {
     }
   }
 
+  /// Creates a new [Evidence]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Evidence createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'citeAs':
+      case 'citeAsX':
+      case 'citeAsReference':
+        {
+          return copyWith(citeAsX: Reference.empty());
+        }
+      case 'citeAsMarkdown':
+        {
+          return copyWith(citeAsX: FhirMarkdown.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'approvalDate':
+        {
+          return copyWith(approvalDate: FhirDate.empty());
+        }
+      case 'lastReviewDate':
+        {
+          return copyWith(lastReviewDate: FhirDate.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'author':
+        {
+          return copyWith(author: <ContactDetail>[]);
+        }
+      case 'editor':
+        {
+          return copyWith(editor: <ContactDetail>[]);
+        }
+      case 'reviewer':
+        {
+          return copyWith(reviewer: <ContactDetail>[]);
+        }
+      case 'endorser':
+        {
+          return copyWith(endorser: <ContactDetail>[]);
+        }
+      case 'relatedArtifact':
+        {
+          return copyWith(relatedArtifact: <RelatedArtifact>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'assertion':
+        {
+          return copyWith(assertion: FhirMarkdown.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'variableDefinition':
+        {
+          return copyWith(variableDefinition: <EvidenceVariableDefinition>[]);
+        }
+      case 'synthesisType':
+        {
+          return copyWith(synthesisType: CodeableConcept.empty());
+        }
+      case 'studyType':
+        {
+          return copyWith(studyType: CodeableConcept.empty());
+        }
+      case 'statistic':
+        {
+          return copyWith(statistic: <EvidenceStatistic>[]);
+        }
+      case 'certainty':
+        {
+          return copyWith(certainty: <EvidenceCertainty>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Evidence clone() => throw UnimplementedError();
   @override
@@ -1952,6 +2102,54 @@ class EvidenceVariableDefinition extends BackboneElement {
     }
   }
 
+  /// Creates a new [EvidenceVariableDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EvidenceVariableDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'variableRole':
+        {
+          return copyWith(variableRole: CodeableConcept.empty());
+        }
+      case 'observed':
+        {
+          return copyWith(observed: Reference.empty());
+        }
+      case 'intended':
+        {
+          return copyWith(intended: Reference.empty());
+        }
+      case 'directnessMatch':
+        {
+          return copyWith(directnessMatch: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   EvidenceVariableDefinition clone() => throw UnimplementedError();
   @override
@@ -2596,6 +2794,70 @@ class EvidenceStatistic extends BackboneElement {
     }
   }
 
+  /// Creates a new [EvidenceStatistic]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EvidenceStatistic createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'statisticType':
+        {
+          return copyWith(statisticType: CodeableConcept.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: CodeableConcept.empty());
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'numberOfEvents':
+        {
+          return copyWith(numberOfEvents: FhirUnsignedInt.empty());
+        }
+      case 'numberAffected':
+        {
+          return copyWith(numberAffected: FhirUnsignedInt.empty());
+        }
+      case 'sampleSize':
+        {
+          return copyWith(sampleSize: EvidenceSampleSize.empty());
+        }
+      case 'attributeEstimate':
+        {
+          return copyWith(attributeEstimate: <EvidenceAttributeEstimate>[]);
+        }
+      case 'modelCharacteristic':
+        {
+          return copyWith(modelCharacteristic: <EvidenceModelCharacteristic>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   EvidenceStatistic clone() => throw UnimplementedError();
   @override
@@ -3136,6 +3398,50 @@ class EvidenceSampleSize extends BackboneElement {
         return ['FhirUnsignedInt'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [EvidenceSampleSize]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EvidenceSampleSize createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'numberOfStudies':
+        {
+          return copyWith(numberOfStudies: FhirUnsignedInt.empty());
+        }
+      case 'numberOfParticipants':
+        {
+          return copyWith(numberOfParticipants: FhirUnsignedInt.empty());
+        }
+      case 'knownDataCount':
+        {
+          return copyWith(knownDataCount: FhirUnsignedInt.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -3689,6 +3995,58 @@ class EvidenceAttributeEstimate extends BackboneElement {
     }
   }
 
+  /// Creates a new [EvidenceAttributeEstimate]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EvidenceAttributeEstimate createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'level':
+        {
+          return copyWith(level: FhirDecimal.empty());
+        }
+      case 'range':
+        {
+          return copyWith(range: Range.empty());
+        }
+      case 'attributeEstimate':
+        {
+          return copyWith(attributeEstimate: <EvidenceAttributeEstimate>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   EvidenceAttributeEstimate clone() => throw UnimplementedError();
   @override
@@ -4175,6 +4533,46 @@ class EvidenceModelCharacteristic extends BackboneElement {
         return ['EvidenceAttributeEstimate'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [EvidenceModelCharacteristic]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EvidenceModelCharacteristic createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: Quantity.empty());
+        }
+      case 'variable':
+        {
+          return copyWith(variable: <EvidenceModelCharacteristicVariable>[]);
+        }
+      case 'attributeEstimate':
+        {
+          return copyWith(attributeEstimate: <EvidenceAttributeEstimate>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -4671,6 +5069,50 @@ class EvidenceModelCharacteristicVariable extends BackboneElement {
         return ['Range'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [EvidenceModelCharacteristicVariable]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EvidenceModelCharacteristicVariable createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'variableDefinition':
+        {
+          return copyWith(variableDefinition: Reference.empty());
+        }
+      case 'handling':
+        {
+          return copyWith(handling: EvidenceVariableHandling.empty());
+        }
+      case 'valueCategory':
+        {
+          return copyWith(valueCategory: <CodeableConcept>[]);
+        }
+      case 'valueQuantity':
+        {
+          return copyWith(valueQuantity: <Quantity>[]);
+        }
+      case 'valueRange':
+        {
+          return copyWith(valueRange: <Range>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -5205,6 +5647,54 @@ class EvidenceCertainty extends BackboneElement {
         return ['EvidenceCertainty'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [EvidenceCertainty]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EvidenceCertainty createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'rating':
+        {
+          return copyWith(rating: CodeableConcept.empty());
+        }
+      case 'rater':
+        {
+          return copyWith(rater: FhirString.empty());
+        }
+      case 'subcomponent':
+        {
+          return copyWith(subcomponent: <EvidenceCertainty>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

@@ -657,6 +657,88 @@ class Dosage extends BackboneType
     }
   }
 
+  /// Creates a new [Dosage]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Dosage createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'sequence':
+        {
+          return copyWith(sequence: FhirInteger.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: FhirString.empty());
+        }
+      case 'additionalInstruction':
+        {
+          return copyWith(additionalInstruction: <CodeableConcept>[]);
+        }
+      case 'patientInstruction':
+        {
+          return copyWith(patientInstruction: FhirString.empty());
+        }
+      case 'timing':
+        {
+          return copyWith(timing: Timing.empty());
+        }
+      case 'asNeeded':
+      case 'asNeededX':
+      case 'asNeededBoolean':
+        {
+          return copyWith(asNeededX: FhirBoolean.empty());
+        }
+      case 'asNeededCodeableConcept':
+        {
+          return copyWith(asNeededX: CodeableConcept.empty());
+        }
+      case 'site':
+        {
+          return copyWith(site: CodeableConcept.empty());
+        }
+      case 'route':
+        {
+          return copyWith(route: CodeableConcept.empty());
+        }
+      case 'method':
+        {
+          return copyWith(method: CodeableConcept.empty());
+        }
+      case 'doseAndRate':
+        {
+          return copyWith(doseAndRate: <DosageDoseAndRate>[]);
+        }
+      case 'maxDosePerPeriod':
+        {
+          return copyWith(maxDosePerPeriod: Ratio.empty());
+        }
+      case 'maxDosePerAdministration':
+        {
+          return copyWith(maxDosePerAdministration: Quantity.empty());
+        }
+      case 'maxDosePerLifetime':
+        {
+          return copyWith(maxDosePerLifetime: Quantity.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Dosage clone() => throw UnimplementedError();
   @override
@@ -1230,6 +1312,54 @@ class DosageDoseAndRate extends Element {
         return ['Quantity'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [DosageDoseAndRate]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DosageDoseAndRate createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'dose':
+      case 'doseX':
+      case 'doseRange':
+        {
+          return copyWith(doseX: Range.empty());
+        }
+      case 'doseQuantity':
+        {
+          return copyWith(doseX: Quantity.empty());
+        }
+      case 'rate':
+      case 'rateX':
+      case 'rateRatio':
+        {
+          return copyWith(rateX: Ratio.empty());
+        }
+      case 'rateRange':
+        {
+          return copyWith(rateX: Range.empty());
+        }
+      case 'rateQuantity':
+        {
+          return copyWith(rateX: Quantity.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

@@ -1913,6 +1913,272 @@ class ActivityDefinition extends CanonicalResource {
     }
   }
 
+  /// Creates a new [ActivityDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ActivityDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'subtitle':
+        {
+          return copyWith(subtitle: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'subject':
+      case 'subjectX':
+      case 'subjectCodeableConcept':
+        {
+          return copyWith(subjectX: CodeableConcept.empty());
+        }
+      case 'subjectReference':
+        {
+          return copyWith(subjectX: Reference.empty());
+        }
+      case 'subjectCanonical':
+        {
+          return copyWith(subjectX: FhirCanonical.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'usage':
+        {
+          return copyWith(usage: FhirString.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'approvalDate':
+        {
+          return copyWith(approvalDate: FhirDate.empty());
+        }
+      case 'lastReviewDate':
+        {
+          return copyWith(lastReviewDate: FhirDate.empty());
+        }
+      case 'effectivePeriod':
+        {
+          return copyWith(effectivePeriod: Period.empty());
+        }
+      case 'topic':
+        {
+          return copyWith(topic: <CodeableConcept>[]);
+        }
+      case 'author':
+        {
+          return copyWith(author: <ContactDetail>[]);
+        }
+      case 'editor':
+        {
+          return copyWith(editor: <ContactDetail>[]);
+        }
+      case 'reviewer':
+        {
+          return copyWith(reviewer: <ContactDetail>[]);
+        }
+      case 'endorser':
+        {
+          return copyWith(endorser: <ContactDetail>[]);
+        }
+      case 'relatedArtifact':
+        {
+          return copyWith(relatedArtifact: <RelatedArtifact>[]);
+        }
+      case 'library':
+        {
+          return copyWith(library_: <FhirCanonical>[]);
+        }
+      case 'kind':
+        {
+          return copyWith(kind: RequestResourceType.empty());
+        }
+      case 'profile':
+        {
+          return copyWith(profile: FhirCanonical.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'intent':
+        {
+          return copyWith(intent: RequestIntent.empty());
+        }
+      case 'priority':
+        {
+          return copyWith(priority: RequestPriority.empty());
+        }
+      case 'doNotPerform':
+        {
+          return copyWith(doNotPerform: FhirBoolean.empty());
+        }
+      case 'timing':
+      case 'timingX':
+      case 'timingTiming':
+        {
+          return copyWith(timingX: Timing.empty());
+        }
+      case 'timingDateTime':
+        {
+          return copyWith(timingX: FhirDateTime.empty());
+        }
+      case 'timingAge':
+        {
+          return copyWith(timingX: Age.empty());
+        }
+      case 'timingPeriod':
+        {
+          return copyWith(timingX: Period.empty());
+        }
+      case 'timingRange':
+        {
+          return copyWith(timingX: Range.empty());
+        }
+      case 'timingDuration':
+        {
+          return copyWith(timingX: FhirDuration.empty());
+        }
+      case 'location':
+        {
+          return copyWith(location: Reference.empty());
+        }
+      case 'participant':
+        {
+          return copyWith(participant: <ActivityDefinitionParticipant>[]);
+        }
+      case 'product':
+      case 'productX':
+      case 'productReference':
+        {
+          return copyWith(productX: Reference.empty());
+        }
+      case 'productCodeableConcept':
+        {
+          return copyWith(productX: CodeableConcept.empty());
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'dosage':
+        {
+          return copyWith(dosage: <Dosage>[]);
+        }
+      case 'bodySite':
+        {
+          return copyWith(bodySite: <CodeableConcept>[]);
+        }
+      case 'specimenRequirement':
+        {
+          return copyWith(specimenRequirement: <Reference>[]);
+        }
+      case 'observationRequirement':
+        {
+          return copyWith(observationRequirement: <Reference>[]);
+        }
+      case 'observationResultRequirement':
+        {
+          return copyWith(observationResultRequirement: <Reference>[]);
+        }
+      case 'transform':
+        {
+          return copyWith(transform: FhirCanonical.empty());
+        }
+      case 'dynamicValue':
+        {
+          return copyWith(dynamicValue: <ActivityDefinitionDynamicValue>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ActivityDefinition clone() => throw UnimplementedError();
   @override
@@ -2804,6 +3070,38 @@ class ActivityDefinitionParticipant extends BackboneElement {
     }
   }
 
+  /// Creates a new [ActivityDefinitionParticipant]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ActivityDefinitionParticipant createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: ActionParticipantType.empty());
+        }
+      case 'role':
+        {
+          return copyWith(role: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ActivityDefinitionParticipant clone() => throw UnimplementedError();
   @override
@@ -3185,6 +3483,38 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
         return ['FhirExpression'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ActivityDefinitionDynamicValue]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ActivityDefinitionDynamicValue createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'path':
+        {
+          return copyWith(path: FhirString.empty());
+        }
+      case 'expression':
+        {
+          return copyWith(expression: FhirExpression.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

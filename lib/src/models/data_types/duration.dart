@@ -349,6 +349,46 @@ class FhirDuration extends Quantity
     }
   }
 
+  /// Creates a new [FhirDuration]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  FhirDuration createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirDecimal.empty());
+        }
+      case 'comparator':
+        {
+          return copyWith(comparator: QuantityComparator.empty());
+        }
+      case 'unit':
+        {
+          return copyWith(unit: FhirString.empty());
+        }
+      case 'system':
+        {
+          return copyWith(system: FhirUri.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: FhirCode.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   FhirDuration clone() => throw UnimplementedError();
   @override

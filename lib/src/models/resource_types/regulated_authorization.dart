@@ -773,6 +773,106 @@ class RegulatedAuthorization extends DomainResource {
     }
   }
 
+  /// Creates a new [RegulatedAuthorization]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  RegulatedAuthorization createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'subject':
+        {
+          return copyWith(subject: <Reference>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'region':
+        {
+          return copyWith(region: <CodeableConcept>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: CodeableConcept.empty());
+        }
+      case 'statusDate':
+        {
+          return copyWith(statusDate: FhirDateTime.empty());
+        }
+      case 'validityPeriod':
+        {
+          return copyWith(validityPeriod: Period.empty());
+        }
+      case 'indication':
+        {
+          return copyWith(indication: CodeableReference.empty());
+        }
+      case 'intendedUse':
+        {
+          return copyWith(intendedUse: CodeableConcept.empty());
+        }
+      case 'basis':
+        {
+          return copyWith(basis: <CodeableConcept>[]);
+        }
+      case 'holder':
+        {
+          return copyWith(holder: Reference.empty());
+        }
+      case 'regulator':
+        {
+          return copyWith(regulator: Reference.empty());
+        }
+      case 'case':
+        {
+          return copyWith(case_: RegulatedAuthorizationCase.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   RegulatedAuthorization clone() => throw UnimplementedError();
   @override
@@ -1442,6 +1542,56 @@ class RegulatedAuthorizationCase extends BackboneElement {
         return ['RegulatedAuthorizationCase'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [RegulatedAuthorizationCase]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  RegulatedAuthorizationCase createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: Identifier.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: CodeableConcept.empty());
+        }
+      case 'date':
+      case 'dateX':
+      case 'datePeriod':
+        {
+          return copyWith(dateX: Period.empty());
+        }
+      case 'dateDateTime':
+        {
+          return copyWith(dateX: FhirDateTime.empty());
+        }
+      case 'application':
+        {
+          return copyWith(application: <RegulatedAuthorizationCase>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

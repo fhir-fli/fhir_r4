@@ -1255,6 +1255,174 @@ class Task extends DomainResource {
     }
   }
 
+  /// Creates a new [Task]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Task createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'instantiatesCanonical':
+        {
+          return copyWith(instantiatesCanonical: FhirCanonical.empty());
+        }
+      case 'instantiatesUri':
+        {
+          return copyWith(instantiatesUri: FhirUri.empty());
+        }
+      case 'basedOn':
+        {
+          return copyWith(basedOn: <Reference>[]);
+        }
+      case 'groupIdentifier':
+        {
+          return copyWith(groupIdentifier: Identifier.empty());
+        }
+      case 'partOf':
+        {
+          return copyWith(partOf: <Reference>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: TaskStatus.empty());
+        }
+      case 'statusReason':
+        {
+          return copyWith(statusReason: CodeableConcept.empty());
+        }
+      case 'businessStatus':
+        {
+          return copyWith(businessStatus: CodeableConcept.empty());
+        }
+      case 'intent':
+        {
+          return copyWith(intent: TaskIntent.empty());
+        }
+      case 'priority':
+        {
+          return copyWith(priority: RequestPriority.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'focus':
+        {
+          return copyWith(focus: Reference.empty());
+        }
+      case 'for':
+        {
+          return copyWith(for_: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'executionPeriod':
+        {
+          return copyWith(executionPeriod: Period.empty());
+        }
+      case 'authoredOn':
+        {
+          return copyWith(authoredOn: FhirDateTime.empty());
+        }
+      case 'lastModified':
+        {
+          return copyWith(lastModified: FhirDateTime.empty());
+        }
+      case 'requester':
+        {
+          return copyWith(requester: Reference.empty());
+        }
+      case 'performerType':
+        {
+          return copyWith(performerType: <CodeableConcept>[]);
+        }
+      case 'owner':
+        {
+          return copyWith(owner: Reference.empty());
+        }
+      case 'location':
+        {
+          return copyWith(location: Reference.empty());
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: CodeableConcept.empty());
+        }
+      case 'reasonReference':
+        {
+          return copyWith(reasonReference: Reference.empty());
+        }
+      case 'insurance':
+        {
+          return copyWith(insurance: <Reference>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'relevantHistory':
+        {
+          return copyWith(relevantHistory: <Reference>[]);
+        }
+      case 'restriction':
+        {
+          return copyWith(restriction: TaskRestriction.empty());
+        }
+      case 'input':
+        {
+          return copyWith(input: <TaskInput>[]);
+        }
+      case 'output':
+        {
+          return copyWith(output: <TaskOutput>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Task clone() => throw UnimplementedError();
   @override
@@ -1993,6 +2161,42 @@ class TaskRestriction extends BackboneElement {
         return ['Reference'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [TaskRestriction]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TaskRestriction createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'repetitions':
+        {
+          return copyWith(repetitions: FhirPositiveInt.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      case 'recipient':
+        {
+          return copyWith(recipient: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -3342,6 +3546,236 @@ class TaskInput extends BackboneElement {
     }
   }
 
+  /// Creates a new [TaskInput]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TaskInput createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueBase64Binary':
+        {
+          return copyWith(valueX: FhirBase64Binary.empty());
+        }
+      case 'valueBoolean':
+        {
+          return copyWith(valueX: FhirBoolean.empty());
+        }
+      case 'valueCanonical':
+        {
+          return copyWith(valueX: FhirCanonical.empty());
+        }
+      case 'valueCode':
+        {
+          return copyWith(valueX: FhirCode.empty());
+        }
+      case 'valueDate':
+        {
+          return copyWith(valueX: FhirDate.empty());
+        }
+      case 'valueDateTime':
+        {
+          return copyWith(valueX: FhirDateTime.empty());
+        }
+      case 'valueDecimal':
+        {
+          return copyWith(valueX: FhirDecimal.empty());
+        }
+      case 'valueId':
+        {
+          return copyWith(valueX: FhirId.empty());
+        }
+      case 'valueInstant':
+        {
+          return copyWith(valueX: FhirInstant.empty());
+        }
+      case 'valueInteger':
+        {
+          return copyWith(valueX: FhirInteger.empty());
+        }
+      case 'valueMarkdown':
+        {
+          return copyWith(valueX: FhirMarkdown.empty());
+        }
+      case 'valueOid':
+        {
+          return copyWith(valueX: FhirOid.empty());
+        }
+      case 'valuePositiveInt':
+        {
+          return copyWith(valueX: FhirPositiveInt.empty());
+        }
+      case 'valueString':
+        {
+          return copyWith(valueX: FhirString.empty());
+        }
+      case 'valueTime':
+        {
+          return copyWith(valueX: FhirTime.empty());
+        }
+      case 'valueUnsignedInt':
+        {
+          return copyWith(valueX: FhirUnsignedInt.empty());
+        }
+      case 'valueUri':
+        {
+          return copyWith(valueX: FhirUri.empty());
+        }
+      case 'valueUrl':
+        {
+          return copyWith(valueX: FhirUrl.empty());
+        }
+      case 'valueUuid':
+        {
+          return copyWith(valueX: FhirUuid.empty());
+        }
+      case 'valueAddress':
+        {
+          return copyWith(valueX: Address.empty());
+        }
+      case 'valueAge':
+        {
+          return copyWith(valueX: Age.empty());
+        }
+      case 'valueAnnotation':
+        {
+          return copyWith(valueX: Annotation.empty());
+        }
+      case 'valueAttachment':
+        {
+          return copyWith(valueX: Attachment.empty());
+        }
+      case 'valueCodeableConcept':
+        {
+          return copyWith(valueX: CodeableConcept.empty());
+        }
+      case 'valueCoding':
+        {
+          return copyWith(valueX: Coding.empty());
+        }
+      case 'valueContactPoint':
+        {
+          return copyWith(valueX: ContactPoint.empty());
+        }
+      case 'valueCount':
+        {
+          return copyWith(valueX: Count.empty());
+        }
+      case 'valueDistance':
+        {
+          return copyWith(valueX: Distance.empty());
+        }
+      case 'valueDuration':
+        {
+          return copyWith(valueX: FhirDuration.empty());
+        }
+      case 'valueHumanName':
+        {
+          return copyWith(valueX: HumanName.empty());
+        }
+      case 'valueIdentifier':
+        {
+          return copyWith(valueX: Identifier.empty());
+        }
+      case 'valueMoney':
+        {
+          return copyWith(valueX: Money.empty());
+        }
+      case 'valuePeriod':
+        {
+          return copyWith(valueX: Period.empty());
+        }
+      case 'valueQuantity':
+        {
+          return copyWith(valueX: Quantity.empty());
+        }
+      case 'valueRange':
+        {
+          return copyWith(valueX: Range.empty());
+        }
+      case 'valueRatio':
+        {
+          return copyWith(valueX: Ratio.empty());
+        }
+      case 'valueReference':
+        {
+          return copyWith(valueX: Reference.empty());
+        }
+      case 'valueSampledData':
+        {
+          return copyWith(valueX: SampledData.empty());
+        }
+      case 'valueSignature':
+        {
+          return copyWith(valueX: Signature.empty());
+        }
+      case 'valueTiming':
+        {
+          return copyWith(valueX: Timing.empty());
+        }
+      case 'valueContactDetail':
+        {
+          return copyWith(valueX: ContactDetail.empty());
+        }
+      case 'valueContributor':
+        {
+          return copyWith(valueX: Contributor.empty());
+        }
+      case 'valueDataRequirement':
+        {
+          return copyWith(valueX: DataRequirement.empty());
+        }
+      case 'valueExpression':
+        {
+          return copyWith(valueX: FhirExpression.empty());
+        }
+      case 'valueParameterDefinition':
+        {
+          return copyWith(valueX: ParameterDefinition.empty());
+        }
+      case 'valueRelatedArtifact':
+        {
+          return copyWith(valueX: RelatedArtifact.empty());
+        }
+      case 'valueTriggerDefinition':
+        {
+          return copyWith(valueX: TriggerDefinition.empty());
+        }
+      case 'valueUsageContext':
+        {
+          return copyWith(valueX: UsageContext.empty());
+        }
+      case 'valueDosage':
+        {
+          return copyWith(valueX: Dosage.empty());
+        }
+      case 'valueMeta':
+        {
+          return copyWith(valueX: FhirMeta.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   TaskInput clone() => throw UnimplementedError();
   @override
@@ -4669,6 +5103,236 @@ class TaskOutput extends BackboneElement {
         return ['FhirMeta'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [TaskOutput]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TaskOutput createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueBase64Binary':
+        {
+          return copyWith(valueX: FhirBase64Binary.empty());
+        }
+      case 'valueBoolean':
+        {
+          return copyWith(valueX: FhirBoolean.empty());
+        }
+      case 'valueCanonical':
+        {
+          return copyWith(valueX: FhirCanonical.empty());
+        }
+      case 'valueCode':
+        {
+          return copyWith(valueX: FhirCode.empty());
+        }
+      case 'valueDate':
+        {
+          return copyWith(valueX: FhirDate.empty());
+        }
+      case 'valueDateTime':
+        {
+          return copyWith(valueX: FhirDateTime.empty());
+        }
+      case 'valueDecimal':
+        {
+          return copyWith(valueX: FhirDecimal.empty());
+        }
+      case 'valueId':
+        {
+          return copyWith(valueX: FhirId.empty());
+        }
+      case 'valueInstant':
+        {
+          return copyWith(valueX: FhirInstant.empty());
+        }
+      case 'valueInteger':
+        {
+          return copyWith(valueX: FhirInteger.empty());
+        }
+      case 'valueMarkdown':
+        {
+          return copyWith(valueX: FhirMarkdown.empty());
+        }
+      case 'valueOid':
+        {
+          return copyWith(valueX: FhirOid.empty());
+        }
+      case 'valuePositiveInt':
+        {
+          return copyWith(valueX: FhirPositiveInt.empty());
+        }
+      case 'valueString':
+        {
+          return copyWith(valueX: FhirString.empty());
+        }
+      case 'valueTime':
+        {
+          return copyWith(valueX: FhirTime.empty());
+        }
+      case 'valueUnsignedInt':
+        {
+          return copyWith(valueX: FhirUnsignedInt.empty());
+        }
+      case 'valueUri':
+        {
+          return copyWith(valueX: FhirUri.empty());
+        }
+      case 'valueUrl':
+        {
+          return copyWith(valueX: FhirUrl.empty());
+        }
+      case 'valueUuid':
+        {
+          return copyWith(valueX: FhirUuid.empty());
+        }
+      case 'valueAddress':
+        {
+          return copyWith(valueX: Address.empty());
+        }
+      case 'valueAge':
+        {
+          return copyWith(valueX: Age.empty());
+        }
+      case 'valueAnnotation':
+        {
+          return copyWith(valueX: Annotation.empty());
+        }
+      case 'valueAttachment':
+        {
+          return copyWith(valueX: Attachment.empty());
+        }
+      case 'valueCodeableConcept':
+        {
+          return copyWith(valueX: CodeableConcept.empty());
+        }
+      case 'valueCoding':
+        {
+          return copyWith(valueX: Coding.empty());
+        }
+      case 'valueContactPoint':
+        {
+          return copyWith(valueX: ContactPoint.empty());
+        }
+      case 'valueCount':
+        {
+          return copyWith(valueX: Count.empty());
+        }
+      case 'valueDistance':
+        {
+          return copyWith(valueX: Distance.empty());
+        }
+      case 'valueDuration':
+        {
+          return copyWith(valueX: FhirDuration.empty());
+        }
+      case 'valueHumanName':
+        {
+          return copyWith(valueX: HumanName.empty());
+        }
+      case 'valueIdentifier':
+        {
+          return copyWith(valueX: Identifier.empty());
+        }
+      case 'valueMoney':
+        {
+          return copyWith(valueX: Money.empty());
+        }
+      case 'valuePeriod':
+        {
+          return copyWith(valueX: Period.empty());
+        }
+      case 'valueQuantity':
+        {
+          return copyWith(valueX: Quantity.empty());
+        }
+      case 'valueRange':
+        {
+          return copyWith(valueX: Range.empty());
+        }
+      case 'valueRatio':
+        {
+          return copyWith(valueX: Ratio.empty());
+        }
+      case 'valueReference':
+        {
+          return copyWith(valueX: Reference.empty());
+        }
+      case 'valueSampledData':
+        {
+          return copyWith(valueX: SampledData.empty());
+        }
+      case 'valueSignature':
+        {
+          return copyWith(valueX: Signature.empty());
+        }
+      case 'valueTiming':
+        {
+          return copyWith(valueX: Timing.empty());
+        }
+      case 'valueContactDetail':
+        {
+          return copyWith(valueX: ContactDetail.empty());
+        }
+      case 'valueContributor':
+        {
+          return copyWith(valueX: Contributor.empty());
+        }
+      case 'valueDataRequirement':
+        {
+          return copyWith(valueX: DataRequirement.empty());
+        }
+      case 'valueExpression':
+        {
+          return copyWith(valueX: FhirExpression.empty());
+        }
+      case 'valueParameterDefinition':
+        {
+          return copyWith(valueX: ParameterDefinition.empty());
+        }
+      case 'valueRelatedArtifact':
+        {
+          return copyWith(valueX: RelatedArtifact.empty());
+        }
+      case 'valueTriggerDefinition':
+        {
+          return copyWith(valueX: TriggerDefinition.empty());
+        }
+      case 'valueUsageContext':
+        {
+          return copyWith(valueX: UsageContext.empty());
+        }
+      case 'valueDosage':
+        {
+          return copyWith(valueX: Dosage.empty());
+        }
+      case 'valueMeta':
+        {
+          return copyWith(valueX: FhirMeta.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

@@ -1057,6 +1057,145 @@ class DeviceDefinition extends DomainResource {
     }
   }
 
+  /// Creates a new [DeviceDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DeviceDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'udiDeviceIdentifier':
+        {
+          return copyWith(
+              udiDeviceIdentifier: <DeviceDefinitionUdiDeviceIdentifier>[],);
+        }
+      case 'manufacturer':
+      case 'manufacturerX':
+      case 'manufacturerString':
+        {
+          return copyWith(manufacturerX: FhirString.empty());
+        }
+      case 'manufacturerReference':
+        {
+          return copyWith(manufacturerX: Reference.empty());
+        }
+      case 'deviceName':
+        {
+          return copyWith(deviceName: <DeviceDefinitionDeviceName>[]);
+        }
+      case 'modelNumber':
+        {
+          return copyWith(modelNumber: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'specialization':
+        {
+          return copyWith(specialization: <DeviceDefinitionSpecialization>[]);
+        }
+      case 'version':
+        {
+          return copyWith(version: <FhirString>[]);
+        }
+      case 'safety':
+        {
+          return copyWith(safety: <CodeableConcept>[]);
+        }
+      case 'shelfLifeStorage':
+        {
+          return copyWith(shelfLifeStorage: <ProductShelfLife>[]);
+        }
+      case 'physicalCharacteristics':
+        {
+          return copyWith(physicalCharacteristics: ProdCharacteristic.empty());
+        }
+      case 'languageCode':
+        {
+          return copyWith(languageCode: <CodeableConcept>[]);
+        }
+      case 'capability':
+        {
+          return copyWith(capability: <DeviceDefinitionCapability>[]);
+        }
+      case 'property':
+        {
+          return copyWith(property: <DeviceDefinitionProperty>[]);
+        }
+      case 'owner':
+        {
+          return copyWith(owner: Reference.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactPoint>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'onlineInformation':
+        {
+          return copyWith(onlineInformation: FhirUri.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'parentDevice':
+        {
+          return copyWith(parentDevice: Reference.empty());
+        }
+      case 'material':
+        {
+          return copyWith(material: <DeviceDefinitionMaterial>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   DeviceDefinition clone() => throw UnimplementedError();
   @override
@@ -1751,6 +1890,42 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
     }
   }
 
+  /// Creates a new [DeviceDefinitionUdiDeviceIdentifier]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DeviceDefinitionUdiDeviceIdentifier createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'deviceIdentifier':
+        {
+          return copyWith(deviceIdentifier: FhirString.empty());
+        }
+      case 'issuer':
+        {
+          return copyWith(issuer: FhirUri.empty());
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: FhirUri.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   DeviceDefinitionUdiDeviceIdentifier clone() => throw UnimplementedError();
   @override
@@ -2132,6 +2307,38 @@ class DeviceDefinitionDeviceName extends BackboneElement {
     }
   }
 
+  /// Creates a new [DeviceDefinitionDeviceName]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DeviceDefinitionDeviceName createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: DeviceNameType.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   DeviceDefinitionDeviceName clone() => throw UnimplementedError();
   @override
@@ -2504,6 +2711,38 @@ class DeviceDefinitionSpecialization extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [DeviceDefinitionSpecialization]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DeviceDefinitionSpecialization createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'systemType':
+        {
+          return copyWith(systemType: FhirString.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2880,6 +3119,38 @@ class DeviceDefinitionCapability extends BackboneElement {
         return ['CodeableConcept'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [DeviceDefinitionCapability]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DeviceDefinitionCapability createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: <CodeableConcept>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -3296,6 +3567,42 @@ class DeviceDefinitionProperty extends BackboneElement {
         return ['CodeableConcept'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [DeviceDefinitionProperty]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DeviceDefinitionProperty createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'valueQuantity':
+        {
+          return copyWith(valueQuantity: <Quantity>[]);
+        }
+      case 'valueCode':
+        {
+          return copyWith(valueCode: <CodeableConcept>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -3717,6 +4024,42 @@ class DeviceDefinitionMaterial extends BackboneElement {
         return ['FhirBoolean'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [DeviceDefinitionMaterial]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DeviceDefinitionMaterial createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'substance':
+        {
+          return copyWith(substance: CodeableConcept.empty());
+        }
+      case 'alternate':
+        {
+          return copyWith(alternate: FhirBoolean.empty());
+        }
+      case 'allergenicIndicator':
+        {
+          return copyWith(allergenicIndicator: FhirBoolean.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

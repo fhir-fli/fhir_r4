@@ -683,6 +683,98 @@ class ClinicalUseDefinition extends DomainResource {
     }
   }
 
+  /// Creates a new [ClinicalUseDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClinicalUseDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: ClinicalUseDefinitionType.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'subject':
+        {
+          return copyWith(subject: <Reference>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: CodeableConcept.empty());
+        }
+      case 'contraindication':
+        {
+          return copyWith(
+              contraindication: ClinicalUseDefinitionContraindication.empty(),);
+        }
+      case 'indication':
+        {
+          return copyWith(indication: ClinicalUseDefinitionIndication.empty());
+        }
+      case 'interaction':
+        {
+          return copyWith(
+              interaction: ClinicalUseDefinitionInteraction.empty(),);
+        }
+      case 'population':
+        {
+          return copyWith(population: <Reference>[]);
+        }
+      case 'undesirableEffect':
+        {
+          return copyWith(
+              undesirableEffect:
+                  ClinicalUseDefinitionUndesirableEffect.empty(),);
+        }
+      case 'warning':
+        {
+          return copyWith(warning: ClinicalUseDefinitionWarning.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ClinicalUseDefinition clone() => throw UnimplementedError();
   @override
@@ -1291,6 +1383,50 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
     }
   }
 
+  /// Creates a new [ClinicalUseDefinitionContraindication]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClinicalUseDefinitionContraindication createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'diseaseSymptomProcedure':
+        {
+          return copyWith(diseaseSymptomProcedure: CodeableReference.empty());
+        }
+      case 'diseaseStatus':
+        {
+          return copyWith(diseaseStatus: CodeableReference.empty());
+        }
+      case 'comorbidity':
+        {
+          return copyWith(comorbidity: <CodeableReference>[]);
+        }
+      case 'indication':
+        {
+          return copyWith(indication: <Reference>[]);
+        }
+      case 'otherTherapy':
+        {
+          return copyWith(otherTherapy: <ClinicalUseDefinitionOtherTherapy>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ClinicalUseDefinitionContraindication clone() => throw UnimplementedError();
   @override
@@ -1709,6 +1845,38 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
         return ['CodeableReference'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ClinicalUseDefinitionOtherTherapy]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClinicalUseDefinitionOtherTherapy createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'relationshipType':
+        {
+          return copyWith(relationshipType: CodeableConcept.empty());
+        }
+      case 'therapy':
+        {
+          return copyWith(therapy: CodeableReference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2282,6 +2450,64 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
     }
   }
 
+  /// Creates a new [ClinicalUseDefinitionIndication]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClinicalUseDefinitionIndication createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'diseaseSymptomProcedure':
+        {
+          return copyWith(diseaseSymptomProcedure: CodeableReference.empty());
+        }
+      case 'diseaseStatus':
+        {
+          return copyWith(diseaseStatus: CodeableReference.empty());
+        }
+      case 'comorbidity':
+        {
+          return copyWith(comorbidity: <CodeableReference>[]);
+        }
+      case 'intendedEffect':
+        {
+          return copyWith(intendedEffect: CodeableReference.empty());
+        }
+      case 'duration':
+      case 'durationX':
+      case 'durationRange':
+        {
+          return copyWith(durationX: Range.empty());
+        }
+      case 'durationString':
+        {
+          return copyWith(durationX: FhirString.empty());
+        }
+      case 'undesirableEffect':
+        {
+          return copyWith(undesirableEffect: <Reference>[]);
+        }
+      case 'otherTherapy':
+        {
+          return copyWith(otherTherapy: <ClinicalUseDefinitionOtherTherapy>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ClinicalUseDefinitionIndication clone() => throw UnimplementedError();
   @override
@@ -2809,6 +3035,50 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
     }
   }
 
+  /// Creates a new [ClinicalUseDefinitionInteraction]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClinicalUseDefinitionInteraction createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'interactant':
+        {
+          return copyWith(interactant: <ClinicalUseDefinitionInteractant>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'effect':
+        {
+          return copyWith(effect: CodeableReference.empty());
+        }
+      case 'incidence':
+        {
+          return copyWith(incidence: CodeableConcept.empty());
+        }
+      case 'management':
+        {
+          return copyWith(management: <CodeableConcept>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ClinicalUseDefinitionInteraction clone() => throw UnimplementedError();
   @override
@@ -3236,6 +3506,40 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
     }
   }
 
+  /// Creates a new [ClinicalUseDefinitionInteractant]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClinicalUseDefinitionInteractant createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'item':
+      case 'itemX':
+      case 'itemReference':
+        {
+          return copyWith(itemX: Reference.empty());
+        }
+      case 'itemCodeableConcept':
+        {
+          return copyWith(itemX: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ClinicalUseDefinitionInteractant clone() => throw UnimplementedError();
   @override
@@ -3629,6 +3933,42 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
     }
   }
 
+  /// Creates a new [ClinicalUseDefinitionUndesirableEffect]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClinicalUseDefinitionUndesirableEffect createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'symptomConditionEffect':
+        {
+          return copyWith(symptomConditionEffect: CodeableReference.empty());
+        }
+      case 'classification':
+        {
+          return copyWith(classification: CodeableConcept.empty());
+        }
+      case 'frequencyOfOccurrence':
+        {
+          return copyWith(frequencyOfOccurrence: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ClinicalUseDefinitionUndesirableEffect clone() => throw UnimplementedError();
   @override
@@ -4010,6 +4350,38 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
         return ['CodeableConcept'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ClinicalUseDefinitionWarning]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClinicalUseDefinitionWarning createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

@@ -281,4 +281,8 @@ class FhirInstant extends FhirDateTimeBase
 
   /// Returns a new [FhirInstant] with extensions disallowed.
   FhirInstant noExtensions() => copyWith(disallowExtensions: true);
+
+  /// Creates an empty property in the object
+  @override
+  FhirInstant createProperty(String propertyName) => this;
 }

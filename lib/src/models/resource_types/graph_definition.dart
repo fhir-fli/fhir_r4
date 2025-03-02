@@ -746,6 +746,110 @@ class GraphDefinition extends CanonicalResource {
     }
   }
 
+  /// Creates a new [GraphDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  GraphDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'start':
+        {
+          return copyWith(start: FhirCode.empty());
+        }
+      case 'profile':
+        {
+          return copyWith(profile: FhirCanonical.empty());
+        }
+      case 'link':
+        {
+          return copyWith(link: <GraphDefinitionLink>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   GraphDefinition clone() => throw UnimplementedError();
   @override
@@ -1403,6 +1507,54 @@ class GraphDefinitionLink extends BackboneElement {
     }
   }
 
+  /// Creates a new [GraphDefinitionLink]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  GraphDefinitionLink createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'path':
+        {
+          return copyWith(path: FhirString.empty());
+        }
+      case 'sliceName':
+        {
+          return copyWith(sliceName: FhirString.empty());
+        }
+      case 'min':
+        {
+          return copyWith(min: FhirInteger.empty());
+        }
+      case 'max':
+        {
+          return copyWith(max: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'target':
+        {
+          return copyWith(target: <GraphDefinitionTarget>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   GraphDefinitionLink clone() => throw UnimplementedError();
   @override
@@ -1903,6 +2055,50 @@ class GraphDefinitionTarget extends BackboneElement {
     }
   }
 
+  /// Creates a new [GraphDefinitionTarget]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  GraphDefinitionTarget createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: FhirCode.empty());
+        }
+      case 'params':
+        {
+          return copyWith(params: FhirString.empty());
+        }
+      case 'profile':
+        {
+          return copyWith(profile: FhirCanonical.empty());
+        }
+      case 'compartment':
+        {
+          return copyWith(compartment: <GraphDefinitionCompartment>[]);
+        }
+      case 'link':
+        {
+          return copyWith(link: <GraphDefinitionLink>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   GraphDefinitionTarget clone() => throw UnimplementedError();
   @override
@@ -2391,6 +2587,50 @@ class GraphDefinitionCompartment extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [GraphDefinitionCompartment]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  GraphDefinitionCompartment createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'use':
+        {
+          return copyWith(use: GraphCompartmentUse.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CompartmentType.empty());
+        }
+      case 'rule':
+        {
+          return copyWith(rule: GraphCompartmentRule.empty());
+        }
+      case 'expression':
+        {
+          return copyWith(expression: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

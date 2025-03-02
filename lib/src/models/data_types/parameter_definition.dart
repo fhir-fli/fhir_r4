@@ -417,6 +417,54 @@ class ParameterDefinition extends DataType
     }
   }
 
+  /// Creates a new [ParameterDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ParameterDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirCode.empty());
+        }
+      case 'use':
+        {
+          return copyWith(use: OperationParameterUse.empty());
+        }
+      case 'min':
+        {
+          return copyWith(min: FhirInteger.empty());
+        }
+      case 'max':
+        {
+          return copyWith(max: FhirString.empty());
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: FHIRAllTypes.empty());
+        }
+      case 'profile':
+        {
+          return copyWith(profile: FhirCanonical.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ParameterDefinition clone() => throw UnimplementedError();
   @override

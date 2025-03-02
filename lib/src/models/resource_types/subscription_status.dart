@@ -563,6 +563,79 @@ class SubscriptionStatus extends DomainResource {
     }
   }
 
+  /// Creates a new [SubscriptionStatus]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubscriptionStatus createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: SubscriptionStatusCodes.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: SubscriptionNotificationType.empty());
+        }
+      case 'eventsSinceSubscriptionStart':
+        {
+          return copyWith(eventsSinceSubscriptionStart: FhirString.empty());
+        }
+      case 'notificationEvent':
+        {
+          return copyWith(
+              notificationEvent: <SubscriptionStatusNotificationEvent>[],);
+        }
+      case 'subscription':
+        {
+          return copyWith(subscription: Reference.empty());
+        }
+      case 'topic':
+        {
+          return copyWith(topic: FhirCanonical.empty());
+        }
+      case 'error':
+        {
+          return copyWith(error: <CodeableConcept>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   SubscriptionStatus clone() => throw UnimplementedError();
   @override
@@ -1092,6 +1165,46 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
         return ['Reference'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [SubscriptionStatusNotificationEvent]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubscriptionStatusNotificationEvent createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'eventNumber':
+        {
+          return copyWith(eventNumber: FhirString.empty());
+        }
+      case 'timestamp':
+        {
+          return copyWith(timestamp: FhirInstant.empty());
+        }
+      case 'focus':
+        {
+          return copyWith(focus: Reference.empty());
+        }
+      case 'additionalContext':
+        {
+          return copyWith(additionalContext: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

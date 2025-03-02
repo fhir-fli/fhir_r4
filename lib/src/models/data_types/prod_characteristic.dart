@@ -566,6 +566,74 @@ class ProdCharacteristic extends BackboneType {
     }
   }
 
+  /// Creates a new [ProdCharacteristic]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ProdCharacteristic createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'height':
+        {
+          return copyWith(height: Quantity.empty());
+        }
+      case 'width':
+        {
+          return copyWith(width: Quantity.empty());
+        }
+      case 'depth':
+        {
+          return copyWith(depth: Quantity.empty());
+        }
+      case 'weight':
+        {
+          return copyWith(weight: Quantity.empty());
+        }
+      case 'nominalVolume':
+        {
+          return copyWith(nominalVolume: Quantity.empty());
+        }
+      case 'externalDiameter':
+        {
+          return copyWith(externalDiameter: Quantity.empty());
+        }
+      case 'shape':
+        {
+          return copyWith(shape: FhirString.empty());
+        }
+      case 'color':
+        {
+          return copyWith(color: <FhirString>[]);
+        }
+      case 'imprint':
+        {
+          return copyWith(imprint: <FhirString>[]);
+        }
+      case 'image':
+        {
+          return copyWith(image: <Attachment>[]);
+        }
+      case 'scoring':
+        {
+          return copyWith(scoring: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ProdCharacteristic clone() => throw UnimplementedError();
   @override

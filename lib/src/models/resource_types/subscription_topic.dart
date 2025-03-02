@@ -969,6 +969,140 @@ class SubscriptionTopic extends CanonicalResource {
     }
   }
 
+  /// Creates a new [SubscriptionTopic]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubscriptionTopic createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'derivedFrom':
+        {
+          return copyWith(derivedFrom: <FhirCanonical>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'approvalDate':
+        {
+          return copyWith(approvalDate: FhirDate.empty());
+        }
+      case 'lastReviewDate':
+        {
+          return copyWith(lastReviewDate: FhirDate.empty());
+        }
+      case 'effectivePeriod':
+        {
+          return copyWith(effectivePeriod: Period.empty());
+        }
+      case 'resourceTrigger':
+        {
+          return copyWith(
+              resourceTrigger: <SubscriptionTopicResourceTrigger>[],);
+        }
+      case 'eventTrigger':
+        {
+          return copyWith(eventTrigger: <SubscriptionTopicEventTrigger>[]);
+        }
+      case 'canFilterBy':
+        {
+          return copyWith(canFilterBy: <SubscriptionTopicCanFilterBy>[]);
+        }
+      case 'notificationShape':
+        {
+          return copyWith(
+              notificationShape: <SubscriptionTopicNotificationShape>[],);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   SubscriptionTopic clone() => throw UnimplementedError();
   @override
@@ -1702,6 +1836,51 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
     }
   }
 
+  /// Creates a new [SubscriptionTopicResourceTrigger]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubscriptionTopicResourceTrigger createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'resource':
+        {
+          return copyWith(resource: FhirUri.empty());
+        }
+      case 'supportedInteraction':
+        {
+          return copyWith(supportedInteraction: <InteractionTrigger>[]);
+        }
+      case 'queryCriteria':
+        {
+          return copyWith(
+              queryCriteria: SubscriptionTopicQueryCriteria.empty(),);
+        }
+      case 'fhirPathCriteria':
+        {
+          return copyWith(fhirPathCriteria: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   SubscriptionTopicResourceTrigger clone() => throw UnimplementedError();
   @override
@@ -2194,6 +2373,50 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
     }
   }
 
+  /// Creates a new [SubscriptionTopicQueryCriteria]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubscriptionTopicQueryCriteria createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'previous':
+        {
+          return copyWith(previous: FhirString.empty());
+        }
+      case 'resultForCreate':
+        {
+          return copyWith(resultForCreate: CriteriaNotExistsBehavior.empty());
+        }
+      case 'current':
+        {
+          return copyWith(current: FhirString.empty());
+        }
+      case 'resultForDelete':
+        {
+          return copyWith(resultForDelete: CriteriaNotExistsBehavior.empty());
+        }
+      case 'requireBoth':
+        {
+          return copyWith(requireBoth: FhirBoolean.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   SubscriptionTopicQueryCriteria clone() => throw UnimplementedError();
   @override
@@ -2624,6 +2847,42 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
         return ['FhirUri'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [SubscriptionTopicEventTrigger]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubscriptionTopicEventTrigger createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'event':
+        {
+          return copyWith(event: CodeableConcept.empty());
+        }
+      case 'resource':
+        {
+          return copyWith(resource: FhirUri.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -3104,6 +3363,50 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
     }
   }
 
+  /// Creates a new [SubscriptionTopicCanFilterBy]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubscriptionTopicCanFilterBy createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'resource':
+        {
+          return copyWith(resource: FhirUri.empty());
+        }
+      case 'filterParameter':
+        {
+          return copyWith(filterParameter: FhirString.empty());
+        }
+      case 'filterDefinition':
+        {
+          return copyWith(filterDefinition: FhirUri.empty());
+        }
+      case 'modifier':
+        {
+          return copyWith(modifier: <SubscriptionSearchModifier>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   SubscriptionTopicCanFilterBy clone() => throw UnimplementedError();
   @override
@@ -3546,6 +3849,42 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [SubscriptionTopicNotificationShape]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubscriptionTopicNotificationShape createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'resource':
+        {
+          return copyWith(resource: FhirUri.empty());
+        }
+      case 'include':
+        {
+          return copyWith(include: <FhirString>[]);
+        }
+      case 'revInclude':
+        {
+          return copyWith(revInclude: <FhirString>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

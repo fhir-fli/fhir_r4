@@ -956,6 +956,128 @@ class DiagnosticReport extends DomainResource {
     }
   }
 
+  /// Creates a new [DiagnosticReport]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DiagnosticReport createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'basedOn':
+        {
+          return copyWith(basedOn: <Reference>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: DiagnosticReportStatus.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'effective':
+      case 'effectiveX':
+      case 'effectiveDateTime':
+        {
+          return copyWith(effectiveX: FhirDateTime.empty());
+        }
+      case 'effectivePeriod':
+        {
+          return copyWith(effectiveX: Period.empty());
+        }
+      case 'issued':
+        {
+          return copyWith(issued: FhirInstant.empty());
+        }
+      case 'performer':
+        {
+          return copyWith(performer: <Reference>[]);
+        }
+      case 'resultsInterpreter':
+        {
+          return copyWith(resultsInterpreter: <Reference>[]);
+        }
+      case 'specimen':
+        {
+          return copyWith(specimen: <Reference>[]);
+        }
+      case 'result':
+        {
+          return copyWith(result: <Reference>[]);
+        }
+      case 'imagingStudy':
+        {
+          return copyWith(imagingStudy: <Reference>[]);
+        }
+      case 'media':
+        {
+          return copyWith(media: <DiagnosticReportMedia>[]);
+        }
+      case 'conclusion':
+        {
+          return copyWith(conclusion: FhirString.empty());
+        }
+      case 'conclusionCode':
+        {
+          return copyWith(conclusionCode: <CodeableConcept>[]);
+        }
+      case 'presentedForm':
+        {
+          return copyWith(presentedForm: <Attachment>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   DiagnosticReport clone() => throw UnimplementedError();
   @override
@@ -1573,6 +1695,38 @@ class DiagnosticReportMedia extends BackboneElement {
         return ['Reference'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [DiagnosticReportMedia]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DiagnosticReportMedia createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'comment':
+        {
+          return copyWith(comment: FhirString.empty());
+        }
+      case 'link':
+        {
+          return copyWith(link: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

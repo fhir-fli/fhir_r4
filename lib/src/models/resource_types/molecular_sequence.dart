@@ -829,6 +829,115 @@ class MolecularSequence extends DomainResource {
     }
   }
 
+  /// Creates a new [MolecularSequence]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MolecularSequence createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: SequenceType.empty());
+        }
+      case 'coordinateSystem':
+        {
+          return copyWith(coordinateSystem: FhirInteger.empty());
+        }
+      case 'patient':
+        {
+          return copyWith(patient: Reference.empty());
+        }
+      case 'specimen':
+        {
+          return copyWith(specimen: Reference.empty());
+        }
+      case 'device':
+        {
+          return copyWith(device: Reference.empty());
+        }
+      case 'performer':
+        {
+          return copyWith(performer: Reference.empty());
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'referenceSeq':
+        {
+          return copyWith(referenceSeq: MolecularSequenceReferenceSeq.empty());
+        }
+      case 'variant':
+        {
+          return copyWith(variant: <MolecularSequenceVariant>[]);
+        }
+      case 'observedSeq':
+        {
+          return copyWith(observedSeq: FhirString.empty());
+        }
+      case 'quality':
+        {
+          return copyWith(quality: <MolecularSequenceQuality>[]);
+        }
+      case 'readCoverage':
+        {
+          return copyWith(readCoverage: FhirInteger.empty());
+        }
+      case 'repository':
+        {
+          return copyWith(repository: <MolecularSequenceRepository>[]);
+        }
+      case 'pointer':
+        {
+          return copyWith(pointer: <Reference>[]);
+        }
+      case 'structureVariant':
+        {
+          return copyWith(
+              structureVariant: <MolecularSequenceStructureVariant>[],);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MolecularSequence clone() => throw UnimplementedError();
   @override
@@ -1603,6 +1712,66 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
     }
   }
 
+  /// Creates a new [MolecularSequenceReferenceSeq]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MolecularSequenceReferenceSeq createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'chromosome':
+        {
+          return copyWith(chromosome: CodeableConcept.empty());
+        }
+      case 'genomeBuild':
+        {
+          return copyWith(genomeBuild: FhirString.empty());
+        }
+      case 'orientation':
+        {
+          return copyWith(orientation: OrientationType.empty());
+        }
+      case 'referenceSeqId':
+        {
+          return copyWith(referenceSeqId: CodeableConcept.empty());
+        }
+      case 'referenceSeqPointer':
+        {
+          return copyWith(referenceSeqPointer: Reference.empty());
+        }
+      case 'referenceSeqString':
+        {
+          return copyWith(referenceSeqString: FhirString.empty());
+        }
+      case 'strand':
+        {
+          return copyWith(strand: StrandType.empty());
+        }
+      case 'windowStart':
+        {
+          return copyWith(windowStart: FhirInteger.empty());
+        }
+      case 'windowEnd':
+        {
+          return copyWith(windowEnd: FhirInteger.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MolecularSequenceReferenceSeq clone() => throw UnimplementedError();
   @override
@@ -2159,6 +2328,54 @@ class MolecularSequenceVariant extends BackboneElement {
         return ['Reference'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [MolecularSequenceVariant]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MolecularSequenceVariant createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'start':
+        {
+          return copyWith(start: FhirInteger.empty());
+        }
+      case 'end':
+        {
+          return copyWith(end: FhirInteger.empty());
+        }
+      case 'observedAllele':
+        {
+          return copyWith(observedAllele: FhirString.empty());
+        }
+      case 'referenceAllele':
+        {
+          return copyWith(referenceAllele: FhirString.empty());
+        }
+      case 'cigar':
+        {
+          return copyWith(cigar: FhirString.empty());
+        }
+      case 'variantPointer':
+        {
+          return copyWith(variantPointer: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2941,6 +3158,90 @@ class MolecularSequenceQuality extends BackboneElement {
     }
   }
 
+  /// Creates a new [MolecularSequenceQuality]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MolecularSequenceQuality createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: QualityType.empty());
+        }
+      case 'standardSequence':
+        {
+          return copyWith(standardSequence: CodeableConcept.empty());
+        }
+      case 'start':
+        {
+          return copyWith(start: FhirInteger.empty());
+        }
+      case 'end':
+        {
+          return copyWith(end: FhirInteger.empty());
+        }
+      case 'score':
+        {
+          return copyWith(score: Quantity.empty());
+        }
+      case 'method':
+        {
+          return copyWith(method: CodeableConcept.empty());
+        }
+      case 'truthTP':
+        {
+          return copyWith(truthTP: FhirDecimal.empty());
+        }
+      case 'queryTP':
+        {
+          return copyWith(queryTP: FhirDecimal.empty());
+        }
+      case 'truthFN':
+        {
+          return copyWith(truthFN: FhirDecimal.empty());
+        }
+      case 'queryFP':
+        {
+          return copyWith(queryFP: FhirDecimal.empty());
+        }
+      case 'gtFP':
+        {
+          return copyWith(gtFP: FhirDecimal.empty());
+        }
+      case 'precision':
+        {
+          return copyWith(precision: FhirDecimal.empty());
+        }
+      case 'recall':
+        {
+          return copyWith(recall: FhirDecimal.empty());
+        }
+      case 'fScore':
+        {
+          return copyWith(fScore: FhirDecimal.empty());
+        }
+      case 'roc':
+        {
+          return copyWith(roc: MolecularSequenceRoc.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MolecularSequenceQuality clone() => throw UnimplementedError();
   @override
@@ -3560,6 +3861,58 @@ class MolecularSequenceRoc extends BackboneElement {
     }
   }
 
+  /// Creates a new [MolecularSequenceRoc]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MolecularSequenceRoc createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'score':
+        {
+          return copyWith(score: <FhirInteger>[]);
+        }
+      case 'numTP':
+        {
+          return copyWith(numTP: <FhirInteger>[]);
+        }
+      case 'numFP':
+        {
+          return copyWith(numFP: <FhirInteger>[]);
+        }
+      case 'numFN':
+        {
+          return copyWith(numFN: <FhirInteger>[]);
+        }
+      case 'precision':
+        {
+          return copyWith(precision: <FhirDecimal>[]);
+        }
+      case 'sensitivity':
+        {
+          return copyWith(sensitivity: <FhirDecimal>[]);
+        }
+      case 'fMeasure':
+        {
+          return copyWith(fMeasure: <FhirDecimal>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MolecularSequenceRoc clone() => throw UnimplementedError();
   @override
@@ -4137,6 +4490,54 @@ class MolecularSequenceRepository extends BackboneElement {
     }
   }
 
+  /// Creates a new [MolecularSequenceRepository]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MolecularSequenceRepository createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: RepositoryType.empty());
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'datasetId':
+        {
+          return copyWith(datasetId: FhirString.empty());
+        }
+      case 'variantsetId':
+        {
+          return copyWith(variantsetId: FhirString.empty());
+        }
+      case 'readsetId':
+        {
+          return copyWith(readsetId: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MolecularSequenceRepository clone() => throw UnimplementedError();
   @override
@@ -4624,6 +5025,50 @@ class MolecularSequenceStructureVariant extends BackboneElement {
     }
   }
 
+  /// Creates a new [MolecularSequenceStructureVariant]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MolecularSequenceStructureVariant createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'variantType':
+        {
+          return copyWith(variantType: CodeableConcept.empty());
+        }
+      case 'exact':
+        {
+          return copyWith(exact: FhirBoolean.empty());
+        }
+      case 'length':
+        {
+          return copyWith(length: FhirInteger.empty());
+        }
+      case 'outer':
+        {
+          return copyWith(outer: MolecularSequenceOuter.empty());
+        }
+      case 'inner':
+        {
+          return copyWith(inner: MolecularSequenceInner.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MolecularSequenceStructureVariant clone() => throw UnimplementedError();
   @override
@@ -5024,6 +5469,38 @@ class MolecularSequenceOuter extends BackboneElement {
     }
   }
 
+  /// Creates a new [MolecularSequenceOuter]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MolecularSequenceOuter createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'start':
+        {
+          return copyWith(start: FhirInteger.empty());
+        }
+      case 'end':
+        {
+          return copyWith(end: FhirInteger.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   MolecularSequenceOuter clone() => throw UnimplementedError();
   @override
@@ -5397,6 +5874,38 @@ class MolecularSequenceInner extends BackboneElement {
         return ['FhirInteger'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [MolecularSequenceInner]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MolecularSequenceInner createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'start':
+        {
+          return copyWith(start: FhirInteger.empty());
+        }
+      case 'end':
+        {
+          return copyWith(end: FhirInteger.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

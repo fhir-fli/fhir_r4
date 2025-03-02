@@ -841,6 +841,122 @@ class StructureMap extends CanonicalResource {
     }
   }
 
+  /// Creates a new [StructureMap]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  StructureMap createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'structure':
+        {
+          return copyWith(structure: <StructureMapStructure>[]);
+        }
+      case 'import':
+        {
+          return copyWith(import_: <FhirCanonical>[]);
+        }
+      case 'group':
+        {
+          return copyWith(group: <StructureMapGroup>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   StructureMap clone() => throw UnimplementedError();
   @override
@@ -1484,6 +1600,46 @@ class StructureMapStructure extends BackboneElement {
     }
   }
 
+  /// Creates a new [StructureMapStructure]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  StructureMapStructure createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirCanonical.empty());
+        }
+      case 'mode':
+        {
+          return copyWith(mode: StructureMapModelMode.empty());
+        }
+      case 'alias':
+        {
+          return copyWith(alias: FhirString.empty());
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   StructureMapStructure clone() => throw UnimplementedError();
   @override
@@ -1989,6 +2145,54 @@ class StructureMapGroup extends BackboneElement {
     }
   }
 
+  /// Creates a new [StructureMapGroup]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  StructureMapGroup createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirId.empty());
+        }
+      case 'extends':
+        {
+          return copyWith(extends_: FhirId.empty());
+        }
+      case 'typeMode':
+        {
+          return copyWith(typeMode: StructureMapGroupTypeMode.empty());
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: FhirString.empty());
+        }
+      case 'input':
+        {
+          return copyWith(input: <StructureMapInput>[]);
+        }
+      case 'rule':
+        {
+          return copyWith(rule: <StructureMapRule>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   StructureMapGroup clone() => throw UnimplementedError();
   @override
@@ -2458,6 +2662,46 @@ class StructureMapInput extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [StructureMapInput]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  StructureMapInput createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirId.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: FhirString.empty());
+        }
+      case 'mode':
+        {
+          return copyWith(mode: StructureMapInputMode.empty());
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2969,6 +3213,54 @@ class StructureMapRule extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [StructureMapRule]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  StructureMapRule createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirId.empty());
+        }
+      case 'source':
+        {
+          return copyWith(source: <StructureMapSource>[]);
+        }
+      case 'target':
+        {
+          return copyWith(target: <StructureMapTarget>[]);
+        }
+      case 'rule':
+        {
+          return copyWith(rule: <StructureMapRule>[]);
+        }
+      case 'dependent':
+        {
+          return copyWith(dependent: <StructureMapDependent>[]);
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -4626,6 +4918,272 @@ class StructureMapSource extends BackboneElement {
     }
   }
 
+  /// Creates a new [StructureMapSource]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  StructureMapSource createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'context':
+        {
+          return copyWith(context: FhirId.empty());
+        }
+      case 'min':
+        {
+          return copyWith(min: FhirInteger.empty());
+        }
+      case 'max':
+        {
+          return copyWith(max: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: FhirString.empty());
+        }
+      case 'defaultValue':
+      case 'defaultValueX':
+      case 'defaultValueBase64Binary':
+        {
+          return copyWith(defaultValueX: FhirBase64Binary.empty());
+        }
+      case 'defaultValueBoolean':
+        {
+          return copyWith(defaultValueX: FhirBoolean.empty());
+        }
+      case 'defaultValueCanonical':
+        {
+          return copyWith(defaultValueX: FhirCanonical.empty());
+        }
+      case 'defaultValueCode':
+        {
+          return copyWith(defaultValueX: FhirCode.empty());
+        }
+      case 'defaultValueDate':
+        {
+          return copyWith(defaultValueX: FhirDate.empty());
+        }
+      case 'defaultValueDateTime':
+        {
+          return copyWith(defaultValueX: FhirDateTime.empty());
+        }
+      case 'defaultValueDecimal':
+        {
+          return copyWith(defaultValueX: FhirDecimal.empty());
+        }
+      case 'defaultValueId':
+        {
+          return copyWith(defaultValueX: FhirId.empty());
+        }
+      case 'defaultValueInstant':
+        {
+          return copyWith(defaultValueX: FhirInstant.empty());
+        }
+      case 'defaultValueInteger':
+        {
+          return copyWith(defaultValueX: FhirInteger.empty());
+        }
+      case 'defaultValueMarkdown':
+        {
+          return copyWith(defaultValueX: FhirMarkdown.empty());
+        }
+      case 'defaultValueOid':
+        {
+          return copyWith(defaultValueX: FhirOid.empty());
+        }
+      case 'defaultValuePositiveInt':
+        {
+          return copyWith(defaultValueX: FhirPositiveInt.empty());
+        }
+      case 'defaultValueString':
+        {
+          return copyWith(defaultValueX: FhirString.empty());
+        }
+      case 'defaultValueTime':
+        {
+          return copyWith(defaultValueX: FhirTime.empty());
+        }
+      case 'defaultValueUnsignedInt':
+        {
+          return copyWith(defaultValueX: FhirUnsignedInt.empty());
+        }
+      case 'defaultValueUri':
+        {
+          return copyWith(defaultValueX: FhirUri.empty());
+        }
+      case 'defaultValueUrl':
+        {
+          return copyWith(defaultValueX: FhirUrl.empty());
+        }
+      case 'defaultValueUuid':
+        {
+          return copyWith(defaultValueX: FhirUuid.empty());
+        }
+      case 'defaultValueAddress':
+        {
+          return copyWith(defaultValueX: Address.empty());
+        }
+      case 'defaultValueAge':
+        {
+          return copyWith(defaultValueX: Age.empty());
+        }
+      case 'defaultValueAnnotation':
+        {
+          return copyWith(defaultValueX: Annotation.empty());
+        }
+      case 'defaultValueAttachment':
+        {
+          return copyWith(defaultValueX: Attachment.empty());
+        }
+      case 'defaultValueCodeableConcept':
+        {
+          return copyWith(defaultValueX: CodeableConcept.empty());
+        }
+      case 'defaultValueCoding':
+        {
+          return copyWith(defaultValueX: Coding.empty());
+        }
+      case 'defaultValueContactPoint':
+        {
+          return copyWith(defaultValueX: ContactPoint.empty());
+        }
+      case 'defaultValueCount':
+        {
+          return copyWith(defaultValueX: Count.empty());
+        }
+      case 'defaultValueDistance':
+        {
+          return copyWith(defaultValueX: Distance.empty());
+        }
+      case 'defaultValueDuration':
+        {
+          return copyWith(defaultValueX: FhirDuration.empty());
+        }
+      case 'defaultValueHumanName':
+        {
+          return copyWith(defaultValueX: HumanName.empty());
+        }
+      case 'defaultValueIdentifier':
+        {
+          return copyWith(defaultValueX: Identifier.empty());
+        }
+      case 'defaultValueMoney':
+        {
+          return copyWith(defaultValueX: Money.empty());
+        }
+      case 'defaultValuePeriod':
+        {
+          return copyWith(defaultValueX: Period.empty());
+        }
+      case 'defaultValueQuantity':
+        {
+          return copyWith(defaultValueX: Quantity.empty());
+        }
+      case 'defaultValueRange':
+        {
+          return copyWith(defaultValueX: Range.empty());
+        }
+      case 'defaultValueRatio':
+        {
+          return copyWith(defaultValueX: Ratio.empty());
+        }
+      case 'defaultValueReference':
+        {
+          return copyWith(defaultValueX: Reference.empty());
+        }
+      case 'defaultValueSampledData':
+        {
+          return copyWith(defaultValueX: SampledData.empty());
+        }
+      case 'defaultValueSignature':
+        {
+          return copyWith(defaultValueX: Signature.empty());
+        }
+      case 'defaultValueTiming':
+        {
+          return copyWith(defaultValueX: Timing.empty());
+        }
+      case 'defaultValueContactDetail':
+        {
+          return copyWith(defaultValueX: ContactDetail.empty());
+        }
+      case 'defaultValueContributor':
+        {
+          return copyWith(defaultValueX: Contributor.empty());
+        }
+      case 'defaultValueDataRequirement':
+        {
+          return copyWith(defaultValueX: DataRequirement.empty());
+        }
+      case 'defaultValueExpression':
+        {
+          return copyWith(defaultValueX: FhirExpression.empty());
+        }
+      case 'defaultValueParameterDefinition':
+        {
+          return copyWith(defaultValueX: ParameterDefinition.empty());
+        }
+      case 'defaultValueRelatedArtifact':
+        {
+          return copyWith(defaultValueX: RelatedArtifact.empty());
+        }
+      case 'defaultValueTriggerDefinition':
+        {
+          return copyWith(defaultValueX: TriggerDefinition.empty());
+        }
+      case 'defaultValueUsageContext':
+        {
+          return copyWith(defaultValueX: UsageContext.empty());
+        }
+      case 'defaultValueDosage':
+        {
+          return copyWith(defaultValueX: Dosage.empty());
+        }
+      case 'defaultValueMeta':
+        {
+          return copyWith(defaultValueX: FhirMeta.empty());
+        }
+      case 'element':
+        {
+          return copyWith(element: FhirString.empty());
+        }
+      case 'listMode':
+        {
+          return copyWith(listMode: StructureMapSourceListMode.empty());
+        }
+      case 'variable':
+        {
+          return copyWith(variable: FhirId.empty());
+        }
+      case 'condition':
+        {
+          return copyWith(condition: FhirString.empty());
+        }
+      case 'check':
+        {
+          return copyWith(check: FhirString.empty());
+        }
+      case 'logMessage':
+        {
+          return copyWith(logMessage: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   StructureMapSource clone() => throw UnimplementedError();
   @override
@@ -5236,6 +5794,62 @@ class StructureMapTarget extends BackboneElement {
     }
   }
 
+  /// Creates a new [StructureMapTarget]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  StructureMapTarget createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'context':
+        {
+          return copyWith(context: FhirId.empty());
+        }
+      case 'contextType':
+        {
+          return copyWith(contextType: StructureMapContextType.empty());
+        }
+      case 'element':
+        {
+          return copyWith(element: FhirString.empty());
+        }
+      case 'variable':
+        {
+          return copyWith(variable: FhirId.empty());
+        }
+      case 'listMode':
+        {
+          return copyWith(listMode: <StructureMapTargetListMode>[]);
+        }
+      case 'listRuleId':
+        {
+          return copyWith(listRuleId: FhirId.empty());
+        }
+      case 'transform':
+        {
+          return copyWith(transform: StructureMapTransform.empty());
+        }
+      case 'parameter':
+        {
+          return copyWith(parameter: <StructureMapParameter>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   StructureMapTarget clone() => throw UnimplementedError();
   @override
@@ -5745,6 +6359,52 @@ class StructureMapParameter extends BackboneElement {
     }
   }
 
+  /// Creates a new [StructureMapParameter]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  StructureMapParameter createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueId':
+        {
+          return copyWith(valueX: FhirId.empty());
+        }
+      case 'valueString':
+        {
+          return copyWith(valueX: FhirString.empty());
+        }
+      case 'valueBoolean':
+        {
+          return copyWith(valueX: FhirBoolean.empty());
+        }
+      case 'valueInteger':
+        {
+          return copyWith(valueX: FhirInteger.empty());
+        }
+      case 'valueDecimal':
+        {
+          return copyWith(valueX: FhirDecimal.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   StructureMapParameter clone() => throw UnimplementedError();
   @override
@@ -6105,6 +6765,38 @@ class StructureMapDependent extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [StructureMapDependent]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  StructureMapDependent createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirId.empty());
+        }
+      case 'variable':
+        {
+          return copyWith(variable: <FhirString>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

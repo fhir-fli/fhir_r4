@@ -803,6 +803,112 @@ class DeviceUseStatement extends DomainResource {
     }
   }
 
+  /// Creates a new [DeviceUseStatement]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DeviceUseStatement createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'basedOn':
+        {
+          return copyWith(basedOn: <Reference>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: DeviceUseStatementStatus.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'derivedFrom':
+        {
+          return copyWith(derivedFrom: <Reference>[]);
+        }
+      case 'timing':
+      case 'timingX':
+      case 'timingTiming':
+        {
+          return copyWith(timingX: Timing.empty());
+        }
+      case 'timingPeriod':
+        {
+          return copyWith(timingX: Period.empty());
+        }
+      case 'timingDateTime':
+        {
+          return copyWith(timingX: FhirDateTime.empty());
+        }
+      case 'recordedOn':
+        {
+          return copyWith(recordedOn: FhirDateTime.empty());
+        }
+      case 'source':
+        {
+          return copyWith(source: Reference.empty());
+        }
+      case 'device':
+        {
+          return copyWith(device: Reference.empty());
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: <CodeableConcept>[]);
+        }
+      case 'reasonReference':
+        {
+          return copyWith(reasonReference: <Reference>[]);
+        }
+      case 'bodySite':
+        {
+          return copyWith(bodySite: CodeableConcept.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   DeviceUseStatement clone() => throw UnimplementedError();
   @override

@@ -418,6 +418,54 @@ class HumanName extends DataType
     }
   }
 
+  /// Creates a new [HumanName]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  HumanName createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'use':
+        {
+          return copyWith(use: NameUse.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: FhirString.empty());
+        }
+      case 'family':
+        {
+          return copyWith(family: FhirString.empty());
+        }
+      case 'given':
+        {
+          return copyWith(given: <FhirString>[]);
+        }
+      case 'prefix':
+        {
+          return copyWith(prefix: <FhirString>[]);
+        }
+      case 'suffix':
+        {
+          return copyWith(suffix: <FhirString>[]);
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   HumanName clone() => throw UnimplementedError();
   @override

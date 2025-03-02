@@ -262,4 +262,8 @@ class FhirCode extends PrimitiveType<String>
 
   /// Returns a new [FhirCode] with extensions disallowed.
   FhirCode noExtensions() => copyWith(disallowExtensions: true);
+
+  /// Creates an empty property in the object
+  @override
+  FhirCode createProperty(String propertyName) => this;
 }

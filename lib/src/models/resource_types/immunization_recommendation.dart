@@ -502,6 +502,71 @@ class ImmunizationRecommendation extends DomainResource {
     }
   }
 
+  /// Creates a new [ImmunizationRecommendation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImmunizationRecommendation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'patient':
+        {
+          return copyWith(patient: Reference.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'authority':
+        {
+          return copyWith(authority: Reference.empty());
+        }
+      case 'recommendation':
+        {
+          return copyWith(
+              recommendation: <ImmunizationRecommendationRecommendation>[],);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ImmunizationRecommendation clone() => throw UnimplementedError();
   @override
@@ -1344,6 +1409,91 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
     }
   }
 
+  /// Creates a new [ImmunizationRecommendationRecommendation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImmunizationRecommendationRecommendation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'vaccineCode':
+        {
+          return copyWith(vaccineCode: <CodeableConcept>[]);
+        }
+      case 'targetDisease':
+        {
+          return copyWith(targetDisease: CodeableConcept.empty());
+        }
+      case 'contraindicatedVaccineCode':
+        {
+          return copyWith(contraindicatedVaccineCode: <CodeableConcept>[]);
+        }
+      case 'forecastStatus':
+        {
+          return copyWith(forecastStatus: CodeableConcept.empty());
+        }
+      case 'forecastReason':
+        {
+          return copyWith(forecastReason: <CodeableConcept>[]);
+        }
+      case 'dateCriterion':
+        {
+          return copyWith(
+              dateCriterion: <ImmunizationRecommendationDateCriterion>[],);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'series':
+        {
+          return copyWith(series: FhirString.empty());
+        }
+      case 'doseNumber':
+      case 'doseNumberX':
+      case 'doseNumberPositiveInt':
+        {
+          return copyWith(doseNumberX: FhirPositiveInt.empty());
+        }
+      case 'doseNumberString':
+        {
+          return copyWith(doseNumberX: FhirString.empty());
+        }
+      case 'seriesDoses':
+      case 'seriesDosesX':
+      case 'seriesDosesPositiveInt':
+        {
+          return copyWith(seriesDosesX: FhirPositiveInt.empty());
+        }
+      case 'seriesDosesString':
+        {
+          return copyWith(seriesDosesX: FhirString.empty());
+        }
+      case 'supportingImmunization':
+        {
+          return copyWith(supportingImmunization: <Reference>[]);
+        }
+      case 'supportingPatientInformation':
+        {
+          return copyWith(supportingPatientInformation: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ImmunizationRecommendationRecommendation clone() =>
       throw UnimplementedError();
@@ -1839,6 +1989,38 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
         return ['FhirDateTime'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ImmunizationRecommendationDateCriterion]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImmunizationRecommendationDateCriterion createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirDateTime.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

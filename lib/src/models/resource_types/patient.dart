@@ -924,6 +924,126 @@ class Patient extends DomainResource {
     }
   }
 
+  /// Creates a new [Patient]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Patient createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'active':
+        {
+          return copyWith(active: FhirBoolean.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: <HumanName>[]);
+        }
+      case 'telecom':
+        {
+          return copyWith(telecom: <ContactPoint>[]);
+        }
+      case 'gender':
+        {
+          return copyWith(gender: AdministrativeGender.empty());
+        }
+      case 'birthDate':
+        {
+          return copyWith(birthDate: FhirDate.empty());
+        }
+      case 'deceased':
+      case 'deceasedX':
+      case 'deceasedBoolean':
+        {
+          return copyWith(deceasedX: FhirBoolean.empty());
+        }
+      case 'deceasedDateTime':
+        {
+          return copyWith(deceasedX: FhirDateTime.empty());
+        }
+      case 'address':
+        {
+          return copyWith(address: <Address>[]);
+        }
+      case 'maritalStatus':
+        {
+          return copyWith(maritalStatus: CodeableConcept.empty());
+        }
+      case 'multipleBirth':
+      case 'multipleBirthX':
+      case 'multipleBirthBoolean':
+        {
+          return copyWith(multipleBirthX: FhirBoolean.empty());
+        }
+      case 'multipleBirthInteger':
+        {
+          return copyWith(multipleBirthX: FhirInteger.empty());
+        }
+      case 'photo':
+        {
+          return copyWith(photo: <Attachment>[]);
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <PatientContact>[]);
+        }
+      case 'communication':
+        {
+          return copyWith(communication: <PatientCommunication>[]);
+        }
+      case 'generalPractitioner':
+        {
+          return copyWith(generalPractitioner: <Reference>[]);
+        }
+      case 'managingOrganization':
+        {
+          return copyWith(managingOrganization: Reference.empty());
+        }
+      case 'link':
+        {
+          return copyWith(link: <PatientLink>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Patient clone() => throw UnimplementedError();
   @override
@@ -1658,6 +1778,58 @@ class PatientContact extends BackboneElement {
     }
   }
 
+  /// Creates a new [PatientContact]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  PatientContact createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'relationship':
+        {
+          return copyWith(relationship: <CodeableConcept>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: HumanName.empty());
+        }
+      case 'telecom':
+        {
+          return copyWith(telecom: <ContactPoint>[]);
+        }
+      case 'address':
+        {
+          return copyWith(address: Address.empty());
+        }
+      case 'gender':
+        {
+          return copyWith(gender: AdministrativeGender.empty());
+        }
+      case 'organization':
+        {
+          return copyWith(organization: Reference.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   PatientContact clone() => throw UnimplementedError();
   @override
@@ -2089,6 +2261,38 @@ class PatientCommunication extends BackboneElement {
     }
   }
 
+  /// Creates a new [PatientCommunication]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  PatientCommunication createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'language':
+        {
+          return copyWith(language: CodeableConcept.empty());
+        }
+      case 'preferred':
+        {
+          return copyWith(preferred: FhirBoolean.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   PatientCommunication clone() => throw UnimplementedError();
   @override
@@ -2458,6 +2662,38 @@ class PatientLink extends BackboneElement {
         return ['FhirCode'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [PatientLink]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  PatientLink createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'other':
+        {
+          return copyWith(other: Reference.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: LinkType.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

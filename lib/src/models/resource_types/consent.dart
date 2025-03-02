@@ -792,6 +792,108 @@ class Consent extends DomainResource {
     }
   }
 
+  /// Creates a new [Consent]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Consent createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: ConsentState.empty());
+        }
+      case 'scope':
+        {
+          return copyWith(scope: CodeableConcept.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'patient':
+        {
+          return copyWith(patient: Reference.empty());
+        }
+      case 'dateTime':
+        {
+          return copyWith(dateTime: FhirDateTime.empty());
+        }
+      case 'performer':
+        {
+          return copyWith(performer: <Reference>[]);
+        }
+      case 'organization':
+        {
+          return copyWith(organization: <Reference>[]);
+        }
+      case 'source':
+      case 'sourceX':
+      case 'sourceAttachment':
+        {
+          return copyWith(sourceX: Attachment.empty());
+        }
+      case 'sourceReference':
+        {
+          return copyWith(sourceX: Reference.empty());
+        }
+      case 'policy':
+        {
+          return copyWith(policy: <ConsentPolicy>[]);
+        }
+      case 'policyRule':
+        {
+          return copyWith(policyRule: CodeableConcept.empty());
+        }
+      case 'verification':
+        {
+          return copyWith(verification: <ConsentVerification>[]);
+        }
+      case 'provision':
+        {
+          return copyWith(provision: ConsentProvision.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Consent clone() => throw UnimplementedError();
   @override
@@ -1338,6 +1440,38 @@ class ConsentPolicy extends BackboneElement {
     }
   }
 
+  /// Creates a new [ConsentPolicy]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ConsentPolicy createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'authority':
+        {
+          return copyWith(authority: FhirUri.empty());
+        }
+      case 'uri':
+        {
+          return copyWith(uri: FhirUri.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ConsentPolicy clone() => throw UnimplementedError();
   @override
@@ -1737,6 +1871,42 @@ class ConsentVerification extends BackboneElement {
         return ['FhirDateTime'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ConsentVerification]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ConsentVerification createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'verified':
+        {
+          return copyWith(verified: FhirBoolean.empty());
+        }
+      case 'verifiedWith':
+        {
+          return copyWith(verifiedWith: Reference.empty());
+        }
+      case 'verificationDate':
+        {
+          return copyWith(verificationDate: FhirDateTime.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2404,6 +2574,74 @@ class ConsentProvision extends BackboneElement {
     }
   }
 
+  /// Creates a new [ConsentProvision]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ConsentProvision createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: ConsentProvisionType.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      case 'actor':
+        {
+          return copyWith(actor: <ConsentActor>[]);
+        }
+      case 'action':
+        {
+          return copyWith(action: <CodeableConcept>[]);
+        }
+      case 'securityLabel':
+        {
+          return copyWith(securityLabel: <Coding>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: <Coding>[]);
+        }
+      case 'class':
+        {
+          return copyWith(class_: <Coding>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: <CodeableConcept>[]);
+        }
+      case 'dataPeriod':
+        {
+          return copyWith(dataPeriod: Period.empty());
+        }
+      case 'data':
+        {
+          return copyWith(data: <ConsentData>[]);
+        }
+      case 'provision':
+        {
+          return copyWith(provision: <ConsentProvision>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ConsentProvision clone() => throw UnimplementedError();
   @override
@@ -2907,6 +3145,38 @@ class ConsentActor extends BackboneElement {
     }
   }
 
+  /// Creates a new [ConsentActor]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ConsentActor createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'role':
+        {
+          return copyWith(role: CodeableConcept.empty());
+        }
+      case 'reference':
+        {
+          return copyWith(reference: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ConsentActor clone() => throw UnimplementedError();
   @override
@@ -3278,6 +3548,38 @@ class ConsentData extends BackboneElement {
         return ['Reference'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ConsentData]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ConsentData createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'meaning':
+        {
+          return copyWith(meaning: ConsentDataMeaning.empty());
+        }
+      case 'reference':
+        {
+          return copyWith(reference: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

@@ -947,6 +947,130 @@ class AdverseEvent extends DomainResource {
     }
   }
 
+  /// Creates a new [AdverseEvent]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AdverseEvent createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: Identifier.empty());
+        }
+      case 'actuality':
+        {
+          return copyWith(actuality: AdverseEventActuality.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'event':
+        {
+          return copyWith(event: CodeableConcept.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'detected':
+        {
+          return copyWith(detected: FhirDateTime.empty());
+        }
+      case 'recordedDate':
+        {
+          return copyWith(recordedDate: FhirDateTime.empty());
+        }
+      case 'resultingCondition':
+        {
+          return copyWith(resultingCondition: <Reference>[]);
+        }
+      case 'location':
+        {
+          return copyWith(location: Reference.empty());
+        }
+      case 'seriousness':
+        {
+          return copyWith(seriousness: CodeableConcept.empty());
+        }
+      case 'severity':
+        {
+          return copyWith(severity: CodeableConcept.empty());
+        }
+      case 'outcome':
+        {
+          return copyWith(outcome: CodeableConcept.empty());
+        }
+      case 'recorder':
+        {
+          return copyWith(recorder: Reference.empty());
+        }
+      case 'contributor':
+        {
+          return copyWith(contributor: <Reference>[]);
+        }
+      case 'suspectEntity':
+        {
+          return copyWith(suspectEntity: <AdverseEventSuspectEntity>[]);
+        }
+      case 'subjectMedicalHistory':
+        {
+          return copyWith(subjectMedicalHistory: <Reference>[]);
+        }
+      case 'referenceDocument':
+        {
+          return copyWith(referenceDocument: <Reference>[]);
+        }
+      case 'study':
+        {
+          return copyWith(study: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   AdverseEvent clone() => throw UnimplementedError();
   @override
@@ -1558,6 +1682,38 @@ class AdverseEventSuspectEntity extends BackboneElement {
     }
   }
 
+  /// Creates a new [AdverseEventSuspectEntity]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AdverseEventSuspectEntity createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'instance':
+        {
+          return copyWith(instance: Reference.empty());
+        }
+      case 'causality':
+        {
+          return copyWith(causality: <AdverseEventCausality>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   AdverseEventSuspectEntity clone() => throw UnimplementedError();
   @override
@@ -1988,6 +2144,46 @@ class AdverseEventCausality extends BackboneElement {
         return ['CodeableConcept'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [AdverseEventCausality]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AdverseEventCausality createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'assessment':
+        {
+          return copyWith(assessment: CodeableConcept.empty());
+        }
+      case 'productRelatedness':
+        {
+          return copyWith(productRelatedness: FhirString.empty());
+        }
+      case 'author':
+        {
+          return copyWith(author: Reference.empty());
+        }
+      case 'method':
+        {
+          return copyWith(method: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

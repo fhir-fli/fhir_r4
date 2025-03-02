@@ -345,6 +345,44 @@ class Annotation extends DataType
     }
   }
 
+  /// Creates a new [Annotation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Annotation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'author':
+      case 'authorX':
+      case 'authorReference':
+        {
+          return copyWith(authorX: Reference.empty());
+        }
+      case 'authorString':
+        {
+          return copyWith(authorX: FhirString.empty());
+        }
+      case 'time':
+        {
+          return copyWith(time: FhirDateTime.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Annotation clone() => throw UnimplementedError();
   @override

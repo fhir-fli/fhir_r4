@@ -139,4 +139,8 @@ abstract class BackboneType extends DataType {
   List<String> typeByElementName(String elementName) {
     return <String>[];
   }
+
+  /// Creates an empty property in the object
+  @override
+  BackboneType createProperty(String propertyName);
 }

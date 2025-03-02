@@ -934,6 +934,128 @@ class SubstanceDefinition extends DomainResource {
     }
   }
 
+  /// Creates a new [SubstanceDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubstanceDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: CodeableConcept.empty());
+        }
+      case 'classification':
+        {
+          return copyWith(classification: <CodeableConcept>[]);
+        }
+      case 'domain':
+        {
+          return copyWith(domain: CodeableConcept.empty());
+        }
+      case 'grade':
+        {
+          return copyWith(grade: <CodeableConcept>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'informationSource':
+        {
+          return copyWith(informationSource: <Reference>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'manufacturer':
+        {
+          return copyWith(manufacturer: <Reference>[]);
+        }
+      case 'supplier':
+        {
+          return copyWith(supplier: <Reference>[]);
+        }
+      case 'moiety':
+        {
+          return copyWith(moiety: <SubstanceDefinitionMoiety>[]);
+        }
+      case 'property':
+        {
+          return copyWith(property: <SubstanceDefinitionProperty>[]);
+        }
+      case 'molecularWeight':
+        {
+          return copyWith(
+              molecularWeight: <SubstanceDefinitionMolecularWeight>[],);
+        }
+      case 'structure':
+        {
+          return copyWith(structure: SubstanceDefinitionStructure.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: <SubstanceDefinitionCode>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: <SubstanceDefinitionName>[]);
+        }
+      case 'relationship':
+        {
+          return copyWith(relationship: <SubstanceDefinitionRelationship>[]);
+        }
+      case 'sourceMaterial':
+        {
+          return copyWith(
+              sourceMaterial: SubstanceDefinitionSourceMaterial.empty(),);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   SubstanceDefinition clone() => throw UnimplementedError();
   @override
@@ -1780,6 +1902,68 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     }
   }
 
+  /// Creates a new [SubstanceDefinitionMoiety]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubstanceDefinitionMoiety createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'role':
+        {
+          return copyWith(role: CodeableConcept.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: Identifier.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'stereochemistry':
+        {
+          return copyWith(stereochemistry: CodeableConcept.empty());
+        }
+      case 'opticalActivity':
+        {
+          return copyWith(opticalActivity: CodeableConcept.empty());
+        }
+      case 'molecularFormula':
+        {
+          return copyWith(molecularFormula: FhirString.empty());
+        }
+      case 'amount':
+      case 'amountX':
+      case 'amountQuantity':
+        {
+          return copyWith(amountX: Quantity.empty());
+        }
+      case 'amountString':
+        {
+          return copyWith(amountX: FhirString.empty());
+        }
+      case 'measurementType':
+        {
+          return copyWith(measurementType: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   SubstanceDefinitionMoiety clone() => throw UnimplementedError();
   @override
@@ -2302,6 +2486,56 @@ class SubstanceDefinitionProperty extends BackboneElement {
     }
   }
 
+  /// Creates a new [SubstanceDefinitionProperty]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubstanceDefinitionProperty createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueCodeableConcept':
+        {
+          return copyWith(valueX: CodeableConcept.empty());
+        }
+      case 'valueQuantity':
+        {
+          return copyWith(valueX: Quantity.empty());
+        }
+      case 'valueDate':
+        {
+          return copyWith(valueX: FhirDate.empty());
+        }
+      case 'valueBoolean':
+        {
+          return copyWith(valueX: FhirBoolean.empty());
+        }
+      case 'valueAttachment':
+        {
+          return copyWith(valueX: Attachment.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   SubstanceDefinitionProperty clone() => throw UnimplementedError();
   @override
@@ -2704,6 +2938,42 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
         return ['Quantity'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [SubstanceDefinitionMolecularWeight]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubstanceDefinitionMolecularWeight createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'method':
+        {
+          return copyWith(method: CodeableConcept.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'amount':
+        {
+          return copyWith(amount: Quantity.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -3267,6 +3537,64 @@ class SubstanceDefinitionStructure extends BackboneElement {
     }
   }
 
+  /// Creates a new [SubstanceDefinitionStructure]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubstanceDefinitionStructure createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'stereochemistry':
+        {
+          return copyWith(stereochemistry: CodeableConcept.empty());
+        }
+      case 'opticalActivity':
+        {
+          return copyWith(opticalActivity: CodeableConcept.empty());
+        }
+      case 'molecularFormula':
+        {
+          return copyWith(molecularFormula: FhirString.empty());
+        }
+      case 'molecularFormulaByMoiety':
+        {
+          return copyWith(molecularFormulaByMoiety: FhirString.empty());
+        }
+      case 'molecularWeight':
+        {
+          return copyWith(
+              molecularWeight: SubstanceDefinitionMolecularWeight.empty(),);
+        }
+      case 'technique':
+        {
+          return copyWith(technique: <CodeableConcept>[]);
+        }
+      case 'sourceDocument':
+        {
+          return copyWith(sourceDocument: <Reference>[]);
+        }
+      case 'representation':
+        {
+          return copyWith(
+              representation: <SubstanceDefinitionRepresentation>[],);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   SubstanceDefinitionStructure clone() => throw UnimplementedError();
   @override
@@ -3769,6 +4097,46 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
     }
   }
 
+  /// Creates a new [SubstanceDefinitionRepresentation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubstanceDefinitionRepresentation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'representation':
+        {
+          return copyWith(representation: FhirString.empty());
+        }
+      case 'format':
+        {
+          return copyWith(format: CodeableConcept.empty());
+        }
+      case 'document':
+        {
+          return copyWith(document: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   SubstanceDefinitionRepresentation clone() => throw UnimplementedError();
   @override
@@ -4244,6 +4612,50 @@ class SubstanceDefinitionCode extends BackboneElement {
         return ['Reference'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [SubstanceDefinitionCode]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubstanceDefinitionCode createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: CodeableConcept.empty());
+        }
+      case 'statusDate':
+        {
+          return copyWith(statusDate: FhirDateTime.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'source':
+        {
+          return copyWith(source: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -4930,6 +5342,74 @@ class SubstanceDefinitionName extends BackboneElement {
     }
   }
 
+  /// Creates a new [SubstanceDefinitionName]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubstanceDefinitionName createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: CodeableConcept.empty());
+        }
+      case 'preferred':
+        {
+          return copyWith(preferred: FhirBoolean.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: <CodeableConcept>[]);
+        }
+      case 'domain':
+        {
+          return copyWith(domain: <CodeableConcept>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'synonym':
+        {
+          return copyWith(synonym: <SubstanceDefinitionName>[]);
+        }
+      case 'translation':
+        {
+          return copyWith(translation: <SubstanceDefinitionName>[]);
+        }
+      case 'official':
+        {
+          return copyWith(official: <SubstanceDefinitionOfficial>[]);
+        }
+      case 'source':
+        {
+          return copyWith(source: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   SubstanceDefinitionName clone() => throw UnimplementedError();
   @override
@@ -5448,6 +5928,42 @@ class SubstanceDefinitionOfficial extends BackboneElement {
         return ['FhirDateTime'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [SubstanceDefinitionOfficial]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubstanceDefinitionOfficial createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'authority':
+        {
+          return copyWith(authority: CodeableConcept.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: CodeableConcept.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -6087,6 +6603,74 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     }
   }
 
+  /// Creates a new [SubstanceDefinitionRelationship]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubstanceDefinitionRelationship createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'substanceDefinition':
+      case 'substanceDefinitionX':
+      case 'substanceDefinitionReference':
+        {
+          return copyWith(substanceDefinitionX: Reference.empty());
+        }
+      case 'substanceDefinitionCodeableConcept':
+        {
+          return copyWith(substanceDefinitionX: CodeableConcept.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'isDefining':
+        {
+          return copyWith(isDefining: FhirBoolean.empty());
+        }
+      case 'amount':
+      case 'amountX':
+      case 'amountQuantity':
+        {
+          return copyWith(amountX: Quantity.empty());
+        }
+      case 'amountRatio':
+        {
+          return copyWith(amountX: Ratio.empty());
+        }
+      case 'amountString':
+        {
+          return copyWith(amountX: FhirString.empty());
+        }
+      case 'ratioHighLimitAmount':
+        {
+          return copyWith(ratioHighLimitAmount: Ratio.empty());
+        }
+      case 'comparator':
+        {
+          return copyWith(comparator: CodeableConcept.empty());
+        }
+      case 'source':
+        {
+          return copyWith(source: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   SubstanceDefinitionRelationship clone() => throw UnimplementedError();
   @override
@@ -6592,6 +7176,50 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
         return ['CodeableConcept'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [SubstanceDefinitionSourceMaterial]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubstanceDefinitionSourceMaterial createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'genus':
+        {
+          return copyWith(genus: CodeableConcept.empty());
+        }
+      case 'species':
+        {
+          return copyWith(species: CodeableConcept.empty());
+        }
+      case 'part':
+        {
+          return copyWith(part_: CodeableConcept.empty());
+        }
+      case 'countryOfOrigin':
+        {
+          return copyWith(countryOfOrigin: <CodeableConcept>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

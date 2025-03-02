@@ -1447,6 +1447,194 @@ class Contract extends DomainResource {
     }
   }
 
+  /// Creates a new [Contract]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Contract createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: ContractResourceStatusCodes.empty());
+        }
+      case 'legalState':
+        {
+          return copyWith(legalState: CodeableConcept.empty());
+        }
+      case 'instantiatesCanonical':
+        {
+          return copyWith(instantiatesCanonical: Reference.empty());
+        }
+      case 'instantiatesUri':
+        {
+          return copyWith(instantiatesUri: FhirUri.empty());
+        }
+      case 'contentDerivative':
+        {
+          return copyWith(contentDerivative: CodeableConcept.empty());
+        }
+      case 'issued':
+        {
+          return copyWith(issued: FhirDateTime.empty());
+        }
+      case 'applies':
+        {
+          return copyWith(applies: Period.empty());
+        }
+      case 'expirationType':
+        {
+          return copyWith(expirationType: CodeableConcept.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: <Reference>[]);
+        }
+      case 'authority':
+        {
+          return copyWith(authority: <Reference>[]);
+        }
+      case 'domain':
+        {
+          return copyWith(domain: <Reference>[]);
+        }
+      case 'site':
+        {
+          return copyWith(site: <Reference>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'subtitle':
+        {
+          return copyWith(subtitle: FhirString.empty());
+        }
+      case 'alias':
+        {
+          return copyWith(alias: <FhirString>[]);
+        }
+      case 'author':
+        {
+          return copyWith(author: Reference.empty());
+        }
+      case 'scope':
+        {
+          return copyWith(scope: CodeableConcept.empty());
+        }
+      case 'topic':
+      case 'topicX':
+      case 'topicCodeableConcept':
+        {
+          return copyWith(topicX: CodeableConcept.empty());
+        }
+      case 'topicReference':
+        {
+          return copyWith(topicX: Reference.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'subType':
+        {
+          return copyWith(subType: <CodeableConcept>[]);
+        }
+      case 'contentDefinition':
+        {
+          return copyWith(contentDefinition: ContractContentDefinition.empty());
+        }
+      case 'term':
+        {
+          return copyWith(term: <ContractTerm>[]);
+        }
+      case 'supportingInfo':
+        {
+          return copyWith(supportingInfo: <Reference>[]);
+        }
+      case 'relevantHistory':
+        {
+          return copyWith(relevantHistory: <Reference>[]);
+        }
+      case 'signer':
+        {
+          return copyWith(signer: <ContractSigner>[]);
+        }
+      case 'friendly':
+        {
+          return copyWith(friendly: <ContractFriendly>[]);
+        }
+      case 'legal':
+        {
+          return copyWith(legal: <ContractLegal>[]);
+        }
+      case 'rule':
+        {
+          return copyWith(rule: <ContractRule>[]);
+        }
+      case 'legallyBinding':
+      case 'legallyBindingX':
+      case 'legallyBindingAttachment':
+        {
+          return copyWith(legallyBindingX: Attachment.empty());
+        }
+      case 'legallyBindingReference':
+        {
+          return copyWith(legallyBindingX: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   Contract clone() => throw UnimplementedError();
   @override
@@ -2324,6 +2512,56 @@ class ContractContentDefinition extends BackboneElement {
     }
   }
 
+  /// Creates a new [ContractContentDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractContentDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'subType':
+        {
+          return copyWith(subType: CodeableConcept.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: Reference.empty());
+        }
+      case 'publicationDate':
+        {
+          return copyWith(publicationDate: FhirDateTime.empty());
+        }
+      case 'publicationStatus':
+        {
+          return copyWith(
+              publicationStatus:
+                  ContractResourcePublicationStatusCodes.empty(),);
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ContractContentDefinition clone() => throw UnimplementedError();
   @override
@@ -3064,6 +3302,84 @@ class ContractTerm extends BackboneElement {
     }
   }
 
+  /// Creates a new [ContractTerm]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractTerm createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: Identifier.empty());
+        }
+      case 'issued':
+        {
+          return copyWith(issued: FhirDateTime.empty());
+        }
+      case 'applies':
+        {
+          return copyWith(applies: Period.empty());
+        }
+      case 'topic':
+      case 'topicX':
+      case 'topicCodeableConcept':
+        {
+          return copyWith(topicX: CodeableConcept.empty());
+        }
+      case 'topicReference':
+        {
+          return copyWith(topicX: Reference.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'subType':
+        {
+          return copyWith(subType: CodeableConcept.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: FhirString.empty());
+        }
+      case 'securityLabel':
+        {
+          return copyWith(securityLabel: <ContractSecurityLabel>[]);
+        }
+      case 'offer':
+        {
+          return copyWith(offer: ContractOffer.empty());
+        }
+      case 'asset':
+        {
+          return copyWith(asset: <ContractAsset>[]);
+        }
+      case 'action':
+        {
+          return copyWith(action: <ContractAction>[]);
+        }
+      case 'group':
+        {
+          return copyWith(group: <ContractTerm>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ContractTerm clone() => throw UnimplementedError();
   @override
@@ -3608,6 +3924,46 @@ class ContractSecurityLabel extends BackboneElement {
         return ['Coding'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ContractSecurityLabel]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractSecurityLabel createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'number':
+        {
+          return copyWith(number: <FhirUnsignedInt>[]);
+        }
+      case 'classification':
+        {
+          return copyWith(classification: Coding.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <Coding>[]);
+        }
+      case 'control':
+        {
+          return copyWith(control: <Coding>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -4257,6 +4613,70 @@ class ContractOffer extends BackboneElement {
     }
   }
 
+  /// Creates a new [ContractOffer]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractOffer createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'party':
+        {
+          return copyWith(party: <ContractParty>[]);
+        }
+      case 'topic':
+        {
+          return copyWith(topic: Reference.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'decision':
+        {
+          return copyWith(decision: CodeableConcept.empty());
+        }
+      case 'decisionMode':
+        {
+          return copyWith(decisionMode: <CodeableConcept>[]);
+        }
+      case 'answer':
+        {
+          return copyWith(answer: <ContractAnswer>[]);
+        }
+      case 'text':
+        {
+          return copyWith(text: FhirString.empty());
+        }
+      case 'linkId':
+        {
+          return copyWith(linkId: <FhirString>[]);
+        }
+      case 'securityLabelNumber':
+        {
+          return copyWith(securityLabelNumber: <FhirUnsignedInt>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ContractOffer clone() => throw UnimplementedError();
   @override
@@ -4735,6 +5155,38 @@ class ContractParty extends BackboneElement {
         return ['CodeableConcept'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ContractParty]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractParty createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'reference':
+        {
+          return copyWith(reference: <Reference>[]);
+        }
+      case 'role':
+        {
+          return copyWith(role: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -5325,6 +5777,80 @@ class ContractAnswer extends BackboneElement {
         return ['Reference'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ContractAnswer]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractAnswer createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueBoolean':
+        {
+          return copyWith(valueX: FhirBoolean.empty());
+        }
+      case 'valueDecimal':
+        {
+          return copyWith(valueX: FhirDecimal.empty());
+        }
+      case 'valueInteger':
+        {
+          return copyWith(valueX: FhirInteger.empty());
+        }
+      case 'valueDate':
+        {
+          return copyWith(valueX: FhirDate.empty());
+        }
+      case 'valueDateTime':
+        {
+          return copyWith(valueX: FhirDateTime.empty());
+        }
+      case 'valueTime':
+        {
+          return copyWith(valueX: FhirTime.empty());
+        }
+      case 'valueString':
+        {
+          return copyWith(valueX: FhirString.empty());
+        }
+      case 'valueUri':
+        {
+          return copyWith(valueX: FhirUri.empty());
+        }
+      case 'valueAttachment':
+        {
+          return copyWith(valueX: Attachment.empty());
+        }
+      case 'valueCoding':
+        {
+          return copyWith(valueX: Coding.empty());
+        }
+      case 'valueQuantity':
+        {
+          return copyWith(valueX: Quantity.empty());
+        }
+      case 'valueReference':
+        {
+          return copyWith(valueX: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -6085,6 +6611,90 @@ class ContractAsset extends BackboneElement {
     }
   }
 
+  /// Creates a new [ContractAsset]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractAsset createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'scope':
+        {
+          return copyWith(scope: CodeableConcept.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: <CodeableConcept>[]);
+        }
+      case 'typeReference':
+        {
+          return copyWith(typeReference: <Reference>[]);
+        }
+      case 'subtype':
+        {
+          return copyWith(subtype: <CodeableConcept>[]);
+        }
+      case 'relationship':
+        {
+          return copyWith(relationship: Coding.empty());
+        }
+      case 'context':
+        {
+          return copyWith(context: <ContractContext>[]);
+        }
+      case 'condition':
+        {
+          return copyWith(condition: FhirString.empty());
+        }
+      case 'periodType':
+        {
+          return copyWith(periodType: <CodeableConcept>[]);
+        }
+      case 'period':
+        {
+          return copyWith(period: <Period>[]);
+        }
+      case 'usePeriod':
+        {
+          return copyWith(usePeriod: <Period>[]);
+        }
+      case 'text':
+        {
+          return copyWith(text: FhirString.empty());
+        }
+      case 'linkId':
+        {
+          return copyWith(linkId: <FhirString>[]);
+        }
+      case 'answer':
+        {
+          return copyWith(answer: <ContractAnswer>[]);
+        }
+      case 'securityLabelNumber':
+        {
+          return copyWith(securityLabelNumber: <FhirUnsignedInt>[]);
+        }
+      case 'valuedItem':
+        {
+          return copyWith(valuedItem: <ContractValuedItem>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ContractAsset clone() => throw UnimplementedError();
   @override
@@ -6669,6 +7279,42 @@ class ContractContext extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ContractContext]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractContext createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'reference':
+        {
+          return copyWith(reference: Reference.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: <CodeableConcept>[]);
+        }
+      case 'text':
+        {
+          return copyWith(text: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -7438,6 +8084,92 @@ class ContractValuedItem extends BackboneElement {
         return ['FhirUnsignedInt'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ContractValuedItem]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractValuedItem createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'entity':
+      case 'entityX':
+      case 'entityCodeableConcept':
+        {
+          return copyWith(entityX: CodeableConcept.empty());
+        }
+      case 'entityReference':
+        {
+          return copyWith(entityX: Reference.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: Identifier.empty());
+        }
+      case 'effectiveTime':
+        {
+          return copyWith(effectiveTime: FhirDateTime.empty());
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'unitPrice':
+        {
+          return copyWith(unitPrice: Money.empty());
+        }
+      case 'factor':
+        {
+          return copyWith(factor: FhirDecimal.empty());
+        }
+      case 'points':
+        {
+          return copyWith(points: FhirDecimal.empty());
+        }
+      case 'net':
+        {
+          return copyWith(net: Money.empty());
+        }
+      case 'payment':
+        {
+          return copyWith(payment: FhirString.empty());
+        }
+      case 'paymentDate':
+        {
+          return copyWith(paymentDate: FhirDateTime.empty());
+        }
+      case 'responsible':
+        {
+          return copyWith(responsible: Reference.empty());
+        }
+      case 'recipient':
+        {
+          return copyWith(recipient: Reference.empty());
+        }
+      case 'linkId':
+        {
+          return copyWith(linkId: <FhirString>[]);
+        }
+      case 'securityLabelNumber':
+        {
+          return copyWith(securityLabelNumber: <FhirUnsignedInt>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -8538,6 +9270,124 @@ class ContractAction extends BackboneElement {
     }
   }
 
+  /// Creates a new [ContractAction]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractAction createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'doNotPerform':
+        {
+          return copyWith(doNotPerform: FhirBoolean.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: <ContractSubject>[]);
+        }
+      case 'intent':
+        {
+          return copyWith(intent: CodeableConcept.empty());
+        }
+      case 'linkId':
+        {
+          return copyWith(linkId: <FhirString>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: CodeableConcept.empty());
+        }
+      case 'context':
+        {
+          return copyWith(context: Reference.empty());
+        }
+      case 'contextLinkId':
+        {
+          return copyWith(contextLinkId: <FhirString>[]);
+        }
+      case 'occurrence':
+      case 'occurrenceX':
+      case 'occurrenceDateTime':
+        {
+          return copyWith(occurrenceX: FhirDateTime.empty());
+        }
+      case 'occurrencePeriod':
+        {
+          return copyWith(occurrenceX: Period.empty());
+        }
+      case 'occurrenceTiming':
+        {
+          return copyWith(occurrenceX: Timing.empty());
+        }
+      case 'requester':
+        {
+          return copyWith(requester: <Reference>[]);
+        }
+      case 'requesterLinkId':
+        {
+          return copyWith(requesterLinkId: <FhirString>[]);
+        }
+      case 'performerType':
+        {
+          return copyWith(performerType: <CodeableConcept>[]);
+        }
+      case 'performerRole':
+        {
+          return copyWith(performerRole: CodeableConcept.empty());
+        }
+      case 'performer':
+        {
+          return copyWith(performer: Reference.empty());
+        }
+      case 'performerLinkId':
+        {
+          return copyWith(performerLinkId: <FhirString>[]);
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: <CodeableConcept>[]);
+        }
+      case 'reasonReference':
+        {
+          return copyWith(reasonReference: <Reference>[]);
+        }
+      case 'reason':
+        {
+          return copyWith(reason: <FhirString>[]);
+        }
+      case 'reasonLinkId':
+        {
+          return copyWith(reasonLinkId: <FhirString>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'securityLabelNumber':
+        {
+          return copyWith(securityLabelNumber: <FhirUnsignedInt>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ContractAction clone() => throw UnimplementedError();
   @override
@@ -9157,6 +10007,38 @@ class ContractSubject extends BackboneElement {
     }
   }
 
+  /// Creates a new [ContractSubject]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractSubject createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'reference':
+        {
+          return copyWith(reference: <Reference>[]);
+        }
+      case 'role':
+        {
+          return copyWith(role: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ContractSubject clone() => throw UnimplementedError();
   @override
@@ -9565,6 +10447,42 @@ class ContractSigner extends BackboneElement {
         return ['Signature'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ContractSigner]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractSigner createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: Coding.empty());
+        }
+      case 'party':
+        {
+          return copyWith(party: Reference.empty());
+        }
+      case 'signature':
+        {
+          return copyWith(signature: <Signature>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -9978,6 +10896,40 @@ class ContractFriendly extends BackboneElement {
     }
   }
 
+  /// Creates a new [ContractFriendly]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractFriendly createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'content':
+      case 'contentX':
+      case 'contentAttachment':
+        {
+          return copyWith(contentX: Attachment.empty());
+        }
+      case 'contentReference':
+        {
+          return copyWith(contentX: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   ContractFriendly clone() => throw UnimplementedError();
   @override
@@ -10354,6 +11306,40 @@ class ContractLegal extends BackboneElement {
         return ['Reference'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ContractLegal]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractLegal createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'content':
+      case 'contentX':
+      case 'contentAttachment':
+        {
+          return copyWith(contentX: Attachment.empty());
+        }
+      case 'contentReference':
+        {
+          return copyWith(contentX: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -10735,6 +11721,40 @@ class ContractRule extends BackboneElement {
         return ['Reference'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [ContractRule]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractRule createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'content':
+      case 'contentX':
+      case 'contentAttachment':
+        {
+          return copyWith(contentX: Attachment.empty());
+        }
+      case 'contentReference':
+        {
+          return copyWith(contentX: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

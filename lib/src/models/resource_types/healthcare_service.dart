@@ -1095,6 +1095,146 @@ class HealthcareService extends DomainResource {
     }
   }
 
+  /// Creates a new [HealthcareService]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  HealthcareService createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'active':
+        {
+          return copyWith(active: FhirBoolean.empty());
+        }
+      case 'providedBy':
+        {
+          return copyWith(providedBy: Reference.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: <CodeableConcept>[]);
+        }
+      case 'specialty':
+        {
+          return copyWith(specialty: <CodeableConcept>[]);
+        }
+      case 'location':
+        {
+          return copyWith(location: <Reference>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'comment':
+        {
+          return copyWith(comment: FhirString.empty());
+        }
+      case 'extraDetails':
+        {
+          return copyWith(extraDetails: FhirMarkdown.empty());
+        }
+      case 'photo':
+        {
+          return copyWith(photo: Attachment.empty());
+        }
+      case 'telecom':
+        {
+          return copyWith(telecom: <ContactPoint>[]);
+        }
+      case 'coverageArea':
+        {
+          return copyWith(coverageArea: <Reference>[]);
+        }
+      case 'serviceProvisionCode':
+        {
+          return copyWith(serviceProvisionCode: <CodeableConcept>[]);
+        }
+      case 'eligibility':
+        {
+          return copyWith(eligibility: <HealthcareServiceEligibility>[]);
+        }
+      case 'program':
+        {
+          return copyWith(program: <CodeableConcept>[]);
+        }
+      case 'characteristic':
+        {
+          return copyWith(characteristic: <CodeableConcept>[]);
+        }
+      case 'communication':
+        {
+          return copyWith(communication: <CodeableConcept>[]);
+        }
+      case 'referralMethod':
+        {
+          return copyWith(referralMethod: <CodeableConcept>[]);
+        }
+      case 'appointmentRequired':
+        {
+          return copyWith(appointmentRequired: FhirBoolean.empty());
+        }
+      case 'availableTime':
+        {
+          return copyWith(availableTime: <HealthcareServiceAvailableTime>[]);
+        }
+      case 'notAvailable':
+        {
+          return copyWith(notAvailable: <HealthcareServiceNotAvailable>[]);
+        }
+      case 'availabilityExceptions':
+        {
+          return copyWith(availabilityExceptions: FhirString.empty());
+        }
+      case 'endpoint':
+        {
+          return copyWith(endpoint: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   HealthcareService clone() => throw UnimplementedError();
   @override
@@ -1796,6 +1936,38 @@ class HealthcareServiceEligibility extends BackboneElement {
     }
   }
 
+  /// Creates a new [HealthcareServiceEligibility]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  HealthcareServiceEligibility createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'comment':
+        {
+          return copyWith(comment: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   HealthcareServiceEligibility clone() => throw UnimplementedError();
   @override
@@ -2227,6 +2399,46 @@ class HealthcareServiceAvailableTime extends BackboneElement {
     }
   }
 
+  /// Creates a new [HealthcareServiceAvailableTime]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  HealthcareServiceAvailableTime createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'daysOfWeek':
+        {
+          return copyWith(daysOfWeek: <DaysOfWeek>[]);
+        }
+      case 'allDay':
+        {
+          return copyWith(allDay: FhirBoolean.empty());
+        }
+      case 'availableStartTime':
+        {
+          return copyWith(availableStartTime: FhirTime.empty());
+        }
+      case 'availableEndTime':
+        {
+          return copyWith(availableEndTime: FhirTime.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   HealthcareServiceAvailableTime clone() => throw UnimplementedError();
   @override
@@ -2623,6 +2835,38 @@ class HealthcareServiceNotAvailable extends BackboneElement {
         return ['Period'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [HealthcareServiceNotAvailable]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  HealthcareServiceNotAvailable createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'during':
+        {
+          return copyWith(during: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

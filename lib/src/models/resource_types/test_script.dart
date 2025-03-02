@@ -1080,6 +1080,146 @@ class TestScript extends DomainResource {
     }
   }
 
+  /// Creates a new [TestScript]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScript createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: Identifier.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'origin':
+        {
+          return copyWith(origin: <TestScriptOrigin>[]);
+        }
+      case 'destination':
+        {
+          return copyWith(destination: <TestScriptDestination>[]);
+        }
+      case 'metadata':
+        {
+          return copyWith(metadata: TestScriptMetadata.empty());
+        }
+      case 'fixture':
+        {
+          return copyWith(fixture: <TestScriptFixture>[]);
+        }
+      case 'profile':
+        {
+          return copyWith(profile: <Reference>[]);
+        }
+      case 'variable':
+        {
+          return copyWith(variable: <TestScriptVariable>[]);
+        }
+      case 'setup':
+        {
+          return copyWith(setup: TestScriptSetup.empty());
+        }
+      case 'test':
+        {
+          return copyWith(test: <TestScriptTest>[]);
+        }
+      case 'teardown':
+        {
+          return copyWith(teardown: TestScriptTeardown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   TestScript clone() => throw UnimplementedError();
   @override
@@ -1731,6 +1871,38 @@ class TestScriptOrigin extends BackboneElement {
     }
   }
 
+  /// Creates a new [TestScriptOrigin]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptOrigin createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'index':
+        {
+          return copyWith(index: FhirInteger.empty());
+        }
+      case 'profile':
+        {
+          return copyWith(profile: Coding.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   TestScriptOrigin clone() => throw UnimplementedError();
   @override
@@ -2101,6 +2273,38 @@ class TestScriptDestination extends BackboneElement {
         return ['Coding'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [TestScriptDestination]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptDestination createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'index':
+        {
+          return copyWith(index: FhirInteger.empty());
+        }
+      case 'profile':
+        {
+          return copyWith(profile: Coding.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2483,6 +2687,38 @@ class TestScriptMetadata extends BackboneElement {
         return ['TestScriptCapability'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [TestScriptMetadata]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptMetadata createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'link':
+        {
+          return copyWith(link: <TestScriptLink>[]);
+        }
+      case 'capability':
+        {
+          return copyWith(capability: <TestScriptCapability>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -2870,6 +3106,38 @@ class TestScriptLink extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [TestScriptLink]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptLink createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -3385,6 +3653,58 @@ class TestScriptCapability extends BackboneElement {
     }
   }
 
+  /// Creates a new [TestScriptCapability]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptCapability createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'required':
+        {
+          return copyWith(required_: FhirBoolean.empty());
+        }
+      case 'validated':
+        {
+          return copyWith(validated: FhirBoolean.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'origin':
+        {
+          return copyWith(origin: <FhirInteger>[]);
+        }
+      case 'destination':
+        {
+          return copyWith(destination: FhirInteger.empty());
+        }
+      case 'link':
+        {
+          return copyWith(link: <FhirUri>[]);
+        }
+      case 'capabilities':
+        {
+          return copyWith(capabilities: FhirCanonical.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   TestScriptCapability clone() => throw UnimplementedError();
   @override
@@ -3842,6 +4162,42 @@ class TestScriptFixture extends BackboneElement {
         return ['Reference'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [TestScriptFixture]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptFixture createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'autocreate':
+        {
+          return copyWith(autocreate: FhirBoolean.empty());
+        }
+      case 'autodelete':
+        {
+          return copyWith(autodelete: FhirBoolean.empty());
+        }
+      case 'resource':
+        {
+          return copyWith(resource: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -4396,6 +4752,62 @@ class TestScriptVariable extends BackboneElement {
     }
   }
 
+  /// Creates a new [TestScriptVariable]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptVariable createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'defaultValue':
+        {
+          return copyWith(defaultValue: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'expression':
+        {
+          return copyWith(expression: FhirString.empty());
+        }
+      case 'headerField':
+        {
+          return copyWith(headerField: FhirString.empty());
+        }
+      case 'hint':
+        {
+          return copyWith(hint: FhirString.empty());
+        }
+      case 'path':
+        {
+          return copyWith(path: FhirString.empty());
+        }
+      case 'sourceId':
+        {
+          return copyWith(sourceId: FhirId.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   TestScriptVariable clone() => throw UnimplementedError();
   @override
@@ -4793,6 +5205,34 @@ class TestScriptSetup extends BackboneElement {
     }
   }
 
+  /// Creates a new [TestScriptSetup]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptSetup createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'action':
+        {
+          return copyWith(action: <TestScriptAction>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   TestScriptSetup clone() => throw UnimplementedError();
   @override
@@ -5162,6 +5602,38 @@ class TestScriptAction extends BackboneElement {
         return ['TestScriptAssert'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [TestScriptAction]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptAction createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'operation':
+        {
+          return copyWith(operation: TestScriptOperation.empty());
+        }
+      case 'assert':
+        {
+          return copyWith(assert_: TestScriptAssert.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -5956,6 +6428,98 @@ class TestScriptOperation extends BackboneElement {
     }
   }
 
+  /// Creates a new [TestScriptOperation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptOperation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: Coding.empty());
+        }
+      case 'resource':
+        {
+          return copyWith(resource: FhirCode.empty());
+        }
+      case 'label':
+        {
+          return copyWith(label: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'accept':
+        {
+          return copyWith(accept: FhirCode.empty());
+        }
+      case 'contentType':
+        {
+          return copyWith(contentType: FhirCode.empty());
+        }
+      case 'destination':
+        {
+          return copyWith(destination: FhirInteger.empty());
+        }
+      case 'encodeRequestUrl':
+        {
+          return copyWith(encodeRequestUrl: FhirBoolean.empty());
+        }
+      case 'method':
+        {
+          return copyWith(method: TestScriptRequestMethodCode.empty());
+        }
+      case 'origin':
+        {
+          return copyWith(origin: FhirInteger.empty());
+        }
+      case 'params':
+        {
+          return copyWith(params: FhirString.empty());
+        }
+      case 'requestHeader':
+        {
+          return copyWith(requestHeader: <TestScriptRequestHeader>[]);
+        }
+      case 'requestId':
+        {
+          return copyWith(requestId: FhirId.empty());
+        }
+      case 'responseId':
+        {
+          return copyWith(responseId: FhirId.empty());
+        }
+      case 'sourceId':
+        {
+          return copyWith(sourceId: FhirId.empty());
+        }
+      case 'targetId':
+        {
+          return copyWith(targetId: FhirId.empty());
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   TestScriptOperation clone() => throw UnimplementedError();
   @override
@@ -6451,6 +7015,38 @@ class TestScriptRequestHeader extends BackboneElement {
         return ['FhirString'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [TestScriptRequestHeader]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptRequestHeader createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'field':
+        {
+          return copyWith(field: FhirString.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
@@ -7384,6 +7980,118 @@ class TestScriptAssert extends BackboneElement {
     }
   }
 
+  /// Creates a new [TestScriptAssert]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptAssert createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'label':
+        {
+          return copyWith(label: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'direction':
+        {
+          return copyWith(direction: AssertionDirectionType.empty());
+        }
+      case 'compareToSourceId':
+        {
+          return copyWith(compareToSourceId: FhirString.empty());
+        }
+      case 'compareToSourceExpression':
+        {
+          return copyWith(compareToSourceExpression: FhirString.empty());
+        }
+      case 'compareToSourcePath':
+        {
+          return copyWith(compareToSourcePath: FhirString.empty());
+        }
+      case 'contentType':
+        {
+          return copyWith(contentType: FhirCode.empty());
+        }
+      case 'expression':
+        {
+          return copyWith(expression: FhirString.empty());
+        }
+      case 'headerField':
+        {
+          return copyWith(headerField: FhirString.empty());
+        }
+      case 'minimumId':
+        {
+          return copyWith(minimumId: FhirString.empty());
+        }
+      case 'navigationLinks':
+        {
+          return copyWith(navigationLinks: FhirBoolean.empty());
+        }
+      case 'operator':
+        {
+          return copyWith(operator_: AssertionOperatorType.empty());
+        }
+      case 'path':
+        {
+          return copyWith(path: FhirString.empty());
+        }
+      case 'requestMethod':
+        {
+          return copyWith(requestMethod: TestScriptRequestMethodCode.empty());
+        }
+      case 'requestURL':
+        {
+          return copyWith(requestURL: FhirString.empty());
+        }
+      case 'resource':
+        {
+          return copyWith(resource: FhirCode.empty());
+        }
+      case 'response':
+        {
+          return copyWith(response: AssertionResponseTypes.empty());
+        }
+      case 'responseCode':
+        {
+          return copyWith(responseCode: FhirString.empty());
+        }
+      case 'sourceId':
+        {
+          return copyWith(sourceId: FhirId.empty());
+        }
+      case 'validateProfileId':
+        {
+          return copyWith(validateProfileId: FhirId.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirString.empty());
+        }
+      case 'warningOnly':
+        {
+          return copyWith(warningOnly: FhirBoolean.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   TestScriptAssert clone() => throw UnimplementedError();
   @override
@@ -7950,6 +8658,42 @@ class TestScriptTest extends BackboneElement {
     }
   }
 
+  /// Creates a new [TestScriptTest]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptTest createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'action':
+        {
+          return copyWith(action: <TestScriptAction>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   TestScriptTest clone() => throw UnimplementedError();
   @override
@@ -8338,6 +9082,38 @@ class TestScriptAction1 extends BackboneElement {
     }
   }
 
+  /// Creates a new [TestScriptAction1]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptAction1 createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'operation':
+        {
+          return copyWith(operation: TestScriptOperation.empty());
+        }
+      case 'assert':
+        {
+          return copyWith(assert_: TestScriptAssert.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   TestScriptAction1 clone() => throw UnimplementedError();
   @override
@@ -8688,6 +9464,34 @@ class TestScriptTeardown extends BackboneElement {
     }
   }
 
+  /// Creates a new [TestScriptTeardown]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptTeardown createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'action':
+        {
+          return copyWith(action: <TestScriptAction>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   TestScriptTeardown clone() => throw UnimplementedError();
   @override
@@ -9029,6 +9833,34 @@ class TestScriptAction2 extends BackboneElement {
         return ['TestScriptOperation'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [TestScriptAction2]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptAction2 createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'operation':
+        {
+          return copyWith(operation: TestScriptOperation.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

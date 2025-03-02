@@ -759,6 +759,106 @@ class VerificationResult extends DomainResource {
     }
   }
 
+  /// Creates a new [VerificationResult]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  VerificationResult createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'target':
+        {
+          return copyWith(target: <Reference>[]);
+        }
+      case 'targetLocation':
+        {
+          return copyWith(targetLocation: <FhirString>[]);
+        }
+      case 'need':
+        {
+          return copyWith(need: CodeableConcept.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: Status.empty());
+        }
+      case 'statusDate':
+        {
+          return copyWith(statusDate: FhirDateTime.empty());
+        }
+      case 'validationType':
+        {
+          return copyWith(validationType: CodeableConcept.empty());
+        }
+      case 'validationProcess':
+        {
+          return copyWith(validationProcess: <CodeableConcept>[]);
+        }
+      case 'frequency':
+        {
+          return copyWith(frequency: Timing.empty());
+        }
+      case 'lastPerformed':
+        {
+          return copyWith(lastPerformed: FhirDateTime.empty());
+        }
+      case 'nextScheduled':
+        {
+          return copyWith(nextScheduled: FhirDate.empty());
+        }
+      case 'failureAction':
+        {
+          return copyWith(failureAction: CodeableConcept.empty());
+        }
+      case 'primarySource':
+        {
+          return copyWith(primarySource: <VerificationResultPrimarySource>[]);
+        }
+      case 'attestation':
+        {
+          return copyWith(attestation: VerificationResultAttestation.empty());
+        }
+      case 'validator':
+        {
+          return copyWith(validator: <VerificationResultValidator>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   VerificationResult clone() => throw UnimplementedError();
   @override
@@ -1454,6 +1554,58 @@ class VerificationResultPrimarySource extends BackboneElement {
     }
   }
 
+  /// Creates a new [VerificationResultPrimarySource]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  VerificationResultPrimarySource createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'who':
+        {
+          return copyWith(who: Reference.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: <CodeableConcept>[]);
+        }
+      case 'communicationMethod':
+        {
+          return copyWith(communicationMethod: <CodeableConcept>[]);
+        }
+      case 'validationStatus':
+        {
+          return copyWith(validationStatus: CodeableConcept.empty());
+        }
+      case 'validationDate':
+        {
+          return copyWith(validationDate: FhirDateTime.empty());
+        }
+      case 'canPushUpdates':
+        {
+          return copyWith(canPushUpdates: CodeableConcept.empty());
+        }
+      case 'pushTypeAvailable':
+        {
+          return copyWith(pushTypeAvailable: <CodeableConcept>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   VerificationResultPrimarySource clone() => throw UnimplementedError();
   @override
@@ -2056,6 +2208,62 @@ class VerificationResultAttestation extends BackboneElement {
     }
   }
 
+  /// Creates a new [VerificationResultAttestation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  VerificationResultAttestation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'who':
+        {
+          return copyWith(who: Reference.empty());
+        }
+      case 'onBehalfOf':
+        {
+          return copyWith(onBehalfOf: Reference.empty());
+        }
+      case 'communicationMethod':
+        {
+          return copyWith(communicationMethod: CodeableConcept.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDate.empty());
+        }
+      case 'sourceIdentityCertificate':
+        {
+          return copyWith(sourceIdentityCertificate: FhirString.empty());
+        }
+      case 'proxyIdentityCertificate':
+        {
+          return copyWith(proxyIdentityCertificate: FhirString.empty());
+        }
+      case 'proxySignature':
+        {
+          return copyWith(proxySignature: Signature.empty());
+        }
+      case 'sourceSignature':
+        {
+          return copyWith(sourceSignature: Signature.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   VerificationResultAttestation clone() => throw UnimplementedError();
   @override
@@ -2503,6 +2711,42 @@ class VerificationResultValidator extends BackboneElement {
         return ['Signature'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [VerificationResultValidator]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  VerificationResultValidator createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'organization':
+        {
+          return copyWith(organization: Reference.empty());
+        }
+      case 'identityCertificate':
+        {
+          return copyWith(identityCertificate: FhirString.empty());
+        }
+      case 'attestationSignature':
+        {
+          return copyWith(attestationSignature: Signature.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 
