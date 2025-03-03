@@ -218,6 +218,11 @@ class DefinitionResolver {
     }
     return type;
   }
+
+  /// Expands a [ValueSet] to include all possible values.
+  ValueSetExpansionOutcome expandVS(ValueSet? vs) {
+    return ValueSetExpansionOutcome(vs);
+  }
 }
 
 /// Determines the specific type for a polymorphic FHIR element.

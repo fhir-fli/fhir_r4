@@ -985,8 +985,8 @@ class FhirMapEngine {
               return null;
             } else if (v.length != 1) {
               throw FHIRException(
-                message:
-                    'Rule "$rulePath": Evaluation of $expr returned ${v.length} objects',
+                message: 'Rule "$rulePath": '
+                    'Evaluation of $expr returned ${v.length} objects',
               );
             } else {
               return v.first;
@@ -1021,8 +1021,8 @@ class FhirMapEngine {
           {
             if (tgt.parameter == null || tgt.parameter!.length < 3) {
               throw FHIRException(
-                message:
-                    'Escape transform requires source, fmt1, and fmt2 parameters',
+                message: 'Escape transform requires source, '
+                    'fmt1, and fmt2 parameters',
               );
             }
 
@@ -1314,7 +1314,7 @@ class FhirMapEngine {
             );
             String code =
                 _getParamStringNoNull(vars, tgt.parameter![1], tgt.toString());
-            Coding c = _buildCoding(uri, code);
+            Coding c = await _buildCoding(uri, code);
             return CodeableConcept(coding: [c]);
           }
 
@@ -1367,25 +1367,25 @@ class FhirMapEngine {
       system = null;
     } else {
       ValueSet? vs = await resolver.fetchResource<ValueSet>(uri);
-      ValueSetExpansionOutcome vse = resolver. .expandVS(vs, true, false);
+      ValueSetExpansionOutcome vse = resolver.expandVS(vs);
       if (vse.error != null) {
-        throw FHIRException(message: vse.error!);
+        throw FHIRException(message: vse.error);
       }
-      List<ValueSetExpansionContains> expanded = vse.valueset.contains;
+      List<ValueSetContains>? expanded = vse.valueSet?.expansion?.contains;
       bool found = false;
-      for (final ValueSetExpansionContains t in expanded) {
-        if (t.hasCode()) {
-          if (t.getCode() == code) {
-            system = t.getSystem();
-            version = t.getVersion();
-            display = t.getDisplay();
+      for (final ValueSetContains t in expanded ?? <ValueSetContains>[]) {
+        if (t.code?.value != null) {
+          if (t.code!.value == code) {
+            system = t.system?.toString();
+            version = t.version?.toString();
+            display = t.display?.toString();
             found = true;
             break;
           } else if (code.toLowerCase() ==
-              (t.getDisplay() ?? '').toLowerCase()) {
-            system = t.getSystem();
-            version = t.getVersion();
-            display = t.getDisplay();
+              (t.display?.value ?? '').toLowerCase()) {
+            system = t.system?.toString();
+            version = t.version?.toString();
+            display = t.display?.toString();
             found = true;
             break;
           }
@@ -1398,7 +1398,7 @@ class FhirMapEngine {
         );
       }
     }
-    ValidationResult? vr = worker.validateCode(
+    ValidationResult? vr = resolver.validateCode(
       TerminologyServiceOptions().withVersionFlexible(true),
       system,
       version,
@@ -1409,10 +1409,10 @@ class FhirMapEngine {
       display = vr.display;
     }
     return Coding(
-      system: system,
-      code: code,
-      display: display,
-      version: version,
+      system: system?.toFhirUri,
+      code: code.toFhirCode,
+      display: display?.toFhirString,
+      version: version?.toFhirString,
     );
   }
 
@@ -1427,190 +1427,177 @@ class FhirMapEngine {
         message: 'Unable to find a value for $parameter. Context: $message',
       );
     }
-    if (!b.hasPrimitiveValue()) {
+    if (b is! PrimitiveType) {
       throw FHIRException(
-        message:
-            'Found a value for $parameter, but it has type ${b.fhirType} and cannot be treated as a string. Context: $message',
+        message: 'Found a value for $parameter, but it has type ${b.fhirType} '
+            'and cannot be treated as a string. Context: $message',
       );
     }
-    return b.primitiveValue();
+    if (b.value is! String) {
+      throw FHIRException(
+        message: 'Found a value for $parameter, but it has type ${b.fhirType} '
+            'and cannot be treated as a string. Context: $message',
+      );
+    }
+    return b.primitiveValue!;
   }
 
   String? _getParamString(
     Variables vars,
-    StructureMapTargetParameter parameter,
+    StructureMapParameter parameter,
   ) {
     FhirBase? b = _getParam(vars, parameter);
-    if (b == null || !b.hasPrimitiveValue()) {
+    if (b == null || b is! PrimitiveType || b.value is! String?) {
       return null;
     }
-    return b.primitiveValue();
+    return b.primitiveValue!;
   }
 
-  FhirBase? _getParam(Variables vars, StructureMapTargetParameter parameter) {
-    DataType p = parameter.getValue();
-    if (p is! IdType) {
+  FhirBase? _getParam(Variables vars, StructureMapParameter parameter) {
+    DataType p = parameter.valueX;
+    if (p is! FhirId) {
       return p;
     } else {
-      String n = p.asStringValue();
+      String n = p.toString();
       FhirBase? b = vars.get(VariableMode.INPUT, n);
       b ??= vars.get(VariableMode.OUTPUT, n);
       if (b == null) {
         throw MappingDefinitionException(
-          'Variable $n not found (${vars.summary()})',
+          message: 'Variable $n not found (${vars.summary()})',
         );
       }
       return b;
     }
   }
 
-  FhirBase? _translate(
+  Future<FhirBase?> _translate(
     TransformContext context,
     StructureMap map,
-    Variables vars,
-    List<StructureMapParameter> parameter,
-  ) {
-    FhirBase? src = _getParam(vars, parameter[0]);
-    if (src == null) {
-      throw FHIRException(message: 'Null source for translate');
+    Variables variables,
+    List<StructureMapParameter> parameters,
+  ) async {
+    final sourceElement = _getParam(variables, parameters.first);
+    final conceptMapUrl = _getParamStringGeneral(
+      variables,
+      parameters[1],
+      map,
+      throwIfNull: false,
+    );
+    final fieldToReturn = parameters.length > 2
+        ? _getParamStringGeneral(
+            variables,
+            parameters[2],
+            map,
+            throwIfNull: false,
+          )
+        : 'code';
+
+    try {
+      return await _processConceptMapTranslation(
+        sourceElement,
+        conceptMapUrl,
+        fieldToReturn,
+        map,
+      );
+    } catch (e) {
+      throw Exception('Error during translation for value $sourceElement: $e');
     }
-    String id = _getParamString(vars, parameter[1]) ?? '';
-    String? fld =
-        parameter.length > 2 ? _getParamString(vars, parameter[2]) : null;
-    return translate_(context, map, src, id, fld);
   }
 
-  /// Public method that parallels the Java version
-  FhirBase? translate_(
-    TransformContext context,
-    StructureMap map,
-    FhirBase source,
-    String conceptMapUrl,
+  Future<FhirBase?> _processConceptMapTranslation(
+    FhirBase? sourceElement,
+    String? conceptMapUrl,
     String? fieldToReturn,
-  ) {
-    Coding srcC = const Coding();
-    if (source.hasPrimitiveValue()) {
-      srcC.code = source.primitiveValue();
-    } else if (source.fhirType == 'Coding') {
-      // mimic: source.getProperty("system", ...)
-      // for demonstration: do your own retrieving logic
-      // ...
-      srcC.system = ''; // fill as needed
-      srcC.code = ''; // fill as needed
-    } else if (source.fhirType == 'CE') {
-      // ...
-      srcC.system = ''; // fill as needed
-      srcC.code = ''; // fill as needed
-    } else {
-      throw FHIRException(
-          message: 'Unable to translate source ${source.fhirType}');
+    StructureMap map,
+  ) async {
+    final sourceCoding = sourceElement == null
+        ? null
+        : sourceElement is PrimitiveType
+            ? sourceElement.value
+            : sourceElement.toJson()['coding'];
+
+    final conceptMap = await _findConceptMap(conceptMapUrl, map);
+
+    return conceptMap == null
+        ? null
+        : await _translateCoding(conceptMap, sourceCoding, fieldToReturn);
+  }
+
+  Future<FhirBase?> _translateCoding(
+    ConceptMap conceptMap,
+    dynamic sourceCoding,
+    String? fieldToReturn,
+  ) async {
+    Coding? outcome;
+
+    for (final group in conceptMap.group ?? <ConceptMapGroup>[]) {
+      if (sourceCoding is String) {
+        outcome = _findMatchInGroup(group, sourceCoding);
+      } else if (sourceCoding is Coding) {
+        outcome = _findMatchInGroup(
+          group,
+          sourceCoding.code?.value,
+          sourceCoding.system?.toString(),
+        );
+      }
+      if (outcome != null) break; // Stop if a match is found
     }
 
-    if (conceptMapUrl == 'http://hl7.org/fhir/ConceptMap/special-oid2uri') {
-      String? uri = ContextUtilities(worker).oid2Uri(srcC.code ?? '');
-      uri ??= 'urn:oid:${srcC.code}';
-      if (fieldToReturn == 'uri') {
-        return UriType(uri);
-      } else {
-        throw FHIRException(message: 'Error in return code');
-      }
-    } else {
-      ConceptMap? cmap;
-      String su = conceptMapUrl;
-      if (conceptMapUrl.startsWith('#')) {
-        for (final Resource r in map.getContained()) {
-          if (r is ConceptMap && r.getIdBase() == conceptMapUrl.substring(1)) {
-            cmap = r;
-            su = '${map.getUrl()}#$conceptMapUrl';
-          }
-        }
-        if (cmap == null) {
-          throw FHIRException(
-            message: 'Unable to translate - cannot find map $conceptMapUrl',
+    if (outcome == null) {
+      throw Exception(
+        'No translation found for '
+        // ignore: lines_longer_than_80_chars
+        '${sourceCoding is String ? sourceCoding : (sourceCoding as Map<String, dynamic>)["code"]}',
+      );
+    }
+
+    return fieldToReturn == 'code' ? outcome.code : outcome;
+  }
+
+  // Helper method to find a matching Coding in a ConceptMapGroup
+  Coding? _findMatchInGroup(
+    ConceptMapGroup group,
+    String? code, [
+    String? system,
+  ]) {
+    for (final element in group.element) {
+      if ((system == null && element.code?.value == code) ||
+          (system == group.source?.toString() && element.code?.value == code)) {
+        final matchingTarget = element.target?.firstWhereOrNull(
+          (target) => _isValidEquivalence(target.equivalence.toString()),
+        );
+
+        if (matchingTarget != null) {
+          return Coding(
+            system: group.target,
+            code: matchingTarget.code,
           );
         }
-      } else {
-        if (conceptMapUrl.contains('#')) {
-          List<String> p = conceptMapUrl.split('#');
-          StructureMap? mapU = worker.fetchResource(StructureMap, p[0]);
-          for (final Resource r in mapU.getContained()) {
-            if (r is ConceptMap && r.getIdBase() == p[1]) {
-              cmap = r;
-              su = conceptMapUrl;
-            }
-          }
-        }
-        cmap ??= worker.fetchResource(ConceptMap, conceptMapUrl);
-      }
-      Coding? outcome;
-      bool done = false;
-      String? message;
-      List<_SourceElementWrapper> list = <_SourceElementWrapper>[];
-      for (final ConceptMapGroup g in cmap.group) {
-        for (final SourceElement e in g.element) {
-          if ((srcC.system?.isEmpty ?? true) && (srcC.code == e.code)) {
-            list.add(_SourceElementWrapper(g, e));
-          } else if ((srcC.system == g.source) && (srcC.code == e.code)) {
-            list.add(_SourceElementWrapper(g, e));
-          }
-        }
-      }
-      if (list.isEmpty) {
-        done = true;
-      } else if (list[0].comp.target.isEmpty) {
-        message = 'Concept map $su found no translation for ${srcC.code}';
-      } else {
-        bool foundOne = false;
-        for (final TargetElement tgt in list[0].comp.target) {
-          // Relationship check
-          if (tgt.relationship == null ||
-              tgt.relationship == ConceptMapRelationship.RELATEDTO ||
-              tgt.relationship == ConceptMapRelationship.EQUIVALENT ||
-              tgt.relationship ==
-                  ConceptMapRelationship.SOURCEISNARROWERTHANTARGET) {
-            if (foundOne) {
-              message =
-                  'Concept map $su found multiple matches for ${srcC.code}';
-              done = false;
-              break;
-            } else {
-              foundOne = true;
-              done = true;
-              outcome = Coding(
-                code: tgt.code,
-                system: list[0].group.target,
-              );
-            }
-          }
-        }
-        if (!foundOne && message == null) {
-          message =
-              'Concept map $su found no usable translation for ${srcC.code}';
-        }
-      }
-      if (!done) {
-        throw FHIRException(message: message ?? 'Unknown translation error');
-      }
-      if (outcome == null) {
-        return null;
-      }
-      // Attempt to get a display from the worker
-      ValidationResult? vr = worker.validateCode(
-        TerminologyServiceOptions().withVersionFlexible(true),
-        outcome.system,
-        outcome.version,
-        outcome.code,
-        null,
-      );
-      if (vr.display != null) {
-        outcome.display = vr.display;
-      }
-      if (fieldToReturn == 'code') {
-        return CodeType(outcome.code ?? '');
-      } else {
-        return outcome;
       }
     }
+    return null;
+  }
+
+  bool _isValidEquivalence(String? equivalence) {
+    return equivalence == null ||
+        ['equal', 'relatedto', 'equivalent', 'wider'].contains(equivalence);
+  }
+
+  Future<ConceptMap?> _findConceptMap(
+    String? conceptMapUrl,
+    StructureMap map,
+  ) async {
+    if (conceptMapUrl == null) return null;
+
+    if (conceptMapUrl.startsWith('#')) {
+      return map.contained?.firstWhereOrNull(
+        (resource) =>
+            resource is ConceptMap &&
+            resource.id?.value == conceptMapUrl.substring(1),
+      ) as ConceptMap?;
+    }
+
+    return resolver.fetchResource<ConceptMap>(conceptMapUrl);
   }
 
   String? _getParamStringGeneral(
@@ -1679,11 +1666,4 @@ class FhirMapEngine {
       throw FHIRMappingCastException(message: errorMessage);
     }
   }
-}
-
-/// Helper class to replicate Java usage for storing group + source together
-class _SourceElementWrapper {
-  _SourceElementWrapper(this.group, this.comp);
-  final ConceptMapGroup group;
-  final SourceElement comp;
 }
