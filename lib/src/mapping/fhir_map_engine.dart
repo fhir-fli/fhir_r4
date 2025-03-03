@@ -1,10 +1,12 @@
-// ignore_for_file: public_member_api_docs, avoid_print, prefer_final_locals,
+// ignore_for_file: public_member_api_docs, avoid_print, prefer_final_locals,, lines_longer_than_80_chars
 // ignore_for_file: omit_local_variable_types, constant_identifier_names
 
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:uuid/uuid.dart';
 
 Future<FhirBase?> fhirMappingEngine(
   FhirBase source,
@@ -34,6 +36,7 @@ class FhirMapEngine {
   static const String MAP_WHERE_LOG = 'map.where.log';
   static const String MAP_SEARCH_EXPRESSION = 'map.search.expression';
   static const String MAP_WHERE_EXPRESSION = 'map.where.expression';
+  static const String MAP_EXPRESSION = 'map.transform.expression';
 
   void transformFromFhir(
     Resource sourceResource,
@@ -174,7 +177,7 @@ class FhirMapEngine {
     for (final sourceVars in sourceVarsList ?? <Variables>[]) {
       for (final target in rule.target ?? <StructureMapTarget>[]) {
         print('$indent Processing target: ${target.context}');
-        _processTarget(
+        await _processTarget(
           rule.name.toString(),
           context,
           sourceVars,
@@ -791,7 +794,7 @@ class FhirMapEngine {
     }
   }
 
-  void _processTarget(
+  Future<void> _processTarget(
     String rulePath,
     TransformContext context,
     Variables vars,
@@ -801,7 +804,7 @@ class FhirMapEngine {
     String? srcVar,
     bool atRoot,
     Variables sharedVars,
-  ) {
+  ) async {
     FhirBase? dest;
     if (tgt.context != null) {
       dest = vars.get(VariableMode.OUTPUT, tgt.context!.value);
@@ -813,7 +816,7 @@ class FhirMapEngine {
     }
     FhirBase? v;
     if (tgt.transform != null) {
-      v = _runTransform(
+      v = await _runTransform(
         rulePath,
         context,
         map,
@@ -842,14 +845,16 @@ class FhirMapEngine {
       if (tgt.listMode?.contains(StructureMapTargetListMode.share) ?? false) {
         v = sharedVars.get(VariableMode.SHARED, tgt.listRuleId?.value);
         if (v == null) {
-          v = dest.makeProperty(tgt.element?.value ?? '');
-          if (tgt.listRuleId != null) {
+          dest = dest.createProperty(tgt.element?.value ?? '');
+          v = dest.getChildByName(tgt.element?.value ?? '');
+          if (tgt.listRuleId != null && v != null) {
             sharedVars.add(VariableMode.SHARED, tgt.listRuleId!.value!, v);
           }
         }
       } else if (tgt.element != null) {
         if (tgt.element != null) {
-          v = dest.makeProperty(tgt.element!.value!);
+          dest = dest.createProperty(tgt.element!.value!);
+          v = dest.getChildByName(tgt.element!.value!);
         }
       } else {
         v = dest;
@@ -860,29 +865,28 @@ class FhirMapEngine {
     }
   }
 
-  FhirBase? _runTransform(
-      String rulePath,
-      TransformContext context,
-      StructureMap map,
-      StructureMapGroup group,
-      StructureMapTarget tgt,
-      Variables vars,
-      FhirBase? dest,
-      String element,
-      String? srcVar,
-      bool root) {
+  Future<FhirBase?> _runTransform(
+    String rulePath,
+    TransformContext context,
+    StructureMap map,
+    StructureMapGroup group,
+    StructureMapTarget tgt,
+    Variables vars,
+    FhirBase? dest,
+    String element,
+    String? srcVar,
+    bool root,
+  ) async {
     try {
-      switch (tgt.transform) {
-        case StructureMapTransform.CREATE:
+      switch (tgt.transform?.toString()) {
+        case 'create':
           {
             String tn;
-            if (tgt.parameter.isEmpty) {
+            if (tgt.parameter?.isEmpty ?? true) {
               // must figure out type
               List<String> types = <String>[];
               if (dest != null) {
-                // In Java code: dest.getTypesForProperty(...) => you need a way to get the available types
-                // We'll keep a placeholder here for demonstration:
-                types = <String>['*']; // or as needed
+                types = dest.typeByElementName(element);
               }
               if (types.length == 1 &&
                   types[0] != '*' &&
@@ -891,259 +895,470 @@ class FhirMapEngine {
               } else if (srcVar != null) {
                 FhirBase? srcObj = vars.get(VariableMode.INPUT, srcVar);
                 if (srcObj != null) {
-                  tn = _determineTypeFromSourceType(map, group, srcObj, types);
+                  tn = await _determineTypeFromSourceType(
+                    map,
+                    group,
+                    srcObj,
+                    types,
+                  );
                 } else {
                   throw FHIRException(
-                      'Cannot determine type from source variable: $srcVar');
+                    message:
+                        'Cannot determine type from source variable: $srcVar',
+                  );
                 }
               } else {
                 throw FHIRException(
-                    'Cannot determine type implicitly because there is no single input variable');
+                  message: 'Cannot determine type implicitly because there is '
+                      'no single input variable',
+                );
               }
-            } else {
-              tn =
-                  _getParamStringNoNull(vars, tgt.parameter[0], tgt.toString());
+            } else if (tgt.parameter?.isNotEmpty ?? false) {
+              tn = _getParamStringNoNull(
+                vars,
+                tgt.parameter!.first,
+                tgt.toString(),
+              );
               // attempt to resolve alias in map's structure
-              for (StructureMapStructure uses in map.structure) {
-                if (uses.mode == StructureMapModelMode.TARGET &&
-                    uses.hasAlias() &&
-                    tn == uses.alias) {
-                  tn = uses.url ?? tn;
+              for (final uses in map.structure ?? <StructureMapStructure>[]) {
+                if (uses.mode == StructureMapModelMode.target &&
+                    uses.alias != null &&
+                    tn == uses.alias!.value) {
+                  tn = uses.url.toString();
                   break;
                 }
               }
-            }
-            FhirBase res;
-            if (services != null) {
-              res = services!.createType(context.appInfo, tn, profileUtilities);
             } else {
-              res = _typeFactory(tn);
+              throw FHIRException(
+                message: 'Cannot determine type implicitly because there is '
+                    'no single input variable',
+              );
             }
-            if (res.isResource() && res.fhirType != 'Parameters') {
-              if (services != null) {
-                res =
-                    services!.createResource(context.appInfo, res, root) ?? res;
-              }
+
+            FhirBase res;
+            // if (services != null) {
+            //   res = services!.createType(context.appInfo, tn, profileUtilities);
+            // } else {
+            res = _typeFactory(tn);
+            // }
+            if (res is Resource && res.fhirType != 'Parameters') {
+              // if (services != null) {
+              //   res =
+              //       services!.createResource(context.appInfo, res, root) ?? res;
+              // }
             }
             return res;
           }
 
-        case StructureMapTransform.COPY:
+        case 'copy':
           {
-            return _getParam(vars, tgt.parameter[0]);
+            if (tgt.parameter?.isEmpty ?? true) {
+              throw FHIRException(
+                message:
+                    'Rule "$rulePath": Transform COPY requires a parameter',
+              );
+            }
+            return _getParam(vars, tgt.parameter!.first);
           }
 
-        case StructureMapTransform.EVALUATE:
+        case 'evaluate':
           {
             ExpressionNode? expr =
                 tgt.getUserData(MAP_EXPRESSION) as ExpressionNode?;
-            if (expr == null) {
-              expr = fpe.parse(_getParamStringNoNull(
-                  vars, tgt.parameter.last, tgt.toString()));
+            if (expr == null && (tgt.parameter?.isNotEmpty ?? false)) {
+              expr = fpe.parse(
+                _getParamStringNoNull(
+                  vars,
+                  tgt.parameter!.last,
+                  tgt.toString(),
+                ),
+              );
               tgt.setUserData(MAP_EXPRESSION, expr);
             }
-            FhirBase test = tgt.parameter.length == 2
-                ? (_getParam(vars, tgt.parameter[0]) ?? BooleanType('false'))
-                : BooleanType('false');
-            List<FhirBase> v = fpe.evaluate(vars, null, null, test, expr);
+            FhirBase test = tgt.parameter?.length == 2
+                ? (_getParam(vars, tgt.parameter!.first) ?? false.toFhirBoolean)
+                : false.toFhirBoolean;
+            List<FhirBase> v = expr == null
+                ? <FhirBase>[]
+                : fpe.evaluateWithContext(vars, null, null, test, expr);
             if (v.isEmpty) {
               return null;
             } else if (v.length != 1) {
               throw FHIRException(
-                  'Rule "$rulePath": Evaluation of ${expr.toString()} returned ${v.length} objects');
+                message:
+                    'Rule "$rulePath": Evaluation of $expr returned ${v.length} objects',
+              );
             } else {
               return v.first;
             }
           }
 
-        case StructureMapTransform.TRUNCATE:
+        case 'truncate':
           {
-            String src = _getParamString(vars, tgt.parameter[0]) ?? '';
-            String len =
-                _getParamStringNoNull(vars, tgt.parameter[1], tgt.toString());
-            if (int.tryParse(len) != null) {
-              int l = int.parse(len);
-              if (src.length > l) {
-                src = src.substring(0, l);
+            if (tgt.parameter?.length == 2) {
+              String src = _getParamString(vars, tgt.parameter![0]) ?? '';
+              String len = _getParamStringNoNull(
+                vars,
+                tgt.parameter![1],
+                tgt.toString(),
+              );
+              if (int.tryParse(len) != null) {
+                int l = int.parse(len);
+                if (src.length > l) {
+                  src = src.substring(0, l);
+                }
+              }
+              return src.toFhirString;
+            } else {
+              throw FHIRException(
+                message: 'Rule "$rulePath": '
+                    'Transform TRUNCATE requires two parameters',
+              );
+            }
+          }
+
+        case 'escape':
+          {
+            if (tgt.parameter == null || tgt.parameter!.length < 3) {
+              throw FHIRException(
+                message:
+                    'Escape transform requires source, fmt1, and fmt2 parameters',
+              );
+            }
+
+            final sourceNode = _getParam(vars, tgt.parameter![0]);
+            final fmt1 = _getParamStringGeneral(
+              vars,
+              tgt.parameter![1],
+              map,
+              throwIfNull: true,
+            )!;
+            final fmt2 = _getParamStringGeneral(
+              vars,
+              tgt.parameter![2],
+              map,
+              throwIfNull: true,
+            )!;
+
+            if (sourceNode is! PrimitiveType || sourceNode.value is! String) {
+              throw FHIRException(
+                message: 'Source for escape must be a string LeafNode',
+              );
+            }
+
+            final sourceString = sourceNode.value as String;
+            String resultString;
+
+            // Handle escaping transformations between formats
+            resultString = _convertEscaping(sourceString, fmt1, fmt2);
+
+            return resultString.toFhirString;
+          }
+
+        case 'cast':
+          {
+            String src = (tgt.parameter?.isEmpty ?? true)
+                ? ''
+                : _getParamString(vars, tgt.parameter!.first) ?? '';
+            if (tgt.parameter?.length == 1) {
+              throw FHIRException(
+                message: 'Implicit type parameters on cast not yet supported',
+              );
+            }
+            String t = _getParamString(vars, tgt.parameter![1]) ?? '';
+            try {
+              switch (t.toLowerCase()) {
+                case 'string':
+                case 'fhirstring':
+                case 'fhir.string':
+                  return src.toFhirString;
+
+                case 'integer':
+                case 'fhirinteger':
+                case 'fhir.integer':
+                  return _castToInt(src, rulePath, t);
+
+                case 'boolean':
+                case 'fhirboolean':
+                case 'fhir.boolean':
+                  return (src.toLowerCase() == 'true').toFhirBoolean;
+
+                case 'decimal':
+                case 'fhirdecimal':
+                case 'fhir.decimal':
+                  return double.parse(src).toFhirDecimal;
+
+                case 'date':
+                case 'fhirdate':
+                case 'fhir.date':
+                  return src.toFhirDate;
+
+                case 'datetime':
+                case 'fhirdatetime':
+                case 'fhir.datetime':
+                  return src.toFhirDateTime;
+
+                case 'time':
+                case 'fhirtime':
+                case 'fhir.time':
+                  return src.toFhirTime;
+
+                case 'instant':
+                case 'fhirinstant':
+                case 'fhir.instant':
+                  return src.toFhirInstant;
+
+                case 'uri':
+                case 'fhiruri':
+                case 'fhir.uri':
+                  return src.toFhirUri;
+
+                case 'oid':
+                case 'fhiroid':
+                case 'fhir.oid':
+                  return src.toFhirOid;
+
+                case 'id':
+                case 'fhirid':
+                case 'fhir.id':
+                  return src.toFhirId;
+
+                case 'base64binary':
+                case 'fhirbase64binary':
+                case 'fhir.base64binary':
+                  return src.toFhirBase64Binary;
+
+                case 'code':
+                case 'fhircode':
+                case 'fhir.code':
+                case 'fhircodeenum':
+                  return src.toFhirCode;
+
+                case 'canonical':
+                case 'fhircanonical':
+                case 'fhir.canonical':
+                  return src.toFhirCanonical;
+
+                case 'url':
+                case 'fhirurl':
+                case 'fhir.url':
+                  return src.toFhirUrl;
+
+                case 'unsignedint':
+                case 'fhirunsignedint':
+                case 'fhir.unsignedint':
+                  return int.parse(src).toFhirUnsignedInt;
+
+                case 'positiveint':
+                case 'fhirpositiveint':
+                case 'fhir.positiveint':
+                  final intValue = int.parse(src);
+                  if (intValue <= 0) {
+                    throw FHIRMappingCastException(
+                      message: "Rule '$rulePath': "
+                          'PositiveInt must be greater than zero.',
+                    );
+                  }
+                  return intValue.toFhirPositiveInt;
+
+                case 'markdown':
+                case 'fhirmarkdown':
+                case 'fhir.markdown':
+                  return src.toFhirMarkdown;
+
+                default:
+                  throw FHIRMappingCastException(
+                    message: "Rule '$rulePath': Unsupported cast to type '$t'.",
+                  );
+              }
+            } catch (e) {
+              if (e is FHIRMappingCastException) {
+                rethrow;
+              } else {
+                throw FHIRMappingCastException(
+                  message: "Rule '$rulePath': Failed to cast '$src' to type "
+                      "'$t'. $e",
+                );
               }
             }
-            return StringType(src);
           }
 
-        case StructureMapTransform.ESCAPE:
+        case 'append':
           {
-            throw FHIRException(
-                'Rule "$rulePath": Transform ESCAPE not supported yet');
-          }
-
-        case StructureMapTransform.CAST:
-          {
-            String src = _getParamString(vars, tgt.parameter[0]) ?? '';
-            if (tgt.parameter.length == 1) {
+            if (tgt.parameter?.isEmpty ?? true) {
               throw FHIRException(
-                  'Implicit type parameters on cast not yet supported');
+                message: 'Append transform requires a source parameter',
+              );
             }
-            String t = _getParamString(vars, tgt.parameter[1]) ?? '';
-            switch (t) {
-              case 'boolean':
-                return BooleanType(src);
-              case 'integer':
-                return IntegerType(src);
-              case 'integer64':
-                return Integer64Type(src);
-              case 'string':
-                return StringType(src);
-              case 'decimal':
-                return DecimalType(src);
-              case 'uri':
-                return UriType(src);
-              case 'base64Binary':
-                return FhirBase64BinaryType(src);
-              case 'instant':
-                return InstantType(src);
-              case 'date':
-                return DateType(src);
-              case 'dateTime':
-                return DateTimeType(src);
-              case 'time':
-                return TimeType(src);
-              case 'code':
-                return CodeType(src);
-              case 'oid':
-                return OidType(src);
-              case 'id':
-                return IdType(src);
-              case 'markdown':
-                return MarkdownType(src);
-              case 'unsignedInt':
-                return UnsignedIntType(src);
-              case 'positiveInt':
-                return PositiveIntType(src);
-              case 'uuid':
-                return UuidType(src);
-              case 'url':
-                return UrlType(src);
-              case 'canonical':
-                return CanonicalType(src);
-            }
-            throw FHIRException('cast to $t not yet supported');
-          }
 
-        case StructureMapTransform.APPEND:
-          {
             StringBuffer sb =
-                StringBuffer(_getParamString(vars, tgt.parameter[0]) ?? '');
-            for (int i = 1; i < tgt.parameter.length; i++) {
-              sb.write(_getParamString(vars, tgt.parameter[i]) ?? '');
+                StringBuffer(_getParamString(vars, tgt.parameter!.first) ?? '');
+            for (int i = 1; i < tgt.parameter!.length; i++) {
+              sb.write(_getParamString(vars, tgt.parameter![i]) ?? '');
             }
-            return StringType(sb.toString());
+            return sb.toString().toFhirString;
           }
 
-        case StructureMapTransform.TRANSLATE:
+        case 'translate':
           {
-            return _translate(context, map, vars, tgt.parameter);
+            return _translate(
+              context,
+              map,
+              vars,
+              tgt.parameter ?? <StructureMapParameter>[],
+            );
           }
 
-        case StructureMapTransform.REFERENCE:
+        case 'reference':
           {
-            FhirBase? b = _getParam(vars, tgt.parameter[0]);
+            if (tgt.parameter?.isEmpty ?? true) {
+              throw FHIRException(
+                message: 'Reference transform requires a source parameter',
+              );
+            }
+            FhirBase? b = _getParam(vars, tgt.parameter!.first);
             if (b == null) {
               throw FHIRException(
-                  'Rule "$rulePath": Unable to find parameter ${(tgt.parameter[0].value as IdType).asStringValue()}');
+                message: 'Rule "$rulePath": Unable to find parameter '
+                    '${tgt.parameter!.first.valueId?.value}',
+              );
             }
-            if (!b.isResource()) {
+            if (b is! Resource) {
               throw FHIRException(
-                  'Rule "$rulePath": Transform engine cannot point at an element of type ${b.fhirType}');
+                message:
+                    'Rule "$rulePath": Transform engine cannot point at an '
+                    'element of type ${b.fhirType}',
+              );
             } else {
-              String? id = b.getIdBase();
-              if (id == null) {
-                id =
-                    '${UuidType('').primitiveValue()}'; // or use `UUID.randomUUID()` analog
-                b.setIdBase(id);
-              }
-              return StringType('${b.fhirType}/$id');
+              return b.path.toFhirString;
             }
           }
 
-        case StructureMapTransform.DATEOP:
+        case 'dateOp':
           {
-            throw FHIRException(
-                'Rule "$rulePath": Transform DATEOP not supported yet');
+            if (tgt.parameter == null || tgt.parameter!.length < 2) {
+              throw FHIRException(
+                message: 'dateOp transform requires a source date and an '
+                    'operation parameter',
+              );
+            }
+
+            final sourceNode = _getParam(vars, tgt.parameter![0]);
+            final operation = _getParamStringGeneral(
+              vars,
+              tgt.parameter![1],
+              map,
+              throwIfNull: true,
+            )!;
+
+            if (sourceNode is! PrimitiveType || sourceNode.value is! String) {
+              throw FHIRException(
+                message: 'Source for dateOp must be a string LeafNode '
+                    'representing a date',
+              );
+            }
+
+            final sourceDateStr = sourceNode.value as String;
+            final sourceDate = DateTime.parse(sourceDateStr);
+            DateTime resultDate;
+
+            // Example operation: add days
+            if (operation.startsWith('addDays(')) {
+              final daysStr = operation.substring(8, operation.length - 1);
+              final days = int.parse(daysStr);
+              resultDate = sourceDate.add(Duration(days: days));
+            } else {
+              throw FHIRException(
+                message: 'Unsupported date operation: $operation',
+              );
+            }
+
+            return resultDate.toIso8601String().toFhirString;
           }
 
-        case StructureMapTransform.UUID:
+        case 'uuid':
           {
-            return IdType('${UuidType('').primitiveValue()}');
+            return const Uuid().v4().toFhirId;
           }
 
-        case StructureMapTransform.POINTER:
+        case 'pointer':
           {
-            FhirBase? b = _getParam(vars, tgt.parameter[0]);
+            if (tgt.parameter?.isEmpty ?? true) {
+              throw FHIRException(
+                message: 'Pointer transform requires a source parameter',
+              );
+            }
+            FhirBase? b = _getParam(vars, tgt.parameter!.first);
             if (b is Resource) {
-              return UriType('urn:uuid:${b.getIdBase()}');
+              return 'urn:uuid:${b.id}'.toFhirUri;
             } else {
               throw FHIRException(
-                  'Rule "$rulePath": Transform engine cannot point at an element of type ${b?.fhirType}');
+                message:
+                    'Rule "$rulePath": Transform engine cannot point at an '
+                    'element of type ${b?.fhirType}',
+              );
             }
           }
 
-        case StructureMapTransform.CC:
+        case 'cc':
           {
-            String uri =
-                _getParamStringNoNull(vars, tgt.parameter[0], tgt.toString());
+            if (tgt.parameter?.length != 2) {
+              throw FHIRException(
+                message: 'cc transform requires two parameters',
+              );
+            }
+            String uri = _getParamStringNoNull(
+              vars,
+              tgt.parameter!.first,
+              tgt.toString(),
+            );
             String code =
-                _getParamStringNoNull(vars, tgt.parameter[1], tgt.toString());
+                _getParamStringNoNull(vars, tgt.parameter![1], tgt.toString());
             Coding c = _buildCoding(uri, code);
-            CodeableConcept cc = CodeableConcept();
-            cc.addCoding(c);
-            return cc;
+            return CodeableConcept(coding: [c]);
           }
 
-        case StructureMapTransform.C:
+        case 'c':
           {
-            String uri =
-                _getParamStringNoNull(vars, tgt.parameter[0], tgt.toString());
+            if (tgt.parameter?.length != 2) {
+              throw FHIRException(
+                message: 'c transform requires two parameters',
+              );
+            }
+            String uri = _getParamStringNoNull(
+              vars,
+              tgt.parameter!.first,
+              tgt.toString(),
+            );
             String code =
-                _getParamStringNoNull(vars, tgt.parameter[1], tgt.toString());
+                _getParamStringNoNull(vars, tgt.parameter![1], tgt.toString());
             return _buildCoding(uri, code);
           }
 
         default:
           {
             throw FHIRException(
-                'Rule "$rulePath": Transform Unknown: ${tgt.transform}');
+              message: 'Rule "$rulePath": Transform Unknown: ${tgt.transform}',
+            );
           }
       }
-    } catch (e, st) {
+    } catch (e) {
       throw FHIRException(
-          'Exception executing transform ${tgt.toString()} on Rule "$rulePath": ${e.toString()}',
-          e is Exception ? e : null);
+        message: 'Exception executing transform $tgt on Rule "$rulePath": $e',
+        cause: e is Exception ? e : null,
+      );
     }
   }
 
   FhirBase _typeFactory(String tn) {
-    if (Utilities.isAbsoluteUrl(tn) &&
-        !tn.startsWith('http://hl7.org/fhir/StructureDefinition')) {
-      StructureDefinition? sd = worker.fetchTypeDefinition(tn);
-      if (sd == null) {
-        // For demonstration: if user tries "http://hl7.org/fhirpath/System.String"
-        if (tn == 'http://hl7.org/fhirpath/System.String') {
-          sd = worker.fetchTypeDefinition('string');
-        }
-      }
-      if (sd == null) {
-        throw FHIRException('Unable to create type $tn');
-      } else {
-        return Manager.build(worker, sd, profileUtilities);
-      }
-    } else {
-      // See ResourceFactory in original
-      // Provide your own creation logic or placeholders for types
-      return FhirBase(); // For demonstration
+    final newObject = emptyFromType(tn);
+    if (newObject == null) {
+      throw FHIRException(message: 'Unable to create object of type $tn');
     }
+    return newObject;
   }
 
-  Coding _buildCoding(String uri, String code) {
+  Future<Coding> _buildCoding(String uri, String code) async {
     String? system;
     String? display;
     String? version;
@@ -1151,69 +1366,80 @@ class FhirMapEngine {
       // no system
       system = null;
     } else {
-      ValueSet? vs = worker.fetchResource(ValueSet, uri);
-      if (vs != null) {
-        ValueSetExpansionOutcome vse = worker.expandVS(vs, true, false);
-        if (vse.error != null) {
-          throw FHIRException(vse.error!);
-        }
-        List<ValueSetExpansionContains> expanded = vse.valueset.contains;
-        bool found = false;
-        for (ValueSetExpansionContains t in expanded) {
-          if (t.hasCode()) {
-            if (t.getCode() == code) {
-              system = t.getSystem();
-              version = t.getVersion();
-              display = t.getDisplay();
-              found = true;
-              break;
-            } else if (code.toLowerCase() ==
-                (t.getDisplay() ?? '').toLowerCase()) {
-              system = t.getSystem();
-              version = t.getVersion();
-              display = t.getDisplay();
-              found = true;
-              break;
-            }
+      ValueSet? vs = await resolver.fetchResource<ValueSet>(uri);
+      ValueSetExpansionOutcome vse = resolver. .expandVS(vs, true, false);
+      if (vse.error != null) {
+        throw FHIRException(message: vse.error!);
+      }
+      List<ValueSetExpansionContains> expanded = vse.valueset.contains;
+      bool found = false;
+      for (final ValueSetExpansionContains t in expanded) {
+        if (t.hasCode()) {
+          if (t.getCode() == code) {
+            system = t.getSystem();
+            version = t.getVersion();
+            display = t.getDisplay();
+            found = true;
+            break;
+          } else if (code.toLowerCase() ==
+              (t.getDisplay() ?? '').toLowerCase()) {
+            system = t.getSystem();
+            version = t.getVersion();
+            display = t.getDisplay();
+            found = true;
+            break;
           }
         }
-        if (!found) {
-          throw FHIRException(
-              'The code "$code" is not in the value set "$uri" (also checked displays)');
-        }
-      } else {
-        system = uri;
+      }
+      if (!found) {
+        throw FHIRException(
+          message:
+              'The code "$code" is not in the value set "$uri" (also checked displays)',
+        );
       }
     }
     ValidationResult? vr = worker.validateCode(
-        TerminologyServiceOptions().withVersionFlexible(true),
-        system,
-        version,
-        code,
-        null);
-    if (vr != null && vr.display != null) {
+      TerminologyServiceOptions().withVersionFlexible(true),
+      system,
+      version,
+      code,
+      null,
+    );
+    if (vr.display != null) {
       display = vr.display;
     }
     return Coding(
-        system: system, code: code, display: display, version: version);
+      system: system,
+      code: code,
+      display: display,
+      version: version,
+    );
   }
 
   String _getParamStringNoNull(
-      Variables vars, StructureMapTargetParameter parameter, String message) {
+    Variables vars,
+    StructureMapParameter parameter,
+    String message,
+  ) {
     FhirBase? b = _getParam(vars, parameter);
     if (b == null) {
       throw FHIRException(
-          'Unable to find a value for ${parameter.toString()}. Context: $message');
+        message: 'Unable to find a value for $parameter. Context: $message',
+      );
     }
     if (!b.hasPrimitiveValue()) {
       throw FHIRException(
-          'Found a value for ${parameter.toString()}, but it has type ${b.fhirType} and cannot be treated as a string. Context: $message');
+        message:
+            'Found a value for $parameter, but it has type ${b.fhirType} and cannot be treated as a string. Context: $message',
+      );
     }
     return b.primitiveValue();
   }
 
   String? _getParamString(
-      Variables vars, StructureMapTargetParameter parameter) {
+    Variables vars,
+    StructureMapTargetParameter parameter,
+  ) {
     FhirBase? b = _getParam(vars, parameter);
     if (b == null || !b.hasPrimitiveValue()) {
       return null;
@@ -1231,17 +1457,22 @@ class FhirMapEngine {
       b ??= vars.get(VariableMode.OUTPUT, n);
       if (b == null) {
         throw MappingDefinitionException(
-            'Variable $n not found (${vars.summary()})');
+          'Variable $n not found (${vars.summary()})',
+        );
       }
       return b;
     }
   }
 
-  FhirBase? _translate(TransformContext context, StructureMap map,
-      Variables vars, List<StructureMapTargetParameter> parameter) {
+  FhirBase? _translate(
+    TransformContext context,
+    StructureMap map,
+    Variables vars,
+    List<StructureMapParameter> parameter,
+  ) {
     FhirBase? src = _getParam(vars, parameter[0]);
     if (src == null) {
-      throw FHIRException('Null source for translate');
+      throw FHIRException(message: 'Null source for translate');
     }
     String id = _getParamString(vars, parameter[1]) ?? '';
     String? fld =
@@ -1250,9 +1481,14 @@ class FhirMapEngine {
   }
 
   /// Public method that parallels the Java version
-  FhirBase? translate_(TransformContext context, StructureMap map,
-      FhirBase source, String conceptMapUrl, String? fieldToReturn) {
-    Coding srcC = Coding();
+  FhirBase? translate_(
+    TransformContext context,
+    StructureMap map,
+    FhirBase source,
+    String conceptMapUrl,
+    String? fieldToReturn,
+  ) {
+    Coding srcC = const Coding();
     if (source.hasPrimitiveValue()) {
       srcC.code = source.primitiveValue();
     } else if (source.fhirType == 'Coding') {
@@ -1266,7 +1502,8 @@ class FhirMapEngine {
       srcC.system = ''; // fill as needed
       srcC.code = ''; // fill as needed
     } else {
-      throw FHIRException('Unable to translate source ${source.fhirType}');
+      throw FHIRException(
+          message: 'Unable to translate source ${source.fhirType}');
     }
 
     if (conceptMapUrl == 'http://hl7.org/fhir/ConceptMap/special-oid2uri') {
@@ -1275,13 +1512,13 @@ class FhirMapEngine {
       if (fieldToReturn == 'uri') {
         return UriType(uri);
       } else {
-        throw FHIRException('Error in return code');
+        throw FHIRException(message: 'Error in return code');
       }
     } else {
       ConceptMap? cmap;
       String su = conceptMapUrl;
       if (conceptMapUrl.startsWith('#')) {
-        for (Resource r in map.getContained()) {
+        for (final Resource r in map.getContained()) {
           if (r is ConceptMap && r.getIdBase() == conceptMapUrl.substring(1)) {
             cmap = r;
             su = '${map.getUrl()}#$conceptMapUrl';
@@ -1289,18 +1526,17 @@ class FhirMapEngine {
         }
         if (cmap == null) {
           throw FHIRException(
-              'Unable to translate - cannot find map $conceptMapUrl');
+            message: 'Unable to translate - cannot find map $conceptMapUrl',
+          );
         }
       } else {
         if (conceptMapUrl.contains('#')) {
           List<String> p = conceptMapUrl.split('#');
           StructureMap? mapU = worker.fetchResource(StructureMap, p[0]);
-          if (mapU != null) {
-            for (Resource r in mapU.getContained()) {
-              if (r is ConceptMap && r.getIdBase() == p[1]) {
-                cmap = r;
-                su = conceptMapUrl;
-              }
+          for (final Resource r in mapU.getContained()) {
+            if (r is ConceptMap && r.getIdBase() == p[1]) {
+              cmap = r;
+              su = conceptMapUrl;
             }
           }
         }
@@ -1309,74 +1545,64 @@ class FhirMapEngine {
       Coding? outcome;
       bool done = false;
       String? message;
-      if (cmap == null) {
-        // Attempt external services
-        if (services == null) {
-          message = 'No map found for $conceptMapUrl';
-        } else {
-          outcome = services!.translate(context.appInfo, srcC, conceptMapUrl);
-          done = true;
-        }
-      } else {
-        List<_SourceElementWrapper> list = <_SourceElementWrapper>[];
-        for (ConceptMapGroup g in cmap.group) {
-          for (SourceElement e in g.element) {
-            if ((srcC.system?.isEmpty ?? true) && (srcC.code == e.code)) {
-              list.add(_SourceElementWrapper(g, e));
-            } else if ((srcC.system == g.source) && (srcC.code == e.code)) {
-              list.add(_SourceElementWrapper(g, e));
-            }
-          }
-        }
-        if (list.isEmpty) {
-          done = true;
-        } else if (list[0].comp.target.isEmpty) {
-          message = 'Concept map $su found no translation for ${srcC.code}';
-        } else {
-          bool foundOne = false;
-          for (TargetElement tgt in list[0].comp.target) {
-            // Relationship check
-            if (tgt.relationship == null ||
-                tgt.relationship == ConceptMapRelationship.RELATEDTO ||
-                tgt.relationship == ConceptMapRelationship.EQUIVALENT ||
-                tgt.relationship ==
-                    ConceptMapRelationship.SOURCEISNARROWERTHANTARGET) {
-              if (foundOne) {
-                message =
-                    'Concept map $su found multiple matches for ${srcC.code}';
-                done = false;
-                break;
-              } else {
-                foundOne = true;
-                done = true;
-                outcome = Coding(
-                    code: tgt.code,
-                    system: list[0].group.target,
-                    display: null // will fill later
-                    );
-              }
-            }
-          }
-          if (!foundOne && message == null) {
-            message =
-                'Concept map $su found no usable translation for ${srcC.code}';
+      List<_SourceElementWrapper> list = <_SourceElementWrapper>[];
+      for (final ConceptMapGroup g in cmap.group) {
+        for (final SourceElement e in g.element) {
+          if ((srcC.system?.isEmpty ?? true) && (srcC.code == e.code)) {
+            list.add(_SourceElementWrapper(g, e));
+          } else if ((srcC.system == g.source) && (srcC.code == e.code)) {
+            list.add(_SourceElementWrapper(g, e));
           }
         }
       }
+      if (list.isEmpty) {
+        done = true;
+      } else if (list[0].comp.target.isEmpty) {
+        message = 'Concept map $su found no translation for ${srcC.code}';
+      } else {
+        bool foundOne = false;
+        for (final TargetElement tgt in list[0].comp.target) {
+          // Relationship check
+          if (tgt.relationship == null ||
+              tgt.relationship == ConceptMapRelationship.RELATEDTO ||
+              tgt.relationship == ConceptMapRelationship.EQUIVALENT ||
+              tgt.relationship ==
+                  ConceptMapRelationship.SOURCEISNARROWERTHANTARGET) {
+            if (foundOne) {
+              message =
+                  'Concept map $su found multiple matches for ${srcC.code}';
+              done = false;
+              break;
+            } else {
+              foundOne = true;
+              done = true;
+              outcome = Coding(
+                code: tgt.code,
+                system: list[0].group.target,
+              );
+            }
+          }
+        }
+        if (!foundOne && message == null) {
+          message =
+              'Concept map $su found no usable translation for ${srcC.code}';
+        }
+      }
       if (!done) {
-        throw FHIRException(message ?? 'Unknown translation error');
+        throw FHIRException(message: message ?? 'Unknown translation error');
       }
       if (outcome == null) {
         return null;
       }
       // Attempt to get a display from the worker
       ValidationResult? vr = worker.validateCode(
-          TerminologyServiceOptions().withVersionFlexible(true),
-          outcome.system,
-          outcome.version,
-          outcome.code,
-          null);
-      if (vr != null && vr.display != null) {
+        TerminologyServiceOptions().withVersionFlexible(true),
+        outcome.system,
+        outcome.version,
+        outcome.code,
+        null,
+      );
+      if (vr.display != null) {
         outcome.display = vr.display;
       }
       if (fieldToReturn == 'code') {
@@ -1386,12 +1612,78 @@ class FhirMapEngine {
       }
     }
   }
+
+  String? _getParamStringGeneral(
+    Variables variables,
+    StructureMapParameter parameter,
+    StructureMap map, {
+    required bool throwIfNull,
+    String? contextMessage,
+  }) {
+    final paramValue = _getParam(variables, parameter);
+
+    if (paramValue is PrimitiveType && paramValue.value != null) {
+      return paramValue.value.toString();
+    }
+
+    if (paramValue is String || paramValue is int || paramValue is double) {
+      return paramValue.toString();
+    }
+
+    if (throwIfNull) {
+      throw FHIRException(
+        message: 'Expected a non-null, string-compatible value for parameter '
+            '"$parameter" in context: $contextMessage, but found '
+            '${paramValue.runtimeType}',
+      );
+    }
+    return null;
+  }
+
+  String _convertEscaping(String source, String fmt1, String fmt2) {
+    // Implement the logic to convert from fmt1 to fmt2
+    // For simplicity, here's a basic example handling 'xml' and 'json' escapes
+    String unescaped;
+    switch (fmt1.toLowerCase()) {
+      case 'xml':
+        unescaped = htmlEscape.convert(source);
+      case 'json':
+        unescaped = jsonDecode('"$source"') as String;
+      default:
+        unescaped = source;
+    }
+
+    String escaped;
+    switch (fmt2.toLowerCase()) {
+      case 'xml':
+        escaped = htmlEscape.convert(unescaped);
+      case 'json':
+        escaped = jsonEncode(unescaped).replaceAll('"', '');
+      default:
+        escaped = unescaped;
+    }
+
+    return escaped;
+  }
+
+  FhirBase _castToInt(String value, String ruleId, String targetType) {
+    try {
+      final intValue = int.parse(value);
+      return intValue.toFhirInteger;
+    } catch (e) {
+      final errorMessage = e is FormatException
+          ? "Rule '$ruleId': Failed to cast '$value' to type "
+              "'$targetType'. Invalid number format."
+          : "Rule '$ruleId': Failed to cast '$value' to type "
+              "'$targetType'. $e";
+      throw FHIRMappingCastException(message: errorMessage);
+    }
+  }
 }
 
 /// Helper class to replicate Java usage for storing group + source together
 class _SourceElementWrapper {
+  _SourceElementWrapper(this.group, this.comp);
   final ConceptMapGroup group;
   final SourceElement comp;
-
-  _SourceElementWrapper(this.group, this.comp);
 }

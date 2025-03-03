@@ -1261,7 +1261,9 @@ class Transformer {
   }
 
   Future<FhirBase> _identifier(
-      Variables vars, StructureMapTarget target) async {
+    Variables vars,
+    StructureMapTarget target,
+  ) async {
     if (target.parameter == null || target.parameter!.length < 2) {
       throw FHIRException(
         message: 'id transform requires at least system and value parameters',

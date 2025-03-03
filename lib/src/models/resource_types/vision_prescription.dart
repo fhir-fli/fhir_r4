@@ -584,6 +584,83 @@ class VisionPrescription extends DomainResource {
     }
   }
 
+  /// Creates a new [VisionPrescription]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  VisionPrescription createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: FinancialResourceStatusCodes.empty());
+        }
+      case 'created':
+        {
+          return copyWith(created: FhirDateTime.empty());
+        }
+      case 'patient':
+        {
+          return copyWith(patient: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'dateWritten':
+        {
+          return copyWith(dateWritten: FhirDateTime.empty());
+        }
+      case 'prescriber':
+        {
+          return copyWith(prescriber: Reference.empty());
+        }
+      case 'lensSpecification':
+        {
+          return copyWith(
+              lensSpecification: <VisionPrescriptionLensSpecification>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   VisionPrescription clone() => throw UnimplementedError();
   @override
@@ -1392,6 +1469,86 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     }
   }
 
+  /// Creates a new [VisionPrescriptionLensSpecification]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  VisionPrescriptionLensSpecification createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'product':
+        {
+          return copyWith(product: CodeableConcept.empty());
+        }
+      case 'eye':
+        {
+          return copyWith(eye: VisionEyes.empty());
+        }
+      case 'sphere':
+        {
+          return copyWith(sphere: FhirDecimal.empty());
+        }
+      case 'cylinder':
+        {
+          return copyWith(cylinder: FhirDecimal.empty());
+        }
+      case 'axis':
+        {
+          return copyWith(axis: FhirInteger.empty());
+        }
+      case 'prism':
+        {
+          return copyWith(prism: <VisionPrescriptionPrism>[]);
+        }
+      case 'add':
+        {
+          return copyWith(add: FhirDecimal.empty());
+        }
+      case 'power':
+        {
+          return copyWith(power: FhirDecimal.empty());
+        }
+      case 'backCurve':
+        {
+          return copyWith(backCurve: FhirDecimal.empty());
+        }
+      case 'diameter':
+        {
+          return copyWith(diameter: FhirDecimal.empty());
+        }
+      case 'duration':
+        {
+          return copyWith(duration: Quantity.empty());
+        }
+      case 'color':
+        {
+          return copyWith(color: FhirString.empty());
+        }
+      case 'brand':
+        {
+          return copyWith(brand: FhirString.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
   @override
   VisionPrescriptionLensSpecification clone() => throw UnimplementedError();
   @override
@@ -1870,6 +2027,38 @@ class VisionPrescriptionPrism extends BackboneElement {
         return ['FhirCode'];
       default:
         return <String>[];
+    }
+  }
+
+  /// Creates a new [VisionPrescriptionPrism]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  VisionPrescriptionPrism createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'amount':
+        {
+          return copyWith(amount: FhirDecimal.empty());
+        }
+      case 'base':
+        {
+          return copyWith(base: VisionBase.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
     }
   }
 

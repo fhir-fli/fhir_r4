@@ -214,6 +214,21 @@ class ValidationOptions {
     return this;
   }
 
+  /// Returns if the guess system is enabled.
+  bool isGuessSystem() {
+    return guessSystem;
+  }
+
+  /// Returns if useClient is enabled.
+  bool isUseClient() {
+    return useClient;
+  }
+
+  /// Returns if useServer is enabled.
+  bool isUseServer() {
+    return useServer;
+  }
+
   /// Converts the validation options to a JSON-like string.
   String toJson() {
     return {
