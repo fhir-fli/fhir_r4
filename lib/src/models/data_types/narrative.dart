@@ -295,6 +295,20 @@ class Narrative extends DataType {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Narrative clear({
+    bool id = false,
+    bool extension_ = false,
+  }) {
+    return Narrative(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      status: status,
+      div: div,
+    );
+  }
+
   @override
   Narrative clone() => throw UnimplementedError();
   @override

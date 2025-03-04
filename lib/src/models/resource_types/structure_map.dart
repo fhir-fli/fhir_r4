@@ -957,6 +957,62 @@ class StructureMap extends CanonicalResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  StructureMap clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool version = false,
+    bool title = false,
+    bool experimental = false,
+    bool date = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool purpose = false,
+    bool copyright = false,
+    bool structure = false,
+    bool import_ = false,
+  }) {
+    return StructureMap(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url,
+      identifier: identifier ? null : this.identifier,
+      version: version ? null : this.version,
+      name: name,
+      title: title ? null : this.title,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      date: date ? null : this.date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      purpose: purpose ? null : this.purpose,
+      copyright: copyright ? null : this.copyright,
+      structure: structure ? null : this.structure,
+      import_: import_ ? null : this.import_,
+      group: group,
+    );
+  }
+
   @override
   StructureMap clone() => throw UnimplementedError();
   @override
@@ -1640,6 +1696,26 @@ class StructureMapStructure extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  StructureMapStructure clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool alias = false,
+    bool documentation = false,
+  }) {
+    return StructureMapStructure(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url,
+      mode: mode,
+      alias: alias ? null : this.alias,
+      documentation: documentation ? null : this.documentation,
+    );
+  }
+
   @override
   StructureMapStructure clone() => throw UnimplementedError();
   @override
@@ -2193,6 +2269,28 @@ class StructureMapGroup extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  StructureMapGroup clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool extends_ = false,
+    bool documentation = false,
+  }) {
+    return StructureMapGroup(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      extends_: extends_ ? null : this.extends_,
+      typeMode: typeMode,
+      documentation: documentation ? null : this.documentation,
+      input: input,
+      rule: rule,
+    );
+  }
+
   @override
   StructureMapGroup clone() => throw UnimplementedError();
   @override
@@ -2703,6 +2801,26 @@ class StructureMapInput extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  StructureMapInput clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool documentation = false,
+  }) {
+    return StructureMapInput(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      type: type ? null : this.type,
+      mode: mode,
+      documentation: documentation ? null : this.documentation,
+    );
   }
 
   @override
@@ -3262,6 +3380,30 @@ class StructureMapRule extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  StructureMapRule clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool target = false,
+    bool rule = false,
+    bool dependent = false,
+    bool documentation = false,
+  }) {
+    return StructureMapRule(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      source: source,
+      target: target ? null : this.target,
+      rule: rule ? null : this.rule,
+      dependent: dependent ? null : this.dependent,
+      documentation: documentation ? null : this.documentation,
+    );
   }
 
   @override
@@ -5184,6 +5326,41 @@ class StructureMapSource extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  StructureMapSource clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool min = false,
+    bool max = false,
+    bool type = false,
+    bool defaultValue = false,
+    bool element = false,
+    bool listMode = false,
+    bool variable = false,
+    bool condition = false,
+    bool check = false,
+    bool logMessage = false,
+  }) {
+    return StructureMapSource(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      context: context,
+      min: min ? null : this.min,
+      max: max ? null : this.max,
+      type: type ? null : this.type,
+      defaultValueX: defaultValue ? null : defaultValueX,
+      element: element ? null : this.element,
+      listMode: listMode ? null : this.listMode,
+      variable: variable ? null : this.variable,
+      condition: condition ? null : this.condition,
+      check: check ? null : this.check,
+      logMessage: logMessage ? null : this.logMessage,
+    );
+  }
+
   @override
   StructureMapSource clone() => throw UnimplementedError();
   @override
@@ -5850,6 +6027,36 @@ class StructureMapTarget extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  StructureMapTarget clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool context = false,
+    bool contextType = false,
+    bool element = false,
+    bool variable = false,
+    bool listMode = false,
+    bool listRuleId = false,
+    bool transform = false,
+    bool parameter = false,
+  }) {
+    return StructureMapTarget(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      context: context ? null : this.context,
+      contextType: contextType ? null : this.contextType,
+      element: element ? null : this.element,
+      variable: variable ? null : this.variable,
+      listMode: listMode ? null : this.listMode,
+      listRuleId: listRuleId ? null : this.listRuleId,
+      transform: transform ? null : this.transform,
+      parameter: parameter ? null : this.parameter,
+    );
+  }
+
   @override
   StructureMapTarget clone() => throw UnimplementedError();
   @override
@@ -6405,6 +6612,21 @@ class StructureMapParameter extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  StructureMapParameter clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return StructureMapParameter(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      valueX: valueX,
+    );
+  }
+
   @override
   StructureMapParameter clone() => throw UnimplementedError();
   @override
@@ -6798,6 +7020,22 @@ class StructureMapDependent extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  StructureMapDependent clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return StructureMapDependent(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      variable: variable,
+    );
   }
 
   @override

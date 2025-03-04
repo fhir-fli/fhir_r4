@@ -763,6 +763,48 @@ class AuditEvent extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  AuditEvent clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool subtype = false,
+    bool action = false,
+    bool period = false,
+    bool outcome = false,
+    bool outcomeDesc = false,
+    bool purposeOfEvent = false,
+    bool entity = false,
+  }) {
+    return AuditEvent(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      subtype: subtype ? null : this.subtype,
+      action: action ? null : this.action,
+      period: period ? null : this.period,
+      recorded: recorded,
+      outcome: outcome ? null : this.outcome,
+      outcomeDesc: outcomeDesc ? null : this.outcomeDesc,
+      purposeOfEvent: purposeOfEvent ? null : this.purposeOfEvent,
+      agent: agent,
+      source: source,
+      entity: entity ? null : this.entity,
+    );
+  }
+
   @override
   AuditEvent clone() => throw UnimplementedError();
   @override
@@ -1606,6 +1648,41 @@ class AuditEventAgent extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  AuditEventAgent clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool role = false,
+    bool who = false,
+    bool altId = false,
+    bool name = false,
+    bool location = false,
+    bool policy = false,
+    bool media = false,
+    bool network = false,
+    bool purposeOfUse = false,
+  }) {
+    return AuditEventAgent(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      role: role ? null : this.role,
+      who: who ? null : this.who,
+      altId: altId ? null : this.altId,
+      name: name ? null : this.name,
+      requestor: requestor,
+      location: location ? null : this.location,
+      policy: policy ? null : this.policy,
+      media: media ? null : this.media,
+      network: network ? null : this.network,
+      purposeOfUse: purposeOfUse ? null : this.purposeOfUse,
+    );
+  }
+
   @override
   AuditEventAgent clone() => throw UnimplementedError();
   @override
@@ -2106,6 +2183,24 @@ class AuditEventNetwork extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  AuditEventNetwork clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool address = false,
+    bool type = false,
+  }) {
+    return AuditEventNetwork(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      address: address ? null : this.address,
+      type: type ? null : this.type,
+    );
+  }
+
   @override
   AuditEventNetwork clone() => throw UnimplementedError();
   @override
@@ -2545,6 +2640,25 @@ class AuditEventSource extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  AuditEventSource clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool site = false,
+    bool type = false,
+  }) {
+    return AuditEventSource(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      site: site ? null : this.site,
+      observer: observer,
+      type: type ? null : this.type,
+    );
   }
 
   @override
@@ -3194,6 +3308,38 @@ class AuditEventEntity extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  AuditEventEntity clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool what = false,
+    bool type = false,
+    bool role = false,
+    bool lifecycle = false,
+    bool securityLabel = false,
+    bool name = false,
+    bool description = false,
+    bool query = false,
+    bool detail = false,
+  }) {
+    return AuditEventEntity(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      what: what ? null : this.what,
+      type: type ? null : this.type,
+      role: role ? null : this.role,
+      lifecycle: lifecycle ? null : this.lifecycle,
+      securityLabel: securityLabel ? null : this.securityLabel,
+      name: name ? null : this.name,
+      description: description ? null : this.description,
+      query: query ? null : this.query,
+      detail: detail ? null : this.detail,
+    );
+  }
+
   @override
   AuditEventEntity clone() => throw UnimplementedError();
   @override
@@ -3714,6 +3860,22 @@ class AuditEventDetail extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  AuditEventDetail clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return AuditEventDetail(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      valueX: valueX,
+    );
   }
 
   @override

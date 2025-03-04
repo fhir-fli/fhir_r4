@@ -39,7 +39,8 @@ class PackagedProductDefinition extends DomainResource {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory PackagedProductDefinition.empty() => const PackagedProductDefinition();
+  factory PackagedProductDefinition.empty() =>
+      const PackagedProductDefinition();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PackagedProductDefinition.fromJson(
@@ -866,7 +867,8 @@ class PackagedProductDefinition extends DomainResource {
       case 'legalStatusOfSupply':
         {
           return copyWith(
-              legalStatusOfSupply: <PackagedProductDefinitionLegalStatusOfSupply>[],);
+            legalStatusOfSupply: <PackagedProductDefinitionLegalStatusOfSupply>[],
+          );
         }
       case 'marketingStatus':
         {
@@ -891,6 +893,61 @@ class PackagedProductDefinition extends DomainResource {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  PackagedProductDefinition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool name = false,
+    bool type = false,
+    bool packageFor = false,
+    bool status = false,
+    bool statusDate = false,
+    bool containedItemQuantity = false,
+    bool description = false,
+    bool legalStatusOfSupply = false,
+    bool marketingStatus = false,
+    bool characteristic = false,
+    bool copackagedIndicator = false,
+    bool manufacturer = false,
+    bool package = false,
+  }) {
+    return PackagedProductDefinition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      name: name ? null : this.name,
+      type: type ? null : this.type,
+      packageFor: packageFor ? null : this.packageFor,
+      status: status ? null : this.status,
+      statusDate: statusDate ? null : this.statusDate,
+      containedItemQuantity:
+          containedItemQuantity ? null : this.containedItemQuantity,
+      description: description ? null : this.description,
+      legalStatusOfSupply:
+          legalStatusOfSupply ? null : this.legalStatusOfSupply,
+      marketingStatus: marketingStatus ? null : this.marketingStatus,
+      characteristic: characteristic ? null : this.characteristic,
+      copackagedIndicator:
+          copackagedIndicator ? null : this.copackagedIndicator,
+      manufacturer: manufacturer ? null : this.manufacturer,
+      package: package ? null : this.package,
+    );
   }
 
   @override
@@ -1459,7 +1516,8 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
   /// `.empty()` variant (or list of `.empty()`).
   @override
   PackagedProductDefinitionLegalStatusOfSupply createProperty(
-      String propertyName,) {
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
@@ -1484,6 +1542,24 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  PackagedProductDefinitionLegalStatusOfSupply clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool jurisdiction = false,
+  }) {
+    return PackagedProductDefinitionLegalStatusOfSupply(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+    );
   }
 
   @override
@@ -2159,7 +2235,8 @@ class PackagedProductDefinitionPackage extends BackboneElement {
       case 'shelfLifeStorage':
         {
           return copyWith(
-              shelfLifeStorage: <PackagedProductDefinitionShelfLifeStorage>[],);
+            shelfLifeStorage: <PackagedProductDefinitionShelfLifeStorage>[],
+          );
         }
       case 'manufacturer':
         {
@@ -2172,7 +2249,8 @@ class PackagedProductDefinitionPackage extends BackboneElement {
       case 'containedItem':
         {
           return copyWith(
-              containedItem: <PackagedProductDefinitionContainedItem>[],);
+            containedItem: <PackagedProductDefinitionContainedItem>[],
+          );
         }
       case 'package':
         {
@@ -2181,6 +2259,40 @@ class PackagedProductDefinitionPackage extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  PackagedProductDefinitionPackage clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool type = false,
+    bool quantity = false,
+    bool material = false,
+    bool alternateMaterial = false,
+    bool shelfLifeStorage = false,
+    bool manufacturer = false,
+    bool property = false,
+    bool containedItem = false,
+    bool package = false,
+  }) {
+    return PackagedProductDefinitionPackage(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      type: type ? null : this.type,
+      quantity: quantity ? null : this.quantity,
+      material: material ? null : this.material,
+      alternateMaterial: alternateMaterial ? null : this.alternateMaterial,
+      shelfLifeStorage: shelfLifeStorage ? null : this.shelfLifeStorage,
+      manufacturer: manufacturer ? null : this.manufacturer,
+      property: property ? null : this.property,
+      containedItem: containedItem ? null : this.containedItem,
+      package: package ? null : this.package,
+    );
   }
 
   @override
@@ -2768,7 +2880,8 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   /// `.empty()` variant (or list of `.empty()`).
   @override
   PackagedProductDefinitionShelfLifeStorage createProperty(
-      String propertyName,) {
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
@@ -2803,6 +2916,28 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  PackagedProductDefinitionShelfLifeStorage clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool period = false,
+    bool specialPrecautionsForStorage = false,
+  }) {
+    return PackagedProductDefinitionShelfLifeStorage(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      periodX: period ? null : periodX,
+      specialPrecautionsForStorage: specialPrecautionsForStorage
+          ? null
+          : this.specialPrecautionsForStorage,
+    );
   }
 
   @override
@@ -3347,6 +3482,23 @@ class PackagedProductDefinitionProperty extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  PackagedProductDefinitionProperty clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool value = false,
+  }) {
+    return PackagedProductDefinitionProperty(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      valueX: value ? null : valueX,
+    );
+  }
+
   @override
   PackagedProductDefinitionProperty clone() => throw UnimplementedError();
   @override
@@ -3757,6 +3909,23 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  PackagedProductDefinitionContainedItem clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool amount = false,
+  }) {
+    return PackagedProductDefinitionContainedItem(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      item: item,
+      amount: amount ? null : this.amount,
+    );
   }
 
   @override

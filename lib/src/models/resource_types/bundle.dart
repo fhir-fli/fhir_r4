@@ -514,6 +514,35 @@ class Bundle extends Resource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Bundle clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool identifier = false,
+    bool timestamp = false,
+    bool total = false,
+    bool link = false,
+    bool entry = false,
+    bool signature = false,
+  }) {
+    return Bundle(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      identifier: identifier ? null : this.identifier,
+      type: type,
+      timestamp: timestamp ? null : this.timestamp,
+      total: total ? null : this.total,
+      link: link ? null : this.link,
+      entry: entry ? null : this.entry,
+      signature: signature ? null : this.signature,
+    );
+  }
+
   @override
   Bundle clone() => throw UnimplementedError();
   @override
@@ -963,6 +992,22 @@ class BundleLink extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  BundleLink clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return BundleLink(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      relation: relation,
+      url: url,
+    );
   }
 
   @override
@@ -1512,6 +1557,32 @@ class BundleEntry extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  BundleEntry clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool link = false,
+    bool fullUrl = false,
+    bool resource = false,
+    bool search = false,
+    bool request = false,
+    bool response = false,
+  }) {
+    return BundleEntry(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      link: link ? null : this.link,
+      fullUrl: fullUrl ? null : this.fullUrl,
+      resource: resource ? null : this.resource,
+      search: search ? null : this.search,
+      request: request ? null : this.request,
+      response: response ? null : this.response,
+    );
+  }
+
   @override
   BundleEntry clone() => throw UnimplementedError();
   @override
@@ -1953,6 +2024,24 @@ class BundleSearch extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  BundleSearch clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool mode = false,
+    bool score = false,
+  }) {
+    return BundleSearch(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      mode: mode ? null : this.mode,
+      score: score ? null : this.score,
+    );
   }
 
   @override
@@ -2494,6 +2583,30 @@ class BundleRequest extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  BundleRequest clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool ifNoneMatch = false,
+    bool ifModifiedSince = false,
+    bool ifMatch = false,
+    bool ifNoneExist = false,
+  }) {
+    return BundleRequest(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      method: method,
+      url: url,
+      ifNoneMatch: ifNoneMatch ? null : this.ifNoneMatch,
+      ifModifiedSince: ifModifiedSince ? null : this.ifModifiedSince,
+      ifMatch: ifMatch ? null : this.ifMatch,
+      ifNoneExist: ifNoneExist ? null : this.ifNoneExist,
+    );
+  }
+
   @override
   BundleRequest clone() => throw UnimplementedError();
   @override
@@ -3030,6 +3143,29 @@ class BundleResponse extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  BundleResponse clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool location = false,
+    bool etag = false,
+    bool lastModified = false,
+    bool outcome = false,
+  }) {
+    return BundleResponse(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      status: status,
+      location: location ? null : this.location,
+      etag: etag ? null : this.etag,
+      lastModified: lastModified ? null : this.lastModified,
+      outcome: outcome ? null : this.outcome,
+    );
   }
 
   @override

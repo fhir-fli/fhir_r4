@@ -389,6 +389,28 @@ class FhirDuration extends Quantity
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  FhirDuration clear({
+    bool id = false,
+    bool extension_ = false,
+    bool value = false,
+    bool comparator = false,
+    bool unit = false,
+    bool system = false,
+    bool code = false,
+  }) {
+    return FhirDuration(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      value: value ? null : this.value,
+      comparator: comparator ? null : this.comparator,
+      unit: unit ? null : this.unit,
+      system: system ? null : this.system,
+      code: code ? null : this.code,
+    );
+  }
+
   @override
   FhirDuration clone() => throw UnimplementedError();
   @override

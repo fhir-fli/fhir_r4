@@ -810,6 +810,53 @@ class RelatedPerson extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  RelatedPerson clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool active = false,
+    bool relationship = false,
+    bool name = false,
+    bool telecom = false,
+    bool gender = false,
+    bool birthDate = false,
+    bool address = false,
+    bool photo = false,
+    bool period = false,
+    bool communication = false,
+  }) {
+    return RelatedPerson(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      active: active ? null : this.active,
+      patient: patient,
+      relationship: relationship ? null : this.relationship,
+      name: name ? null : this.name,
+      telecom: telecom ? null : this.telecom,
+      gender: gender ? null : this.gender,
+      birthDate: birthDate ? null : this.birthDate,
+      address: address ? null : this.address,
+      photo: photo ? null : this.photo,
+      period: period ? null : this.period,
+      communication: communication ? null : this.communication,
+    );
+  }
+
   @override
   RelatedPerson clone() => throw UnimplementedError();
   @override
@@ -1385,6 +1432,23 @@ class RelatedPersonCommunication extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  RelatedPersonCommunication clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool preferred = false,
+  }) {
+    return RelatedPersonCommunication(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      language: language,
+      preferred: preferred ? null : this.preferred,
+    );
   }
 
   @override

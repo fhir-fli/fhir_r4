@@ -1583,6 +1583,76 @@ class Observation extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Observation clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool basedOn = false,
+    bool partOf = false,
+    bool category = false,
+    bool subject = false,
+    bool focus = false,
+    bool encounter = false,
+    bool effective = false,
+    bool issued = false,
+    bool performer = false,
+    bool value = false,
+    bool dataAbsentReason = false,
+    bool interpretation = false,
+    bool note = false,
+    bool bodySite = false,
+    bool method = false,
+    bool specimen = false,
+    bool device = false,
+    bool referenceRange = false,
+    bool hasMember = false,
+    bool derivedFrom = false,
+    bool component = false,
+  }) {
+    return Observation(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      basedOn: basedOn ? null : this.basedOn,
+      partOf: partOf ? null : this.partOf,
+      status: status,
+      category: category ? null : this.category,
+      code: code,
+      subject: subject ? null : this.subject,
+      focus: focus ? null : this.focus,
+      encounter: encounter ? null : this.encounter,
+      effectiveX: effective ? null : effectiveX,
+      issued: issued ? null : this.issued,
+      performer: performer ? null : this.performer,
+      valueX: value ? null : valueX,
+      dataAbsentReason: dataAbsentReason ? null : this.dataAbsentReason,
+      interpretation: interpretation ? null : this.interpretation,
+      note: note ? null : this.note,
+      bodySite: bodySite ? null : this.bodySite,
+      method: method ? null : this.method,
+      specimen: specimen ? null : this.specimen,
+      device: device ? null : this.device,
+      referenceRange: referenceRange ? null : this.referenceRange,
+      hasMember: hasMember ? null : this.hasMember,
+      derivedFrom: derivedFrom ? null : this.derivedFrom,
+      component: component ? null : this.component,
+    );
+  }
+
   @override
   Observation clone() => throw UnimplementedError();
   @override
@@ -1990,7 +2060,8 @@ class ObservationReferenceRange extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ObservationReferenceRange.empty() => const ObservationReferenceRange();
+  factory ObservationReferenceRange.empty() =>
+      const ObservationReferenceRange();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ObservationReferenceRange.fromJson(
@@ -2431,6 +2502,32 @@ class ObservationReferenceRange extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ObservationReferenceRange clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool low = false,
+    bool high = false,
+    bool type = false,
+    bool appliesTo = false,
+    bool age = false,
+    bool text = false,
+  }) {
+    return ObservationReferenceRange(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      low: low ? null : this.low,
+      high: high ? null : this.high,
+      type: type ? null : this.type,
+      appliesTo: appliesTo ? null : this.appliesTo,
+      age: age ? null : this.age,
+      text: text ? null : this.text,
+    );
   }
 
   @override
@@ -3242,6 +3339,29 @@ class ObservationComponent extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ObservationComponent clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool value = false,
+    bool dataAbsentReason = false,
+    bool interpretation = false,
+    bool referenceRange = false,
+  }) {
+    return ObservationComponent(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      valueX: value ? null : valueX,
+      dataAbsentReason: dataAbsentReason ? null : this.dataAbsentReason,
+      interpretation: interpretation ? null : this.interpretation,
+      referenceRange: referenceRange ? null : this.referenceRange,
+    );
   }
 
   @override

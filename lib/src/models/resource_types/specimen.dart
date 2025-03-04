@@ -843,6 +843,57 @@ class Specimen extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Specimen clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool accessionIdentifier = false,
+    bool status = false,
+    bool type = false,
+    bool subject = false,
+    bool receivedTime = false,
+    bool parent = false,
+    bool request = false,
+    bool collection = false,
+    bool processing = false,
+    bool container = false,
+    bool condition = false,
+    bool note = false,
+  }) {
+    return Specimen(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      accessionIdentifier:
+          accessionIdentifier ? null : this.accessionIdentifier,
+      status: status ? null : this.status,
+      type: type ? null : this.type,
+      subject: subject ? null : this.subject,
+      receivedTime: receivedTime ? null : this.receivedTime,
+      parent: parent ? null : this.parent,
+      request: request ? null : this.request,
+      collection: collection ? null : this.collection,
+      processing: processing ? null : this.processing,
+      container: container ? null : this.container,
+      condition: condition ? null : this.condition,
+      note: note ? null : this.note,
+    );
+  }
+
   @override
   Specimen clone() => throw UnimplementedError();
   @override
@@ -1683,6 +1734,34 @@ class SpecimenCollection extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  SpecimenCollection clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool collector = false,
+    bool collected = false,
+    bool duration = false,
+    bool quantity = false,
+    bool method = false,
+    bool bodySite = false,
+    bool fastingStatus = false,
+  }) {
+    return SpecimenCollection(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      collector: collector ? null : this.collector,
+      collectedX: collected ? null : collectedX,
+      duration: duration ? null : this.duration,
+      quantity: quantity ? null : this.quantity,
+      method: method ? null : this.method,
+      bodySite: bodySite ? null : this.bodySite,
+      fastingStatusX: fastingStatus ? null : fastingStatusX,
+    );
+  }
+
   @override
   SpecimenCollection clone() => throw UnimplementedError();
   @override
@@ -2241,6 +2320,28 @@ class SpecimenProcessing extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SpecimenProcessing clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+    bool procedure = false,
+    bool additive = false,
+    bool time = false,
+  }) {
+    return SpecimenProcessing(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description ? null : this.description,
+      procedure: procedure ? null : this.procedure,
+      additive: additive ? null : this.additive,
+      timeX: time ? null : timeX,
+    );
   }
 
   @override
@@ -2851,6 +2952,32 @@ class SpecimenContainer extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SpecimenContainer clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool description = false,
+    bool type = false,
+    bool capacity = false,
+    bool specimenQuantity = false,
+    bool additive = false,
+  }) {
+    return SpecimenContainer(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      description: description ? null : this.description,
+      type: type ? null : this.type,
+      capacity: capacity ? null : this.capacity,
+      specimenQuantity: specimenQuantity ? null : this.specimenQuantity,
+      additiveX: additive ? null : additiveX,
+    );
   }
 
   @override

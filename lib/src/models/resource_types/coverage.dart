@@ -967,6 +967,61 @@ class Coverage extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Coverage clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool type = false,
+    bool policyHolder = false,
+    bool subscriber = false,
+    bool subscriberId = false,
+    bool dependent = false,
+    bool relationship = false,
+    bool period = false,
+    bool class_ = false,
+    bool order = false,
+    bool network = false,
+    bool costToBeneficiary = false,
+    bool subrogation = false,
+    bool contract = false,
+  }) {
+    return Coverage(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      type: type ? null : this.type,
+      policyHolder: policyHolder ? null : this.policyHolder,
+      subscriber: subscriber ? null : this.subscriber,
+      subscriberId: subscriberId ? null : this.subscriberId,
+      beneficiary: beneficiary,
+      dependent: dependent ? null : this.dependent,
+      relationship: relationship ? null : this.relationship,
+      period: period ? null : this.period,
+      payor: payor,
+      class_: class_ ? null : this.class_,
+      order: order ? null : this.order,
+      network: network ? null : this.network,
+      costToBeneficiary: costToBeneficiary ? null : this.costToBeneficiary,
+      subrogation: subrogation ? null : this.subrogation,
+      contract: contract ? null : this.contract,
+    );
+  }
+
   @override
   Coverage clone() => throw UnimplementedError();
   @override
@@ -1597,6 +1652,24 @@ class CoverageClass extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  CoverageClass clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool name = false,
+  }) {
+    return CoverageClass(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      value: value,
+      name: name ? null : this.name,
+    );
+  }
+
   @override
   CoverageClass clone() => throw UnimplementedError();
   @override
@@ -2095,6 +2168,25 @@ class CoverageCostToBeneficiary extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  CoverageCostToBeneficiary clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool exception = false,
+  }) {
+    return CoverageCostToBeneficiary(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      valueX: valueX,
+      exception: exception ? null : this.exception,
+    );
+  }
+
   @override
   CoverageCostToBeneficiary clone() => throw UnimplementedError();
   @override
@@ -2513,6 +2605,23 @@ class CoverageException extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CoverageException clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool period = false,
+  }) {
+    return CoverageException(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      period: period ? null : this.period,
+    );
   }
 
   @override

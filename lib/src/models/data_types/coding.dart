@@ -413,6 +413,28 @@ class Coding extends DataType
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Coding clear({
+    bool id = false,
+    bool extension_ = false,
+    bool system = false,
+    bool version = false,
+    bool code = false,
+    bool display = false,
+    bool userSelected = false,
+  }) {
+    return Coding(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      system: system ? null : this.system,
+      version: version ? null : this.version,
+      code: code ? null : this.code,
+      display: display ? null : this.display,
+      userSelected: userSelected ? null : this.userSelected,
+    );
+  }
+
   @override
   Coding clone() => throw UnimplementedError();
   @override

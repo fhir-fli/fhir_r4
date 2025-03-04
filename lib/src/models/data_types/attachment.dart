@@ -514,6 +514,34 @@ class Attachment extends DataType
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Attachment clear({
+    bool id = false,
+    bool extension_ = false,
+    bool contentType = false,
+    bool language = false,
+    bool data = false,
+    bool url = false,
+    bool size = false,
+    bool hash = false,
+    bool title = false,
+    bool creation = false,
+  }) {
+    return Attachment(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      contentType: contentType ? null : this.contentType,
+      language: language ? null : this.language,
+      data: data ? null : this.data,
+      url: url ? null : this.url,
+      size: size ? null : this.size,
+      hash: hash ? null : this.hash,
+      title: title ? null : this.title,
+      creation: creation ? null : this.creation,
+    );
+  }
+
   @override
   Attachment clone() => throw UnimplementedError();
   @override

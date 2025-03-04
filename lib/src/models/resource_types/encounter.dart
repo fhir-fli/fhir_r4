@@ -1199,6 +1199,74 @@ class Encounter extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Encounter clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool statusHistory = false,
+    bool classHistory = false,
+    bool type = false,
+    bool serviceType = false,
+    bool priority = false,
+    bool subject = false,
+    bool episodeOfCare = false,
+    bool basedOn = false,
+    bool participant = false,
+    bool appointment = false,
+    bool period = false,
+    bool length = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool diagnosis = false,
+    bool account = false,
+    bool hospitalization = false,
+    bool location = false,
+    bool serviceProvider = false,
+    bool partOf = false,
+  }) {
+    return Encounter(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      statusHistory: statusHistory ? null : this.statusHistory,
+      class_: class_,
+      classHistory: classHistory ? null : this.classHistory,
+      type: type ? null : this.type,
+      serviceType: serviceType ? null : this.serviceType,
+      priority: priority ? null : this.priority,
+      subject: subject ? null : this.subject,
+      episodeOfCare: episodeOfCare ? null : this.episodeOfCare,
+      basedOn: basedOn ? null : this.basedOn,
+      participant: participant ? null : this.participant,
+      appointment: appointment ? null : this.appointment,
+      period: period ? null : this.period,
+      length: length ? null : this.length,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      diagnosis: diagnosis ? null : this.diagnosis,
+      account: account ? null : this.account,
+      hospitalization: hospitalization ? null : this.hospitalization,
+      location: location ? null : this.location,
+      serviceProvider: serviceProvider ? null : this.serviceProvider,
+      partOf: partOf ? null : this.partOf,
+    );
+  }
+
   @override
   Encounter clone() => throw UnimplementedError();
   @override
@@ -1903,6 +1971,22 @@ class EncounterStatusHistory extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  EncounterStatusHistory clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return EncounterStatusHistory(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      status: status,
+      period: period,
+    );
+  }
+
   @override
   EncounterStatusHistory clone() => throw UnimplementedError();
   @override
@@ -2310,6 +2394,22 @@ class EncounterClassHistory extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  EncounterClassHistory clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return EncounterClassHistory(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      class_: class_,
+      period: period,
+    );
   }
 
   @override
@@ -2751,6 +2851,26 @@ class EncounterParticipant extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  EncounterParticipant clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool period = false,
+    bool individual = false,
+  }) {
+    return EncounterParticipant(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      period: period ? null : this.period,
+      individual: individual ? null : this.individual,
+    );
   }
 
   @override
@@ -3205,6 +3325,25 @@ class EncounterDiagnosis extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  EncounterDiagnosis clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool use = false,
+    bool rank = false,
+  }) {
+    return EncounterDiagnosis(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      condition: condition,
+      use: use ? null : this.use,
+      rank: rank ? null : this.rank,
+    );
   }
 
   @override
@@ -3849,6 +3988,40 @@ class EncounterHospitalization extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  EncounterHospitalization clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool preAdmissionIdentifier = false,
+    bool origin = false,
+    bool admitSource = false,
+    bool reAdmission = false,
+    bool dietPreference = false,
+    bool specialCourtesy = false,
+    bool specialArrangement = false,
+    bool destination = false,
+    bool dischargeDisposition = false,
+  }) {
+    return EncounterHospitalization(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      preAdmissionIdentifier:
+          preAdmissionIdentifier ? null : this.preAdmissionIdentifier,
+      origin: origin ? null : this.origin,
+      admitSource: admitSource ? null : this.admitSource,
+      reAdmission: reAdmission ? null : this.reAdmission,
+      dietPreference: dietPreference ? null : this.dietPreference,
+      specialCourtesy: specialCourtesy ? null : this.specialCourtesy,
+      specialArrangement: specialArrangement ? null : this.specialArrangement,
+      destination: destination ? null : this.destination,
+      dischargeDisposition:
+          dischargeDisposition ? null : this.dischargeDisposition,
+    );
+  }
+
   @override
   EncounterHospitalization clone() => throw UnimplementedError();
   @override
@@ -4393,6 +4566,27 @@ class EncounterLocation extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  EncounterLocation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool status = false,
+    bool physicalType = false,
+    bool period = false,
+  }) {
+    return EncounterLocation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      location: location,
+      status: status ? null : this.status,
+      physicalType: physicalType ? null : this.physicalType,
+      period: period ? null : this.period,
+    );
   }
 
   @override

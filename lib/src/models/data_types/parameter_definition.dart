@@ -465,6 +465,30 @@ class ParameterDefinition extends DataType
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ParameterDefinition clear({
+    bool id = false,
+    bool extension_ = false,
+    bool name = false,
+    bool min = false,
+    bool max = false,
+    bool documentation = false,
+    bool profile = false,
+  }) {
+    return ParameterDefinition(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      name: name ? null : this.name,
+      use: use,
+      min: min ? null : this.min,
+      max: max ? null : this.max,
+      documentation: documentation ? null : this.documentation,
+      type: type,
+      profile: profile ? null : this.profile,
+    );
+  }
+
   @override
   ParameterDefinition clone() => throw UnimplementedError();
   @override

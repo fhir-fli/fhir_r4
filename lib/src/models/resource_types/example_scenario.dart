@@ -992,6 +992,63 @@ class ExampleScenario extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ExampleScenario clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool identifier = false,
+    bool version = false,
+    bool name = false,
+    bool experimental = false,
+    bool date = false,
+    bool publisher = false,
+    bool contact = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool copyright = false,
+    bool purpose = false,
+    bool actor = false,
+    bool instance = false,
+    bool process = false,
+    bool workflow = false,
+  }) {
+    return ExampleScenario(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url ? null : this.url,
+      identifier: identifier ? null : this.identifier,
+      version: version ? null : this.version,
+      name: name ? null : this.name,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      date: date ? null : this.date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      copyright: copyright ? null : this.copyright,
+      purpose: purpose ? null : this.purpose,
+      actor: actor ? null : this.actor,
+      instance: instance ? null : this.instance,
+      process: process ? null : this.process,
+      workflow: workflow ? null : this.workflow,
+    );
+  }
+
   @override
   ExampleScenario clone() => throw UnimplementedError();
   @override
@@ -1672,6 +1729,26 @@ class ExampleScenarioActor extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ExampleScenarioActor clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool name = false,
+    bool description = false,
+  }) {
+    return ExampleScenarioActor(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      actorId: actorId,
+      type: type,
+      name: name ? null : this.name,
+      description: description ? null : this.description,
+    );
+  }
+
   @override
   ExampleScenarioActor clone() => throw UnimplementedError();
   @override
@@ -2218,11 +2295,36 @@ class ExampleScenarioInstance extends BackboneElement {
       case 'containedInstance':
         {
           return copyWith(
-              containedInstance: <ExampleScenarioContainedInstance>[],);
+            containedInstance: <ExampleScenarioContainedInstance>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ExampleScenarioInstance clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool name = false,
+    bool description = false,
+    bool version = false,
+    bool containedInstance = false,
+  }) {
+    return ExampleScenarioInstance(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      resourceId: resourceId,
+      resourceType: resourceType,
+      name: name ? null : this.name,
+      description: description ? null : this.description,
+      version: version ? null : this.version,
+      containedInstance: containedInstance ? null : this.containedInstance,
+    );
   }
 
   @override
@@ -2674,6 +2776,22 @@ class ExampleScenarioVersion extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ExampleScenarioVersion clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ExampleScenarioVersion(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      versionId: versionId,
+      description: description,
+    );
+  }
+
   @override
   ExampleScenarioVersion clone() => throw UnimplementedError();
   @override
@@ -3078,6 +3196,23 @@ class ExampleScenarioContainedInstance extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ExampleScenarioContainedInstance clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool versionId = false,
+  }) {
+    return ExampleScenarioContainedInstance(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      resourceId: resourceId,
+      versionId: versionId ? null : this.versionId,
+    );
   }
 
   @override
@@ -3579,6 +3714,29 @@ class ExampleScenarioProcess extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ExampleScenarioProcess clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+    bool preConditions = false,
+    bool postConditions = false,
+    bool step = false,
+  }) {
+    return ExampleScenarioProcess(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      title: title,
+      description: description ? null : this.description,
+      preConditions: preConditions ? null : this.preConditions,
+      postConditions: postConditions ? null : this.postConditions,
+      step: step ? null : this.step,
+    );
   }
 
   @override
@@ -4085,6 +4243,28 @@ class ExampleScenarioStep extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ExampleScenarioStep clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool process = false,
+    bool pause = false,
+    bool operation = false,
+    bool alternative = false,
+  }) {
+    return ExampleScenarioStep(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      process: process ? null : this.process,
+      pause: pause ? null : this.pause,
+      operation: operation ? null : this.operation,
+      alternative: alternative ? null : this.alternative,
+    );
   }
 
   @override
@@ -4769,6 +4949,39 @@ class ExampleScenarioOperation extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ExampleScenarioOperation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool name = false,
+    bool initiator = false,
+    bool receiver = false,
+    bool description = false,
+    bool initiatorActive = false,
+    bool receiverActive = false,
+    bool request = false,
+    bool response = false,
+  }) {
+    return ExampleScenarioOperation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      number: number,
+      type: type ? null : this.type,
+      name: name ? null : this.name,
+      initiator: initiator ? null : this.initiator,
+      receiver: receiver ? null : this.receiver,
+      description: description ? null : this.description,
+      initiatorActive: initiatorActive ? null : this.initiatorActive,
+      receiverActive: receiverActive ? null : this.receiverActive,
+      request: request ? null : this.request,
+      response: response ? null : this.response,
+    );
+  }
+
   @override
   ExampleScenarioOperation clone() => throw UnimplementedError();
   @override
@@ -5273,6 +5486,25 @@ class ExampleScenarioAlternative extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ExampleScenarioAlternative clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+    bool step = false,
+  }) {
+    return ExampleScenarioAlternative(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      title: title,
+      description: description ? null : this.description,
+      step: step ? null : this.step,
+    );
   }
 
   @override

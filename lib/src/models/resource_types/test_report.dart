@@ -789,6 +789,51 @@ class TestReport extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  TestReport clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool name = false,
+    bool score = false,
+    bool tester = false,
+    bool issued = false,
+    bool participant = false,
+    bool setup = false,
+    bool test = false,
+    bool teardown = false,
+  }) {
+    return TestReport(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      name: name ? null : this.name,
+      status: status,
+      testScript: testScript,
+      result: result,
+      score: score ? null : this.score,
+      tester: tester ? null : this.tester,
+      issued: issued ? null : this.issued,
+      participant: participant ? null : this.participant,
+      setup: setup ? null : this.setup,
+      test: test ? null : this.test,
+      teardown: teardown ? null : this.teardown,
+    );
+  }
+
   @override
   TestReport clone() => throw UnimplementedError();
   @override
@@ -1357,6 +1402,24 @@ class TestReportParticipant extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  TestReportParticipant clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool display = false,
+  }) {
+    return TestReportParticipant(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      uri: uri,
+      display: display ? null : this.display,
+    );
+  }
+
   @override
   TestReportParticipant clone() => throw UnimplementedError();
   @override
@@ -1741,6 +1804,21 @@ class TestReportSetup extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestReportSetup clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return TestReportSetup(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      action: action,
+    );
   }
 
   @override
@@ -2144,6 +2222,24 @@ class TestReportAction extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestReportAction clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool operation = false,
+    bool assert_ = false,
+  }) {
+    return TestReportAction(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      operation: operation ? null : this.operation,
+      assert_: assert_ ? null : this.assert_,
+    );
   }
 
   @override
@@ -2579,6 +2675,25 @@ class TestReportOperation extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestReportOperation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool message = false,
+    bool detail = false,
+  }) {
+    return TestReportOperation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      result: result,
+      message: message ? null : this.message,
+      detail: detail ? null : this.detail,
+    );
   }
 
   @override
@@ -3022,6 +3137,25 @@ class TestReportAssert extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestReportAssert clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool message = false,
+    bool detail = false,
+  }) {
+    return TestReportAssert(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      result: result,
+      message: message ? null : this.message,
+      detail: detail ? null : this.detail,
+    );
   }
 
   @override
@@ -3473,6 +3607,25 @@ class TestReportTest extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  TestReportTest clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool name = false,
+    bool description = false,
+  }) {
+    return TestReportTest(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name ? null : this.name,
+      description: description ? null : this.description,
+      action: action,
+    );
+  }
+
   @override
   TestReportTest clone() => throw UnimplementedError();
   @override
@@ -3892,6 +4045,24 @@ class TestReportAction1 extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  TestReportAction1 clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool operation = false,
+    bool assert_ = false,
+  }) {
+    return TestReportAction1(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      operation: operation ? null : this.operation,
+      assert_: assert_ ? null : this.assert_,
+    );
+  }
+
   @override
   TestReportAction1 clone() => throw UnimplementedError();
   @override
@@ -4270,6 +4441,21 @@ class TestReportTeardown extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  TestReportTeardown clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return TestReportTeardown(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      action: action,
+    );
+  }
+
   @override
   TestReportTeardown clone() => throw UnimplementedError();
   @override
@@ -4640,6 +4826,21 @@ class TestReportAction2 extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestReportAction2 clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return TestReportAction2(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      operation: operation,
+    );
   }
 
   @override

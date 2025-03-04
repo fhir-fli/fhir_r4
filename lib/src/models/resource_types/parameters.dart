@@ -320,6 +320,24 @@ class Parameters extends Resource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Parameters clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool parameter = false,
+  }) {
+    return Parameters(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      parameter: parameter ? null : this.parameter,
+    );
+  }
+
   @override
   Parameters clone() => throw UnimplementedError();
   @override
@@ -1937,6 +1955,27 @@ class ParametersParameter extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ParametersParameter clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool value = false,
+    bool resource = false,
+    bool part_ = false,
+  }) {
+    return ParametersParameter(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      valueX: value ? null : valueX,
+      resource: resource ? null : this.resource,
+      part_: part_ ? null : this.part_,
+    );
   }
 
   @override

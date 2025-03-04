@@ -734,6 +734,48 @@ class FhirGroup extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  FhirGroup clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool active = false,
+    bool code = false,
+    bool name = false,
+    bool quantity = false,
+    bool managingEntity = false,
+    bool characteristic = false,
+    bool member = false,
+  }) {
+    return FhirGroup(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      active: active ? null : this.active,
+      type: type,
+      actual: actual,
+      code: code ? null : this.code,
+      name: name ? null : this.name,
+      quantity: quantity ? null : this.quantity,
+      managingEntity: managingEntity ? null : this.managingEntity,
+      characteristic: characteristic ? null : this.characteristic,
+      member: member ? null : this.member,
+    );
+  }
+
   @override
   FhirGroup clone() => throw UnimplementedError();
   @override
@@ -1446,6 +1488,25 @@ class GroupCharacteristic extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  GroupCharacteristic clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool period = false,
+  }) {
+    return GroupCharacteristic(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      valueX: valueX,
+      exclude: exclude,
+      period: period ? null : this.period,
+    );
+  }
+
   @override
   GroupCharacteristic clone() => throw UnimplementedError();
   @override
@@ -1898,6 +1959,25 @@ class GroupMember extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  GroupMember clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool period = false,
+    bool inactive = false,
+  }) {
+    return GroupMember(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      entity: entity,
+      period: period ? null : this.period,
+      inactive: inactive ? null : this.inactive,
+    );
   }
 
   @override

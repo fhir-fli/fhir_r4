@@ -334,6 +334,24 @@ class RatioRange extends DataType
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  RatioRange clear({
+    bool id = false,
+    bool extension_ = false,
+    bool lowNumerator = false,
+    bool highNumerator = false,
+    bool denominator = false,
+  }) {
+    return RatioRange(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      lowNumerator: lowNumerator ? null : this.lowNumerator,
+      highNumerator: highNumerator ? null : this.highNumerator,
+      denominator: denominator ? null : this.denominator,
+    );
+  }
+
   @override
   RatioRange clone() => throw UnimplementedError();
   @override

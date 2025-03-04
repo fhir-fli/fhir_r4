@@ -354,6 +354,22 @@ class Period extends DataType
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Period clear({
+    bool id = false,
+    bool extension_ = false,
+    bool start = false,
+    bool end = false,
+  }) {
+    return Period(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      start: start ? null : this.start,
+      end: end ? null : this.end,
+    );
+  }
+
   @override
   Period clone() => throw UnimplementedError();
   @override

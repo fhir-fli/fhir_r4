@@ -1309,6 +1309,78 @@ class Evidence extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Evidence clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool identifier = false,
+    bool version = false,
+    bool title = false,
+    bool citeAs = false,
+    bool date = false,
+    bool useContext = false,
+    bool approvalDate = false,
+    bool lastReviewDate = false,
+    bool publisher = false,
+    bool contact = false,
+    bool author = false,
+    bool editor = false,
+    bool reviewer = false,
+    bool endorser = false,
+    bool relatedArtifact = false,
+    bool description = false,
+    bool assertion = false,
+    bool note = false,
+    bool synthesisType = false,
+    bool studyType = false,
+    bool statistic = false,
+    bool certainty = false,
+  }) {
+    return Evidence(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url ? null : this.url,
+      identifier: identifier ? null : this.identifier,
+      version: version ? null : this.version,
+      title: title ? null : this.title,
+      citeAsX: citeAs ? null : citeAsX,
+      status: status,
+      date: date ? null : this.date,
+      useContext: useContext ? null : this.useContext,
+      approvalDate: approvalDate ? null : this.approvalDate,
+      lastReviewDate: lastReviewDate ? null : this.lastReviewDate,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      author: author ? null : this.author,
+      editor: editor ? null : this.editor,
+      reviewer: reviewer ? null : this.reviewer,
+      endorser: endorser ? null : this.endorser,
+      relatedArtifact: relatedArtifact ? null : this.relatedArtifact,
+      description: description ? null : this.description,
+      assertion: assertion ? null : this.assertion,
+      note: note ? null : this.note,
+      variableDefinition: variableDefinition,
+      synthesisType: synthesisType ? null : this.synthesisType,
+      studyType: studyType ? null : this.studyType,
+      statistic: statistic ? null : this.statistic,
+      certainty: certainty ? null : this.certainty,
+    );
+  }
+
   @override
   Evidence clone() => throw UnimplementedError();
   @override
@@ -2150,6 +2222,31 @@ class EvidenceVariableDefinition extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  EvidenceVariableDefinition clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+    bool note = false,
+    bool observed = false,
+    bool intended = false,
+    bool directnessMatch = false,
+  }) {
+    return EvidenceVariableDefinition(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description ? null : this.description,
+      note: note ? null : this.note,
+      variableRole: variableRole,
+      observed: observed ? null : this.observed,
+      intended: intended ? null : this.intended,
+      directnessMatch: directnessMatch ? null : this.directnessMatch,
+    );
+  }
+
   @override
   EvidenceVariableDefinition clone() => throw UnimplementedError();
   @override
@@ -2858,6 +2955,41 @@ class EvidenceStatistic extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  EvidenceStatistic clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+    bool note = false,
+    bool statisticType = false,
+    bool category = false,
+    bool quantity = false,
+    bool numberOfEvents = false,
+    bool numberAffected = false,
+    bool sampleSize = false,
+    bool attributeEstimate = false,
+    bool modelCharacteristic = false,
+  }) {
+    return EvidenceStatistic(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description ? null : this.description,
+      note: note ? null : this.note,
+      statisticType: statisticType ? null : this.statisticType,
+      category: category ? null : this.category,
+      quantity: quantity ? null : this.quantity,
+      numberOfEvents: numberOfEvents ? null : this.numberOfEvents,
+      numberAffected: numberAffected ? null : this.numberAffected,
+      sampleSize: sampleSize ? null : this.sampleSize,
+      attributeEstimate: attributeEstimate ? null : this.attributeEstimate,
+      modelCharacteristic:
+          modelCharacteristic ? null : this.modelCharacteristic,
+    );
+  }
+
   @override
   EvidenceStatistic clone() => throw UnimplementedError();
   @override
@@ -3445,6 +3577,31 @@ class EvidenceSampleSize extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  EvidenceSampleSize clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+    bool note = false,
+    bool numberOfStudies = false,
+    bool numberOfParticipants = false,
+    bool knownDataCount = false,
+  }) {
+    return EvidenceSampleSize(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description ? null : this.description,
+      note: note ? null : this.note,
+      numberOfStudies: numberOfStudies ? null : this.numberOfStudies,
+      numberOfParticipants:
+          numberOfParticipants ? null : this.numberOfParticipants,
+      knownDataCount: knownDataCount ? null : this.knownDataCount,
+    );
+  }
+
   @override
   EvidenceSampleSize clone() => throw UnimplementedError();
   @override
@@ -3583,7 +3740,8 @@ class EvidenceAttributeEstimate extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory EvidenceAttributeEstimate.empty() => const EvidenceAttributeEstimate();
+  factory EvidenceAttributeEstimate.empty() =>
+      const EvidenceAttributeEstimate();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceAttributeEstimate.fromJson(
@@ -4045,6 +4203,34 @@ class EvidenceAttributeEstimate extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  EvidenceAttributeEstimate clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+    bool note = false,
+    bool type = false,
+    bool quantity = false,
+    bool level = false,
+    bool range = false,
+    bool attributeEstimate = false,
+  }) {
+    return EvidenceAttributeEstimate(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description ? null : this.description,
+      note: note ? null : this.note,
+      type: type ? null : this.type,
+      quantity: quantity ? null : this.quantity,
+      level: level ? null : this.level,
+      range: range ? null : this.range,
+      attributeEstimate: attributeEstimate ? null : this.attributeEstimate,
+    );
   }
 
   @override
@@ -4574,6 +4760,27 @@ class EvidenceModelCharacteristic extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  EvidenceModelCharacteristic clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool value = false,
+    bool variable = false,
+    bool attributeEstimate = false,
+  }) {
+    return EvidenceModelCharacteristic(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      value: value ? null : this.value,
+      variable: variable ? null : this.variable,
+      attributeEstimate: attributeEstimate ? null : this.attributeEstimate,
+    );
   }
 
   @override
@@ -5114,6 +5321,29 @@ class EvidenceModelCharacteristicVariable extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  EvidenceModelCharacteristicVariable clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool handling = false,
+    bool valueCategory = false,
+    bool valueQuantity = false,
+    bool valueRange = false,
+  }) {
+    return EvidenceModelCharacteristicVariable(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      variableDefinition: variableDefinition,
+      handling: handling ? null : this.handling,
+      valueCategory: valueCategory ? null : this.valueCategory,
+      valueQuantity: valueQuantity ? null : this.valueQuantity,
+      valueRange: valueRange ? null : this.valueRange,
+    );
   }
 
   @override
@@ -5696,6 +5926,32 @@ class EvidenceCertainty extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  EvidenceCertainty clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+    bool note = false,
+    bool type = false,
+    bool rating = false,
+    bool rater = false,
+    bool subcomponent = false,
+  }) {
+    return EvidenceCertainty(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description ? null : this.description,
+      note: note ? null : this.note,
+      type: type ? null : this.type,
+      rating: rating ? null : this.rating,
+      rater: rater ? null : this.rater,
+      subcomponent: subcomponent ? null : this.subcomponent,
+    );
   }
 
   @override

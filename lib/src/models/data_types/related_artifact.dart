@@ -465,6 +465,31 @@ class RelatedArtifact extends DataType
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  RelatedArtifact clear({
+    bool id = false,
+    bool extension_ = false,
+    bool label = false,
+    bool display = false,
+    bool citation = false,
+    bool url = false,
+    bool document = false,
+    bool resource = false,
+  }) {
+    return RelatedArtifact(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      type: type,
+      label: label ? null : this.label,
+      display: display ? null : this.display,
+      citation: citation ? null : this.citation,
+      url: url ? null : this.url,
+      document: document ? null : this.document,
+      resource: resource ? null : this.resource,
+    );
+  }
+
   @override
   RelatedArtifact clone() => throw UnimplementedError();
   @override

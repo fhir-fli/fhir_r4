@@ -884,6 +884,59 @@ class PractitionerRole extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  PractitionerRole clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool active = false,
+    bool period = false,
+    bool practitioner = false,
+    bool organization = false,
+    bool code = false,
+    bool specialty = false,
+    bool location = false,
+    bool healthcareService = false,
+    bool telecom = false,
+    bool availableTime = false,
+    bool notAvailable = false,
+    bool availabilityExceptions = false,
+    bool endpoint = false,
+  }) {
+    return PractitionerRole(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      active: active ? null : this.active,
+      period: period ? null : this.period,
+      practitioner: practitioner ? null : this.practitioner,
+      organization: organization ? null : this.organization,
+      code: code ? null : this.code,
+      specialty: specialty ? null : this.specialty,
+      location: location ? null : this.location,
+      healthcareService: healthcareService ? null : this.healthcareService,
+      telecom: telecom ? null : this.telecom,
+      availableTime: availableTime ? null : this.availableTime,
+      notAvailable: notAvailable ? null : this.notAvailable,
+      availabilityExceptions:
+          availabilityExceptions ? null : this.availabilityExceptions,
+      endpoint: endpoint ? null : this.endpoint,
+    );
+  }
+
   @override
   PractitionerRole clone() => throw UnimplementedError();
   @override
@@ -1554,6 +1607,28 @@ class PractitionerRoleAvailableTime extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  PractitionerRoleAvailableTime clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool daysOfWeek = false,
+    bool allDay = false,
+    bool availableStartTime = false,
+    bool availableEndTime = false,
+  }) {
+    return PractitionerRoleAvailableTime(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      daysOfWeek: daysOfWeek ? null : this.daysOfWeek,
+      allDay: allDay ? null : this.allDay,
+      availableStartTime: availableStartTime ? null : this.availableStartTime,
+      availableEndTime: availableEndTime ? null : this.availableEndTime,
+    );
+  }
+
   @override
   PractitionerRoleAvailableTime clone() => throw UnimplementedError();
   @override
@@ -1982,6 +2057,23 @@ class PractitionerRoleNotAvailable extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  PractitionerRoleNotAvailable clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool during = false,
+  }) {
+    return PractitionerRoleNotAvailable(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description,
+      during: during ? null : this.during,
+    );
   }
 
   @override

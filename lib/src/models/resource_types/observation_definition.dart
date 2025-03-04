@@ -803,13 +803,15 @@ class ObservationDefinition extends DomainResource {
       case 'quantitativeDetails':
         {
           return copyWith(
-              quantitativeDetails:
-                  ObservationDefinitionQuantitativeDetails.empty(),);
+            quantitativeDetails:
+                ObservationDefinitionQuantitativeDetails.empty(),
+          );
         }
       case 'qualifiedInterval':
         {
           return copyWith(
-              qualifiedInterval: <ObservationDefinitionQualifiedInterval>[],);
+            qualifiedInterval: <ObservationDefinitionQualifiedInterval>[],
+          );
         }
       case 'validCodedValueSet':
         {
@@ -830,6 +832,61 @@ class ObservationDefinition extends DomainResource {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ObservationDefinition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool category = false,
+    bool identifier = false,
+    bool permittedDataType = false,
+    bool multipleResultsAllowed = false,
+    bool method = false,
+    bool preferredReportName = false,
+    bool quantitativeDetails = false,
+    bool qualifiedInterval = false,
+    bool validCodedValueSet = false,
+    bool normalCodedValueSet = false,
+    bool abnormalCodedValueSet = false,
+    bool criticalCodedValueSet = false,
+  }) {
+    return ObservationDefinition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      category: category ? null : this.category,
+      code: code,
+      identifier: identifier ? null : this.identifier,
+      permittedDataType: permittedDataType ? null : this.permittedDataType,
+      multipleResultsAllowed:
+          multipleResultsAllowed ? null : this.multipleResultsAllowed,
+      method: method ? null : this.method,
+      preferredReportName:
+          preferredReportName ? null : this.preferredReportName,
+      quantitativeDetails:
+          quantitativeDetails ? null : this.quantitativeDetails,
+      qualifiedInterval: qualifiedInterval ? null : this.qualifiedInterval,
+      validCodedValueSet: validCodedValueSet ? null : this.validCodedValueSet,
+      normalCodedValueSet:
+          normalCodedValueSet ? null : this.normalCodedValueSet,
+      abnormalCodedValueSet:
+          abnormalCodedValueSet ? null : this.abnormalCodedValueSet,
+      criticalCodedValueSet:
+          criticalCodedValueSet ? null : this.criticalCodedValueSet,
+    );
   }
 
   @override
@@ -1458,6 +1515,28 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ObservationDefinitionQuantitativeDetails clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool customaryUnit = false,
+    bool unit = false,
+    bool conversionFactor = false,
+    bool decimalPrecision = false,
+  }) {
+    return ObservationDefinitionQuantitativeDetails(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      customaryUnit: customaryUnit ? null : this.customaryUnit,
+      unit: unit ? null : this.unit,
+      conversionFactor: conversionFactor ? null : this.conversionFactor,
+      decimalPrecision: decimalPrecision ? null : this.decimalPrecision,
+    );
+  }
+
   @override
   ObservationDefinitionQuantitativeDetails clone() =>
       throw UnimplementedError();
@@ -2075,6 +2154,36 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ObservationDefinitionQualifiedInterval clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool category = false,
+    bool range = false,
+    bool context = false,
+    bool appliesTo = false,
+    bool gender = false,
+    bool age = false,
+    bool gestationalAge = false,
+    bool condition = false,
+  }) {
+    return ObservationDefinitionQualifiedInterval(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      category: category ? null : this.category,
+      range: range ? null : this.range,
+      context: context ? null : this.context,
+      appliesTo: appliesTo ? null : this.appliesTo,
+      gender: gender ? null : this.gender,
+      age: age ? null : this.age,
+      gestationalAge: gestationalAge ? null : this.gestationalAge,
+      condition: condition ? null : this.condition,
+    );
   }
 
   @override

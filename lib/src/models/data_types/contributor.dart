@@ -340,6 +340,22 @@ class Contributor extends DataType
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Contributor clear({
+    bool id = false,
+    bool extension_ = false,
+    bool contact = false,
+  }) {
+    return Contributor(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      type: type,
+      name: name,
+      contact: contact ? null : this.contact,
+    );
+  }
+
   @override
   Contributor clone() => throw UnimplementedError();
   @override

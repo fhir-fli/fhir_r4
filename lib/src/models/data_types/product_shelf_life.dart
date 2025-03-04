@@ -402,6 +402,28 @@ class ProductShelfLife extends BackboneType {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ProductShelfLife clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool specialPrecautionsForStorage = false,
+  }) {
+    return ProductShelfLife(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      type: type,
+      period: period,
+      specialPrecautionsForStorage: specialPrecautionsForStorage
+          ? null
+          : this.specialPrecautionsForStorage,
+    );
+  }
+
   @override
   ProductShelfLife clone() => throw UnimplementedError();
   @override

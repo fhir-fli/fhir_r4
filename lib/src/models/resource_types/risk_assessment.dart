@@ -1007,6 +1007,62 @@ class RiskAssessment extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  RiskAssessment clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool basedOn = false,
+    bool parent = false,
+    bool method = false,
+    bool code = false,
+    bool encounter = false,
+    bool occurrence = false,
+    bool condition = false,
+    bool performer = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool basis = false,
+    bool prediction = false,
+    bool mitigation = false,
+    bool note = false,
+  }) {
+    return RiskAssessment(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      basedOn: basedOn ? null : this.basedOn,
+      parent: parent ? null : this.parent,
+      status: status,
+      method: method ? null : this.method,
+      code: code ? null : this.code,
+      subject: subject,
+      encounter: encounter ? null : this.encounter,
+      occurrenceX: occurrence ? null : occurrenceX,
+      condition: condition ? null : this.condition,
+      performer: performer ? null : this.performer,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      basis: basis ? null : this.basis,
+      prediction: prediction ? null : this.prediction,
+      mitigation: mitigation ? null : this.mitigation,
+      note: note ? null : this.note,
+    );
+  }
+
   @override
   RiskAssessment clone() => throw UnimplementedError();
   @override
@@ -1837,6 +1893,32 @@ class RiskAssessmentPrediction extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  RiskAssessmentPrediction clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool outcome = false,
+    bool probability = false,
+    bool qualitativeRisk = false,
+    bool relativeRisk = false,
+    bool when = false,
+    bool rationale = false,
+  }) {
+    return RiskAssessmentPrediction(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      outcome: outcome ? null : this.outcome,
+      probabilityX: probability ? null : probabilityX,
+      qualitativeRisk: qualitativeRisk ? null : this.qualitativeRisk,
+      relativeRisk: relativeRisk ? null : this.relativeRisk,
+      whenX: when ? null : whenX,
+      rationale: rationale ? null : this.rationale,
+    );
   }
 
   @override

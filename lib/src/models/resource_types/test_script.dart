@@ -1220,6 +1220,75 @@ class TestScript extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  TestScript clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool version = false,
+    bool title = false,
+    bool experimental = false,
+    bool date = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool purpose = false,
+    bool copyright = false,
+    bool origin = false,
+    bool destination = false,
+    bool metadata = false,
+    bool fixture = false,
+    bool profile = false,
+    bool variable = false,
+    bool setup = false,
+    bool test = false,
+    bool teardown = false,
+  }) {
+    return TestScript(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url,
+      identifier: identifier ? null : this.identifier,
+      version: version ? null : this.version,
+      name: name,
+      title: title ? null : this.title,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      date: date ? null : this.date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      purpose: purpose ? null : this.purpose,
+      copyright: copyright ? null : this.copyright,
+      origin: origin ? null : this.origin,
+      destination: destination ? null : this.destination,
+      metadata: metadata ? null : this.metadata,
+      fixture: fixture ? null : this.fixture,
+      profile: profile ? null : this.profile,
+      variable: variable ? null : this.variable,
+      setup: setup ? null : this.setup,
+      test: test ? null : this.test,
+      teardown: teardown ? null : this.teardown,
+    );
+  }
+
   @override
   TestScript clone() => throw UnimplementedError();
   @override
@@ -1903,6 +1972,22 @@ class TestScriptOrigin extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  TestScriptOrigin clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return TestScriptOrigin(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      index: index,
+      profile: profile,
+    );
+  }
+
   @override
   TestScriptOrigin clone() => throw UnimplementedError();
   @override
@@ -2306,6 +2391,22 @@ class TestScriptDestination extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestScriptDestination clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return TestScriptDestination(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      index: index,
+      profile: profile,
+    );
   }
 
   @override
@@ -2720,6 +2821,23 @@ class TestScriptMetadata extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestScriptMetadata clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool link = false,
+  }) {
+    return TestScriptMetadata(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      link: link ? null : this.link,
+      capability: capability,
+    );
   }
 
   @override
@@ -3139,6 +3257,23 @@ class TestScriptLink extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestScriptLink clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+  }) {
+    return TestScriptLink(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url,
+      description: description ? null : this.description,
+    );
   }
 
   @override
@@ -3705,6 +3840,31 @@ class TestScriptCapability extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  TestScriptCapability clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+    bool origin = false,
+    bool destination = false,
+    bool link = false,
+  }) {
+    return TestScriptCapability(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      required_: required_,
+      validated: validated,
+      description: description ? null : this.description,
+      origin: origin ? null : this.origin,
+      destination: destination ? null : this.destination,
+      link: link ? null : this.link,
+      capabilities: capabilities,
+    );
+  }
+
   @override
   TestScriptCapability clone() => throw UnimplementedError();
   @override
@@ -4199,6 +4359,24 @@ class TestScriptFixture extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestScriptFixture clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool resource = false,
+  }) {
+    return TestScriptFixture(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      autocreate: autocreate,
+      autodelete: autodelete,
+      resource: resource ? null : this.resource,
+    );
   }
 
   @override
@@ -4808,6 +4986,35 @@ class TestScriptVariable extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  TestScriptVariable clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool defaultValue = false,
+    bool description = false,
+    bool expression = false,
+    bool headerField = false,
+    bool hint = false,
+    bool path = false,
+    bool sourceId = false,
+  }) {
+    return TestScriptVariable(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      defaultValue: defaultValue ? null : this.defaultValue,
+      description: description ? null : this.description,
+      expression: expression ? null : this.expression,
+      headerField: headerField ? null : this.headerField,
+      hint: hint ? null : this.hint,
+      path: path ? null : this.path,
+      sourceId: sourceId ? null : this.sourceId,
+    );
+  }
+
   @override
   TestScriptVariable clone() => throw UnimplementedError();
   @override
@@ -5233,6 +5440,21 @@ class TestScriptSetup extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  TestScriptSetup clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return TestScriptSetup(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      action: action,
+    );
+  }
+
   @override
   TestScriptSetup clone() => throw UnimplementedError();
   @override
@@ -5635,6 +5857,24 @@ class TestScriptAction extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestScriptAction clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool operation = false,
+    bool assert_ = false,
+  }) {
+    return TestScriptAction(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      operation: operation ? null : this.operation,
+      assert_: assert_ ? null : this.assert_,
+    );
   }
 
   @override
@@ -6520,6 +6760,53 @@ class TestScriptOperation extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  TestScriptOperation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool resource = false,
+    bool label = false,
+    bool description = false,
+    bool accept = false,
+    bool contentType = false,
+    bool destination = false,
+    bool method = false,
+    bool origin = false,
+    bool params = false,
+    bool requestHeader = false,
+    bool requestId = false,
+    bool responseId = false,
+    bool sourceId = false,
+    bool targetId = false,
+    bool url = false,
+  }) {
+    return TestScriptOperation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      resource: resource ? null : this.resource,
+      label: label ? null : this.label,
+      description: description ? null : this.description,
+      accept: accept ? null : this.accept,
+      contentType: contentType ? null : this.contentType,
+      destination: destination ? null : this.destination,
+      encodeRequestUrl: encodeRequestUrl,
+      method: method ? null : this.method,
+      origin: origin ? null : this.origin,
+      params: params ? null : this.params,
+      requestHeader: requestHeader ? null : this.requestHeader,
+      requestId: requestId ? null : this.requestId,
+      responseId: responseId ? null : this.responseId,
+      sourceId: sourceId ? null : this.sourceId,
+      targetId: targetId ? null : this.targetId,
+      url: url ? null : this.url,
+    );
+  }
+
   @override
   TestScriptOperation clone() => throw UnimplementedError();
   @override
@@ -7048,6 +7335,22 @@ class TestScriptRequestHeader extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestScriptRequestHeader clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return TestScriptRequestHeader(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      field: field,
+      value: value,
+    );
   }
 
   @override
@@ -8092,6 +8395,65 @@ class TestScriptAssert extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  TestScriptAssert clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool label = false,
+    bool description = false,
+    bool direction = false,
+    bool compareToSourceId = false,
+    bool compareToSourceExpression = false,
+    bool compareToSourcePath = false,
+    bool contentType = false,
+    bool expression = false,
+    bool headerField = false,
+    bool minimumId = false,
+    bool navigationLinks = false,
+    bool operator_ = false,
+    bool path = false,
+    bool requestMethod = false,
+    bool requestURL = false,
+    bool resource = false,
+    bool response = false,
+    bool responseCode = false,
+    bool sourceId = false,
+    bool validateProfileId = false,
+    bool value = false,
+  }) {
+    return TestScriptAssert(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      label: label ? null : this.label,
+      description: description ? null : this.description,
+      direction: direction ? null : this.direction,
+      compareToSourceId: compareToSourceId ? null : this.compareToSourceId,
+      compareToSourceExpression:
+          compareToSourceExpression ? null : this.compareToSourceExpression,
+      compareToSourcePath:
+          compareToSourcePath ? null : this.compareToSourcePath,
+      contentType: contentType ? null : this.contentType,
+      expression: expression ? null : this.expression,
+      headerField: headerField ? null : this.headerField,
+      minimumId: minimumId ? null : this.minimumId,
+      navigationLinks: navigationLinks ? null : this.navigationLinks,
+      operator_: operator_ ? null : this.operator_,
+      path: path ? null : this.path,
+      requestMethod: requestMethod ? null : this.requestMethod,
+      requestURL: requestURL ? null : this.requestURL,
+      resource: resource ? null : this.resource,
+      response: response ? null : this.response,
+      responseCode: responseCode ? null : this.responseCode,
+      sourceId: sourceId ? null : this.sourceId,
+      validateProfileId: validateProfileId ? null : this.validateProfileId,
+      value: value ? null : this.value,
+      warningOnly: warningOnly,
+    );
+  }
+
   @override
   TestScriptAssert clone() => throw UnimplementedError();
   @override
@@ -8276,7 +8638,9 @@ class TestScriptAssert extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        compareToSourceExpression, o.compareToSourceExpression,)) {
+      compareToSourceExpression,
+      o.compareToSourceExpression,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(compareToSourcePath, o.compareToSourcePath)) {
@@ -8692,6 +9056,25 @@ class TestScriptTest extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestScriptTest clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool name = false,
+    bool description = false,
+  }) {
+    return TestScriptTest(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name ? null : this.name,
+      description: description ? null : this.description,
+      action: action,
+    );
   }
 
   @override
@@ -9114,6 +9497,24 @@ class TestScriptAction1 extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  TestScriptAction1 clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool operation = false,
+    bool assert_ = false,
+  }) {
+    return TestScriptAction1(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      operation: operation ? null : this.operation,
+      assert_: assert_ ? null : this.assert_,
+    );
+  }
+
   @override
   TestScriptAction1 clone() => throw UnimplementedError();
   @override
@@ -9492,6 +9893,21 @@ class TestScriptTeardown extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  TestScriptTeardown clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return TestScriptTeardown(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      action: action,
+    );
+  }
+
   @override
   TestScriptTeardown clone() => throw UnimplementedError();
   @override
@@ -9862,6 +10278,21 @@ class TestScriptAction2 extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestScriptAction2 clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return TestScriptAction2(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      operation: operation,
+    );
   }
 
   @override

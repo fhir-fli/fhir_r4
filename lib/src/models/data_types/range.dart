@@ -333,6 +333,22 @@ class Range extends DataType
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Range clear({
+    bool id = false,
+    bool extension_ = false,
+    bool low = false,
+    bool high = false,
+  }) {
+    return Range(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      low: low ? null : this.low,
+      high: high ? null : this.high,
+    );
+  }
+
   @override
   Range clone() => throw UnimplementedError();
   @override

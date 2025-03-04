@@ -1476,6 +1476,85 @@ class Procedure extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Procedure clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool instantiatesCanonical = false,
+    bool instantiatesUri = false,
+    bool basedOn = false,
+    bool partOf = false,
+    bool statusReason = false,
+    bool category = false,
+    bool code = false,
+    bool encounter = false,
+    bool performed = false,
+    bool recorder = false,
+    bool asserter = false,
+    bool performer = false,
+    bool location = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool bodySite = false,
+    bool outcome = false,
+    bool report = false,
+    bool complication = false,
+    bool complicationDetail = false,
+    bool followUp = false,
+    bool note = false,
+    bool focalDevice = false,
+    bool usedReference = false,
+    bool usedCode = false,
+  }) {
+    return Procedure(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      instantiatesCanonical:
+          instantiatesCanonical ? null : this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri ? null : this.instantiatesUri,
+      basedOn: basedOn ? null : this.basedOn,
+      partOf: partOf ? null : this.partOf,
+      status: status,
+      statusReason: statusReason ? null : this.statusReason,
+      category: category ? null : this.category,
+      code: code ? null : this.code,
+      subject: subject,
+      encounter: encounter ? null : this.encounter,
+      performedX: performed ? null : performedX,
+      recorder: recorder ? null : this.recorder,
+      asserter: asserter ? null : this.asserter,
+      performer: performer ? null : this.performer,
+      location: location ? null : this.location,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      bodySite: bodySite ? null : this.bodySite,
+      outcome: outcome ? null : this.outcome,
+      report: report ? null : this.report,
+      complication: complication ? null : this.complication,
+      complicationDetail: complicationDetail ? null : this.complicationDetail,
+      followUp: followUp ? null : this.followUp,
+      note: note ? null : this.note,
+      focalDevice: focalDevice ? null : this.focalDevice,
+      usedReference: usedReference ? null : this.usedReference,
+      usedCode: usedCode ? null : this.usedCode,
+    );
+  }
+
   @override
   Procedure clone() => throw UnimplementedError();
   @override
@@ -2278,6 +2357,25 @@ class ProcedurePerformer extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ProcedurePerformer clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool function_ = false,
+    bool onBehalfOf = false,
+  }) {
+    return ProcedurePerformer(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      function_: function_ ? null : this.function_,
+      actor: actor,
+      onBehalfOf: onBehalfOf ? null : this.onBehalfOf,
+    );
+  }
+
   @override
   ProcedurePerformer clone() => throw UnimplementedError();
   @override
@@ -2690,6 +2788,23 @@ class ProcedureFocalDevice extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ProcedureFocalDevice clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool action = false,
+  }) {
+    return ProcedureFocalDevice(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      action: action ? null : this.action,
+      manipulated: manipulated,
+    );
   }
 
   @override

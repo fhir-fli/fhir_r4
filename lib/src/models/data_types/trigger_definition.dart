@@ -499,6 +499,27 @@ class TriggerDefinition extends DataType
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  TriggerDefinition clear({
+    bool id = false,
+    bool extension_ = false,
+    bool name = false,
+    bool timing = false,
+    bool data = false,
+    bool condition = false,
+  }) {
+    return TriggerDefinition(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      type: type,
+      name: name ? null : this.name,
+      timingX: timing ? null : timingX,
+      data: data ? null : this.data,
+      condition: condition ? null : this.condition,
+    );
+  }
+
   @override
   TriggerDefinition clone() => throw UnimplementedError();
   @override

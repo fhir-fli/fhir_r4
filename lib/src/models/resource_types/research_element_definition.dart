@@ -1575,11 +1575,99 @@ class ResearchElementDefinition extends DomainResource {
       case 'characteristic':
         {
           return copyWith(
-              characteristic: <ResearchElementDefinitionCharacteristic>[],);
+            characteristic: <ResearchElementDefinitionCharacteristic>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ResearchElementDefinition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool identifier = false,
+    bool version = false,
+    bool name = false,
+    bool title = false,
+    bool shortTitle = false,
+    bool subtitle = false,
+    bool experimental = false,
+    bool subject = false,
+    bool date = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool comment = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool purpose = false,
+    bool usage = false,
+    bool copyright = false,
+    bool approvalDate = false,
+    bool lastReviewDate = false,
+    bool effectivePeriod = false,
+    bool topic = false,
+    bool author = false,
+    bool editor = false,
+    bool reviewer = false,
+    bool endorser = false,
+    bool relatedArtifact = false,
+    bool library_ = false,
+    bool variableType = false,
+  }) {
+    return ResearchElementDefinition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url ? null : this.url,
+      identifier: identifier ? null : this.identifier,
+      version: version ? null : this.version,
+      name: name ? null : this.name,
+      title: title ? null : this.title,
+      shortTitle: shortTitle ? null : this.shortTitle,
+      subtitle: subtitle ? null : this.subtitle,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      subjectX: subject ? null : subjectX,
+      date: date ? null : this.date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      comment: comment ? null : this.comment,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      purpose: purpose ? null : this.purpose,
+      usage: usage ? null : this.usage,
+      copyright: copyright ? null : this.copyright,
+      approvalDate: approvalDate ? null : this.approvalDate,
+      lastReviewDate: lastReviewDate ? null : this.lastReviewDate,
+      effectivePeriod: effectivePeriod ? null : this.effectivePeriod,
+      topic: topic ? null : this.topic,
+      author: author ? null : this.author,
+      editor: editor ? null : this.editor,
+      reviewer: reviewer ? null : this.reviewer,
+      endorser: endorser ? null : this.endorser,
+      relatedArtifact: relatedArtifact ? null : this.relatedArtifact,
+      library_: library_ ? null : this.library_,
+      type: type,
+      variableType: variableType ? null : this.variableType,
+      characteristic: characteristic,
+    );
   }
 
   @override
@@ -2392,17 +2480,25 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     addField('studyEffectiveTimeFromStart', studyEffectiveTimeFromStart);
     addField('studyEffectiveGroupMeasure', studyEffectiveGroupMeasure);
     addField(
-        'participantEffectiveDescription', participantEffectiveDescription,);
+      'participantEffectiveDescription',
+      participantEffectiveDescription,
+    );
     if (participantEffectiveX != null) {
       final fhirType = participantEffectiveX!.fhirType;
-      addField('participantEffective${fhirType.capitalize()}',
-          participantEffectiveX,);
+      addField(
+        'participantEffective${fhirType.capitalize()}',
+        participantEffectiveX,
+      );
     }
 
     addField(
-        'participantEffectiveTimeFromStart', participantEffectiveTimeFromStart,);
+      'participantEffectiveTimeFromStart',
+      participantEffectiveTimeFromStart,
+    );
     addField(
-        'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure,);
+      'participantEffectiveGroupMeasure',
+      participantEffectiveGroupMeasure,
+    );
     return json;
   }
 
@@ -2976,16 +3072,65 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
       case 'participantEffectiveTimeFromStart':
         {
           return copyWith(
-              participantEffectiveTimeFromStart: FhirDuration.empty(),);
+            participantEffectiveTimeFromStart: FhirDuration.empty(),
+          );
         }
       case 'participantEffectiveGroupMeasure':
         {
           return copyWith(
-              participantEffectiveGroupMeasure: GroupMeasure.empty(),);
+            participantEffectiveGroupMeasure: GroupMeasure.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ResearchElementDefinitionCharacteristic clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool usageContext = false,
+    bool exclude = false,
+    bool unitOfMeasure = false,
+    bool studyEffectiveDescription = false,
+    bool studyEffective = false,
+    bool studyEffectiveTimeFromStart = false,
+    bool studyEffectiveGroupMeasure = false,
+    bool participantEffectiveDescription = false,
+    bool participantEffective = false,
+    bool participantEffectiveTimeFromStart = false,
+    bool participantEffectiveGroupMeasure = false,
+  }) {
+    return ResearchElementDefinitionCharacteristic(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      definitionX: definitionX,
+      usageContext: usageContext ? null : this.usageContext,
+      exclude: exclude ? null : this.exclude,
+      unitOfMeasure: unitOfMeasure ? null : this.unitOfMeasure,
+      studyEffectiveDescription:
+          studyEffectiveDescription ? null : this.studyEffectiveDescription,
+      studyEffectiveX: studyEffective ? null : studyEffectiveX,
+      studyEffectiveTimeFromStart:
+          studyEffectiveTimeFromStart ? null : this.studyEffectiveTimeFromStart,
+      studyEffectiveGroupMeasure:
+          studyEffectiveGroupMeasure ? null : this.studyEffectiveGroupMeasure,
+      participantEffectiveDescription: participantEffectiveDescription
+          ? null
+          : this.participantEffectiveDescription,
+      participantEffectiveX:
+          participantEffective ? null : participantEffectiveX,
+      participantEffectiveTimeFromStart: participantEffectiveTimeFromStart
+          ? null
+          : this.participantEffectiveTimeFromStart,
+      participantEffectiveGroupMeasure: participantEffectiveGroupMeasure
+          ? null
+          : this.participantEffectiveGroupMeasure,
+    );
   }
 
   @override
@@ -3133,33 +3278,45 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        studyEffectiveDescription, o.studyEffectiveDescription,)) {
+      studyEffectiveDescription,
+      o.studyEffectiveDescription,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(studyEffectiveX, o.studyEffectiveX)) {
       return false;
     }
     if (!equalsDeepWithNull(
-        studyEffectiveTimeFromStart, o.studyEffectiveTimeFromStart,)) {
+      studyEffectiveTimeFromStart,
+      o.studyEffectiveTimeFromStart,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(
-        studyEffectiveGroupMeasure, o.studyEffectiveGroupMeasure,)) {
+      studyEffectiveGroupMeasure,
+      o.studyEffectiveGroupMeasure,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(
-        participantEffectiveDescription, o.participantEffectiveDescription,)) {
+      participantEffectiveDescription,
+      o.participantEffectiveDescription,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(participantEffectiveX, o.participantEffectiveX)) {
       return false;
     }
-    if (!equalsDeepWithNull(participantEffectiveTimeFromStart,
-        o.participantEffectiveTimeFromStart,)) {
+    if (!equalsDeepWithNull(
+      participantEffectiveTimeFromStart,
+      o.participantEffectiveTimeFromStart,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(
-        participantEffectiveGroupMeasure, o.participantEffectiveGroupMeasure,)) {
+      participantEffectiveGroupMeasure,
+      o.participantEffectiveGroupMeasure,
+    )) {
       return false;
     }
     return true;

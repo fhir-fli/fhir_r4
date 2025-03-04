@@ -617,7 +617,8 @@ class SubscriptionStatus extends DomainResource {
       case 'notificationEvent':
         {
           return copyWith(
-              notificationEvent: <SubscriptionStatusNotificationEvent>[],);
+            notificationEvent: <SubscriptionStatusNotificationEvent>[],
+          );
         }
       case 'subscription':
         {
@@ -634,6 +635,44 @@ class SubscriptionStatus extends DomainResource {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubscriptionStatus clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool status = false,
+    bool eventsSinceSubscriptionStart = false,
+    bool notificationEvent = false,
+    bool topic = false,
+    bool error = false,
+  }) {
+    return SubscriptionStatus(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      status: status ? null : this.status,
+      type: type,
+      eventsSinceSubscriptionStart: eventsSinceSubscriptionStart
+          ? null
+          : this.eventsSinceSubscriptionStart,
+      notificationEvent: notificationEvent ? null : this.notificationEvent,
+      subscription: subscription,
+      topic: topic ? null : this.topic,
+      error: error ? null : this.error,
+    );
   }
 
   @override
@@ -786,7 +825,9 @@ class SubscriptionStatus extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-        eventsSinceSubscriptionStart, o.eventsSinceSubscriptionStart,)) {
+      eventsSinceSubscriptionStart,
+      o.eventsSinceSubscriptionStart,
+    )) {
       return false;
     }
     if (!listEquals<SubscriptionStatusNotificationEvent>(
@@ -1206,6 +1247,27 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubscriptionStatusNotificationEvent clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool timestamp = false,
+    bool focus = false,
+    bool additionalContext = false,
+  }) {
+    return SubscriptionStatusNotificationEvent(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      eventNumber: eventNumber,
+      timestamp: timestamp ? null : this.timestamp,
+      focus: focus ? null : this.focus,
+      additionalContext: additionalContext ? null : this.additionalContext,
+    );
   }
 
   @override

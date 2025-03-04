@@ -968,6 +968,66 @@ class Location extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Location clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool status = false,
+    bool operationalStatus = false,
+    bool name = false,
+    bool alias = false,
+    bool description = false,
+    bool mode = false,
+    bool type = false,
+    bool telecom = false,
+    bool address = false,
+    bool physicalType = false,
+    bool position = false,
+    bool managingOrganization = false,
+    bool partOf = false,
+    bool hoursOfOperation = false,
+    bool availabilityExceptions = false,
+    bool endpoint = false,
+  }) {
+    return Location(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status ? null : this.status,
+      operationalStatus: operationalStatus ? null : this.operationalStatus,
+      name: name ? null : this.name,
+      alias: alias ? null : this.alias,
+      description: description ? null : this.description,
+      mode: mode ? null : this.mode,
+      type: type ? null : this.type,
+      telecom: telecom ? null : this.telecom,
+      address: address ? null : this.address,
+      physicalType: physicalType ? null : this.physicalType,
+      position: position ? null : this.position,
+      managingOrganization:
+          managingOrganization ? null : this.managingOrganization,
+      partOf: partOf ? null : this.partOf,
+      hoursOfOperation: hoursOfOperation ? null : this.hoursOfOperation,
+      availabilityExceptions:
+          availabilityExceptions ? null : this.availabilityExceptions,
+      endpoint: endpoint ? null : this.endpoint,
+    );
+  }
+
   @override
   Location clone() => throw UnimplementedError();
   @override
@@ -1607,6 +1667,24 @@ class LocationPosition extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  LocationPosition clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool altitude = false,
+  }) {
+    return LocationPosition(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      longitude: longitude,
+      latitude: latitude,
+      altitude: altitude ? null : this.altitude,
+    );
+  }
+
   @override
   LocationPosition clone() => throw UnimplementedError();
   @override
@@ -2080,6 +2158,28 @@ class LocationHoursOfOperation extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  LocationHoursOfOperation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool daysOfWeek = false,
+    bool allDay = false,
+    bool openingTime = false,
+    bool closingTime = false,
+  }) {
+    return LocationHoursOfOperation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      daysOfWeek: daysOfWeek ? null : this.daysOfWeek,
+      allDay: allDay ? null : this.allDay,
+      openingTime: openingTime ? null : this.openingTime,
+      closingTime: closingTime ? null : this.closingTime,
+    );
   }
 
   @override

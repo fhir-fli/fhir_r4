@@ -302,6 +302,22 @@ class CodeableReference extends DataType
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  CodeableReference clear({
+    bool id = false,
+    bool extension_ = false,
+    bool concept = false,
+    bool reference = false,
+  }) {
+    return CodeableReference(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      concept: concept ? null : this.concept,
+      reference: reference ? null : this.reference,
+    );
+  }
+
   @override
   CodeableReference clone() => throw UnimplementedError();
   @override

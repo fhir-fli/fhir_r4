@@ -841,6 +841,51 @@ class NamingSystem extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  NamingSystem clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool publisher = false,
+    bool contact = false,
+    bool responsible = false,
+    bool type = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool usage = false,
+  }) {
+    return NamingSystem(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      status: status,
+      kind: kind,
+      date: date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      responsible: responsible ? null : this.responsible,
+      type: type ? null : this.type,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      usage: usage ? null : this.usage,
+      uniqueId: uniqueId,
+    );
+  }
+
   @override
   NamingSystem clone() => throw UnimplementedError();
   @override
@@ -1496,6 +1541,28 @@ class NamingSystemUniqueId extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  NamingSystemUniqueId clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool preferred = false,
+    bool comment = false,
+    bool period = false,
+  }) {
+    return NamingSystemUniqueId(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      value: value,
+      preferred: preferred ? null : this.preferred,
+      comment: comment ? null : this.comment,
+      period: period ? null : this.period,
+    );
   }
 
   @override

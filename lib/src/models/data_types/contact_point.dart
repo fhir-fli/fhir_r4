@@ -401,6 +401,28 @@ class ContactPoint extends DataType
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ContactPoint clear({
+    bool id = false,
+    bool extension_ = false,
+    bool system = false,
+    bool value = false,
+    bool use = false,
+    bool rank = false,
+    bool period = false,
+  }) {
+    return ContactPoint(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      system: system ? null : this.system,
+      value: value ? null : this.value,
+      use: use ? null : this.use,
+      rank: rank ? null : this.rank,
+      period: period ? null : this.period,
+    );
+  }
+
   @override
   ContactPoint clone() => throw UnimplementedError();
   @override

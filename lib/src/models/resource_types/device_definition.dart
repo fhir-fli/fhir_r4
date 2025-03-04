@@ -1103,7 +1103,8 @@ class DeviceDefinition extends DomainResource {
       case 'udiDeviceIdentifier':
         {
           return copyWith(
-              udiDeviceIdentifier: <DeviceDefinitionUdiDeviceIdentifier>[],);
+            udiDeviceIdentifier: <DeviceDefinitionUdiDeviceIdentifier>[],
+          );
         }
       case 'manufacturer':
       case 'manufacturerX':
@@ -1194,6 +1195,76 @@ class DeviceDefinition extends DomainResource {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DeviceDefinition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool udiDeviceIdentifier = false,
+    bool manufacturer = false,
+    bool deviceName = false,
+    bool modelNumber = false,
+    bool type = false,
+    bool specialization = false,
+    bool version = false,
+    bool safety = false,
+    bool shelfLifeStorage = false,
+    bool physicalCharacteristics = false,
+    bool languageCode = false,
+    bool capability = false,
+    bool property = false,
+    bool owner = false,
+    bool contact = false,
+    bool url = false,
+    bool onlineInformation = false,
+    bool note = false,
+    bool quantity = false,
+    bool parentDevice = false,
+    bool material = false,
+  }) {
+    return DeviceDefinition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      udiDeviceIdentifier:
+          udiDeviceIdentifier ? null : this.udiDeviceIdentifier,
+      manufacturerX: manufacturer ? null : manufacturerX,
+      deviceName: deviceName ? null : this.deviceName,
+      modelNumber: modelNumber ? null : this.modelNumber,
+      type: type ? null : this.type,
+      specialization: specialization ? null : this.specialization,
+      version: version ? null : this.version,
+      safety: safety ? null : this.safety,
+      shelfLifeStorage: shelfLifeStorage ? null : this.shelfLifeStorage,
+      physicalCharacteristics:
+          physicalCharacteristics ? null : this.physicalCharacteristics,
+      languageCode: languageCode ? null : this.languageCode,
+      capability: capability ? null : this.capability,
+      property: property ? null : this.property,
+      owner: owner ? null : this.owner,
+      contact: contact ? null : this.contact,
+      url: url ? null : this.url,
+      onlineInformation: onlineInformation ? null : this.onlineInformation,
+      note: note ? null : this.note,
+      quantity: quantity ? null : this.quantity,
+      parentDevice: parentDevice ? null : this.parentDevice,
+      material: material ? null : this.material,
+    );
   }
 
   @override
@@ -1510,7 +1581,9 @@ class DeviceDefinition extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-        physicalCharacteristics, o.physicalCharacteristics,)) {
+      physicalCharacteristics,
+      o.physicalCharacteristics,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1926,6 +1999,23 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  DeviceDefinitionUdiDeviceIdentifier clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return DeviceDefinitionUdiDeviceIdentifier(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      deviceIdentifier: deviceIdentifier,
+      issuer: issuer,
+      jurisdiction: jurisdiction,
+    );
+  }
+
   @override
   DeviceDefinitionUdiDeviceIdentifier clone() => throw UnimplementedError();
   @override
@@ -2339,6 +2429,22 @@ class DeviceDefinitionDeviceName extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  DeviceDefinitionDeviceName clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return DeviceDefinitionDeviceName(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      type: type,
+    );
+  }
+
   @override
   DeviceDefinitionDeviceName clone() => throw UnimplementedError();
   @override
@@ -2744,6 +2850,23 @@ class DeviceDefinitionSpecialization extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DeviceDefinitionSpecialization clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool version = false,
+  }) {
+    return DeviceDefinitionSpecialization(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      systemType: systemType,
+      version: version ? null : this.version,
+    );
   }
 
   @override
@@ -3152,6 +3275,23 @@ class DeviceDefinitionCapability extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DeviceDefinitionCapability clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+  }) {
+    return DeviceDefinitionCapability(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      description: description ? null : this.description,
+    );
   }
 
   @override
@@ -3604,6 +3744,25 @@ class DeviceDefinitionProperty extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DeviceDefinitionProperty clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool valueQuantity = false,
+    bool valueCode = false,
+  }) {
+    return DeviceDefinitionProperty(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      valueQuantity: valueQuantity ? null : this.valueQuantity,
+      valueCode: valueCode ? null : this.valueCode,
+    );
   }
 
   @override
@@ -4061,6 +4220,26 @@ class DeviceDefinitionMaterial extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DeviceDefinitionMaterial clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool alternate = false,
+    bool allergenicIndicator = false,
+  }) {
+    return DeviceDefinitionMaterial(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      substance: substance,
+      alternate: alternate ? null : this.alternate,
+      allergenicIndicator:
+          allergenicIndicator ? null : this.allergenicIndicator,
+    );
   }
 
   @override

@@ -1194,6 +1194,74 @@ class ChargeItemDefinition extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ChargeItemDefinition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool version = false,
+    bool title = false,
+    bool derivedFromUri = false,
+    bool partOf = false,
+    bool replaces = false,
+    bool experimental = false,
+    bool date = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool copyright = false,
+    bool approvalDate = false,
+    bool lastReviewDate = false,
+    bool effectivePeriod = false,
+    bool code = false,
+    bool instance = false,
+    bool applicability = false,
+    bool propertyGroup = false,
+  }) {
+    return ChargeItemDefinition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url,
+      identifier: identifier ? null : this.identifier,
+      version: version ? null : this.version,
+      title: title ? null : this.title,
+      derivedFromUri: derivedFromUri ? null : this.derivedFromUri,
+      partOf: partOf ? null : this.partOf,
+      replaces: replaces ? null : this.replaces,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      date: date ? null : this.date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      copyright: copyright ? null : this.copyright,
+      approvalDate: approvalDate ? null : this.approvalDate,
+      lastReviewDate: lastReviewDate ? null : this.lastReviewDate,
+      effectivePeriod: effectivePeriod ? null : this.effectivePeriod,
+      code: code ? null : this.code,
+      instance: instance ? null : this.instance,
+      applicability: applicability ? null : this.applicability,
+      propertyGroup: propertyGroup ? null : this.propertyGroup,
+    );
+  }
+
   @override
   ChargeItemDefinition clone() => throw UnimplementedError();
   @override
@@ -1913,6 +1981,26 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ChargeItemDefinitionApplicability clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+    bool language = false,
+    bool expression = false,
+  }) {
+    return ChargeItemDefinitionApplicability(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description ? null : this.description,
+      language: language ? null : this.language,
+      expression: expression ? null : this.expression,
+    );
+  }
+
   @override
   ChargeItemDefinitionApplicability clone() => throw UnimplementedError();
   @override
@@ -2336,11 +2424,30 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
       case 'priceComponent':
         {
           return copyWith(
-              priceComponent: <ChargeItemDefinitionPriceComponent>[],);
+            priceComponent: <ChargeItemDefinitionPriceComponent>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ChargeItemDefinitionPropertyGroup clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool applicability = false,
+    bool priceComponent = false,
+  }) {
+    return ChargeItemDefinitionPropertyGroup(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      applicability: applicability ? null : this.applicability,
+      priceComponent: priceComponent ? null : this.priceComponent,
+    );
   }
 
   @override
@@ -2829,6 +2936,27 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ChargeItemDefinitionPriceComponent clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool factor = false,
+    bool amount = false,
+  }) {
+    return ChargeItemDefinitionPriceComponent(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      code: code ? null : this.code,
+      factor: factor ? null : this.factor,
+      amount: amount ? null : this.amount,
+    );
   }
 
   @override

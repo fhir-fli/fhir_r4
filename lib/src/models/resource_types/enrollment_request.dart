@@ -626,6 +626,44 @@ class EnrollmentRequest extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  EnrollmentRequest clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool status = false,
+    bool created = false,
+    bool insurer = false,
+    bool provider = false,
+    bool candidate = false,
+    bool coverage = false,
+  }) {
+    return EnrollmentRequest(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status ? null : this.status,
+      created: created ? null : this.created,
+      insurer: insurer ? null : this.insurer,
+      provider: provider ? null : this.provider,
+      candidate: candidate ? null : this.candidate,
+      coverage: coverage ? null : this.coverage,
+    );
+  }
+
   @override
   EnrollmentRequest clone() => throw UnimplementedError();
   @override

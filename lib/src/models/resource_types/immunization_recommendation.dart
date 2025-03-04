@@ -560,11 +560,43 @@ class ImmunizationRecommendation extends DomainResource {
       case 'recommendation':
         {
           return copyWith(
-              recommendation: <ImmunizationRecommendationRecommendation>[],);
+            recommendation: <ImmunizationRecommendationRecommendation>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImmunizationRecommendation clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool authority = false,
+  }) {
+    return ImmunizationRecommendation(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      patient: patient,
+      date: date,
+      authority: authority ? null : this.authority,
+      recommendation: recommendation,
+    );
   }
 
   @override
@@ -1451,7 +1483,8 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
       case 'dateCriterion':
         {
           return copyWith(
-              dateCriterion: <ImmunizationRecommendationDateCriterion>[],);
+            dateCriterion: <ImmunizationRecommendationDateCriterion>[],
+          );
         }
       case 'description':
         {
@@ -1492,6 +1525,47 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImmunizationRecommendationRecommendation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool vaccineCode = false,
+    bool targetDisease = false,
+    bool contraindicatedVaccineCode = false,
+    bool forecastReason = false,
+    bool dateCriterion = false,
+    bool description = false,
+    bool series = false,
+    bool doseNumber = false,
+    bool seriesDoses = false,
+    bool supportingImmunization = false,
+    bool supportingPatientInformation = false,
+  }) {
+    return ImmunizationRecommendationRecommendation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      vaccineCode: vaccineCode ? null : this.vaccineCode,
+      targetDisease: targetDisease ? null : this.targetDisease,
+      contraindicatedVaccineCode:
+          contraindicatedVaccineCode ? null : this.contraindicatedVaccineCode,
+      forecastStatus: forecastStatus,
+      forecastReason: forecastReason ? null : this.forecastReason,
+      dateCriterion: dateCriterion ? null : this.dateCriterion,
+      description: description ? null : this.description,
+      series: series ? null : this.series,
+      doseNumberX: doseNumber ? null : doseNumberX,
+      seriesDosesX: seriesDoses ? null : seriesDosesX,
+      supportingImmunization:
+          supportingImmunization ? null : this.supportingImmunization,
+      supportingPatientInformation: supportingPatientInformation
+          ? null
+          : this.supportingPatientInformation,
+    );
   }
 
   @override
@@ -2022,6 +2096,22 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImmunizationRecommendationDateCriterion clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ImmunizationRecommendationDateCriterion(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      value: value,
+    );
   }
 
   @override

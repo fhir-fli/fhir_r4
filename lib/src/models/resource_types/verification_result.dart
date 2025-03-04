@@ -859,6 +859,57 @@ class VerificationResult extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  VerificationResult clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool target = false,
+    bool targetLocation = false,
+    bool need = false,
+    bool statusDate = false,
+    bool validationType = false,
+    bool validationProcess = false,
+    bool frequency = false,
+    bool lastPerformed = false,
+    bool nextScheduled = false,
+    bool failureAction = false,
+    bool primarySource = false,
+    bool attestation = false,
+    bool validator = false,
+  }) {
+    return VerificationResult(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      target: target ? null : this.target,
+      targetLocation: targetLocation ? null : this.targetLocation,
+      need: need ? null : this.need,
+      status: status,
+      statusDate: statusDate ? null : this.statusDate,
+      validationType: validationType ? null : this.validationType,
+      validationProcess: validationProcess ? null : this.validationProcess,
+      frequency: frequency ? null : this.frequency,
+      lastPerformed: lastPerformed ? null : this.lastPerformed,
+      nextScheduled: nextScheduled ? null : this.nextScheduled,
+      failureAction: failureAction ? null : this.failureAction,
+      primarySource: primarySource ? null : this.primarySource,
+      attestation: attestation ? null : this.attestation,
+      validator: validator ? null : this.validator,
+    );
+  }
+
   @override
   VerificationResult clone() => throw UnimplementedError();
   @override
@@ -1606,6 +1657,35 @@ class VerificationResultPrimarySource extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  VerificationResultPrimarySource clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool who = false,
+    bool type = false,
+    bool communicationMethod = false,
+    bool validationStatus = false,
+    bool validationDate = false,
+    bool canPushUpdates = false,
+    bool pushTypeAvailable = false,
+  }) {
+    return VerificationResultPrimarySource(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      who: who ? null : this.who,
+      type: type ? null : this.type,
+      communicationMethod:
+          communicationMethod ? null : this.communicationMethod,
+      validationStatus: validationStatus ? null : this.validationStatus,
+      validationDate: validationDate ? null : this.validationDate,
+      canPushUpdates: canPushUpdates ? null : this.canPushUpdates,
+      pushTypeAvailable: pushTypeAvailable ? null : this.pushTypeAvailable,
+    );
+  }
+
   @override
   VerificationResultPrimarySource clone() => throw UnimplementedError();
   @override
@@ -2264,6 +2344,39 @@ class VerificationResultAttestation extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  VerificationResultAttestation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool who = false,
+    bool onBehalfOf = false,
+    bool communicationMethod = false,
+    bool date = false,
+    bool sourceIdentityCertificate = false,
+    bool proxyIdentityCertificate = false,
+    bool proxySignature = false,
+    bool sourceSignature = false,
+  }) {
+    return VerificationResultAttestation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      who: who ? null : this.who,
+      onBehalfOf: onBehalfOf ? null : this.onBehalfOf,
+      communicationMethod:
+          communicationMethod ? null : this.communicationMethod,
+      date: date ? null : this.date,
+      sourceIdentityCertificate:
+          sourceIdentityCertificate ? null : this.sourceIdentityCertificate,
+      proxyIdentityCertificate:
+          proxyIdentityCertificate ? null : this.proxyIdentityCertificate,
+      proxySignature: proxySignature ? null : this.proxySignature,
+      sourceSignature: sourceSignature ? null : this.sourceSignature,
+    );
+  }
+
   @override
   VerificationResultAttestation clone() => throw UnimplementedError();
   @override
@@ -2378,11 +2491,15 @@ class VerificationResultAttestation extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        sourceIdentityCertificate, o.sourceIdentityCertificate,)) {
+      sourceIdentityCertificate,
+      o.sourceIdentityCertificate,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(
-        proxyIdentityCertificate, o.proxyIdentityCertificate,)) {
+      proxyIdentityCertificate,
+      o.proxyIdentityCertificate,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(proxySignature, o.proxySignature)) {
@@ -2748,6 +2865,27 @@ class VerificationResultValidator extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  VerificationResultValidator clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identityCertificate = false,
+    bool attestationSignature = false,
+  }) {
+    return VerificationResultValidator(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      organization: organization,
+      identityCertificate:
+          identityCertificate ? null : this.identityCertificate,
+      attestationSignature:
+          attestationSignature ? null : this.attestationSignature,
+    );
   }
 
   @override

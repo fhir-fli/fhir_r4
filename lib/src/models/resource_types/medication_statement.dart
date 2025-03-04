@@ -1107,6 +1107,61 @@ class MedicationStatement extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  MedicationStatement clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool basedOn = false,
+    bool partOf = false,
+    bool statusReason = false,
+    bool category = false,
+    bool context = false,
+    bool effective = false,
+    bool dateAsserted = false,
+    bool informationSource = false,
+    bool derivedFrom = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool note = false,
+    bool dosage = false,
+  }) {
+    return MedicationStatement(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      basedOn: basedOn ? null : this.basedOn,
+      partOf: partOf ? null : this.partOf,
+      status: status,
+      statusReason: statusReason ? null : this.statusReason,
+      category: category ? null : this.category,
+      medicationX: medicationX,
+      subject: subject,
+      context: context ? null : this.context,
+      effectiveX: effective ? null : effectiveX,
+      dateAsserted: dateAsserted ? null : this.dateAsserted,
+      informationSource: informationSource ? null : this.informationSource,
+      derivedFrom: derivedFrom ? null : this.derivedFrom,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      note: note ? null : this.note,
+      dosage: dosage ? null : this.dosage,
+    );
+  }
+
   @override
   MedicationStatement clone() => throw UnimplementedError();
   @override

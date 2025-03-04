@@ -909,6 +909,53 @@ class DeviceUseStatement extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  DeviceUseStatement clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool basedOn = false,
+    bool derivedFrom = false,
+    bool timing = false,
+    bool recordedOn = false,
+    bool source = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool bodySite = false,
+    bool note = false,
+  }) {
+    return DeviceUseStatement(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      basedOn: basedOn ? null : this.basedOn,
+      status: status,
+      subject: subject,
+      derivedFrom: derivedFrom ? null : this.derivedFrom,
+      timingX: timing ? null : timingX,
+      recordedOn: recordedOn ? null : this.recordedOn,
+      source: source ? null : this.source,
+      device: device,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      bodySite: bodySite ? null : this.bodySite,
+      note: note ? null : this.note,
+    );
+  }
+
   @override
   DeviceUseStatement clone() => throw UnimplementedError();
   @override

@@ -1170,6 +1170,73 @@ class Appointment extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Appointment clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool cancelationReason = false,
+    bool serviceCategory = false,
+    bool serviceType = false,
+    bool specialty = false,
+    bool appointmentType = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool priority = false,
+    bool description = false,
+    bool supportingInformation = false,
+    bool start = false,
+    bool end = false,
+    bool minutesDuration = false,
+    bool slot = false,
+    bool created = false,
+    bool comment = false,
+    bool patientInstruction = false,
+    bool basedOn = false,
+    bool requestedPeriod = false,
+  }) {
+    return Appointment(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      cancelationReason: cancelationReason ? null : this.cancelationReason,
+      serviceCategory: serviceCategory ? null : this.serviceCategory,
+      serviceType: serviceType ? null : this.serviceType,
+      specialty: specialty ? null : this.specialty,
+      appointmentType: appointmentType ? null : this.appointmentType,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      priority: priority ? null : this.priority,
+      description: description ? null : this.description,
+      supportingInformation:
+          supportingInformation ? null : this.supportingInformation,
+      start: start ? null : this.start,
+      end: end ? null : this.end,
+      minutesDuration: minutesDuration ? null : this.minutesDuration,
+      slot: slot ? null : this.slot,
+      created: created ? null : this.created,
+      comment: comment ? null : this.comment,
+      patientInstruction: patientInstruction ? null : this.patientInstruction,
+      basedOn: basedOn ? null : this.basedOn,
+      participant: participant,
+      requestedPeriod: requestedPeriod ? null : this.requestedPeriod,
+    );
+  }
+
   @override
   Appointment clone() => throw UnimplementedError();
   @override
@@ -1948,6 +2015,29 @@ class AppointmentParticipant extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  AppointmentParticipant clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool actor = false,
+    bool required_ = false,
+    bool period = false,
+  }) {
+    return AppointmentParticipant(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      actor: actor ? null : this.actor,
+      required_: required_ ? null : this.required_,
+      status: status,
+      period: period ? null : this.period,
+    );
   }
 
   @override

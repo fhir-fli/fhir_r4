@@ -308,6 +308,22 @@ class ContactDetail extends DataType
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ContactDetail clear({
+    bool id = false,
+    bool extension_ = false,
+    bool name = false,
+    bool telecom = false,
+  }) {
+    return ContactDetail(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      name: name ? null : this.name,
+      telecom: telecom ? null : this.telecom,
+    );
+  }
+
   @override
   ContactDetail clone() => throw UnimplementedError();
   @override

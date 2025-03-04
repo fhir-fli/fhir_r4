@@ -817,6 +817,50 @@ class MessageHeader extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  MessageHeader clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool destination = false,
+    bool sender = false,
+    bool enterer = false,
+    bool author = false,
+    bool responsible = false,
+    bool reason = false,
+    bool response = false,
+    bool focus = false,
+    bool definition = false,
+  }) {
+    return MessageHeader(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      eventX: eventX,
+      destination: destination ? null : this.destination,
+      sender: sender ? null : this.sender,
+      enterer: enterer ? null : this.enterer,
+      author: author ? null : this.author,
+      source: source,
+      responsible: responsible ? null : this.responsible,
+      reason: reason ? null : this.reason,
+      response: response ? null : this.response,
+      focus: focus ? null : this.focus,
+      definition: definition ? null : this.definition,
+    );
+  }
+
   @override
   MessageHeader clone() => throw UnimplementedError();
   @override
@@ -1411,6 +1455,27 @@ class MessageHeaderDestination extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  MessageHeaderDestination clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool name = false,
+    bool target = false,
+    bool receiver = false,
+  }) {
+    return MessageHeaderDestination(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name ? null : this.name,
+      target: target ? null : this.target,
+      endpoint: endpoint,
+      receiver: receiver ? null : this.receiver,
+    );
+  }
+
   @override
   MessageHeaderDestination clone() => throw UnimplementedError();
   @override
@@ -1926,6 +1991,29 @@ class MessageHeaderSource extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  MessageHeaderSource clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool name = false,
+    bool software = false,
+    bool version = false,
+    bool contact = false,
+  }) {
+    return MessageHeaderSource(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name ? null : this.name,
+      software: software ? null : this.software,
+      version: version ? null : this.version,
+      contact: contact ? null : this.contact,
+      endpoint: endpoint,
+    );
+  }
+
   @override
   MessageHeaderSource clone() => throw UnimplementedError();
   @override
@@ -2385,6 +2473,24 @@ class MessageHeaderResponse extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MessageHeaderResponse clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool details = false,
+  }) {
+    return MessageHeaderResponse(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier,
+      code: code,
+      details: details ? null : this.details,
+    );
   }
 
   @override

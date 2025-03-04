@@ -993,6 +993,58 @@ class GuidanceResponse extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  GuidanceResponse clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool requestIdentifier = false,
+    bool identifier = false,
+    bool subject = false,
+    bool encounter = false,
+    bool occurrenceDateTime = false,
+    bool performer = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool note = false,
+    bool evaluationMessage = false,
+    bool outputParameters = false,
+    bool result = false,
+    bool dataRequirement = false,
+  }) {
+    return GuidanceResponse(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      requestIdentifier: requestIdentifier ? null : this.requestIdentifier,
+      identifier: identifier ? null : this.identifier,
+      moduleX: moduleX,
+      status: status,
+      subject: subject ? null : this.subject,
+      encounter: encounter ? null : this.encounter,
+      occurrenceDateTime: occurrenceDateTime ? null : this.occurrenceDateTime,
+      performer: performer ? null : this.performer,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      note: note ? null : this.note,
+      evaluationMessage: evaluationMessage ? null : this.evaluationMessage,
+      outputParameters: outputParameters ? null : this.outputParameters,
+      result: result ? null : this.result,
+      dataRequirement: dataRequirement ? null : this.dataRequirement,
+    );
+  }
+
   @override
   GuidanceResponse clone() => throw UnimplementedError();
   @override

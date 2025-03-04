@@ -1004,6 +1004,65 @@ class RequestGroup extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  RequestGroup clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool instantiatesCanonical = false,
+    bool instantiatesUri = false,
+    bool basedOn = false,
+    bool replaces = false,
+    bool groupIdentifier = false,
+    bool priority = false,
+    bool code = false,
+    bool subject = false,
+    bool encounter = false,
+    bool authoredOn = false,
+    bool author = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool note = false,
+    bool action = false,
+  }) {
+    return RequestGroup(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      instantiatesCanonical:
+          instantiatesCanonical ? null : this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri ? null : this.instantiatesUri,
+      basedOn: basedOn ? null : this.basedOn,
+      replaces: replaces ? null : this.replaces,
+      groupIdentifier: groupIdentifier ? null : this.groupIdentifier,
+      status: status,
+      intent: intent,
+      priority: priority ? null : this.priority,
+      code: code ? null : this.code,
+      subject: subject ? null : this.subject,
+      encounter: encounter ? null : this.encounter,
+      authoredOn: authoredOn ? null : this.authoredOn,
+      author: author ? null : this.author,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      note: note ? null : this.note,
+      action: action ? null : this.action,
+    );
+  }
+
   @override
   RequestGroup clone() => throw UnimplementedError();
   @override
@@ -2330,7 +2389,8 @@ class RequestGroupAction extends BackboneElement {
       case 'cardinalityBehavior':
         {
           return copyWith(
-              cardinalityBehavior: ActionCardinalityBehavior.empty(),);
+            cardinalityBehavior: ActionCardinalityBehavior.empty(),
+          );
         }
       case 'resource':
         {
@@ -2343,6 +2403,59 @@ class RequestGroupAction extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  RequestGroupAction clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool prefix = false,
+    bool title = false,
+    bool description = false,
+    bool textEquivalent = false,
+    bool priority = false,
+    bool code = false,
+    bool documentation = false,
+    bool condition = false,
+    bool relatedAction = false,
+    bool timing = false,
+    bool participant = false,
+    bool type = false,
+    bool groupingBehavior = false,
+    bool selectionBehavior = false,
+    bool requiredBehavior = false,
+    bool precheckBehavior = false,
+    bool cardinalityBehavior = false,
+    bool resource = false,
+    bool action = false,
+  }) {
+    return RequestGroupAction(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      prefix: prefix ? null : this.prefix,
+      title: title ? null : this.title,
+      description: description ? null : this.description,
+      textEquivalent: textEquivalent ? null : this.textEquivalent,
+      priority: priority ? null : this.priority,
+      code: code ? null : this.code,
+      documentation: documentation ? null : this.documentation,
+      condition: condition ? null : this.condition,
+      relatedAction: relatedAction ? null : this.relatedAction,
+      timingX: timing ? null : timingX,
+      participant: participant ? null : this.participant,
+      type: type ? null : this.type,
+      groupingBehavior: groupingBehavior ? null : this.groupingBehavior,
+      selectionBehavior: selectionBehavior ? null : this.selectionBehavior,
+      requiredBehavior: requiredBehavior ? null : this.requiredBehavior,
+      precheckBehavior: precheckBehavior ? null : this.precheckBehavior,
+      cardinalityBehavior:
+          cardinalityBehavior ? null : this.cardinalityBehavior,
+      resource: resource ? null : this.resource,
+      action: action ? null : this.action,
+    );
   }
 
   @override
@@ -2929,6 +3042,23 @@ class RequestGroupCondition extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  RequestGroupCondition clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool expression = false,
+  }) {
+    return RequestGroupCondition(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      kind: kind,
+      expression: expression ? null : this.expression,
+    );
+  }
+
   @override
   RequestGroupCondition clone() => throw UnimplementedError();
   @override
@@ -3411,6 +3541,24 @@ class RequestGroupRelatedAction extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  RequestGroupRelatedAction clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool offset = false,
+  }) {
+    return RequestGroupRelatedAction(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      actionId: actionId,
+      relationship: relationship,
+      offsetX: offset ? null : offsetX,
+    );
   }
 
   @override

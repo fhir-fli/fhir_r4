@@ -1189,6 +1189,74 @@ class CarePlan extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  CarePlan clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool instantiatesCanonical = false,
+    bool instantiatesUri = false,
+    bool basedOn = false,
+    bool replaces = false,
+    bool partOf = false,
+    bool category = false,
+    bool title = false,
+    bool description = false,
+    bool encounter = false,
+    bool period = false,
+    bool created = false,
+    bool author = false,
+    bool contributor = false,
+    bool careTeam = false,
+    bool addresses = false,
+    bool supportingInfo = false,
+    bool goal = false,
+    bool activity = false,
+    bool note = false,
+  }) {
+    return CarePlan(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      instantiatesCanonical:
+          instantiatesCanonical ? null : this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri ? null : this.instantiatesUri,
+      basedOn: basedOn ? null : this.basedOn,
+      replaces: replaces ? null : this.replaces,
+      partOf: partOf ? null : this.partOf,
+      status: status,
+      intent: intent,
+      category: category ? null : this.category,
+      title: title ? null : this.title,
+      description: description ? null : this.description,
+      subject: subject,
+      encounter: encounter ? null : this.encounter,
+      period: period ? null : this.period,
+      created: created ? null : this.created,
+      author: author ? null : this.author,
+      contributor: contributor ? null : this.contributor,
+      careTeam: careTeam ? null : this.careTeam,
+      addresses: addresses ? null : this.addresses,
+      supportingInfo: supportingInfo ? null : this.supportingInfo,
+      goal: goal ? null : this.goal,
+      activity: activity ? null : this.activity,
+      note: note ? null : this.note,
+    );
+  }
+
   @override
   CarePlan clone() => throw UnimplementedError();
   @override
@@ -2012,6 +2080,31 @@ class CarePlanActivity extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CarePlanActivity clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool outcomeCodeableConcept = false,
+    bool outcomeReference = false,
+    bool progress = false,
+    bool reference = false,
+    bool detail = false,
+  }) {
+    return CarePlanActivity(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      outcomeCodeableConcept:
+          outcomeCodeableConcept ? null : this.outcomeCodeableConcept,
+      outcomeReference: outcomeReference ? null : this.outcomeReference,
+      progress: progress ? null : this.progress,
+      reference: reference ? null : this.reference,
+      detail: detail ? null : this.detail,
+    );
   }
 
   @override
@@ -3089,6 +3182,54 @@ class CarePlanDetail extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CarePlanDetail clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool kind = false,
+    bool instantiatesCanonical = false,
+    bool instantiatesUri = false,
+    bool code = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool goal = false,
+    bool statusReason = false,
+    bool doNotPerform = false,
+    bool scheduled = false,
+    bool location = false,
+    bool performer = false,
+    bool product = false,
+    bool dailyAmount = false,
+    bool quantity = false,
+    bool description = false,
+  }) {
+    return CarePlanDetail(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      kind: kind ? null : this.kind,
+      instantiatesCanonical:
+          instantiatesCanonical ? null : this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri ? null : this.instantiatesUri,
+      code: code ? null : this.code,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      goal: goal ? null : this.goal,
+      status: status,
+      statusReason: statusReason ? null : this.statusReason,
+      doNotPerform: doNotPerform ? null : this.doNotPerform,
+      scheduledX: scheduled ? null : scheduledX,
+      location: location ? null : this.location,
+      performer: performer ? null : this.performer,
+      productX: product ? null : productX,
+      dailyAmount: dailyAmount ? null : this.dailyAmount,
+      quantity: quantity ? null : this.quantity,
+      description: description ? null : this.description,
+    );
   }
 
   @override

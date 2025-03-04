@@ -883,6 +883,56 @@ class PaymentReconciliation extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  PaymentReconciliation clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool period = false,
+    bool paymentIssuer = false,
+    bool request = false,
+    bool requestor = false,
+    bool outcome = false,
+    bool disposition = false,
+    bool paymentIdentifier = false,
+    bool detail = false,
+    bool formCode = false,
+    bool processNote = false,
+  }) {
+    return PaymentReconciliation(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      period: period ? null : this.period,
+      created: created,
+      paymentIssuer: paymentIssuer ? null : this.paymentIssuer,
+      request: request ? null : this.request,
+      requestor: requestor ? null : this.requestor,
+      outcome: outcome ? null : this.outcome,
+      disposition: disposition ? null : this.disposition,
+      paymentDate: paymentDate,
+      paymentAmount: paymentAmount,
+      paymentIdentifier: paymentIdentifier ? null : this.paymentIdentifier,
+      detail: detail ? null : this.detail,
+      formCode: formCode ? null : this.formCode,
+      processNote: processNote ? null : this.processNote,
+    );
+  }
+
   @override
   PaymentReconciliation clone() => throw UnimplementedError();
   @override
@@ -1705,6 +1755,39 @@ class PaymentReconciliationDetail extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  PaymentReconciliationDetail clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool predecessor = false,
+    bool request = false,
+    bool submitter = false,
+    bool response = false,
+    bool date = false,
+    bool responsible = false,
+    bool payee = false,
+    bool amount = false,
+  }) {
+    return PaymentReconciliationDetail(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      predecessor: predecessor ? null : this.predecessor,
+      type: type,
+      request: request ? null : this.request,
+      submitter: submitter ? null : this.submitter,
+      response: response ? null : this.response,
+      date: date ? null : this.date,
+      responsible: responsible ? null : this.responsible,
+      payee: payee ? null : this.payee,
+      amount: amount ? null : this.amount,
+    );
+  }
+
   @override
   PaymentReconciliationDetail clone() => throw UnimplementedError();
   @override
@@ -2173,6 +2256,24 @@ class PaymentReconciliationProcessNote extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  PaymentReconciliationProcessNote clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool text = false,
+  }) {
+    return PaymentReconciliationProcessNote(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      text: text ? null : this.text,
+    );
   }
 
   @override

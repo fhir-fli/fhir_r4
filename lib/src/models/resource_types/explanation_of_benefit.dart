@@ -1752,7 +1752,8 @@ class ExplanationOfBenefit extends DomainResource {
       case 'supportingInfo':
         {
           return copyWith(
-              supportingInfo: <ExplanationOfBenefitSupportingInfo>[],);
+            supportingInfo: <ExplanationOfBenefitSupportingInfo>[],
+          );
         }
       case 'diagnosis':
         {
@@ -1813,11 +1814,115 @@ class ExplanationOfBenefit extends DomainResource {
       case 'benefitBalance':
         {
           return copyWith(
-              benefitBalance: <ExplanationOfBenefitBenefitBalance>[],);
+            benefitBalance: <ExplanationOfBenefitBenefitBalance>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ExplanationOfBenefit clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool subType = false,
+    bool billablePeriod = false,
+    bool enterer = false,
+    bool priority = false,
+    bool fundsReserveRequested = false,
+    bool fundsReserve = false,
+    bool related = false,
+    bool prescription = false,
+    bool originalPrescription = false,
+    bool payee = false,
+    bool referral = false,
+    bool facility = false,
+    bool claim = false,
+    bool claimResponse = false,
+    bool disposition = false,
+    bool preAuthRef = false,
+    bool preAuthRefPeriod = false,
+    bool careTeam = false,
+    bool supportingInfo = false,
+    bool diagnosis = false,
+    bool procedure = false,
+    bool precedence = false,
+    bool accident = false,
+    bool item = false,
+    bool addItem = false,
+    bool adjudication = false,
+    bool total = false,
+    bool payment = false,
+    bool formCode = false,
+    bool form = false,
+    bool processNote = false,
+    bool benefitPeriod = false,
+    bool benefitBalance = false,
+  }) {
+    return ExplanationOfBenefit(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      type: type,
+      subType: subType ? null : this.subType,
+      use: use,
+      patient: patient,
+      billablePeriod: billablePeriod ? null : this.billablePeriod,
+      created: created,
+      enterer: enterer ? null : this.enterer,
+      insurer: insurer,
+      provider: provider,
+      priority: priority ? null : this.priority,
+      fundsReserveRequested:
+          fundsReserveRequested ? null : this.fundsReserveRequested,
+      fundsReserve: fundsReserve ? null : this.fundsReserve,
+      related: related ? null : this.related,
+      prescription: prescription ? null : this.prescription,
+      originalPrescription:
+          originalPrescription ? null : this.originalPrescription,
+      payee: payee ? null : this.payee,
+      referral: referral ? null : this.referral,
+      facility: facility ? null : this.facility,
+      claim: claim ? null : this.claim,
+      claimResponse: claimResponse ? null : this.claimResponse,
+      outcome: outcome,
+      disposition: disposition ? null : this.disposition,
+      preAuthRef: preAuthRef ? null : this.preAuthRef,
+      preAuthRefPeriod: preAuthRefPeriod ? null : this.preAuthRefPeriod,
+      careTeam: careTeam ? null : this.careTeam,
+      supportingInfo: supportingInfo ? null : this.supportingInfo,
+      diagnosis: diagnosis ? null : this.diagnosis,
+      procedure: procedure ? null : this.procedure,
+      precedence: precedence ? null : this.precedence,
+      insurance: insurance,
+      accident: accident ? null : this.accident,
+      item: item ? null : this.item,
+      addItem: addItem ? null : this.addItem,
+      adjudication: adjudication ? null : this.adjudication,
+      total: total ? null : this.total,
+      payment: payment ? null : this.payment,
+      formCode: formCode ? null : this.formCode,
+      form: form ? null : this.form,
+      processNote: processNote ? null : this.processNote,
+      benefitPeriod: benefitPeriod ? null : this.benefitPeriod,
+      benefitBalance: benefitBalance ? null : this.benefitBalance,
+    );
   }
 
   @override
@@ -2395,7 +2500,8 @@ class ExplanationOfBenefitRelated extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ExplanationOfBenefitRelated.empty() => const ExplanationOfBenefitRelated();
+  factory ExplanationOfBenefitRelated.empty() =>
+      const ExplanationOfBenefitRelated();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitRelated.fromJson(
@@ -2729,6 +2835,26 @@ class ExplanationOfBenefitRelated extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ExplanationOfBenefitRelated clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool claim = false,
+    bool relationship = false,
+    bool reference = false,
+  }) {
+    return ExplanationOfBenefitRelated(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      claim: claim ? null : this.claim,
+      relationship: relationship ? null : this.relationship,
+      reference: reference ? null : this.reference,
+    );
+  }
+
   @override
   ExplanationOfBenefitRelated clone() => throw UnimplementedError();
   @override
@@ -2839,7 +2965,8 @@ class ExplanationOfBenefitPayee extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ExplanationOfBenefitPayee.empty() => const ExplanationOfBenefitPayee();
+  factory ExplanationOfBenefitPayee.empty() =>
+      const ExplanationOfBenefitPayee();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitPayee.fromJson(
@@ -3141,6 +3268,24 @@ class ExplanationOfBenefitPayee extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ExplanationOfBenefitPayee clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool party = false,
+  }) {
+    return ExplanationOfBenefitPayee(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      party: party ? null : this.party,
+    );
   }
 
   @override
@@ -3640,6 +3785,28 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ExplanationOfBenefitCareTeam clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool responsible = false,
+    bool role = false,
+    bool qualification = false,
+  }) {
+    return ExplanationOfBenefitCareTeam(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      sequence: sequence,
+      provider: provider,
+      responsible: responsible ? null : this.responsible,
+      role: role ? null : this.role,
+      qualification: qualification ? null : this.qualification,
+    );
   }
 
   @override
@@ -4371,6 +4538,30 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ExplanationOfBenefitSupportingInfo clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool timing = false,
+    bool value = false,
+    bool reason = false,
+  }) {
+    return ExplanationOfBenefitSupportingInfo(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      sequence: sequence,
+      category: category,
+      code: code ? null : this.code,
+      timingX: timing ? null : timingX,
+      valueX: value ? null : valueX,
+      reason: reason ? null : this.reason,
+    );
+  }
+
   @override
   ExplanationOfBenefitSupportingInfo clone() => throw UnimplementedError();
   @override
@@ -4956,6 +5147,28 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ExplanationOfBenefitDiagnosis clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool onAdmission = false,
+    bool packageCode = false,
+  }) {
+    return ExplanationOfBenefitDiagnosis(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      sequence: sequence,
+      diagnosisX: diagnosisX,
+      type: type ? null : this.type,
+      onAdmission: onAdmission ? null : this.onAdmission,
+      packageCode: packageCode ? null : this.packageCode,
+    );
   }
 
   @override
@@ -5546,6 +5759,28 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ExplanationOfBenefitProcedure clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool date = false,
+    bool udi = false,
+  }) {
+    return ExplanationOfBenefitProcedure(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      sequence: sequence,
+      type: type ? null : this.type,
+      date: date ? null : this.date,
+      procedureX: procedureX,
+      udi: udi ? null : this.udi,
+    );
+  }
+
   @override
   ExplanationOfBenefitProcedure clone() => throw UnimplementedError();
   @override
@@ -6024,6 +6259,24 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ExplanationOfBenefitInsurance clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool preAuthRef = false,
+  }) {
+    return ExplanationOfBenefitInsurance(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      focal: focal,
+      coverage: coverage,
+      preAuthRef: preAuthRef ? null : this.preAuthRef,
+    );
   }
 
   @override
@@ -6528,6 +6781,26 @@ class ExplanationOfBenefitAccident extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ExplanationOfBenefitAccident clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool date = false,
+    bool type = false,
+    bool location = false,
+  }) {
+    return ExplanationOfBenefitAccident(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      date: date ? null : this.date,
+      type: type ? null : this.type,
+      locationX: location ? null : locationX,
+    );
   }
 
   @override
@@ -7758,6 +8031,65 @@ class ExplanationOfBenefitItem extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ExplanationOfBenefitItem clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool careTeamSequence = false,
+    bool diagnosisSequence = false,
+    bool procedureSequence = false,
+    bool informationSequence = false,
+    bool revenue = false,
+    bool category = false,
+    bool modifier = false,
+    bool programCode = false,
+    bool serviced = false,
+    bool location = false,
+    bool quantity = false,
+    bool unitPrice = false,
+    bool factor = false,
+    bool net = false,
+    bool udi = false,
+    bool bodySite = false,
+    bool subSite = false,
+    bool encounter = false,
+    bool noteNumber = false,
+    bool adjudication = false,
+    bool detail = false,
+  }) {
+    return ExplanationOfBenefitItem(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      sequence: sequence,
+      careTeamSequence: careTeamSequence ? null : this.careTeamSequence,
+      diagnosisSequence: diagnosisSequence ? null : this.diagnosisSequence,
+      procedureSequence: procedureSequence ? null : this.procedureSequence,
+      informationSequence:
+          informationSequence ? null : this.informationSequence,
+      revenue: revenue ? null : this.revenue,
+      category: category ? null : this.category,
+      productOrService: productOrService,
+      modifier: modifier ? null : this.modifier,
+      programCode: programCode ? null : this.programCode,
+      servicedX: serviced ? null : servicedX,
+      locationX: location ? null : locationX,
+      quantity: quantity ? null : this.quantity,
+      unitPrice: unitPrice ? null : this.unitPrice,
+      factor: factor ? null : this.factor,
+      net: net ? null : this.net,
+      udi: udi ? null : this.udi,
+      bodySite: bodySite ? null : this.bodySite,
+      subSite: subSite ? null : this.subSite,
+      encounter: encounter ? null : this.encounter,
+      noteNumber: noteNumber ? null : this.noteNumber,
+      adjudication: adjudication ? null : this.adjudication,
+      detail: detail ? null : this.detail,
+    );
+  }
+
   @override
   ExplanationOfBenefitItem clone() => throw UnimplementedError();
   @override
@@ -8483,6 +8815,27 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ExplanationOfBenefitAdjudication clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool reason = false,
+    bool amount = false,
+    bool value = false,
+  }) {
+    return ExplanationOfBenefitAdjudication(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      category: category,
+      reason: reason ? null : this.reason,
+      amount: amount ? null : this.amount,
+      value: value ? null : this.value,
+    );
   }
 
   @override
@@ -9307,6 +9660,46 @@ class ExplanationOfBenefitDetail extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ExplanationOfBenefitDetail clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool revenue = false,
+    bool category = false,
+    bool modifier = false,
+    bool programCode = false,
+    bool quantity = false,
+    bool unitPrice = false,
+    bool factor = false,
+    bool net = false,
+    bool udi = false,
+    bool noteNumber = false,
+    bool adjudication = false,
+    bool subDetail = false,
+  }) {
+    return ExplanationOfBenefitDetail(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      sequence: sequence,
+      revenue: revenue ? null : this.revenue,
+      category: category ? null : this.category,
+      productOrService: productOrService,
+      modifier: modifier ? null : this.modifier,
+      programCode: programCode ? null : this.programCode,
+      quantity: quantity ? null : this.quantity,
+      unitPrice: unitPrice ? null : this.unitPrice,
+      factor: factor ? null : this.factor,
+      net: net ? null : this.net,
+      udi: udi ? null : this.udi,
+      noteNumber: noteNumber ? null : this.noteNumber,
+      adjudication: adjudication ? null : this.adjudication,
+      subDetail: subDetail ? null : this.subDetail,
+    );
   }
 
   @override
@@ -10219,6 +10612,44 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ExplanationOfBenefitSubDetail clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool revenue = false,
+    bool category = false,
+    bool modifier = false,
+    bool programCode = false,
+    bool quantity = false,
+    bool unitPrice = false,
+    bool factor = false,
+    bool net = false,
+    bool udi = false,
+    bool noteNumber = false,
+    bool adjudication = false,
+  }) {
+    return ExplanationOfBenefitSubDetail(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      sequence: sequence,
+      revenue: revenue ? null : this.revenue,
+      category: category ? null : this.category,
+      productOrService: productOrService,
+      modifier: modifier ? null : this.modifier,
+      programCode: programCode ? null : this.programCode,
+      quantity: quantity ? null : this.quantity,
+      unitPrice: unitPrice ? null : this.unitPrice,
+      factor: factor ? null : this.factor,
+      net: net ? null : this.net,
+      udi: udi ? null : this.udi,
+      noteNumber: noteNumber ? null : this.noteNumber,
+      adjudication: adjudication ? null : this.adjudication,
+    );
   }
 
   @override
@@ -11405,6 +11836,55 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ExplanationOfBenefitAddItem clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool itemSequence = false,
+    bool detailSequence = false,
+    bool subDetailSequence = false,
+    bool provider = false,
+    bool modifier = false,
+    bool programCode = false,
+    bool serviced = false,
+    bool location = false,
+    bool quantity = false,
+    bool unitPrice = false,
+    bool factor = false,
+    bool net = false,
+    bool bodySite = false,
+    bool subSite = false,
+    bool noteNumber = false,
+    bool adjudication = false,
+    bool detail = false,
+  }) {
+    return ExplanationOfBenefitAddItem(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      itemSequence: itemSequence ? null : this.itemSequence,
+      detailSequence: detailSequence ? null : this.detailSequence,
+      subDetailSequence: subDetailSequence ? null : this.subDetailSequence,
+      provider: provider ? null : this.provider,
+      productOrService: productOrService,
+      modifier: modifier ? null : this.modifier,
+      programCode: programCode ? null : this.programCode,
+      servicedX: serviced ? null : servicedX,
+      locationX: location ? null : locationX,
+      quantity: quantity ? null : this.quantity,
+      unitPrice: unitPrice ? null : this.unitPrice,
+      factor: factor ? null : this.factor,
+      net: net ? null : this.net,
+      bodySite: bodySite ? null : this.bodySite,
+      subSite: subSite ? null : this.subSite,
+      noteNumber: noteNumber ? null : this.noteNumber,
+      adjudication: adjudication ? null : this.adjudication,
+      detail: detail ? null : this.detail,
+    );
+  }
+
   @override
   ExplanationOfBenefitAddItem clone() => throw UnimplementedError();
   @override
@@ -12246,6 +12726,37 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ExplanationOfBenefitDetail1 clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool modifier = false,
+    bool quantity = false,
+    bool unitPrice = false,
+    bool factor = false,
+    bool net = false,
+    bool noteNumber = false,
+    bool adjudication = false,
+    bool subDetail = false,
+  }) {
+    return ExplanationOfBenefitDetail1(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      productOrService: productOrService,
+      modifier: modifier ? null : this.modifier,
+      quantity: quantity ? null : this.quantity,
+      unitPrice: unitPrice ? null : this.unitPrice,
+      factor: factor ? null : this.factor,
+      net: net ? null : this.net,
+      noteNumber: noteNumber ? null : this.noteNumber,
+      adjudication: adjudication ? null : this.adjudication,
+      subDetail: subDetail ? null : this.subDetail,
+    );
+  }
+
   @override
   ExplanationOfBenefitDetail1 clone() => throw UnimplementedError();
   @override
@@ -12939,6 +13450,35 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ExplanationOfBenefitSubDetail1 clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool modifier = false,
+    bool quantity = false,
+    bool unitPrice = false,
+    bool factor = false,
+    bool net = false,
+    bool noteNumber = false,
+    bool adjudication = false,
+  }) {
+    return ExplanationOfBenefitSubDetail1(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      productOrService: productOrService,
+      modifier: modifier ? null : this.modifier,
+      quantity: quantity ? null : this.quantity,
+      unitPrice: unitPrice ? null : this.unitPrice,
+      factor: factor ? null : this.factor,
+      net: net ? null : this.net,
+      noteNumber: noteNumber ? null : this.noteNumber,
+      adjudication: adjudication ? null : this.adjudication,
+    );
+  }
+
   @override
   ExplanationOfBenefitSubDetail1 clone() => throw UnimplementedError();
   @override
@@ -13415,6 +13955,22 @@ class ExplanationOfBenefitTotal extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ExplanationOfBenefitTotal clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ExplanationOfBenefitTotal(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      category: category,
+      amount: amount,
+    );
+  }
+
   @override
   ExplanationOfBenefitTotal clone() => throw UnimplementedError();
   @override
@@ -13520,7 +14076,8 @@ class ExplanationOfBenefitPayment extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ExplanationOfBenefitPayment.empty() => const ExplanationOfBenefitPayment();
+  factory ExplanationOfBenefitPayment.empty() =>
+      const ExplanationOfBenefitPayment();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ExplanationOfBenefitPayment.fromJson(
@@ -13944,6 +14501,32 @@ class ExplanationOfBenefitPayment extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ExplanationOfBenefitPayment clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool adjustment = false,
+    bool adjustmentReason = false,
+    bool date = false,
+    bool amount = false,
+    bool identifier = false,
+  }) {
+    return ExplanationOfBenefitPayment(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      adjustment: adjustment ? null : this.adjustment,
+      adjustmentReason: adjustmentReason ? null : this.adjustmentReason,
+      date: date ? null : this.date,
+      amount: amount ? null : this.amount,
+      identifier: identifier ? null : this.identifier,
+    );
   }
 
   @override
@@ -14444,6 +15027,28 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ExplanationOfBenefitProcessNote clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool number = false,
+    bool type = false,
+    bool text = false,
+    bool language = false,
+  }) {
+    return ExplanationOfBenefitProcessNote(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      number: number ? null : this.number,
+      type: type ? null : this.type,
+      text: text ? null : this.text,
+      language: language ? null : this.language,
+    );
   }
 
   @override
@@ -15062,6 +15667,35 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ExplanationOfBenefitBenefitBalance clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool excluded = false,
+    bool name = false,
+    bool description = false,
+    bool network = false,
+    bool unit = false,
+    bool term = false,
+    bool financial = false,
+  }) {
+    return ExplanationOfBenefitBenefitBalance(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      category: category,
+      excluded: excluded ? null : this.excluded,
+      name: name ? null : this.name,
+      description: description ? null : this.description,
+      network: network ? null : this.network,
+      unit: unit ? null : this.unit,
+      term: term ? null : this.term,
+      financial: financial ? null : this.financial,
+    );
+  }
+
   @override
   ExplanationOfBenefitBenefitBalance clone() => throw UnimplementedError();
   @override
@@ -15670,6 +16304,25 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ExplanationOfBenefitFinancial clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool allowed = false,
+    bool used = false,
+  }) {
+    return ExplanationOfBenefitFinancial(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      allowedX: allowed ? null : allowedX,
+      usedX: used ? null : usedX,
+    );
   }
 
   @override

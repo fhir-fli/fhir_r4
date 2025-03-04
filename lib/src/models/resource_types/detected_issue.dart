@@ -853,6 +853,53 @@ class DetectedIssue extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  DetectedIssue clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool code = false,
+    bool severity = false,
+    bool patient = false,
+    bool identified = false,
+    bool author = false,
+    bool implicated = false,
+    bool evidence = false,
+    bool detail = false,
+    bool reference = false,
+    bool mitigation = false,
+  }) {
+    return DetectedIssue(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      code: code ? null : this.code,
+      severity: severity ? null : this.severity,
+      patient: patient ? null : this.patient,
+      identifiedX: identified ? null : identifiedX,
+      author: author ? null : this.author,
+      implicated: implicated ? null : this.implicated,
+      evidence: evidence ? null : this.evidence,
+      detail: detail ? null : this.detail,
+      reference: reference ? null : this.reference,
+      mitigation: mitigation ? null : this.mitigation,
+    );
+  }
+
   @override
   DetectedIssue clone() => throw UnimplementedError();
   @override
@@ -1415,6 +1462,24 @@ class DetectedIssueEvidence extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  DetectedIssueEvidence clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool detail = false,
+  }) {
+    return DetectedIssueEvidence(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      detail: detail ? null : this.detail,
+    );
+  }
+
   @override
   DetectedIssueEvidence clone() => throw UnimplementedError();
   @override
@@ -1867,6 +1932,25 @@ class DetectedIssueMitigation extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DetectedIssueMitigation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool date = false,
+    bool author = false,
+  }) {
+    return DetectedIssueMitigation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      action: action,
+      date: date ? null : this.date,
+      author: author ? null : this.author,
+    );
   }
 
   @override

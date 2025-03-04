@@ -873,6 +873,58 @@ class RegulatedAuthorization extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  RegulatedAuthorization clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool subject = false,
+    bool type = false,
+    bool description = false,
+    bool region = false,
+    bool status = false,
+    bool statusDate = false,
+    bool validityPeriod = false,
+    bool indication = false,
+    bool intendedUse = false,
+    bool basis = false,
+    bool holder = false,
+    bool regulator = false,
+    bool case_ = false,
+  }) {
+    return RegulatedAuthorization(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      subject: subject ? null : this.subject,
+      type: type ? null : this.type,
+      description: description ? null : this.description,
+      region: region ? null : this.region,
+      status: status ? null : this.status,
+      statusDate: statusDate ? null : this.statusDate,
+      validityPeriod: validityPeriod ? null : this.validityPeriod,
+      indication: indication ? null : this.indication,
+      intendedUse: intendedUse ? null : this.intendedUse,
+      basis: basis ? null : this.basis,
+      holder: holder ? null : this.holder,
+      regulator: regulator ? null : this.regulator,
+      case_: case_ ? null : this.case_,
+    );
+  }
+
   @override
   RegulatedAuthorization clone() => throw UnimplementedError();
   @override
@@ -1146,7 +1198,8 @@ class RegulatedAuthorizationCase extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory RegulatedAuthorizationCase.empty() => const RegulatedAuthorizationCase();
+  factory RegulatedAuthorizationCase.empty() =>
+      const RegulatedAuthorizationCase();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RegulatedAuthorizationCase.fromJson(
@@ -1593,6 +1646,30 @@ class RegulatedAuthorizationCase extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  RegulatedAuthorizationCase clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool type = false,
+    bool status = false,
+    bool date = false,
+    bool application = false,
+  }) {
+    return RegulatedAuthorizationCase(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      type: type ? null : this.type,
+      status: status ? null : this.status,
+      dateX: date ? null : dateX,
+      application: application ? null : this.application,
+    );
   }
 
   @override

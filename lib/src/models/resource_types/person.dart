@@ -736,6 +736,51 @@ class Person extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Person clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool name = false,
+    bool telecom = false,
+    bool gender = false,
+    bool birthDate = false,
+    bool address = false,
+    bool photo = false,
+    bool managingOrganization = false,
+    bool active = false,
+    bool link = false,
+  }) {
+    return Person(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      name: name ? null : this.name,
+      telecom: telecom ? null : this.telecom,
+      gender: gender ? null : this.gender,
+      birthDate: birthDate ? null : this.birthDate,
+      address: address ? null : this.address,
+      photo: photo ? null : this.photo,
+      managingOrganization:
+          managingOrganization ? null : this.managingOrganization,
+      active: active ? null : this.active,
+      link: link ? null : this.link,
+    );
+  }
+
   @override
   Person clone() => throw UnimplementedError();
   @override
@@ -1277,6 +1322,23 @@ class PersonLink extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  PersonLink clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool assurance = false,
+  }) {
+    return PersonLink(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      target: target,
+      assurance: assurance ? null : this.assurance,
+    );
   }
 
   @override

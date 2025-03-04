@@ -932,6 +932,62 @@ class Invoice extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Invoice clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool cancelledReason = false,
+    bool type = false,
+    bool subject = false,
+    bool recipient = false,
+    bool date = false,
+    bool participant = false,
+    bool issuer = false,
+    bool account = false,
+    bool lineItem = false,
+    bool totalPriceComponent = false,
+    bool totalNet = false,
+    bool totalGross = false,
+    bool paymentTerms = false,
+    bool note = false,
+  }) {
+    return Invoice(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      cancelledReason: cancelledReason ? null : this.cancelledReason,
+      type: type ? null : this.type,
+      subject: subject ? null : this.subject,
+      recipient: recipient ? null : this.recipient,
+      date: date ? null : this.date,
+      participant: participant ? null : this.participant,
+      issuer: issuer ? null : this.issuer,
+      account: account ? null : this.account,
+      lineItem: lineItem ? null : this.lineItem,
+      totalPriceComponent:
+          totalPriceComponent ? null : this.totalPriceComponent,
+      totalNet: totalNet ? null : this.totalNet,
+      totalGross: totalGross ? null : this.totalGross,
+      paymentTerms: paymentTerms ? null : this.paymentTerms,
+      note: note ? null : this.note,
+    );
+  }
+
   @override
   Invoice clone() => throw UnimplementedError();
   @override
@@ -1525,6 +1581,23 @@ class InvoiceParticipant extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  InvoiceParticipant clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool role = false,
+  }) {
+    return InvoiceParticipant(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      role: role ? null : this.role,
+      actor: actor,
+    );
+  }
+
   @override
   InvoiceParticipant clone() => throw UnimplementedError();
   @override
@@ -2023,6 +2096,25 @@ class InvoiceLineItem extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  InvoiceLineItem clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool sequence = false,
+    bool priceComponent = false,
+  }) {
+    return InvoiceLineItem(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      sequence: sequence ? null : this.sequence,
+      chargeItemX: chargeItemX,
+      priceComponent: priceComponent ? null : this.priceComponent,
+    );
+  }
+
   @override
   InvoiceLineItem clone() => throw UnimplementedError();
   @override
@@ -2509,6 +2601,27 @@ class InvoicePriceComponent extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  InvoicePriceComponent clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool factor = false,
+    bool amount = false,
+  }) {
+    return InvoicePriceComponent(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      code: code ? null : this.code,
+      factor: factor ? null : this.factor,
+      amount: amount ? null : this.amount,
+    );
   }
 
   @override

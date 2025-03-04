@@ -768,6 +768,49 @@ class MeasureReport extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  MeasureReport clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool subject = false,
+    bool date = false,
+    bool reporter = false,
+    bool improvementNotation = false,
+    bool group = false,
+    bool evaluatedResource = false,
+  }) {
+    return MeasureReport(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      type: type,
+      measure: measure,
+      subject: subject ? null : this.subject,
+      date: date ? null : this.date,
+      reporter: reporter ? null : this.reporter,
+      period: period,
+      improvementNotation:
+          improvementNotation ? null : this.improvementNotation,
+      group: group ? null : this.group,
+      evaluatedResource: evaluatedResource ? null : this.evaluatedResource,
+    );
+  }
+
   @override
   MeasureReport clone() => throw UnimplementedError();
   @override
@@ -1380,6 +1423,28 @@ class MeasureReportGroup extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  MeasureReportGroup clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool population = false,
+    bool measureScore = false,
+    bool stratifier = false,
+  }) {
+    return MeasureReportGroup(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      population: population ? null : this.population,
+      measureScore: measureScore ? null : this.measureScore,
+      stratifier: stratifier ? null : this.stratifier,
+    );
+  }
+
   @override
   MeasureReportGroup clone() => throw UnimplementedError();
   @override
@@ -1847,6 +1912,26 @@ class MeasureReportPopulation extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  MeasureReportPopulation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool count = false,
+    bool subjectResults = false,
+  }) {
+    return MeasureReportPopulation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      count: count ? null : this.count,
+      subjectResults: subjectResults ? null : this.subjectResults,
+    );
+  }
+
   @override
   MeasureReportPopulation clone() => throw UnimplementedError();
   @override
@@ -2268,6 +2353,24 @@ class MeasureReportStratifier extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MeasureReportStratifier clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool stratum = false,
+  }) {
+    return MeasureReportStratifier(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      stratum: stratum ? null : this.stratum,
+    );
   }
 
   @override
@@ -2765,6 +2868,28 @@ class MeasureReportStratum extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  MeasureReportStratum clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool value = false,
+    bool component = false,
+    bool population = false,
+    bool measureScore = false,
+  }) {
+    return MeasureReportStratum(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      value: value ? null : this.value,
+      component: component ? null : this.component,
+      population: population ? null : this.population,
+      measureScore: measureScore ? null : this.measureScore,
+    );
+  }
+
   @override
   MeasureReportStratum clone() => throw UnimplementedError();
   @override
@@ -3196,6 +3321,22 @@ class MeasureReportComponent extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MeasureReportComponent clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return MeasureReportComponent(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      value: value,
+    );
   }
 
   @override
@@ -3633,6 +3774,26 @@ class MeasureReportPopulation1 extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MeasureReportPopulation1 clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool count = false,
+    bool subjectResults = false,
+  }) {
+    return MeasureReportPopulation1(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      count: count ? null : this.count,
+      subjectResults: subjectResults ? null : this.subjectResults,
+    );
   }
 
   @override

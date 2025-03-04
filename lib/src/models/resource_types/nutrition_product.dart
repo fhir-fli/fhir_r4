@@ -732,7 +732,8 @@ class NutritionProduct extends DomainResource {
       case 'productCharacteristic':
         {
           return copyWith(
-              productCharacteristic: <NutritionProductProductCharacteristic>[],);
+            productCharacteristic: <NutritionProductProductCharacteristic>[],
+          );
         }
       case 'instance':
         {
@@ -745,6 +746,50 @@ class NutritionProduct extends DomainResource {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  NutritionProduct clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool category = false,
+    bool code = false,
+    bool manufacturer = false,
+    bool nutrient = false,
+    bool ingredient = false,
+    bool knownAllergen = false,
+    bool productCharacteristic = false,
+    bool instance = false,
+    bool note = false,
+  }) {
+    return NutritionProduct(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      status: status,
+      category: category ? null : this.category,
+      code: code ? null : this.code,
+      manufacturer: manufacturer ? null : this.manufacturer,
+      nutrient: nutrient ? null : this.nutrient,
+      ingredient: ingredient ? null : this.ingredient,
+      knownAllergen: knownAllergen ? null : this.knownAllergen,
+      productCharacteristic:
+          productCharacteristic ? null : this.productCharacteristic,
+      instance: instance ? null : this.instance,
+      note: note ? null : this.note,
+    );
   }
 
   @override
@@ -1308,6 +1353,24 @@ class NutritionProductNutrient extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  NutritionProductNutrient clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool item = false,
+    bool amount = false,
+  }) {
+    return NutritionProductNutrient(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      item: item ? null : this.item,
+      amount: amount ? null : this.amount,
+    );
+  }
+
   @override
   NutritionProductNutrient clone() => throw UnimplementedError();
   @override
@@ -1721,6 +1784,23 @@ class NutritionProductIngredient extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  NutritionProductIngredient clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool amount = false,
+  }) {
+    return NutritionProductIngredient(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      item: item,
+      amount: amount ? null : this.amount,
+    );
   }
 
   @override
@@ -2279,6 +2359,22 @@ class NutritionProductProductCharacteristic extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  NutritionProductProductCharacteristic clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return NutritionProductProductCharacteristic(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      valueX: valueX,
+    );
+  }
+
   @override
   NutritionProductProductCharacteristic clone() => throw UnimplementedError();
   @override
@@ -2782,6 +2878,30 @@ class NutritionProductInstance extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  NutritionProductInstance clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool quantity = false,
+    bool identifier = false,
+    bool lotNumber = false,
+    bool expiry = false,
+    bool useBy = false,
+  }) {
+    return NutritionProductInstance(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      quantity: quantity ? null : this.quantity,
+      identifier: identifier ? null : this.identifier,
+      lotNumber: lotNumber ? null : this.lotNumber,
+      expiry: expiry ? null : this.expiry,
+      useBy: useBy ? null : this.useBy,
+    );
   }
 
   @override

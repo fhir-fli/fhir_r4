@@ -913,6 +913,55 @@ class Composition extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Composition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool category = false,
+    bool subject = false,
+    bool encounter = false,
+    bool confidentiality = false,
+    bool attester = false,
+    bool custodian = false,
+    bool relatesTo = false,
+    bool event = false,
+    bool section = false,
+  }) {
+    return Composition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      type: type,
+      category: category ? null : this.category,
+      subject: subject ? null : this.subject,
+      encounter: encounter ? null : this.encounter,
+      date: date,
+      author: author,
+      title: title,
+      confidentiality: confidentiality ? null : this.confidentiality,
+      attester: attester ? null : this.attester,
+      custodian: custodian ? null : this.custodian,
+      relatesTo: relatesTo ? null : this.relatesTo,
+      event: event ? null : this.event,
+      section: section ? null : this.section,
+    );
+  }
+
   @override
   Composition clone() => throw UnimplementedError();
   @override
@@ -1534,6 +1583,25 @@ class CompositionAttester extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  CompositionAttester clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool time = false,
+    bool party = false,
+  }) {
+    return CompositionAttester(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      mode: mode,
+      time: time ? null : this.time,
+      party: party ? null : this.party,
+    );
+  }
+
   @override
   CompositionAttester clone() => throw UnimplementedError();
   @override
@@ -1995,6 +2063,22 @@ class CompositionRelatesTo extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  CompositionRelatesTo clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return CompositionRelatesTo(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      targetX: targetX,
+    );
+  }
+
   @override
   CompositionRelatesTo clone() => throw UnimplementedError();
   @override
@@ -2445,6 +2529,26 @@ class CompositionEvent extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CompositionEvent clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool period = false,
+    bool detail = false,
+  }) {
+    return CompositionEvent(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      period: period ? null : this.period,
+      detail: detail ? null : this.detail,
+    );
   }
 
   @override
@@ -3152,6 +3256,40 @@ class CompositionSection extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CompositionSection clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool title = false,
+    bool code = false,
+    bool author = false,
+    bool focus = false,
+    bool text = false,
+    bool mode = false,
+    bool orderedBy = false,
+    bool entry = false,
+    bool emptyReason = false,
+    bool section = false,
+  }) {
+    return CompositionSection(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      title: title ? null : this.title,
+      code: code ? null : this.code,
+      author: author ? null : this.author,
+      focus: focus ? null : this.focus,
+      text: text ? null : this.text,
+      mode: mode ? null : this.mode,
+      orderedBy: orderedBy ? null : this.orderedBy,
+      entry: entry ? null : this.entry,
+      emptyReason: emptyReason ? null : this.emptyReason,
+      section: section ? null : this.section,
+    );
   }
 
   @override

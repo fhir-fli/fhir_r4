@@ -1087,6 +1087,68 @@ class ImagingStudy extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ImagingStudy clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool modality = false,
+    bool encounter = false,
+    bool started = false,
+    bool basedOn = false,
+    bool referrer = false,
+    bool interpreter = false,
+    bool endpoint = false,
+    bool numberOfSeries = false,
+    bool numberOfInstances = false,
+    bool procedureReference = false,
+    bool procedureCode = false,
+    bool location = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool note = false,
+    bool description = false,
+    bool series = false,
+  }) {
+    return ImagingStudy(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      modality: modality ? null : this.modality,
+      subject: subject,
+      encounter: encounter ? null : this.encounter,
+      started: started ? null : this.started,
+      basedOn: basedOn ? null : this.basedOn,
+      referrer: referrer ? null : this.referrer,
+      interpreter: interpreter ? null : this.interpreter,
+      endpoint: endpoint ? null : this.endpoint,
+      numberOfSeries: numberOfSeries ? null : this.numberOfSeries,
+      numberOfInstances: numberOfInstances ? null : this.numberOfInstances,
+      procedureReference: procedureReference ? null : this.procedureReference,
+      procedureCode: procedureCode ? null : this.procedureCode,
+      location: location ? null : this.location,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      note: note ? null : this.note,
+      description: description ? null : this.description,
+      series: series ? null : this.series,
+    );
+  }
+
   @override
   ImagingStudy clone() => throw UnimplementedError();
   @override
@@ -2083,6 +2145,42 @@ class ImagingStudySeries extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ImagingStudySeries clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool number = false,
+    bool description = false,
+    bool numberOfInstances = false,
+    bool endpoint = false,
+    bool bodySite = false,
+    bool laterality = false,
+    bool specimen = false,
+    bool started = false,
+    bool performer = false,
+    bool instance = false,
+  }) {
+    return ImagingStudySeries(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      uid: uid,
+      number: number ? null : this.number,
+      modality: modality,
+      description: description ? null : this.description,
+      numberOfInstances: numberOfInstances ? null : this.numberOfInstances,
+      endpoint: endpoint ? null : this.endpoint,
+      bodySite: bodySite ? null : this.bodySite,
+      laterality: laterality ? null : this.laterality,
+      specimen: specimen ? null : this.specimen,
+      started: started ? null : this.started,
+      performer: performer ? null : this.performer,
+      instance: instance ? null : this.instance,
+    );
+  }
+
   @override
   ImagingStudySeries clone() => throw UnimplementedError();
   @override
@@ -2595,6 +2693,23 @@ class ImagingStudyPerformer extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ImagingStudyPerformer clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool function_ = false,
+  }) {
+    return ImagingStudyPerformer(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      function_: function_ ? null : this.function_,
+      actor: actor,
+    );
+  }
+
   @override
   ImagingStudyPerformer clone() => throw UnimplementedError();
   @override
@@ -3059,6 +3174,26 @@ class ImagingStudyInstance extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImagingStudyInstance clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool number = false,
+    bool title = false,
+  }) {
+    return ImagingStudyInstance(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      uid: uid,
+      sopClass: sopClass,
+      number: number ? null : this.number,
+      title: title ? null : this.title,
+    );
   }
 
   @override

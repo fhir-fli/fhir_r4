@@ -1054,6 +1054,61 @@ class AllergyIntolerance extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  AllergyIntolerance clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool clinicalStatus = false,
+    bool verificationStatus = false,
+    bool type = false,
+    bool category = false,
+    bool criticality = false,
+    bool code = false,
+    bool encounter = false,
+    bool onset = false,
+    bool recordedDate = false,
+    bool recorder = false,
+    bool asserter = false,
+    bool lastOccurrence = false,
+    bool note = false,
+    bool reaction = false,
+  }) {
+    return AllergyIntolerance(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      clinicalStatus: clinicalStatus ? null : this.clinicalStatus,
+      verificationStatus: verificationStatus ? null : this.verificationStatus,
+      type: type ? null : this.type,
+      category: category ? null : this.category,
+      criticality: criticality ? null : this.criticality,
+      code: code ? null : this.code,
+      patient: patient,
+      encounter: encounter ? null : this.encounter,
+      onsetX: onset ? null : onsetX,
+      recordedDate: recordedDate ? null : this.recordedDate,
+      recorder: recorder ? null : this.recorder,
+      asserter: asserter ? null : this.asserter,
+      lastOccurrence: lastOccurrence ? null : this.lastOccurrence,
+      note: note ? null : this.note,
+      reaction: reaction ? null : this.reaction,
+    );
+  }
+
   @override
   AllergyIntolerance clone() => throw UnimplementedError();
   @override
@@ -1340,7 +1395,8 @@ class AllergyIntoleranceReaction extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory AllergyIntoleranceReaction.empty() => const AllergyIntoleranceReaction(
+  factory AllergyIntoleranceReaction.empty() =>
+      const AllergyIntoleranceReaction(
         manifestation: <CodeableConcept>[],
       );
 
@@ -1814,6 +1870,33 @@ class AllergyIntoleranceReaction extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  AllergyIntoleranceReaction clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool substance = false,
+    bool description = false,
+    bool onset = false,
+    bool severity = false,
+    bool exposureRoute = false,
+    bool note = false,
+  }) {
+    return AllergyIntoleranceReaction(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      substance: substance ? null : this.substance,
+      manifestation: manifestation,
+      description: description ? null : this.description,
+      onset: onset ? null : this.onset,
+      severity: severity ? null : this.severity,
+      exposureRoute: exposureRoute ? null : this.exposureRoute,
+      note: note ? null : this.note,
+    );
   }
 
   @override

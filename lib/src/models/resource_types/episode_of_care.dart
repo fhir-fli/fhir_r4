@@ -815,6 +815,53 @@ class EpisodeOfCare extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  EpisodeOfCare clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool statusHistory = false,
+    bool type = false,
+    bool diagnosis = false,
+    bool managingOrganization = false,
+    bool period = false,
+    bool referralRequest = false,
+    bool careManager = false,
+    bool team = false,
+    bool account = false,
+  }) {
+    return EpisodeOfCare(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      statusHistory: statusHistory ? null : this.statusHistory,
+      type: type ? null : this.type,
+      diagnosis: diagnosis ? null : this.diagnosis,
+      patient: patient,
+      managingOrganization:
+          managingOrganization ? null : this.managingOrganization,
+      period: period ? null : this.period,
+      referralRequest: referralRequest ? null : this.referralRequest,
+      careManager: careManager ? null : this.careManager,
+      team: team ? null : this.team,
+      account: account ? null : this.account,
+    );
+  }
+
   @override
   EpisodeOfCare clone() => throw UnimplementedError();
   @override
@@ -1387,6 +1434,22 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  EpisodeOfCareStatusHistory clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return EpisodeOfCareStatusHistory(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      status: status,
+      period: period,
+    );
+  }
+
   @override
   EpisodeOfCareStatusHistory clone() => throw UnimplementedError();
   @override
@@ -1822,6 +1885,25 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  EpisodeOfCareDiagnosis clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool role = false,
+    bool rank = false,
+  }) {
+    return EpisodeOfCareDiagnosis(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      condition: condition,
+      role: role ? null : this.role,
+      rank: rank ? null : this.rank,
+    );
   }
 
   @override

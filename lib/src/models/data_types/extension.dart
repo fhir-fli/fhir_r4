@@ -1476,6 +1476,21 @@ class FhirExtension extends DataType {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  FhirExtension clear({
+    bool id = false,
+    bool extension_ = false,
+    bool value = false,
+  }) {
+    return FhirExtension(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      url: url,
+      valueX: value ? null : valueX,
+    );
+  }
+
   @override
   FhirExtension clone() => throw UnimplementedError();
   @override

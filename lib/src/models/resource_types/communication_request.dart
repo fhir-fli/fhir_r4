@@ -1197,6 +1197,73 @@ class CommunicationRequest extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  CommunicationRequest clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool basedOn = false,
+    bool replaces = false,
+    bool groupIdentifier = false,
+    bool statusReason = false,
+    bool category = false,
+    bool priority = false,
+    bool doNotPerform = false,
+    bool medium = false,
+    bool subject = false,
+    bool about = false,
+    bool encounter = false,
+    bool payload = false,
+    bool occurrence = false,
+    bool authoredOn = false,
+    bool requester = false,
+    bool recipient = false,
+    bool sender = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool note = false,
+  }) {
+    return CommunicationRequest(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      basedOn: basedOn ? null : this.basedOn,
+      replaces: replaces ? null : this.replaces,
+      groupIdentifier: groupIdentifier ? null : this.groupIdentifier,
+      status: status,
+      statusReason: statusReason ? null : this.statusReason,
+      category: category ? null : this.category,
+      priority: priority ? null : this.priority,
+      doNotPerform: doNotPerform ? null : this.doNotPerform,
+      medium: medium ? null : this.medium,
+      subject: subject ? null : this.subject,
+      about: about ? null : this.about,
+      encounter: encounter ? null : this.encounter,
+      payload: payload ? null : this.payload,
+      occurrenceX: occurrence ? null : occurrenceX,
+      authoredOn: authoredOn ? null : this.authoredOn,
+      requester: requester ? null : this.requester,
+      recipient: recipient ? null : this.recipient,
+      sender: sender ? null : this.sender,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      note: note ? null : this.note,
+    );
+  }
+
   @override
   CommunicationRequest clone() => throw UnimplementedError();
   @override
@@ -1917,6 +1984,21 @@ class CommunicationRequestPayload extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CommunicationRequestPayload clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return CommunicationRequestPayload(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      contentX: contentX,
+    );
   }
 
   @override

@@ -836,6 +836,57 @@ class CatalogEntry extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  CatalogEntry clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool type = false,
+    bool additionalIdentifier = false,
+    bool classification = false,
+    bool status = false,
+    bool validityPeriod = false,
+    bool validTo = false,
+    bool lastUpdated = false,
+    bool additionalCharacteristic = false,
+    bool additionalClassification = false,
+    bool relatedEntry = false,
+  }) {
+    return CatalogEntry(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      type: type ? null : this.type,
+      orderable: orderable,
+      referencedItem: referencedItem,
+      additionalIdentifier:
+          additionalIdentifier ? null : this.additionalIdentifier,
+      classification: classification ? null : this.classification,
+      status: status ? null : this.status,
+      validityPeriod: validityPeriod ? null : this.validityPeriod,
+      validTo: validTo ? null : this.validTo,
+      lastUpdated: lastUpdated ? null : this.lastUpdated,
+      additionalCharacteristic:
+          additionalCharacteristic ? null : this.additionalCharacteristic,
+      additionalClassification:
+          additionalClassification ? null : this.additionalClassification,
+      relatedEntry: relatedEntry ? null : this.relatedEntry,
+    );
+  }
+
   @override
   CatalogEntry clone() => throw UnimplementedError();
   @override
@@ -1408,6 +1459,22 @@ class CatalogEntryRelatedEntry extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CatalogEntryRelatedEntry clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return CatalogEntryRelatedEntry(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      relationtype: relationtype,
+      item: item,
+    );
   }
 
   @override

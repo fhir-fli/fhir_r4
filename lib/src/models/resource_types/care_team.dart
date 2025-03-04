@@ -849,6 +849,57 @@ class CareTeam extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  CareTeam clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool status = false,
+    bool category = false,
+    bool name = false,
+    bool subject = false,
+    bool encounter = false,
+    bool period = false,
+    bool participant = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool managingOrganization = false,
+    bool telecom = false,
+    bool note = false,
+  }) {
+    return CareTeam(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status ? null : this.status,
+      category: category ? null : this.category,
+      name: name ? null : this.name,
+      subject: subject ? null : this.subject,
+      encounter: encounter ? null : this.encounter,
+      period: period ? null : this.period,
+      participant: participant ? null : this.participant,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      managingOrganization:
+          managingOrganization ? null : this.managingOrganization,
+      telecom: telecom ? null : this.telecom,
+      note: note ? null : this.note,
+    );
+  }
+
   @override
   CareTeam clone() => throw UnimplementedError();
   @override
@@ -1505,6 +1556,28 @@ class CareTeamParticipant extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CareTeamParticipant clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool role = false,
+    bool member = false,
+    bool onBehalfOf = false,
+    bool period = false,
+  }) {
+    return CareTeamParticipant(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      role: role ? null : this.role,
+      member: member ? null : this.member,
+      onBehalfOf: onBehalfOf ? null : this.onBehalfOf,
+      period: period ? null : this.period,
+    );
   }
 
   @override

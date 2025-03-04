@@ -59,7 +59,8 @@ class MedicinalProductDefinition extends DomainResource {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory MedicinalProductDefinition.empty() => const MedicinalProductDefinition(
+  factory MedicinalProductDefinition.empty() =>
+      const MedicinalProductDefinition(
         name: <MedicinalProductDefinitionName>[],
       );
 
@@ -1313,7 +1314,8 @@ class MedicinalProductDefinition extends DomainResource {
       case 'combinedPharmaceuticalDoseForm':
         {
           return copyWith(
-              combinedPharmaceuticalDoseForm: CodeableConcept.empty(),);
+            combinedPharmaceuticalDoseForm: CodeableConcept.empty(),
+          );
         }
       case 'route':
         {
@@ -1330,7 +1332,8 @@ class MedicinalProductDefinition extends DomainResource {
       case 'additionalMonitoringIndicator':
         {
           return copyWith(
-              additionalMonitoringIndicator: CodeableConcept.empty(),);
+            additionalMonitoringIndicator: CodeableConcept.empty(),
+          );
         }
       case 'specialMeasures':
         {
@@ -1387,7 +1390,8 @@ class MedicinalProductDefinition extends DomainResource {
       case 'crossReference':
         {
           return copyWith(
-              crossReference: <MedicinalProductDefinitionCrossReference>[],);
+            crossReference: <MedicinalProductDefinitionCrossReference>[],
+          );
         }
       case 'operation':
         {
@@ -1396,11 +1400,98 @@ class MedicinalProductDefinition extends DomainResource {
       case 'characteristic':
         {
           return copyWith(
-              characteristic: <MedicinalProductDefinitionCharacteristic>[],);
+            characteristic: <MedicinalProductDefinitionCharacteristic>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicinalProductDefinition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool type = false,
+    bool domain = false,
+    bool version = false,
+    bool status = false,
+    bool statusDate = false,
+    bool description = false,
+    bool combinedPharmaceuticalDoseForm = false,
+    bool route = false,
+    bool indication = false,
+    bool legalStatusOfSupply = false,
+    bool additionalMonitoringIndicator = false,
+    bool specialMeasures = false,
+    bool pediatricUseIndicator = false,
+    bool classification = false,
+    bool marketingStatus = false,
+    bool packagedMedicinalProduct = false,
+    bool ingredient = false,
+    bool impurity = false,
+    bool attachedDocument = false,
+    bool masterFile = false,
+    bool contact = false,
+    bool clinicalTrial = false,
+    bool code = false,
+    bool crossReference = false,
+    bool operation = false,
+    bool characteristic = false,
+  }) {
+    return MedicinalProductDefinition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      type: type ? null : this.type,
+      domain: domain ? null : this.domain,
+      version: version ? null : this.version,
+      status: status ? null : this.status,
+      statusDate: statusDate ? null : this.statusDate,
+      description: description ? null : this.description,
+      combinedPharmaceuticalDoseForm: combinedPharmaceuticalDoseForm
+          ? null
+          : this.combinedPharmaceuticalDoseForm,
+      route: route ? null : this.route,
+      indication: indication ? null : this.indication,
+      legalStatusOfSupply:
+          legalStatusOfSupply ? null : this.legalStatusOfSupply,
+      additionalMonitoringIndicator: additionalMonitoringIndicator
+          ? null
+          : this.additionalMonitoringIndicator,
+      specialMeasures: specialMeasures ? null : this.specialMeasures,
+      pediatricUseIndicator:
+          pediatricUseIndicator ? null : this.pediatricUseIndicator,
+      classification: classification ? null : this.classification,
+      marketingStatus: marketingStatus ? null : this.marketingStatus,
+      packagedMedicinalProduct:
+          packagedMedicinalProduct ? null : this.packagedMedicinalProduct,
+      ingredient: ingredient ? null : this.ingredient,
+      impurity: impurity ? null : this.impurity,
+      attachedDocument: attachedDocument ? null : this.attachedDocument,
+      masterFile: masterFile ? null : this.masterFile,
+      contact: contact ? null : this.contact,
+      clinicalTrial: clinicalTrial ? null : this.clinicalTrial,
+      code: code ? null : this.code,
+      name: name,
+      crossReference: crossReference ? null : this.crossReference,
+      operation: operation ? null : this.operation,
+      characteristic: characteristic ? null : this.characteristic,
+    );
   }
 
   @override
@@ -1736,7 +1827,9 @@ class MedicinalProductDefinition extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-        combinedPharmaceuticalDoseForm, o.combinedPharmaceuticalDoseForm,)) {
+      combinedPharmaceuticalDoseForm,
+      o.combinedPharmaceuticalDoseForm,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1752,7 +1845,9 @@ class MedicinalProductDefinition extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-        additionalMonitoringIndicator, o.additionalMonitoringIndicator,)) {
+      additionalMonitoringIndicator,
+      o.additionalMonitoringIndicator,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -2175,6 +2270,23 @@ class MedicinalProductDefinitionContact extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicinalProductDefinitionContact clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+  }) {
+    return MedicinalProductDefinitionContact(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      contact: contact,
+    );
   }
 
   @override
@@ -2647,11 +2759,33 @@ class MedicinalProductDefinitionName extends BackboneElement {
       case 'countryLanguage':
         {
           return copyWith(
-              countryLanguage: <MedicinalProductDefinitionCountryLanguage>[],);
+            countryLanguage: <MedicinalProductDefinitionCountryLanguage>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicinalProductDefinitionName clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool namePart = false,
+    bool countryLanguage = false,
+  }) {
+    return MedicinalProductDefinitionName(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      productName: productName,
+      type: type ? null : this.type,
+      namePart: namePart ? null : this.namePart,
+      countryLanguage: countryLanguage ? null : this.countryLanguage,
+    );
   }
 
   @override
@@ -3088,6 +3222,22 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  MedicinalProductDefinitionNamePart clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return MedicinalProductDefinitionNamePart(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      part_: part_,
+      type: type,
+    );
+  }
+
   @override
   MedicinalProductDefinitionNamePart clone() => throw UnimplementedError();
   @override
@@ -3495,7 +3645,8 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
   /// `.empty()` variant (or list of `.empty()`).
   @override
   MedicinalProductDefinitionCountryLanguage createProperty(
-      String propertyName,) {
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
@@ -3524,6 +3675,24 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicinalProductDefinitionCountryLanguage clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool jurisdiction = false,
+  }) {
+    return MedicinalProductDefinitionCountryLanguage(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      country: country,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      language: language,
+    );
   }
 
   @override
@@ -3942,6 +4111,23 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicinalProductDefinitionCrossReference clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+  }) {
+    return MedicinalProductDefinitionCrossReference(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      product: product,
+      type: type ? null : this.type,
+    );
   }
 
   @override
@@ -4422,6 +4608,29 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  MedicinalProductDefinitionOperation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool effectiveDate = false,
+    bool organization = false,
+    bool confidentialityIndicator = false,
+  }) {
+    return MedicinalProductDefinitionOperation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      effectiveDate: effectiveDate ? null : this.effectiveDate,
+      organization: organization ? null : this.organization,
+      confidentialityIndicator:
+          confidentialityIndicator ? null : this.confidentialityIndicator,
+    );
+  }
+
   @override
   MedicinalProductDefinitionOperation clone() => throw UnimplementedError();
   @override
@@ -4520,7 +4729,9 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        confidentialityIndicator, o.confidentialityIndicator,)) {
+      confidentialityIndicator,
+      o.confidentialityIndicator,
+    )) {
       return false;
     }
     return true;
@@ -4971,6 +5182,23 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicinalProductDefinitionCharacteristic clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool value = false,
+  }) {
+    return MedicinalProductDefinitionCharacteristic(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      valueX: value ? null : valueX,
+    );
   }
 
   @override

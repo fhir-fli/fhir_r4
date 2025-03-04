@@ -1486,6 +1486,91 @@ class PlanDefinition extends CanonicalResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  PlanDefinition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool identifier = false,
+    bool version = false,
+    bool name = false,
+    bool title = false,
+    bool subtitle = false,
+    bool type = false,
+    bool experimental = false,
+    bool subject = false,
+    bool date = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool purpose = false,
+    bool usage = false,
+    bool copyright = false,
+    bool approvalDate = false,
+    bool lastReviewDate = false,
+    bool effectivePeriod = false,
+    bool topic = false,
+    bool author = false,
+    bool editor = false,
+    bool reviewer = false,
+    bool endorser = false,
+    bool relatedArtifact = false,
+    bool library_ = false,
+    bool goal = false,
+    bool action = false,
+  }) {
+    return PlanDefinition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url ? null : this.url,
+      identifier: identifier ? null : this.identifier,
+      version: version ? null : this.version,
+      name: name ? null : this.name,
+      title: title ? null : this.title,
+      subtitle: subtitle ? null : this.subtitle,
+      type: type ? null : this.type,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      subjectX: subject ? null : subjectX,
+      date: date ? null : this.date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      purpose: purpose ? null : this.purpose,
+      usage: usage ? null : this.usage,
+      copyright: copyright ? null : this.copyright,
+      approvalDate: approvalDate ? null : this.approvalDate,
+      lastReviewDate: lastReviewDate ? null : this.lastReviewDate,
+      effectivePeriod: effectivePeriod ? null : this.effectivePeriod,
+      topic: topic ? null : this.topic,
+      author: author ? null : this.author,
+      editor: editor ? null : this.editor,
+      reviewer: reviewer ? null : this.reviewer,
+      endorser: endorser ? null : this.endorser,
+      relatedArtifact: relatedArtifact ? null : this.relatedArtifact,
+      library_: library_ ? null : this.library_,
+      goal: goal ? null : this.goal,
+      action: action ? null : this.action,
+    );
+  }
+
   @override
   PlanDefinition clone() => throw UnimplementedError();
   @override
@@ -2430,6 +2515,33 @@ class PlanDefinitionGoal extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  PlanDefinitionGoal clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool category = false,
+    bool priority = false,
+    bool start = false,
+    bool addresses = false,
+    bool documentation = false,
+    bool target = false,
+  }) {
+    return PlanDefinitionGoal(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      category: category ? null : this.category,
+      description: description,
+      priority: priority ? null : this.priority,
+      start: start ? null : this.start,
+      addresses: addresses ? null : this.addresses,
+      documentation: documentation ? null : this.documentation,
+      target: target ? null : this.target,
+    );
+  }
+
   @override
   PlanDefinitionGoal clone() => throw UnimplementedError();
   @override
@@ -3003,6 +3115,26 @@ class PlanDefinitionTarget extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  PlanDefinitionTarget clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool measure = false,
+    bool detail = false,
+    bool due = false,
+  }) {
+    return PlanDefinitionTarget(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      measure: measure ? null : this.measure,
+      detailX: detail ? null : detailX,
+      due: due ? null : this.due,
+    );
   }
 
   @override
@@ -4509,7 +4641,8 @@ class PlanDefinitionAction extends BackboneElement {
       case 'cardinalityBehavior':
         {
           return copyWith(
-              cardinalityBehavior: ActionCardinalityBehavior.empty(),);
+            cardinalityBehavior: ActionCardinalityBehavior.empty(),
+          );
         }
       case 'definition':
       case 'definitionX':
@@ -4536,6 +4669,75 @@ class PlanDefinitionAction extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  PlanDefinitionAction clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool prefix = false,
+    bool title = false,
+    bool description = false,
+    bool textEquivalent = false,
+    bool priority = false,
+    bool code = false,
+    bool reason = false,
+    bool documentation = false,
+    bool goalId = false,
+    bool subject = false,
+    bool trigger = false,
+    bool condition = false,
+    bool input = false,
+    bool output = false,
+    bool relatedAction = false,
+    bool timing = false,
+    bool participant = false,
+    bool type = false,
+    bool groupingBehavior = false,
+    bool selectionBehavior = false,
+    bool requiredBehavior = false,
+    bool precheckBehavior = false,
+    bool cardinalityBehavior = false,
+    bool definition = false,
+    bool transform = false,
+    bool dynamicValue = false,
+    bool action = false,
+  }) {
+    return PlanDefinitionAction(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      prefix: prefix ? null : this.prefix,
+      title: title ? null : this.title,
+      description: description ? null : this.description,
+      textEquivalent: textEquivalent ? null : this.textEquivalent,
+      priority: priority ? null : this.priority,
+      code: code ? null : this.code,
+      reason: reason ? null : this.reason,
+      documentation: documentation ? null : this.documentation,
+      goalId: goalId ? null : this.goalId,
+      subjectX: subject ? null : subjectX,
+      trigger: trigger ? null : this.trigger,
+      condition: condition ? null : this.condition,
+      input: input ? null : this.input,
+      output: output ? null : this.output,
+      relatedAction: relatedAction ? null : this.relatedAction,
+      timingX: timing ? null : timingX,
+      participant: participant ? null : this.participant,
+      type: type ? null : this.type,
+      groupingBehavior: groupingBehavior ? null : this.groupingBehavior,
+      selectionBehavior: selectionBehavior ? null : this.selectionBehavior,
+      requiredBehavior: requiredBehavior ? null : this.requiredBehavior,
+      precheckBehavior: precheckBehavior ? null : this.precheckBehavior,
+      cardinalityBehavior:
+          cardinalityBehavior ? null : this.cardinalityBehavior,
+      definitionX: definition ? null : definitionX,
+      transform: transform ? null : this.transform,
+      dynamicValue: dynamicValue ? null : this.dynamicValue,
+      action: action ? null : this.action,
+    );
   }
 
   @override
@@ -5228,6 +5430,23 @@ class PlanDefinitionCondition extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  PlanDefinitionCondition clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool expression = false,
+  }) {
+    return PlanDefinitionCondition(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      kind: kind,
+      expression: expression ? null : this.expression,
+    );
+  }
+
   @override
   PlanDefinitionCondition clone() => throw UnimplementedError();
   @override
@@ -5712,6 +5931,24 @@ class PlanDefinitionRelatedAction extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  PlanDefinitionRelatedAction clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool offset = false,
+  }) {
+    return PlanDefinitionRelatedAction(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      actionId: actionId,
+      relationship: relationship,
+      offsetX: offset ? null : offsetX,
+    );
+  }
+
   @override
   PlanDefinitionRelatedAction clone() => throw UnimplementedError();
   @override
@@ -6125,6 +6362,23 @@ class PlanDefinitionParticipant extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  PlanDefinitionParticipant clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool role = false,
+  }) {
+    return PlanDefinitionParticipant(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      role: role ? null : this.role,
+    );
+  }
+
   @override
   PlanDefinitionParticipant clone() => throw UnimplementedError();
   @override
@@ -6230,7 +6484,8 @@ class PlanDefinitionDynamicValue extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory PlanDefinitionDynamicValue.empty() => const PlanDefinitionDynamicValue();
+  factory PlanDefinitionDynamicValue.empty() =>
+      const PlanDefinitionDynamicValue();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PlanDefinitionDynamicValue.fromJson(
@@ -6539,6 +6794,24 @@ class PlanDefinitionDynamicValue extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  PlanDefinitionDynamicValue clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool path = false,
+    bool expression = false,
+  }) {
+    return PlanDefinitionDynamicValue(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      path: path ? null : this.path,
+      expression: expression ? null : this.expression,
+    );
   }
 
   @override

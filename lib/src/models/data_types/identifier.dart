@@ -435,6 +435,30 @@ class Identifier extends DataType
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Identifier clear({
+    bool id = false,
+    bool extension_ = false,
+    bool use = false,
+    bool type = false,
+    bool system = false,
+    bool value = false,
+    bool period = false,
+    bool assigner = false,
+  }) {
+    return Identifier(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      use: use ? null : this.use,
+      type: type ? null : this.type,
+      system: system ? null : this.system,
+      value: value ? null : this.value,
+      period: period ? null : this.period,
+      assigner: assigner ? null : this.assigner,
+    );
+  }
+
   @override
   Identifier clone() => throw UnimplementedError();
   @override

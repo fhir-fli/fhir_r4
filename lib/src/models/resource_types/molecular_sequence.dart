@@ -931,11 +931,67 @@ class MolecularSequence extends DomainResource {
       case 'structureVariant':
         {
           return copyWith(
-              structureVariant: <MolecularSequenceStructureVariant>[],);
+            structureVariant: <MolecularSequenceStructureVariant>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MolecularSequence clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool type = false,
+    bool patient = false,
+    bool specimen = false,
+    bool device = false,
+    bool performer = false,
+    bool quantity = false,
+    bool referenceSeq = false,
+    bool variant = false,
+    bool observedSeq = false,
+    bool quality = false,
+    bool readCoverage = false,
+    bool repository = false,
+    bool pointer = false,
+    bool structureVariant = false,
+  }) {
+    return MolecularSequence(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      type: type ? null : this.type,
+      coordinateSystem: coordinateSystem,
+      patient: patient ? null : this.patient,
+      specimen: specimen ? null : this.specimen,
+      device: device ? null : this.device,
+      performer: performer ? null : this.performer,
+      quantity: quantity ? null : this.quantity,
+      referenceSeq: referenceSeq ? null : this.referenceSeq,
+      variant: variant ? null : this.variant,
+      observedSeq: observedSeq ? null : this.observedSeq,
+      quality: quality ? null : this.quality,
+      readCoverage: readCoverage ? null : this.readCoverage,
+      repository: repository ? null : this.repository,
+      pointer: pointer ? null : this.pointer,
+      structureVariant: structureVariant ? null : this.structureVariant,
+    );
   }
 
   @override
@@ -1772,6 +1828,39 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  MolecularSequenceReferenceSeq clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool chromosome = false,
+    bool genomeBuild = false,
+    bool orientation = false,
+    bool referenceSeqId = false,
+    bool referenceSeqPointer = false,
+    bool referenceSeqString = false,
+    bool strand = false,
+    bool windowStart = false,
+    bool windowEnd = false,
+  }) {
+    return MolecularSequenceReferenceSeq(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      chromosome: chromosome ? null : this.chromosome,
+      genomeBuild: genomeBuild ? null : this.genomeBuild,
+      orientation: orientation ? null : this.orientation,
+      referenceSeqId: referenceSeqId ? null : this.referenceSeqId,
+      referenceSeqPointer:
+          referenceSeqPointer ? null : this.referenceSeqPointer,
+      referenceSeqString: referenceSeqString ? null : this.referenceSeqString,
+      strand: strand ? null : this.strand,
+      windowStart: windowStart ? null : this.windowStart,
+      windowEnd: windowEnd ? null : this.windowEnd,
+    );
+  }
+
   @override
   MolecularSequenceReferenceSeq clone() => throw UnimplementedError();
   @override
@@ -2377,6 +2466,32 @@ class MolecularSequenceVariant extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MolecularSequenceVariant clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool start = false,
+    bool end = false,
+    bool observedAllele = false,
+    bool referenceAllele = false,
+    bool cigar = false,
+    bool variantPointer = false,
+  }) {
+    return MolecularSequenceVariant(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      start: start ? null : this.start,
+      end: end ? null : this.end,
+      observedAllele: observedAllele ? null : this.observedAllele,
+      referenceAllele: referenceAllele ? null : this.referenceAllele,
+      cigar: cigar ? null : this.cigar,
+      variantPointer: variantPointer ? null : this.variantPointer,
+    );
   }
 
   @override
@@ -3242,6 +3357,49 @@ class MolecularSequenceQuality extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  MolecularSequenceQuality clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool standardSequence = false,
+    bool start = false,
+    bool end = false,
+    bool score = false,
+    bool method = false,
+    bool truthTP = false,
+    bool queryTP = false,
+    bool truthFN = false,
+    bool queryFP = false,
+    bool gtFP = false,
+    bool precision = false,
+    bool recall = false,
+    bool fScore = false,
+    bool roc = false,
+  }) {
+    return MolecularSequenceQuality(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      standardSequence: standardSequence ? null : this.standardSequence,
+      start: start ? null : this.start,
+      end: end ? null : this.end,
+      score: score ? null : this.score,
+      method: method ? null : this.method,
+      truthTP: truthTP ? null : this.truthTP,
+      queryTP: queryTP ? null : this.queryTP,
+      truthFN: truthFN ? null : this.truthFN,
+      queryFP: queryFP ? null : this.queryFP,
+      gtFP: gtFP ? null : this.gtFP,
+      precision: precision ? null : this.precision,
+      recall: recall ? null : this.recall,
+      fScore: fScore ? null : this.fScore,
+      roc: roc ? null : this.roc,
+    );
+  }
+
   @override
   MolecularSequenceQuality clone() => throw UnimplementedError();
   @override
@@ -3913,6 +4071,34 @@ class MolecularSequenceRoc extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  MolecularSequenceRoc clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool score = false,
+    bool numTP = false,
+    bool numFP = false,
+    bool numFN = false,
+    bool precision = false,
+    bool sensitivity = false,
+    bool fMeasure = false,
+  }) {
+    return MolecularSequenceRoc(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      score: score ? null : this.score,
+      numTP: numTP ? null : this.numTP,
+      numFP: numFP ? null : this.numFP,
+      numFN: numFN ? null : this.numFN,
+      precision: precision ? null : this.precision,
+      sensitivity: sensitivity ? null : this.sensitivity,
+      fMeasure: fMeasure ? null : this.fMeasure,
+    );
+  }
+
   @override
   MolecularSequenceRoc clone() => throw UnimplementedError();
   @override
@@ -4538,6 +4724,31 @@ class MolecularSequenceRepository extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  MolecularSequenceRepository clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool name = false,
+    bool datasetId = false,
+    bool variantsetId = false,
+    bool readsetId = false,
+  }) {
+    return MolecularSequenceRepository(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      url: url ? null : this.url,
+      name: name ? null : this.name,
+      datasetId: datasetId ? null : this.datasetId,
+      variantsetId: variantsetId ? null : this.variantsetId,
+      readsetId: readsetId ? null : this.readsetId,
+    );
+  }
+
   @override
   MolecularSequenceRepository clone() => throw UnimplementedError();
   @override
@@ -5069,6 +5280,30 @@ class MolecularSequenceStructureVariant extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  MolecularSequenceStructureVariant clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool variantType = false,
+    bool exact = false,
+    bool length = false,
+    bool outer = false,
+    bool inner = false,
+  }) {
+    return MolecularSequenceStructureVariant(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      variantType: variantType ? null : this.variantType,
+      exact: exact ? null : this.exact,
+      length: length ? null : this.length,
+      outer: outer ? null : this.outer,
+      inner: inner ? null : this.inner,
+    );
+  }
+
   @override
   MolecularSequenceStructureVariant clone() => throw UnimplementedError();
   @override
@@ -5501,6 +5736,24 @@ class MolecularSequenceOuter extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  MolecularSequenceOuter clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool start = false,
+    bool end = false,
+  }) {
+    return MolecularSequenceOuter(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      start: start ? null : this.start,
+      end: end ? null : this.end,
+    );
+  }
+
   @override
   MolecularSequenceOuter clone() => throw UnimplementedError();
   @override
@@ -5907,6 +6160,24 @@ class MolecularSequenceInner extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MolecularSequenceInner clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool start = false,
+    bool end = false,
+  }) {
+    return MolecularSequenceInner(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      start: start ? null : this.start,
+      end: end ? null : this.end,
+    );
   }
 
   @override

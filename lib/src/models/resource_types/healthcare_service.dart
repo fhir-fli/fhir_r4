@@ -1235,6 +1235,81 @@ class HealthcareService extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  HealthcareService clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool active = false,
+    bool providedBy = false,
+    bool category = false,
+    bool type = false,
+    bool specialty = false,
+    bool location = false,
+    bool name = false,
+    bool comment = false,
+    bool extraDetails = false,
+    bool photo = false,
+    bool telecom = false,
+    bool coverageArea = false,
+    bool serviceProvisionCode = false,
+    bool eligibility = false,
+    bool program = false,
+    bool characteristic = false,
+    bool communication = false,
+    bool referralMethod = false,
+    bool appointmentRequired = false,
+    bool availableTime = false,
+    bool notAvailable = false,
+    bool availabilityExceptions = false,
+    bool endpoint = false,
+  }) {
+    return HealthcareService(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      active: active ? null : this.active,
+      providedBy: providedBy ? null : this.providedBy,
+      category: category ? null : this.category,
+      type: type ? null : this.type,
+      specialty: specialty ? null : this.specialty,
+      location: location ? null : this.location,
+      name: name ? null : this.name,
+      comment: comment ? null : this.comment,
+      extraDetails: extraDetails ? null : this.extraDetails,
+      photo: photo ? null : this.photo,
+      telecom: telecom ? null : this.telecom,
+      coverageArea: coverageArea ? null : this.coverageArea,
+      serviceProvisionCode:
+          serviceProvisionCode ? null : this.serviceProvisionCode,
+      eligibility: eligibility ? null : this.eligibility,
+      program: program ? null : this.program,
+      characteristic: characteristic ? null : this.characteristic,
+      communication: communication ? null : this.communication,
+      referralMethod: referralMethod ? null : this.referralMethod,
+      appointmentRequired:
+          appointmentRequired ? null : this.appointmentRequired,
+      availableTime: availableTime ? null : this.availableTime,
+      notAvailable: notAvailable ? null : this.notAvailable,
+      availabilityExceptions:
+          availabilityExceptions ? null : this.availabilityExceptions,
+      endpoint: endpoint ? null : this.endpoint,
+    );
+  }
+
   @override
   HealthcareService clone() => throw UnimplementedError();
   @override
@@ -1968,6 +2043,24 @@ class HealthcareServiceEligibility extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  HealthcareServiceEligibility clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool comment = false,
+  }) {
+    return HealthcareServiceEligibility(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      comment: comment ? null : this.comment,
+    );
+  }
+
   @override
   HealthcareServiceEligibility clone() => throw UnimplementedError();
   @override
@@ -2439,6 +2532,28 @@ class HealthcareServiceAvailableTime extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  HealthcareServiceAvailableTime clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool daysOfWeek = false,
+    bool allDay = false,
+    bool availableStartTime = false,
+    bool availableEndTime = false,
+  }) {
+    return HealthcareServiceAvailableTime(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      daysOfWeek: daysOfWeek ? null : this.daysOfWeek,
+      allDay: allDay ? null : this.allDay,
+      availableStartTime: availableStartTime ? null : this.availableStartTime,
+      availableEndTime: availableEndTime ? null : this.availableEndTime,
+    );
+  }
+
   @override
   HealthcareServiceAvailableTime clone() => throw UnimplementedError();
   @override
@@ -2868,6 +2983,23 @@ class HealthcareServiceNotAvailable extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  HealthcareServiceNotAvailable clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool during = false,
+  }) {
+    return HealthcareServiceNotAvailable(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description,
+      during: during ? null : this.during,
+    );
   }
 
   @override

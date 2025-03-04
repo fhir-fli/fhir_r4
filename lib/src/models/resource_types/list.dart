@@ -824,6 +824,54 @@ class FhirList extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  FhirList clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool title = false,
+    bool code = false,
+    bool subject = false,
+    bool encounter = false,
+    bool date = false,
+    bool source = false,
+    bool orderedBy = false,
+    bool note = false,
+    bool entry = false,
+    bool emptyReason = false,
+  }) {
+    return FhirList(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      mode: mode,
+      title: title ? null : this.title,
+      code: code ? null : this.code,
+      subject: subject ? null : this.subject,
+      encounter: encounter ? null : this.encounter,
+      date: date ? null : this.date,
+      source: source ? null : this.source,
+      orderedBy: orderedBy ? null : this.orderedBy,
+      note: note ? null : this.note,
+      entry: entry ? null : this.entry,
+      emptyReason: emptyReason ? null : this.emptyReason,
+    );
+  }
+
   @override
   FhirList clone() => throw UnimplementedError();
   @override
@@ -1437,6 +1485,27 @@ class ListEntry extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ListEntry clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool flag = false,
+    bool deleted = false,
+    bool date = false,
+  }) {
+    return ListEntry(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      flag: flag ? null : this.flag,
+      deleted: deleted ? null : this.deleted,
+      date: date ? null : this.date,
+      item: item,
+    );
   }
 
   @override

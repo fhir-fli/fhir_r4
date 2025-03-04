@@ -389,6 +389,27 @@ class Binary extends Resource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Binary clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool securityContext = false,
+    bool data = false,
+  }) {
+    return Binary(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      contentType: contentType,
+      securityContext: securityContext ? null : this.securityContext,
+      data: data ? null : this.data,
+    );
+  }
+
   @override
   Binary clone() => throw UnimplementedError();
   @override

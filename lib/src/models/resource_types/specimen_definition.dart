@@ -602,6 +602,42 @@ class SpecimenDefinition extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  SpecimenDefinition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool typeCollected = false,
+    bool patientPreparation = false,
+    bool timeAspect = false,
+    bool collection = false,
+    bool typeTested = false,
+  }) {
+    return SpecimenDefinition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      typeCollected: typeCollected ? null : this.typeCollected,
+      patientPreparation: patientPreparation ? null : this.patientPreparation,
+      timeAspect: timeAspect ? null : this.timeAspect,
+      collection: collection ? null : this.collection,
+      typeTested: typeTested ? null : this.typeTested,
+    );
+  }
+
   @override
   SpecimenDefinition clone() => throw UnimplementedError();
   @override
@@ -1297,6 +1333,35 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  SpecimenDefinitionTypeTested clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool isDerived = false,
+    bool type = false,
+    bool container = false,
+    bool requirement = false,
+    bool retentionTime = false,
+    bool rejectionCriterion = false,
+    bool handling = false,
+  }) {
+    return SpecimenDefinitionTypeTested(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      isDerived: isDerived ? null : this.isDerived,
+      type: type ? null : this.type,
+      preference: preference,
+      container: container ? null : this.container,
+      requirement: requirement ? null : this.requirement,
+      retentionTime: retentionTime ? null : this.retentionTime,
+      rejectionCriterion: rejectionCriterion ? null : this.rejectionCriterion,
+      handling: handling ? null : this.handling,
+    );
+  }
+
   @override
   SpecimenDefinitionTypeTested clone() => throw UnimplementedError();
   @override
@@ -1466,7 +1531,8 @@ class SpecimenDefinitionContainer extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory SpecimenDefinitionContainer.empty() => const SpecimenDefinitionContainer();
+  factory SpecimenDefinitionContainer.empty() =>
+      const SpecimenDefinitionContainer();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenDefinitionContainer.fromJson(
@@ -2004,6 +2070,36 @@ class SpecimenDefinitionContainer extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  SpecimenDefinitionContainer clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool material = false,
+    bool type = false,
+    bool cap = false,
+    bool description = false,
+    bool capacity = false,
+    bool minimumVolume = false,
+    bool additive = false,
+    bool preparation = false,
+  }) {
+    return SpecimenDefinitionContainer(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      material: material ? null : this.material,
+      type: type ? null : this.type,
+      cap: cap ? null : this.cap,
+      description: description ? null : this.description,
+      capacity: capacity ? null : this.capacity,
+      minimumVolumeX: minimumVolume ? null : minimumVolumeX,
+      additive: additive ? null : this.additive,
+      preparation: preparation ? null : this.preparation,
+    );
+  }
+
   @override
   SpecimenDefinitionContainer clone() => throw UnimplementedError();
   @override
@@ -2484,6 +2580,21 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  SpecimenDefinitionAdditive clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return SpecimenDefinitionAdditive(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      additiveX: additiveX,
+    );
+  }
+
   @override
   SpecimenDefinitionAdditive clone() => throw UnimplementedError();
   @override
@@ -2580,7 +2691,8 @@ class SpecimenDefinitionHandling extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory SpecimenDefinitionHandling.empty() => const SpecimenDefinitionHandling();
+  factory SpecimenDefinitionHandling.empty() =>
+      const SpecimenDefinitionHandling();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenDefinitionHandling.fromJson(
@@ -2945,6 +3057,29 @@ class SpecimenDefinitionHandling extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SpecimenDefinitionHandling clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool temperatureQualifier = false,
+    bool temperatureRange = false,
+    bool maxDuration = false,
+    bool instruction = false,
+  }) {
+    return SpecimenDefinitionHandling(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      temperatureQualifier:
+          temperatureQualifier ? null : this.temperatureQualifier,
+      temperatureRange: temperatureRange ? null : this.temperatureRange,
+      maxDuration: maxDuration ? null : this.maxDuration,
+      instruction: instruction ? null : this.instruction,
+    );
   }
 
   @override

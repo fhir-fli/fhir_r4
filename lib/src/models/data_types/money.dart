@@ -308,6 +308,22 @@ class Money extends DataType
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Money clear({
+    bool id = false,
+    bool extension_ = false,
+    bool value = false,
+    bool currency = false,
+  }) {
+    return Money(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      value: value ? null : this.value,
+      currency: currency ? null : this.currency,
+    );
+  }
+
   @override
   Money clone() => throw UnimplementedError();
   @override

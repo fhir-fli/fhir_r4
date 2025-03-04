@@ -797,6 +797,47 @@ class Provenance extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Provenance clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool occurred = false,
+    bool policy = false,
+    bool location = false,
+    bool reason = false,
+    bool activity = false,
+    bool entity = false,
+    bool signature = false,
+  }) {
+    return Provenance(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      target: target,
+      occurredX: occurred ? null : occurredX,
+      recorded: recorded,
+      policy: policy ? null : this.policy,
+      location: location ? null : this.location,
+      reason: reason ? null : this.reason,
+      activity: activity ? null : this.activity,
+      agent: agent,
+      entity: entity ? null : this.entity,
+      signature: signature ? null : this.signature,
+    );
+  }
+
   @override
   Provenance clone() => throw UnimplementedError();
   @override
@@ -1414,6 +1455,27 @@ class ProvenanceAgent extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ProvenanceAgent clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool role = false,
+    bool onBehalfOf = false,
+  }) {
+    return ProvenanceAgent(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      role: role ? null : this.role,
+      who: who,
+      onBehalfOf: onBehalfOf ? null : this.onBehalfOf,
+    );
+  }
+
   @override
   ProvenanceAgent clone() => throw UnimplementedError();
   @override
@@ -1877,6 +1939,24 @@ class ProvenanceEntity extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ProvenanceEntity clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool agent = false,
+  }) {
+    return ProvenanceEntity(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      role: role,
+      what: what,
+      agent: agent ? null : this.agent,
+    );
   }
 
   @override

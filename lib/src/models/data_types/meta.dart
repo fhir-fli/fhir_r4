@@ -445,6 +445,30 @@ class FhirMeta extends DataType
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  FhirMeta clear({
+    bool id = false,
+    bool extension_ = false,
+    bool versionId = false,
+    bool lastUpdated = false,
+    bool source = false,
+    bool profile = false,
+    bool security = false,
+    bool tag = false,
+  }) {
+    return FhirMeta(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      versionId: versionId ? null : this.versionId,
+      lastUpdated: lastUpdated ? null : this.lastUpdated,
+      source: source ? null : this.source,
+      profile: profile ? null : this.profile,
+      security: security ? null : this.security,
+      tag: tag ? null : this.tag,
+    );
+  }
+
   @override
   FhirMeta clone() => throw UnimplementedError();
   @override

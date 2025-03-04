@@ -681,6 +681,45 @@ class Schedule extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Schedule clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool active = false,
+    bool serviceCategory = false,
+    bool serviceType = false,
+    bool specialty = false,
+    bool planningHorizon = false,
+    bool comment = false,
+  }) {
+    return Schedule(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      active: active ? null : this.active,
+      serviceCategory: serviceCategory ? null : this.serviceCategory,
+      serviceType: serviceType ? null : this.serviceType,
+      specialty: specialty ? null : this.specialty,
+      actor: actor,
+      planningHorizon: planningHorizon ? null : this.planningHorizon,
+      comment: comment ? null : this.comment,
+    );
+  }
+
   @override
   Schedule clone() => throw UnimplementedError();
   @override

@@ -391,6 +391,26 @@ class Timing extends BackboneType
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Timing clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool event = false,
+    bool repeat = false,
+    bool code = false,
+  }) {
+    return Timing(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      event: event ? null : this.event,
+      repeat: repeat ? null : this.repeat,
+      code: code ? null : this.code,
+    );
+  }
+
   @override
   Timing clone() => throw UnimplementedError();
   @override
@@ -1270,6 +1290,48 @@ class TimingRepeat extends Element {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TimingRepeat clear({
+    bool id = false,
+    bool extension_ = false,
+    bool bounds = false,
+    bool count = false,
+    bool countMax = false,
+    bool duration = false,
+    bool durationMax = false,
+    bool durationUnit = false,
+    bool frequency = false,
+    bool frequencyMax = false,
+    bool period = false,
+    bool periodMax = false,
+    bool periodUnit = false,
+    bool dayOfWeek = false,
+    bool timeOfDay = false,
+    bool when = false,
+    bool offset = false,
+  }) {
+    return TimingRepeat(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      boundsX: bounds ? null : boundsX,
+      count: count ? null : this.count,
+      countMax: countMax ? null : this.countMax,
+      duration: duration ? null : this.duration,
+      durationMax: durationMax ? null : this.durationMax,
+      durationUnit: durationUnit ? null : this.durationUnit,
+      frequency: frequency ? null : this.frequency,
+      frequencyMax: frequencyMax ? null : this.frequencyMax,
+      period: period ? null : this.period,
+      periodMax: periodMax ? null : this.periodMax,
+      periodUnit: periodUnit ? null : this.periodUnit,
+      dayOfWeek: dayOfWeek ? null : this.dayOfWeek,
+      timeOfDay: timeOfDay ? null : this.timeOfDay,
+      when: when ? null : this.when,
+      offset: offset ? null : this.offset,
+    );
   }
 
   @override

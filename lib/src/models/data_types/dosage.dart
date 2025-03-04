@@ -739,6 +739,48 @@ class Dosage extends BackboneType
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Dosage clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool sequence = false,
+    bool text = false,
+    bool additionalInstruction = false,
+    bool patientInstruction = false,
+    bool timing = false,
+    bool asNeeded = false,
+    bool site = false,
+    bool route = false,
+    bool method = false,
+    bool doseAndRate = false,
+    bool maxDosePerPeriod = false,
+    bool maxDosePerAdministration = false,
+    bool maxDosePerLifetime = false,
+  }) {
+    return Dosage(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      sequence: sequence ? null : this.sequence,
+      text: text ? null : this.text,
+      additionalInstruction:
+          additionalInstruction ? null : this.additionalInstruction,
+      patientInstruction: patientInstruction ? null : this.patientInstruction,
+      timing: timing ? null : this.timing,
+      asNeededX: asNeeded ? null : asNeededX,
+      site: site ? null : this.site,
+      route: route ? null : this.route,
+      method: method ? null : this.method,
+      doseAndRate: doseAndRate ? null : this.doseAndRate,
+      maxDosePerPeriod: maxDosePerPeriod ? null : this.maxDosePerPeriod,
+      maxDosePerAdministration:
+          maxDosePerAdministration ? null : this.maxDosePerAdministration,
+      maxDosePerLifetime: maxDosePerLifetime ? null : this.maxDosePerLifetime,
+    );
+  }
+
   @override
   Dosage clone() => throw UnimplementedError();
   @override
@@ -913,7 +955,9 @@ class Dosage extends BackboneType
       return false;
     }
     if (!equalsDeepWithNull(
-        maxDosePerAdministration, o.maxDosePerAdministration,)) {
+      maxDosePerAdministration,
+      o.maxDosePerAdministration,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(maxDosePerLifetime, o.maxDosePerLifetime)) {
@@ -1361,6 +1405,24 @@ class DosageDoseAndRate extends Element {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DosageDoseAndRate clear({
+    bool id = false,
+    bool extension_ = false,
+    bool type = false,
+    bool dose = false,
+    bool rate = false,
+  }) {
+    return DosageDoseAndRate(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      type: type ? null : this.type,
+      doseX: dose ? null : doseX,
+      rateX: rate ? null : rateX,
+    );
   }
 
   @override

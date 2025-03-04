@@ -743,6 +743,50 @@ class Organization extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Organization clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool active = false,
+    bool type = false,
+    bool name = false,
+    bool alias = false,
+    bool telecom = false,
+    bool address = false,
+    bool partOf = false,
+    bool contact = false,
+    bool endpoint = false,
+  }) {
+    return Organization(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      active: active ? null : this.active,
+      type: type ? null : this.type,
+      name: name ? null : this.name,
+      alias: alias ? null : this.alias,
+      telecom: telecom ? null : this.telecom,
+      address: address ? null : this.address,
+      partOf: partOf ? null : this.partOf,
+      contact: contact ? null : this.contact,
+      endpoint: endpoint ? null : this.endpoint,
+    );
+  }
+
   @override
   Organization clone() => throw UnimplementedError();
   @override
@@ -1364,6 +1408,28 @@ class OrganizationContact extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  OrganizationContact clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool purpose = false,
+    bool name = false,
+    bool telecom = false,
+    bool address = false,
+  }) {
+    return OrganizationContact(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      purpose: purpose ? null : this.purpose,
+      name: name ? null : this.name,
+      telecom: telecom ? null : this.telecom,
+      address: address ? null : this.address,
+    );
   }
 
   @override

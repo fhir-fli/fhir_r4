@@ -1202,6 +1202,75 @@ class OperationDefinition extends CanonicalResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  OperationDefinition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool version = false,
+    bool title = false,
+    bool experimental = false,
+    bool date = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool purpose = false,
+    bool affectsState = false,
+    bool comment = false,
+    bool base = false,
+    bool resource = false,
+    bool inputProfile = false,
+    bool outputProfile = false,
+    bool parameter = false,
+    bool overload = false,
+  }) {
+    return OperationDefinition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url ? null : this.url,
+      version: version ? null : this.version,
+      name: name,
+      title: title ? null : this.title,
+      status: status,
+      kind: kind,
+      experimental: experimental ? null : this.experimental,
+      date: date ? null : this.date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      purpose: purpose ? null : this.purpose,
+      affectsState: affectsState ? null : this.affectsState,
+      code: code,
+      comment: comment ? null : this.comment,
+      base: base ? null : this.base,
+      resource: resource ? null : this.resource,
+      system: system,
+      type: type,
+      instance: instance,
+      inputProfile: inputProfile ? null : this.inputProfile,
+      outputProfile: outputProfile ? null : this.outputProfile,
+      parameter: parameter ? null : this.parameter,
+      overload: overload ? null : this.overload,
+    );
+  }
+
   @override
   OperationDefinition clone() => throw UnimplementedError();
   @override
@@ -2165,7 +2234,8 @@ class OperationDefinitionParameter extends BackboneElement {
       case 'referencedFrom':
         {
           return copyWith(
-              referencedFrom: <OperationDefinitionReferencedFrom>[],);
+            referencedFrom: <OperationDefinitionReferencedFrom>[],
+          );
         }
       case 'part':
         {
@@ -2174,6 +2244,38 @@ class OperationDefinitionParameter extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  OperationDefinitionParameter clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool documentation = false,
+    bool type = false,
+    bool targetProfile = false,
+    bool searchType = false,
+    bool binding = false,
+    bool referencedFrom = false,
+    bool part_ = false,
+  }) {
+    return OperationDefinitionParameter(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      use: use,
+      min: min,
+      max: max,
+      documentation: documentation ? null : this.documentation,
+      type: type ? null : this.type,
+      targetProfile: targetProfile ? null : this.targetProfile,
+      searchType: searchType ? null : this.searchType,
+      binding: binding ? null : this.binding,
+      referencedFrom: referencedFrom ? null : this.referencedFrom,
+      part_: part_ ? null : this.part_,
+    );
   }
 
   @override
@@ -2676,6 +2778,22 @@ class OperationDefinitionBinding extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  OperationDefinitionBinding clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return OperationDefinitionBinding(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      strength: strength,
+      valueSet: valueSet,
+    );
+  }
+
   @override
   OperationDefinitionBinding clone() => throw UnimplementedError();
   @override
@@ -3085,6 +3203,23 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  OperationDefinitionReferencedFrom clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool sourceId = false,
+  }) {
+    return OperationDefinitionReferencedFrom(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      source: source,
+      sourceId: sourceId ? null : this.sourceId,
+    );
+  }
+
   @override
   OperationDefinitionReferencedFrom clone() => throw UnimplementedError();
   @override
@@ -3188,7 +3323,8 @@ class OperationDefinitionOverload extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory OperationDefinitionOverload.empty() => const OperationDefinitionOverload();
+  factory OperationDefinitionOverload.empty() =>
+      const OperationDefinitionOverload();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OperationDefinitionOverload.fromJson(
@@ -3489,6 +3625,24 @@ class OperationDefinitionOverload extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  OperationDefinitionOverload clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool parameterName = false,
+    bool comment = false,
+  }) {
+    return OperationDefinitionOverload(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      parameterName: parameterName ? null : this.parameterName,
+      comment: comment ? null : this.comment,
+    );
   }
 
   @override

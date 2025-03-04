@@ -946,6 +946,60 @@ class DocumentReference extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  DocumentReference clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool masterIdentifier = false,
+    bool identifier = false,
+    bool docStatus = false,
+    bool type = false,
+    bool category = false,
+    bool subject = false,
+    bool date = false,
+    bool author = false,
+    bool authenticator = false,
+    bool custodian = false,
+    bool relatesTo = false,
+    bool description = false,
+    bool securityLabel = false,
+    bool context = false,
+  }) {
+    return DocumentReference(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      masterIdentifier: masterIdentifier ? null : this.masterIdentifier,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      docStatus: docStatus ? null : this.docStatus,
+      type: type ? null : this.type,
+      category: category ? null : this.category,
+      subject: subject ? null : this.subject,
+      date: date ? null : this.date,
+      author: author ? null : this.author,
+      authenticator: authenticator ? null : this.authenticator,
+      custodian: custodian ? null : this.custodian,
+      relatesTo: relatesTo ? null : this.relatesTo,
+      description: description ? null : this.description,
+      securityLabel: securityLabel ? null : this.securityLabel,
+      content: content,
+      context: context ? null : this.context,
+    );
+  }
+
   @override
   DocumentReference clone() => throw UnimplementedError();
   @override
@@ -1543,6 +1597,22 @@ class DocumentReferenceRelatesTo extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  DocumentReferenceRelatesTo clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return DocumentReferenceRelatesTo(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      target: target,
+    );
+  }
+
   @override
   DocumentReferenceRelatesTo clone() => throw UnimplementedError();
   @override
@@ -1949,6 +2019,23 @@ class DocumentReferenceContent extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DocumentReferenceContent clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool format = false,
+  }) {
+    return DocumentReferenceContent(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      attachment: attachment,
+      format: format ? null : this.format,
+    );
   }
 
   @override
@@ -2528,6 +2615,34 @@ class DocumentReferenceContext extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DocumentReferenceContext clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool encounter = false,
+    bool event = false,
+    bool period = false,
+    bool facilityType = false,
+    bool practiceSetting = false,
+    bool sourcePatientInfo = false,
+    bool related = false,
+  }) {
+    return DocumentReferenceContext(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      encounter: encounter ? null : this.encounter,
+      event: event ? null : this.event,
+      period: period ? null : this.period,
+      facilityType: facilityType ? null : this.facilityType,
+      practiceSetting: practiceSetting ? null : this.practiceSetting,
+      sourcePatientInfo: sourcePatientInfo ? null : this.sourcePatientInfo,
+      related: related ? null : this.related,
+    );
   }
 
   @override

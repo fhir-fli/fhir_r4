@@ -933,6 +933,53 @@ class CoverageEligibilityResponse extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  CoverageEligibilityResponse clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool serviced = false,
+    bool requestor = false,
+    bool disposition = false,
+    bool insurance = false,
+    bool preAuthRef = false,
+    bool form = false,
+    bool error = false,
+  }) {
+    return CoverageEligibilityResponse(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      purpose: purpose,
+      patient: patient,
+      servicedX: serviced ? null : servicedX,
+      created: created,
+      requestor: requestor ? null : this.requestor,
+      request: request,
+      outcome: outcome,
+      disposition: disposition ? null : this.disposition,
+      insurer: insurer,
+      insurance: insurance ? null : this.insurance,
+      preAuthRef: preAuthRef ? null : this.preAuthRef,
+      form: form ? null : this.form,
+      error: error ? null : this.error,
+    );
+  }
+
   @override
   CoverageEligibilityResponse clone() => throw UnimplementedError();
   @override
@@ -1580,6 +1627,27 @@ class CoverageEligibilityResponseInsurance extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CoverageEligibilityResponseInsurance clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool inforce = false,
+    bool benefitPeriod = false,
+    bool item = false,
+  }) {
+    return CoverageEligibilityResponseInsurance(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      coverage: coverage,
+      inforce: inforce ? null : this.inforce,
+      benefitPeriod: benefitPeriod ? null : this.benefitPeriod,
+      item: item ? null : this.item,
+    );
   }
 
   @override
@@ -2407,6 +2475,50 @@ class CoverageEligibilityResponseItem extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  CoverageEligibilityResponseItem clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool category = false,
+    bool productOrService = false,
+    bool modifier = false,
+    bool provider = false,
+    bool excluded = false,
+    bool name = false,
+    bool description = false,
+    bool network = false,
+    bool unit = false,
+    bool term = false,
+    bool benefit = false,
+    bool authorizationRequired = false,
+    bool authorizationSupporting = false,
+    bool authorizationUrl = false,
+  }) {
+    return CoverageEligibilityResponseItem(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      category: category ? null : this.category,
+      productOrService: productOrService ? null : this.productOrService,
+      modifier: modifier ? null : this.modifier,
+      provider: provider ? null : this.provider,
+      excluded: excluded ? null : this.excluded,
+      name: name ? null : this.name,
+      description: description ? null : this.description,
+      network: network ? null : this.network,
+      unit: unit ? null : this.unit,
+      term: term ? null : this.term,
+      benefit: benefit ? null : this.benefit,
+      authorizationRequired:
+          authorizationRequired ? null : this.authorizationRequired,
+      authorizationSupporting:
+          authorizationSupporting ? null : this.authorizationSupporting,
+      authorizationUrl: authorizationUrl ? null : this.authorizationUrl,
+    );
+  }
+
   @override
   CoverageEligibilityResponseItem clone() => throw UnimplementedError();
   @override
@@ -3102,6 +3214,25 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  CoverageEligibilityResponseBenefit clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool allowed = false,
+    bool used = false,
+  }) {
+    return CoverageEligibilityResponseBenefit(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      allowedX: allowed ? null : allowedX,
+      usedX: used ? null : usedX,
+    );
+  }
+
   @override
   CoverageEligibilityResponseBenefit clone() => throw UnimplementedError();
   @override
@@ -3483,6 +3614,21 @@ class CoverageEligibilityResponseError extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CoverageEligibilityResponseError clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return CoverageEligibilityResponseError(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+    );
   }
 
   @override

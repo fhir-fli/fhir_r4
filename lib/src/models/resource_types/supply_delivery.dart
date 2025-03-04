@@ -837,6 +837,52 @@ class SupplyDelivery extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  SupplyDelivery clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool basedOn = false,
+    bool partOf = false,
+    bool status = false,
+    bool patient = false,
+    bool type = false,
+    bool suppliedItem = false,
+    bool occurrence = false,
+    bool supplier = false,
+    bool destination = false,
+    bool receiver = false,
+  }) {
+    return SupplyDelivery(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      basedOn: basedOn ? null : this.basedOn,
+      partOf: partOf ? null : this.partOf,
+      status: status ? null : this.status,
+      patient: patient ? null : this.patient,
+      type: type ? null : this.type,
+      suppliedItem: suppliedItem ? null : this.suppliedItem,
+      occurrenceX: occurrence ? null : occurrenceX,
+      supplier: supplier ? null : this.supplier,
+      destination: destination ? null : this.destination,
+      receiver: receiver ? null : this.receiver,
+    );
+  }
+
   @override
   SupplyDelivery clone() => throw UnimplementedError();
   @override
@@ -1077,7 +1123,8 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory SupplyDeliverySuppliedItem.empty() => const SupplyDeliverySuppliedItem();
+  factory SupplyDeliverySuppliedItem.empty() =>
+      const SupplyDeliverySuppliedItem();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SupplyDeliverySuppliedItem.fromJson(
@@ -1428,6 +1475,24 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SupplyDeliverySuppliedItem clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool quantity = false,
+    bool item = false,
+  }) {
+    return SupplyDeliverySuppliedItem(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      quantity: quantity ? null : this.quantity,
+      itemX: item ? null : itemX,
+    );
   }
 
   @override

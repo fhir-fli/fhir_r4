@@ -1044,6 +1044,64 @@ class Patient extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Patient clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool active = false,
+    bool name = false,
+    bool telecom = false,
+    bool gender = false,
+    bool birthDate = false,
+    bool deceased = false,
+    bool address = false,
+    bool maritalStatus = false,
+    bool multipleBirth = false,
+    bool photo = false,
+    bool contact = false,
+    bool communication = false,
+    bool generalPractitioner = false,
+    bool managingOrganization = false,
+    bool link = false,
+  }) {
+    return Patient(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      active: active ? null : this.active,
+      name: name ? null : this.name,
+      telecom: telecom ? null : this.telecom,
+      gender: gender ? null : this.gender,
+      birthDate: birthDate ? null : this.birthDate,
+      deceasedX: deceased ? null : deceasedX,
+      address: address ? null : this.address,
+      maritalStatus: maritalStatus ? null : this.maritalStatus,
+      multipleBirthX: multipleBirth ? null : multipleBirthX,
+      photo: photo ? null : this.photo,
+      contact: contact ? null : this.contact,
+      communication: communication ? null : this.communication,
+      generalPractitioner:
+          generalPractitioner ? null : this.generalPractitioner,
+      managingOrganization:
+          managingOrganization ? null : this.managingOrganization,
+      link: link ? null : this.link,
+    );
+  }
+
   @override
   Patient clone() => throw UnimplementedError();
   @override
@@ -1830,6 +1888,34 @@ class PatientContact extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  PatientContact clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool relationship = false,
+    bool name = false,
+    bool telecom = false,
+    bool address = false,
+    bool gender = false,
+    bool organization = false,
+    bool period = false,
+  }) {
+    return PatientContact(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      relationship: relationship ? null : this.relationship,
+      name: name ? null : this.name,
+      telecom: telecom ? null : this.telecom,
+      address: address ? null : this.address,
+      gender: gender ? null : this.gender,
+      organization: organization ? null : this.organization,
+      period: period ? null : this.period,
+    );
+  }
+
   @override
   PatientContact clone() => throw UnimplementedError();
   @override
@@ -2293,6 +2379,23 @@ class PatientCommunication extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  PatientCommunication clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool preferred = false,
+  }) {
+    return PatientCommunication(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      language: language,
+      preferred: preferred ? null : this.preferred,
+    );
+  }
+
   @override
   PatientCommunication clone() => throw UnimplementedError();
   @override
@@ -2695,6 +2798,22 @@ class PatientLink extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  PatientLink clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return PatientLink(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      other: other,
+      type: type,
+    );
   }
 
   @override

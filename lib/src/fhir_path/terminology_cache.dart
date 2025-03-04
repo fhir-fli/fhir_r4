@@ -407,7 +407,10 @@ class TerminologyCache {
   /// Generate a token for an expansion
   ValueSetCacheToken generateExpandToken(ValueSet vs, bool hierarchical) {
     return ValueSetCacheToken(
-        vs.url?.toString(), vs.version?.value, hierarchical);
+      vs.url?.toString(),
+      vs.version?.value,
+      hierarchical,
+    );
   }
 
   /// Get a cached expansion

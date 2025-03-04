@@ -1013,6 +1013,58 @@ class SupplyRequest extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  SupplyRequest clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool status = false,
+    bool category = false,
+    bool priority = false,
+    bool parameter = false,
+    bool occurrence = false,
+    bool authoredOn = false,
+    bool requester = false,
+    bool supplier = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool deliverFrom = false,
+    bool deliverTo = false,
+  }) {
+    return SupplyRequest(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status ? null : this.status,
+      category: category ? null : this.category,
+      priority: priority ? null : this.priority,
+      itemX: itemX,
+      quantity: quantity,
+      parameter: parameter ? null : this.parameter,
+      occurrenceX: occurrence ? null : occurrenceX,
+      authoredOn: authoredOn ? null : this.authoredOn,
+      requester: requester ? null : this.requester,
+      supplier: supplier ? null : this.supplier,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      deliverFrom: deliverFrom ? null : this.deliverFrom,
+      deliverTo: deliverTo ? null : this.deliverTo,
+    );
+  }
+
   @override
   SupplyRequest clone() => throw UnimplementedError();
   @override
@@ -1686,6 +1738,24 @@ class SupplyRequestParameter extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SupplyRequestParameter clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool value = false,
+  }) {
+    return SupplyRequestParameter(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      valueX: value ? null : valueX,
+    );
   }
 
   @override

@@ -809,6 +809,52 @@ class DocumentManifest extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  DocumentManifest clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool masterIdentifier = false,
+    bool identifier = false,
+    bool type = false,
+    bool subject = false,
+    bool created = false,
+    bool author = false,
+    bool recipient = false,
+    bool source = false,
+    bool description = false,
+    bool related = false,
+  }) {
+    return DocumentManifest(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      masterIdentifier: masterIdentifier ? null : this.masterIdentifier,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      type: type ? null : this.type,
+      subject: subject ? null : this.subject,
+      created: created ? null : this.created,
+      author: author ? null : this.author,
+      recipient: recipient ? null : this.recipient,
+      source: source ? null : this.source,
+      description: description ? null : this.description,
+      content: content,
+      related: related ? null : this.related,
+    );
+  }
+
   @override
   DocumentManifest clone() => throw UnimplementedError();
   @override
@@ -1367,6 +1413,24 @@ class DocumentManifestRelated extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DocumentManifestRelated clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool ref = false,
+  }) {
+    return DocumentManifestRelated(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      ref: ref ? null : this.ref,
+    );
   }
 
   @override

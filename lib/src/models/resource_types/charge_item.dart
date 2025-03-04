@@ -1378,6 +1378,83 @@ class ChargeItem extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ChargeItem clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool definitionUri = false,
+    bool definitionCanonical = false,
+    bool partOf = false,
+    bool context = false,
+    bool occurrence = false,
+    bool performer = false,
+    bool performingOrganization = false,
+    bool requestingOrganization = false,
+    bool costCenter = false,
+    bool quantity = false,
+    bool bodysite = false,
+    bool factorOverride = false,
+    bool priceOverride = false,
+    bool overrideReason = false,
+    bool enterer = false,
+    bool enteredDate = false,
+    bool reason = false,
+    bool service = false,
+    bool product = false,
+    bool account = false,
+    bool note = false,
+    bool supportingInformation = false,
+  }) {
+    return ChargeItem(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      definitionUri: definitionUri ? null : this.definitionUri,
+      definitionCanonical:
+          definitionCanonical ? null : this.definitionCanonical,
+      status: status,
+      partOf: partOf ? null : this.partOf,
+      code: code,
+      subject: subject,
+      context: context ? null : this.context,
+      occurrenceX: occurrence ? null : occurrenceX,
+      performer: performer ? null : this.performer,
+      performingOrganization:
+          performingOrganization ? null : this.performingOrganization,
+      requestingOrganization:
+          requestingOrganization ? null : this.requestingOrganization,
+      costCenter: costCenter ? null : this.costCenter,
+      quantity: quantity ? null : this.quantity,
+      bodysite: bodysite ? null : this.bodysite,
+      factorOverride: factorOverride ? null : this.factorOverride,
+      priceOverride: priceOverride ? null : this.priceOverride,
+      overrideReason: overrideReason ? null : this.overrideReason,
+      enterer: enterer ? null : this.enterer,
+      enteredDate: enteredDate ? null : this.enteredDate,
+      reason: reason ? null : this.reason,
+      service: service ? null : this.service,
+      productX: product ? null : productX,
+      account: account ? null : this.account,
+      note: note ? null : this.note,
+      supportingInformation:
+          supportingInformation ? null : this.supportingInformation,
+    );
+  }
+
   @override
   ChargeItem clone() => throw UnimplementedError();
   @override
@@ -2090,6 +2167,23 @@ class ChargeItemPerformer extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ChargeItemPerformer clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool function_ = false,
+  }) {
+    return ChargeItemPerformer(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      function_: function_ ? null : this.function_,
+      actor: actor,
+    );
   }
 
   @override

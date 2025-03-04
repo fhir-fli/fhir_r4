@@ -771,6 +771,51 @@ class QuestionnaireResponse extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  QuestionnaireResponse clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool basedOn = false,
+    bool partOf = false,
+    bool questionnaire = false,
+    bool subject = false,
+    bool encounter = false,
+    bool authored = false,
+    bool author = false,
+    bool source = false,
+    bool item = false,
+  }) {
+    return QuestionnaireResponse(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      basedOn: basedOn ? null : this.basedOn,
+      partOf: partOf ? null : this.partOf,
+      questionnaire: questionnaire ? null : this.questionnaire,
+      status: status,
+      subject: subject ? null : this.subject,
+      encounter: encounter ? null : this.encounter,
+      authored: authored ? null : this.authored,
+      author: author ? null : this.author,
+      source: source ? null : this.source,
+      item: item ? null : this.item,
+    );
+  }
+
   @override
   QuestionnaireResponse clone() => throw UnimplementedError();
   @override
@@ -1412,6 +1457,29 @@ class QuestionnaireResponseItem extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  QuestionnaireResponseItem clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool definition = false,
+    bool text = false,
+    bool answer = false,
+    bool item = false,
+  }) {
+    return QuestionnaireResponseItem(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      linkId: linkId,
+      definition: definition ? null : this.definition,
+      text: text ? null : this.text,
+      answer: answer ? null : this.answer,
+      item: item ? null : this.item,
+    );
+  }
+
   @override
   QuestionnaireResponseItem clone() => throw UnimplementedError();
   @override
@@ -1551,7 +1619,8 @@ class QuestionnaireResponseAnswer extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory QuestionnaireResponseAnswer.empty() => const QuestionnaireResponseAnswer();
+  factory QuestionnaireResponseAnswer.empty() =>
+      const QuestionnaireResponseAnswer();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory QuestionnaireResponseAnswer.fromJson(
@@ -2138,6 +2207,24 @@ class QuestionnaireResponseAnswer extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  QuestionnaireResponseAnswer clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool value = false,
+    bool item = false,
+  }) {
+    return QuestionnaireResponseAnswer(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      valueX: value ? null : valueX,
+      item: item ? null : this.item,
+    );
   }
 
   @override

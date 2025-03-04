@@ -1325,6 +1325,76 @@ class DeviceRequest extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  DeviceRequest clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool instantiatesCanonical = false,
+    bool instantiatesUri = false,
+    bool basedOn = false,
+    bool priorRequest = false,
+    bool groupIdentifier = false,
+    bool status = false,
+    bool priority = false,
+    bool parameter = false,
+    bool encounter = false,
+    bool occurrence = false,
+    bool authoredOn = false,
+    bool requester = false,
+    bool performerType = false,
+    bool performer = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool insurance = false,
+    bool supportingInfo = false,
+    bool note = false,
+    bool relevantHistory = false,
+  }) {
+    return DeviceRequest(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      instantiatesCanonical:
+          instantiatesCanonical ? null : this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri ? null : this.instantiatesUri,
+      basedOn: basedOn ? null : this.basedOn,
+      priorRequest: priorRequest ? null : this.priorRequest,
+      groupIdentifier: groupIdentifier ? null : this.groupIdentifier,
+      status: status ? null : this.status,
+      intent: intent,
+      priority: priority ? null : this.priority,
+      codeX: codeX,
+      parameter: parameter ? null : this.parameter,
+      subject: subject,
+      encounter: encounter ? null : this.encounter,
+      occurrenceX: occurrence ? null : occurrenceX,
+      authoredOn: authoredOn ? null : this.authoredOn,
+      requester: requester ? null : this.requester,
+      performerType: performerType ? null : this.performerType,
+      performer: performer ? null : this.performer,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      insurance: insurance ? null : this.insurance,
+      supportingInfo: supportingInfo ? null : this.supportingInfo,
+      note: note ? null : this.note,
+      relevantHistory: relevantHistory ? null : this.relevantHistory,
+    );
+  }
+
   @override
   DeviceRequest clone() => throw UnimplementedError();
   @override
@@ -2119,6 +2189,24 @@ class DeviceRequestParameter extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DeviceRequestParameter clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool value = false,
+  }) {
+    return DeviceRequestParameter(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      valueX: value ? null : valueX,
+    );
   }
 
   @override

@@ -1240,6 +1240,78 @@ class ResearchStudy extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ResearchStudy clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool title = false,
+    bool protocol = false,
+    bool partOf = false,
+    bool primaryPurposeType = false,
+    bool phase = false,
+    bool category = false,
+    bool focus = false,
+    bool condition = false,
+    bool contact = false,
+    bool relatedArtifact = false,
+    bool keyword = false,
+    bool location = false,
+    bool description = false,
+    bool enrollment = false,
+    bool period = false,
+    bool sponsor = false,
+    bool principalInvestigator = false,
+    bool site = false,
+    bool reasonStopped = false,
+    bool note = false,
+    bool arm = false,
+    bool objective = false,
+  }) {
+    return ResearchStudy(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      title: title ? null : this.title,
+      protocol: protocol ? null : this.protocol,
+      partOf: partOf ? null : this.partOf,
+      status: status,
+      primaryPurposeType: primaryPurposeType ? null : this.primaryPurposeType,
+      phase: phase ? null : this.phase,
+      category: category ? null : this.category,
+      focus: focus ? null : this.focus,
+      condition: condition ? null : this.condition,
+      contact: contact ? null : this.contact,
+      relatedArtifact: relatedArtifact ? null : this.relatedArtifact,
+      keyword: keyword ? null : this.keyword,
+      location: location ? null : this.location,
+      description: description ? null : this.description,
+      enrollment: enrollment ? null : this.enrollment,
+      period: period ? null : this.period,
+      sponsor: sponsor ? null : this.sponsor,
+      principalInvestigator:
+          principalInvestigator ? null : this.principalInvestigator,
+      site: site ? null : this.site,
+      reasonStopped: reasonStopped ? null : this.reasonStopped,
+      note: note ? null : this.note,
+      arm: arm ? null : this.arm,
+      objective: objective ? null : this.objective,
+    );
+  }
+
   @override
   ResearchStudy clone() => throw UnimplementedError();
   @override
@@ -1999,6 +2071,25 @@ class ResearchStudyArm extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ResearchStudyArm clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool description = false,
+  }) {
+    return ResearchStudyArm(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      type: type ? null : this.type,
+      description: description ? null : this.description,
+    );
+  }
+
   @override
   ResearchStudyArm clone() => throw UnimplementedError();
   @override
@@ -2411,6 +2502,24 @@ class ResearchStudyObjective extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ResearchStudyObjective clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool name = false,
+    bool type = false,
+  }) {
+    return ResearchStudyObjective(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name ? null : this.name,
+      type: type ? null : this.type,
+    );
   }
 
   @override

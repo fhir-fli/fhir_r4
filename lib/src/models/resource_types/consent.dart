@@ -894,6 +894,53 @@ class Consent extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Consent clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool patient = false,
+    bool dateTime = false,
+    bool performer = false,
+    bool organization = false,
+    bool source = false,
+    bool policy = false,
+    bool policyRule = false,
+    bool verification = false,
+    bool provision = false,
+  }) {
+    return Consent(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      scope: scope,
+      category: category,
+      patient: patient ? null : this.patient,
+      dateTime: dateTime ? null : this.dateTime,
+      performer: performer ? null : this.performer,
+      organization: organization ? null : this.organization,
+      sourceX: source ? null : sourceX,
+      policy: policy ? null : this.policy,
+      policyRule: policyRule ? null : this.policyRule,
+      verification: verification ? null : this.verification,
+      provision: provision ? null : this.provision,
+    );
+  }
+
   @override
   Consent clone() => throw UnimplementedError();
   @override
@@ -1472,6 +1519,24 @@ class ConsentPolicy extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ConsentPolicy clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool authority = false,
+    bool uri = false,
+  }) {
+    return ConsentPolicy(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      authority: authority ? null : this.authority,
+      uri: uri ? null : this.uri,
+    );
+  }
+
   @override
   ConsentPolicy clone() => throw UnimplementedError();
   @override
@@ -1908,6 +1973,25 @@ class ConsentVerification extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ConsentVerification clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool verifiedWith = false,
+    bool verificationDate = false,
+  }) {
+    return ConsentVerification(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      verified: verified,
+      verifiedWith: verifiedWith ? null : this.verifiedWith,
+      verificationDate: verificationDate ? null : this.verificationDate,
+    );
   }
 
   @override
@@ -2642,6 +2726,42 @@ class ConsentProvision extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ConsentProvision clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool period = false,
+    bool actor = false,
+    bool action = false,
+    bool securityLabel = false,
+    bool purpose = false,
+    bool class_ = false,
+    bool code = false,
+    bool dataPeriod = false,
+    bool data = false,
+    bool provision = false,
+  }) {
+    return ConsentProvision(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      period: period ? null : this.period,
+      actor: actor ? null : this.actor,
+      action: action ? null : this.action,
+      securityLabel: securityLabel ? null : this.securityLabel,
+      purpose: purpose ? null : this.purpose,
+      class_: class_ ? null : this.class_,
+      code: code ? null : this.code,
+      dataPeriod: dataPeriod ? null : this.dataPeriod,
+      data: data ? null : this.data,
+      provision: provision ? null : this.provision,
+    );
+  }
+
   @override
   ConsentProvision clone() => throw UnimplementedError();
   @override
@@ -3177,6 +3297,22 @@ class ConsentActor extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ConsentActor clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ConsentActor(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      role: role,
+      reference: reference,
+    );
+  }
+
   @override
   ConsentActor clone() => throw UnimplementedError();
   @override
@@ -3581,6 +3717,22 @@ class ConsentData extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ConsentData clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ConsentData(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      meaning: meaning,
+      reference: reference,
+    );
   }
 
   @override

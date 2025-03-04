@@ -1423,6 +1423,91 @@ class Task extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Task clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool instantiatesCanonical = false,
+    bool instantiatesUri = false,
+    bool basedOn = false,
+    bool groupIdentifier = false,
+    bool partOf = false,
+    bool statusReason = false,
+    bool businessStatus = false,
+    bool priority = false,
+    bool code = false,
+    bool description = false,
+    bool focus = false,
+    bool for_ = false,
+    bool encounter = false,
+    bool executionPeriod = false,
+    bool authoredOn = false,
+    bool lastModified = false,
+    bool requester = false,
+    bool performerType = false,
+    bool owner = false,
+    bool location = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool insurance = false,
+    bool note = false,
+    bool relevantHistory = false,
+    bool restriction = false,
+    bool input = false,
+    bool output = false,
+  }) {
+    return Task(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      instantiatesCanonical:
+          instantiatesCanonical ? null : this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri ? null : this.instantiatesUri,
+      basedOn: basedOn ? null : this.basedOn,
+      groupIdentifier: groupIdentifier ? null : this.groupIdentifier,
+      partOf: partOf ? null : this.partOf,
+      status: status,
+      statusReason: statusReason ? null : this.statusReason,
+      businessStatus: businessStatus ? null : this.businessStatus,
+      intent: intent,
+      priority: priority ? null : this.priority,
+      code: code ? null : this.code,
+      description: description ? null : this.description,
+      focus: focus ? null : this.focus,
+      for_: for_ ? null : this.for_,
+      encounter: encounter ? null : this.encounter,
+      executionPeriod: executionPeriod ? null : this.executionPeriod,
+      authoredOn: authoredOn ? null : this.authoredOn,
+      lastModified: lastModified ? null : this.lastModified,
+      requester: requester ? null : this.requester,
+      performerType: performerType ? null : this.performerType,
+      owner: owner ? null : this.owner,
+      location: location ? null : this.location,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      insurance: insurance ? null : this.insurance,
+      note: note ? null : this.note,
+      relevantHistory: relevantHistory ? null : this.relevantHistory,
+      restriction: restriction ? null : this.restriction,
+      input: input ? null : this.input,
+      output: output ? null : this.output,
+    );
+  }
+
   @override
   Task clone() => throw UnimplementedError();
   @override
@@ -2198,6 +2283,26 @@ class TaskRestriction extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TaskRestriction clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool repetitions = false,
+    bool period = false,
+    bool recipient = false,
+  }) {
+    return TaskRestriction(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      repetitions: repetitions ? null : this.repetitions,
+      period: period ? null : this.period,
+      recipient: recipient ? null : this.recipient,
+    );
   }
 
   @override
@@ -3776,6 +3881,22 @@ class TaskInput extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  TaskInput clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return TaskInput(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      valueX: valueX,
+    );
+  }
+
   @override
   TaskInput clone() => throw UnimplementedError();
   @override
@@ -5334,6 +5455,22 @@ class TaskOutput extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TaskOutput clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return TaskOutput(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      valueX: valueX,
+    );
   }
 
   @override

@@ -745,7 +745,8 @@ class ClinicalUseDefinition extends DomainResource {
       case 'contraindication':
         {
           return copyWith(
-              contraindication: ClinicalUseDefinitionContraindication.empty(),);
+            contraindication: ClinicalUseDefinitionContraindication.empty(),
+          );
         }
       case 'indication':
         {
@@ -754,7 +755,8 @@ class ClinicalUseDefinition extends DomainResource {
       case 'interaction':
         {
           return copyWith(
-              interaction: ClinicalUseDefinitionInteraction.empty(),);
+            interaction: ClinicalUseDefinitionInteraction.empty(),
+          );
         }
       case 'population':
         {
@@ -763,8 +765,8 @@ class ClinicalUseDefinition extends DomainResource {
       case 'undesirableEffect':
         {
           return copyWith(
-              undesirableEffect:
-                  ClinicalUseDefinitionUndesirableEffect.empty(),);
+            undesirableEffect: ClinicalUseDefinitionUndesirableEffect.empty(),
+          );
         }
       case 'warning':
         {
@@ -773,6 +775,51 @@ class ClinicalUseDefinition extends DomainResource {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClinicalUseDefinition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool category = false,
+    bool subject = false,
+    bool status = false,
+    bool contraindication = false,
+    bool indication = false,
+    bool interaction = false,
+    bool population = false,
+    bool undesirableEffect = false,
+    bool warning = false,
+  }) {
+    return ClinicalUseDefinition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      type: type,
+      category: category ? null : this.category,
+      subject: subject ? null : this.subject,
+      status: status ? null : this.status,
+      contraindication: contraindication ? null : this.contraindication,
+      indication: indication ? null : this.indication,
+      interaction: interaction ? null : this.interaction,
+      population: population ? null : this.population,
+      undesirableEffect: undesirableEffect ? null : this.undesirableEffect,
+      warning: warning ? null : this.warning,
+    );
   }
 
   @override
@@ -1427,6 +1474,31 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ClinicalUseDefinitionContraindication clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool diseaseSymptomProcedure = false,
+    bool diseaseStatus = false,
+    bool comorbidity = false,
+    bool indication = false,
+    bool otherTherapy = false,
+  }) {
+    return ClinicalUseDefinitionContraindication(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      diseaseSymptomProcedure:
+          diseaseSymptomProcedure ? null : this.diseaseSymptomProcedure,
+      diseaseStatus: diseaseStatus ? null : this.diseaseStatus,
+      comorbidity: comorbidity ? null : this.comorbidity,
+      indication: indication ? null : this.indication,
+      otherTherapy: otherTherapy ? null : this.otherTherapy,
+    );
+  }
+
   @override
   ClinicalUseDefinitionContraindication clone() => throw UnimplementedError();
   @override
@@ -1526,7 +1598,9 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        diseaseSymptomProcedure, o.diseaseSymptomProcedure,)) {
+      diseaseSymptomProcedure,
+      o.diseaseSymptomProcedure,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(diseaseStatus, o.diseaseStatus)) {
@@ -1878,6 +1952,22 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClinicalUseDefinitionOtherTherapy clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ClinicalUseDefinitionOtherTherapy(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      relationshipType: relationshipType,
+      therapy: therapy,
+    );
   }
 
   @override
@@ -2508,6 +2598,35 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ClinicalUseDefinitionIndication clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool diseaseSymptomProcedure = false,
+    bool diseaseStatus = false,
+    bool comorbidity = false,
+    bool intendedEffect = false,
+    bool duration = false,
+    bool undesirableEffect = false,
+    bool otherTherapy = false,
+  }) {
+    return ClinicalUseDefinitionIndication(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      diseaseSymptomProcedure:
+          diseaseSymptomProcedure ? null : this.diseaseSymptomProcedure,
+      diseaseStatus: diseaseStatus ? null : this.diseaseStatus,
+      comorbidity: comorbidity ? null : this.comorbidity,
+      intendedEffect: intendedEffect ? null : this.intendedEffect,
+      durationX: duration ? null : durationX,
+      undesirableEffect: undesirableEffect ? null : this.undesirableEffect,
+      otherTherapy: otherTherapy ? null : this.otherTherapy,
+    );
+  }
+
   @override
   ClinicalUseDefinitionIndication clone() => throw UnimplementedError();
   @override
@@ -2617,7 +2736,9 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        diseaseSymptomProcedure, o.diseaseSymptomProcedure,)) {
+      diseaseSymptomProcedure,
+      o.diseaseSymptomProcedure,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(diseaseStatus, o.diseaseStatus)) {
@@ -3077,6 +3198,30 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClinicalUseDefinitionInteraction clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool interactant = false,
+    bool type = false,
+    bool effect = false,
+    bool incidence = false,
+    bool management = false,
+  }) {
+    return ClinicalUseDefinitionInteraction(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      interactant: interactant ? null : this.interactant,
+      type: type ? null : this.type,
+      effect: effect ? null : this.effect,
+      incidence: incidence ? null : this.incidence,
+      management: management ? null : this.management,
+    );
   }
 
   @override
@@ -3540,6 +3685,21 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ClinicalUseDefinitionInteractant clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ClinicalUseDefinitionInteractant(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      itemX: itemX,
+    );
+  }
+
   @override
   ClinicalUseDefinitionInteractant clone() => throw UnimplementedError();
   @override
@@ -3969,6 +4129,28 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ClinicalUseDefinitionUndesirableEffect clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool symptomConditionEffect = false,
+    bool classification = false,
+    bool frequencyOfOccurrence = false,
+  }) {
+    return ClinicalUseDefinitionUndesirableEffect(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      symptomConditionEffect:
+          symptomConditionEffect ? null : this.symptomConditionEffect,
+      classification: classification ? null : this.classification,
+      frequencyOfOccurrence:
+          frequencyOfOccurrence ? null : this.frequencyOfOccurrence,
+    );
+  }
+
   @override
   ClinicalUseDefinitionUndesirableEffect clone() => throw UnimplementedError();
   @override
@@ -4383,6 +4565,24 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClinicalUseDefinitionWarning clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+    bool code = false,
+  }) {
+    return ClinicalUseDefinitionWarning(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description ? null : this.description,
+      code: code ? null : this.code,
+    );
   }
 
   @override

@@ -399,6 +399,20 @@ class UsageContext extends DataType
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  UsageContext clear({
+    bool id = false,
+    bool extension_ = false,
+  }) {
+    return UsageContext(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      code: code,
+      valueX: valueX,
+    );
+  }
+
   @override
   UsageContext clone() => throw UnimplementedError();
   @override

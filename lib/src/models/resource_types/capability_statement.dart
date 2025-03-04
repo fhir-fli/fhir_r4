@@ -1188,7 +1188,8 @@ class CapabilityStatement extends CanonicalResource {
       case 'implementation':
         {
           return copyWith(
-              implementation: CapabilityStatementImplementation.empty(),);
+            implementation: CapabilityStatementImplementation.empty(),
+          );
         }
       case 'fhirVersion':
         {
@@ -1221,6 +1222,78 @@ class CapabilityStatement extends CanonicalResource {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CapabilityStatement clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool version = false,
+    bool name = false,
+    bool title = false,
+    bool experimental = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool purpose = false,
+    bool copyright = false,
+    bool instantiates = false,
+    bool imports = false,
+    bool software = false,
+    bool implementation = false,
+    bool patchFormat = false,
+    bool implementationGuide = false,
+    bool rest = false,
+    bool messaging = false,
+    bool document = false,
+  }) {
+    return CapabilityStatement(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url ? null : this.url,
+      version: version ? null : this.version,
+      name: name ? null : this.name,
+      title: title ? null : this.title,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      date: date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      purpose: purpose ? null : this.purpose,
+      copyright: copyright ? null : this.copyright,
+      kind: kind,
+      instantiates: instantiates ? null : this.instantiates,
+      imports: imports ? null : this.imports,
+      software: software ? null : this.software,
+      implementation: implementation ? null : this.implementation,
+      fhirVersion: fhirVersion,
+      format: format,
+      patchFormat: patchFormat ? null : this.patchFormat,
+      implementationGuide:
+          implementationGuide ? null : this.implementationGuide,
+      rest: rest ? null : this.rest,
+      messaging: messaging ? null : this.messaging,
+      document: document ? null : this.document,
+    );
   }
 
   @override
@@ -1968,6 +2041,25 @@ class CapabilityStatementSoftware extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  CapabilityStatementSoftware clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool version = false,
+    bool releaseDate = false,
+  }) {
+    return CapabilityStatementSoftware(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      version: version ? null : this.version,
+      releaseDate: releaseDate ? null : this.releaseDate,
+    );
+  }
+
   @override
   CapabilityStatementSoftware clone() => throw UnimplementedError();
   @override
@@ -2415,6 +2507,25 @@ class CapabilityStatementImplementation extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CapabilityStatementImplementation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool custodian = false,
+  }) {
+    return CapabilityStatementImplementation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description,
+      url: url ? null : this.url,
+      custodian: custodian ? null : this.custodian,
+    );
   }
 
   @override
@@ -3041,6 +3152,35 @@ class CapabilityStatementRest extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  CapabilityStatementRest clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool documentation = false,
+    bool security = false,
+    bool resource = false,
+    bool interaction = false,
+    bool searchParam = false,
+    bool operation = false,
+    bool compartment = false,
+  }) {
+    return CapabilityStatementRest(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      mode: mode,
+      documentation: documentation ? null : this.documentation,
+      security: security ? null : this.security,
+      resource: resource ? null : this.resource,
+      interaction: interaction ? null : this.interaction,
+      searchParam: searchParam ? null : this.searchParam,
+      operation: operation ? null : this.operation,
+      compartment: compartment ? null : this.compartment,
+    );
+  }
+
   @override
   CapabilityStatementRest clone() => throw UnimplementedError();
   @override
@@ -3227,7 +3367,8 @@ class CapabilityStatementSecurity extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory CapabilityStatementSecurity.empty() => const CapabilityStatementSecurity();
+  factory CapabilityStatementSecurity.empty() =>
+      const CapabilityStatementSecurity();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementSecurity.fromJson(
@@ -3563,6 +3704,26 @@ class CapabilityStatementSecurity extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CapabilityStatementSecurity clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool cors = false,
+    bool service = false,
+    bool description = false,
+  }) {
+    return CapabilityStatementSecurity(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      cors: cors ? null : this.cors,
+      service: service ? null : this.service,
+      description: description ? null : this.description,
+    );
   }
 
   @override
@@ -4487,6 +4648,53 @@ class CapabilityStatementResource extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  CapabilityStatementResource clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool profile = false,
+    bool supportedProfile = false,
+    bool documentation = false,
+    bool interaction = false,
+    bool versioning = false,
+    bool readHistory = false,
+    bool updateCreate = false,
+    bool conditionalCreate = false,
+    bool conditionalRead = false,
+    bool conditionalUpdate = false,
+    bool conditionalDelete = false,
+    bool referencePolicy = false,
+    bool searchInclude = false,
+    bool searchRevInclude = false,
+    bool searchParam = false,
+    bool operation = false,
+  }) {
+    return CapabilityStatementResource(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      profile: profile ? null : this.profile,
+      supportedProfile: supportedProfile ? null : this.supportedProfile,
+      documentation: documentation ? null : this.documentation,
+      interaction: interaction ? null : this.interaction,
+      versioning: versioning ? null : this.versioning,
+      readHistory: readHistory ? null : this.readHistory,
+      updateCreate: updateCreate ? null : this.updateCreate,
+      conditionalCreate: conditionalCreate ? null : this.conditionalCreate,
+      conditionalRead: conditionalRead ? null : this.conditionalRead,
+      conditionalUpdate: conditionalUpdate ? null : this.conditionalUpdate,
+      conditionalDelete: conditionalDelete ? null : this.conditionalDelete,
+      referencePolicy: referencePolicy ? null : this.referencePolicy,
+      searchInclude: searchInclude ? null : this.searchInclude,
+      searchRevInclude: searchRevInclude ? null : this.searchRevInclude,
+      searchParam: searchParam ? null : this.searchParam,
+      operation: operation ? null : this.operation,
+    );
+  }
+
   @override
   CapabilityStatementResource clone() => throw UnimplementedError();
   @override
@@ -5063,6 +5271,23 @@ class CapabilityStatementInteraction extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  CapabilityStatementInteraction clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool documentation = false,
+  }) {
+    return CapabilityStatementInteraction(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      documentation: documentation ? null : this.documentation,
+    );
+  }
+
   @override
   CapabilityStatementInteraction clone() => throw UnimplementedError();
   @override
@@ -5539,6 +5764,26 @@ class CapabilityStatementSearchParam extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  CapabilityStatementSearchParam clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool definition = false,
+    bool documentation = false,
+  }) {
+    return CapabilityStatementSearchParam(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      definition: definition ? null : this.definition,
+      type: type,
+      documentation: documentation ? null : this.documentation,
+    );
+  }
+
   @override
   CapabilityStatementSearchParam clone() => throw UnimplementedError();
   @override
@@ -6004,6 +6249,24 @@ class CapabilityStatementOperation extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  CapabilityStatementOperation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool documentation = false,
+  }) {
+    return CapabilityStatementOperation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      definition: definition,
+      documentation: documentation ? null : this.documentation,
+    );
+  }
+
   @override
   CapabilityStatementOperation clone() => throw UnimplementedError();
   @override
@@ -6417,6 +6680,23 @@ class CapabilityStatementInteraction1 extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CapabilityStatementInteraction1 clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool documentation = false,
+  }) {
+    return CapabilityStatementInteraction1(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      documentation: documentation ? null : this.documentation,
+    );
   }
 
   @override
@@ -6895,11 +7175,34 @@ class CapabilityStatementMessaging extends BackboneElement {
       case 'supportedMessage':
         {
           return copyWith(
-              supportedMessage: <CapabilityStatementSupportedMessage>[],);
+            supportedMessage: <CapabilityStatementSupportedMessage>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CapabilityStatementMessaging clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool endpoint = false,
+    bool reliableCache = false,
+    bool documentation = false,
+    bool supportedMessage = false,
+  }) {
+    return CapabilityStatementMessaging(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      endpoint: endpoint ? null : this.endpoint,
+      reliableCache: reliableCache ? null : this.reliableCache,
+      documentation: documentation ? null : this.documentation,
+      supportedMessage: supportedMessage ? null : this.supportedMessage,
+    );
   }
 
   @override
@@ -7338,6 +7641,22 @@ class CapabilityStatementEndpoint extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  CapabilityStatementEndpoint clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return CapabilityStatementEndpoint(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      protocol: protocol,
+      address: address,
+    );
+  }
+
   @override
   CapabilityStatementEndpoint clone() => throw UnimplementedError();
   @override
@@ -7743,6 +8062,22 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CapabilityStatementSupportedMessage clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return CapabilityStatementSupportedMessage(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      mode: mode,
+      definition: definition,
+    );
   }
 
   @override
@@ -8181,6 +8516,24 @@ class CapabilityStatementDocument extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CapabilityStatementDocument clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool documentation = false,
+  }) {
+    return CapabilityStatementDocument(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      mode: mode,
+      documentation: documentation ? null : this.documentation,
+      profile: profile,
+    );
   }
 
   @override

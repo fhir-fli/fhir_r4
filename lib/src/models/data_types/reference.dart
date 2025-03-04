@@ -461,6 +461,26 @@ class Reference extends DataType
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Reference clear({
+    bool id = false,
+    bool extension_ = false,
+    bool reference = false,
+    bool type = false,
+    bool identifier = false,
+    bool display = false,
+  }) {
+    return Reference(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      reference: reference ? null : this.reference,
+      type: type ? null : this.type,
+      identifier: identifier ? null : this.identifier,
+      display: display ? null : this.display,
+    );
+  }
+
   @override
   Reference clone() => throw UnimplementedError();
   @override

@@ -1048,6 +1048,65 @@ class ConceptMap extends CanonicalResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ConceptMap clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool identifier = false,
+    bool version = false,
+    bool name = false,
+    bool title = false,
+    bool experimental = false,
+    bool date = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool purpose = false,
+    bool copyright = false,
+    bool source = false,
+    bool target = false,
+    bool group = false,
+  }) {
+    return ConceptMap(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url ? null : this.url,
+      identifier: identifier ? null : this.identifier,
+      version: version ? null : this.version,
+      name: name ? null : this.name,
+      title: title ? null : this.title,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      date: date ? null : this.date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      purpose: purpose ? null : this.purpose,
+      copyright: copyright ? null : this.copyright,
+      sourceX: source ? null : sourceX,
+      targetX: target ? null : targetX,
+      group: group ? null : this.group,
+    );
+  }
+
   @override
   ConceptMap clone() => throw UnimplementedError();
   @override
@@ -1782,6 +1841,31 @@ class ConceptMapGroup extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ConceptMapGroup clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool source = false,
+    bool sourceVersion = false,
+    bool target = false,
+    bool targetVersion = false,
+    bool unmapped = false,
+  }) {
+    return ConceptMapGroup(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      source: source ? null : this.source,
+      sourceVersion: sourceVersion ? null : this.sourceVersion,
+      target: target ? null : this.target,
+      targetVersion: targetVersion ? null : this.targetVersion,
+      element: element,
+      unmapped: unmapped ? null : this.unmapped,
+    );
+  }
+
   @override
   ConceptMapGroup clone() => throw UnimplementedError();
   @override
@@ -2260,6 +2344,26 @@ class ConceptMapElement extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ConceptMapElement clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool display = false,
+    bool target = false,
+  }) {
+    return ConceptMapElement(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      display: display ? null : this.display,
+      target: target ? null : this.target,
+    );
   }
 
   @override
@@ -2823,6 +2927,31 @@ class ConceptMapTarget extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ConceptMapTarget clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool display = false,
+    bool comment = false,
+    bool dependsOn = false,
+    bool product = false,
+  }) {
+    return ConceptMapTarget(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      display: display ? null : this.display,
+      equivalence: equivalence,
+      comment: comment ? null : this.comment,
+      dependsOn: dependsOn ? null : this.dependsOn,
+      product: product ? null : this.product,
+    );
+  }
+
   @override
   ConceptMapTarget clone() => throw UnimplementedError();
   @override
@@ -3342,6 +3471,26 @@ class ConceptMapDependsOn extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ConceptMapDependsOn clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool system = false,
+    bool display = false,
+  }) {
+    return ConceptMapDependsOn(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      property: property,
+      system: system ? null : this.system,
+      value: value,
+      display: display ? null : this.display,
+    );
+  }
+
   @override
   ConceptMapDependsOn clone() => throw UnimplementedError();
   @override
@@ -3833,6 +3982,27 @@ class ConceptMapUnmapped extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ConceptMapUnmapped clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool display = false,
+    bool url = false,
+  }) {
+    return ConceptMapUnmapped(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      mode: mode,
+      code: code ? null : this.code,
+      display: display ? null : this.display,
+      url: url ? null : this.url,
+    );
   }
 
   @override

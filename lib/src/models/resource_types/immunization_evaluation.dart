@@ -917,6 +917,51 @@ class ImmunizationEvaluation extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ImmunizationEvaluation clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool date = false,
+    bool authority = false,
+    bool doseStatusReason = false,
+    bool description = false,
+    bool series = false,
+    bool doseNumber = false,
+    bool seriesDoses = false,
+  }) {
+    return ImmunizationEvaluation(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      patient: patient,
+      date: date ? null : this.date,
+      authority: authority ? null : this.authority,
+      targetDisease: targetDisease,
+      immunizationEvent: immunizationEvent,
+      doseStatus: doseStatus,
+      doseStatusReason: doseStatusReason ? null : this.doseStatusReason,
+      description: description ? null : this.description,
+      series: series ? null : this.series,
+      doseNumberX: doseNumber ? null : doseNumberX,
+      seriesDosesX: seriesDoses ? null : seriesDosesX,
+    );
+  }
+
   @override
   ImmunizationEvaluation clone() => throw UnimplementedError();
   @override

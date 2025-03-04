@@ -955,6 +955,65 @@ class ValueSet extends CanonicalResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ValueSet clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool identifier = false,
+    bool version = false,
+    bool name = false,
+    bool title = false,
+    bool experimental = false,
+    bool date = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool immutable = false,
+    bool purpose = false,
+    bool copyright = false,
+    bool compose = false,
+    bool expansion = false,
+  }) {
+    return ValueSet(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url ? null : this.url,
+      identifier: identifier ? null : this.identifier,
+      version: version ? null : this.version,
+      name: name ? null : this.name,
+      title: title ? null : this.title,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      date: date ? null : this.date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      immutable: immutable ? null : this.immutable,
+      purpose: purpose ? null : this.purpose,
+      copyright: copyright ? null : this.copyright,
+      compose: compose ? null : this.compose,
+      expansion: expansion ? null : this.expansion,
+    );
+  }
+
   @override
   ValueSet clone() => throw UnimplementedError();
   @override
@@ -1636,6 +1695,27 @@ class ValueSetCompose extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ValueSetCompose clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool lockedDate = false,
+    bool inactive = false,
+    bool exclude = false,
+  }) {
+    return ValueSetCompose(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      lockedDate: lockedDate ? null : this.lockedDate,
+      inactive: inactive ? null : this.inactive,
+      include: include,
+      exclude: exclude ? null : this.exclude,
+    );
+  }
+
   @override
   ValueSetCompose clone() => throw UnimplementedError();
   @override
@@ -2179,6 +2259,30 @@ class ValueSetInclude extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ValueSetInclude clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool system = false,
+    bool version = false,
+    bool concept = false,
+    bool filter = false,
+    bool valueSet = false,
+  }) {
+    return ValueSetInclude(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      system: system ? null : this.system,
+      version: version ? null : this.version,
+      concept: concept ? null : this.concept,
+      filter: filter ? null : this.filter,
+      valueSet: valueSet ? null : this.valueSet,
+    );
+  }
+
   @override
   ValueSetInclude clone() => throw UnimplementedError();
   @override
@@ -2667,6 +2771,25 @@ class ValueSetConcept extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ValueSetConcept clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool display = false,
+    bool designation = false,
+  }) {
+    return ValueSetConcept(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      display: display ? null : this.display,
+      designation: designation ? null : this.designation,
+    );
+  }
+
   @override
   ValueSetConcept clone() => throw UnimplementedError();
   @override
@@ -3119,6 +3242,25 @@ class ValueSetDesignation extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ValueSetDesignation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool language = false,
+    bool use = false,
+  }) {
+    return ValueSetDesignation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      language: language ? null : this.language,
+      use: use ? null : this.use,
+      value: value,
+    );
+  }
+
   @override
   ValueSetDesignation clone() => throw UnimplementedError();
   @override
@@ -3567,6 +3709,23 @@ class ValueSetFilter extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ValueSetFilter clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ValueSetFilter(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      property: property,
+      op: op,
+      value: value,
+    );
   }
 
   @override
@@ -4124,6 +4283,31 @@ class ValueSetExpansion extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ValueSetExpansion clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool total = false,
+    bool offset = false,
+    bool parameter = false,
+    bool contains = false,
+  }) {
+    return ValueSetExpansion(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      timestamp: timestamp,
+      total: total ? null : this.total,
+      offset: offset ? null : this.offset,
+      parameter: parameter ? null : this.parameter,
+      contains: contains ? null : this.contains,
+    );
   }
 
   @override
@@ -4746,6 +4930,23 @@ class ValueSetParameter extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ValueSetParameter clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool value = false,
+  }) {
+    return ValueSetParameter(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      valueX: value ? null : valueX,
+    );
+  }
+
   @override
   ValueSetParameter clone() => throw UnimplementedError();
   @override
@@ -5358,6 +5559,36 @@ class ValueSetContains extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ValueSetContains clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool system = false,
+    bool abstract_ = false,
+    bool inactive = false,
+    bool version = false,
+    bool code = false,
+    bool display = false,
+    bool designation = false,
+    bool contains = false,
+  }) {
+    return ValueSetContains(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      system: system ? null : this.system,
+      abstract_: abstract_ ? null : this.abstract_,
+      inactive: inactive ? null : this.inactive,
+      version: version ? null : this.version,
+      code: code ? null : this.code,
+      display: display ? null : this.display,
+      designation: designation ? null : this.designation,
+      contains: contains ? null : this.contains,
+    );
   }
 
   @override

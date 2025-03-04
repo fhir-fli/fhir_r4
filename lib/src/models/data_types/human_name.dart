@@ -466,6 +466,32 @@ class HumanName extends DataType
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  HumanName clear({
+    bool id = false,
+    bool extension_ = false,
+    bool use = false,
+    bool text = false,
+    bool family = false,
+    bool given = false,
+    bool prefix = false,
+    bool suffix = false,
+    bool period = false,
+  }) {
+    return HumanName(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      use: use ? null : this.use,
+      text: text ? null : this.text,
+      family: family ? null : this.family,
+      given: given ? null : this.given,
+      prefix: prefix ? null : this.prefix,
+      suffix: suffix ? null : this.suffix,
+      period: period ? null : this.period,
+    );
+  }
+
   @override
   HumanName clone() => throw UnimplementedError();
   @override

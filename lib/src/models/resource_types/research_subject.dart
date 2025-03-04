@@ -657,6 +657,43 @@ class ResearchSubject extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ResearchSubject clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool period = false,
+    bool assignedArm = false,
+    bool actualArm = false,
+    bool consent = false,
+  }) {
+    return ResearchSubject(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      period: period ? null : this.period,
+      study: study,
+      individual: individual,
+      assignedArm: assignedArm ? null : this.assignedArm,
+      actualArm: actualArm ? null : this.actualArm,
+      consent: consent ? null : this.consent,
+    );
+  }
+
   @override
   ResearchSubject clone() => throw UnimplementedError();
   @override

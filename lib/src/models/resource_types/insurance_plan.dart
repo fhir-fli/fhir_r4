@@ -880,6 +880,58 @@ class InsurancePlan extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  InsurancePlan clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool status = false,
+    bool type = false,
+    bool name = false,
+    bool alias = false,
+    bool period = false,
+    bool ownedBy = false,
+    bool administeredBy = false,
+    bool coverageArea = false,
+    bool contact = false,
+    bool endpoint = false,
+    bool network = false,
+    bool coverage = false,
+    bool plan = false,
+  }) {
+    return InsurancePlan(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status ? null : this.status,
+      type: type ? null : this.type,
+      name: name ? null : this.name,
+      alias: alias ? null : this.alias,
+      period: period ? null : this.period,
+      ownedBy: ownedBy ? null : this.ownedBy,
+      administeredBy: administeredBy ? null : this.administeredBy,
+      coverageArea: coverageArea ? null : this.coverageArea,
+      contact: contact ? null : this.contact,
+      endpoint: endpoint ? null : this.endpoint,
+      network: network ? null : this.network,
+      coverage: coverage ? null : this.coverage,
+      plan: plan ? null : this.plan,
+    );
+  }
+
   @override
   InsurancePlan clone() => throw UnimplementedError();
   @override
@@ -1549,6 +1601,28 @@ class InsurancePlanContact extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  InsurancePlanContact clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool purpose = false,
+    bool name = false,
+    bool telecom = false,
+    bool address = false,
+  }) {
+    return InsurancePlanContact(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      purpose: purpose ? null : this.purpose,
+      name: name ? null : this.name,
+      telecom: telecom ? null : this.telecom,
+      address: address ? null : this.address,
+    );
+  }
+
   @override
   InsurancePlanContact clone() => throw UnimplementedError();
   @override
@@ -2015,6 +2089,24 @@ class InsurancePlanCoverage extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  InsurancePlanCoverage clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool network = false,
+  }) {
+    return InsurancePlanCoverage(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      network: network ? null : this.network,
+      benefit: benefit,
+    );
+  }
+
   @override
   InsurancePlanCoverage clone() => throw UnimplementedError();
   @override
@@ -2476,6 +2568,25 @@ class InsurancePlanBenefit extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  InsurancePlanBenefit clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool requirement = false,
+    bool limit = false,
+  }) {
+    return InsurancePlanBenefit(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      requirement: requirement ? null : this.requirement,
+      limit: limit ? null : this.limit,
+    );
+  }
+
   @override
   InsurancePlanBenefit clone() => throw UnimplementedError();
   @override
@@ -2894,6 +3005,24 @@ class InsurancePlanLimit extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  InsurancePlanLimit clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool value = false,
+    bool code = false,
+  }) {
+    return InsurancePlanLimit(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      value: value ? null : this.value,
+      code: code ? null : this.code,
+    );
   }
 
   @override
@@ -3447,6 +3576,32 @@ class InsurancePlanPlan extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  InsurancePlanPlan clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool type = false,
+    bool coverageArea = false,
+    bool network = false,
+    bool generalCost = false,
+    bool specificCost = false,
+  }) {
+    return InsurancePlanPlan(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      type: type ? null : this.type,
+      coverageArea: coverageArea ? null : this.coverageArea,
+      network: network ? null : this.network,
+      generalCost: generalCost ? null : this.generalCost,
+      specificCost: specificCost ? null : this.specificCost,
+    );
+  }
+
   @override
   InsurancePlanPlan clone() => throw UnimplementedError();
   @override
@@ -3981,6 +4136,28 @@ class InsurancePlanGeneralCost extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  InsurancePlanGeneralCost clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool groupSize = false,
+    bool cost = false,
+    bool comment = false,
+  }) {
+    return InsurancePlanGeneralCost(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      groupSize: groupSize ? null : this.groupSize,
+      cost: cost ? null : this.cost,
+      comment: comment ? null : this.comment,
+    );
+  }
+
   @override
   InsurancePlanGeneralCost clone() => throw UnimplementedError();
   @override
@@ -4406,6 +4583,23 @@ class InsurancePlanSpecificCost extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  InsurancePlanSpecificCost clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool benefit = false,
+  }) {
+    return InsurancePlanSpecificCost(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      category: category,
+      benefit: benefit ? null : this.benefit,
+    );
+  }
+
   @override
   InsurancePlanSpecificCost clone() => throw UnimplementedError();
   @override
@@ -4820,6 +5014,23 @@ class InsurancePlanBenefit1 extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  InsurancePlanBenefit1 clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool cost = false,
+  }) {
+    return InsurancePlanBenefit1(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      cost: cost ? null : this.cost,
+    );
   }
 
   @override
@@ -5301,6 +5512,27 @@ class InsurancePlanCost extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  InsurancePlanCost clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool applicability = false,
+    bool qualifiers = false,
+    bool value = false,
+  }) {
+    return InsurancePlanCost(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      applicability: applicability ? null : this.applicability,
+      qualifiers: qualifiers ? null : this.qualifiers,
+      value: value ? null : this.value,
+    );
   }
 
   @override

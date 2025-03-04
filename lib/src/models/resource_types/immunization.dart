@@ -1374,6 +1374,82 @@ class Immunization extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Immunization clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool statusReason = false,
+    bool encounter = false,
+    bool recorded = false,
+    bool primarySource = false,
+    bool reportOrigin = false,
+    bool location = false,
+    bool manufacturer = false,
+    bool lotNumber = false,
+    bool expirationDate = false,
+    bool site = false,
+    bool route = false,
+    bool doseQuantity = false,
+    bool performer = false,
+    bool note = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool isSubpotent = false,
+    bool subpotentReason = false,
+    bool education = false,
+    bool programEligibility = false,
+    bool fundingSource = false,
+    bool reaction = false,
+    bool protocolApplied = false,
+  }) {
+    return Immunization(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      statusReason: statusReason ? null : this.statusReason,
+      vaccineCode: vaccineCode,
+      patient: patient,
+      encounter: encounter ? null : this.encounter,
+      occurrenceX: occurrenceX,
+      recorded: recorded ? null : this.recorded,
+      primarySource: primarySource ? null : this.primarySource,
+      reportOrigin: reportOrigin ? null : this.reportOrigin,
+      location: location ? null : this.location,
+      manufacturer: manufacturer ? null : this.manufacturer,
+      lotNumber: lotNumber ? null : this.lotNumber,
+      expirationDate: expirationDate ? null : this.expirationDate,
+      site: site ? null : this.site,
+      route: route ? null : this.route,
+      doseQuantity: doseQuantity ? null : this.doseQuantity,
+      performer: performer ? null : this.performer,
+      note: note ? null : this.note,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      isSubpotent: isSubpotent ? null : this.isSubpotent,
+      subpotentReason: subpotentReason ? null : this.subpotentReason,
+      education: education ? null : this.education,
+      programEligibility: programEligibility ? null : this.programEligibility,
+      fundingSource: fundingSource ? null : this.fundingSource,
+      reaction: reaction ? null : this.reaction,
+      protocolApplied: protocolApplied ? null : this.protocolApplied,
+    );
+  }
+
   @override
   Immunization clone() => throw UnimplementedError();
   @override
@@ -2096,6 +2172,23 @@ class ImmunizationPerformer extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ImmunizationPerformer clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool function_ = false,
+  }) {
+    return ImmunizationPerformer(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      function_: function_ ? null : this.function_,
+      actor: actor,
+    );
+  }
+
   @override
   ImmunizationPerformer clone() => throw UnimplementedError();
   @override
@@ -2564,6 +2657,28 @@ class ImmunizationEducation extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ImmunizationEducation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool documentType = false,
+    bool reference = false,
+    bool publicationDate = false,
+    bool presentationDate = false,
+  }) {
+    return ImmunizationEducation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      documentType: documentType ? null : this.documentType,
+      reference: reference ? null : this.reference,
+      publicationDate: publicationDate ? null : this.publicationDate,
+      presentationDate: presentationDate ? null : this.presentationDate,
+    );
+  }
+
   @override
   ImmunizationEducation clone() => throw UnimplementedError();
   @override
@@ -3014,6 +3129,26 @@ class ImmunizationReaction extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImmunizationReaction clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool date = false,
+    bool detail = false,
+    bool reported = false,
+  }) {
+    return ImmunizationReaction(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      date: date ? null : this.date,
+      detail: detail ? null : this.detail,
+      reported: reported ? null : this.reported,
+    );
   }
 
   @override
@@ -3626,6 +3761,29 @@ class ImmunizationProtocolApplied extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImmunizationProtocolApplied clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool series = false,
+    bool authority = false,
+    bool targetDisease = false,
+    bool seriesDoses = false,
+  }) {
+    return ImmunizationProtocolApplied(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      series: series ? null : this.series,
+      authority: authority ? null : this.authority,
+      targetDisease: targetDisease ? null : this.targetDisease,
+      doseNumberX: doseNumberX,
+      seriesDosesX: seriesDoses ? null : seriesDosesX,
+    );
   }
 
   @override

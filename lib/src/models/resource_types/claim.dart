@@ -1287,6 +1287,77 @@ class Claim extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Claim clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool subType = false,
+    bool billablePeriod = false,
+    bool enterer = false,
+    bool insurer = false,
+    bool fundsReserve = false,
+    bool related = false,
+    bool prescription = false,
+    bool originalPrescription = false,
+    bool payee = false,
+    bool referral = false,
+    bool facility = false,
+    bool careTeam = false,
+    bool supportingInfo = false,
+    bool diagnosis = false,
+    bool procedure = false,
+    bool accident = false,
+    bool item = false,
+    bool total = false,
+  }) {
+    return Claim(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      type: type,
+      subType: subType ? null : this.subType,
+      use: use,
+      patient: patient,
+      billablePeriod: billablePeriod ? null : this.billablePeriod,
+      created: created,
+      enterer: enterer ? null : this.enterer,
+      insurer: insurer ? null : this.insurer,
+      provider: provider,
+      priority: priority,
+      fundsReserve: fundsReserve ? null : this.fundsReserve,
+      related: related ? null : this.related,
+      prescription: prescription ? null : this.prescription,
+      originalPrescription:
+          originalPrescription ? null : this.originalPrescription,
+      payee: payee ? null : this.payee,
+      referral: referral ? null : this.referral,
+      facility: facility ? null : this.facility,
+      careTeam: careTeam ? null : this.careTeam,
+      supportingInfo: supportingInfo ? null : this.supportingInfo,
+      diagnosis: diagnosis ? null : this.diagnosis,
+      procedure: procedure ? null : this.procedure,
+      insurance: insurance,
+      accident: accident ? null : this.accident,
+      item: item ? null : this.item,
+      total: total ? null : this.total,
+    );
+  }
+
   @override
   Claim clone() => throw UnimplementedError();
   @override
@@ -2019,6 +2090,26 @@ class ClaimRelated extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ClaimRelated clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool claim = false,
+    bool relationship = false,
+    bool reference = false,
+  }) {
+    return ClaimRelated(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      claim: claim ? null : this.claim,
+      relationship: relationship ? null : this.relationship,
+      reference: reference ? null : this.reference,
+    );
+  }
+
   @override
   ClaimRelated clone() => throw UnimplementedError();
   @override
@@ -2431,6 +2522,23 @@ class ClaimPayee extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClaimPayee clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool party = false,
+  }) {
+    return ClaimPayee(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      party: party ? null : this.party,
+    );
   }
 
   @override
@@ -2930,6 +3038,28 @@ class ClaimCareTeam extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClaimCareTeam clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool responsible = false,
+    bool role = false,
+    bool qualification = false,
+  }) {
+    return ClaimCareTeam(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      sequence: sequence,
+      provider: provider,
+      responsible: responsible ? null : this.responsible,
+      role: role ? null : this.role,
+      qualification: qualification ? null : this.qualification,
+    );
   }
 
   @override
@@ -3658,6 +3788,30 @@ class ClaimSupportingInfo extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ClaimSupportingInfo clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool timing = false,
+    bool value = false,
+    bool reason = false,
+  }) {
+    return ClaimSupportingInfo(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      sequence: sequence,
+      category: category,
+      code: code ? null : this.code,
+      timingX: timing ? null : timingX,
+      valueX: value ? null : valueX,
+      reason: reason ? null : this.reason,
+    );
+  }
+
   @override
   ClaimSupportingInfo clone() => throw UnimplementedError();
   @override
@@ -4241,6 +4395,28 @@ class ClaimDiagnosis extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClaimDiagnosis clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool onAdmission = false,
+    bool packageCode = false,
+  }) {
+    return ClaimDiagnosis(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      sequence: sequence,
+      diagnosisX: diagnosisX,
+      type: type ? null : this.type,
+      onAdmission: onAdmission ? null : this.onAdmission,
+      packageCode: packageCode ? null : this.packageCode,
+    );
   }
 
   @override
@@ -4827,6 +5003,28 @@ class ClaimProcedure extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClaimProcedure clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool date = false,
+    bool udi = false,
+  }) {
+    return ClaimProcedure(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      sequence: sequence,
+      type: type ? null : this.type,
+      date: date ? null : this.date,
+      procedureX: procedureX,
+      udi: udi ? null : this.udi,
+    );
   }
 
   @override
@@ -5435,6 +5633,32 @@ class ClaimInsurance extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ClaimInsurance clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool businessArrangement = false,
+    bool preAuthRef = false,
+    bool claimResponse = false,
+  }) {
+    return ClaimInsurance(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      sequence: sequence,
+      focal: focal,
+      identifier: identifier ? null : this.identifier,
+      coverage: coverage,
+      businessArrangement:
+          businessArrangement ? null : this.businessArrangement,
+      preAuthRef: preAuthRef ? null : this.preAuthRef,
+      claimResponse: claimResponse ? null : this.claimResponse,
+    );
+  }
+
   @override
   ClaimInsurance clone() => throw UnimplementedError();
   @override
@@ -5967,6 +6191,25 @@ class ClaimAccident extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClaimAccident clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool location = false,
+  }) {
+    return ClaimAccident(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      date: date,
+      type: type ? null : this.type,
+      locationX: location ? null : locationX,
+    );
   }
 
   @override
@@ -7129,6 +7372,61 @@ class ClaimItem extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ClaimItem clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool careTeamSequence = false,
+    bool diagnosisSequence = false,
+    bool procedureSequence = false,
+    bool informationSequence = false,
+    bool revenue = false,
+    bool category = false,
+    bool modifier = false,
+    bool programCode = false,
+    bool serviced = false,
+    bool location = false,
+    bool quantity = false,
+    bool unitPrice = false,
+    bool factor = false,
+    bool net = false,
+    bool udi = false,
+    bool bodySite = false,
+    bool subSite = false,
+    bool encounter = false,
+    bool detail = false,
+  }) {
+    return ClaimItem(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      sequence: sequence,
+      careTeamSequence: careTeamSequence ? null : this.careTeamSequence,
+      diagnosisSequence: diagnosisSequence ? null : this.diagnosisSequence,
+      procedureSequence: procedureSequence ? null : this.procedureSequence,
+      informationSequence:
+          informationSequence ? null : this.informationSequence,
+      revenue: revenue ? null : this.revenue,
+      category: category ? null : this.category,
+      productOrService: productOrService,
+      modifier: modifier ? null : this.modifier,
+      programCode: programCode ? null : this.programCode,
+      servicedX: serviced ? null : servicedX,
+      locationX: location ? null : locationX,
+      quantity: quantity ? null : this.quantity,
+      unitPrice: unitPrice ? null : this.unitPrice,
+      factor: factor ? null : this.factor,
+      net: net ? null : this.net,
+      udi: udi ? null : this.udi,
+      bodySite: bodySite ? null : this.bodySite,
+      subSite: subSite ? null : this.subSite,
+      encounter: encounter ? null : this.encounter,
+      detail: detail ? null : this.detail,
+    );
+  }
+
   @override
   ClaimItem clone() => throw UnimplementedError();
   @override
@@ -8093,6 +8391,42 @@ class ClaimDetail extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ClaimDetail clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool revenue = false,
+    bool category = false,
+    bool modifier = false,
+    bool programCode = false,
+    bool quantity = false,
+    bool unitPrice = false,
+    bool factor = false,
+    bool net = false,
+    bool udi = false,
+    bool subDetail = false,
+  }) {
+    return ClaimDetail(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      sequence: sequence,
+      revenue: revenue ? null : this.revenue,
+      category: category ? null : this.category,
+      productOrService: productOrService,
+      modifier: modifier ? null : this.modifier,
+      programCode: programCode ? null : this.programCode,
+      quantity: quantity ? null : this.quantity,
+      unitPrice: unitPrice ? null : this.unitPrice,
+      factor: factor ? null : this.factor,
+      net: net ? null : this.net,
+      udi: udi ? null : this.udi,
+      subDetail: subDetail ? null : this.subDetail,
+    );
+  }
+
   @override
   ClaimDetail clone() => throw UnimplementedError();
   @override
@@ -8905,6 +9239,40 @@ class ClaimSubDetail extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClaimSubDetail clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool revenue = false,
+    bool category = false,
+    bool modifier = false,
+    bool programCode = false,
+    bool quantity = false,
+    bool unitPrice = false,
+    bool factor = false,
+    bool net = false,
+    bool udi = false,
+  }) {
+    return ClaimSubDetail(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      sequence: sequence,
+      revenue: revenue ? null : this.revenue,
+      category: category ? null : this.category,
+      productOrService: productOrService,
+      modifier: modifier ? null : this.modifier,
+      programCode: programCode ? null : this.programCode,
+      quantity: quantity ? null : this.quantity,
+      unitPrice: unitPrice ? null : this.unitPrice,
+      factor: factor ? null : this.factor,
+      net: net ? null : this.net,
+      udi: udi ? null : this.udi,
+    );
   }
 
   @override

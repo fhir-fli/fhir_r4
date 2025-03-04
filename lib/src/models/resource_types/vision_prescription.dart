@@ -654,11 +654,46 @@ class VisionPrescription extends DomainResource {
       case 'lensSpecification':
         {
           return copyWith(
-              lensSpecification: <VisionPrescriptionLensSpecification>[]);
+            lensSpecification: <VisionPrescriptionLensSpecification>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  VisionPrescription clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool encounter = false,
+  }) {
+    return VisionPrescription(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      created: created,
+      patient: patient,
+      encounter: encounter ? null : this.encounter,
+      dateWritten: dateWritten,
+      prescriber: prescriber,
+      lensSpecification: lensSpecification,
+    );
   }
 
   @override
@@ -1549,6 +1584,46 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  VisionPrescriptionLensSpecification clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool sphere = false,
+    bool cylinder = false,
+    bool axis = false,
+    bool prism = false,
+    bool add = false,
+    bool power = false,
+    bool backCurve = false,
+    bool diameter = false,
+    bool duration = false,
+    bool color = false,
+    bool brand = false,
+    bool note = false,
+  }) {
+    return VisionPrescriptionLensSpecification(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      product: product,
+      eye: eye,
+      sphere: sphere ? null : this.sphere,
+      cylinder: cylinder ? null : this.cylinder,
+      axis: axis ? null : this.axis,
+      prism: prism ? null : this.prism,
+      add: add ? null : this.add,
+      power: power ? null : this.power,
+      backCurve: backCurve ? null : this.backCurve,
+      diameter: diameter ? null : this.diameter,
+      duration: duration ? null : this.duration,
+      color: color ? null : this.color,
+      brand: brand ? null : this.brand,
+      note: note ? null : this.note,
+    );
+  }
+
   @override
   VisionPrescriptionLensSpecification clone() => throw UnimplementedError();
   @override
@@ -2060,6 +2135,22 @@ class VisionPrescriptionPrism extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  VisionPrescriptionPrism clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return VisionPrescriptionPrism(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      amount: amount,
+      base: base,
+    );
   }
 
   @override

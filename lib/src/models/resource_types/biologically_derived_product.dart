@@ -38,7 +38,8 @@ class BiologicallyDerivedProduct extends DomainResource {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory BiologicallyDerivedProduct.empty() => const BiologicallyDerivedProduct();
+  factory BiologicallyDerivedProduct.empty() =>
+      const BiologicallyDerivedProduct();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProduct.fromJson(
@@ -735,7 +736,8 @@ class BiologicallyDerivedProduct extends DomainResource {
       case 'productCategory':
         {
           return copyWith(
-              productCategory: BiologicallyDerivedProductCategory.empty(),);
+            productCategory: BiologicallyDerivedProductCategory.empty(),
+          );
         }
       case 'productCode':
         {
@@ -760,7 +762,8 @@ class BiologicallyDerivedProduct extends DomainResource {
       case 'collection':
         {
           return copyWith(
-              collection: BiologicallyDerivedProductCollection.empty(),);
+            collection: BiologicallyDerivedProductCollection.empty(),
+          );
         }
       case 'processing':
         {
@@ -769,7 +772,8 @@ class BiologicallyDerivedProduct extends DomainResource {
       case 'manipulation':
         {
           return copyWith(
-              manipulation: BiologicallyDerivedProductManipulation.empty(),);
+            manipulation: BiologicallyDerivedProductManipulation.empty(),
+          );
         }
       case 'storage':
         {
@@ -778,6 +782,52 @@ class BiologicallyDerivedProduct extends DomainResource {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  BiologicallyDerivedProduct clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool productCategory = false,
+    bool productCode = false,
+    bool status = false,
+    bool request = false,
+    bool quantity = false,
+    bool parent = false,
+    bool collection = false,
+    bool processing = false,
+    bool manipulation = false,
+    bool storage = false,
+  }) {
+    return BiologicallyDerivedProduct(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      productCategory: productCategory ? null : this.productCategory,
+      productCode: productCode ? null : this.productCode,
+      status: status ? null : this.status,
+      request: request ? null : this.request,
+      quantity: quantity ? null : this.quantity,
+      parent: parent ? null : this.parent,
+      collection: collection ? null : this.collection,
+      processing: processing ? null : this.processing,
+      manipulation: manipulation ? null : this.manipulation,
+      storage: storage ? null : this.storage,
+    );
   }
 
   @override
@@ -1412,6 +1462,26 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  BiologicallyDerivedProductCollection clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool collector = false,
+    bool source = false,
+    bool collected = false,
+  }) {
+    return BiologicallyDerivedProductCollection(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      collector: collector ? null : this.collector,
+      source: source ? null : this.source,
+      collectedX: collected ? null : collectedX,
+    );
+  }
+
   @override
   BiologicallyDerivedProductCollection clone() => throw UnimplementedError();
   @override
@@ -1938,6 +2008,28 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  BiologicallyDerivedProductProcessing clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+    bool procedure = false,
+    bool additive = false,
+    bool time = false,
+  }) {
+    return BiologicallyDerivedProductProcessing(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description ? null : this.description,
+      procedure: procedure ? null : this.procedure,
+      additive: additive ? null : this.additive,
+      timeX: time ? null : timeX,
+    );
+  }
+
   @override
   BiologicallyDerivedProductProcessing clone() => throw UnimplementedError();
   @override
@@ -2410,6 +2502,24 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  BiologicallyDerivedProductManipulation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+    bool time = false,
+  }) {
+    return BiologicallyDerivedProductManipulation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description ? null : this.description,
+      timeX: time ? null : timeX,
+    );
+  }
+
   @override
   BiologicallyDerivedProductManipulation clone() => throw UnimplementedError();
   @override
@@ -2867,7 +2977,8 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
       case 'scale':
         {
           return copyWith(
-              scale: BiologicallyDerivedProductStorageScale.empty(),);
+            scale: BiologicallyDerivedProductStorageScale.empty(),
+          );
         }
       case 'duration':
         {
@@ -2876,6 +2987,28 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  BiologicallyDerivedProductStorage clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+    bool temperature = false,
+    bool scale = false,
+    bool duration = false,
+  }) {
+    return BiologicallyDerivedProductStorage(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description ? null : this.description,
+      temperature: temperature ? null : this.temperature,
+      scale: scale ? null : this.scale,
+      duration: duration ? null : this.duration,
+    );
   }
 
   @override

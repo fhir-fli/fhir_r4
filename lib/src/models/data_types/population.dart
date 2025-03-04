@@ -435,6 +435,29 @@ class Population extends BackboneType {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Population clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool age = false,
+    bool gender = false,
+    bool race = false,
+    bool physiologicalCondition = false,
+  }) {
+    return Population(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      ageX: age ? null : ageX,
+      gender: gender ? null : this.gender,
+      race: race ? null : this.race,
+      physiologicalCondition:
+          physiologicalCondition ? null : this.physiologicalCondition,
+    );
+  }
+
   @override
   Population clone() => throw UnimplementedError();
   @override

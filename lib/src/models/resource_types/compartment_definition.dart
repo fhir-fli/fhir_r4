@@ -875,6 +875,53 @@ class CompartmentDefinition extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  CompartmentDefinition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool version = false,
+    bool experimental = false,
+    bool date = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool purpose = false,
+    bool resource = false,
+  }) {
+    return CompartmentDefinition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url,
+      version: version ? null : this.version,
+      name: name,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      date: date ? null : this.date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      purpose: purpose ? null : this.purpose,
+      code: code,
+      search: search,
+      resource: resource ? null : this.resource,
+    );
+  }
+
   @override
   CompartmentDefinition clone() => throw UnimplementedError();
   @override
@@ -1467,6 +1514,25 @@ class CompartmentDefinitionResource extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CompartmentDefinitionResource clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool param = false,
+    bool documentation = false,
+  }) {
+    return CompartmentDefinitionResource(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      param: param ? null : this.param,
+      documentation: documentation ? null : this.documentation,
+    );
   }
 
   @override

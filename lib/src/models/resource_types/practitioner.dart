@@ -749,6 +749,50 @@ class Practitioner extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Practitioner clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool active = false,
+    bool name = false,
+    bool telecom = false,
+    bool address = false,
+    bool gender = false,
+    bool birthDate = false,
+    bool photo = false,
+    bool qualification = false,
+    bool communication = false,
+  }) {
+    return Practitioner(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      active: active ? null : this.active,
+      name: name ? null : this.name,
+      telecom: telecom ? null : this.telecom,
+      address: address ? null : this.address,
+      gender: gender ? null : this.gender,
+      birthDate: birthDate ? null : this.birthDate,
+      photo: photo ? null : this.photo,
+      qualification: qualification ? null : this.qualification,
+      communication: communication ? null : this.communication,
+    );
+  }
+
   @override
   Practitioner clone() => throw UnimplementedError();
   @override
@@ -1372,6 +1416,27 @@ class PractitionerQualification extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  PractitionerQualification clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool period = false,
+    bool issuer = false,
+  }) {
+    return PractitionerQualification(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      code: code,
+      period: period ? null : this.period,
+      issuer: issuer ? null : this.issuer,
+    );
   }
 
   @override

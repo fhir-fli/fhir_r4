@@ -778,6 +778,49 @@ class PaymentNotice extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  PaymentNotice clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool request = false,
+    bool response = false,
+    bool provider = false,
+    bool paymentDate = false,
+    bool payee = false,
+    bool paymentStatus = false,
+  }) {
+    return PaymentNotice(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      request: request ? null : this.request,
+      response: response ? null : this.response,
+      created: created,
+      provider: provider ? null : this.provider,
+      payment: payment,
+      paymentDate: paymentDate ? null : this.paymentDate,
+      payee: payee ? null : this.payee,
+      recipient: recipient,
+      amount: amount,
+      paymentStatus: paymentStatus ? null : this.paymentStatus,
+    );
+  }
+
   @override
   PaymentNotice clone() => throw UnimplementedError();
   @override

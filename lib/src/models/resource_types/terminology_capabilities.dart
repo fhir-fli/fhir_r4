@@ -1115,7 +1115,8 @@ class TerminologyCapabilities extends CanonicalResource {
       case 'implementation':
         {
           return copyWith(
-              implementation: TerminologyCapabilitiesImplementation.empty(),);
+            implementation: TerminologyCapabilitiesImplementation.empty(),
+          );
         }
       case 'lockedDate':
         {
@@ -1136,12 +1137,14 @@ class TerminologyCapabilities extends CanonicalResource {
       case 'validateCode':
         {
           return copyWith(
-              validateCode: TerminologyCapabilitiesValidateCode.empty(),);
+            validateCode: TerminologyCapabilitiesValidateCode.empty(),
+          );
         }
       case 'translation':
         {
           return copyWith(
-              translation: TerminologyCapabilitiesTranslation.empty(),);
+            translation: TerminologyCapabilitiesTranslation.empty(),
+          );
         }
       case 'closure':
         {
@@ -1150,6 +1153,75 @@ class TerminologyCapabilities extends CanonicalResource {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TerminologyCapabilities clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool version = false,
+    bool name = false,
+    bool title = false,
+    bool experimental = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool purpose = false,
+    bool copyright = false,
+    bool software = false,
+    bool implementation = false,
+    bool lockedDate = false,
+    bool codeSystem = false,
+    bool expansion = false,
+    bool codeSearch = false,
+    bool validateCode = false,
+    bool translation = false,
+    bool closure = false,
+  }) {
+    return TerminologyCapabilities(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url ? null : this.url,
+      version: version ? null : this.version,
+      name: name ? null : this.name,
+      title: title ? null : this.title,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      date: date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      purpose: purpose ? null : this.purpose,
+      copyright: copyright ? null : this.copyright,
+      kind: kind,
+      software: software ? null : this.software,
+      implementation: implementation ? null : this.implementation,
+      lockedDate: lockedDate ? null : this.lockedDate,
+      codeSystem: codeSystem ? null : this.codeSystem,
+      expansion: expansion ? null : this.expansion,
+      codeSearch: codeSearch ? null : this.codeSearch,
+      validateCode: validateCode ? null : this.validateCode,
+      translation: translation ? null : this.translation,
+      closure: closure ? null : this.closure,
+    );
   }
 
   @override
@@ -1802,6 +1874,23 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  TerminologyCapabilitiesSoftware clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool version = false,
+  }) {
+    return TerminologyCapabilitiesSoftware(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      version: version ? null : this.version,
+    );
+  }
+
   @override
   TerminologyCapabilitiesSoftware clone() => throw UnimplementedError();
   @override
@@ -2208,6 +2297,23 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TerminologyCapabilitiesImplementation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+  }) {
+    return TerminologyCapabilitiesImplementation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description,
+      url: url ? null : this.url,
+    );
   }
 
   @override
@@ -2651,6 +2757,26 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TerminologyCapabilitiesCodeSystem clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool uri = false,
+    bool version = false,
+    bool subsumption = false,
+  }) {
+    return TerminologyCapabilitiesCodeSystem(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      uri: uri ? null : this.uri,
+      version: version ? null : this.version,
+      subsumption: subsumption ? null : this.subsumption,
+    );
   }
 
   @override
@@ -3203,6 +3329,32 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  TerminologyCapabilitiesVersion clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool isDefault = false,
+    bool compositional = false,
+    bool language = false,
+    bool filter = false,
+    bool property = false,
+  }) {
+    return TerminologyCapabilitiesVersion(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      isDefault: isDefault ? null : this.isDefault,
+      compositional: compositional ? null : this.compositional,
+      language: language ? null : this.language,
+      filter: filter ? null : this.filter,
+      property: property ? null : this.property,
+    );
+  }
+
   @override
   TerminologyCapabilitiesVersion clone() => throw UnimplementedError();
   @override
@@ -3658,6 +3810,22 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TerminologyCapabilitiesFilter clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return TerminologyCapabilitiesFilter(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      op: op,
+    );
   }
 
   @override
@@ -4170,6 +4338,30 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  TerminologyCapabilitiesExpansion clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool hierarchical = false,
+    bool paging = false,
+    bool incomplete = false,
+    bool parameter = false,
+    bool textFilter = false,
+  }) {
+    return TerminologyCapabilitiesExpansion(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      hierarchical: hierarchical ? null : this.hierarchical,
+      paging: paging ? null : this.paging,
+      incomplete: incomplete ? null : this.incomplete,
+      parameter: parameter ? null : this.parameter,
+      textFilter: textFilter ? null : this.textFilter,
+    );
+  }
+
   @override
   TerminologyCapabilitiesExpansion clone() => throw UnimplementedError();
   @override
@@ -4606,6 +4798,23 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  TerminologyCapabilitiesParameter clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool documentation = false,
+  }) {
+    return TerminologyCapabilitiesParameter(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      documentation: documentation ? null : this.documentation,
+    );
+  }
+
   @override
   TerminologyCapabilitiesParameter clone() => throw UnimplementedError();
   @override
@@ -4982,6 +5191,21 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  TerminologyCapabilitiesValidateCode clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return TerminologyCapabilitiesValidateCode(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      translations: translations,
+    );
+  }
+
   @override
   TerminologyCapabilitiesValidateCode clone() => throw UnimplementedError();
   @override
@@ -5349,6 +5573,21 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  TerminologyCapabilitiesTranslation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return TerminologyCapabilitiesTranslation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      needsMap: needsMap,
+    );
+  }
+
   @override
   TerminologyCapabilitiesTranslation clone() => throw UnimplementedError();
   @override
@@ -5713,6 +5952,22 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TerminologyCapabilitiesClosure clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool translation = false,
+  }) {
+    return TerminologyCapabilitiesClosure(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      translation: translation ? null : this.translation,
+    );
   }
 
   @override

@@ -2179,6 +2179,125 @@ class ActivityDefinition extends CanonicalResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ActivityDefinition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool identifier = false,
+    bool version = false,
+    bool name = false,
+    bool title = false,
+    bool subtitle = false,
+    bool experimental = false,
+    bool subject = false,
+    bool date = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool purpose = false,
+    bool usage = false,
+    bool copyright = false,
+    bool approvalDate = false,
+    bool lastReviewDate = false,
+    bool effectivePeriod = false,
+    bool topic = false,
+    bool author = false,
+    bool editor = false,
+    bool reviewer = false,
+    bool endorser = false,
+    bool relatedArtifact = false,
+    bool library_ = false,
+    bool kind = false,
+    bool profile = false,
+    bool code = false,
+    bool intent = false,
+    bool priority = false,
+    bool doNotPerform = false,
+    bool timing = false,
+    bool location = false,
+    bool participant = false,
+    bool product = false,
+    bool quantity = false,
+    bool dosage = false,
+    bool bodySite = false,
+    bool specimenRequirement = false,
+    bool observationRequirement = false,
+    bool observationResultRequirement = false,
+    bool transform = false,
+    bool dynamicValue = false,
+  }) {
+    return ActivityDefinition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url ? null : this.url,
+      identifier: identifier ? null : this.identifier,
+      version: version ? null : this.version,
+      name: name ? null : this.name,
+      title: title ? null : this.title,
+      subtitle: subtitle ? null : this.subtitle,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      subjectX: subject ? null : subjectX,
+      date: date ? null : this.date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      purpose: purpose ? null : this.purpose,
+      usage: usage ? null : this.usage,
+      copyright: copyright ? null : this.copyright,
+      approvalDate: approvalDate ? null : this.approvalDate,
+      lastReviewDate: lastReviewDate ? null : this.lastReviewDate,
+      effectivePeriod: effectivePeriod ? null : this.effectivePeriod,
+      topic: topic ? null : this.topic,
+      author: author ? null : this.author,
+      editor: editor ? null : this.editor,
+      reviewer: reviewer ? null : this.reviewer,
+      endorser: endorser ? null : this.endorser,
+      relatedArtifact: relatedArtifact ? null : this.relatedArtifact,
+      library_: library_ ? null : this.library_,
+      kind: kind ? null : this.kind,
+      profile: profile ? null : this.profile,
+      code: code ? null : this.code,
+      intent: intent ? null : this.intent,
+      priority: priority ? null : this.priority,
+      doNotPerform: doNotPerform ? null : this.doNotPerform,
+      timingX: timing ? null : timingX,
+      location: location ? null : this.location,
+      participant: participant ? null : this.participant,
+      productX: product ? null : productX,
+      quantity: quantity ? null : this.quantity,
+      dosage: dosage ? null : this.dosage,
+      bodySite: bodySite ? null : this.bodySite,
+      specimenRequirement:
+          specimenRequirement ? null : this.specimenRequirement,
+      observationRequirement:
+          observationRequirement ? null : this.observationRequirement,
+      observationResultRequirement: observationResultRequirement
+          ? null
+          : this.observationResultRequirement,
+      transform: transform ? null : this.transform,
+      dynamicValue: dynamicValue ? null : this.dynamicValue,
+    );
+  }
+
   @override
   ActivityDefinition clone() => throw UnimplementedError();
   @override
@@ -3102,6 +3221,23 @@ class ActivityDefinitionParticipant extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ActivityDefinitionParticipant clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool role = false,
+  }) {
+    return ActivityDefinitionParticipant(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      role: role ? null : this.role,
+    );
+  }
+
   @override
   ActivityDefinitionParticipant clone() => throw UnimplementedError();
   @override
@@ -3516,6 +3652,22 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ActivityDefinitionDynamicValue clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ActivityDefinitionDynamicValue(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      path: path,
+      expression: expression,
+    );
   }
 
   @override

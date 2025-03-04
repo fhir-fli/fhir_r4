@@ -377,6 +377,28 @@ class Distance extends Quantity
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Distance clear({
+    bool id = false,
+    bool extension_ = false,
+    bool value = false,
+    bool comparator = false,
+    bool unit = false,
+    bool system = false,
+    bool code = false,
+  }) {
+    return Distance(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      value: value ? null : this.value,
+      comparator: comparator ? null : this.comparator,
+      unit: unit ? null : this.unit,
+      system: system ? null : this.system,
+      code: code ? null : this.code,
+    );
+  }
+
   @override
   Distance clone() => throw UnimplementedError();
   @override

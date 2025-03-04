@@ -1218,7 +1218,8 @@ class EvidenceVariable extends DomainResource {
       case 'characteristicCombination':
         {
           return copyWith(
-              characteristicCombination: CharacteristicCombination.empty(),);
+            characteristicCombination: CharacteristicCombination.empty(),
+          );
         }
       case 'characteristic':
         {
@@ -1235,6 +1236,78 @@ class EvidenceVariable extends DomainResource {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  EvidenceVariable clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool identifier = false,
+    bool version = false,
+    bool name = false,
+    bool title = false,
+    bool shortTitle = false,
+    bool subtitle = false,
+    bool date = false,
+    bool description = false,
+    bool note = false,
+    bool useContext = false,
+    bool publisher = false,
+    bool contact = false,
+    bool author = false,
+    bool editor = false,
+    bool reviewer = false,
+    bool endorser = false,
+    bool relatedArtifact = false,
+    bool actual = false,
+    bool characteristicCombination = false,
+    bool characteristic = false,
+    bool handling = false,
+    bool category = false,
+  }) {
+    return EvidenceVariable(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url ? null : this.url,
+      identifier: identifier ? null : this.identifier,
+      version: version ? null : this.version,
+      name: name ? null : this.name,
+      title: title ? null : this.title,
+      shortTitle: shortTitle ? null : this.shortTitle,
+      subtitle: subtitle ? null : this.subtitle,
+      status: status,
+      date: date ? null : this.date,
+      description: description ? null : this.description,
+      note: note ? null : this.note,
+      useContext: useContext ? null : this.useContext,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      author: author ? null : this.author,
+      editor: editor ? null : this.editor,
+      reviewer: reviewer ? null : this.reviewer,
+      endorser: endorser ? null : this.endorser,
+      relatedArtifact: relatedArtifact ? null : this.relatedArtifact,
+      actual: actual ? null : this.actual,
+      characteristicCombination:
+          characteristicCombination ? null : this.characteristicCombination,
+      characteristic: characteristic ? null : this.characteristic,
+      handling: handling ? null : this.handling,
+      category: category ? null : this.category,
+    );
   }
 
   @override
@@ -1589,7 +1662,9 @@ class EvidenceVariable extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-        characteristicCombination, o.characteristicCombination,)) {
+      characteristicCombination,
+      o.characteristicCombination,
+    )) {
       return false;
     }
     if (!listEquals<EvidenceVariableCharacteristic>(
@@ -2198,6 +2273,33 @@ class EvidenceVariableCharacteristic extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  EvidenceVariableCharacteristic clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+    bool method = false,
+    bool device = false,
+    bool exclude = false,
+    bool timeFromStart = false,
+    bool groupMeasure = false,
+  }) {
+    return EvidenceVariableCharacteristic(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description ? null : this.description,
+      definitionX: definitionX,
+      method: method ? null : this.method,
+      device: device ? null : this.device,
+      exclude: exclude ? null : this.exclude,
+      timeFromStart: timeFromStart ? null : this.timeFromStart,
+      groupMeasure: groupMeasure ? null : this.groupMeasure,
+    );
+  }
+
   @override
   EvidenceVariableCharacteristic clone() => throw UnimplementedError();
   @override
@@ -2712,6 +2814,28 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  EvidenceVariableTimeFromStart clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+    bool quantity = false,
+    bool range = false,
+    bool note = false,
+  }) {
+    return EvidenceVariableTimeFromStart(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description ? null : this.description,
+      quantity: quantity ? null : this.quantity,
+      range: range ? null : this.range,
+      note: note ? null : this.note,
+    );
+  }
+
   @override
   EvidenceVariableTimeFromStart clone() => throw UnimplementedError();
   @override
@@ -3208,6 +3332,24 @@ class EvidenceVariableCategory extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  EvidenceVariableCategory clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool name = false,
+    bool value = false,
+  }) {
+    return EvidenceVariableCategory(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name ? null : this.name,
+      valueX: value ? null : valueX,
+    );
   }
 
   @override

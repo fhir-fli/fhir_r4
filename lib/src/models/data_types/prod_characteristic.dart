@@ -634,6 +634,42 @@ class ProdCharacteristic extends BackboneType {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ProdCharacteristic clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool height = false,
+    bool width = false,
+    bool depth = false,
+    bool weight = false,
+    bool nominalVolume = false,
+    bool externalDiameter = false,
+    bool shape = false,
+    bool color = false,
+    bool imprint = false,
+    bool image = false,
+    bool scoring = false,
+  }) {
+    return ProdCharacteristic(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      height: height ? null : this.height,
+      width: width ? null : this.width,
+      depth: depth ? null : this.depth,
+      weight: weight ? null : this.weight,
+      nominalVolume: nominalVolume ? null : this.nominalVolume,
+      externalDiameter: externalDiameter ? null : this.externalDiameter,
+      shape: shape ? null : this.shape,
+      color: color ? null : this.color,
+      imprint: imprint ? null : this.imprint,
+      image: image ? null : this.image,
+      scoring: scoring ? null : this.scoring,
+    );
+  }
+
   @override
   ProdCharacteristic clone() => throw UnimplementedError();
   @override

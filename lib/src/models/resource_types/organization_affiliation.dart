@@ -819,6 +819,55 @@ class OrganizationAffiliation extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  OrganizationAffiliation clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool active = false,
+    bool period = false,
+    bool organization = false,
+    bool participatingOrganization = false,
+    bool network = false,
+    bool code = false,
+    bool specialty = false,
+    bool location = false,
+    bool healthcareService = false,
+    bool telecom = false,
+    bool endpoint = false,
+  }) {
+    return OrganizationAffiliation(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      active: active ? null : this.active,
+      period: period ? null : this.period,
+      organization: organization ? null : this.organization,
+      participatingOrganization:
+          participatingOrganization ? null : this.participatingOrganization,
+      network: network ? null : this.network,
+      code: code ? null : this.code,
+      specialty: specialty ? null : this.specialty,
+      location: location ? null : this.location,
+      healthcareService: healthcareService ? null : this.healthcareService,
+      telecom: telecom ? null : this.telecom,
+      endpoint: endpoint ? null : this.endpoint,
+    );
+  }
+
   @override
   OrganizationAffiliation clone() => throw UnimplementedError();
   @override
@@ -1027,7 +1076,9 @@ class OrganizationAffiliation extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-        participatingOrganization, o.participatingOrganization,)) {
+      participatingOrganization,
+      o.participatingOrganization,
+    )) {
       return false;
     }
     if (!listEquals<Reference>(

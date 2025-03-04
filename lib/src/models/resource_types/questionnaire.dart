@@ -1089,6 +1089,73 @@ class Questionnaire extends CanonicalResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Questionnaire clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool identifier = false,
+    bool version = false,
+    bool name = false,
+    bool title = false,
+    bool derivedFrom = false,
+    bool experimental = false,
+    bool subjectType = false,
+    bool date = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool purpose = false,
+    bool copyright = false,
+    bool approvalDate = false,
+    bool lastReviewDate = false,
+    bool effectivePeriod = false,
+    bool code = false,
+    bool item = false,
+  }) {
+    return Questionnaire(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url ? null : this.url,
+      identifier: identifier ? null : this.identifier,
+      version: version ? null : this.version,
+      name: name ? null : this.name,
+      title: title ? null : this.title,
+      derivedFrom: derivedFrom ? null : this.derivedFrom,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      subjectType: subjectType ? null : this.subjectType,
+      date: date ? null : this.date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      purpose: purpose ? null : this.purpose,
+      copyright: copyright ? null : this.copyright,
+      approvalDate: approvalDate ? null : this.approvalDate,
+      lastReviewDate: lastReviewDate ? null : this.lastReviewDate,
+      effectivePeriod: effectivePeriod ? null : this.effectivePeriod,
+      code: code ? null : this.code,
+      item: item ? null : this.item,
+    );
+  }
+
   @override
   Questionnaire clone() => throw UnimplementedError();
   @override
@@ -2236,6 +2303,50 @@ class QuestionnaireItem extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  QuestionnaireItem clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool definition = false,
+    bool code = false,
+    bool prefix = false,
+    bool text = false,
+    bool enableWhen = false,
+    bool enableBehavior = false,
+    bool required_ = false,
+    bool repeats = false,
+    bool readOnly = false,
+    bool maxLength = false,
+    bool answerValueSet = false,
+    bool answerOption = false,
+    bool initial = false,
+    bool item = false,
+  }) {
+    return QuestionnaireItem(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      linkId: linkId,
+      definition: definition ? null : this.definition,
+      code: code ? null : this.code,
+      prefix: prefix ? null : this.prefix,
+      text: text ? null : this.text,
+      type: type,
+      enableWhen: enableWhen ? null : this.enableWhen,
+      enableBehavior: enableBehavior ? null : this.enableBehavior,
+      required_: required_ ? null : this.required_,
+      repeats: repeats ? null : this.repeats,
+      readOnly: readOnly ? null : this.readOnly,
+      maxLength: maxLength ? null : this.maxLength,
+      answerValueSet: answerValueSet ? null : this.answerValueSet,
+      answerOption: answerOption ? null : this.answerOption,
+      initial: initial ? null : this.initial,
+      item: item ? null : this.item,
+    );
+  }
+
   @override
   QuestionnaireItem clone() => throw UnimplementedError();
   @override
@@ -3055,6 +3166,23 @@ class QuestionnaireEnableWhen extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  QuestionnaireEnableWhen clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return QuestionnaireEnableWhen(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      question: question,
+      operator_: operator_,
+      answerX: answerX,
+    );
+  }
+
   @override
   QuestionnaireEnableWhen clone() => throw UnimplementedError();
   @override
@@ -3609,6 +3737,23 @@ class QuestionnaireAnswerOption extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  QuestionnaireAnswerOption clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool initialSelected = false,
+  }) {
+    return QuestionnaireAnswerOption(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      valueX: valueX,
+      initialSelected: initialSelected ? null : this.initialSelected,
+    );
   }
 
   @override
@@ -4264,6 +4409,21 @@ class QuestionnaireInitial extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  QuestionnaireInitial clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return QuestionnaireInitial(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      valueX: valueX,
+    );
   }
 
   @override

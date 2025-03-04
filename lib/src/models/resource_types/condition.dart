@@ -1200,6 +1200,63 @@ class Condition extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Condition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool clinicalStatus = false,
+    bool verificationStatus = false,
+    bool category = false,
+    bool severity = false,
+    bool code = false,
+    bool bodySite = false,
+    bool encounter = false,
+    bool onset = false,
+    bool abatement = false,
+    bool recordedDate = false,
+    bool recorder = false,
+    bool asserter = false,
+    bool stage = false,
+    bool evidence = false,
+    bool note = false,
+  }) {
+    return Condition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      clinicalStatus: clinicalStatus ? null : this.clinicalStatus,
+      verificationStatus: verificationStatus ? null : this.verificationStatus,
+      category: category ? null : this.category,
+      severity: severity ? null : this.severity,
+      code: code ? null : this.code,
+      bodySite: bodySite ? null : this.bodySite,
+      subject: subject,
+      encounter: encounter ? null : this.encounter,
+      onsetX: onset ? null : onsetX,
+      abatementX: abatement ? null : abatementX,
+      recordedDate: recordedDate ? null : this.recordedDate,
+      recorder: recorder ? null : this.recorder,
+      asserter: asserter ? null : this.asserter,
+      stage: stage ? null : this.stage,
+      evidence: evidence ? null : this.evidence,
+      note: note ? null : this.note,
+    );
+  }
+
   @override
   Condition clone() => throw UnimplementedError();
   @override
@@ -1843,6 +1900,26 @@ class ConditionStage extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ConditionStage clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool summary = false,
+    bool assessment = false,
+    bool type = false,
+  }) {
+    return ConditionStage(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      summary: summary ? null : this.summary,
+      assessment: assessment ? null : this.assessment,
+      type: type ? null : this.type,
+    );
+  }
+
   @override
   ConditionStage clone() => throw UnimplementedError();
   @override
@@ -2270,6 +2347,24 @@ class ConditionEvidence extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ConditionEvidence clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool detail = false,
+  }) {
+    return ConditionEvidence(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      detail: detail ? null : this.detail,
+    );
   }
 
   @override

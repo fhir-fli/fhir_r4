@@ -1169,6 +1169,72 @@ class Media extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Media clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool basedOn = false,
+    bool partOf = false,
+    bool type = false,
+    bool modality = false,
+    bool view = false,
+    bool subject = false,
+    bool encounter = false,
+    bool created = false,
+    bool issued = false,
+    bool operator_ = false,
+    bool reasonCode = false,
+    bool bodySite = false,
+    bool deviceName = false,
+    bool device = false,
+    bool height = false,
+    bool width = false,
+    bool frames = false,
+    bool duration = false,
+    bool note = false,
+  }) {
+    return Media(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      basedOn: basedOn ? null : this.basedOn,
+      partOf: partOf ? null : this.partOf,
+      status: status,
+      type: type ? null : this.type,
+      modality: modality ? null : this.modality,
+      view: view ? null : this.view,
+      subject: subject ? null : this.subject,
+      encounter: encounter ? null : this.encounter,
+      createdX: created ? null : createdX,
+      issued: issued ? null : this.issued,
+      operator_: operator_ ? null : this.operator_,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      bodySite: bodySite ? null : this.bodySite,
+      deviceName: deviceName ? null : this.deviceName,
+      device: device ? null : this.device,
+      height: height ? null : this.height,
+      width: width ? null : this.width,
+      frames: frames ? null : this.frames,
+      duration: duration ? null : this.duration,
+      content: content,
+      note: note ? null : this.note,
+    );
+  }
+
   @override
   Media clone() => throw UnimplementedError();
   @override

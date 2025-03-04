@@ -439,6 +439,29 @@ class MarketingStatus extends BackboneType {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  MarketingStatus clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool country = false,
+    bool jurisdiction = false,
+    bool dateRange = false,
+    bool restoreDate = false,
+  }) {
+    return MarketingStatus(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      country: country ? null : this.country,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      status: status,
+      dateRange: dateRange ? null : this.dateRange,
+      restoreDate: restoreDate ? null : this.restoreDate,
+    );
+  }
+
   @override
   MarketingStatus clone() => throw UnimplementedError();
   @override

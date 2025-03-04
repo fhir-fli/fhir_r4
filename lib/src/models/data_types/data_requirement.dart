@@ -573,6 +573,33 @@ class DataRequirement extends DataType
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  DataRequirement clear({
+    bool id = false,
+    bool extension_ = false,
+    bool profile = false,
+    bool subject = false,
+    bool mustSupport = false,
+    bool codeFilter = false,
+    bool dateFilter = false,
+    bool limit = false,
+    bool sort = false,
+  }) {
+    return DataRequirement(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      type: type,
+      profile: profile ? null : this.profile,
+      subjectX: subject ? null : subjectX,
+      mustSupport: mustSupport ? null : this.mustSupport,
+      codeFilter: codeFilter ? null : this.codeFilter,
+      dateFilter: dateFilter ? null : this.dateFilter,
+      limit: limit ? null : this.limit,
+      sort: sort ? null : this.sort,
+    );
+  }
+
   @override
   DataRequirement clone() => throw UnimplementedError();
   @override
@@ -745,7 +772,8 @@ class DataRequirementCodeFilter extends Element {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory DataRequirementCodeFilter.empty() => const DataRequirementCodeFilter();
+  factory DataRequirementCodeFilter.empty() =>
+      const DataRequirementCodeFilter();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DataRequirementCodeFilter.fromJson(
@@ -1099,6 +1127,26 @@ class DataRequirementCodeFilter extends Element {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  DataRequirementCodeFilter clear({
+    bool id = false,
+    bool extension_ = false,
+    bool path = false,
+    bool searchParam = false,
+    bool valueSet = false,
+    bool code = false,
+  }) {
+    return DataRequirementCodeFilter(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      path: path ? null : this.path,
+      searchParam: searchParam ? null : this.searchParam,
+      valueSet: valueSet ? null : this.valueSet,
+      code: code ? null : this.code,
+    );
+  }
+
   @override
   DataRequirementCodeFilter clone() => throw UnimplementedError();
   @override
@@ -1210,7 +1258,8 @@ class DataRequirementDateFilter extends Element {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory DataRequirementDateFilter.empty() => const DataRequirementDateFilter();
+  factory DataRequirementDateFilter.empty() =>
+      const DataRequirementDateFilter();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DataRequirementDateFilter.fromJson(
@@ -1599,6 +1648,24 @@ class DataRequirementDateFilter extends Element {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  DataRequirementDateFilter clear({
+    bool id = false,
+    bool extension_ = false,
+    bool path = false,
+    bool searchParam = false,
+    bool value = false,
+  }) {
+    return DataRequirementDateFilter(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      path: path ? null : this.path,
+      searchParam: searchParam ? null : this.searchParam,
+      valueX: value ? null : valueX,
+    );
+  }
+
   @override
   DataRequirementDateFilter clone() => throw UnimplementedError();
   @override
@@ -1965,6 +2032,20 @@ class DataRequirementSort extends Element {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DataRequirementSort clear({
+    bool id = false,
+    bool extension_ = false,
+  }) {
+    return DataRequirementSort(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      path: path,
+      direction: direction,
+    );
   }
 
   @override

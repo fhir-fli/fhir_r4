@@ -675,6 +675,44 @@ class Ingredient extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Ingredient clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool for_ = false,
+    bool function_ = false,
+    bool allergenicIndicator = false,
+    bool manufacturer = false,
+  }) {
+    return Ingredient(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      for_: for_ ? null : this.for_,
+      role: role,
+      function_: function_ ? null : this.function_,
+      allergenicIndicator:
+          allergenicIndicator ? null : this.allergenicIndicator,
+      manufacturer: manufacturer ? null : this.manufacturer,
+      substance: substance,
+    );
+  }
+
   @override
   Ingredient clone() => throw UnimplementedError();
   @override
@@ -1195,6 +1233,23 @@ class IngredientManufacturer extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  IngredientManufacturer clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool role = false,
+  }) {
+    return IngredientManufacturer(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      role: role ? null : this.role,
+      manufacturer: manufacturer,
+    );
+  }
+
   @override
   IngredientManufacturer clone() => throw UnimplementedError();
   @override
@@ -1605,6 +1660,23 @@ class IngredientSubstance extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  IngredientSubstance clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool strength = false,
+  }) {
+    return IngredientSubstance(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      strength: strength ? null : this.strength,
+    );
   }
 
   @override
@@ -2301,6 +2373,34 @@ class IngredientStrength extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  IngredientStrength clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool presentation = false,
+    bool textPresentation = false,
+    bool concentration = false,
+    bool textConcentration = false,
+    bool measurementPoint = false,
+    bool country = false,
+    bool referenceStrength = false,
+  }) {
+    return IngredientStrength(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      presentationX: presentation ? null : presentationX,
+      textPresentation: textPresentation ? null : this.textPresentation,
+      concentrationX: concentration ? null : concentrationX,
+      textConcentration: textConcentration ? null : this.textConcentration,
+      measurementPoint: measurementPoint ? null : this.measurementPoint,
+      country: country ? null : this.country,
+      referenceStrength: referenceStrength ? null : this.referenceStrength,
+    );
+  }
+
   @override
   IngredientStrength clone() => throw UnimplementedError();
   @override
@@ -2878,6 +2978,27 @@ class IngredientReferenceStrength extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  IngredientReferenceStrength clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool substance = false,
+    bool measurementPoint = false,
+    bool country = false,
+  }) {
+    return IngredientReferenceStrength(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      substance: substance ? null : this.substance,
+      strengthX: strengthX,
+      measurementPoint: measurementPoint ? null : this.measurementPoint,
+      country: country ? null : this.country,
+    );
   }
 
   @override

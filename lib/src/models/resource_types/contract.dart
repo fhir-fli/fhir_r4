@@ -1635,6 +1635,97 @@ class Contract extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Contract clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool url = false,
+    bool version = false,
+    bool status = false,
+    bool legalState = false,
+    bool instantiatesCanonical = false,
+    bool instantiatesUri = false,
+    bool contentDerivative = false,
+    bool issued = false,
+    bool applies = false,
+    bool expirationType = false,
+    bool subject = false,
+    bool authority = false,
+    bool domain = false,
+    bool site = false,
+    bool name = false,
+    bool title = false,
+    bool subtitle = false,
+    bool alias = false,
+    bool author = false,
+    bool scope = false,
+    bool topic = false,
+    bool type = false,
+    bool subType = false,
+    bool contentDefinition = false,
+    bool term = false,
+    bool supportingInfo = false,
+    bool relevantHistory = false,
+    bool signer = false,
+    bool friendly = false,
+    bool legal = false,
+    bool rule = false,
+    bool legallyBinding = false,
+  }) {
+    return Contract(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      url: url ? null : this.url,
+      version: version ? null : this.version,
+      status: status ? null : this.status,
+      legalState: legalState ? null : this.legalState,
+      instantiatesCanonical:
+          instantiatesCanonical ? null : this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri ? null : this.instantiatesUri,
+      contentDerivative: contentDerivative ? null : this.contentDerivative,
+      issued: issued ? null : this.issued,
+      applies: applies ? null : this.applies,
+      expirationType: expirationType ? null : this.expirationType,
+      subject: subject ? null : this.subject,
+      authority: authority ? null : this.authority,
+      domain: domain ? null : this.domain,
+      site: site ? null : this.site,
+      name: name ? null : this.name,
+      title: title ? null : this.title,
+      subtitle: subtitle ? null : this.subtitle,
+      alias: alias ? null : this.alias,
+      author: author ? null : this.author,
+      scope: scope ? null : this.scope,
+      topicX: topic ? null : topicX,
+      type: type ? null : this.type,
+      subType: subType ? null : this.subType,
+      contentDefinition: contentDefinition ? null : this.contentDefinition,
+      term: term ? null : this.term,
+      supportingInfo: supportingInfo ? null : this.supportingInfo,
+      relevantHistory: relevantHistory ? null : this.relevantHistory,
+      signer: signer ? null : this.signer,
+      friendly: friendly ? null : this.friendly,
+      legal: legal ? null : this.legal,
+      rule: rule ? null : this.rule,
+      legallyBindingX: legallyBinding ? null : legallyBindingX,
+    );
+  }
+
   @override
   Contract clone() => throw UnimplementedError();
   @override
@@ -2550,8 +2641,8 @@ class ContractContentDefinition extends BackboneElement {
       case 'publicationStatus':
         {
           return copyWith(
-              publicationStatus:
-                  ContractResourcePublicationStatusCodes.empty(),);
+            publicationStatus: ContractResourcePublicationStatusCodes.empty(),
+          );
         }
       case 'copyright':
         {
@@ -2560,6 +2651,30 @@ class ContractContentDefinition extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ContractContentDefinition clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool subType = false,
+    bool publisher = false,
+    bool publicationDate = false,
+    bool copyright = false,
+  }) {
+    return ContractContentDefinition(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      subType: subType ? null : this.subType,
+      publisher: publisher ? null : this.publisher,
+      publicationDate: publicationDate ? null : this.publicationDate,
+      publicationStatus: publicationStatus,
+      copyright: copyright ? null : this.copyright,
+    );
   }
 
   @override
@@ -3380,6 +3495,43 @@ class ContractTerm extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ContractTerm clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool issued = false,
+    bool applies = false,
+    bool topic = false,
+    bool type = false,
+    bool subType = false,
+    bool text = false,
+    bool securityLabel = false,
+    bool asset = false,
+    bool action = false,
+    bool group = false,
+  }) {
+    return ContractTerm(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      issued: issued ? null : this.issued,
+      applies: applies ? null : this.applies,
+      topicX: topic ? null : topicX,
+      type: type ? null : this.type,
+      subType: subType ? null : this.subType,
+      text: text ? null : this.text,
+      securityLabel: securityLabel ? null : this.securityLabel,
+      offer: offer,
+      asset: asset ? null : this.asset,
+      action: action ? null : this.action,
+      group: group ? null : this.group,
+    );
+  }
+
   @override
   ContractTerm clone() => throw UnimplementedError();
   @override
@@ -3965,6 +4117,27 @@ class ContractSecurityLabel extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ContractSecurityLabel clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool number = false,
+    bool category = false,
+    bool control = false,
+  }) {
+    return ContractSecurityLabel(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      number: number ? null : this.number,
+      classification: classification,
+      category: category ? null : this.category,
+      control: control ? null : this.control,
+    );
   }
 
   @override
@@ -4677,6 +4850,41 @@ class ContractOffer extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ContractOffer clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool party = false,
+    bool topic = false,
+    bool type = false,
+    bool decision = false,
+    bool decisionMode = false,
+    bool answer = false,
+    bool text = false,
+    bool linkId = false,
+    bool securityLabelNumber = false,
+  }) {
+    return ContractOffer(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      party: party ? null : this.party,
+      topic: topic ? null : this.topic,
+      type: type ? null : this.type,
+      decision: decision ? null : this.decision,
+      decisionMode: decisionMode ? null : this.decisionMode,
+      answer: answer ? null : this.answer,
+      text: text ? null : this.text,
+      linkId: linkId ? null : this.linkId,
+      securityLabelNumber:
+          securityLabelNumber ? null : this.securityLabelNumber,
+    );
+  }
+
   @override
   ContractOffer clone() => throw UnimplementedError();
   @override
@@ -5188,6 +5396,22 @@ class ContractParty extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ContractParty clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ContractParty(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      reference: reference,
+      role: role,
+    );
   }
 
   @override
@@ -5852,6 +6076,21 @@ class ContractAnswer extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ContractAnswer clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ContractAnswer(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      valueX: valueX,
+    );
   }
 
   @override
@@ -6695,6 +6934,51 @@ class ContractAsset extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ContractAsset clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool scope = false,
+    bool type = false,
+    bool typeReference = false,
+    bool subtype = false,
+    bool relationship = false,
+    bool context = false,
+    bool condition = false,
+    bool periodType = false,
+    bool period = false,
+    bool usePeriod = false,
+    bool text = false,
+    bool linkId = false,
+    bool answer = false,
+    bool securityLabelNumber = false,
+    bool valuedItem = false,
+  }) {
+    return ContractAsset(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      scope: scope ? null : this.scope,
+      type: type ? null : this.type,
+      typeReference: typeReference ? null : this.typeReference,
+      subtype: subtype ? null : this.subtype,
+      relationship: relationship ? null : this.relationship,
+      context: context ? null : this.context,
+      condition: condition ? null : this.condition,
+      periodType: periodType ? null : this.periodType,
+      period: period ? null : this.period,
+      usePeriod: usePeriod ? null : this.usePeriod,
+      text: text ? null : this.text,
+      linkId: linkId ? null : this.linkId,
+      answer: answer ? null : this.answer,
+      securityLabelNumber:
+          securityLabelNumber ? null : this.securityLabelNumber,
+      valuedItem: valuedItem ? null : this.valuedItem,
+    );
+  }
+
   @override
   ContractAsset clone() => throw UnimplementedError();
   @override
@@ -7316,6 +7600,26 @@ class ContractContext extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ContractContext clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool reference = false,
+    bool code = false,
+    bool text = false,
+  }) {
+    return ContractContext(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      reference: reference ? null : this.reference,
+      code: code ? null : this.code,
+      text: text ? null : this.text,
+    );
   }
 
   @override
@@ -8171,6 +8475,49 @@ class ContractValuedItem extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ContractValuedItem clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool entity = false,
+    bool identifier = false,
+    bool effectiveTime = false,
+    bool quantity = false,
+    bool unitPrice = false,
+    bool factor = false,
+    bool points = false,
+    bool net = false,
+    bool payment = false,
+    bool paymentDate = false,
+    bool responsible = false,
+    bool recipient = false,
+    bool linkId = false,
+    bool securityLabelNumber = false,
+  }) {
+    return ContractValuedItem(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      entityX: entity ? null : entityX,
+      identifier: identifier ? null : this.identifier,
+      effectiveTime: effectiveTime ? null : this.effectiveTime,
+      quantity: quantity ? null : this.quantity,
+      unitPrice: unitPrice ? null : this.unitPrice,
+      factor: factor ? null : this.factor,
+      points: points ? null : this.points,
+      net: net ? null : this.net,
+      payment: payment ? null : this.payment,
+      paymentDate: paymentDate ? null : this.paymentDate,
+      responsible: responsible ? null : this.responsible,
+      recipient: recipient ? null : this.recipient,
+      linkId: linkId ? null : this.linkId,
+      securityLabelNumber:
+          securityLabelNumber ? null : this.securityLabelNumber,
+    );
   }
 
   @override
@@ -9388,6 +9735,60 @@ class ContractAction extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ContractAction clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool doNotPerform = false,
+    bool subject = false,
+    bool linkId = false,
+    bool context = false,
+    bool contextLinkId = false,
+    bool occurrence = false,
+    bool requester = false,
+    bool requesterLinkId = false,
+    bool performerType = false,
+    bool performerRole = false,
+    bool performer = false,
+    bool performerLinkId = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool reason = false,
+    bool reasonLinkId = false,
+    bool note = false,
+    bool securityLabelNumber = false,
+  }) {
+    return ContractAction(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      doNotPerform: doNotPerform ? null : this.doNotPerform,
+      type: type,
+      subject: subject ? null : this.subject,
+      intent: intent,
+      linkId: linkId ? null : this.linkId,
+      status: status,
+      context: context ? null : this.context,
+      contextLinkId: contextLinkId ? null : this.contextLinkId,
+      occurrenceX: occurrence ? null : occurrenceX,
+      requester: requester ? null : this.requester,
+      requesterLinkId: requesterLinkId ? null : this.requesterLinkId,
+      performerType: performerType ? null : this.performerType,
+      performerRole: performerRole ? null : this.performerRole,
+      performer: performer ? null : this.performer,
+      performerLinkId: performerLinkId ? null : this.performerLinkId,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      reason: reason ? null : this.reason,
+      reasonLinkId: reasonLinkId ? null : this.reasonLinkId,
+      note: note ? null : this.note,
+      securityLabelNumber:
+          securityLabelNumber ? null : this.securityLabelNumber,
+    );
+  }
+
   @override
   ContractAction clone() => throw UnimplementedError();
   @override
@@ -10039,6 +10440,23 @@ class ContractSubject extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ContractSubject clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool role = false,
+  }) {
+    return ContractSubject(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      reference: reference,
+      role: role ? null : this.role,
+    );
+  }
+
   @override
   ContractSubject clone() => throw UnimplementedError();
   @override
@@ -10486,6 +10904,23 @@ class ContractSigner extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ContractSigner clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ContractSigner(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      party: party,
+      signature: signature,
+    );
+  }
+
   @override
   ContractSigner clone() => throw UnimplementedError();
   @override
@@ -10930,6 +11365,21 @@ class ContractFriendly extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ContractFriendly clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ContractFriendly(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      contentX: contentX,
+    );
+  }
+
   @override
   ContractFriendly clone() => throw UnimplementedError();
   @override
@@ -11341,6 +11791,21 @@ class ContractLegal extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ContractLegal clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ContractLegal(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      contentX: contentX,
+    );
   }
 
   @override
@@ -11756,6 +12221,21 @@ class ContractRule extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ContractRule clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ContractRule(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      contentX: contentX,
+    );
   }
 
   @override

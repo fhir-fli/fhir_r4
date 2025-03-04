@@ -378,6 +378,22 @@ class CodeableConcept extends DataType
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  CodeableConcept clear({
+    bool id = false,
+    bool extension_ = false,
+    bool coding = false,
+    bool text = false,
+  }) {
+    return CodeableConcept(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      coding: coding ? null : this.coding,
+      text: text ? null : this.text,
+    );
+  }
+
   @override
   CodeableConcept clone() => throw UnimplementedError();
   @override

@@ -5418,6 +5418,88 @@ class ElementDefinition extends BackboneType {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ElementDefinition clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool representation = false,
+    bool sliceName = false,
+    bool sliceIsConstraining = false,
+    bool label = false,
+    bool code = false,
+    bool slicing = false,
+    bool short = false,
+    bool definition = false,
+    bool comment = false,
+    bool requirements = false,
+    bool alias = false,
+    bool min = false,
+    bool max = false,
+    bool base = false,
+    bool contentReference = false,
+    bool type = false,
+    bool defaultValue = false,
+    bool meaningWhenMissing = false,
+    bool orderMeaning = false,
+    bool fixed = false,
+    bool pattern = false,
+    bool example = false,
+    bool minValue = false,
+    bool maxValue = false,
+    bool maxLength = false,
+    bool condition = false,
+    bool constraint = false,
+    bool mustSupport = false,
+    bool isModifier = false,
+    bool isModifierReason = false,
+    bool isSummary = false,
+    bool binding = false,
+    bool mapping = false,
+  }) {
+    return ElementDefinition(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      path: path,
+      representation: representation ? null : this.representation,
+      sliceName: sliceName ? null : this.sliceName,
+      sliceIsConstraining:
+          sliceIsConstraining ? null : this.sliceIsConstraining,
+      label: label ? null : this.label,
+      code: code ? null : this.code,
+      slicing: slicing ? null : this.slicing,
+      short: short ? null : this.short,
+      definition: definition ? null : this.definition,
+      comment: comment ? null : this.comment,
+      requirements: requirements ? null : this.requirements,
+      alias: alias ? null : this.alias,
+      min: min ? null : this.min,
+      max: max ? null : this.max,
+      base: base ? null : this.base,
+      contentReference: contentReference ? null : this.contentReference,
+      type: type ? null : this.type,
+      defaultValueX: defaultValue ? null : defaultValueX,
+      meaningWhenMissing: meaningWhenMissing ? null : this.meaningWhenMissing,
+      orderMeaning: orderMeaning ? null : this.orderMeaning,
+      fixedX: fixed ? null : fixedX,
+      patternX: pattern ? null : patternX,
+      example: example ? null : this.example,
+      minValueX: minValue ? null : minValueX,
+      maxValueX: maxValue ? null : maxValueX,
+      maxLength: maxLength ? null : this.maxLength,
+      condition: condition ? null : this.condition,
+      constraint: constraint ? null : this.constraint,
+      mustSupport: mustSupport ? null : this.mustSupport,
+      isModifier: isModifier ? null : this.isModifier,
+      isModifierReason: isModifierReason ? null : this.isModifierReason,
+      isSummary: isSummary ? null : this.isSummary,
+      binding: binding ? null : this.binding,
+      mapping: mapping ? null : this.mapping,
+    );
+  }
+
   @override
   ElementDefinition clone() => throw UnimplementedError();
   @override
@@ -6185,6 +6267,25 @@ class ElementDefinitionSlicing extends Element {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ElementDefinitionSlicing clear({
+    bool id = false,
+    bool extension_ = false,
+    bool discriminator = false,
+    bool description = false,
+    bool ordered = false,
+  }) {
+    return ElementDefinitionSlicing(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      discriminator: discriminator ? null : this.discriminator,
+      description: description ? null : this.description,
+      ordered: ordered ? null : this.ordered,
+      rules: rules,
+    );
+  }
+
   @override
   ElementDefinitionSlicing clone() => throw UnimplementedError();
   @override
@@ -6570,6 +6671,20 @@ class ElementDefinitionDiscriminator extends Element {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ElementDefinitionDiscriminator clear({
+    bool id = false,
+    bool extension_ = false,
+  }) {
+    return ElementDefinitionDiscriminator(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      type: type,
+      path: path,
+    );
   }
 
   @override
@@ -6968,6 +7083,21 @@ class ElementDefinitionBase extends Element {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ElementDefinitionBase clear({
+    bool id = false,
+    bool extension_ = false,
+  }) {
+    return ElementDefinitionBase(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      path: path,
+      min: min,
+      max: max,
+    );
   }
 
   @override
@@ -7448,6 +7578,27 @@ class ElementDefinitionType extends Element {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ElementDefinitionType clear({
+    bool id = false,
+    bool extension_ = false,
+    bool profile = false,
+    bool targetProfile = false,
+    bool aggregation = false,
+    bool versioning = false,
+  }) {
+    return ElementDefinitionType(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      code: code,
+      profile: profile ? null : this.profile,
+      targetProfile: targetProfile ? null : this.targetProfile,
+      aggregation: aggregation ? null : this.aggregation,
+      versioning: versioning ? null : this.versioning,
+    );
   }
 
   @override
@@ -9035,6 +9186,20 @@ class ElementDefinitionExample extends Element {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ElementDefinitionExample clear({
+    bool id = false,
+    bool extension_ = false,
+  }) {
+    return ElementDefinitionExample(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      label: label,
+      valueX: valueX,
+    );
+  }
+
   @override
   ElementDefinitionExample clone() => throw UnimplementedError();
   @override
@@ -9554,6 +9719,29 @@ class ElementDefinitionConstraint extends Element {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ElementDefinitionConstraint clear({
+    bool id = false,
+    bool extension_ = false,
+    bool requirements = false,
+    bool expression = false,
+    bool xpath = false,
+    bool source = false,
+  }) {
+    return ElementDefinitionConstraint(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      key: key,
+      requirements: requirements ? null : this.requirements,
+      severity: severity,
+      human: human,
+      expression: expression ? null : this.expression,
+      xpath: xpath ? null : this.xpath,
+      source: source ? null : this.source,
+    );
+  }
+
   @override
   ElementDefinitionConstraint clone() => throw UnimplementedError();
   @override
@@ -9987,6 +10175,23 @@ class ElementDefinitionBinding extends Element {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ElementDefinitionBinding clear({
+    bool id = false,
+    bool extension_ = false,
+    bool description = false,
+    bool valueSet = false,
+  }) {
+    return ElementDefinitionBinding(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      strength: strength,
+      description: description ? null : this.description,
+      valueSet: valueSet ? null : this.valueSet,
+    );
+  }
+
   @override
   ElementDefinitionBinding clone() => throw UnimplementedError();
   @override
@@ -10414,6 +10619,24 @@ class ElementDefinitionMapping extends Element {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ElementDefinitionMapping clear({
+    bool id = false,
+    bool extension_ = false,
+    bool language = false,
+    bool comment = false,
+  }) {
+    return ElementDefinitionMapping(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      identity: identity,
+      language: language ? null : this.language,
+      map: map,
+      comment: comment ? null : this.comment,
+    );
   }
 
   @override

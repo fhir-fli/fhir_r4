@@ -440,6 +440,31 @@ class OperationOutcome extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  OperationOutcome clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return OperationOutcome(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      issue: issue,
+    );
+  }
+
   @override
   OperationOutcome clone() => throw UnimplementedError();
   @override
@@ -1019,6 +1044,30 @@ class OperationOutcomeIssue extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  OperationOutcomeIssue clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool details = false,
+    bool diagnostics = false,
+    bool location = false,
+    bool expression = false,
+  }) {
+    return OperationOutcomeIssue(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      severity: severity,
+      code: code,
+      details: details ? null : this.details,
+      diagnostics: diagnostics ? null : this.diagnostics,
+      location: location ? null : this.location,
+      expression: expression ? null : this.expression,
+    );
   }
 
   @override

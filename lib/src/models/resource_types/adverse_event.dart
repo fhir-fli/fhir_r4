@@ -1071,6 +1071,69 @@ class AdverseEvent extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  AdverseEvent clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool category = false,
+    bool event = false,
+    bool encounter = false,
+    bool date = false,
+    bool detected = false,
+    bool recordedDate = false,
+    bool resultingCondition = false,
+    bool location = false,
+    bool seriousness = false,
+    bool severity = false,
+    bool outcome = false,
+    bool recorder = false,
+    bool contributor = false,
+    bool suspectEntity = false,
+    bool subjectMedicalHistory = false,
+    bool referenceDocument = false,
+    bool study = false,
+  }) {
+    return AdverseEvent(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      actuality: actuality,
+      category: category ? null : this.category,
+      event: event ? null : this.event,
+      subject: subject,
+      encounter: encounter ? null : this.encounter,
+      date: date ? null : this.date,
+      detected: detected ? null : this.detected,
+      recordedDate: recordedDate ? null : this.recordedDate,
+      resultingCondition: resultingCondition ? null : this.resultingCondition,
+      location: location ? null : this.location,
+      seriousness: seriousness ? null : this.seriousness,
+      severity: severity ? null : this.severity,
+      outcome: outcome ? null : this.outcome,
+      recorder: recorder ? null : this.recorder,
+      contributor: contributor ? null : this.contributor,
+      suspectEntity: suspectEntity ? null : this.suspectEntity,
+      subjectMedicalHistory:
+          subjectMedicalHistory ? null : this.subjectMedicalHistory,
+      referenceDocument: referenceDocument ? null : this.referenceDocument,
+      study: study ? null : this.study,
+    );
+  }
+
   @override
   AdverseEvent clone() => throw UnimplementedError();
   @override
@@ -1714,6 +1777,23 @@ class AdverseEventSuspectEntity extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  AdverseEventSuspectEntity clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool causality = false,
+  }) {
+    return AdverseEventSuspectEntity(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      instance: instance,
+      causality: causality ? null : this.causality,
+    );
+  }
+
   @override
   AdverseEventSuspectEntity clone() => throw UnimplementedError();
   @override
@@ -2185,6 +2265,28 @@ class AdverseEventCausality extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  AdverseEventCausality clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool assessment = false,
+    bool productRelatedness = false,
+    bool author = false,
+    bool method = false,
+  }) {
+    return AdverseEventCausality(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      assessment: assessment ? null : this.assessment,
+      productRelatedness: productRelatedness ? null : this.productRelatedness,
+      author: author ? null : this.author,
+      method: method ? null : this.method,
+    );
   }
 
   @override

@@ -731,7 +731,9 @@ class Measure extends CanonicalResource {
     addField('rateAggregation', rateAggregation);
     addField('rationale', rationale);
     addField(
-        'clinicalRecommendationStatement', clinicalRecommendationStatement,);
+      'clinicalRecommendationStatement',
+      clinicalRecommendationStatement,
+    );
     addField('improvementNotation', improvementNotation);
     addField('definition', definition);
     addField('guidance', guidance);
@@ -1754,7 +1756,8 @@ class Measure extends CanonicalResource {
       case 'clinicalRecommendationStatement':
         {
           return copyWith(
-              clinicalRecommendationStatement: FhirMarkdown.empty(),);
+            clinicalRecommendationStatement: FhirMarkdown.empty(),
+          );
         }
       case 'improvementNotation':
         {
@@ -1779,6 +1782,114 @@ class Measure extends CanonicalResource {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Measure clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool identifier = false,
+    bool version = false,
+    bool name = false,
+    bool title = false,
+    bool subtitle = false,
+    bool experimental = false,
+    bool subject = false,
+    bool date = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool purpose = false,
+    bool usage = false,
+    bool copyright = false,
+    bool approvalDate = false,
+    bool lastReviewDate = false,
+    bool effectivePeriod = false,
+    bool topic = false,
+    bool author = false,
+    bool editor = false,
+    bool reviewer = false,
+    bool endorser = false,
+    bool relatedArtifact = false,
+    bool library_ = false,
+    bool disclaimer = false,
+    bool scoring = false,
+    bool compositeScoring = false,
+    bool type = false,
+    bool riskAdjustment = false,
+    bool rateAggregation = false,
+    bool rationale = false,
+    bool clinicalRecommendationStatement = false,
+    bool improvementNotation = false,
+    bool definition = false,
+    bool guidance = false,
+    bool group = false,
+    bool supplementalData = false,
+  }) {
+    return Measure(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url ? null : this.url,
+      identifier: identifier ? null : this.identifier,
+      version: version ? null : this.version,
+      name: name ? null : this.name,
+      title: title ? null : this.title,
+      subtitle: subtitle ? null : this.subtitle,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      subjectX: subject ? null : subjectX,
+      date: date ? null : this.date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      purpose: purpose ? null : this.purpose,
+      usage: usage ? null : this.usage,
+      copyright: copyright ? null : this.copyright,
+      approvalDate: approvalDate ? null : this.approvalDate,
+      lastReviewDate: lastReviewDate ? null : this.lastReviewDate,
+      effectivePeriod: effectivePeriod ? null : this.effectivePeriod,
+      topic: topic ? null : this.topic,
+      author: author ? null : this.author,
+      editor: editor ? null : this.editor,
+      reviewer: reviewer ? null : this.reviewer,
+      endorser: endorser ? null : this.endorser,
+      relatedArtifact: relatedArtifact ? null : this.relatedArtifact,
+      library_: library_ ? null : this.library_,
+      disclaimer: disclaimer ? null : this.disclaimer,
+      scoring: scoring ? null : this.scoring,
+      compositeScoring: compositeScoring ? null : this.compositeScoring,
+      type: type ? null : this.type,
+      riskAdjustment: riskAdjustment ? null : this.riskAdjustment,
+      rateAggregation: rateAggregation ? null : this.rateAggregation,
+      rationale: rationale ? null : this.rationale,
+      clinicalRecommendationStatement: clinicalRecommendationStatement
+          ? null
+          : this.clinicalRecommendationStatement,
+      improvementNotation:
+          improvementNotation ? null : this.improvementNotation,
+      definition: definition ? null : this.definition,
+      guidance: guidance ? null : this.guidance,
+      group: group ? null : this.group,
+      supplementalData: supplementalData ? null : this.supplementalData,
+    );
   }
 
   @override
@@ -2289,7 +2400,9 @@ class Measure extends CanonicalResource {
       return false;
     }
     if (!equalsDeepWithNull(
-        clinicalRecommendationStatement, o.clinicalRecommendationStatement,)) {
+      clinicalRecommendationStatement,
+      o.clinicalRecommendationStatement,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(improvementNotation, o.improvementNotation)) {
@@ -2715,6 +2828,28 @@ class MeasureGroup extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MeasureGroup clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool description = false,
+    bool population = false,
+    bool stratifier = false,
+  }) {
+    return MeasureGroup(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      description: description ? null : this.description,
+      population: population ? null : this.population,
+      stratifier: stratifier ? null : this.stratifier,
+    );
   }
 
   @override
@@ -3181,6 +3316,25 @@ class MeasurePopulation extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MeasurePopulation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool description = false,
+  }) {
+    return MeasurePopulation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      description: description ? null : this.description,
+      criteria: criteria,
+    );
   }
 
   @override
@@ -3670,6 +3824,28 @@ class MeasureStratifier extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  MeasureStratifier clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool description = false,
+    bool criteria = false,
+    bool component = false,
+  }) {
+    return MeasureStratifier(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      description: description ? null : this.description,
+      criteria: criteria ? null : this.criteria,
+      component: component ? null : this.component,
+    );
+  }
+
   @override
   MeasureStratifier clone() => throw UnimplementedError();
   @override
@@ -4134,6 +4310,25 @@ class MeasureComponent extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MeasureComponent clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool description = false,
+  }) {
+    return MeasureComponent(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      description: description ? null : this.description,
+      criteria: criteria,
+    );
   }
 
   @override
@@ -4625,6 +4820,27 @@ class MeasureSupplementalData extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MeasureSupplementalData clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool usage = false,
+    bool description = false,
+  }) {
+    return MeasureSupplementalData(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      usage: usage ? null : this.usage,
+      description: description ? null : this.description,
+      criteria: criteria,
+    );
   }
 
   @override

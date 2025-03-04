@@ -1565,7 +1565,8 @@ class MedicationRequest extends DomainResource {
       case 'dispenseRequest':
         {
           return copyWith(
-              dispenseRequest: MedicationRequestDispenseRequest.empty(),);
+            dispenseRequest: MedicationRequestDispenseRequest.empty(),
+          );
         }
       case 'substitution':
         {
@@ -1586,6 +1587,93 @@ class MedicationRequest extends DomainResource {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicationRequest clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool statusReason = false,
+    bool category = false,
+    bool priority = false,
+    bool doNotPerform = false,
+    bool reported = false,
+    bool encounter = false,
+    bool supportingInformation = false,
+    bool authoredOn = false,
+    bool requester = false,
+    bool performer = false,
+    bool performerType = false,
+    bool recorder = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool instantiatesCanonical = false,
+    bool instantiatesUri = false,
+    bool basedOn = false,
+    bool groupIdentifier = false,
+    bool courseOfTherapyType = false,
+    bool insurance = false,
+    bool note = false,
+    bool dosageInstruction = false,
+    bool dispenseRequest = false,
+    bool substitution = false,
+    bool priorPrescription = false,
+    bool detectedIssue = false,
+    bool eventHistory = false,
+  }) {
+    return MedicationRequest(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      statusReason: statusReason ? null : this.statusReason,
+      intent: intent,
+      category: category ? null : this.category,
+      priority: priority ? null : this.priority,
+      doNotPerform: doNotPerform ? null : this.doNotPerform,
+      reportedX: reported ? null : reportedX,
+      medicationX: medicationX,
+      subject: subject,
+      encounter: encounter ? null : this.encounter,
+      supportingInformation:
+          supportingInformation ? null : this.supportingInformation,
+      authoredOn: authoredOn ? null : this.authoredOn,
+      requester: requester ? null : this.requester,
+      performer: performer ? null : this.performer,
+      performerType: performerType ? null : this.performerType,
+      recorder: recorder ? null : this.recorder,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      instantiatesCanonical:
+          instantiatesCanonical ? null : this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri ? null : this.instantiatesUri,
+      basedOn: basedOn ? null : this.basedOn,
+      groupIdentifier: groupIdentifier ? null : this.groupIdentifier,
+      courseOfTherapyType:
+          courseOfTherapyType ? null : this.courseOfTherapyType,
+      insurance: insurance ? null : this.insurance,
+      note: note ? null : this.note,
+      dosageInstruction: dosageInstruction ? null : this.dosageInstruction,
+      dispenseRequest: dispenseRequest ? null : this.dispenseRequest,
+      substitution: substitution ? null : this.substitution,
+      priorPrescription: priorPrescription ? null : this.priorPrescription,
+      detectedIssue: detectedIssue ? null : this.detectedIssue,
+      eventHistory: eventHistory ? null : this.eventHistory,
+    );
   }
 
   @override
@@ -2535,6 +2623,36 @@ class MedicationRequestDispenseRequest extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  MedicationRequestDispenseRequest clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool initialFill = false,
+    bool dispenseInterval = false,
+    bool validityPeriod = false,
+    bool numberOfRepeatsAllowed = false,
+    bool quantity = false,
+    bool expectedSupplyDuration = false,
+    bool performer = false,
+  }) {
+    return MedicationRequestDispenseRequest(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      initialFill: initialFill ? null : this.initialFill,
+      dispenseInterval: dispenseInterval ? null : this.dispenseInterval,
+      validityPeriod: validityPeriod ? null : this.validityPeriod,
+      numberOfRepeatsAllowed:
+          numberOfRepeatsAllowed ? null : this.numberOfRepeatsAllowed,
+      quantity: quantity ? null : this.quantity,
+      expectedSupplyDuration:
+          expectedSupplyDuration ? null : this.expectedSupplyDuration,
+      performer: performer ? null : this.performer,
+    );
+  }
+
   @override
   MedicationRequestDispenseRequest clone() => throw UnimplementedError();
   @override
@@ -2979,6 +3097,24 @@ class MedicationRequestInitialFill extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicationRequestInitialFill clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool quantity = false,
+    bool duration = false,
+  }) {
+    return MedicationRequestInitialFill(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      quantity: quantity ? null : this.quantity,
+      duration: duration ? null : this.duration,
+    );
   }
 
   @override
@@ -3439,6 +3575,23 @@ class MedicationRequestSubstitution extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicationRequestSubstitution clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool reason = false,
+  }) {
+    return MedicationRequestSubstitution(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      allowedX: allowedX,
+      reason: reason ? null : this.reason,
+    );
   }
 
   @override

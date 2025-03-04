@@ -672,6 +672,46 @@ class Medication extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Medication clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool code = false,
+    bool status = false,
+    bool manufacturer = false,
+    bool form = false,
+    bool amount = false,
+    bool ingredient = false,
+    bool batch = false,
+  }) {
+    return Medication(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      code: code ? null : this.code,
+      status: status ? null : this.status,
+      manufacturer: manufacturer ? null : this.manufacturer,
+      form: form ? null : this.form,
+      amount: amount ? null : this.amount,
+      ingredient: ingredient ? null : this.ingredient,
+      batch: batch ? null : this.batch,
+    );
+  }
+
   @override
   Medication clone() => throw UnimplementedError();
   @override
@@ -1260,6 +1300,25 @@ class MedicationIngredient extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  MedicationIngredient clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool isActive = false,
+    bool strength = false,
+  }) {
+    return MedicationIngredient(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      itemX: itemX,
+      isActive: isActive ? null : this.isActive,
+      strength: strength ? null : this.strength,
+    );
+  }
+
   @override
   MedicationIngredient clone() => throw UnimplementedError();
   @override
@@ -1670,6 +1729,24 @@ class MedicationBatch extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicationBatch clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool lotNumber = false,
+    bool expirationDate = false,
+  }) {
+    return MedicationBatch(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      lotNumber: lotNumber ? null : this.lotNumber,
+      expirationDate: expirationDate ? null : this.expirationDate,
+    );
   }
 
   @override

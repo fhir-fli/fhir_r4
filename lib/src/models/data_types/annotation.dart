@@ -383,6 +383,23 @@ class Annotation extends DataType
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Annotation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool author = false,
+    bool time = false,
+  }) {
+    return Annotation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      authorX: author ? null : authorX,
+      time: time ? null : this.time,
+      text: text,
+    );
+  }
+
   @override
   Annotation clone() => throw UnimplementedError();
   @override

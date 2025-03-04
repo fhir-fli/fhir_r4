@@ -1157,6 +1157,65 @@ class MedicationAdministration extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  MedicationAdministration clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool instantiates = false,
+    bool partOf = false,
+    bool statusReason = false,
+    bool category = false,
+    bool context = false,
+    bool supportingInformation = false,
+    bool performer = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool request = false,
+    bool device = false,
+    bool note = false,
+    bool dosage = false,
+    bool eventHistory = false,
+  }) {
+    return MedicationAdministration(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      instantiates: instantiates ? null : this.instantiates,
+      partOf: partOf ? null : this.partOf,
+      status: status,
+      statusReason: statusReason ? null : this.statusReason,
+      category: category ? null : this.category,
+      medicationX: medicationX,
+      subject: subject,
+      context: context ? null : this.context,
+      supportingInformation:
+          supportingInformation ? null : this.supportingInformation,
+      effectiveX: effectiveX,
+      performer: performer ? null : this.performer,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      request: request ? null : this.request,
+      device: device ? null : this.device,
+      note: note ? null : this.note,
+      dosage: dosage ? null : this.dosage,
+      eventHistory: eventHistory ? null : this.eventHistory,
+    );
+  }
+
   @override
   MedicationAdministration clone() => throw UnimplementedError();
   @override
@@ -1816,6 +1875,23 @@ class MedicationAdministrationPerformer extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  MedicationAdministrationPerformer clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool function_ = false,
+  }) {
+    return MedicationAdministrationPerformer(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      function_: function_ ? null : this.function_,
+      actor: actor,
+    );
+  }
+
   @override
   MedicationAdministrationPerformer clone() => throw UnimplementedError();
   @override
@@ -2407,6 +2483,32 @@ class MedicationAdministrationDosage extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicationAdministrationDosage clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool text = false,
+    bool site = false,
+    bool route = false,
+    bool method = false,
+    bool dose = false,
+    bool rate = false,
+  }) {
+    return MedicationAdministrationDosage(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      text: text ? null : this.text,
+      site: site ? null : this.site,
+      route: route ? null : this.route,
+      method: method ? null : this.method,
+      dose: dose ? null : this.dose,
+      rateX: rate ? null : rateX,
+    );
   }
 
   @override

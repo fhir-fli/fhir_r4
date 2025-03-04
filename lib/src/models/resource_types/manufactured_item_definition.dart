@@ -643,6 +643,42 @@ class ManufacturedItemDefinition extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ManufacturedItemDefinition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool unitOfPresentation = false,
+    bool manufacturer = false,
+    bool ingredient = false,
+    bool property = false,
+  }) {
+    return ManufacturedItemDefinition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      manufacturedDoseForm: manufacturedDoseForm,
+      unitOfPresentation: unitOfPresentation ? null : this.unitOfPresentation,
+      manufacturer: manufacturer ? null : this.manufacturer,
+      ingredient: ingredient ? null : this.ingredient,
+      property: property ? null : this.property,
+    );
+  }
+
   @override
   ManufacturedItemDefinition clone() => throw UnimplementedError();
   @override
@@ -1274,6 +1310,23 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ManufacturedItemDefinitionProperty clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool value = false,
+  }) {
+    return ManufacturedItemDefinitionProperty(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      valueX: value ? null : valueX,
+    );
   }
 
   @override

@@ -1317,6 +1317,78 @@ class MedicationDispense extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  MedicationDispense clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool partOf = false,
+    bool statusReason = false,
+    bool category = false,
+    bool subject = false,
+    bool context = false,
+    bool supportingInformation = false,
+    bool performer = false,
+    bool location = false,
+    bool authorizingPrescription = false,
+    bool type = false,
+    bool quantity = false,
+    bool daysSupply = false,
+    bool whenPrepared = false,
+    bool whenHandedOver = false,
+    bool destination = false,
+    bool receiver = false,
+    bool note = false,
+    bool dosageInstruction = false,
+    bool substitution = false,
+    bool detectedIssue = false,
+    bool eventHistory = false,
+  }) {
+    return MedicationDispense(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      partOf: partOf ? null : this.partOf,
+      status: status,
+      statusReasonX: statusReason ? null : statusReasonX,
+      category: category ? null : this.category,
+      medicationX: medicationX,
+      subject: subject ? null : this.subject,
+      context: context ? null : this.context,
+      supportingInformation:
+          supportingInformation ? null : this.supportingInformation,
+      performer: performer ? null : this.performer,
+      location: location ? null : this.location,
+      authorizingPrescription:
+          authorizingPrescription ? null : this.authorizingPrescription,
+      type: type ? null : this.type,
+      quantity: quantity ? null : this.quantity,
+      daysSupply: daysSupply ? null : this.daysSupply,
+      whenPrepared: whenPrepared ? null : this.whenPrepared,
+      whenHandedOver: whenHandedOver ? null : this.whenHandedOver,
+      destination: destination ? null : this.destination,
+      receiver: receiver ? null : this.receiver,
+      note: note ? null : this.note,
+      dosageInstruction: dosageInstruction ? null : this.dosageInstruction,
+      substitution: substitution ? null : this.substitution,
+      detectedIssue: detectedIssue ? null : this.detectedIssue,
+      eventHistory: eventHistory ? null : this.eventHistory,
+    );
+  }
+
   @override
   MedicationDispense clone() => throw UnimplementedError();
   @override
@@ -2008,6 +2080,23 @@ class MedicationDispensePerformer extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  MedicationDispensePerformer clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool function_ = false,
+  }) {
+    return MedicationDispensePerformer(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      function_: function_ ? null : this.function_,
+      actor: actor,
+    );
+  }
+
   @override
   MedicationDispensePerformer clone() => throw UnimplementedError();
   @override
@@ -2489,6 +2578,27 @@ class MedicationDispenseSubstitution extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicationDispenseSubstitution clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool reason = false,
+    bool responsibleParty = false,
+  }) {
+    return MedicationDispenseSubstitution(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      wasSubstituted: wasSubstituted,
+      type: type ? null : this.type,
+      reason: reason ? null : this.reason,
+      responsibleParty: responsibleParty ? null : this.responsibleParty,
+    );
   }
 
   @override

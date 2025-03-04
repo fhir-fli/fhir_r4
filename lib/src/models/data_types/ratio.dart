@@ -315,6 +315,22 @@ class Ratio extends DataType
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Ratio clear({
+    bool id = false,
+    bool extension_ = false,
+    bool numerator = false,
+    bool denominator = false,
+  }) {
+    return Ratio(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      numerator: numerator ? null : this.numerator,
+      denominator: denominator ? null : this.denominator,
+    );
+  }
+
   @override
   Ratio clone() => throw UnimplementedError();
   @override

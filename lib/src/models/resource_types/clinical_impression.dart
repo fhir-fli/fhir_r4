@@ -1126,6 +1126,69 @@ class ClinicalImpression extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ClinicalImpression clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool statusReason = false,
+    bool code = false,
+    bool description = false,
+    bool encounter = false,
+    bool effective = false,
+    bool date = false,
+    bool assessor = false,
+    bool previous = false,
+    bool problem = false,
+    bool investigation = false,
+    bool protocol = false,
+    bool summary = false,
+    bool finding = false,
+    bool prognosisCodeableConcept = false,
+    bool prognosisReference = false,
+    bool supportingInfo = false,
+    bool note = false,
+  }) {
+    return ClinicalImpression(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      statusReason: statusReason ? null : this.statusReason,
+      code: code ? null : this.code,
+      description: description ? null : this.description,
+      subject: subject,
+      encounter: encounter ? null : this.encounter,
+      effectiveX: effective ? null : effectiveX,
+      date: date ? null : this.date,
+      assessor: assessor ? null : this.assessor,
+      previous: previous ? null : this.previous,
+      problem: problem ? null : this.problem,
+      investigation: investigation ? null : this.investigation,
+      protocol: protocol ? null : this.protocol,
+      summary: summary ? null : this.summary,
+      finding: finding ? null : this.finding,
+      prognosisCodeableConcept:
+          prognosisCodeableConcept ? null : this.prognosisCodeableConcept,
+      prognosisReference: prognosisReference ? null : this.prognosisReference,
+      supportingInfo: supportingInfo ? null : this.supportingInfo,
+      note: note ? null : this.note,
+    );
+  }
+
   @override
   ClinicalImpression clone() => throw UnimplementedError();
   @override
@@ -1788,6 +1851,23 @@ class ClinicalImpressionInvestigation extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ClinicalImpressionInvestigation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool item = false,
+  }) {
+    return ClinicalImpressionInvestigation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      item: item ? null : this.item,
+    );
+  }
+
   @override
   ClinicalImpressionInvestigation clone() => throw UnimplementedError();
   @override
@@ -1898,7 +1978,8 @@ class ClinicalImpressionFinding extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ClinicalImpressionFinding.empty() => const ClinicalImpressionFinding();
+  factory ClinicalImpressionFinding.empty() =>
+      const ClinicalImpressionFinding();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalImpressionFinding.fromJson(
@@ -2231,6 +2312,27 @@ class ClinicalImpressionFinding extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClinicalImpressionFinding clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool itemCodeableConcept = false,
+    bool itemReference = false,
+    bool basis = false,
+  }) {
+    return ClinicalImpressionFinding(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      itemCodeableConcept:
+          itemCodeableConcept ? null : this.itemCodeableConcept,
+      itemReference: itemReference ? null : this.itemReference,
+      basis: basis ? null : this.basis,
+    );
   }
 
   @override

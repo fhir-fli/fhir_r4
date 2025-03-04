@@ -506,6 +506,35 @@ class Linkage extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Linkage clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool active = false,
+    bool author = false,
+  }) {
+    return Linkage(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      active: active ? null : this.active,
+      author: author ? null : this.author,
+      item: item,
+    );
+  }
+
   @override
   Linkage clone() => throw UnimplementedError();
   @override
@@ -964,6 +993,22 @@ class LinkageItem extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  LinkageItem clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return LinkageItem(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      resource: resource,
+    );
   }
 
   @override

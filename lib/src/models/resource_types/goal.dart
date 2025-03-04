@@ -986,6 +986,59 @@ class Goal extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Goal clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool achievementStatus = false,
+    bool category = false,
+    bool priority = false,
+    bool start = false,
+    bool target = false,
+    bool statusDate = false,
+    bool statusReason = false,
+    bool expressedBy = false,
+    bool addresses = false,
+    bool note = false,
+    bool outcomeCode = false,
+    bool outcomeReference = false,
+  }) {
+    return Goal(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      lifecycleStatus: lifecycleStatus,
+      achievementStatus: achievementStatus ? null : this.achievementStatus,
+      category: category ? null : this.category,
+      priority: priority ? null : this.priority,
+      description: description,
+      subject: subject,
+      startX: start ? null : startX,
+      target: target ? null : this.target,
+      statusDate: statusDate ? null : this.statusDate,
+      statusReason: statusReason ? null : this.statusReason,
+      expressedBy: expressedBy ? null : this.expressedBy,
+      addresses: addresses ? null : this.addresses,
+      note: note ? null : this.note,
+      outcomeCode: outcomeCode ? null : this.outcomeCode,
+      outcomeReference: outcomeReference ? null : this.outcomeReference,
+    );
+  }
+
   @override
   Goal clone() => throw UnimplementedError();
   @override
@@ -1841,6 +1894,26 @@ class GoalTarget extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  GoalTarget clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool measure = false,
+    bool detail = false,
+    bool due = false,
+  }) {
+    return GoalTarget(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      measure: measure ? null : this.measure,
+      detailX: detail ? null : detailX,
+      dueX: due ? null : dueX,
+    );
   }
 
   @override

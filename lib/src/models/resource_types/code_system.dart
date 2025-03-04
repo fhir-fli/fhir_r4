@@ -1220,6 +1220,80 @@ class CodeSystem extends CanonicalResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  CodeSystem clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool identifier = false,
+    bool version = false,
+    bool name = false,
+    bool title = false,
+    bool experimental = false,
+    bool date = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool purpose = false,
+    bool copyright = false,
+    bool caseSensitive = false,
+    bool valueSet = false,
+    bool hierarchyMeaning = false,
+    bool compositional = false,
+    bool versionNeeded = false,
+    bool supplements = false,
+    bool count = false,
+    bool filter = false,
+    bool property = false,
+    bool concept = false,
+  }) {
+    return CodeSystem(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url ? null : this.url,
+      identifier: identifier ? null : this.identifier,
+      version: version ? null : this.version,
+      name: name ? null : this.name,
+      title: title ? null : this.title,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      date: date ? null : this.date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      purpose: purpose ? null : this.purpose,
+      copyright: copyright ? null : this.copyright,
+      caseSensitive: caseSensitive ? null : this.caseSensitive,
+      valueSet: valueSet ? null : this.valueSet,
+      hierarchyMeaning: hierarchyMeaning ? null : this.hierarchyMeaning,
+      compositional: compositional ? null : this.compositional,
+      versionNeeded: versionNeeded ? null : this.versionNeeded,
+      content: content,
+      supplements: supplements ? null : this.supplements,
+      count: count ? null : this.count,
+      filter: filter ? null : this.filter,
+      property: property ? null : this.property,
+      concept: concept ? null : this.concept,
+    );
+  }
+
   @override
   CodeSystem clone() => throw UnimplementedError();
   @override
@@ -1966,6 +2040,25 @@ class CodeSystemFilter extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  CodeSystemFilter clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+  }) {
+    return CodeSystemFilter(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      description: description ? null : this.description,
+      operator_: operator_,
+      value: value,
+    );
+  }
+
   @override
   CodeSystemFilter clone() => throw UnimplementedError();
   @override
@@ -2460,6 +2553,26 @@ class CodeSystemProperty extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CodeSystemProperty clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool uri = false,
+    bool description = false,
+  }) {
+    return CodeSystemProperty(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      uri: uri ? null : this.uri,
+      description: description ? null : this.description,
+      type: type,
+    );
   }
 
   @override
@@ -3028,6 +3141,31 @@ class CodeSystemConcept extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  CodeSystemConcept clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool display = false,
+    bool definition = false,
+    bool designation = false,
+    bool property = false,
+    bool concept = false,
+  }) {
+    return CodeSystemConcept(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      display: display ? null : this.display,
+      definition: definition ? null : this.definition,
+      designation: designation ? null : this.designation,
+      property: property ? null : this.property,
+      concept: concept ? null : this.concept,
+    );
+  }
+
   @override
   CodeSystemConcept clone() => throw UnimplementedError();
   @override
@@ -3515,6 +3653,25 @@ class CodeSystemDesignation extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CodeSystemDesignation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool language = false,
+    bool use = false,
+  }) {
+    return CodeSystemDesignation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      language: language ? null : this.language,
+      use: use ? null : this.use,
+      value: value,
+    );
   }
 
   @override
@@ -4092,6 +4249,22 @@ class CodeSystemProperty1 extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CodeSystemProperty1 clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return CodeSystemProperty1(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      valueX: valueX,
+    );
   }
 
   @override

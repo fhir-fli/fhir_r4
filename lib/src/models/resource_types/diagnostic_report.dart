@@ -1078,6 +1078,64 @@ class DiagnosticReport extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  DiagnosticReport clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool basedOn = false,
+    bool category = false,
+    bool subject = false,
+    bool encounter = false,
+    bool effective = false,
+    bool issued = false,
+    bool performer = false,
+    bool resultsInterpreter = false,
+    bool specimen = false,
+    bool result = false,
+    bool imagingStudy = false,
+    bool media = false,
+    bool conclusion = false,
+    bool conclusionCode = false,
+    bool presentedForm = false,
+  }) {
+    return DiagnosticReport(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      basedOn: basedOn ? null : this.basedOn,
+      status: status,
+      category: category ? null : this.category,
+      code: code,
+      subject: subject ? null : this.subject,
+      encounter: encounter ? null : this.encounter,
+      effectiveX: effective ? null : effectiveX,
+      issued: issued ? null : this.issued,
+      performer: performer ? null : this.performer,
+      resultsInterpreter: resultsInterpreter ? null : this.resultsInterpreter,
+      specimen: specimen ? null : this.specimen,
+      result: result ? null : this.result,
+      imagingStudy: imagingStudy ? null : this.imagingStudy,
+      media: media ? null : this.media,
+      conclusion: conclusion ? null : this.conclusion,
+      conclusionCode: conclusionCode ? null : this.conclusionCode,
+      presentedForm: presentedForm ? null : this.presentedForm,
+    );
+  }
+
   @override
   DiagnosticReport clone() => throw UnimplementedError();
   @override
@@ -1728,6 +1786,23 @@ class DiagnosticReportMedia extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DiagnosticReportMedia clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool comment = false,
+  }) {
+    return DiagnosticReportMedia(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      comment: comment ? null : this.comment,
+      link: link,
+    );
   }
 
   @override

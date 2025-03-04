@@ -475,6 +475,29 @@ class Signature extends DataType
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Signature clear({
+    bool id = false,
+    bool extension_ = false,
+    bool onBehalfOf = false,
+    bool targetFormat = false,
+    bool sigFormat = false,
+    bool data = false,
+  }) {
+    return Signature(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      type: type,
+      when: when,
+      who: who,
+      onBehalfOf: onBehalfOf ? null : this.onBehalfOf,
+      targetFormat: targetFormat ? null : this.targetFormat,
+      sigFormat: sigFormat ? null : this.sigFormat,
+      data: data ? null : this.data,
+    );
+  }
+
   @override
   Signature clone() => throw UnimplementedError();
   @override

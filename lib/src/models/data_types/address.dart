@@ -570,6 +570,38 @@ class Address extends DataType
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Address clear({
+    bool id = false,
+    bool extension_ = false,
+    bool use = false,
+    bool type = false,
+    bool text = false,
+    bool line = false,
+    bool city = false,
+    bool district = false,
+    bool state = false,
+    bool postalCode = false,
+    bool country = false,
+    bool period = false,
+  }) {
+    return Address(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      use: use ? null : this.use,
+      type: type ? null : this.type,
+      text: text ? null : this.text,
+      line: line ? null : this.line,
+      city: city ? null : this.city,
+      district: district ? null : this.district,
+      state: state ? null : this.state,
+      postalCode: postalCode ? null : this.postalCode,
+      country: country ? null : this.country,
+      period: period ? null : this.period,
+    );
+  }
+
   @override
   Address clone() => throw UnimplementedError();
   @override

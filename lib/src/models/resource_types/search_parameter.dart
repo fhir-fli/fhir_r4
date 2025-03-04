@@ -1207,6 +1207,75 @@ class SearchParameter extends CanonicalResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  SearchParameter clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool version = false,
+    bool derivedFrom = false,
+    bool experimental = false,
+    bool date = false,
+    bool publisher = false,
+    bool contact = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool purpose = false,
+    bool expression = false,
+    bool xpath = false,
+    bool xpathUsage = false,
+    bool target = false,
+    bool multipleOr = false,
+    bool multipleAnd = false,
+    bool comparator = false,
+    bool modifier = false,
+    bool chain = false,
+    bool component = false,
+  }) {
+    return SearchParameter(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url,
+      version: version ? null : this.version,
+      name: name,
+      derivedFrom: derivedFrom ? null : this.derivedFrom,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      date: date ? null : this.date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      purpose: purpose ? null : this.purpose,
+      code: code,
+      base: base,
+      type: type,
+      expression: expression ? null : this.expression,
+      xpath: xpath ? null : this.xpath,
+      xpathUsage: xpathUsage ? null : this.xpathUsage,
+      target: target ? null : this.target,
+      multipleOr: multipleOr ? null : this.multipleOr,
+      multipleAnd: multipleAnd ? null : this.multipleAnd,
+      comparator: comparator ? null : this.comparator,
+      modifier: modifier ? null : this.modifier,
+      chain: chain ? null : this.chain,
+      component: component ? null : this.component,
+    );
+  }
+
   @override
   SearchParameter clone() => throw UnimplementedError();
   @override
@@ -1903,6 +1972,22 @@ class SearchParameterComponent extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SearchParameterComponent clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return SearchParameterComponent(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      definition: definition,
+      expression: expression,
+    );
   }
 
   @override

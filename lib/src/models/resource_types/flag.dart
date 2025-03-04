@@ -666,6 +666,43 @@ class Flag extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Flag clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool category = false,
+    bool period = false,
+    bool encounter = false,
+    bool author = false,
+  }) {
+    return Flag(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      category: category ? null : this.category,
+      code: code,
+      subject: subject,
+      period: period ? null : this.period,
+      encounter: encounter ? null : this.encounter,
+      author: author ? null : this.author,
+    );
+  }
+
   @override
   Flag clone() => throw UnimplementedError();
   @override

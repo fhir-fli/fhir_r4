@@ -979,6 +979,63 @@ class NutritionOrder extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  NutritionOrder clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool instantiatesCanonical = false,
+    bool instantiatesUri = false,
+    bool instantiates = false,
+    bool encounter = false,
+    bool orderer = false,
+    bool allergyIntolerance = false,
+    bool foodPreferenceModifier = false,
+    bool excludeFoodModifier = false,
+    bool oralDiet = false,
+    bool supplement = false,
+    bool enteralFormula = false,
+    bool note = false,
+  }) {
+    return NutritionOrder(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      instantiatesCanonical:
+          instantiatesCanonical ? null : this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri ? null : this.instantiatesUri,
+      instantiates: instantiates ? null : this.instantiates,
+      status: status,
+      intent: intent,
+      patient: patient,
+      encounter: encounter ? null : this.encounter,
+      dateTime: dateTime,
+      orderer: orderer ? null : this.orderer,
+      allergyIntolerance: allergyIntolerance ? null : this.allergyIntolerance,
+      foodPreferenceModifier:
+          foodPreferenceModifier ? null : this.foodPreferenceModifier,
+      excludeFoodModifier:
+          excludeFoodModifier ? null : this.excludeFoodModifier,
+      oralDiet: oralDiet ? null : this.oralDiet,
+      supplement: supplement ? null : this.supplement,
+      enteralFormula: enteralFormula ? null : this.enteralFormula,
+      note: note ? null : this.note,
+    );
+  }
+
   @override
   NutritionOrder clone() => throw UnimplementedError();
   @override
@@ -1756,6 +1813,33 @@ class NutritionOrderOralDiet extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  NutritionOrderOralDiet clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool schedule = false,
+    bool nutrient = false,
+    bool texture = false,
+    bool fluidConsistencyType = false,
+    bool instruction = false,
+  }) {
+    return NutritionOrderOralDiet(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      schedule: schedule ? null : this.schedule,
+      nutrient: nutrient ? null : this.nutrient,
+      texture: texture ? null : this.texture,
+      fluidConsistencyType:
+          fluidConsistencyType ? null : this.fluidConsistencyType,
+      instruction: instruction ? null : this.instruction,
+    );
+  }
+
   @override
   NutritionOrderOralDiet clone() => throw UnimplementedError();
   @override
@@ -2228,6 +2312,24 @@ class NutritionOrderNutrient extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  NutritionOrderNutrient clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool modifier = false,
+    bool amount = false,
+  }) {
+    return NutritionOrderNutrient(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      modifier: modifier ? null : this.modifier,
+      amount: amount ? null : this.amount,
+    );
+  }
+
   @override
   NutritionOrderNutrient clone() => throw UnimplementedError();
   @override
@@ -2633,6 +2735,24 @@ class NutritionOrderTexture extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  NutritionOrderTexture clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool modifier = false,
+    bool foodType = false,
+  }) {
+    return NutritionOrderTexture(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      modifier: modifier ? null : this.modifier,
+      foodType: foodType ? null : this.foodType,
+    );
   }
 
   @override
@@ -3140,6 +3260,30 @@ class NutritionOrderSupplement extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  NutritionOrderSupplement clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool productName = false,
+    bool schedule = false,
+    bool quantity = false,
+    bool instruction = false,
+  }) {
+    return NutritionOrderSupplement(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      productName: productName ? null : this.productName,
+      schedule: schedule ? null : this.schedule,
+      quantity: quantity ? null : this.quantity,
+      instruction: instruction ? null : this.instruction,
+    );
   }
 
   @override
@@ -3816,6 +3960,42 @@ class NutritionOrderEnteralFormula extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  NutritionOrderEnteralFormula clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool baseFormulaType = false,
+    bool baseFormulaProductName = false,
+    bool additiveType = false,
+    bool additiveProductName = false,
+    bool caloricDensity = false,
+    bool routeofAdministration = false,
+    bool administration = false,
+    bool maxVolumeToDeliver = false,
+    bool administrationInstruction = false,
+  }) {
+    return NutritionOrderEnteralFormula(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      baseFormulaType: baseFormulaType ? null : this.baseFormulaType,
+      baseFormulaProductName:
+          baseFormulaProductName ? null : this.baseFormulaProductName,
+      additiveType: additiveType ? null : this.additiveType,
+      additiveProductName:
+          additiveProductName ? null : this.additiveProductName,
+      caloricDensity: caloricDensity ? null : this.caloricDensity,
+      routeofAdministration:
+          routeofAdministration ? null : this.routeofAdministration,
+      administration: administration ? null : this.administration,
+      maxVolumeToDeliver: maxVolumeToDeliver ? null : this.maxVolumeToDeliver,
+      administrationInstruction:
+          administrationInstruction ? null : this.administrationInstruction,
+    );
+  }
+
   @override
   NutritionOrderEnteralFormula clone() => throw UnimplementedError();
   @override
@@ -3954,7 +4134,9 @@ class NutritionOrderEnteralFormula extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        administrationInstruction, o.administrationInstruction,)) {
+      administrationInstruction,
+      o.administrationInstruction,
+    )) {
       return false;
     }
     return true;
@@ -4369,6 +4551,26 @@ class NutritionOrderAdministration extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  NutritionOrderAdministration clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool schedule = false,
+    bool quantity = false,
+    bool rate = false,
+  }) {
+    return NutritionOrderAdministration(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      schedule: schedule ? null : this.schedule,
+      quantity: quantity ? null : this.quantity,
+      rateX: rate ? null : rateX,
+    );
   }
 
   @override

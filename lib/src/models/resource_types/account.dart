@@ -770,6 +770,51 @@ class Account extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Account clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool type = false,
+    bool name = false,
+    bool subject = false,
+    bool servicePeriod = false,
+    bool coverage = false,
+    bool owner = false,
+    bool description = false,
+    bool guarantor = false,
+    bool partOf = false,
+  }) {
+    return Account(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      type: type ? null : this.type,
+      name: name ? null : this.name,
+      subject: subject ? null : this.subject,
+      servicePeriod: servicePeriod ? null : this.servicePeriod,
+      coverage: coverage ? null : this.coverage,
+      owner: owner ? null : this.owner,
+      description: description ? null : this.description,
+      guarantor: guarantor ? null : this.guarantor,
+      partOf: partOf ? null : this.partOf,
+    );
+  }
+
   @override
   Account clone() => throw UnimplementedError();
   @override
@@ -1319,6 +1364,23 @@ class AccountCoverage extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  AccountCoverage clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool priority = false,
+  }) {
+    return AccountCoverage(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      coverage: coverage,
+      priority: priority ? null : this.priority,
+    );
+  }
+
   @override
   AccountCoverage clone() => throw UnimplementedError();
   @override
@@ -1755,6 +1817,25 @@ class AccountGuarantor extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  AccountGuarantor clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool onHold = false,
+    bool period = false,
+  }) {
+    return AccountGuarantor(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      party: party,
+      onHold: onHold ? null : this.onHold,
+      period: period ? null : this.period,
+    );
   }
 
   @override

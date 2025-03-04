@@ -1269,6 +1269,82 @@ class Device extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  Device clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool definition = false,
+    bool udiCarrier = false,
+    bool status = false,
+    bool statusReason = false,
+    bool distinctIdentifier = false,
+    bool manufacturer = false,
+    bool manufactureDate = false,
+    bool expirationDate = false,
+    bool lotNumber = false,
+    bool serialNumber = false,
+    bool deviceName = false,
+    bool modelNumber = false,
+    bool partNumber = false,
+    bool type = false,
+    bool specialization = false,
+    bool version = false,
+    bool property = false,
+    bool patient = false,
+    bool owner = false,
+    bool contact = false,
+    bool location = false,
+    bool url = false,
+    bool note = false,
+    bool safety = false,
+    bool parent = false,
+  }) {
+    return Device(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      definition: definition ? null : this.definition,
+      udiCarrier: udiCarrier ? null : this.udiCarrier,
+      status: status ? null : this.status,
+      statusReason: statusReason ? null : this.statusReason,
+      distinctIdentifier: distinctIdentifier ? null : this.distinctIdentifier,
+      manufacturer: manufacturer ? null : this.manufacturer,
+      manufactureDate: manufactureDate ? null : this.manufactureDate,
+      expirationDate: expirationDate ? null : this.expirationDate,
+      lotNumber: lotNumber ? null : this.lotNumber,
+      serialNumber: serialNumber ? null : this.serialNumber,
+      deviceName: deviceName ? null : this.deviceName,
+      modelNumber: modelNumber ? null : this.modelNumber,
+      partNumber: partNumber ? null : this.partNumber,
+      type: type ? null : this.type,
+      specialization: specialization ? null : this.specialization,
+      version: version ? null : this.version,
+      property: property ? null : this.property,
+      patient: patient ? null : this.patient,
+      owner: owner ? null : this.owner,
+      contact: contact ? null : this.contact,
+      location: location ? null : this.location,
+      url: url ? null : this.url,
+      note: note ? null : this.note,
+      safety: safety ? null : this.safety,
+      parent: parent ? null : this.parent,
+    );
+  }
+
   @override
   Device clone() => throw UnimplementedError();
   @override
@@ -2120,6 +2196,32 @@ class DeviceUdiCarrier extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  DeviceUdiCarrier clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool deviceIdentifier = false,
+    bool issuer = false,
+    bool jurisdiction = false,
+    bool carrierAIDC = false,
+    bool carrierHRF = false,
+    bool entryType = false,
+  }) {
+    return DeviceUdiCarrier(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      deviceIdentifier: deviceIdentifier ? null : this.deviceIdentifier,
+      issuer: issuer ? null : this.issuer,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      carrierAIDC: carrierAIDC ? null : this.carrierAIDC,
+      carrierHRF: carrierHRF ? null : this.carrierHRF,
+      entryType: entryType ? null : this.entryType,
+    );
+  }
+
   @override
   DeviceUdiCarrier clone() => throw UnimplementedError();
   @override
@@ -2560,6 +2662,22 @@ class DeviceDeviceName extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  DeviceDeviceName clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return DeviceDeviceName(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      type: type,
+    );
+  }
+
   @override
   DeviceDeviceName clone() => throw UnimplementedError();
   @override
@@ -2964,6 +3082,23 @@ class DeviceSpecialization extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DeviceSpecialization clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool version = false,
+  }) {
+    return DeviceSpecialization(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      systemType: systemType,
+      version: version ? null : this.version,
+    );
   }
 
   @override
@@ -3400,6 +3535,25 @@ class DeviceVersion extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DeviceVersion clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool component = false,
+  }) {
+    return DeviceVersion(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      component: component ? null : this.component,
+      value: value,
+    );
   }
 
   @override
@@ -3853,6 +4007,25 @@ class DeviceProperty extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DeviceProperty clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool valueQuantity = false,
+    bool valueCode = false,
+  }) {
+    return DeviceProperty(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      valueQuantity: valueQuantity ? null : this.valueQuantity,
+      valueCode: valueCode ? null : this.valueCode,
+    );
   }
 
   @override

@@ -469,6 +469,29 @@ class SampledData extends DataType
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  SampledData clear({
+    bool id = false,
+    bool extension_ = false,
+    bool factor = false,
+    bool lowerLimit = false,
+    bool upperLimit = false,
+    bool data = false,
+  }) {
+    return SampledData(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      origin: origin,
+      period: period,
+      factor: factor ? null : this.factor,
+      lowerLimit: lowerLimit ? null : this.lowerLimit,
+      upperLimit: upperLimit ? null : this.upperLimit,
+      dimensions: dimensions,
+      data: data ? null : this.data,
+    );
+  }
+
   @override
   SampledData clone() => throw UnimplementedError();
   @override

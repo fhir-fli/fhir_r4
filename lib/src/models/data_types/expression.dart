@@ -403,6 +403,27 @@ class FhirExpression extends DataType
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  FhirExpression clear({
+    bool id = false,
+    bool extension_ = false,
+    bool description = false,
+    bool name = false,
+    bool expression = false,
+    bool reference = false,
+  }) {
+    return FhirExpression(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      description: description ? null : this.description,
+      name: name ? null : this.name,
+      language: language,
+      expression: expression ? null : this.expression,
+      reference: reference ? null : this.reference,
+    );
+  }
+
   @override
   FhirExpression clone() => throw UnimplementedError();
   @override

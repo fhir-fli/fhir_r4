@@ -1252,11 +1252,84 @@ class StructureDefinition extends CanonicalResource {
       case 'differential':
         {
           return copyWith(
-              differential: StructureDefinitionDifferential.empty(),);
+            differential: StructureDefinitionDifferential.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  StructureDefinition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool version = false,
+    bool title = false,
+    bool experimental = false,
+    bool date = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool purpose = false,
+    bool copyright = false,
+    bool keyword = false,
+    bool fhirVersion = false,
+    bool mapping = false,
+    bool context = false,
+    bool contextInvariant = false,
+    bool baseDefinition = false,
+    bool derivation = false,
+    bool snapshot = false,
+    bool differential = false,
+  }) {
+    return StructureDefinition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url,
+      identifier: identifier ? null : this.identifier,
+      version: version ? null : this.version,
+      name: name,
+      title: title ? null : this.title,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      date: date ? null : this.date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      purpose: purpose ? null : this.purpose,
+      copyright: copyright ? null : this.copyright,
+      keyword: keyword ? null : this.keyword,
+      fhirVersion: fhirVersion ? null : this.fhirVersion,
+      mapping: mapping ? null : this.mapping,
+      kind: kind,
+      abstract_: abstract_,
+      context: context ? null : this.context,
+      contextInvariant: contextInvariant ? null : this.contextInvariant,
+      type: type,
+      baseDefinition: baseDefinition ? null : this.baseDefinition,
+      derivation: derivation ? null : this.derivation,
+      snapshot: snapshot ? null : this.snapshot,
+      differential: differential ? null : this.differential,
+    );
   }
 
   @override
@@ -2023,6 +2096,27 @@ class StructureDefinitionMapping extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  StructureDefinitionMapping clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool uri = false,
+    bool name = false,
+    bool comment = false,
+  }) {
+    return StructureDefinitionMapping(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identity: identity,
+      uri: uri ? null : this.uri,
+      name: name ? null : this.name,
+      comment: comment ? null : this.comment,
+    );
+  }
+
   @override
   StructureDefinitionMapping clone() => throw UnimplementedError();
   @override
@@ -2444,6 +2538,22 @@ class StructureDefinitionContext extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  StructureDefinitionContext clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return StructureDefinitionContext(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      expression: expression,
+    );
+  }
+
   @override
   StructureDefinitionContext clone() => throw UnimplementedError();
   @override
@@ -2545,7 +2655,8 @@ class StructureDefinitionSnapshot extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory StructureDefinitionSnapshot.empty() => const StructureDefinitionSnapshot(
+  factory StructureDefinitionSnapshot.empty() =>
+      const StructureDefinitionSnapshot(
         element: <ElementDefinition>[],
       );
 
@@ -2820,6 +2931,21 @@ class StructureDefinitionSnapshot extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  StructureDefinitionSnapshot clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return StructureDefinitionSnapshot(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      element: element,
+    );
   }
 
   @override
@@ -3198,6 +3324,21 @@ class StructureDefinitionDifferential extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  StructureDefinitionDifferential clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return StructureDefinitionDifferential(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      element: element,
+    );
   }
 
   @override

@@ -1186,12 +1186,14 @@ class MessageDefinition extends CanonicalResource {
       case 'responseRequired':
         {
           return copyWith(
-              responseRequired: MessageheaderResponseRequest.empty(),);
+            responseRequired: MessageheaderResponseRequest.empty(),
+          );
         }
       case 'allowedResponse':
         {
           return copyWith(
-              allowedResponse: <MessageDefinitionAllowedResponse>[],);
+            allowedResponse: <MessageDefinitionAllowedResponse>[],
+          );
         }
       case 'graph':
         {
@@ -1200,6 +1202,75 @@ class MessageDefinition extends CanonicalResource {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MessageDefinition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool identifier = false,
+    bool version = false,
+    bool name = false,
+    bool title = false,
+    bool replaces = false,
+    bool experimental = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool purpose = false,
+    bool copyright = false,
+    bool base = false,
+    bool parent = false,
+    bool category = false,
+    bool focus = false,
+    bool responseRequired = false,
+    bool allowedResponse = false,
+    bool graph = false,
+  }) {
+    return MessageDefinition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url ? null : this.url,
+      identifier: identifier ? null : this.identifier,
+      version: version ? null : this.version,
+      name: name ? null : this.name,
+      title: title ? null : this.title,
+      replaces: replaces ? null : this.replaces,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      date: date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      purpose: purpose ? null : this.purpose,
+      copyright: copyright ? null : this.copyright,
+      base: base ? null : this.base,
+      parent: parent ? null : this.parent,
+      eventX: eventX,
+      category: category ? null : this.category,
+      focus: focus ? null : this.focus,
+      responseRequired: responseRequired ? null : this.responseRequired,
+      allowedResponse: allowedResponse ? null : this.allowedResponse,
+      graph: graph ? null : this.graph,
+    );
   }
 
   @override
@@ -1952,6 +2023,26 @@ class MessageDefinitionFocus extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  MessageDefinitionFocus clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool profile = false,
+    bool max = false,
+  }) {
+    return MessageDefinitionFocus(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      profile: profile ? null : this.profile,
+      min: min,
+      max: max ? null : this.max,
+    );
+  }
+
   @override
   MessageDefinitionFocus clone() => throw UnimplementedError();
   @override
@@ -2374,6 +2465,23 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MessageDefinitionAllowedResponse clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool situation = false,
+  }) {
+    return MessageDefinitionAllowedResponse(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      message: message,
+      situation: situation ? null : this.situation,
+    );
   }
 
   @override

@@ -1083,7 +1083,8 @@ class SubscriptionTopic extends CanonicalResource {
       case 'resourceTrigger':
         {
           return copyWith(
-              resourceTrigger: <SubscriptionTopicResourceTrigger>[],);
+            resourceTrigger: <SubscriptionTopicResourceTrigger>[],
+          );
         }
       case 'eventTrigger':
         {
@@ -1096,11 +1097,78 @@ class SubscriptionTopic extends CanonicalResource {
       case 'notificationShape':
         {
           return copyWith(
-              notificationShape: <SubscriptionTopicNotificationShape>[],);
+            notificationShape: <SubscriptionTopicNotificationShape>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubscriptionTopic clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool version = false,
+    bool title = false,
+    bool derivedFrom = false,
+    bool experimental = false,
+    bool date = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool purpose = false,
+    bool copyright = false,
+    bool approvalDate = false,
+    bool lastReviewDate = false,
+    bool effectivePeriod = false,
+    bool resourceTrigger = false,
+    bool eventTrigger = false,
+    bool canFilterBy = false,
+    bool notificationShape = false,
+  }) {
+    return SubscriptionTopic(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url,
+      identifier: identifier ? null : this.identifier,
+      version: version ? null : this.version,
+      title: title ? null : this.title,
+      derivedFrom: derivedFrom ? null : this.derivedFrom,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      date: date ? null : this.date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      purpose: purpose ? null : this.purpose,
+      copyright: copyright ? null : this.copyright,
+      approvalDate: approvalDate ? null : this.approvalDate,
+      lastReviewDate: lastReviewDate ? null : this.lastReviewDate,
+      effectivePeriod: effectivePeriod ? null : this.effectivePeriod,
+      resourceTrigger: resourceTrigger ? null : this.resourceTrigger,
+      eventTrigger: eventTrigger ? null : this.eventTrigger,
+      canFilterBy: canFilterBy ? null : this.canFilterBy,
+      notificationShape: notificationShape ? null : this.notificationShape,
+    );
   }
 
   @override
@@ -1870,7 +1938,8 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
       case 'queryCriteria':
         {
           return copyWith(
-              queryCriteria: SubscriptionTopicQueryCriteria.empty(),);
+            queryCriteria: SubscriptionTopicQueryCriteria.empty(),
+          );
         }
       case 'fhirPathCriteria':
         {
@@ -1879,6 +1948,30 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubscriptionTopicResourceTrigger clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+    bool supportedInteraction = false,
+    bool queryCriteria = false,
+    bool fhirPathCriteria = false,
+  }) {
+    return SubscriptionTopicResourceTrigger(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description ? null : this.description,
+      resource: resource,
+      supportedInteraction:
+          supportedInteraction ? null : this.supportedInteraction,
+      queryCriteria: queryCriteria ? null : this.queryCriteria,
+      fhirPathCriteria: fhirPathCriteria ? null : this.fhirPathCriteria,
+    );
   }
 
   @override
@@ -2417,6 +2510,30 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  SubscriptionTopicQueryCriteria clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool previous = false,
+    bool resultForCreate = false,
+    bool current = false,
+    bool resultForDelete = false,
+    bool requireBoth = false,
+  }) {
+    return SubscriptionTopicQueryCriteria(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      previous: previous ? null : this.previous,
+      resultForCreate: resultForCreate ? null : this.resultForCreate,
+      current: current ? null : this.current,
+      resultForDelete: resultForDelete ? null : this.resultForDelete,
+      requireBoth: requireBoth ? null : this.requireBoth,
+    );
+  }
+
   @override
   SubscriptionTopicQueryCriteria clone() => throw UnimplementedError();
   @override
@@ -2884,6 +3001,24 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubscriptionTopicEventTrigger clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+  }) {
+    return SubscriptionTopicEventTrigger(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description ? null : this.description,
+      event: event,
+      resource: resource,
+    );
   }
 
   @override
@@ -3407,6 +3542,29 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  SubscriptionTopicCanFilterBy clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+    bool resource = false,
+    bool filterDefinition = false,
+    bool modifier = false,
+  }) {
+    return SubscriptionTopicCanFilterBy(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description ? null : this.description,
+      resource: resource ? null : this.resource,
+      filterParameter: filterParameter,
+      filterDefinition: filterDefinition ? null : this.filterDefinition,
+      modifier: modifier ? null : this.modifier,
+    );
+  }
+
   @override
   SubscriptionTopicCanFilterBy clone() => throw UnimplementedError();
   @override
@@ -3886,6 +4044,25 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubscriptionTopicNotificationShape clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool include = false,
+    bool revInclude = false,
+  }) {
+    return SubscriptionTopicNotificationShape(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      resource: resource,
+      include: include ? null : this.include,
+      revInclude: revInclude ? null : this.revInclude,
+    );
   }
 
   @override

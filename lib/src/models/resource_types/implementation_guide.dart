@@ -1023,6 +1023,65 @@ class ImplementationGuide extends CanonicalResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ImplementationGuide clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool version = false,
+    bool title = false,
+    bool experimental = false,
+    bool date = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool copyright = false,
+    bool license = false,
+    bool dependsOn = false,
+    bool global = false,
+    bool definition = false,
+    bool manifest = false,
+  }) {
+    return ImplementationGuide(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url,
+      version: version ? null : this.version,
+      name: name,
+      title: title ? null : this.title,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      date: date ? null : this.date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      copyright: copyright ? null : this.copyright,
+      packageId: packageId,
+      license: license ? null : this.license,
+      fhirVersion: fhirVersion,
+      dependsOn: dependsOn ? null : this.dependsOn,
+      global: global ? null : this.global,
+      definition: definition ? null : this.definition,
+      manifest: manifest ? null : this.manifest,
+    );
+  }
+
   @override
   ImplementationGuide clone() => throw UnimplementedError();
   @override
@@ -1687,6 +1746,25 @@ class ImplementationGuideDependsOn extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ImplementationGuideDependsOn clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool packageId = false,
+    bool version = false,
+  }) {
+    return ImplementationGuideDependsOn(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      uri: uri,
+      packageId: packageId ? null : this.packageId,
+      version: version ? null : this.version,
+    );
+  }
+
   @override
   ImplementationGuideDependsOn clone() => throw UnimplementedError();
   @override
@@ -2097,6 +2175,22 @@ class ImplementationGuideGlobal extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImplementationGuideGlobal clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ImplementationGuideGlobal(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      profile: profile,
+    );
   }
 
   @override
@@ -2619,6 +2713,29 @@ class ImplementationGuideDefinition extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ImplementationGuideDefinition clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool grouping = false,
+    bool page = false,
+    bool parameter = false,
+    bool template = false,
+  }) {
+    return ImplementationGuideDefinition(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      grouping: grouping ? null : this.grouping,
+      resource: resource,
+      page: page ? null : this.page,
+      parameter: parameter ? null : this.parameter,
+      template: template ? null : this.template,
+    );
+  }
+
   @override
   ImplementationGuideDefinition clone() => throw UnimplementedError();
   @override
@@ -3075,6 +3192,23 @@ class ImplementationGuideGrouping extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImplementationGuideGrouping clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+  }) {
+    return ImplementationGuideGrouping(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      description: description ? null : this.description,
+    );
   }
 
   @override
@@ -3664,6 +3798,31 @@ class ImplementationGuideResource extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ImplementationGuideResource clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool fhirVersion = false,
+    bool name = false,
+    bool description = false,
+    bool example = false,
+    bool groupingId = false,
+  }) {
+    return ImplementationGuideResource(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      reference: reference,
+      fhirVersion: fhirVersion ? null : this.fhirVersion,
+      name: name ? null : this.name,
+      description: description ? null : this.description,
+      exampleX: example ? null : exampleX,
+      groupingId: groupingId ? null : this.groupingId,
+    );
+  }
+
   @override
   ImplementationGuideResource clone() => throw UnimplementedError();
   @override
@@ -4221,6 +4380,25 @@ class ImplementationGuidePage extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ImplementationGuidePage clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool page = false,
+  }) {
+    return ImplementationGuidePage(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      nameX: nameX,
+      title: title,
+      generation: generation,
+      page: page ? null : this.page,
+    );
+  }
+
   @override
   ImplementationGuidePage clone() => throw UnimplementedError();
   @override
@@ -4647,6 +4825,22 @@ class ImplementationGuideParameter extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImplementationGuideParameter clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ImplementationGuideParameter(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      value: value,
+    );
   }
 
   @override
@@ -5083,6 +5277,24 @@ class ImplementationGuideTemplate extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ImplementationGuideTemplate clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool scope = false,
+  }) {
+    return ImplementationGuideTemplate(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      source: source,
+      scope: scope ? null : this.scope,
+    );
+  }
+
   @override
   ImplementationGuideTemplate clone() => throw UnimplementedError();
   @override
@@ -5196,7 +5408,8 @@ class ImplementationGuideManifest extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ImplementationGuideManifest.empty() => const ImplementationGuideManifest(
+  factory ImplementationGuideManifest.empty() =>
+      const ImplementationGuideManifest(
         resource: <ImplementationGuideResource1>[],
       );
 
@@ -5601,6 +5814,29 @@ class ImplementationGuideManifest extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImplementationGuideManifest clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool rendering = false,
+    bool page = false,
+    bool image = false,
+    bool other = false,
+  }) {
+    return ImplementationGuideManifest(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      rendering: rendering ? null : this.rendering,
+      resource: resource,
+      page: page ? null : this.page,
+      image: image ? null : this.image,
+      other: other ? null : this.other,
+    );
   }
 
   @override
@@ -6144,6 +6380,25 @@ class ImplementationGuideResource1 extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  ImplementationGuideResource1 clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool example = false,
+    bool relativePath = false,
+  }) {
+    return ImplementationGuideResource1(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      reference: reference,
+      exampleX: example ? null : exampleX,
+      relativePath: relativePath ? null : this.relativePath,
+    );
+  }
+
   @override
   ImplementationGuideResource1 clone() => throw UnimplementedError();
   @override
@@ -6585,6 +6840,25 @@ class ImplementationGuidePage1 extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImplementationGuidePage1 clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool title = false,
+    bool anchor = false,
+  }) {
+    return ImplementationGuidePage1(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      title: title ? null : this.title,
+      anchor: anchor ? null : this.anchor,
+    );
   }
 
   @override

@@ -1028,7 +1028,8 @@ class SubstanceDefinition extends DomainResource {
       case 'molecularWeight':
         {
           return copyWith(
-              molecularWeight: <SubstanceDefinitionMolecularWeight>[],);
+            molecularWeight: <SubstanceDefinitionMolecularWeight>[],
+          );
         }
       case 'structure':
         {
@@ -1049,11 +1050,74 @@ class SubstanceDefinition extends DomainResource {
       case 'sourceMaterial':
         {
           return copyWith(
-              sourceMaterial: SubstanceDefinitionSourceMaterial.empty(),);
+            sourceMaterial: SubstanceDefinitionSourceMaterial.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubstanceDefinition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool version = false,
+    bool status = false,
+    bool classification = false,
+    bool domain = false,
+    bool grade = false,
+    bool description = false,
+    bool informationSource = false,
+    bool note = false,
+    bool manufacturer = false,
+    bool supplier = false,
+    bool moiety = false,
+    bool property = false,
+    bool molecularWeight = false,
+    bool structure = false,
+    bool code = false,
+    bool name = false,
+    bool relationship = false,
+    bool sourceMaterial = false,
+  }) {
+    return SubstanceDefinition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      version: version ? null : this.version,
+      status: status ? null : this.status,
+      classification: classification ? null : this.classification,
+      domain: domain ? null : this.domain,
+      grade: grade ? null : this.grade,
+      description: description ? null : this.description,
+      informationSource: informationSource ? null : this.informationSource,
+      note: note ? null : this.note,
+      manufacturer: manufacturer ? null : this.manufacturer,
+      supplier: supplier ? null : this.supplier,
+      moiety: moiety ? null : this.moiety,
+      property: property ? null : this.property,
+      molecularWeight: molecularWeight ? null : this.molecularWeight,
+      structure: structure ? null : this.structure,
+      code: code ? null : this.code,
+      name: name ? null : this.name,
+      relationship: relationship ? null : this.relationship,
+      sourceMaterial: sourceMaterial ? null : this.sourceMaterial,
+    );
   }
 
   @override
@@ -1429,7 +1493,8 @@ class SubstanceDefinitionMoiety extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory SubstanceDefinitionMoiety.empty() => const SubstanceDefinitionMoiety();
+  factory SubstanceDefinitionMoiety.empty() =>
+      const SubstanceDefinitionMoiety();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionMoiety.fromJson(
@@ -1962,6 +2027,36 @@ class SubstanceDefinitionMoiety extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubstanceDefinitionMoiety clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool role = false,
+    bool identifier = false,
+    bool name = false,
+    bool stereochemistry = false,
+    bool opticalActivity = false,
+    bool molecularFormula = false,
+    bool amount = false,
+    bool measurementType = false,
+  }) {
+    return SubstanceDefinitionMoiety(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      role: role ? null : this.role,
+      identifier: identifier ? null : this.identifier,
+      name: name ? null : this.name,
+      stereochemistry: stereochemistry ? null : this.stereochemistry,
+      opticalActivity: opticalActivity ? null : this.opticalActivity,
+      molecularFormula: molecularFormula ? null : this.molecularFormula,
+      amountX: amount ? null : amountX,
+      measurementType: measurementType ? null : this.measurementType,
+    );
   }
 
   @override
@@ -2536,6 +2631,23 @@ class SubstanceDefinitionProperty extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  SubstanceDefinitionProperty clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool value = false,
+  }) {
+    return SubstanceDefinitionProperty(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      valueX: value ? null : valueX,
+    );
+  }
+
   @override
   SubstanceDefinitionProperty clone() => throw UnimplementedError();
   @override
@@ -2975,6 +3087,25 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubstanceDefinitionMolecularWeight clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool method = false,
+    bool type = false,
+  }) {
+    return SubstanceDefinitionMolecularWeight(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      method: method ? null : this.method,
+      type: type ? null : this.type,
+      amount: amount,
+    );
   }
 
   @override
@@ -3575,7 +3706,8 @@ class SubstanceDefinitionStructure extends BackboneElement {
       case 'molecularWeight':
         {
           return copyWith(
-              molecularWeight: SubstanceDefinitionMolecularWeight.empty(),);
+            molecularWeight: SubstanceDefinitionMolecularWeight.empty(),
+          );
         }
       case 'technique':
         {
@@ -3588,11 +3720,43 @@ class SubstanceDefinitionStructure extends BackboneElement {
       case 'representation':
         {
           return copyWith(
-              representation: <SubstanceDefinitionRepresentation>[],);
+            representation: <SubstanceDefinitionRepresentation>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubstanceDefinitionStructure clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool stereochemistry = false,
+    bool opticalActivity = false,
+    bool molecularFormula = false,
+    bool molecularFormulaByMoiety = false,
+    bool molecularWeight = false,
+    bool technique = false,
+    bool sourceDocument = false,
+    bool representation = false,
+  }) {
+    return SubstanceDefinitionStructure(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      stereochemistry: stereochemistry ? null : this.stereochemistry,
+      opticalActivity: opticalActivity ? null : this.opticalActivity,
+      molecularFormula: molecularFormula ? null : this.molecularFormula,
+      molecularFormulaByMoiety:
+          molecularFormulaByMoiety ? null : this.molecularFormulaByMoiety,
+      molecularWeight: molecularWeight ? null : this.molecularWeight,
+      technique: technique ? null : this.technique,
+      sourceDocument: sourceDocument ? null : this.sourceDocument,
+      representation: representation ? null : this.representation,
+    );
   }
 
   @override
@@ -3718,7 +3882,9 @@ class SubstanceDefinitionStructure extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        molecularFormulaByMoiety, o.molecularFormulaByMoiety,)) {
+      molecularFormulaByMoiety,
+      o.molecularFormulaByMoiety,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(molecularWeight, o.molecularWeight)) {
@@ -4135,6 +4301,28 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubstanceDefinitionRepresentation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool representation = false,
+    bool format = false,
+    bool document = false,
+  }) {
+    return SubstanceDefinitionRepresentation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      representation: representation ? null : this.representation,
+      format: format ? null : this.format,
+      document: document ? null : this.document,
+    );
   }
 
   @override
@@ -4657,6 +4845,30 @@ class SubstanceDefinitionCode extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubstanceDefinitionCode clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool status = false,
+    bool statusDate = false,
+    bool note = false,
+    bool source = false,
+  }) {
+    return SubstanceDefinitionCode(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      status: status ? null : this.status,
+      statusDate: statusDate ? null : this.statusDate,
+      note: note ? null : this.note,
+      source: source ? null : this.source,
+    );
   }
 
   @override
@@ -5410,6 +5622,41 @@ class SubstanceDefinitionName extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  SubstanceDefinitionName clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool status = false,
+    bool preferred = false,
+    bool language = false,
+    bool domain = false,
+    bool jurisdiction = false,
+    bool synonym = false,
+    bool translation = false,
+    bool official = false,
+    bool source = false,
+  }) {
+    return SubstanceDefinitionName(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      type: type ? null : this.type,
+      status: status ? null : this.status,
+      preferred: preferred ? null : this.preferred,
+      language: language ? null : this.language,
+      domain: domain ? null : this.domain,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      synonym: synonym ? null : this.synonym,
+      translation: translation ? null : this.translation,
+      official: official ? null : this.official,
+      source: source ? null : this.source,
+    );
+  }
+
   @override
   SubstanceDefinitionName clone() => throw UnimplementedError();
   @override
@@ -5633,7 +5880,8 @@ class SubstanceDefinitionOfficial extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory SubstanceDefinitionOfficial.empty() => const SubstanceDefinitionOfficial();
+  factory SubstanceDefinitionOfficial.empty() =>
+      const SubstanceDefinitionOfficial();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionOfficial.fromJson(
@@ -5965,6 +6213,26 @@ class SubstanceDefinitionOfficial extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubstanceDefinitionOfficial clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool authority = false,
+    bool status = false,
+    bool date = false,
+  }) {
+    return SubstanceDefinitionOfficial(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      authority: authority ? null : this.authority,
+      status: status ? null : this.status,
+      date: date ? null : this.date,
+    );
   }
 
   @override
@@ -6304,7 +6572,9 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     if (substanceDefinitionX != null) {
       final fhirType = substanceDefinitionX!.fhirType;
       addField(
-          'substanceDefinition${fhirType.capitalize()}', substanceDefinitionX,);
+        'substanceDefinition${fhirType.capitalize()}',
+        substanceDefinitionX,
+      );
     }
 
     addField('type', type);
@@ -6669,6 +6939,34 @@ class SubstanceDefinitionRelationship extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubstanceDefinitionRelationship clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool substanceDefinition = false,
+    bool isDefining = false,
+    bool amount = false,
+    bool ratioHighLimitAmount = false,
+    bool comparator = false,
+    bool source = false,
+  }) {
+    return SubstanceDefinitionRelationship(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      substanceDefinitionX: substanceDefinition ? null : substanceDefinitionX,
+      type: type,
+      isDefining: isDefining ? null : this.isDefining,
+      amountX: amount ? null : amountX,
+      ratioHighLimitAmount:
+          ratioHighLimitAmount ? null : this.ratioHighLimitAmount,
+      comparator: comparator ? null : this.comparator,
+      source: source ? null : this.source,
+    );
   }
 
   @override
@@ -7221,6 +7519,30 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubstanceDefinitionSourceMaterial clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool genus = false,
+    bool species = false,
+    bool part_ = false,
+    bool countryOfOrigin = false,
+  }) {
+    return SubstanceDefinitionSourceMaterial(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      genus: genus ? null : this.genus,
+      species: species ? null : this.species,
+      part_: part_ ? null : this.part_,
+      countryOfOrigin: countryOfOrigin ? null : this.countryOfOrigin,
+    );
   }
 
   @override

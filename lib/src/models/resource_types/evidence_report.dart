@@ -1082,6 +1082,64 @@ class EvidenceReport extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  EvidenceReport clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool useContext = false,
+    bool identifier = false,
+    bool relatedIdentifier = false,
+    bool citeAs = false,
+    bool type = false,
+    bool note = false,
+    bool relatedArtifact = false,
+    bool publisher = false,
+    bool contact = false,
+    bool author = false,
+    bool editor = false,
+    bool reviewer = false,
+    bool endorser = false,
+    bool relatesTo = false,
+    bool section = false,
+  }) {
+    return EvidenceReport(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url ? null : this.url,
+      status: status,
+      useContext: useContext ? null : this.useContext,
+      identifier: identifier ? null : this.identifier,
+      relatedIdentifier: relatedIdentifier ? null : this.relatedIdentifier,
+      citeAsX: citeAs ? null : citeAsX,
+      type: type ? null : this.type,
+      note: note ? null : this.note,
+      relatedArtifact: relatedArtifact ? null : this.relatedArtifact,
+      subject: subject,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      author: author ? null : this.author,
+      editor: editor ? null : this.editor,
+      reviewer: reviewer ? null : this.reviewer,
+      endorser: endorser ? null : this.endorser,
+      relatesTo: relatesTo ? null : this.relatesTo,
+      section: section ? null : this.section,
+    );
+  }
+
   @override
   EvidenceReport clone() => throw UnimplementedError();
   @override
@@ -1746,6 +1804,24 @@ class EvidenceReportSubject extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  EvidenceReportSubject clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool characteristic = false,
+    bool note = false,
+  }) {
+    return EvidenceReportSubject(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      characteristic: characteristic ? null : this.characteristic,
+      note: note ? null : this.note,
+    );
+  }
+
   @override
   EvidenceReportSubject clone() => throw UnimplementedError();
   @override
@@ -2345,6 +2421,26 @@ class EvidenceReportCharacteristic extends BackboneElement {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  EvidenceReportCharacteristic clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool exclude = false,
+    bool period = false,
+  }) {
+    return EvidenceReportCharacteristic(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      valueX: valueX,
+      exclude: exclude ? null : this.exclude,
+      period: period ? null : this.period,
+    );
+  }
+
   @override
   EvidenceReportCharacteristic clone() => throw UnimplementedError();
   @override
@@ -2812,6 +2908,22 @@ class EvidenceReportRelatesTo extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  EvidenceReportRelatesTo clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return EvidenceReportRelatesTo(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      targetX: targetX,
+    );
   }
 
   @override
@@ -3560,6 +3672,44 @@ class EvidenceReportSection extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  EvidenceReportSection clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool title = false,
+    bool focus = false,
+    bool focusReference = false,
+    bool author = false,
+    bool text = false,
+    bool mode = false,
+    bool orderedBy = false,
+    bool entryClassifier = false,
+    bool entryReference = false,
+    bool entryQuantity = false,
+    bool emptyReason = false,
+    bool section = false,
+  }) {
+    return EvidenceReportSection(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      title: title ? null : this.title,
+      focus: focus ? null : this.focus,
+      focusReference: focusReference ? null : this.focusReference,
+      author: author ? null : this.author,
+      text: text ? null : this.text,
+      mode: mode ? null : this.mode,
+      orderedBy: orderedBy ? null : this.orderedBy,
+      entryClassifier: entryClassifier ? null : this.entryClassifier,
+      entryReference: entryReference ? null : this.entryReference,
+      entryQuantity: entryQuantity ? null : this.entryQuantity,
+      emptyReason: emptyReason ? null : this.emptyReason,
+      section: section ? null : this.section,
+    );
   }
 
   @override

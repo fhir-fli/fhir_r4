@@ -1253,6 +1253,64 @@ class FamilyMemberHistory extends DomainResource {
     }
   }
 
+  /// Clears specific fields in this object
+  @override
+  FamilyMemberHistory clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool instantiatesCanonical = false,
+    bool instantiatesUri = false,
+    bool dataAbsentReason = false,
+    bool date = false,
+    bool name = false,
+    bool sex = false,
+    bool born = false,
+    bool age = false,
+    bool estimatedAge = false,
+    bool deceased = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool note = false,
+    bool condition = false,
+  }) {
+    return FamilyMemberHistory(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      instantiatesCanonical:
+          instantiatesCanonical ? null : this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri ? null : this.instantiatesUri,
+      status: status,
+      dataAbsentReason: dataAbsentReason ? null : this.dataAbsentReason,
+      patient: patient,
+      date: date ? null : this.date,
+      name: name ? null : this.name,
+      relationship: relationship,
+      sex: sex ? null : this.sex,
+      bornX: born ? null : bornX,
+      ageX: age ? null : ageX,
+      estimatedAge: estimatedAge ? null : this.estimatedAge,
+      deceasedX: deceased ? null : deceasedX,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      note: note ? null : this.note,
+      condition: condition ? null : this.condition,
+    );
+  }
+
   @override
   FamilyMemberHistory clone() => throw UnimplementedError();
   @override
@@ -2071,6 +2129,29 @@ class FamilyMemberHistoryCondition extends BackboneElement {
       default:
         throw ArgumentError('No matching property: $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  FamilyMemberHistoryCondition clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool outcome = false,
+    bool contributedToDeath = false,
+    bool onset = false,
+    bool note = false,
+  }) {
+    return FamilyMemberHistoryCondition(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      outcome: outcome ? null : this.outcome,
+      contributedToDeath: contributedToDeath ? null : this.contributedToDeath,
+      onsetX: onset ? null : onsetX,
+      note: note ? null : this.note,
+    );
   }
 
   @override
