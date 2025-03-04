@@ -86,4 +86,9 @@ class FHIRConstant extends FhirBase {
         throw ArgumentError('No matching property: $propertyName');
     }
   }
+
+  @override
+  FHIRConstant clear() {
+    return FHIRConstant(value);
+  }
 }

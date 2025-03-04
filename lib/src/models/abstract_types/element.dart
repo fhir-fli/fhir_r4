@@ -148,18 +148,6 @@ class Element extends FhirBase {
     }
   }
 
-  /// Optionally, if we want to use hashes like in Java:
-  dynamic getPropertyByHash(int hash) {
-    switch (hash) {
-      case 3355: // hash for 'id'
-        return id;
-      case -612557761: // hash for 'extension'
-        return extension_;
-      default:
-        throw ArgumentError('Unknown property hash: $hash');
-    }
-  }
-
   /// Implementing the setProperty method
   Element setProperty(String name, dynamic value) {
     switch (name) {
@@ -179,28 +167,6 @@ class Element extends FhirBase {
         }
       default:
         throw ArgumentError('Unknown property name: $name');
-    }
-  }
-
-  /// Optionally, if we want to use hashes like in Java:
-  Element setPropertyByHash(int hash, dynamic value) {
-    switch (hash) {
-      case 3355: // hash for 'id'
-        if (value is String) {
-          return Element(id: value.toFhirString, extension_: extension_);
-        } else {
-          throw ArgumentError('Invalid type for id. Expected String.');
-        }
-      case -612557761: // hash for 'extension'
-        if (value is List<FhirExtension>) {
-          return Element(id: id, extension_: value);
-        } else {
-          throw ArgumentError(
-            'Invalid type for extension. Expected List<FhirExtension>.',
-          );
-        }
-      default:
-        throw ArgumentError('Unknown property hash: $hash');
     }
   }
 
@@ -325,5 +291,14 @@ class Element extends FhirBase {
       default:
         throw Exception('Cannot make property for $propertyName');
     }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Element clear({bool id = false, bool extension_ = false}) {
+    return Element(
+      id: id == true ? FhirString.empty() : this.id,
+      extension_: extension_ == true ? <FhirExtension>[] : this.extension_,
+    );
   }
 }

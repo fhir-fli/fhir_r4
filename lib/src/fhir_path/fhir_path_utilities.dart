@@ -448,4 +448,9 @@ class ClassTypeInfo extends FhirBase {
         throw ArgumentError('No matching property: $propertyName');
     }
   }
+
+  @override
+  ClassTypeInfo clear() {
+    return ClassTypeInfo(instance);
+  }
 }
