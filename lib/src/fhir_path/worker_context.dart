@@ -208,14 +208,14 @@ class WorkerContext {
 
   ValidationResult validateCode(
     ValidationOptions options,
-    String system,
-    String version,
+    String? system,
+    String? version,
     String code,
     String? display,
   ) {
     final coding = Coding(
-      system: system.toFhirUri,
-      version: version.toFhirString,
+      system: system?.toFhirUri,
+      version: version?.toFhirString,
       code: code.toFhirCode,
       display: display?.toFhirString,
     );

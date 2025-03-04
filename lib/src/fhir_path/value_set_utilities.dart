@@ -153,7 +153,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
       var expansion = ValueSet.fromJson(result);
 
       // Clear any existing expansion
-      expansion.expansion = null;
+      expansion = expansion.copyWith(expansion: null);
 
       // Extract parameters
       final excludeNested = getParameterBool(parameters, 'excludeNested', true);
@@ -161,7 +161,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
           getParameterBool(parameters, 'includeDefinition', false);
 
       // Set up the expansion
-      final vsExpansion = ValueSetExpansion(
+      var vsExpansion = ValueSetExpansion(
         identifier: FhirUri(DateTime.now().millisecondsSinceEpoch.toString()),
         timestamp: FhirDateTime.fromDateTime(DateTime.now()),
       );
@@ -170,7 +170,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
 
       // Process includes
       for (final include in source.compose!.include) {
-        processIncludeExclude(
+        vsExpansion = processIncludeExclude(
           include,
           vsExpansion,
           true,
@@ -182,7 +182,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
       // Process excludes
       if (source.compose!.exclude != null) {
         for (final exclude in source.compose!.exclude!) {
-          processIncludeExclude(
+          vsExpansion = processIncludeExclude(
             exclude,
             vsExpansion,
             false,
@@ -205,7 +205,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
   }
 
   /// Process an include or exclude component
-  void processIncludeExclude(
+  ValueSetExpansion processIncludeExclude(
     ValueSetInclude component,
     ValueSetExpansion expansion,
     bool include,
@@ -216,26 +216,27 @@ class ValueSetExpanderSimple implements ValueSetExpander {
       _allErrors.add(
         'ValueSet compose ${include ? 'include' : 'exclude'} has no system',
       );
-      return;
+      return expansion;
     }
 
     final system = component.system!.value!;
+    var newExpansion = expansion;
 
     // Handle concept lists (direct list of included codes)
     if (component.concept != null && component.concept!.isNotEmpty) {
       for (final concept in component.concept!) {
         if (include) {
-          addCodeToExpansion(
+          newExpansion = addCodeToExpansion(
             system.toString(),
             concept,
-            expansion,
+            newExpansion,
             includeDefinition,
           );
         } else {
-          removeCodeFromExpansion(
+          newExpansion = removeCodeFromExpansion(
             system.toString(),
             concept.code.value!,
-            expansion,
+            newExpansion,
           );
         }
       }
@@ -243,7 +244,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
 
     // Handle filters (rules for including codes)
     if (component.filter != null && component.filter!.isNotEmpty) {
-      processFilters(
+      newExpansion = processFilters(
         component,
         system.toString(),
         expansion,
@@ -257,7 +258,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
     // (includes all codes from the referenced ValueSet)
     if (component.valueSet != null && component.valueSet!.isNotEmpty) {
       for (final vsRef in component.valueSet!) {
-        processValueSetReference(
+        newExpansion = processValueSetReference(
           vsRef.value!.toString(),
           expansion,
           include,
@@ -266,10 +267,11 @@ class ValueSetExpanderSimple implements ValueSetExpander {
         );
       }
     }
+    return newExpansion;
   }
 
   /// Process filters in a component
-  void processFilters(
+  ValueSetExpansion processFilters(
     ValueSetInclude component,
     String system,
     ValueSetExpansion expansion,
@@ -281,7 +283,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
     final cs = context.fetchCodeSystem(system);
     if (cs == null) {
       _allErrors.add('Code system $system not found');
-      return;
+      return expansion;
     }
 
     // We can only process filters for code systems
@@ -289,8 +291,10 @@ class ValueSetExpanderSimple implements ValueSetExpander {
     if (cs.content != CodeSystemContentMode.complete) {
       _allErrors.add('Cannot process filters for code system '
           '$system with content mode ${cs.content}');
-      return;
+      return expansion;
     }
+
+    var newExpansion = expansion;
 
     // Process each filter
     for (final filter in component.filter!) {
@@ -304,30 +308,40 @@ class ValueSetExpanderSimple implements ValueSetExpander {
 
       for (final concept in matchingConcepts) {
         if (include) {
-          addCodeToExpansion(
+          newExpansion = addCodeToExpansion(
             system,
             ValueSetConcept(
               code: concept.code,
               display: concept.display,
             ),
-            expansion,
+            newExpansion,
             includeDefinition,
           );
 
           // Add child concepts for hierarchical expansions if needed
           if (!excludeNested) {
-            addChildConcepts(concept, system, expansion, includeDefinition);
+            newExpansion = addChildConcepts(
+              concept,
+              system,
+              newExpansion,
+              includeDefinition,
+            );
           }
         } else {
-          removeCodeFromExpansion(system, concept.code.value!, expansion);
+          newExpansion = removeCodeFromExpansion(
+            system,
+            concept.code.value!,
+            newExpansion,
+          );
 
           // Remove child concepts too
           if (!excludeNested) {
-            removeChildConcepts(concept, system, expansion);
+            newExpansion = removeChildConcepts(concept, system, newExpansion);
           }
         }
       }
     }
+    return newExpansion;
   }
 
   /// Find concepts matching a filter
@@ -494,7 +508,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
   }
 
   /// Process a ValueSet reference in include/exclude
-  void processValueSetReference(
+  ValueSetExpansion processValueSetReference(
     String vsRef,
     ValueSetExpansion expansion,
     bool include,
@@ -505,24 +519,30 @@ class ValueSetExpanderSimple implements ValueSetExpander {
     final vs = context.fetchResource<ValueSet>(uri: vsRef);
     if (vs == null) {
       _allErrors.add('Referenced ValueSet $vsRef not found');
-      return;
+      return expansion;
     }
+
+    var newExpansion = expansion;
 
     // If the ValueSet is already expanded, use its expansion
     if (vs.expansion != null && vs.expansion!.contains != null) {
       for (final item in vs.expansion!.contains!) {
         if (include) {
-          expansion.contains ??= <ValueSetContains>[];
-          expansion.contains!.add(item);
+          newExpansion = newExpansion.copyWith(
+            contains: [
+              ...newExpansion.contains ?? <ValueSetContains>[],
+              item,
+            ],
+          );
         } else {
-          removeCodeFromExpansion(
+          newExpansion = removeCodeFromExpansion(
             item.system!.value!.toString(),
             item.code!.value!,
-            expansion,
+            newExpansion,
           );
         }
       }
-      return;
+      return newExpansion;
     }
 
     // If not expanded, we need to expand it first
@@ -531,9 +551,9 @@ class ValueSetExpanderSimple implements ValueSetExpander {
     // we'll handle it directly for the referenced ValueSet
     if (vs.compose != null) {
       for (final inc in vs.compose!.include) {
-        processIncludeExclude(
+        newExpansion = processIncludeExclude(
           inc,
-          expansion,
+          newExpansion,
           include,
           excludeNested,
           includeDefinition,
@@ -542,9 +562,9 @@ class ValueSetExpanderSimple implements ValueSetExpander {
 
       if (vs.compose!.exclude != null) {
         for (final exc in vs.compose!.exclude!) {
-          processIncludeExclude(
+          newExpansion = processIncludeExclude(
             exc,
-            expansion,
+            newExpansion,
             !include,
             excludeNested,
             includeDefinition,
@@ -552,10 +572,11 @@ class ValueSetExpanderSimple implements ValueSetExpander {
         }
       }
     }
+    return newExpansion;
   }
 
   /// Add a code to the expansion
-  void addCodeToExpansion(
+  ValueSetExpansion addCodeToExpansion(
     String system,
     ValueSetConcept concept,
     ValueSetExpansion expansion,
@@ -563,7 +584,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
   ) {
     // Check if the code is already in the expansion
     if (isCodeInExpansion(system, concept.code.value!, expansion)) {
-      return;
+      return expansion;
     }
 
     // Create the contains item
@@ -578,7 +599,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
       item = item.copyWith(designation: concept.designation);
     }
 
-    expansion = expansion.copyWith(
+    return expansion.copyWith(
       contains: [...(expansion.contains ?? <ValueSetContains>[]), item],
     );
   }
@@ -619,20 +640,26 @@ class ValueSetExpanderSimple implements ValueSetExpander {
   }
 
   /// Remove a code from the expansion
-  void removeCodeFromExpansion(
+  ValueSetExpansion removeCodeFromExpansion(
     String system,
     String code,
     ValueSetExpansion expansion,
   ) {
     if (expansion.contains == null) {
-      return;
+      return expansion;
     }
 
-    _removeCodeFromContainsList(expansion.contains!, system, code);
+    return expansion.copyWith(
+      contains: _removeCodeFromContainsList(
+        expansion.contains!.toList(),
+        system,
+        code,
+      ),
+    );
   }
 
   /// Remove a code from a contains list
-  void _removeCodeFromContainsList(
+  List<ValueSetContains> _removeCodeFromContainsList(
     List<ValueSetContains> items,
     String system,
     String code,
@@ -642,57 +669,73 @@ class ValueSetExpanderSimple implements ValueSetExpander {
       (item) => item.system?.toString() == system && item.code?.value == code,
     );
 
+    final newItems = <ValueSetContains>[];
+
     // Check nested items
     for (final item in items) {
       if (item.contains != null) {
-        _removeCodeFromContainsList(item.contains!, system, code);
+        newItems.add(
+          item.copyWith(
+            contains: _removeCodeFromContainsList(item.contains!, system, code),
+          ),
+        );
+      } else {
+        newItems.add(item);
       }
     }
+    return newItems;
   }
 
   /// Add child concepts to the expansion
-  void addChildConcepts(
+  ValueSetExpansion addChildConcepts(
     CodeSystemConcept parent,
     String system,
     ValueSetExpansion expansion,
     bool includeDefinition,
   ) {
     if (parent.concept == null) {
-      return;
+      return expansion;
     }
+    var newExpansion = expansion;
 
     for (final child in parent.concept!) {
-      addCodeToExpansion(
+      newExpansion = addCodeToExpansion(
         system,
         ValueSetConcept(
           code: child.code,
           display: child.display,
         ),
-        expansion,
+        newExpansion,
         includeDefinition,
       );
 
       // Recursively add the child's children
-      addChildConcepts(child, system, expansion, includeDefinition);
+      newExpansion =
+          addChildConcepts(child, system, newExpansion, includeDefinition);
     }
+    return newExpansion;
   }
 
   /// Remove child concepts from the expansion
-  void removeChildConcepts(
+  ValueSetExpansion removeChildConcepts(
     CodeSystemConcept parent,
     String system,
     ValueSetExpansion expansion,
   ) {
     if (parent.concept == null) {
-      return;
+      return expansion;
     }
+
+    var newExpansion = expansion;
 
     for (final child in parent.concept!) {
-      removeCodeFromExpansion(system, child.code.value!, expansion);
+      newExpansion =
+          removeCodeFromExpansion(system, child.code.value!, newExpansion);
 
       // Recursively remove the child's children
-      removeChildConcepts(child, system, expansion);
+      newExpansion = removeChildConcepts(child, system, newExpansion);
     }
+    return newExpansion;
   }
 
   /// Check if code system needs to be handled on the server side
@@ -1073,7 +1116,7 @@ extension ValueSetExpansionExtensions on WorkerContext {
     }
 
     // Set defaults for parameters if null
-    final params = parameters ?? Parameters();
+    var params = parameters ?? const Parameters();
 
     // Setup parameter defaults if not present
     bool hasParam(String name) {
@@ -1081,22 +1124,26 @@ extension ValueSetExpansionExtensions on WorkerContext {
     }
 
     if (!hasParam('includeDefinition')) {
-      params.parameter ??= [];
-      params.parameter!.add(
-        ParametersParameter(
-          name: 'includeDefinition'.toFhirString,
-          valueX: FhirBoolean(false),
-        ),
+      params = params.copyWith(
+        parameter: <ParametersParameter>[
+          ...params.parameter ?? [],
+          ParametersParameter(
+            name: 'includeDefinition'.toFhirString,
+            valueX: FhirBoolean(false),
+          ),
+        ],
       );
     }
 
     if (!hasParam('excludeNested')) {
-      params.parameter ??= [];
-      params.parameter!.add(
-        ParametersParameter(
-          name: 'excludeNested'.toFhirString,
-          valueX: FhirBoolean(!hierarchical),
-        ),
+      params = params.copyWith(
+        parameter: <ParametersParameter>[
+          ...params.parameter ?? [],
+          ParametersParameter(
+            name: 'excludeNested'.toFhirString,
+            valueX: FhirBoolean(!hierarchical),
+          ),
+        ],
       );
     }
 

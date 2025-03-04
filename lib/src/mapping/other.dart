@@ -41,6 +41,8 @@ class DefinitionResolver {
   /// Cache of resolved structure definitions.
   final Map<String, StructureDefinition?> _cachedDefinitions = {};
 
+  final WorkerContext _worker = WorkerContext();
+
   /// Resolves a [StructureDefinition] from [structureUrl].
   Future<StructureDefinition?> resolve(String structureUrl) async {
     return (await cache.getCanonicalResource(url: structureUrl))
@@ -222,6 +224,17 @@ class DefinitionResolver {
   /// Expands a [ValueSet] to include all possible values.
   ValueSetExpansionOutcome expandVS(ValueSet? vs) {
     return ValueSetExpansionOutcome(vs);
+  }
+
+  /// Validates a code using the specified options.
+  ValidationResult? validateCode(
+    ValidationOptions options,
+    String? system,
+    String? version,
+    String code,
+    String? display,
+  ) {
+    return _worker.validateCode(options, system, version, code, display);
   }
 }
 

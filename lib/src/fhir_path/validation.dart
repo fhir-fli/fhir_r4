@@ -276,6 +276,7 @@ class ValidationResult {
   ValidationResult({
     this.system,
     this.definition,
+    this.display,
     this.severity,
     this.message,
     this.errorClass,
@@ -301,6 +302,9 @@ class ValidationResult {
 
   /// The system URL.
   String? system;
+
+  /// The display name of the validated concept.
+  String? display;
 
   /// The severity of the validation result.
   IssueSeverity? severity;
