@@ -203,4 +203,9 @@ class TRight7Aa extends BackboneElement {
         throw ArgumentError('Unknown property $name');
     }
   }
+
+  @override
+  TRight7Aa clear({bool extension_ = false, bool id = false}) {
+    throw UnimplementedError();
+  }
 }

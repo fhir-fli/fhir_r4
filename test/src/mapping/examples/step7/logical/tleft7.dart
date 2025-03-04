@@ -201,4 +201,9 @@ class TLeft7Aa extends BackboneElement {
         return this;
     }
   }
+
+  @override
+  TLeft7Aa clear({bool extension_ = false, bool id = false}) {
+    throw UnimplementedError();
+  }
 }

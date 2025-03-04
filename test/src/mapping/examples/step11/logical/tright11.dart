@@ -244,4 +244,14 @@ class TRight11e extends BackboneElement {
         f == other.f &&
         g == other.g;
   }
+
+  @override
+  TRight11e createProperty(String elementName) {
+    throw UnimplementedError();
+  }
+
+  @override
+  TRight11e clear({bool extension_ = false, bool id = false}) {
+    throw UnimplementedError();
+  }
 }

@@ -244,4 +244,14 @@ class TRight12az1 extends BackboneElement {
         az2 == other.az2 &&
         az3 == other.az3;
   }
+
+  @override
+  TRight12az1 createProperty(String elementName) {
+    throw UnimplementedError();
+  }
+
+  @override
+  TRight12az1 clear({bool extension_ = false, bool id = false}) {
+    throw UnimplementedError();
+  }
 }
