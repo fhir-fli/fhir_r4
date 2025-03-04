@@ -148,4 +148,7 @@ abstract class Resource extends FhirBase {
   /// Creates an empty property in the object
   @override
   Resource createProperty(String propertyName);
+
+  @override
+  Resource clear();
 }

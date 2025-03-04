@@ -165,4 +165,7 @@ abstract class CanonicalResource extends DomainResource {
   /// Creates an empty property in the object
   @override
   CanonicalResource createProperty(String propertyName);
+
+  @override
+  CanonicalResource clear();
 }

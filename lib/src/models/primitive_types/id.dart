@@ -200,4 +200,19 @@ class FhirId extends PrimitiveType<String>
   /// Creates an empty property in the object
   @override
   FhirId createProperty(String propertyName) => this;
+
+  /// Clears the specified fields in a [FhirId] object
+  @override
+  FhirId clear({
+    bool input = false,
+    bool extension_ = false,
+    bool id = false,
+  }) {
+    return FhirId(
+      input ? null : value,
+      element: element,
+      extension_: extension_ ? <FhirExtension>[] : this.extension_,
+      id: id ? null : this.id,
+    );
+  }
 }

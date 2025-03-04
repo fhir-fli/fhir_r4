@@ -153,7 +153,7 @@ class ValueSetExpanderSimple implements ValueSetExpander {
       var expansion = ValueSet.fromJson(result);
 
       // Clear any existing expansion
-      expansion = expansion.copyWith();
+      expansion = expansion.clear(expansion: true);
 
       // Extract parameters
       final excludeNested = getParameterBool(parameters, 'excludeNested', true);

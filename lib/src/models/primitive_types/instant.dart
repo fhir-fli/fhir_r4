@@ -285,4 +285,18 @@ class FhirInstant extends FhirDateTimeBase
   /// Creates an empty property in the object
   @override
   FhirInstant createProperty(String propertyName) => this;
+
+  /// Clears the specified fields in a [FhirInstant] object
+  @override
+  FhirInstant clear({
+    bool extension_ = false,
+    bool id = false,
+  }) {
+    return FhirInstant.fromString(
+      valueString,
+      element: element,
+      extension_: extension_ ? <FhirExtension>[] : this.extension_,
+      id: id ? null : this.id,
+    );
+  }
 }

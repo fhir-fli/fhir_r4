@@ -75,4 +75,7 @@ abstract class DataType extends Element {
   /// Creates an empty property in the object
   @override
   DataType createProperty(String propertyName);
+
+  @override
+  DataType clear({bool extension_ = false, bool id = false});
 }

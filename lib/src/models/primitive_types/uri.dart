@@ -281,4 +281,19 @@ class FhirUri extends PrimitiveType<Uri>
   /// Creates an empty property in the object
   @override
   FhirUri createProperty(String propertyName) => this;
+
+  /// Clears the specified fields in a [FhirUri] object
+  @override
+  FhirUri clear({
+    bool input = false,
+    bool extension_ = false,
+    bool id = false,
+  }) {
+    return FhirUri(
+      input ? null : this.input,
+      element: element,
+      extension_: extension_ ? <FhirExtension>[] : this.extension_,
+      id: id ? null : this.id,
+    );
+  }
 }

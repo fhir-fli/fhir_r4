@@ -143,4 +143,7 @@ abstract class BackboneType extends DataType {
   /// Creates an empty property in the object
   @override
   BackboneType createProperty(String propertyName);
+
+  @override
+  BackboneType clear({bool extension_ = false, bool id = false});
 }

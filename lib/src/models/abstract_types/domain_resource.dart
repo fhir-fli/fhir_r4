@@ -155,4 +155,7 @@ abstract class DomainResource extends Resource {
   /// Creates an empty property in the object
   @override
   DomainResource createProperty(String propertyName);
+
+  @override
+  DomainResource clear();
 }

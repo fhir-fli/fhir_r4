@@ -290,4 +290,18 @@ class FhirDate extends FhirDateTimeBase
   /// Creates an empty property in the object
   @override
   FhirDate createProperty(String propertyName) => this;
+
+  /// Clears the specified fields in a [FhirDate] object
+  @override
+  FhirDate clear({
+    bool extension_ = false,
+    bool id = false,
+  }) {
+    return FhirDate.fromString(
+      valueString,
+      element: element,
+      extension_: extension_ ? <FhirExtension>[] : this.extension_,
+      id: id ? null : this.id,
+    );
+  }
 }

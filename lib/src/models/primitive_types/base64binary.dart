@@ -237,6 +237,21 @@ class FhirBase64Binary extends PrimitiveType<String?>
   /// Creates an empty property in the object
   @override
   FhirBase64Binary createProperty(String propertyName) => this;
+
+  /// Clears the specified fields in a [FhirBase64Binary] object
+  @override
+  FhirBase64Binary clear({
+    bool input = false,
+    bool extension_ = false,
+    bool id = false,
+  }) {
+    return FhirBase64Binary(
+      input ? null : this.input,
+      element: element,
+      extension_: extension_ ? <FhirExtension>[] : this.extension_,
+      id: id ? null : this.id,
+    );
+  }
 }
 
 /// Enum for the detected file type

@@ -142,4 +142,7 @@ abstract class BackboneElement extends DataType {
   /// Creates an empty property in the object
   @override
   BackboneElement createProperty(String propertyName);
+
+  @override
+  BackboneElement clear({bool extension_ = false, bool id = false});
 }

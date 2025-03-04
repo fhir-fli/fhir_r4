@@ -211,4 +211,19 @@ class FhirPositiveInt extends FhirNumber
   /// Creates an empty property in the object
   @override
   FhirPositiveInt createProperty(String propertyName) => this;
+
+  /// Clears the specified fields in a [FhirPositiveInt] object
+  @override
+  FhirPositiveInt clear({
+    bool input = false,
+    bool extension_ = false,
+    bool id = false,
+  }) {
+    return FhirPositiveInt(
+      input ? null : this.input,
+      element: element,
+      extension_: extension_ ? <FhirExtension>[] : this.extension_,
+      id: id ? null : this.id,
+    );
+  }
 }

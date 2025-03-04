@@ -218,4 +218,19 @@ class FhirBoolean extends PrimitiveType<bool>
   /// Creates an empty property in the object
   @override
   FhirBoolean createProperty(String propertyName) => this;
+
+  /// Clears the specified fields in a [FhirBoolean] object
+  @override
+  FhirBoolean clear({
+    bool input = false,
+    bool extension_ = false,
+    bool id = false,
+  }) {
+    return FhirBoolean(
+      input ? null : this.input,
+      element: element,
+      extension_: extension_ ? <FhirExtension>[] : this.extension_,
+      id: id ? null : this.id,
+    );
+  }
 }

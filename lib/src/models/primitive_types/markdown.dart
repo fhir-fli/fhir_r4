@@ -194,4 +194,19 @@ class FhirMarkdown extends PrimitiveType<String>
   /// Creates an empty property in the object
   @override
   FhirMarkdown createProperty(String propertyName) => this;
+
+  /// Clears the specified fields in a [FhirMarkdown] object
+  @override
+  FhirMarkdown clear({
+    bool input = false,
+    bool extension_ = false,
+    bool id = false,
+  }) {
+    return FhirMarkdown(
+      input ? null : value,
+      element: element,
+      extension_: extension_ ? <FhirExtension>[] : this.extension_,
+      id: id ? null : this.id,
+    );
+  }
 }
