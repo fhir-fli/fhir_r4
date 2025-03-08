@@ -636,6 +636,191 @@ class PaymentNotice extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'request':
+        return ['Reference'];
+      case 'response':
+        return ['Reference'];
+      case 'created':
+        return ['FhirDateTime'];
+      case 'provider':
+        return ['Reference'];
+      case 'payment':
+        return ['Reference'];
+      case 'paymentDate':
+        return ['FhirDate'];
+      case 'payee':
+        return ['Reference'];
+      case 'recipient':
+        return ['Reference'];
+      case 'amount':
+        return ['Money'];
+      case 'paymentStatus':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [PaymentNotice]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  PaymentNotice createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: FinancialResourceStatusCodes.empty());
+        }
+      case 'request':
+        {
+          return copyWith(request: Reference.empty());
+        }
+      case 'response':
+        {
+          return copyWith(response: Reference.empty());
+        }
+      case 'created':
+        {
+          return copyWith(created: FhirDateTime.empty());
+        }
+      case 'provider':
+        {
+          return copyWith(provider: Reference.empty());
+        }
+      case 'payment':
+        {
+          return copyWith(payment: Reference.empty());
+        }
+      case 'paymentDate':
+        {
+          return copyWith(paymentDate: FhirDate.empty());
+        }
+      case 'payee':
+        {
+          return copyWith(payee: Reference.empty());
+        }
+      case 'recipient':
+        {
+          return copyWith(recipient: Reference.empty());
+        }
+      case 'amount':
+        {
+          return copyWith(amount: Money.empty());
+        }
+      case 'paymentStatus':
+        {
+          return copyWith(paymentStatus: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  PaymentNotice clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool request = false,
+    bool response = false,
+    bool provider = false,
+    bool paymentDate = false,
+    bool payee = false,
+    bool paymentStatus = false,
+  }) {
+    return PaymentNotice(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      request: request ? null : this.request,
+      response: response ? null : this.response,
+      created: created,
+      provider: provider ? null : this.provider,
+      payment: payment,
+      paymentDate: paymentDate ? null : this.paymentDate,
+      payee: payee ? null : this.payee,
+      recipient: recipient,
+      amount: amount,
+      paymentStatus: paymentStatus ? null : this.paymentStatus,
+    );
+  }
+
   @override
   PaymentNotice clone() => throw UnimplementedError();
   @override

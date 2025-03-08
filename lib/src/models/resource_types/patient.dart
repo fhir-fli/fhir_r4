@@ -856,6 +856,252 @@ class Patient extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'active':
+        return ['FhirBoolean'];
+      case 'name':
+        return ['HumanName'];
+      case 'telecom':
+        return ['ContactPoint'];
+      case 'gender':
+        return ['FhirCode'];
+      case 'birthDate':
+        return ['FhirDate'];
+      case 'deceased':
+      case 'deceasedX':
+        return ['FhirBoolean', 'FhirDateTime'];
+      case 'deceasedBoolean':
+        return ['FhirBoolean'];
+      case 'deceasedDateTime':
+        return ['FhirDateTime'];
+      case 'address':
+        return ['Address'];
+      case 'maritalStatus':
+        return ['CodeableConcept'];
+      case 'multipleBirth':
+      case 'multipleBirthX':
+        return ['FhirBoolean', 'FhirInteger'];
+      case 'multipleBirthBoolean':
+        return ['FhirBoolean'];
+      case 'multipleBirthInteger':
+        return ['FhirInteger'];
+      case 'photo':
+        return ['Attachment'];
+      case 'contact':
+        return ['PatientContact'];
+      case 'communication':
+        return ['PatientCommunication'];
+      case 'generalPractitioner':
+        return ['Reference'];
+      case 'managingOrganization':
+        return ['Reference'];
+      case 'link':
+        return ['PatientLink'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Patient]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Patient createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'active':
+        {
+          return copyWith(active: FhirBoolean.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: <HumanName>[]);
+        }
+      case 'telecom':
+        {
+          return copyWith(telecom: <ContactPoint>[]);
+        }
+      case 'gender':
+        {
+          return copyWith(gender: AdministrativeGender.empty());
+        }
+      case 'birthDate':
+        {
+          return copyWith(birthDate: FhirDate.empty());
+        }
+      case 'deceased':
+      case 'deceasedX':
+      case 'deceasedBoolean':
+        {
+          return copyWith(deceasedX: FhirBoolean.empty());
+        }
+      case 'deceasedDateTime':
+        {
+          return copyWith(deceasedX: FhirDateTime.empty());
+        }
+      case 'address':
+        {
+          return copyWith(address: <Address>[]);
+        }
+      case 'maritalStatus':
+        {
+          return copyWith(maritalStatus: CodeableConcept.empty());
+        }
+      case 'multipleBirth':
+      case 'multipleBirthX':
+      case 'multipleBirthBoolean':
+        {
+          return copyWith(multipleBirthX: FhirBoolean.empty());
+        }
+      case 'multipleBirthInteger':
+        {
+          return copyWith(multipleBirthX: FhirInteger.empty());
+        }
+      case 'photo':
+        {
+          return copyWith(photo: <Attachment>[]);
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <PatientContact>[]);
+        }
+      case 'communication':
+        {
+          return copyWith(communication: <PatientCommunication>[]);
+        }
+      case 'generalPractitioner':
+        {
+          return copyWith(generalPractitioner: <Reference>[]);
+        }
+      case 'managingOrganization':
+        {
+          return copyWith(managingOrganization: Reference.empty());
+        }
+      case 'link':
+        {
+          return copyWith(link: <PatientLink>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Patient clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool active = false,
+    bool name = false,
+    bool telecom = false,
+    bool gender = false,
+    bool birthDate = false,
+    bool deceased = false,
+    bool address = false,
+    bool maritalStatus = false,
+    bool multipleBirth = false,
+    bool photo = false,
+    bool contact = false,
+    bool communication = false,
+    bool generalPractitioner = false,
+    bool managingOrganization = false,
+    bool link = false,
+  }) {
+    return Patient(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      active: active ? null : this.active,
+      name: name ? null : this.name,
+      telecom: telecom ? null : this.telecom,
+      gender: gender ? null : this.gender,
+      birthDate: birthDate ? null : this.birthDate,
+      deceasedX: deceased ? null : deceasedX,
+      address: address ? null : this.address,
+      maritalStatus: maritalStatus ? null : this.maritalStatus,
+      multipleBirthX: multipleBirth ? null : multipleBirthX,
+      photo: photo ? null : this.photo,
+      contact: contact ? null : this.contact,
+      communication: communication ? null : this.communication,
+      generalPractitioner:
+          generalPractitioner ? null : this.generalPractitioner,
+      managingOrganization:
+          managingOrganization ? null : this.managingOrganization,
+      link: link ? null : this.link,
+    );
+  }
+
   @override
   Patient clone() => throw UnimplementedError();
   @override
@@ -1560,6 +1806,116 @@ class PatientContact extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'relationship':
+        return ['CodeableConcept'];
+      case 'name':
+        return ['HumanName'];
+      case 'telecom':
+        return ['ContactPoint'];
+      case 'address':
+        return ['Address'];
+      case 'gender':
+        return ['FhirCode'];
+      case 'organization':
+        return ['Reference'];
+      case 'period':
+        return ['Period'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [PatientContact]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  PatientContact createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'relationship':
+        {
+          return copyWith(relationship: <CodeableConcept>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: HumanName.empty());
+        }
+      case 'telecom':
+        {
+          return copyWith(telecom: <ContactPoint>[]);
+        }
+      case 'address':
+        {
+          return copyWith(address: Address.empty());
+        }
+      case 'gender':
+        {
+          return copyWith(gender: AdministrativeGender.empty());
+        }
+      case 'organization':
+        {
+          return copyWith(organization: Reference.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  PatientContact clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool relationship = false,
+    bool name = false,
+    bool telecom = false,
+    bool address = false,
+    bool gender = false,
+    bool organization = false,
+    bool period = false,
+  }) {
+    return PatientContact(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      relationship: relationship ? null : this.relationship,
+      name: name ? null : this.name,
+      telecom: telecom ? null : this.telecom,
+      address: address ? null : this.address,
+      gender: gender ? null : this.gender,
+      organization: organization ? null : this.organization,
+      period: period ? null : this.period,
+    );
+  }
+
   @override
   PatientContact clone() => throw UnimplementedError();
   @override
@@ -1971,6 +2327,75 @@ class PatientCommunication extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'language':
+        return ['CodeableConcept'];
+      case 'preferred':
+        return ['FhirBoolean'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [PatientCommunication]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  PatientCommunication createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'language':
+        {
+          return copyWith(language: CodeableConcept.empty());
+        }
+      case 'preferred':
+        {
+          return copyWith(preferred: FhirBoolean.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  PatientCommunication clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool preferred = false,
+  }) {
+    return PatientCommunication(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      language: language,
+      preferred: preferred ? null : this.preferred,
+    );
+  }
+
   @override
   PatientCommunication clone() => throw UnimplementedError();
   @override
@@ -2321,6 +2746,74 @@ class PatientLink extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'other':
+        return ['Reference'];
+      case 'type':
+        return ['FhirCode'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [PatientLink]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  PatientLink createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'other':
+        {
+          return copyWith(other: Reference.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: LinkType.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  PatientLink clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return PatientLink(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      other: other,
+      type: type,
+    );
   }
 
   @override

@@ -375,6 +375,100 @@ class FhirMeta extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'versionId':
+        return ['FhirId'];
+      case 'lastUpdated':
+        return ['FhirInstant'];
+      case 'source':
+        return ['FhirUri'];
+      case 'profile':
+        return ['FhirCanonical'];
+      case 'security':
+        return ['Coding'];
+      case 'tag':
+        return ['Coding'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [FhirMeta]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  FhirMeta createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'versionId':
+        {
+          return copyWith(versionId: FhirId.empty());
+        }
+      case 'lastUpdated':
+        {
+          return copyWith(lastUpdated: FhirInstant.empty());
+        }
+      case 'source':
+        {
+          return copyWith(source: FhirUri.empty());
+        }
+      case 'profile':
+        {
+          return copyWith(profile: <FhirCanonical>[]);
+        }
+      case 'security':
+        {
+          return copyWith(security: <Coding>[]);
+        }
+      case 'tag':
+        {
+          return copyWith(tag: <Coding>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  FhirMeta clear({
+    bool id = false,
+    bool extension_ = false,
+    bool versionId = false,
+    bool lastUpdated = false,
+    bool source = false,
+    bool profile = false,
+    bool security = false,
+    bool tag = false,
+  }) {
+    return FhirMeta(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      versionId: versionId ? null : this.versionId,
+      lastUpdated: lastUpdated ? null : this.lastUpdated,
+      source: source ? null : this.source,
+      profile: profile ? null : this.profile,
+      security: security ? null : this.security,
+      tag: tag ? null : this.tag,
+    );
+  }
+
   @override
   FhirMeta clone() => throw UnimplementedError();
   @override

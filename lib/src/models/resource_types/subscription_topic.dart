@@ -899,6 +899,278 @@ class SubscriptionTopic extends CanonicalResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'version':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'derivedFrom':
+        return ['FhirCanonical'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      case 'approvalDate':
+        return ['FhirDate'];
+      case 'lastReviewDate':
+        return ['FhirDate'];
+      case 'effectivePeriod':
+        return ['Period'];
+      case 'resourceTrigger':
+        return ['SubscriptionTopicResourceTrigger'];
+      case 'eventTrigger':
+        return ['SubscriptionTopicEventTrigger'];
+      case 'canFilterBy':
+        return ['SubscriptionTopicCanFilterBy'];
+      case 'notificationShape':
+        return ['SubscriptionTopicNotificationShape'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [SubscriptionTopic]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubscriptionTopic createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'derivedFrom':
+        {
+          return copyWith(derivedFrom: <FhirCanonical>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'approvalDate':
+        {
+          return copyWith(approvalDate: FhirDate.empty());
+        }
+      case 'lastReviewDate':
+        {
+          return copyWith(lastReviewDate: FhirDate.empty());
+        }
+      case 'effectivePeriod':
+        {
+          return copyWith(effectivePeriod: Period.empty());
+        }
+      case 'resourceTrigger':
+        {
+          return copyWith(
+            resourceTrigger: <SubscriptionTopicResourceTrigger>[],
+          );
+        }
+      case 'eventTrigger':
+        {
+          return copyWith(eventTrigger: <SubscriptionTopicEventTrigger>[]);
+        }
+      case 'canFilterBy':
+        {
+          return copyWith(canFilterBy: <SubscriptionTopicCanFilterBy>[]);
+        }
+      case 'notificationShape':
+        {
+          return copyWith(
+            notificationShape: <SubscriptionTopicNotificationShape>[],
+          );
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubscriptionTopic clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool version = false,
+    bool title = false,
+    bool derivedFrom = false,
+    bool experimental = false,
+    bool date = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool purpose = false,
+    bool copyright = false,
+    bool approvalDate = false,
+    bool lastReviewDate = false,
+    bool effectivePeriod = false,
+    bool resourceTrigger = false,
+    bool eventTrigger = false,
+    bool canFilterBy = false,
+    bool notificationShape = false,
+  }) {
+    return SubscriptionTopic(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url,
+      identifier: identifier ? null : this.identifier,
+      version: version ? null : this.version,
+      title: title ? null : this.title,
+      derivedFrom: derivedFrom ? null : this.derivedFrom,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      date: date ? null : this.date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      purpose: purpose ? null : this.purpose,
+      copyright: copyright ? null : this.copyright,
+      approvalDate: approvalDate ? null : this.approvalDate,
+      lastReviewDate: lastReviewDate ? null : this.lastReviewDate,
+      effectivePeriod: effectivePeriod ? null : this.effectivePeriod,
+      resourceTrigger: resourceTrigger ? null : this.resourceTrigger,
+      eventTrigger: eventTrigger ? null : this.eventTrigger,
+      canFilterBy: canFilterBy ? null : this.canFilterBy,
+      notificationShape: notificationShape ? null : this.notificationShape,
+    );
+  }
+
   @override
   SubscriptionTopic clone() => throw UnimplementedError();
   @override
@@ -1606,6 +1878,102 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'resource':
+        return ['FhirUri'];
+      case 'supportedInteraction':
+        return ['FhirCode'];
+      case 'queryCriteria':
+        return ['SubscriptionTopicQueryCriteria'];
+      case 'fhirPathCriteria':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [SubscriptionTopicResourceTrigger]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubscriptionTopicResourceTrigger createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'resource':
+        {
+          return copyWith(resource: FhirUri.empty());
+        }
+      case 'supportedInteraction':
+        {
+          return copyWith(supportedInteraction: <InteractionTrigger>[]);
+        }
+      case 'queryCriteria':
+        {
+          return copyWith(
+            queryCriteria: SubscriptionTopicQueryCriteria.empty(),
+          );
+        }
+      case 'fhirPathCriteria':
+        {
+          return copyWith(fhirPathCriteria: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubscriptionTopicResourceTrigger clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+    bool supportedInteraction = false,
+    bool queryCriteria = false,
+    bool fhirPathCriteria = false,
+  }) {
+    return SubscriptionTopicResourceTrigger(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description ? null : this.description,
+      resource: resource,
+      supportedInteraction:
+          supportedInteraction ? null : this.supportedInteraction,
+      queryCriteria: queryCriteria ? null : this.queryCriteria,
+      fhirPathCriteria: fhirPathCriteria ? null : this.fhirPathCriteria,
+    );
+  }
+
   @override
   SubscriptionTopicResourceTrigger clone() => throw UnimplementedError();
   @override
@@ -2072,6 +2440,100 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'previous':
+        return ['FhirString'];
+      case 'resultForCreate':
+        return ['FhirCode'];
+      case 'current':
+        return ['FhirString'];
+      case 'resultForDelete':
+        return ['FhirCode'];
+      case 'requireBoth':
+        return ['FhirBoolean'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [SubscriptionTopicQueryCriteria]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubscriptionTopicQueryCriteria createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'previous':
+        {
+          return copyWith(previous: FhirString.empty());
+        }
+      case 'resultForCreate':
+        {
+          return copyWith(resultForCreate: CriteriaNotExistsBehavior.empty());
+        }
+      case 'current':
+        {
+          return copyWith(current: FhirString.empty());
+        }
+      case 'resultForDelete':
+        {
+          return copyWith(resultForDelete: CriteriaNotExistsBehavior.empty());
+        }
+      case 'requireBoth':
+        {
+          return copyWith(requireBoth: FhirBoolean.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubscriptionTopicQueryCriteria clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool previous = false,
+    bool resultForCreate = false,
+    bool current = false,
+    bool resultForDelete = false,
+    bool requireBoth = false,
+  }) {
+    return SubscriptionTopicQueryCriteria(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      previous: previous ? null : this.previous,
+      resultForCreate: resultForCreate ? null : this.resultForCreate,
+      current: current ? null : this.current,
+      resultForDelete: resultForDelete ? null : this.resultForDelete,
+      requireBoth: requireBoth ? null : this.requireBoth,
+    );
+  }
+
   @override
   SubscriptionTopicQueryCriteria clone() => throw UnimplementedError();
   @override
@@ -2481,6 +2943,82 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'event':
+        return ['CodeableConcept'];
+      case 'resource':
+        return ['FhirUri'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [SubscriptionTopicEventTrigger]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubscriptionTopicEventTrigger createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'event':
+        {
+          return copyWith(event: CodeableConcept.empty());
+        }
+      case 'resource':
+        {
+          return copyWith(resource: FhirUri.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubscriptionTopicEventTrigger clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+  }) {
+    return SubscriptionTopicEventTrigger(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description ? null : this.description,
+      event: event,
+      resource: resource,
+    );
   }
 
   @override
@@ -2934,6 +3472,99 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'resource':
+        return ['FhirUri'];
+      case 'filterParameter':
+        return ['FhirString'];
+      case 'filterDefinition':
+        return ['FhirUri'];
+      case 'modifier':
+        return ['FhirCode'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [SubscriptionTopicCanFilterBy]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubscriptionTopicCanFilterBy createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'resource':
+        {
+          return copyWith(resource: FhirUri.empty());
+        }
+      case 'filterParameter':
+        {
+          return copyWith(filterParameter: FhirString.empty());
+        }
+      case 'filterDefinition':
+        {
+          return copyWith(filterDefinition: FhirUri.empty());
+        }
+      case 'modifier':
+        {
+          return copyWith(modifier: <SubscriptionSearchModifier>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubscriptionTopicCanFilterBy clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+    bool resource = false,
+    bool filterDefinition = false,
+    bool modifier = false,
+  }) {
+    return SubscriptionTopicCanFilterBy(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description ? null : this.description,
+      resource: resource ? null : this.resource,
+      filterParameter: filterParameter,
+      filterDefinition: filterDefinition ? null : this.filterDefinition,
+      modifier: modifier ? null : this.modifier,
+    );
+  }
+
   @override
   SubscriptionTopicCanFilterBy clone() => throw UnimplementedError();
   @override
@@ -3355,6 +3986,83 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'resource':
+        return ['FhirUri'];
+      case 'include':
+        return ['FhirString'];
+      case 'revInclude':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [SubscriptionTopicNotificationShape]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubscriptionTopicNotificationShape createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'resource':
+        {
+          return copyWith(resource: FhirUri.empty());
+        }
+      case 'include':
+        {
+          return copyWith(include: <FhirString>[]);
+        }
+      case 'revInclude':
+        {
+          return copyWith(revInclude: <FhirString>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubscriptionTopicNotificationShape clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool include = false,
+    bool revInclude = false,
+  }) {
+    return SubscriptionTopicNotificationShape(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      resource: resource,
+      include: include ? null : this.include,
+      revInclude: revInclude ? null : this.revInclude,
+    );
   }
 
   @override

@@ -38,7 +38,8 @@ class BiologicallyDerivedProduct extends DomainResource {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory BiologicallyDerivedProduct.empty() => const BiologicallyDerivedProduct();
+  factory BiologicallyDerivedProduct.empty() =>
+      const BiologicallyDerivedProduct();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProduct.fromJson(
@@ -641,6 +642,194 @@ class BiologicallyDerivedProduct extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'productCategory':
+        return ['FhirCode'];
+      case 'productCode':
+        return ['CodeableConcept'];
+      case 'status':
+        return ['FhirCode'];
+      case 'request':
+        return ['Reference'];
+      case 'quantity':
+        return ['FhirInteger'];
+      case 'parent':
+        return ['Reference'];
+      case 'collection':
+        return ['BiologicallyDerivedProductCollection'];
+      case 'processing':
+        return ['BiologicallyDerivedProductProcessing'];
+      case 'manipulation':
+        return ['BiologicallyDerivedProductManipulation'];
+      case 'storage':
+        return ['BiologicallyDerivedProductStorage'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [BiologicallyDerivedProduct]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  BiologicallyDerivedProduct createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'productCategory':
+        {
+          return copyWith(
+            productCategory: BiologicallyDerivedProductCategory.empty(),
+          );
+        }
+      case 'productCode':
+        {
+          return copyWith(productCode: CodeableConcept.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: BiologicallyDerivedProductStatus.empty());
+        }
+      case 'request':
+        {
+          return copyWith(request: <Reference>[]);
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: FhirInteger.empty());
+        }
+      case 'parent':
+        {
+          return copyWith(parent: <Reference>[]);
+        }
+      case 'collection':
+        {
+          return copyWith(
+            collection: BiologicallyDerivedProductCollection.empty(),
+          );
+        }
+      case 'processing':
+        {
+          return copyWith(processing: <BiologicallyDerivedProductProcessing>[]);
+        }
+      case 'manipulation':
+        {
+          return copyWith(
+            manipulation: BiologicallyDerivedProductManipulation.empty(),
+          );
+        }
+      case 'storage':
+        {
+          return copyWith(storage: <BiologicallyDerivedProductStorage>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  BiologicallyDerivedProduct clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool productCategory = false,
+    bool productCode = false,
+    bool status = false,
+    bool request = false,
+    bool quantity = false,
+    bool parent = false,
+    bool collection = false,
+    bool processing = false,
+    bool manipulation = false,
+    bool storage = false,
+  }) {
+    return BiologicallyDerivedProduct(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      productCategory: productCategory ? null : this.productCategory,
+      productCode: productCode ? null : this.productCode,
+      status: status ? null : this.status,
+      request: request ? null : this.request,
+      quantity: quantity ? null : this.quantity,
+      parent: parent ? null : this.parent,
+      collection: collection ? null : this.collection,
+      processing: processing ? null : this.processing,
+      manipulation: manipulation ? null : this.manipulation,
+      storage: storage ? null : this.storage,
+    );
+  }
+
   @override
   BiologicallyDerivedProduct clone() => throw UnimplementedError();
   @override
@@ -1204,6 +1393,95 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'collector':
+        return ['Reference'];
+      case 'source':
+        return ['Reference'];
+      case 'collected':
+      case 'collectedX':
+        return ['FhirDateTime', 'Period'];
+      case 'collectedDateTime':
+        return ['FhirDateTime'];
+      case 'collectedPeriod':
+        return ['Period'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [BiologicallyDerivedProductCollection]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  BiologicallyDerivedProductCollection createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'collector':
+        {
+          return copyWith(collector: Reference.empty());
+        }
+      case 'source':
+        {
+          return copyWith(source: Reference.empty());
+        }
+      case 'collected':
+      case 'collectedX':
+      case 'collectedDateTime':
+        {
+          return copyWith(collectedX: FhirDateTime.empty());
+        }
+      case 'collectedPeriod':
+        {
+          return copyWith(collectedX: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  BiologicallyDerivedProductCollection clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool collector = false,
+    bool source = false,
+    bool collected = false,
+  }) {
+    return BiologicallyDerivedProductCollection(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      collector: collector ? null : this.collector,
+      source: source ? null : this.source,
+      collectedX: collected ? null : collectedX,
+    );
+  }
+
   @override
   BiologicallyDerivedProductCollection clone() => throw UnimplementedError();
   @override
@@ -1655,6 +1933,103 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'description':
+        return ['FhirString'];
+      case 'procedure':
+        return ['CodeableConcept'];
+      case 'additive':
+        return ['Reference'];
+      case 'time':
+      case 'timeX':
+        return ['FhirDateTime', 'Period'];
+      case 'timeDateTime':
+        return ['FhirDateTime'];
+      case 'timePeriod':
+        return ['Period'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [BiologicallyDerivedProductProcessing]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  BiologicallyDerivedProductProcessing createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'procedure':
+        {
+          return copyWith(procedure: CodeableConcept.empty());
+        }
+      case 'additive':
+        {
+          return copyWith(additive: Reference.empty());
+        }
+      case 'time':
+      case 'timeX':
+      case 'timeDateTime':
+        {
+          return copyWith(timeX: FhirDateTime.empty());
+        }
+      case 'timePeriod':
+        {
+          return copyWith(timeX: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  BiologicallyDerivedProductProcessing clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+    bool procedure = false,
+    bool additive = false,
+    bool time = false,
+  }) {
+    return BiologicallyDerivedProductProcessing(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description ? null : this.description,
+      procedure: procedure ? null : this.procedure,
+      additive: additive ? null : this.additive,
+      timeX: time ? null : timeX,
+    );
+  }
+
   @override
   BiologicallyDerivedProductProcessing clone() => throw UnimplementedError();
   @override
@@ -2064,6 +2439,87 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'description':
+        return ['FhirString'];
+      case 'time':
+      case 'timeX':
+        return ['FhirDateTime', 'Period'];
+      case 'timeDateTime':
+        return ['FhirDateTime'];
+      case 'timePeriod':
+        return ['Period'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [BiologicallyDerivedProductManipulation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  BiologicallyDerivedProductManipulation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'time':
+      case 'timeX':
+      case 'timeDateTime':
+        {
+          return copyWith(timeX: FhirDateTime.empty());
+        }
+      case 'timePeriod':
+        {
+          return copyWith(timeX: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  BiologicallyDerivedProductManipulation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+    bool time = false,
+  }) {
+    return BiologicallyDerivedProductManipulation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description ? null : this.description,
+      timeX: time ? null : timeX,
+    );
+  }
+
   @override
   BiologicallyDerivedProductManipulation clone() => throw UnimplementedError();
   @override
@@ -2465,6 +2921,94 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'description':
+        return ['FhirString'];
+      case 'temperature':
+        return ['FhirDecimal'];
+      case 'scale':
+        return ['FhirCode'];
+      case 'duration':
+        return ['Period'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [BiologicallyDerivedProductStorage]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  BiologicallyDerivedProductStorage createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'temperature':
+        {
+          return copyWith(temperature: FhirDecimal.empty());
+        }
+      case 'scale':
+        {
+          return copyWith(
+            scale: BiologicallyDerivedProductStorageScale.empty(),
+          );
+        }
+      case 'duration':
+        {
+          return copyWith(duration: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  BiologicallyDerivedProductStorage clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+    bool temperature = false,
+    bool scale = false,
+    bool duration = false,
+  }) {
+    return BiologicallyDerivedProductStorage(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description ? null : this.description,
+      temperature: temperature ? null : this.temperature,
+      scale: scale ? null : this.scale,
+      duration: duration ? null : this.duration,
+    );
   }
 
   @override

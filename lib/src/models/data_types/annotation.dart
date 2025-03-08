@@ -320,6 +320,86 @@ class Annotation extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'author':
+      case 'authorX':
+        return ['Reference', 'FhirString'];
+      case 'authorReference':
+        return ['Reference'];
+      case 'authorString':
+        return ['FhirString'];
+      case 'time':
+        return ['FhirDateTime'];
+      case 'text':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Annotation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Annotation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'author':
+      case 'authorX':
+      case 'authorReference':
+        {
+          return copyWith(authorX: Reference.empty());
+        }
+      case 'authorString':
+        {
+          return copyWith(authorX: FhirString.empty());
+        }
+      case 'time':
+        {
+          return copyWith(time: FhirDateTime.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Annotation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool author = false,
+    bool time = false,
+  }) {
+    return Annotation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      authorX: author ? null : authorX,
+      time: time ? null : this.time,
+      text: text,
+    );
+  }
+
   @override
   Annotation clone() => throw UnimplementedError();
   @override

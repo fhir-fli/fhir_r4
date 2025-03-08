@@ -21,6 +21,24 @@
 //   /// The main function to run the transformation
 //   final FHIRPathEngine fhirPathEngine = FHIRPathEngine(WorkerContext());
 
+//   /// Creats a new empty FhirBase object from a type
+//   FhirBase childFromParent(FhirBase? parent, String elementName) {
+//     if (parent == null) {
+//       throw Exception('Parent cannot be null');
+//     }
+//     final types = parent.typeByElementName(elementName);
+//     if (types.isEmpty) {
+//       throw Exception('No types found for element $elementName');
+//     } else if (types.length > 1) {
+//       throw Exception('Multiple types found for element $elementName');
+//     }
+//     final newObject = emptyFromType(types.first);
+//     if (newObject == null) {
+//       throw Exception('Could not create object for element $elementName');
+//     }
+//     return newObject;
+//   }
+
 //   /// runTransform no longer handles create logic directly
 //   Future<FhirBase?> runTransform(
 //     String ruleId,
@@ -135,8 +153,7 @@
 //     StructureMapGroup? group,
 //   ) async {
 //     if (target.parameter == null || target.parameter!.isEmpty) {
-//       final possibleTypes =
-//           await resolver.typesForElement(parent?.pathForResolver(elementName));
+//       final possibleTypes = parent?.typeByElementName(elementName) ?? [];
 //       return _inferTypeFromSource(
 //         map,
 //         group,
@@ -193,31 +210,51 @@
 //     final isResource = typeName.isFhirResourceType;
 //     final isDataType = typeName.isFhirDataType;
 //     if (isPrimitive) {
-//       return FhirBase.newNode<LeafNode>(elementName, parent);
+//       return childFromParent(parent, elementName);
 //     } else if (isResource) {
 //       return _createFhirResourceNode(elementName, typeName, parent, target);
 //     } else if (isDataType) {
 //       return _createDataTypeNode(elementName, typeName, parent, target);
 //     }
 
-//     final newLocation = parent == null
-//         ? elementName
-//         : '${parent.globalPath ?? ''}.$elementName';
+//     final type = parent?.typeByElementName(elementName);
+//     if (type == null) {
+//       throw Exception('Cannot determine type for element: $elementName');
+//     } else if (type.isEmpty) {
+//       throw Exception('Cannot determine type for element: $elementName');
+//     } else if (type.length > 1) {
+//       throw Exception('Cannot determine type for element: $elementName');
+//     }
 
-//     return MapNode(elementName, newLocation, typeName, []);
+//     final newObject = emptyFromType(type.first);
+//     if (newObject == null) {
+//       throw Exception('Cannot determine type for element: $elementName');
+//     }
+//     return newObject;
 //   }
 
-//   Future<MapNode> _createDataTypeNode(
+//   Future<FhirBase> _createDataTypeNode(
 //     String elementName,
 //     String typeName,
 //     FhirBase? parent,
 //     StructureMapTarget target,
 //   ) async {
-//     final globalPath = parent?.childGlobalPath;
-//     return DataTypeNode(elementName, globalPath, typeName, []);
+//     final type = parent?.typeByElementName(elementName);
+//     if (type == null) {
+//       throw Exception('Cannot determine type for element: $elementName');
+//     } else if (type.isEmpty) {
+//       throw Exception('Cannot determine type for element: $elementName');
+//     } else if (type.length > 1) {
+//       throw Exception('Cannot determine type for element: $elementName');
+//     }
+//     final newObject = emptyFromType(type.first);
+//     if (newObject == null) {
+//       throw Exception('Cannot determine type for element: $elementName');
+//     }
+//     return newObject;
 //   }
 
-//   Future<MapNode> _createFhirResourceNode(
+//   Future<FhirBase> _createFhirResourceNode(
 //     String elementName,
 //     String typeName,
 //     FhirBase? parent,
@@ -227,29 +264,19 @@
 //         _getResourceTypeFromMapOrTarget(target, typeName) ?? typeName;
 //     final resourceId = _generateId();
 
-//     final globalPath = parent?.childGlobalPath ?? resourceType;
-//     final childGlobalPath = '$globalPath.$elementName';
-//     return ResourceNode(
-//       elementName,
-//       globalPath,
-//       resourceType,
-//       [
-//         LeafNode.withCast(
-//           'resourceType',
-//           childGlobalPath,
-//           resourceType,
-//           resourceType,
-//           'http://hl7.org/fhirpath/System.String',
-//         ),
-//         LeafNode.withCast(
-//           'id',
-//           childGlobalPath,
-//           resourceType,
-//           resourceId,
-//           'http://hl7.org/fhirpath/System.String',
-//         ),
-//       ],
-//     );
+//     final adult = parent ?? emptyFromType(resourceType);
+//     if (adult == null) {
+//       throw Exception('Cannot determine type for element: $elementName');
+//     }
+
+//     final newObject = childFromParent(adult, elementName);
+//     if (newObject is! MapNode) {
+//       throw Exception('Cannot create resource node for element: $elementName');
+//     }
+//     if (newObject is Resource) {
+//       return newObject.copyWith(id: FhirString(resourceId));
+//     }
+//     return newObject;
 //   }
 
 //   String? _getResourceTypeFromMapOrTarget(
@@ -278,7 +305,7 @@
 //     FhirBase baseNode,
 //     List<String> possibleTypes,
 //   ) async {
-//     final baseType = (await baseNode.getInstanceType(resolver)) ?? '';
+//     final baseType = baseNode.fhirType;
 //     final cacheKey = 'type^$baseType';
 
 //     // Check for a cached result
@@ -372,7 +399,7 @@
 //         LeafNode.withCast(null, null, null, paramValue, type);
 //   }
 
-//   LeafNode? _truncate(Variables variables, StructureMapTarget target) {
+//   FhirBase? _truncate(Variables variables, StructureMapTarget target) {
 //     if (target.parameter == null || target.parameter!.length < 2) {
 //       throw FHIRException(
 //         message: 'Truncate transform requires a source and a length parameter',
@@ -382,7 +409,7 @@
 //     final sourceNode = _getParam(variables, target.parameter!.first);
 //     final lengthNode = _getParam(variables, target.parameter![1]);
 
-//     if (sourceNode is! LeafNode || sourceNode.value is! String) {
+//     if (sourceNode is! PrimitiveType) {
 //       throw FHIRException(
 //         message: 'Source for truncate must be a string LeafNode',
 //       );
@@ -416,7 +443,7 @@
 //     );
 //   }
 
-//   LeafNode _cast(FhirBase value, String targetType, String ruleId) {
+//   FhirBase _cast(FhirBase value, String targetType, String ruleId) {
 //     if (value is! LeafNode) {
 //       throw FHIRMappingCastException(
 //         message:
@@ -429,7 +456,7 @@
 //         case 'string':
 //         case 'fhirstring':
 //         case 'fhir.string':
-//           return LeafNode(null, null, null, castValue, 'string');
+//           return castValue.toFhirString;
 
 //         case 'integer':
 //         case 'fhirinteger':
@@ -532,7 +559,7 @@
 //     }
 //   }
 
-//   LeafNode _castToInt(LeafNode value, String ruleId, String targetType) {
+//   FhirBase _castToInt(LeafNode value, String ruleId, String targetType) {
 //     try {
 //       final intValue = int.parse(value.value.toString());
 
@@ -547,7 +574,7 @@
 //     }
 //   }
 
-//   LeafNode _append(
+//   FhirBase _append(
 //     StructureMapTarget target,
 //     Variables variables,
 //     StructureMap map,
@@ -602,7 +629,7 @@
 //     }
 //   }
 
-//   LeafNode _reference(
+//   FhirBase _reference(
 //     String ruleId,
 //     StructureMapTarget target,
 //     Variables variables,
@@ -631,7 +658,7 @@
 //     );
 //   }
 
-//   LeafNode _pointer(
+//   FhirBase _pointer(
 //     String ruleId,
 //     StructureMapTarget target,
 //     Variables variables,
@@ -659,11 +686,11 @@
 //     );
 //   }
 
-//   LeafNode _uuid() {
+//   FhirBase _uuid() {
 //     return LeafNode(null, null, null, const Uuid().v4(), 'uuid');
 //   }
 
-//   Future<MapNode> _codeableConcept(
+//   Future<FhirBase> _codeableConcept(
 //     String ruleId,
 //     StructureMapTarget target,
 //     Variables variables,
@@ -716,7 +743,7 @@
 //     );
 //   }
 
-//   Future<MapNode> _coding(
+//   Future<FhirBase> _coding(
 //     String ruleId,
 //     StructureMapTarget target,
 //     Variables variables,
@@ -1156,7 +1183,7 @@
 //     }
 //   }
 
-//   Future<MapNode> _quantity(Variables vars, StructureMapTarget target) async {
+//   Future<FhirBase> _quantity(Variables vars, StructureMapTarget target) async {
 //     if (target.parameter == null || target.parameter!.isEmpty) {
 //       throw FHIRException(message: 'qty transform requires parameters');
 //     }
@@ -1233,7 +1260,10 @@
 //     }
 //   }
 
-//   Future<MapNode> _identifier(Variables vars, StructureMapTarget target) async {
+//   Future<FhirBase> _identifier(
+//     Variables vars,
+//     StructureMapTarget target,
+//   ) async {
 //     if (target.parameter == null || target.parameter!.length < 2) {
 //       throw FHIRException(
 //         message: 'id transform requires at least system and value parameters',
@@ -1286,7 +1316,7 @@
 //     );
 //   }
 
-//   Future<MapNode> _contactPoint(
+//   Future<FhirBase> _contactPoint(
 //     Variables vars,
 //     StructureMapTarget target,
 //   ) async {

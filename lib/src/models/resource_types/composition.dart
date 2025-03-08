@@ -753,6 +753,215 @@ class Composition extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'author':
+        return ['Reference'];
+      case 'title':
+        return ['FhirString'];
+      case 'confidentiality':
+        return ['FhirCode'];
+      case 'attester':
+        return ['CompositionAttester'];
+      case 'custodian':
+        return ['Reference'];
+      case 'relatesTo':
+        return ['CompositionRelatesTo'];
+      case 'event':
+        return ['CompositionEvent'];
+      case 'section':
+        return ['CompositionSection'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Composition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Composition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: Identifier.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: CompositionStatus.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'author':
+        {
+          return copyWith(author: <Reference>[]);
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'confidentiality':
+        {
+          return copyWith(confidentiality: FhirCode.empty());
+        }
+      case 'attester':
+        {
+          return copyWith(attester: <CompositionAttester>[]);
+        }
+      case 'custodian':
+        {
+          return copyWith(custodian: Reference.empty());
+        }
+      case 'relatesTo':
+        {
+          return copyWith(relatesTo: <CompositionRelatesTo>[]);
+        }
+      case 'event':
+        {
+          return copyWith(event: <CompositionEvent>[]);
+        }
+      case 'section':
+        {
+          return copyWith(section: <CompositionSection>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Composition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool category = false,
+    bool subject = false,
+    bool encounter = false,
+    bool confidentiality = false,
+    bool attester = false,
+    bool custodian = false,
+    bool relatesTo = false,
+    bool event = false,
+    bool section = false,
+  }) {
+    return Composition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      type: type,
+      category: category ? null : this.category,
+      subject: subject ? null : this.subject,
+      encounter: encounter ? null : this.encounter,
+      date: date,
+      author: author,
+      title: title,
+      confidentiality: confidentiality ? null : this.confidentiality,
+      attester: attester ? null : this.attester,
+      custodian: custodian ? null : this.custodian,
+      relatesTo: relatesTo ? null : this.relatesTo,
+      event: event ? null : this.event,
+      section: section ? null : this.section,
+    );
+  }
+
   @override
   Composition clone() => throw UnimplementedError();
   @override
@@ -1316,6 +1525,83 @@ class CompositionAttester extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'mode':
+        return ['FhirCode'];
+      case 'time':
+        return ['FhirDateTime'];
+      case 'party':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CompositionAttester]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CompositionAttester createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'mode':
+        {
+          return copyWith(mode: CompositionAttestationMode.empty());
+        }
+      case 'time':
+        {
+          return copyWith(time: FhirDateTime.empty());
+        }
+      case 'party':
+        {
+          return copyWith(party: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CompositionAttester clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool time = false,
+    bool party = false,
+  }) {
+    return CompositionAttester(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      mode: mode,
+      time: time ? null : this.time,
+      party: party ? null : this.party,
+    );
+  }
+
   @override
   CompositionAttester clone() => throw UnimplementedError();
   @override
@@ -1714,6 +2000,85 @@ class CompositionRelatesTo extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['FhirCode'];
+      case 'target':
+      case 'targetX':
+        return ['Identifier', 'Reference'];
+      case 'targetIdentifier':
+        return ['Identifier'];
+      case 'targetReference':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CompositionRelatesTo]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CompositionRelatesTo createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: DocumentRelationshipType.empty());
+        }
+      case 'target':
+      case 'targetX':
+      case 'targetIdentifier':
+        {
+          return copyWith(targetX: Identifier.empty());
+        }
+      case 'targetReference':
+        {
+          return copyWith(targetX: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CompositionRelatesTo clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return CompositionRelatesTo(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      targetX: targetX,
+    );
+  }
+
   @override
   CompositionRelatesTo clone() => throw UnimplementedError();
   @override
@@ -2106,6 +2471,84 @@ class CompositionEvent extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'period':
+        return ['Period'];
+      case 'detail':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CompositionEvent]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CompositionEvent createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: <CodeableConcept>[]);
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      case 'detail':
+        {
+          return copyWith(detail: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CompositionEvent clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool period = false,
+    bool detail = false,
+  }) {
+    return CompositionEvent(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      period: period ? null : this.period,
+      detail: detail ? null : this.detail,
+    );
   }
 
   @override
@@ -2713,6 +3156,140 @@ class CompositionSection extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'title':
+        return ['FhirString'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'author':
+        return ['Reference'];
+      case 'focus':
+        return ['Reference'];
+      case 'text':
+        return ['Narrative'];
+      case 'mode':
+        return ['FhirCode'];
+      case 'orderedBy':
+        return ['CodeableConcept'];
+      case 'entry':
+        return ['Reference'];
+      case 'emptyReason':
+        return ['CodeableConcept'];
+      case 'section':
+        return ['CompositionSection'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CompositionSection]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CompositionSection createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'author':
+        {
+          return copyWith(author: <Reference>[]);
+        }
+      case 'focus':
+        {
+          return copyWith(focus: Reference.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'mode':
+        {
+          return copyWith(mode: ListMode.empty());
+        }
+      case 'orderedBy':
+        {
+          return copyWith(orderedBy: CodeableConcept.empty());
+        }
+      case 'entry':
+        {
+          return copyWith(entry: <Reference>[]);
+        }
+      case 'emptyReason':
+        {
+          return copyWith(emptyReason: CodeableConcept.empty());
+        }
+      case 'section':
+        {
+          return copyWith(section: <CompositionSection>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CompositionSection clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool title = false,
+    bool code = false,
+    bool author = false,
+    bool focus = false,
+    bool text = false,
+    bool mode = false,
+    bool orderedBy = false,
+    bool entry = false,
+    bool emptyReason = false,
+    bool section = false,
+  }) {
+    return CompositionSection(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      title: title ? null : this.title,
+      code: code ? null : this.code,
+      author: author ? null : this.author,
+      focus: focus ? null : this.focus,
+      text: text ? null : this.text,
+      mode: mode ? null : this.mode,
+      orderedBy: orderedBy ? null : this.orderedBy,
+      entry: entry ? null : this.entry,
+      emptyReason: emptyReason ? null : this.emptyReason,
+      section: section ? null : this.section,
+    );
   }
 
   @override

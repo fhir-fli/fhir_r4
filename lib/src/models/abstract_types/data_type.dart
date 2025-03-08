@@ -65,4 +65,17 @@ abstract class DataType extends Element {
     List<dynamic>? annotations,
     String? objectPath,
   });
+
+  /// Retrieves the type of the object by element name.
+  @override
+  List<String> typeByElementName(String elementName) {
+    return <String>[];
+  }
+
+  /// Creates an empty property in the object
+  @override
+  DataType createProperty(String propertyName);
+
+  @override
+  DataType clear({bool extension_ = false, bool id = false});
 }

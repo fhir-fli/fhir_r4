@@ -364,6 +364,107 @@ class OperationOutcome extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'issue':
+        return ['OperationOutcomeIssue'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [OperationOutcome]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  OperationOutcome createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'issue':
+        {
+          return copyWith(issue: <OperationOutcomeIssue>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  OperationOutcome clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return OperationOutcome(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      issue: issue,
+    );
+  }
+
   @override
   OperationOutcome clone() => throw UnimplementedError();
   @override
@@ -867,6 +968,106 @@ class OperationOutcomeIssue extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'severity':
+        return ['FhirCode'];
+      case 'code':
+        return ['FhirCode'];
+      case 'details':
+        return ['CodeableConcept'];
+      case 'diagnostics':
+        return ['FhirString'];
+      case 'location':
+        return ['FhirString'];
+      case 'expression':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [OperationOutcomeIssue]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  OperationOutcomeIssue createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'severity':
+        {
+          return copyWith(severity: IssueSeverity.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: IssueType.empty());
+        }
+      case 'details':
+        {
+          return copyWith(details: CodeableConcept.empty());
+        }
+      case 'diagnostics':
+        {
+          return copyWith(diagnostics: FhirString.empty());
+        }
+      case 'location':
+        {
+          return copyWith(location: <FhirString>[]);
+        }
+      case 'expression':
+        {
+          return copyWith(expression: <FhirString>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  OperationOutcomeIssue clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool details = false,
+    bool diagnostics = false,
+    bool location = false,
+    bool expression = false,
+  }) {
+    return OperationOutcomeIssue(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      severity: severity,
+      code: code,
+      details: details ? null : this.details,
+      diagnostics: diagnostics ? null : this.diagnostics,
+      location: location ? null : this.location,
+      expression: expression ? null : this.expression,
+    );
   }
 
   @override

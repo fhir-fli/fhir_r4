@@ -766,6 +766,228 @@ class Invoice extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'cancelledReason':
+        return ['FhirString'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'recipient':
+        return ['Reference'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'participant':
+        return ['InvoiceParticipant'];
+      case 'issuer':
+        return ['Reference'];
+      case 'account':
+        return ['Reference'];
+      case 'lineItem':
+        return ['InvoiceLineItem'];
+      case 'totalPriceComponent':
+        return ['InvoicePriceComponent'];
+      case 'totalNet':
+        return ['Money'];
+      case 'totalGross':
+        return ['Money'];
+      case 'paymentTerms':
+        return ['FhirMarkdown'];
+      case 'note':
+        return ['Annotation'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Invoice]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Invoice createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: InvoiceStatus.empty());
+        }
+      case 'cancelledReason':
+        {
+          return copyWith(cancelledReason: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'recipient':
+        {
+          return copyWith(recipient: Reference.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'participant':
+        {
+          return copyWith(participant: <InvoiceParticipant>[]);
+        }
+      case 'issuer':
+        {
+          return copyWith(issuer: Reference.empty());
+        }
+      case 'account':
+        {
+          return copyWith(account: Reference.empty());
+        }
+      case 'lineItem':
+        {
+          return copyWith(lineItem: <InvoiceLineItem>[]);
+        }
+      case 'totalPriceComponent':
+        {
+          return copyWith(totalPriceComponent: <InvoicePriceComponent>[]);
+        }
+      case 'totalNet':
+        {
+          return copyWith(totalNet: Money.empty());
+        }
+      case 'totalGross':
+        {
+          return copyWith(totalGross: Money.empty());
+        }
+      case 'paymentTerms':
+        {
+          return copyWith(paymentTerms: FhirMarkdown.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Invoice clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool cancelledReason = false,
+    bool type = false,
+    bool subject = false,
+    bool recipient = false,
+    bool date = false,
+    bool participant = false,
+    bool issuer = false,
+    bool account = false,
+    bool lineItem = false,
+    bool totalPriceComponent = false,
+    bool totalNet = false,
+    bool totalGross = false,
+    bool paymentTerms = false,
+    bool note = false,
+  }) {
+    return Invoice(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      cancelledReason: cancelledReason ? null : this.cancelledReason,
+      type: type ? null : this.type,
+      subject: subject ? null : this.subject,
+      recipient: recipient ? null : this.recipient,
+      date: date ? null : this.date,
+      participant: participant ? null : this.participant,
+      issuer: issuer ? null : this.issuer,
+      account: account ? null : this.account,
+      lineItem: lineItem ? null : this.lineItem,
+      totalPriceComponent:
+          totalPriceComponent ? null : this.totalPriceComponent,
+      totalNet: totalNet ? null : this.totalNet,
+      totalGross: totalGross ? null : this.totalGross,
+      paymentTerms: paymentTerms ? null : this.paymentTerms,
+      note: note ? null : this.note,
+    );
+  }
+
   @override
   Invoice clone() => throw UnimplementedError();
   @override
@@ -1307,6 +1529,75 @@ class InvoiceParticipant extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'role':
+        return ['CodeableConcept'];
+      case 'actor':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [InvoiceParticipant]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  InvoiceParticipant createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'role':
+        {
+          return copyWith(role: CodeableConcept.empty());
+        }
+      case 'actor':
+        {
+          return copyWith(actor: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  InvoiceParticipant clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool role = false,
+  }) {
+    return InvoiceParticipant(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      role: role ? null : this.role,
+      actor: actor,
+    );
+  }
+
   @override
   InvoiceParticipant clone() => throw UnimplementedError();
   @override
@@ -1736,6 +2027,94 @@ class InvoiceLineItem extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'sequence':
+        return ['FhirPositiveInt'];
+      case 'chargeItem':
+      case 'chargeItemX':
+        return ['Reference', 'CodeableConcept'];
+      case 'chargeItemReference':
+        return ['Reference'];
+      case 'chargeItemCodeableConcept':
+        return ['CodeableConcept'];
+      case 'priceComponent':
+        return ['InvoicePriceComponent'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [InvoiceLineItem]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  InvoiceLineItem createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'sequence':
+        {
+          return copyWith(sequence: FhirPositiveInt.empty());
+        }
+      case 'chargeItem':
+      case 'chargeItemX':
+      case 'chargeItemReference':
+        {
+          return copyWith(chargeItemX: Reference.empty());
+        }
+      case 'chargeItemCodeableConcept':
+        {
+          return copyWith(chargeItemX: CodeableConcept.empty());
+        }
+      case 'priceComponent':
+        {
+          return copyWith(priceComponent: <InvoicePriceComponent>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  InvoiceLineItem clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool sequence = false,
+    bool priceComponent = false,
+  }) {
+    return InvoiceLineItem(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      sequence: sequence ? null : this.sequence,
+      chargeItemX: chargeItemX,
+      priceComponent: priceComponent ? null : this.priceComponent,
+    );
+  }
+
   @override
   InvoiceLineItem clone() => throw UnimplementedError();
   @override
@@ -2158,6 +2537,91 @@ class InvoicePriceComponent extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirCode'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'factor':
+        return ['FhirDecimal'];
+      case 'amount':
+        return ['Money'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [InvoicePriceComponent]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  InvoicePriceComponent createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: InvoicePriceComponentType.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'factor':
+        {
+          return copyWith(factor: FhirDecimal.empty());
+        }
+      case 'amount':
+        {
+          return copyWith(amount: Money.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  InvoicePriceComponent clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool factor = false,
+    bool amount = false,
+  }) {
+    return InvoicePriceComponent(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      code: code ? null : this.code,
+      factor: factor ? null : this.factor,
+      amount: amount ? null : this.amount,
+    );
   }
 
   @override

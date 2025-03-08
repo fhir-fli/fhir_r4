@@ -809,6 +809,236 @@ class Goal extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'lifecycleStatus':
+        return ['FhirCode'];
+      case 'achievementStatus':
+        return ['CodeableConcept'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'priority':
+        return ['CodeableConcept'];
+      case 'description':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'start':
+      case 'startX':
+        return ['FhirDate', 'CodeableConcept'];
+      case 'startDate':
+        return ['FhirDate'];
+      case 'startCodeableConcept':
+        return ['CodeableConcept'];
+      case 'target':
+        return ['GoalTarget'];
+      case 'statusDate':
+        return ['FhirDate'];
+      case 'statusReason':
+        return ['FhirString'];
+      case 'expressedBy':
+        return ['Reference'];
+      case 'addresses':
+        return ['Reference'];
+      case 'note':
+        return ['Annotation'];
+      case 'outcomeCode':
+        return ['CodeableConcept'];
+      case 'outcomeReference':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Goal]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Goal createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'lifecycleStatus':
+        {
+          return copyWith(lifecycleStatus: GoalLifecycleStatus.empty());
+        }
+      case 'achievementStatus':
+        {
+          return copyWith(achievementStatus: CodeableConcept.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'priority':
+        {
+          return copyWith(priority: CodeableConcept.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: CodeableConcept.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'start':
+      case 'startX':
+      case 'startDate':
+        {
+          return copyWith(startX: FhirDate.empty());
+        }
+      case 'startCodeableConcept':
+        {
+          return copyWith(startX: CodeableConcept.empty());
+        }
+      case 'target':
+        {
+          return copyWith(target: <GoalTarget>[]);
+        }
+      case 'statusDate':
+        {
+          return copyWith(statusDate: FhirDate.empty());
+        }
+      case 'statusReason':
+        {
+          return copyWith(statusReason: FhirString.empty());
+        }
+      case 'expressedBy':
+        {
+          return copyWith(expressedBy: Reference.empty());
+        }
+      case 'addresses':
+        {
+          return copyWith(addresses: <Reference>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'outcomeCode':
+        {
+          return copyWith(outcomeCode: <CodeableConcept>[]);
+        }
+      case 'outcomeReference':
+        {
+          return copyWith(outcomeReference: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Goal clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool achievementStatus = false,
+    bool category = false,
+    bool priority = false,
+    bool start = false,
+    bool target = false,
+    bool statusDate = false,
+    bool statusReason = false,
+    bool expressedBy = false,
+    bool addresses = false,
+    bool note = false,
+    bool outcomeCode = false,
+    bool outcomeReference = false,
+  }) {
+    return Goal(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      lifecycleStatus: lifecycleStatus,
+      achievementStatus: achievementStatus ? null : this.achievementStatus,
+      category: category ? null : this.category,
+      priority: priority ? null : this.priority,
+      description: description,
+      subject: subject,
+      startX: start ? null : startX,
+      target: target ? null : this.target,
+      statusDate: statusDate ? null : this.statusDate,
+      statusReason: statusReason ? null : this.statusReason,
+      expressedBy: expressedBy ? null : this.expressedBy,
+      addresses: addresses ? null : this.addresses,
+      note: note ? null : this.note,
+      outcomeCode: outcomeCode ? null : this.outcomeCode,
+      outcomeReference: outcomeReference ? null : this.outcomeReference,
+    );
+  }
+
   @override
   Goal clone() => throw UnimplementedError();
   @override
@@ -1546,6 +1776,144 @@ class GoalTarget extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'measure':
+        return ['CodeableConcept'];
+      case 'detail':
+      case 'detailX':
+        return [
+          'Quantity',
+          'Range',
+          'CodeableConcept',
+          'FhirString',
+          'FhirBoolean',
+          'FhirInteger',
+          'Ratio',
+        ];
+      case 'detailQuantity':
+        return ['Quantity'];
+      case 'detailRange':
+        return ['Range'];
+      case 'detailCodeableConcept':
+        return ['CodeableConcept'];
+      case 'detailString':
+        return ['FhirString'];
+      case 'detailBoolean':
+        return ['FhirBoolean'];
+      case 'detailInteger':
+        return ['FhirInteger'];
+      case 'detailRatio':
+        return ['Ratio'];
+      case 'due':
+      case 'dueX':
+        return ['FhirDate', 'FhirDuration'];
+      case 'dueDate':
+        return ['FhirDate'];
+      case 'dueDuration':
+        return ['FhirDuration'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [GoalTarget]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  GoalTarget createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'measure':
+        {
+          return copyWith(measure: CodeableConcept.empty());
+        }
+      case 'detail':
+      case 'detailX':
+      case 'detailQuantity':
+        {
+          return copyWith(detailX: Quantity.empty());
+        }
+      case 'detailRange':
+        {
+          return copyWith(detailX: Range.empty());
+        }
+      case 'detailCodeableConcept':
+        {
+          return copyWith(detailX: CodeableConcept.empty());
+        }
+      case 'detailString':
+        {
+          return copyWith(detailX: FhirString.empty());
+        }
+      case 'detailBoolean':
+        {
+          return copyWith(detailX: FhirBoolean.empty());
+        }
+      case 'detailInteger':
+        {
+          return copyWith(detailX: FhirInteger.empty());
+        }
+      case 'detailRatio':
+        {
+          return copyWith(detailX: Ratio.empty());
+        }
+      case 'due':
+      case 'dueX':
+      case 'dueDate':
+        {
+          return copyWith(dueX: FhirDate.empty());
+        }
+      case 'dueDuration':
+        {
+          return copyWith(dueX: FhirDuration.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  GoalTarget clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool measure = false,
+    bool detail = false,
+    bool due = false,
+  }) {
+    return GoalTarget(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      measure: measure ? null : this.measure,
+      detailX: detail ? null : detailX,
+      dueX: due ? null : dueX,
+    );
   }
 
   @override

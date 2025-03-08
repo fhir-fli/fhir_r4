@@ -338,6 +338,92 @@ class ProductShelfLife extends BackboneType {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'period':
+        return ['Quantity'];
+      case 'specialPrecautionsForStorage':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ProductShelfLife]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ProductShelfLife createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: Identifier.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Quantity.empty());
+        }
+      case 'specialPrecautionsForStorage':
+        {
+          return copyWith(specialPrecautionsForStorage: <CodeableConcept>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ProductShelfLife clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool specialPrecautionsForStorage = false,
+  }) {
+    return ProductShelfLife(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      type: type,
+      period: period,
+      specialPrecautionsForStorage: specialPrecautionsForStorage
+          ? null
+          : this.specialPrecautionsForStorage,
+    );
+  }
+
   @override
   ProductShelfLife clone() => throw UnimplementedError();
   @override

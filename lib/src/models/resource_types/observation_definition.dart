@@ -681,6 +681,214 @@ class ObservationDefinition extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'permittedDataType':
+        return ['FhirCode'];
+      case 'multipleResultsAllowed':
+        return ['FhirBoolean'];
+      case 'method':
+        return ['CodeableConcept'];
+      case 'preferredReportName':
+        return ['FhirString'];
+      case 'quantitativeDetails':
+        return ['ObservationDefinitionQuantitativeDetails'];
+      case 'qualifiedInterval':
+        return ['ObservationDefinitionQualifiedInterval'];
+      case 'validCodedValueSet':
+        return ['Reference'];
+      case 'normalCodedValueSet':
+        return ['Reference'];
+      case 'abnormalCodedValueSet':
+        return ['Reference'];
+      case 'criticalCodedValueSet':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ObservationDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ObservationDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'permittedDataType':
+        {
+          return copyWith(permittedDataType: <ObservationDataType>[]);
+        }
+      case 'multipleResultsAllowed':
+        {
+          return copyWith(multipleResultsAllowed: FhirBoolean.empty());
+        }
+      case 'method':
+        {
+          return copyWith(method: CodeableConcept.empty());
+        }
+      case 'preferredReportName':
+        {
+          return copyWith(preferredReportName: FhirString.empty());
+        }
+      case 'quantitativeDetails':
+        {
+          return copyWith(
+            quantitativeDetails:
+                ObservationDefinitionQuantitativeDetails.empty(),
+          );
+        }
+      case 'qualifiedInterval':
+        {
+          return copyWith(
+            qualifiedInterval: <ObservationDefinitionQualifiedInterval>[],
+          );
+        }
+      case 'validCodedValueSet':
+        {
+          return copyWith(validCodedValueSet: Reference.empty());
+        }
+      case 'normalCodedValueSet':
+        {
+          return copyWith(normalCodedValueSet: Reference.empty());
+        }
+      case 'abnormalCodedValueSet':
+        {
+          return copyWith(abnormalCodedValueSet: Reference.empty());
+        }
+      case 'criticalCodedValueSet':
+        {
+          return copyWith(criticalCodedValueSet: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ObservationDefinition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool category = false,
+    bool identifier = false,
+    bool permittedDataType = false,
+    bool multipleResultsAllowed = false,
+    bool method = false,
+    bool preferredReportName = false,
+    bool quantitativeDetails = false,
+    bool qualifiedInterval = false,
+    bool validCodedValueSet = false,
+    bool normalCodedValueSet = false,
+    bool abnormalCodedValueSet = false,
+    bool criticalCodedValueSet = false,
+  }) {
+    return ObservationDefinition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      category: category ? null : this.category,
+      code: code,
+      identifier: identifier ? null : this.identifier,
+      permittedDataType: permittedDataType ? null : this.permittedDataType,
+      multipleResultsAllowed:
+          multipleResultsAllowed ? null : this.multipleResultsAllowed,
+      method: method ? null : this.method,
+      preferredReportName:
+          preferredReportName ? null : this.preferredReportName,
+      quantitativeDetails:
+          quantitativeDetails ? null : this.quantitativeDetails,
+      qualifiedInterval: qualifiedInterval ? null : this.qualifiedInterval,
+      validCodedValueSet: validCodedValueSet ? null : this.validCodedValueSet,
+      normalCodedValueSet:
+          normalCodedValueSet ? null : this.normalCodedValueSet,
+      abnormalCodedValueSet:
+          abnormalCodedValueSet ? null : this.abnormalCodedValueSet,
+      criticalCodedValueSet:
+          criticalCodedValueSet ? null : this.criticalCodedValueSet,
+    );
+  }
+
   @override
   ObservationDefinition clone() => throw UnimplementedError();
   @override
@@ -1243,6 +1451,92 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'customaryUnit':
+        return ['CodeableConcept'];
+      case 'unit':
+        return ['CodeableConcept'];
+      case 'conversionFactor':
+        return ['FhirDecimal'];
+      case 'decimalPrecision':
+        return ['FhirInteger'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ObservationDefinitionQuantitativeDetails]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ObservationDefinitionQuantitativeDetails createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'customaryUnit':
+        {
+          return copyWith(customaryUnit: CodeableConcept.empty());
+        }
+      case 'unit':
+        {
+          return copyWith(unit: CodeableConcept.empty());
+        }
+      case 'conversionFactor':
+        {
+          return copyWith(conversionFactor: FhirDecimal.empty());
+        }
+      case 'decimalPrecision':
+        {
+          return copyWith(decimalPrecision: FhirInteger.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ObservationDefinitionQuantitativeDetails clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool customaryUnit = false,
+    bool unit = false,
+    bool conversionFactor = false,
+    bool decimalPrecision = false,
+  }) {
+    return ObservationDefinitionQuantitativeDetails(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      customaryUnit: customaryUnit ? null : this.customaryUnit,
+      unit: unit ? null : this.unit,
+      conversionFactor: conversionFactor ? null : this.conversionFactor,
+      decimalPrecision: decimalPrecision ? null : this.decimalPrecision,
+    );
+  }
+
   @override
   ObservationDefinitionQuantitativeDetails clone() =>
       throw UnimplementedError();
@@ -1772,6 +2066,124 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'category':
+        return ['FhirCode'];
+      case 'range':
+        return ['Range'];
+      case 'context':
+        return ['CodeableConcept'];
+      case 'appliesTo':
+        return ['CodeableConcept'];
+      case 'gender':
+        return ['FhirCode'];
+      case 'age':
+        return ['Range'];
+      case 'gestationalAge':
+        return ['Range'];
+      case 'condition':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ObservationDefinitionQualifiedInterval]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ObservationDefinitionQualifiedInterval createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'category':
+        {
+          return copyWith(category: ObservationRangeCategory.empty());
+        }
+      case 'range':
+        {
+          return copyWith(range: Range.empty());
+        }
+      case 'context':
+        {
+          return copyWith(context: CodeableConcept.empty());
+        }
+      case 'appliesTo':
+        {
+          return copyWith(appliesTo: <CodeableConcept>[]);
+        }
+      case 'gender':
+        {
+          return copyWith(gender: AdministrativeGender.empty());
+        }
+      case 'age':
+        {
+          return copyWith(age: Range.empty());
+        }
+      case 'gestationalAge':
+        {
+          return copyWith(gestationalAge: Range.empty());
+        }
+      case 'condition':
+        {
+          return copyWith(condition: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ObservationDefinitionQualifiedInterval clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool category = false,
+    bool range = false,
+    bool context = false,
+    bool appliesTo = false,
+    bool gender = false,
+    bool age = false,
+    bool gestationalAge = false,
+    bool condition = false,
+  }) {
+    return ObservationDefinitionQualifiedInterval(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      category: category ? null : this.category,
+      range: range ? null : this.range,
+      context: context ? null : this.context,
+      appliesTo: appliesTo ? null : this.appliesTo,
+      gender: gender ? null : this.gender,
+      age: age ? null : this.age,
+      gestationalAge: gestationalAge ? null : this.gestationalAge,
+      condition: condition ? null : this.condition,
+    );
   }
 
   @override

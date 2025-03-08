@@ -552,6 +552,162 @@ class AppointmentResponse extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'appointment':
+        return ['Reference'];
+      case 'start':
+        return ['FhirInstant'];
+      case 'end':
+        return ['FhirInstant'];
+      case 'participantType':
+        return ['CodeableConcept'];
+      case 'actor':
+        return ['Reference'];
+      case 'participantStatus':
+        return ['FhirCode'];
+      case 'comment':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [AppointmentResponse]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AppointmentResponse createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'appointment':
+        {
+          return copyWith(appointment: Reference.empty());
+        }
+      case 'start':
+        {
+          return copyWith(start: FhirInstant.empty());
+        }
+      case 'end':
+        {
+          return copyWith(end: FhirInstant.empty());
+        }
+      case 'participantType':
+        {
+          return copyWith(participantType: <CodeableConcept>[]);
+        }
+      case 'actor':
+        {
+          return copyWith(actor: Reference.empty());
+        }
+      case 'participantStatus':
+        {
+          return copyWith(participantStatus: ParticipationStatus.empty());
+        }
+      case 'comment':
+        {
+          return copyWith(comment: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  AppointmentResponse clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool start = false,
+    bool end = false,
+    bool participantType = false,
+    bool actor = false,
+    bool comment = false,
+  }) {
+    return AppointmentResponse(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      appointment: appointment,
+      start: start ? null : this.start,
+      end: end ? null : this.end,
+      participantType: participantType ? null : this.participantType,
+      actor: actor ? null : this.actor,
+      participantStatus: participantStatus,
+      comment: comment ? null : this.comment,
+    );
+  }
+
   @override
   AppointmentResponse clone() => throw UnimplementedError();
   @override

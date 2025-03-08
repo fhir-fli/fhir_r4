@@ -748,6 +748,220 @@ class CoverageEligibilityRequest extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'priority':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirCode'];
+      case 'patient':
+        return ['Reference'];
+      case 'serviced':
+      case 'servicedX':
+        return ['FhirDate', 'Period'];
+      case 'servicedDate':
+        return ['FhirDate'];
+      case 'servicedPeriod':
+        return ['Period'];
+      case 'created':
+        return ['FhirDateTime'];
+      case 'enterer':
+        return ['Reference'];
+      case 'provider':
+        return ['Reference'];
+      case 'insurer':
+        return ['Reference'];
+      case 'facility':
+        return ['Reference'];
+      case 'supportingInfo':
+        return ['CoverageEligibilityRequestSupportingInfo'];
+      case 'insurance':
+        return ['CoverageEligibilityRequestInsurance'];
+      case 'item':
+        return ['CoverageEligibilityRequestItem'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CoverageEligibilityRequest]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CoverageEligibilityRequest createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: FinancialResourceStatusCodes.empty());
+        }
+      case 'priority':
+        {
+          return copyWith(priority: CodeableConcept.empty());
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: <EligibilityRequestPurpose>[]);
+        }
+      case 'patient':
+        {
+          return copyWith(patient: Reference.empty());
+        }
+      case 'serviced':
+      case 'servicedX':
+      case 'servicedDate':
+        {
+          return copyWith(servicedX: FhirDate.empty());
+        }
+      case 'servicedPeriod':
+        {
+          return copyWith(servicedX: Period.empty());
+        }
+      case 'created':
+        {
+          return copyWith(created: FhirDateTime.empty());
+        }
+      case 'enterer':
+        {
+          return copyWith(enterer: Reference.empty());
+        }
+      case 'provider':
+        {
+          return copyWith(provider: Reference.empty());
+        }
+      case 'insurer':
+        {
+          return copyWith(insurer: Reference.empty());
+        }
+      case 'facility':
+        {
+          return copyWith(facility: Reference.empty());
+        }
+      case 'supportingInfo':
+        {
+          return copyWith(
+            supportingInfo: <CoverageEligibilityRequestSupportingInfo>[],
+          );
+        }
+      case 'insurance':
+        {
+          return copyWith(insurance: <CoverageEligibilityRequestInsurance>[]);
+        }
+      case 'item':
+        {
+          return copyWith(item: <CoverageEligibilityRequestItem>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CoverageEligibilityRequest clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool priority = false,
+    bool serviced = false,
+    bool enterer = false,
+    bool provider = false,
+    bool facility = false,
+    bool supportingInfo = false,
+    bool insurance = false,
+    bool item = false,
+  }) {
+    return CoverageEligibilityRequest(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      priority: priority ? null : this.priority,
+      purpose: purpose,
+      patient: patient,
+      servicedX: serviced ? null : servicedX,
+      created: created,
+      enterer: enterer ? null : this.enterer,
+      provider: provider ? null : this.provider,
+      insurer: insurer,
+      facility: facility ? null : this.facility,
+      supportingInfo: supportingInfo ? null : this.supportingInfo,
+      insurance: insurance ? null : this.insurance,
+      item: item ? null : this.item,
+    );
+  }
+
   @override
   CoverageEligibilityRequest clone() => throw UnimplementedError();
   @override
@@ -1299,6 +1513,82 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'sequence':
+        return ['FhirPositiveInt'];
+      case 'information':
+        return ['Reference'];
+      case 'appliesToAll':
+        return ['FhirBoolean'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CoverageEligibilityRequestSupportingInfo]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CoverageEligibilityRequestSupportingInfo createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'sequence':
+        {
+          return copyWith(sequence: FhirPositiveInt.empty());
+        }
+      case 'information':
+        {
+          return copyWith(information: Reference.empty());
+        }
+      case 'appliesToAll':
+        {
+          return copyWith(appliesToAll: FhirBoolean.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CoverageEligibilityRequestSupportingInfo clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool appliesToAll = false,
+  }) {
+    return CoverageEligibilityRequestSupportingInfo(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      sequence: sequence,
+      information: information,
+      appliesToAll: appliesToAll ? null : this.appliesToAll,
+    );
+  }
+
   @override
   CoverageEligibilityRequestSupportingInfo clone() =>
       throw UnimplementedError();
@@ -1690,6 +1980,84 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'focal':
+        return ['FhirBoolean'];
+      case 'coverage':
+        return ['Reference'];
+      case 'businessArrangement':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CoverageEligibilityRequestInsurance]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CoverageEligibilityRequestInsurance createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'focal':
+        {
+          return copyWith(focal: FhirBoolean.empty());
+        }
+      case 'coverage':
+        {
+          return copyWith(coverage: Reference.empty());
+        }
+      case 'businessArrangement':
+        {
+          return copyWith(businessArrangement: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CoverageEligibilityRequestInsurance clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool focal = false,
+    bool businessArrangement = false,
+  }) {
+    return CoverageEligibilityRequestInsurance(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      focal: focal ? null : this.focal,
+      coverage: coverage,
+      businessArrangement:
+          businessArrangement ? null : this.businessArrangement,
+    );
   }
 
   @override
@@ -2272,6 +2640,141 @@ class CoverageEligibilityRequestItem extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'supportingInfoSequence':
+        return ['FhirPositiveInt'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'productOrService':
+        return ['CodeableConcept'];
+      case 'modifier':
+        return ['CodeableConcept'];
+      case 'provider':
+        return ['Reference'];
+      case 'quantity':
+        return ['Quantity'];
+      case 'unitPrice':
+        return ['Money'];
+      case 'facility':
+        return ['Reference'];
+      case 'diagnosis':
+        return ['CoverageEligibilityRequestDiagnosis'];
+      case 'detail':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CoverageEligibilityRequestItem]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CoverageEligibilityRequestItem createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'supportingInfoSequence':
+        {
+          return copyWith(supportingInfoSequence: <FhirPositiveInt>[]);
+        }
+      case 'category':
+        {
+          return copyWith(category: CodeableConcept.empty());
+        }
+      case 'productOrService':
+        {
+          return copyWith(productOrService: CodeableConcept.empty());
+        }
+      case 'modifier':
+        {
+          return copyWith(modifier: <CodeableConcept>[]);
+        }
+      case 'provider':
+        {
+          return copyWith(provider: Reference.empty());
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'unitPrice':
+        {
+          return copyWith(unitPrice: Money.empty());
+        }
+      case 'facility':
+        {
+          return copyWith(facility: Reference.empty());
+        }
+      case 'diagnosis':
+        {
+          return copyWith(diagnosis: <CoverageEligibilityRequestDiagnosis>[]);
+        }
+      case 'detail':
+        {
+          return copyWith(detail: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CoverageEligibilityRequestItem clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool supportingInfoSequence = false,
+    bool category = false,
+    bool productOrService = false,
+    bool modifier = false,
+    bool provider = false,
+    bool quantity = false,
+    bool unitPrice = false,
+    bool facility = false,
+    bool diagnosis = false,
+    bool detail = false,
+  }) {
+    return CoverageEligibilityRequestItem(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      supportingInfoSequence:
+          supportingInfoSequence ? null : this.supportingInfoSequence,
+      category: category ? null : this.category,
+      productOrService: productOrService ? null : this.productOrService,
+      modifier: modifier ? null : this.modifier,
+      provider: provider ? null : this.provider,
+      quantity: quantity ? null : this.quantity,
+      unitPrice: unitPrice ? null : this.unitPrice,
+      facility: facility ? null : this.facility,
+      diagnosis: diagnosis ? null : this.diagnosis,
+      detail: detail ? null : this.detail,
+    );
+  }
+
   @override
   CoverageEligibilityRequestItem clone() => throw UnimplementedError();
   @override
@@ -2730,6 +3233,79 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'diagnosis':
+      case 'diagnosisX':
+        return ['CodeableConcept', 'Reference'];
+      case 'diagnosisCodeableConcept':
+        return ['CodeableConcept'];
+      case 'diagnosisReference':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CoverageEligibilityRequestDiagnosis]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CoverageEligibilityRequestDiagnosis createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'diagnosis':
+      case 'diagnosisX':
+      case 'diagnosisCodeableConcept':
+        {
+          return copyWith(diagnosisX: CodeableConcept.empty());
+        }
+      case 'diagnosisReference':
+        {
+          return copyWith(diagnosisX: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CoverageEligibilityRequestDiagnosis clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool diagnosis = false,
+  }) {
+    return CoverageEligibilityRequestDiagnosis(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      diagnosisX: diagnosis ? null : diagnosisX,
+    );
   }
 
   @override

@@ -618,6 +618,180 @@ class DeviceMetric extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'unit':
+        return ['CodeableConcept'];
+      case 'source':
+        return ['Reference'];
+      case 'parent':
+        return ['Reference'];
+      case 'operationalStatus':
+        return ['FhirCode'];
+      case 'color':
+        return ['FhirCode'];
+      case 'category':
+        return ['FhirCode'];
+      case 'measurementPeriod':
+        return ['Timing'];
+      case 'calibration':
+        return ['DeviceMetricCalibration'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [DeviceMetric]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DeviceMetric createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'unit':
+        {
+          return copyWith(unit: CodeableConcept.empty());
+        }
+      case 'source':
+        {
+          return copyWith(source: Reference.empty());
+        }
+      case 'parent':
+        {
+          return copyWith(parent: Reference.empty());
+        }
+      case 'operationalStatus':
+        {
+          return copyWith(
+            operationalStatus: DeviceMetricOperationalStatus.empty(),
+          );
+        }
+      case 'color':
+        {
+          return copyWith(color: DeviceMetricColor.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: DeviceMetricCategory.empty());
+        }
+      case 'measurementPeriod':
+        {
+          return copyWith(measurementPeriod: Timing.empty());
+        }
+      case 'calibration':
+        {
+          return copyWith(calibration: <DeviceMetricCalibration>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DeviceMetric clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool unit = false,
+    bool source = false,
+    bool parent = false,
+    bool operationalStatus = false,
+    bool color = false,
+    bool measurementPeriod = false,
+    bool calibration = false,
+  }) {
+    return DeviceMetric(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      type: type,
+      unit: unit ? null : this.unit,
+      source: source ? null : this.source,
+      parent: parent ? null : this.parent,
+      operationalStatus: operationalStatus ? null : this.operationalStatus,
+      color: color ? null : this.color,
+      category: category,
+      measurementPeriod: measurementPeriod ? null : this.measurementPeriod,
+      calibration: calibration ? null : this.calibration,
+    );
+  }
+
   @override
   DeviceMetric clone() => throw UnimplementedError();
   @override
@@ -1111,6 +1285,84 @@ class DeviceMetricCalibration extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirCode'];
+      case 'state':
+        return ['FhirCode'];
+      case 'time':
+        return ['FhirInstant'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [DeviceMetricCalibration]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DeviceMetricCalibration createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: DeviceMetricCalibrationType.empty());
+        }
+      case 'state':
+        {
+          return copyWith(state: DeviceMetricCalibrationState.empty());
+        }
+      case 'time':
+        {
+          return copyWith(time: FhirInstant.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DeviceMetricCalibration clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool state = false,
+    bool time = false,
+  }) {
+    return DeviceMetricCalibration(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      state: state ? null : this.state,
+      time: time ? null : this.time,
+    );
   }
 
   @override

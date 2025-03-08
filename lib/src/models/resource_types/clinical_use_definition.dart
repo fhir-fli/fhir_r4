@@ -635,6 +635,193 @@ class ClinicalUseDefinition extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'type':
+        return ['FhirCode'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'status':
+        return ['CodeableConcept'];
+      case 'contraindication':
+        return ['ClinicalUseDefinitionContraindication'];
+      case 'indication':
+        return ['ClinicalUseDefinitionIndication'];
+      case 'interaction':
+        return ['ClinicalUseDefinitionInteraction'];
+      case 'population':
+        return ['Reference'];
+      case 'undesirableEffect':
+        return ['ClinicalUseDefinitionUndesirableEffect'];
+      case 'warning':
+        return ['ClinicalUseDefinitionWarning'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ClinicalUseDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClinicalUseDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: ClinicalUseDefinitionType.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'subject':
+        {
+          return copyWith(subject: <Reference>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: CodeableConcept.empty());
+        }
+      case 'contraindication':
+        {
+          return copyWith(
+            contraindication: ClinicalUseDefinitionContraindication.empty(),
+          );
+        }
+      case 'indication':
+        {
+          return copyWith(indication: ClinicalUseDefinitionIndication.empty());
+        }
+      case 'interaction':
+        {
+          return copyWith(
+            interaction: ClinicalUseDefinitionInteraction.empty(),
+          );
+        }
+      case 'population':
+        {
+          return copyWith(population: <Reference>[]);
+        }
+      case 'undesirableEffect':
+        {
+          return copyWith(
+            undesirableEffect: ClinicalUseDefinitionUndesirableEffect.empty(),
+          );
+        }
+      case 'warning':
+        {
+          return copyWith(warning: ClinicalUseDefinitionWarning.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClinicalUseDefinition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool category = false,
+    bool subject = false,
+    bool status = false,
+    bool contraindication = false,
+    bool indication = false,
+    bool interaction = false,
+    bool population = false,
+    bool undesirableEffect = false,
+    bool warning = false,
+  }) {
+    return ClinicalUseDefinition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      type: type,
+      category: category ? null : this.category,
+      subject: subject ? null : this.subject,
+      status: status ? null : this.status,
+      contraindication: contraindication ? null : this.contraindication,
+      indication: indication ? null : this.indication,
+      interaction: interaction ? null : this.interaction,
+      population: population ? null : this.population,
+      undesirableEffect: undesirableEffect ? null : this.undesirableEffect,
+      warning: warning ? null : this.warning,
+    );
+  }
+
   @override
   ClinicalUseDefinition clone() => throw UnimplementedError();
   @override
@@ -1217,6 +1404,101 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'diseaseSymptomProcedure':
+        return ['CodeableReference'];
+      case 'diseaseStatus':
+        return ['CodeableReference'];
+      case 'comorbidity':
+        return ['CodeableReference'];
+      case 'indication':
+        return ['Reference'];
+      case 'otherTherapy':
+        return ['ClinicalUseDefinitionOtherTherapy'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ClinicalUseDefinitionContraindication]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClinicalUseDefinitionContraindication createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'diseaseSymptomProcedure':
+        {
+          return copyWith(diseaseSymptomProcedure: CodeableReference.empty());
+        }
+      case 'diseaseStatus':
+        {
+          return copyWith(diseaseStatus: CodeableReference.empty());
+        }
+      case 'comorbidity':
+        {
+          return copyWith(comorbidity: <CodeableReference>[]);
+        }
+      case 'indication':
+        {
+          return copyWith(indication: <Reference>[]);
+        }
+      case 'otherTherapy':
+        {
+          return copyWith(otherTherapy: <ClinicalUseDefinitionOtherTherapy>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClinicalUseDefinitionContraindication clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool diseaseSymptomProcedure = false,
+    bool diseaseStatus = false,
+    bool comorbidity = false,
+    bool indication = false,
+    bool otherTherapy = false,
+  }) {
+    return ClinicalUseDefinitionContraindication(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      diseaseSymptomProcedure:
+          diseaseSymptomProcedure ? null : this.diseaseSymptomProcedure,
+      diseaseStatus: diseaseStatus ? null : this.diseaseStatus,
+      comorbidity: comorbidity ? null : this.comorbidity,
+      indication: indication ? null : this.indication,
+      otherTherapy: otherTherapy ? null : this.otherTherapy,
+    );
+  }
+
   @override
   ClinicalUseDefinitionContraindication clone() => throw UnimplementedError();
   @override
@@ -1316,7 +1598,9 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        diseaseSymptomProcedure, o.diseaseSymptomProcedure,)) {
+      diseaseSymptomProcedure,
+      o.diseaseSymptomProcedure,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(diseaseStatus, o.diseaseStatus)) {
@@ -1616,6 +1900,74 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'relationshipType':
+        return ['CodeableConcept'];
+      case 'therapy':
+        return ['CodeableReference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ClinicalUseDefinitionOtherTherapy]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClinicalUseDefinitionOtherTherapy createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'relationshipType':
+        {
+          return copyWith(relationshipType: CodeableConcept.empty());
+        }
+      case 'therapy':
+        {
+          return copyWith(therapy: CodeableReference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClinicalUseDefinitionOtherTherapy clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ClinicalUseDefinitionOtherTherapy(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      relationshipType: relationshipType,
+      therapy: therapy,
+    );
   }
 
   @override
@@ -2153,6 +2505,128 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'diseaseSymptomProcedure':
+        return ['CodeableReference'];
+      case 'diseaseStatus':
+        return ['CodeableReference'];
+      case 'comorbidity':
+        return ['CodeableReference'];
+      case 'intendedEffect':
+        return ['CodeableReference'];
+      case 'duration':
+      case 'durationX':
+        return ['Range', 'FhirString'];
+      case 'durationRange':
+        return ['Range'];
+      case 'durationString':
+        return ['FhirString'];
+      case 'undesirableEffect':
+        return ['Reference'];
+      case 'otherTherapy':
+        return ['ClinicalUseDefinitionOtherTherapy'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ClinicalUseDefinitionIndication]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClinicalUseDefinitionIndication createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'diseaseSymptomProcedure':
+        {
+          return copyWith(diseaseSymptomProcedure: CodeableReference.empty());
+        }
+      case 'diseaseStatus':
+        {
+          return copyWith(diseaseStatus: CodeableReference.empty());
+        }
+      case 'comorbidity':
+        {
+          return copyWith(comorbidity: <CodeableReference>[]);
+        }
+      case 'intendedEffect':
+        {
+          return copyWith(intendedEffect: CodeableReference.empty());
+        }
+      case 'duration':
+      case 'durationX':
+      case 'durationRange':
+        {
+          return copyWith(durationX: Range.empty());
+        }
+      case 'durationString':
+        {
+          return copyWith(durationX: FhirString.empty());
+        }
+      case 'undesirableEffect':
+        {
+          return copyWith(undesirableEffect: <Reference>[]);
+        }
+      case 'otherTherapy':
+        {
+          return copyWith(otherTherapy: <ClinicalUseDefinitionOtherTherapy>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClinicalUseDefinitionIndication clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool diseaseSymptomProcedure = false,
+    bool diseaseStatus = false,
+    bool comorbidity = false,
+    bool intendedEffect = false,
+    bool duration = false,
+    bool undesirableEffect = false,
+    bool otherTherapy = false,
+  }) {
+    return ClinicalUseDefinitionIndication(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      diseaseSymptomProcedure:
+          diseaseSymptomProcedure ? null : this.diseaseSymptomProcedure,
+      diseaseStatus: diseaseStatus ? null : this.diseaseStatus,
+      comorbidity: comorbidity ? null : this.comorbidity,
+      intendedEffect: intendedEffect ? null : this.intendedEffect,
+      durationX: duration ? null : durationX,
+      undesirableEffect: undesirableEffect ? null : this.undesirableEffect,
+      otherTherapy: otherTherapy ? null : this.otherTherapy,
+    );
+  }
+
   @override
   ClinicalUseDefinitionIndication clone() => throw UnimplementedError();
   @override
@@ -2262,7 +2736,9 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        diseaseSymptomProcedure, o.diseaseSymptomProcedure,)) {
+      diseaseSymptomProcedure,
+      o.diseaseSymptomProcedure,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(diseaseStatus, o.diseaseStatus)) {
@@ -2652,6 +3128,100 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'interactant':
+        return ['ClinicalUseDefinitionInteractant'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'effect':
+        return ['CodeableReference'];
+      case 'incidence':
+        return ['CodeableConcept'];
+      case 'management':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ClinicalUseDefinitionInteraction]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClinicalUseDefinitionInteraction createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'interactant':
+        {
+          return copyWith(interactant: <ClinicalUseDefinitionInteractant>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'effect':
+        {
+          return copyWith(effect: CodeableReference.empty());
+        }
+      case 'incidence':
+        {
+          return copyWith(incidence: CodeableConcept.empty());
+        }
+      case 'management':
+        {
+          return copyWith(management: <CodeableConcept>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClinicalUseDefinitionInteraction clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool interactant = false,
+    bool type = false,
+    bool effect = false,
+    bool incidence = false,
+    bool management = false,
+  }) {
+    return ClinicalUseDefinitionInteraction(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      interactant: interactant ? null : this.interactant,
+      type: type ? null : this.type,
+      effect: effect ? null : this.effect,
+      incidence: incidence ? null : this.incidence,
+      management: management ? null : this.management,
+    );
   }
 
   @override
@@ -3058,6 +3628,78 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'item':
+      case 'itemX':
+        return ['Reference', 'CodeableConcept'];
+      case 'itemReference':
+        return ['Reference'];
+      case 'itemCodeableConcept':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ClinicalUseDefinitionInteractant]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClinicalUseDefinitionInteractant createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'item':
+      case 'itemX':
+      case 'itemReference':
+        {
+          return copyWith(itemX: Reference.empty());
+        }
+      case 'itemCodeableConcept':
+        {
+          return copyWith(itemX: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClinicalUseDefinitionInteractant clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ClinicalUseDefinitionInteractant(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      itemX: itemX,
+    );
+  }
+
   @override
   ClinicalUseDefinitionInteractant clone() => throw UnimplementedError();
   @override
@@ -3429,6 +4071,86 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'symptomConditionEffect':
+        return ['CodeableReference'];
+      case 'classification':
+        return ['CodeableConcept'];
+      case 'frequencyOfOccurrence':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ClinicalUseDefinitionUndesirableEffect]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClinicalUseDefinitionUndesirableEffect createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'symptomConditionEffect':
+        {
+          return copyWith(symptomConditionEffect: CodeableReference.empty());
+        }
+      case 'classification':
+        {
+          return copyWith(classification: CodeableConcept.empty());
+        }
+      case 'frequencyOfOccurrence':
+        {
+          return copyWith(frequencyOfOccurrence: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClinicalUseDefinitionUndesirableEffect clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool symptomConditionEffect = false,
+    bool classification = false,
+    bool frequencyOfOccurrence = false,
+  }) {
+    return ClinicalUseDefinitionUndesirableEffect(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      symptomConditionEffect:
+          symptomConditionEffect ? null : this.symptomConditionEffect,
+      classification: classification ? null : this.classification,
+      frequencyOfOccurrence:
+          frequencyOfOccurrence ? null : this.frequencyOfOccurrence,
+    );
+  }
+
   @override
   ClinicalUseDefinitionUndesirableEffect clone() => throw UnimplementedError();
   @override
@@ -3791,6 +4513,76 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'code':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ClinicalUseDefinitionWarning]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClinicalUseDefinitionWarning createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClinicalUseDefinitionWarning clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+    bool code = false,
+  }) {
+    return ClinicalUseDefinitionWarning(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description ? null : this.description,
+      code: code ? null : this.code,
+    );
   }
 
   @override

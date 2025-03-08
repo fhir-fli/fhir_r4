@@ -78,4 +78,17 @@ class FHIRConstant extends FhirBase {
   Map<String, dynamic> toJson() {
     throw UnimplementedError();
   }
+
+  @override
+  FHIRConstant createProperty(String propertyName) {
+    switch (propertyName) {
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  @override
+  FHIRConstant clear() {
+    return FHIRConstant(value);
+  }
 }

@@ -133,4 +133,17 @@ abstract class BackboneType extends DataType {
     List<dynamic>? annotations,
     String? objectPath,
   });
+
+  /// Retrieves the type of the object by element name.
+  @override
+  List<String> typeByElementName(String elementName) {
+    return <String>[];
+  }
+
+  /// Creates an empty property in the object
+  @override
+  BackboneType createProperty(String propertyName);
+
+  @override
+  BackboneType clear({bool extension_ = false, bool id = false});
 }

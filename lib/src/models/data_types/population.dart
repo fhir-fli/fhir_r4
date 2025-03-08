@@ -360,6 +360,104 @@ class Population extends BackboneType {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'age':
+      case 'ageX':
+        return ['Range', 'CodeableConcept'];
+      case 'ageRange':
+        return ['Range'];
+      case 'ageCodeableConcept':
+        return ['CodeableConcept'];
+      case 'gender':
+        return ['CodeableConcept'];
+      case 'race':
+        return ['CodeableConcept'];
+      case 'physiologicalCondition':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Population]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Population createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'age':
+      case 'ageX':
+      case 'ageRange':
+        {
+          return copyWith(ageX: Range.empty());
+        }
+      case 'ageCodeableConcept':
+        {
+          return copyWith(ageX: CodeableConcept.empty());
+        }
+      case 'gender':
+        {
+          return copyWith(gender: CodeableConcept.empty());
+        }
+      case 'race':
+        {
+          return copyWith(race: CodeableConcept.empty());
+        }
+      case 'physiologicalCondition':
+        {
+          return copyWith(physiologicalCondition: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Population clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool age = false,
+    bool gender = false,
+    bool race = false,
+    bool physiologicalCondition = false,
+  }) {
+    return Population(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      ageX: age ? null : ageX,
+      gender: gender ? null : this.gender,
+      race: race ? null : this.race,
+      physiologicalCondition:
+          physiologicalCondition ? null : this.physiologicalCondition,
+    );
+  }
+
   @override
   Population clone() => throw UnimplementedError();
   @override

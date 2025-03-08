@@ -935,6 +935,295 @@ class TerminologyCapabilities extends CanonicalResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      case 'kind':
+        return ['FhirCode'];
+      case 'software':
+        return ['TerminologyCapabilitiesSoftware'];
+      case 'implementation':
+        return ['TerminologyCapabilitiesImplementation'];
+      case 'lockedDate':
+        return ['FhirBoolean'];
+      case 'codeSystem':
+        return ['TerminologyCapabilitiesCodeSystem'];
+      case 'expansion':
+        return ['TerminologyCapabilitiesExpansion'];
+      case 'codeSearch':
+        return ['FhirCode'];
+      case 'validateCode':
+        return ['TerminologyCapabilitiesValidateCode'];
+      case 'translation':
+        return ['TerminologyCapabilitiesTranslation'];
+      case 'closure':
+        return ['TerminologyCapabilitiesClosure'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TerminologyCapabilities]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TerminologyCapabilities createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'kind':
+        {
+          return copyWith(kind: CapabilityStatementKind.empty());
+        }
+      case 'software':
+        {
+          return copyWith(software: TerminologyCapabilitiesSoftware.empty());
+        }
+      case 'implementation':
+        {
+          return copyWith(
+            implementation: TerminologyCapabilitiesImplementation.empty(),
+          );
+        }
+      case 'lockedDate':
+        {
+          return copyWith(lockedDate: FhirBoolean.empty());
+        }
+      case 'codeSystem':
+        {
+          return copyWith(codeSystem: <TerminologyCapabilitiesCodeSystem>[]);
+        }
+      case 'expansion':
+        {
+          return copyWith(expansion: TerminologyCapabilitiesExpansion.empty());
+        }
+      case 'codeSearch':
+        {
+          return copyWith(codeSearch: CodeSearchSupport.empty());
+        }
+      case 'validateCode':
+        {
+          return copyWith(
+            validateCode: TerminologyCapabilitiesValidateCode.empty(),
+          );
+        }
+      case 'translation':
+        {
+          return copyWith(
+            translation: TerminologyCapabilitiesTranslation.empty(),
+          );
+        }
+      case 'closure':
+        {
+          return copyWith(closure: TerminologyCapabilitiesClosure.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TerminologyCapabilities clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool version = false,
+    bool name = false,
+    bool title = false,
+    bool experimental = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool purpose = false,
+    bool copyright = false,
+    bool software = false,
+    bool implementation = false,
+    bool lockedDate = false,
+    bool codeSystem = false,
+    bool expansion = false,
+    bool codeSearch = false,
+    bool validateCode = false,
+    bool translation = false,
+    bool closure = false,
+  }) {
+    return TerminologyCapabilities(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url ? null : this.url,
+      version: version ? null : this.version,
+      name: name ? null : this.name,
+      title: title ? null : this.title,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      date: date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      purpose: purpose ? null : this.purpose,
+      copyright: copyright ? null : this.copyright,
+      kind: kind,
+      software: software ? null : this.software,
+      implementation: implementation ? null : this.implementation,
+      lockedDate: lockedDate ? null : this.lockedDate,
+      codeSystem: codeSystem ? null : this.codeSystem,
+      expansion: expansion ? null : this.expansion,
+      codeSearch: codeSearch ? null : this.codeSearch,
+      validateCode: validateCode ? null : this.validateCode,
+      translation: translation ? null : this.translation,
+      closure: closure ? null : this.closure,
+    );
+  }
+
   @override
   TerminologyCapabilities clone() => throw UnimplementedError();
   @override
@@ -1533,6 +1822,75 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'version':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TerminologyCapabilitiesSoftware]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TerminologyCapabilitiesSoftware createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TerminologyCapabilitiesSoftware clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool version = false,
+  }) {
+    return TerminologyCapabilitiesSoftware(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      version: version ? null : this.version,
+    );
+  }
+
   @override
   TerminologyCapabilitiesSoftware clone() => throw UnimplementedError();
   @override
@@ -1887,6 +2245,75 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'description':
+        return ['FhirString'];
+      case 'url':
+        return ['FhirUrl'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TerminologyCapabilitiesImplementation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TerminologyCapabilitiesImplementation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUrl.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TerminologyCapabilitiesImplementation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+  }) {
+    return TerminologyCapabilitiesImplementation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description,
+      url: url ? null : this.url,
+    );
   }
 
   @override
@@ -2272,6 +2699,84 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'uri':
+        return ['FhirCanonical'];
+      case 'version':
+        return ['TerminologyCapabilitiesVersion'];
+      case 'subsumption':
+        return ['FhirBoolean'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TerminologyCapabilitiesCodeSystem]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TerminologyCapabilitiesCodeSystem createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'uri':
+        {
+          return copyWith(uri: FhirCanonical.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: <TerminologyCapabilitiesVersion>[]);
+        }
+      case 'subsumption':
+        {
+          return copyWith(subsumption: FhirBoolean.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TerminologyCapabilitiesCodeSystem clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool uri = false,
+    bool version = false,
+    bool subsumption = false,
+  }) {
+    return TerminologyCapabilitiesCodeSystem(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      uri: uri ? null : this.uri,
+      version: version ? null : this.version,
+      subsumption: subsumption ? null : this.subsumption,
+    );
   }
 
   @override
@@ -2748,6 +3253,108 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['FhirString'];
+      case 'isDefault':
+        return ['FhirBoolean'];
+      case 'compositional':
+        return ['FhirBoolean'];
+      case 'language':
+        return ['FhirCode'];
+      case 'filter':
+        return ['TerminologyCapabilitiesFilter'];
+      case 'property':
+        return ['FhirCode'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TerminologyCapabilitiesVersion]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TerminologyCapabilitiesVersion createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: FhirString.empty());
+        }
+      case 'isDefault':
+        {
+          return copyWith(isDefault: FhirBoolean.empty());
+        }
+      case 'compositional':
+        {
+          return copyWith(compositional: FhirBoolean.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: <FhirCode>[]);
+        }
+      case 'filter':
+        {
+          return copyWith(filter: <TerminologyCapabilitiesFilter>[]);
+        }
+      case 'property':
+        {
+          return copyWith(property: <FhirCode>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TerminologyCapabilitiesVersion clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool isDefault = false,
+    bool compositional = false,
+    bool language = false,
+    bool filter = false,
+    bool property = false,
+  }) {
+    return TerminologyCapabilitiesVersion(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      isDefault: isDefault ? null : this.isDefault,
+      compositional: compositional ? null : this.compositional,
+      language: language ? null : this.language,
+      filter: filter ? null : this.filter,
+      property: property ? null : this.property,
+    );
+  }
+
   @override
   TerminologyCapabilitiesVersion clone() => throw UnimplementedError();
   @override
@@ -3151,6 +3758,74 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['FhirCode'];
+      case 'op':
+        return ['FhirCode'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TerminologyCapabilitiesFilter]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TerminologyCapabilitiesFilter createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: FhirCode.empty());
+        }
+      case 'op':
+        {
+          return copyWith(op: <FhirCode>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TerminologyCapabilitiesFilter clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return TerminologyCapabilitiesFilter(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      op: op,
+    );
   }
 
   @override
@@ -3593,6 +4268,100 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'hierarchical':
+        return ['FhirBoolean'];
+      case 'paging':
+        return ['FhirBoolean'];
+      case 'incomplete':
+        return ['FhirBoolean'];
+      case 'parameter':
+        return ['TerminologyCapabilitiesParameter'];
+      case 'textFilter':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TerminologyCapabilitiesExpansion]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TerminologyCapabilitiesExpansion createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'hierarchical':
+        {
+          return copyWith(hierarchical: FhirBoolean.empty());
+        }
+      case 'paging':
+        {
+          return copyWith(paging: FhirBoolean.empty());
+        }
+      case 'incomplete':
+        {
+          return copyWith(incomplete: FhirBoolean.empty());
+        }
+      case 'parameter':
+        {
+          return copyWith(parameter: <TerminologyCapabilitiesParameter>[]);
+        }
+      case 'textFilter':
+        {
+          return copyWith(textFilter: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TerminologyCapabilitiesExpansion clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool hierarchical = false,
+    bool paging = false,
+    bool incomplete = false,
+    bool parameter = false,
+    bool textFilter = false,
+  }) {
+    return TerminologyCapabilitiesExpansion(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      hierarchical: hierarchical ? null : this.hierarchical,
+      paging: paging ? null : this.paging,
+      incomplete: incomplete ? null : this.incomplete,
+      parameter: parameter ? null : this.parameter,
+      textFilter: textFilter ? null : this.textFilter,
+    );
+  }
+
   @override
   TerminologyCapabilitiesExpansion clone() => throw UnimplementedError();
   @override
@@ -3977,6 +4746,75 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirCode'];
+      case 'documentation':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TerminologyCapabilitiesParameter]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TerminologyCapabilitiesParameter createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirCode.empty());
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TerminologyCapabilitiesParameter clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool documentation = false,
+  }) {
+    return TerminologyCapabilitiesParameter(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      documentation: documentation ? null : this.documentation,
+    );
+  }
+
   @override
   TerminologyCapabilitiesParameter clone() => throw UnimplementedError();
   @override
@@ -4307,6 +5145,67 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'translations':
+        return ['FhirBoolean'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TerminologyCapabilitiesValidateCode]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TerminologyCapabilitiesValidateCode createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'translations':
+        {
+          return copyWith(translations: FhirBoolean.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TerminologyCapabilitiesValidateCode clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return TerminologyCapabilitiesValidateCode(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      translations: translations,
+    );
+  }
+
   @override
   TerminologyCapabilitiesValidateCode clone() => throw UnimplementedError();
   @override
@@ -4628,6 +5527,67 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'needsMap':
+        return ['FhirBoolean'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TerminologyCapabilitiesTranslation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TerminologyCapabilitiesTranslation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'needsMap':
+        {
+          return copyWith(needsMap: FhirBoolean.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TerminologyCapabilitiesTranslation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return TerminologyCapabilitiesTranslation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      needsMap: needsMap,
+    );
+  }
+
   @override
   TerminologyCapabilitiesTranslation clone() => throw UnimplementedError();
   @override
@@ -4946,6 +5906,68 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'translation':
+        return ['FhirBoolean'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TerminologyCapabilitiesClosure]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TerminologyCapabilitiesClosure createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'translation':
+        {
+          return copyWith(translation: FhirBoolean.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TerminologyCapabilitiesClosure clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool translation = false,
+  }) {
+    return TerminologyCapabilitiesClosure(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      translation: translation ? null : this.translation,
+    );
   }
 
   @override

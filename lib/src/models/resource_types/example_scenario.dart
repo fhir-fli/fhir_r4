@@ -820,6 +820,235 @@ class ExampleScenario extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'actor':
+        return ['ExampleScenarioActor'];
+      case 'instance':
+        return ['ExampleScenarioInstance'];
+      case 'process':
+        return ['ExampleScenarioProcess'];
+      case 'workflow':
+        return ['FhirCanonical'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ExampleScenario]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ExampleScenario createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'actor':
+        {
+          return copyWith(actor: <ExampleScenarioActor>[]);
+        }
+      case 'instance':
+        {
+          return copyWith(instance: <ExampleScenarioInstance>[]);
+        }
+      case 'process':
+        {
+          return copyWith(process: <ExampleScenarioProcess>[]);
+        }
+      case 'workflow':
+        {
+          return copyWith(workflow: <FhirCanonical>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ExampleScenario clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool identifier = false,
+    bool version = false,
+    bool name = false,
+    bool experimental = false,
+    bool date = false,
+    bool publisher = false,
+    bool contact = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool copyright = false,
+    bool purpose = false,
+    bool actor = false,
+    bool instance = false,
+    bool process = false,
+    bool workflow = false,
+  }) {
+    return ExampleScenario(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url ? null : this.url,
+      identifier: identifier ? null : this.identifier,
+      version: version ? null : this.version,
+      name: name ? null : this.name,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      date: date ? null : this.date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      copyright: copyright ? null : this.copyright,
+      purpose: purpose ? null : this.purpose,
+      actor: actor ? null : this.actor,
+      instance: instance ? null : this.instance,
+      process: process ? null : this.process,
+      workflow: workflow ? null : this.workflow,
+    );
+  }
+
   @override
   ExampleScenario clone() => throw UnimplementedError();
   @override
@@ -1436,6 +1665,90 @@ class ExampleScenarioActor extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'actorId':
+        return ['FhirString'];
+      case 'type':
+        return ['FhirCode'];
+      case 'name':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ExampleScenarioActor]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ExampleScenarioActor createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'actorId':
+        {
+          return copyWith(actorId: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: ExampleScenarioActorType.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ExampleScenarioActor clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool name = false,
+    bool description = false,
+  }) {
+    return ExampleScenarioActor(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      actorId: actorId,
+      type: type,
+      name: name ? null : this.name,
+      description: description ? null : this.description,
+    );
+  }
+
   @override
   ExampleScenarioActor clone() => throw UnimplementedError();
   @override
@@ -1912,6 +2225,108 @@ class ExampleScenarioInstance extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'resourceId':
+        return ['FhirString'];
+      case 'resourceType':
+        return ['FhirCode'];
+      case 'name':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'version':
+        return ['ExampleScenarioVersion'];
+      case 'containedInstance':
+        return ['ExampleScenarioContainedInstance'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ExampleScenarioInstance]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ExampleScenarioInstance createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'resourceId':
+        {
+          return copyWith(resourceId: FhirString.empty());
+        }
+      case 'resourceType':
+        {
+          return copyWith(resourceType: FhirCode.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: <ExampleScenarioVersion>[]);
+        }
+      case 'containedInstance':
+        {
+          return copyWith(
+            containedInstance: <ExampleScenarioContainedInstance>[],
+          );
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ExampleScenarioInstance clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool name = false,
+    bool description = false,
+    bool version = false,
+    bool containedInstance = false,
+  }) {
+    return ExampleScenarioInstance(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      resourceId: resourceId,
+      resourceType: resourceType,
+      name: name ? null : this.name,
+      description: description ? null : this.description,
+      version: version ? null : this.version,
+      containedInstance: containedInstance ? null : this.containedInstance,
+    );
+  }
+
   @override
   ExampleScenarioInstance clone() => throw UnimplementedError();
   @override
@@ -2309,6 +2724,74 @@ class ExampleScenarioVersion extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'versionId':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ExampleScenarioVersion]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ExampleScenarioVersion createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'versionId':
+        {
+          return copyWith(versionId: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ExampleScenarioVersion clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ExampleScenarioVersion(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      versionId: versionId,
+      description: description,
+    );
+  }
+
   @override
   ExampleScenarioVersion clone() => throw UnimplementedError();
   @override
@@ -2661,6 +3144,75 @@ class ExampleScenarioContainedInstance extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'resourceId':
+        return ['FhirString'];
+      case 'versionId':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ExampleScenarioContainedInstance]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ExampleScenarioContainedInstance createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'resourceId':
+        {
+          return copyWith(resourceId: FhirString.empty());
+        }
+      case 'versionId':
+        {
+          return copyWith(versionId: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ExampleScenarioContainedInstance clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool versionId = false,
+  }) {
+    return ExampleScenarioContainedInstance(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      resourceId: resourceId,
+      versionId: versionId ? null : this.versionId,
+    );
   }
 
   @override
@@ -3092,6 +3644,99 @@ class ExampleScenarioProcess extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'title':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'preConditions':
+        return ['FhirMarkdown'];
+      case 'postConditions':
+        return ['FhirMarkdown'];
+      case 'step':
+        return ['ExampleScenarioStep'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ExampleScenarioProcess]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ExampleScenarioProcess createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'preConditions':
+        {
+          return copyWith(preConditions: FhirMarkdown.empty());
+        }
+      case 'postConditions':
+        {
+          return copyWith(postConditions: FhirMarkdown.empty());
+        }
+      case 'step':
+        {
+          return copyWith(step: <ExampleScenarioStep>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ExampleScenarioProcess clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+    bool preConditions = false,
+    bool postConditions = false,
+    bool step = false,
+  }) {
+    return ExampleScenarioProcess(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      title: title,
+      description: description ? null : this.description,
+      preConditions: preConditions ? null : this.preConditions,
+      postConditions: postConditions ? null : this.postConditions,
+      step: step ? null : this.step,
+    );
   }
 
   @override
@@ -3534,6 +4179,92 @@ class ExampleScenarioStep extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'process':
+        return ['ExampleScenarioProcess'];
+      case 'pause':
+        return ['FhirBoolean'];
+      case 'operation':
+        return ['ExampleScenarioOperation'];
+      case 'alternative':
+        return ['ExampleScenarioAlternative'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ExampleScenarioStep]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ExampleScenarioStep createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'process':
+        {
+          return copyWith(process: <ExampleScenarioProcess>[]);
+        }
+      case 'pause':
+        {
+          return copyWith(pause: FhirBoolean.empty());
+        }
+      case 'operation':
+        {
+          return copyWith(operation: ExampleScenarioOperation.empty());
+        }
+      case 'alternative':
+        {
+          return copyWith(alternative: <ExampleScenarioAlternative>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ExampleScenarioStep clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool process = false,
+    bool pause = false,
+    bool operation = false,
+    bool alternative = false,
+  }) {
+    return ExampleScenarioStep(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      process: process ? null : this.process,
+      pause: pause ? null : this.pause,
+      operation: operation ? null : this.operation,
+      alternative: alternative ? null : this.alternative,
+    );
   }
 
   @override
@@ -4118,6 +4849,139 @@ class ExampleScenarioOperation extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'number':
+        return ['FhirString'];
+      case 'type':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'initiator':
+        return ['FhirString'];
+      case 'receiver':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'initiatorActive':
+        return ['FhirBoolean'];
+      case 'receiverActive':
+        return ['FhirBoolean'];
+      case 'request':
+        return ['ExampleScenarioContainedInstance'];
+      case 'response':
+        return ['ExampleScenarioContainedInstance'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ExampleScenarioOperation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ExampleScenarioOperation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'number':
+        {
+          return copyWith(number: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'initiator':
+        {
+          return copyWith(initiator: FhirString.empty());
+        }
+      case 'receiver':
+        {
+          return copyWith(receiver: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'initiatorActive':
+        {
+          return copyWith(initiatorActive: FhirBoolean.empty());
+        }
+      case 'receiverActive':
+        {
+          return copyWith(receiverActive: FhirBoolean.empty());
+        }
+      case 'request':
+        {
+          return copyWith(request: ExampleScenarioContainedInstance.empty());
+        }
+      case 'response':
+        {
+          return copyWith(response: ExampleScenarioContainedInstance.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ExampleScenarioOperation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool name = false,
+    bool initiator = false,
+    bool receiver = false,
+    bool description = false,
+    bool initiatorActive = false,
+    bool receiverActive = false,
+    bool request = false,
+    bool response = false,
+  }) {
+    return ExampleScenarioOperation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      number: number,
+      type: type ? null : this.type,
+      name: name ? null : this.name,
+      initiator: initiator ? null : this.initiator,
+      receiver: receiver ? null : this.receiver,
+      description: description ? null : this.description,
+      initiatorActive: initiatorActive ? null : this.initiatorActive,
+      receiverActive: receiverActive ? null : this.receiverActive,
+      request: request ? null : this.request,
+      response: response ? null : this.response,
+    );
+  }
+
   @override
   ExampleScenarioOperation clone() => throw UnimplementedError();
   @override
@@ -4564,6 +5428,83 @@ class ExampleScenarioAlternative extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'title':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'step':
+        return ['ExampleScenarioStep'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ExampleScenarioAlternative]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ExampleScenarioAlternative createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'step':
+        {
+          return copyWith(step: <ExampleScenarioStep>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ExampleScenarioAlternative clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+    bool step = false,
+  }) {
+    return ExampleScenarioAlternative(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      title: title,
+      description: description ? null : this.description,
+      step: step ? null : this.step,
+    );
   }
 
   @override

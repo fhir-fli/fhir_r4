@@ -780,6 +780,226 @@ class DocumentReference extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'masterIdentifier':
+        return ['Identifier'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'docStatus':
+        return ['FhirCode'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'date':
+        return ['FhirInstant'];
+      case 'author':
+        return ['Reference'];
+      case 'authenticator':
+        return ['Reference'];
+      case 'custodian':
+        return ['Reference'];
+      case 'relatesTo':
+        return ['DocumentReferenceRelatesTo'];
+      case 'description':
+        return ['FhirString'];
+      case 'securityLabel':
+        return ['CodeableConcept'];
+      case 'content':
+        return ['DocumentReferenceContent'];
+      case 'context':
+        return ['DocumentReferenceContext'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [DocumentReference]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DocumentReference createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'masterIdentifier':
+        {
+          return copyWith(masterIdentifier: Identifier.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: DocumentReferenceStatus.empty());
+        }
+      case 'docStatus':
+        {
+          return copyWith(docStatus: CompositionStatus.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirInstant.empty());
+        }
+      case 'author':
+        {
+          return copyWith(author: <Reference>[]);
+        }
+      case 'authenticator':
+        {
+          return copyWith(authenticator: Reference.empty());
+        }
+      case 'custodian':
+        {
+          return copyWith(custodian: Reference.empty());
+        }
+      case 'relatesTo':
+        {
+          return copyWith(relatesTo: <DocumentReferenceRelatesTo>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'securityLabel':
+        {
+          return copyWith(securityLabel: <CodeableConcept>[]);
+        }
+      case 'content':
+        {
+          return copyWith(content: <DocumentReferenceContent>[]);
+        }
+      case 'context':
+        {
+          return copyWith(context: DocumentReferenceContext.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DocumentReference clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool masterIdentifier = false,
+    bool identifier = false,
+    bool docStatus = false,
+    bool type = false,
+    bool category = false,
+    bool subject = false,
+    bool date = false,
+    bool author = false,
+    bool authenticator = false,
+    bool custodian = false,
+    bool relatesTo = false,
+    bool description = false,
+    bool securityLabel = false,
+    bool context = false,
+  }) {
+    return DocumentReference(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      masterIdentifier: masterIdentifier ? null : this.masterIdentifier,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      docStatus: docStatus ? null : this.docStatus,
+      type: type ? null : this.type,
+      category: category ? null : this.category,
+      subject: subject ? null : this.subject,
+      date: date ? null : this.date,
+      author: author ? null : this.author,
+      authenticator: authenticator ? null : this.authenticator,
+      custodian: custodian ? null : this.custodian,
+      relatesTo: relatesTo ? null : this.relatesTo,
+      description: description ? null : this.description,
+      securityLabel: securityLabel ? null : this.securityLabel,
+      content: content,
+      context: context ? null : this.context,
+    );
+  }
+
   @override
   DocumentReference clone() => throw UnimplementedError();
   @override
@@ -1325,6 +1545,74 @@ class DocumentReferenceRelatesTo extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['FhirCode'];
+      case 'target':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [DocumentReferenceRelatesTo]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DocumentReferenceRelatesTo createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: DocumentRelationshipType.empty());
+        }
+      case 'target':
+        {
+          return copyWith(target: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DocumentReferenceRelatesTo clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return DocumentReferenceRelatesTo(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      target: target,
+    );
+  }
+
   @override
   DocumentReferenceRelatesTo clone() => throw UnimplementedError();
   @override
@@ -1679,6 +1967,75 @@ class DocumentReferenceContent extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'attachment':
+        return ['Attachment'];
+      case 'format':
+        return ['Coding'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [DocumentReferenceContent]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DocumentReferenceContent createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'attachment':
+        {
+          return copyWith(attachment: Attachment.empty());
+        }
+      case 'format':
+        {
+          return copyWith(format: Coding.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DocumentReferenceContent clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool format = false,
+  }) {
+    return DocumentReferenceContent(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      attachment: attachment,
+      format: format ? null : this.format,
+    );
   }
 
   @override
@@ -2176,6 +2533,116 @@ class DocumentReferenceContext extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'encounter':
+        return ['Reference'];
+      case 'event':
+        return ['CodeableConcept'];
+      case 'period':
+        return ['Period'];
+      case 'facilityType':
+        return ['CodeableConcept'];
+      case 'practiceSetting':
+        return ['CodeableConcept'];
+      case 'sourcePatientInfo':
+        return ['Reference'];
+      case 'related':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [DocumentReferenceContext]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DocumentReferenceContext createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: <Reference>[]);
+        }
+      case 'event':
+        {
+          return copyWith(event: <CodeableConcept>[]);
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      case 'facilityType':
+        {
+          return copyWith(facilityType: CodeableConcept.empty());
+        }
+      case 'practiceSetting':
+        {
+          return copyWith(practiceSetting: CodeableConcept.empty());
+        }
+      case 'sourcePatientInfo':
+        {
+          return copyWith(sourcePatientInfo: Reference.empty());
+        }
+      case 'related':
+        {
+          return copyWith(related: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DocumentReferenceContext clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool encounter = false,
+    bool event = false,
+    bool period = false,
+    bool facilityType = false,
+    bool practiceSetting = false,
+    bool sourcePatientInfo = false,
+    bool related = false,
+  }) {
+    return DocumentReferenceContext(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      encounter: encounter ? null : this.encounter,
+      event: event ? null : this.event,
+      period: period ? null : this.period,
+      facilityType: facilityType ? null : this.facilityType,
+      practiceSetting: practiceSetting ? null : this.practiceSetting,
+      sourcePatientInfo: sourcePatientInfo ? null : this.sourcePatientInfo,
+      related: related ? null : this.related,
+    );
   }
 
   @override

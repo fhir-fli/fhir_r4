@@ -616,6 +616,182 @@ class NutritionProduct extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'status':
+        return ['FhirCode'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'manufacturer':
+        return ['Reference'];
+      case 'nutrient':
+        return ['NutritionProductNutrient'];
+      case 'ingredient':
+        return ['NutritionProductIngredient'];
+      case 'knownAllergen':
+        return ['CodeableReference'];
+      case 'productCharacteristic':
+        return ['NutritionProductProductCharacteristic'];
+      case 'instance':
+        return ['NutritionProductInstance'];
+      case 'note':
+        return ['Annotation'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [NutritionProduct]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  NutritionProduct createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: NutritionProductStatus.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'manufacturer':
+        {
+          return copyWith(manufacturer: <Reference>[]);
+        }
+      case 'nutrient':
+        {
+          return copyWith(nutrient: <NutritionProductNutrient>[]);
+        }
+      case 'ingredient':
+        {
+          return copyWith(ingredient: <NutritionProductIngredient>[]);
+        }
+      case 'knownAllergen':
+        {
+          return copyWith(knownAllergen: <CodeableReference>[]);
+        }
+      case 'productCharacteristic':
+        {
+          return copyWith(
+            productCharacteristic: <NutritionProductProductCharacteristic>[],
+          );
+        }
+      case 'instance':
+        {
+          return copyWith(instance: NutritionProductInstance.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  NutritionProduct clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool category = false,
+    bool code = false,
+    bool manufacturer = false,
+    bool nutrient = false,
+    bool ingredient = false,
+    bool knownAllergen = false,
+    bool productCharacteristic = false,
+    bool instance = false,
+    bool note = false,
+  }) {
+    return NutritionProduct(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      status: status,
+      category: category ? null : this.category,
+      code: code ? null : this.code,
+      manufacturer: manufacturer ? null : this.manufacturer,
+      nutrient: nutrient ? null : this.nutrient,
+      ingredient: ingredient ? null : this.ingredient,
+      knownAllergen: knownAllergen ? null : this.knownAllergen,
+      productCharacteristic:
+          productCharacteristic ? null : this.productCharacteristic,
+      instance: instance ? null : this.instance,
+      note: note ? null : this.note,
+    );
+  }
+
   @override
   NutritionProduct clone() => throw UnimplementedError();
   @override
@@ -1125,6 +1301,76 @@ class NutritionProductNutrient extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'item':
+        return ['CodeableReference'];
+      case 'amount':
+        return ['Ratio'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [NutritionProductNutrient]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  NutritionProductNutrient createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'item':
+        {
+          return copyWith(item: CodeableReference.empty());
+        }
+      case 'amount':
+        {
+          return copyWith(amount: <Ratio>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  NutritionProductNutrient clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool item = false,
+    bool amount = false,
+  }) {
+    return NutritionProductNutrient(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      item: item ? null : this.item,
+      amount: amount ? null : this.amount,
+    );
+  }
+
   @override
   NutritionProductNutrient clone() => throw UnimplementedError();
   @override
@@ -1486,6 +1732,75 @@ class NutritionProductIngredient extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'item':
+        return ['CodeableReference'];
+      case 'amount':
+        return ['Ratio'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [NutritionProductIngredient]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  NutritionProductIngredient createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'item':
+        {
+          return copyWith(item: CodeableReference.empty());
+        }
+      case 'amount':
+        {
+          return copyWith(amount: <Ratio>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  NutritionProductIngredient clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool amount = false,
+  }) {
+    return NutritionProductIngredient(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      item: item,
+      amount: amount ? null : this.amount,
+    );
   }
 
   @override
@@ -1950,6 +2265,116 @@ class NutritionProductProductCharacteristic extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'value':
+      case 'valueX':
+        return [
+          'CodeableConcept',
+          'FhirString',
+          'Quantity',
+          'FhirBase64Binary',
+          'Attachment',
+          'FhirBoolean',
+        ];
+      case 'valueCodeableConcept':
+        return ['CodeableConcept'];
+      case 'valueString':
+        return ['FhirString'];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueBase64Binary':
+        return ['FhirBase64Binary'];
+      case 'valueAttachment':
+        return ['Attachment'];
+      case 'valueBoolean':
+        return ['FhirBoolean'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [NutritionProductProductCharacteristic]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  NutritionProductProductCharacteristic createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueCodeableConcept':
+        {
+          return copyWith(valueX: CodeableConcept.empty());
+        }
+      case 'valueString':
+        {
+          return copyWith(valueX: FhirString.empty());
+        }
+      case 'valueQuantity':
+        {
+          return copyWith(valueX: Quantity.empty());
+        }
+      case 'valueBase64Binary':
+        {
+          return copyWith(valueX: FhirBase64Binary.empty());
+        }
+      case 'valueAttachment':
+        {
+          return copyWith(valueX: Attachment.empty());
+        }
+      case 'valueBoolean':
+        {
+          return copyWith(valueX: FhirBoolean.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  NutritionProductProductCharacteristic clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return NutritionProductProductCharacteristic(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      valueX: valueX,
+    );
+  }
+
   @override
   NutritionProductProductCharacteristic clone() => throw UnimplementedError();
   @override
@@ -2383,6 +2808,100 @@ class NutritionProductInstance extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'quantity':
+        return ['Quantity'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'lotNumber':
+        return ['FhirString'];
+      case 'expiry':
+        return ['FhirDateTime'];
+      case 'useBy':
+        return ['FhirDateTime'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [NutritionProductInstance]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  NutritionProductInstance createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'lotNumber':
+        {
+          return copyWith(lotNumber: FhirString.empty());
+        }
+      case 'expiry':
+        {
+          return copyWith(expiry: FhirDateTime.empty());
+        }
+      case 'useBy':
+        {
+          return copyWith(useBy: FhirDateTime.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  NutritionProductInstance clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool quantity = false,
+    bool identifier = false,
+    bool lotNumber = false,
+    bool expiry = false,
+    bool useBy = false,
+  }) {
+    return NutritionProductInstance(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      quantity: quantity ? null : this.quantity,
+      identifier: identifier ? null : this.identifier,
+      lotNumber: lotNumber ? null : this.lotNumber,
+      expiry: expiry ? null : this.expiry,
+      useBy: useBy ? null : this.useBy,
+    );
   }
 
   @override

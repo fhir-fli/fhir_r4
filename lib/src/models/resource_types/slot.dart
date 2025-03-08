@@ -631,6 +631,184 @@ class Slot extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'serviceCategory':
+        return ['CodeableConcept'];
+      case 'serviceType':
+        return ['CodeableConcept'];
+      case 'specialty':
+        return ['CodeableConcept'];
+      case 'appointmentType':
+        return ['CodeableConcept'];
+      case 'schedule':
+        return ['Reference'];
+      case 'status':
+        return ['FhirCode'];
+      case 'start':
+        return ['FhirInstant'];
+      case 'end':
+        return ['FhirInstant'];
+      case 'overbooked':
+        return ['FhirBoolean'];
+      case 'comment':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Slot]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Slot createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'serviceCategory':
+        {
+          return copyWith(serviceCategory: <CodeableConcept>[]);
+        }
+      case 'serviceType':
+        {
+          return copyWith(serviceType: <CodeableConcept>[]);
+        }
+      case 'specialty':
+        {
+          return copyWith(specialty: <CodeableConcept>[]);
+        }
+      case 'appointmentType':
+        {
+          return copyWith(appointmentType: CodeableConcept.empty());
+        }
+      case 'schedule':
+        {
+          return copyWith(schedule: Reference.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: SlotStatus.empty());
+        }
+      case 'start':
+        {
+          return copyWith(start: FhirInstant.empty());
+        }
+      case 'end':
+        {
+          return copyWith(end: FhirInstant.empty());
+        }
+      case 'overbooked':
+        {
+          return copyWith(overbooked: FhirBoolean.empty());
+        }
+      case 'comment':
+        {
+          return copyWith(comment: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Slot clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool serviceCategory = false,
+    bool serviceType = false,
+    bool specialty = false,
+    bool appointmentType = false,
+    bool overbooked = false,
+    bool comment = false,
+  }) {
+    return Slot(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      serviceCategory: serviceCategory ? null : this.serviceCategory,
+      serviceType: serviceType ? null : this.serviceType,
+      specialty: specialty ? null : this.specialty,
+      appointmentType: appointmentType ? null : this.appointmentType,
+      schedule: schedule,
+      status: status,
+      start: start,
+      end: end,
+      overbooked: overbooked ? null : this.overbooked,
+      comment: comment ? null : this.comment,
+    );
+  }
+
   @override
   Slot clone() => throw UnimplementedError();
   @override

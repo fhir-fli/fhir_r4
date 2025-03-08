@@ -870,6 +870,256 @@ class SubstanceDefinition extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'version':
+        return ['FhirString'];
+      case 'status':
+        return ['CodeableConcept'];
+      case 'classification':
+        return ['CodeableConcept'];
+      case 'domain':
+        return ['CodeableConcept'];
+      case 'grade':
+        return ['CodeableConcept'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'informationSource':
+        return ['Reference'];
+      case 'note':
+        return ['Annotation'];
+      case 'manufacturer':
+        return ['Reference'];
+      case 'supplier':
+        return ['Reference'];
+      case 'moiety':
+        return ['SubstanceDefinitionMoiety'];
+      case 'property':
+        return ['SubstanceDefinitionProperty'];
+      case 'molecularWeight':
+        return ['SubstanceDefinitionMolecularWeight'];
+      case 'structure':
+        return ['SubstanceDefinitionStructure'];
+      case 'code':
+        return ['SubstanceDefinitionCode'];
+      case 'name':
+        return ['SubstanceDefinitionName'];
+      case 'relationship':
+        return ['SubstanceDefinitionRelationship'];
+      case 'sourceMaterial':
+        return ['SubstanceDefinitionSourceMaterial'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [SubstanceDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubstanceDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: CodeableConcept.empty());
+        }
+      case 'classification':
+        {
+          return copyWith(classification: <CodeableConcept>[]);
+        }
+      case 'domain':
+        {
+          return copyWith(domain: CodeableConcept.empty());
+        }
+      case 'grade':
+        {
+          return copyWith(grade: <CodeableConcept>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'informationSource':
+        {
+          return copyWith(informationSource: <Reference>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'manufacturer':
+        {
+          return copyWith(manufacturer: <Reference>[]);
+        }
+      case 'supplier':
+        {
+          return copyWith(supplier: <Reference>[]);
+        }
+      case 'moiety':
+        {
+          return copyWith(moiety: <SubstanceDefinitionMoiety>[]);
+        }
+      case 'property':
+        {
+          return copyWith(property: <SubstanceDefinitionProperty>[]);
+        }
+      case 'molecularWeight':
+        {
+          return copyWith(
+            molecularWeight: <SubstanceDefinitionMolecularWeight>[],
+          );
+        }
+      case 'structure':
+        {
+          return copyWith(structure: SubstanceDefinitionStructure.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: <SubstanceDefinitionCode>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: <SubstanceDefinitionName>[]);
+        }
+      case 'relationship':
+        {
+          return copyWith(relationship: <SubstanceDefinitionRelationship>[]);
+        }
+      case 'sourceMaterial':
+        {
+          return copyWith(
+            sourceMaterial: SubstanceDefinitionSourceMaterial.empty(),
+          );
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubstanceDefinition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool version = false,
+    bool status = false,
+    bool classification = false,
+    bool domain = false,
+    bool grade = false,
+    bool description = false,
+    bool informationSource = false,
+    bool note = false,
+    bool manufacturer = false,
+    bool supplier = false,
+    bool moiety = false,
+    bool property = false,
+    bool molecularWeight = false,
+    bool structure = false,
+    bool code = false,
+    bool name = false,
+    bool relationship = false,
+    bool sourceMaterial = false,
+  }) {
+    return SubstanceDefinition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      version: version ? null : this.version,
+      status: status ? null : this.status,
+      classification: classification ? null : this.classification,
+      domain: domain ? null : this.domain,
+      grade: grade ? null : this.grade,
+      description: description ? null : this.description,
+      informationSource: informationSource ? null : this.informationSource,
+      note: note ? null : this.note,
+      manufacturer: manufacturer ? null : this.manufacturer,
+      supplier: supplier ? null : this.supplier,
+      moiety: moiety ? null : this.moiety,
+      property: property ? null : this.property,
+      molecularWeight: molecularWeight ? null : this.molecularWeight,
+      structure: structure ? null : this.structure,
+      code: code ? null : this.code,
+      name: name ? null : this.name,
+      relationship: relationship ? null : this.relationship,
+      sourceMaterial: sourceMaterial ? null : this.sourceMaterial,
+    );
+  }
+
   @override
   SubstanceDefinition clone() => throw UnimplementedError();
   @override
@@ -1243,7 +1493,8 @@ class SubstanceDefinitionMoiety extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory SubstanceDefinitionMoiety.empty() => const SubstanceDefinitionMoiety();
+  factory SubstanceDefinitionMoiety.empty() =>
+      const SubstanceDefinitionMoiety();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionMoiety.fromJson(
@@ -1677,6 +1928,135 @@ class SubstanceDefinitionMoiety extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'role':
+        return ['CodeableConcept'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'name':
+        return ['FhirString'];
+      case 'stereochemistry':
+        return ['CodeableConcept'];
+      case 'opticalActivity':
+        return ['CodeableConcept'];
+      case 'molecularFormula':
+        return ['FhirString'];
+      case 'amount':
+      case 'amountX':
+        return ['Quantity', 'FhirString'];
+      case 'amountQuantity':
+        return ['Quantity'];
+      case 'amountString':
+        return ['FhirString'];
+      case 'measurementType':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [SubstanceDefinitionMoiety]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubstanceDefinitionMoiety createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'role':
+        {
+          return copyWith(role: CodeableConcept.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: Identifier.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'stereochemistry':
+        {
+          return copyWith(stereochemistry: CodeableConcept.empty());
+        }
+      case 'opticalActivity':
+        {
+          return copyWith(opticalActivity: CodeableConcept.empty());
+        }
+      case 'molecularFormula':
+        {
+          return copyWith(molecularFormula: FhirString.empty());
+        }
+      case 'amount':
+      case 'amountX':
+      case 'amountQuantity':
+        {
+          return copyWith(amountX: Quantity.empty());
+        }
+      case 'amountString':
+        {
+          return copyWith(amountX: FhirString.empty());
+        }
+      case 'measurementType':
+        {
+          return copyWith(measurementType: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubstanceDefinitionMoiety clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool role = false,
+    bool identifier = false,
+    bool name = false,
+    bool stereochemistry = false,
+    bool opticalActivity = false,
+    bool molecularFormula = false,
+    bool amount = false,
+    bool measurementType = false,
+  }) {
+    return SubstanceDefinitionMoiety(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      role: role ? null : this.role,
+      identifier: identifier ? null : this.identifier,
+      name: name ? null : this.name,
+      stereochemistry: stereochemistry ? null : this.stereochemistry,
+      opticalActivity: opticalActivity ? null : this.opticalActivity,
+      molecularFormula: molecularFormula ? null : this.molecularFormula,
+      amountX: amount ? null : amountX,
+      measurementType: measurementType ? null : this.measurementType,
+    );
   }
 
   @override
@@ -2164,6 +2544,110 @@ class SubstanceDefinitionProperty extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'value':
+      case 'valueX':
+        return [
+          'CodeableConcept',
+          'Quantity',
+          'FhirDate',
+          'FhirBoolean',
+          'Attachment',
+        ];
+      case 'valueCodeableConcept':
+        return ['CodeableConcept'];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueDate':
+        return ['FhirDate'];
+      case 'valueBoolean':
+        return ['FhirBoolean'];
+      case 'valueAttachment':
+        return ['Attachment'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [SubstanceDefinitionProperty]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubstanceDefinitionProperty createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueCodeableConcept':
+        {
+          return copyWith(valueX: CodeableConcept.empty());
+        }
+      case 'valueQuantity':
+        {
+          return copyWith(valueX: Quantity.empty());
+        }
+      case 'valueDate':
+        {
+          return copyWith(valueX: FhirDate.empty());
+        }
+      case 'valueBoolean':
+        {
+          return copyWith(valueX: FhirBoolean.empty());
+        }
+      case 'valueAttachment':
+        {
+          return copyWith(valueX: Attachment.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubstanceDefinitionProperty clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool value = false,
+  }) {
+    return SubstanceDefinitionProperty(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      valueX: value ? null : valueX,
+    );
+  }
+
   @override
   SubstanceDefinitionProperty clone() => throw UnimplementedError();
   @override
@@ -2545,6 +3029,83 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'method':
+        return ['CodeableConcept'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'amount':
+        return ['Quantity'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [SubstanceDefinitionMolecularWeight]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubstanceDefinitionMolecularWeight createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'method':
+        {
+          return copyWith(method: CodeableConcept.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'amount':
+        {
+          return copyWith(amount: Quantity.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubstanceDefinitionMolecularWeight clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool method = false,
+    bool type = false,
+  }) {
+    return SubstanceDefinitionMolecularWeight(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      method: method ? null : this.method,
+      type: type ? null : this.type,
+      amount: amount,
+    );
   }
 
   @override
@@ -3075,6 +3636,129 @@ class SubstanceDefinitionStructure extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'stereochemistry':
+        return ['CodeableConcept'];
+      case 'opticalActivity':
+        return ['CodeableConcept'];
+      case 'molecularFormula':
+        return ['FhirString'];
+      case 'molecularFormulaByMoiety':
+        return ['FhirString'];
+      case 'molecularWeight':
+        return ['SubstanceDefinitionMolecularWeight'];
+      case 'technique':
+        return ['CodeableConcept'];
+      case 'sourceDocument':
+        return ['Reference'];
+      case 'representation':
+        return ['SubstanceDefinitionRepresentation'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [SubstanceDefinitionStructure]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubstanceDefinitionStructure createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'stereochemistry':
+        {
+          return copyWith(stereochemistry: CodeableConcept.empty());
+        }
+      case 'opticalActivity':
+        {
+          return copyWith(opticalActivity: CodeableConcept.empty());
+        }
+      case 'molecularFormula':
+        {
+          return copyWith(molecularFormula: FhirString.empty());
+        }
+      case 'molecularFormulaByMoiety':
+        {
+          return copyWith(molecularFormulaByMoiety: FhirString.empty());
+        }
+      case 'molecularWeight':
+        {
+          return copyWith(
+            molecularWeight: SubstanceDefinitionMolecularWeight.empty(),
+          );
+        }
+      case 'technique':
+        {
+          return copyWith(technique: <CodeableConcept>[]);
+        }
+      case 'sourceDocument':
+        {
+          return copyWith(sourceDocument: <Reference>[]);
+        }
+      case 'representation':
+        {
+          return copyWith(
+            representation: <SubstanceDefinitionRepresentation>[],
+          );
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubstanceDefinitionStructure clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool stereochemistry = false,
+    bool opticalActivity = false,
+    bool molecularFormula = false,
+    bool molecularFormulaByMoiety = false,
+    bool molecularWeight = false,
+    bool technique = false,
+    bool sourceDocument = false,
+    bool representation = false,
+  }) {
+    return SubstanceDefinitionStructure(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      stereochemistry: stereochemistry ? null : this.stereochemistry,
+      opticalActivity: opticalActivity ? null : this.opticalActivity,
+      molecularFormula: molecularFormula ? null : this.molecularFormula,
+      molecularFormulaByMoiety:
+          molecularFormulaByMoiety ? null : this.molecularFormulaByMoiety,
+      molecularWeight: molecularWeight ? null : this.molecularWeight,
+      technique: technique ? null : this.technique,
+      sourceDocument: sourceDocument ? null : this.sourceDocument,
+      representation: representation ? null : this.representation,
+    );
+  }
+
   @override
   SubstanceDefinitionStructure clone() => throw UnimplementedError();
   @override
@@ -3198,7 +3882,9 @@ class SubstanceDefinitionStructure extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        molecularFormulaByMoiety, o.molecularFormulaByMoiety,)) {
+      molecularFormulaByMoiety,
+      o.molecularFormulaByMoiety,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(molecularWeight, o.molecularWeight)) {
@@ -3551,6 +4237,92 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'representation':
+        return ['FhirString'];
+      case 'format':
+        return ['CodeableConcept'];
+      case 'document':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [SubstanceDefinitionRepresentation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubstanceDefinitionRepresentation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'representation':
+        {
+          return copyWith(representation: FhirString.empty());
+        }
+      case 'format':
+        {
+          return copyWith(format: CodeableConcept.empty());
+        }
+      case 'document':
+        {
+          return copyWith(document: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubstanceDefinitionRepresentation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool representation = false,
+    bool format = false,
+    bool document = false,
+  }) {
+    return SubstanceDefinitionRepresentation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      representation: representation ? null : this.representation,
+      format: format ? null : this.format,
+      document: document ? null : this.document,
+    );
   }
 
   @override
@@ -4003,6 +4775,100 @@ class SubstanceDefinitionCode extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'status':
+        return ['CodeableConcept'];
+      case 'statusDate':
+        return ['FhirDateTime'];
+      case 'note':
+        return ['Annotation'];
+      case 'source':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [SubstanceDefinitionCode]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubstanceDefinitionCode createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: CodeableConcept.empty());
+        }
+      case 'statusDate':
+        {
+          return copyWith(statusDate: FhirDateTime.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'source':
+        {
+          return copyWith(source: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubstanceDefinitionCode clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool status = false,
+    bool statusDate = false,
+    bool note = false,
+    bool source = false,
+  }) {
+    return SubstanceDefinitionCode(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      status: status ? null : this.status,
+      statusDate: statusDate ? null : this.statusDate,
+      note: note ? null : this.note,
+      source: source ? null : this.source,
+    );
   }
 
   @override
@@ -4650,6 +5516,147 @@ class SubstanceDefinitionName extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'status':
+        return ['CodeableConcept'];
+      case 'preferred':
+        return ['FhirBoolean'];
+      case 'language':
+        return ['CodeableConcept'];
+      case 'domain':
+        return ['CodeableConcept'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'synonym':
+        return ['SubstanceDefinitionName'];
+      case 'translation':
+        return ['SubstanceDefinitionName'];
+      case 'official':
+        return ['SubstanceDefinitionOfficial'];
+      case 'source':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [SubstanceDefinitionName]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubstanceDefinitionName createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: CodeableConcept.empty());
+        }
+      case 'preferred':
+        {
+          return copyWith(preferred: FhirBoolean.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: <CodeableConcept>[]);
+        }
+      case 'domain':
+        {
+          return copyWith(domain: <CodeableConcept>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'synonym':
+        {
+          return copyWith(synonym: <SubstanceDefinitionName>[]);
+        }
+      case 'translation':
+        {
+          return copyWith(translation: <SubstanceDefinitionName>[]);
+        }
+      case 'official':
+        {
+          return copyWith(official: <SubstanceDefinitionOfficial>[]);
+        }
+      case 'source':
+        {
+          return copyWith(source: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubstanceDefinitionName clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool status = false,
+    bool preferred = false,
+    bool language = false,
+    bool domain = false,
+    bool jurisdiction = false,
+    bool synonym = false,
+    bool translation = false,
+    bool official = false,
+    bool source = false,
+  }) {
+    return SubstanceDefinitionName(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      type: type ? null : this.type,
+      status: status ? null : this.status,
+      preferred: preferred ? null : this.preferred,
+      language: language ? null : this.language,
+      domain: domain ? null : this.domain,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      synonym: synonym ? null : this.synonym,
+      translation: translation ? null : this.translation,
+      official: official ? null : this.official,
+      source: source ? null : this.source,
+    );
+  }
+
   @override
   SubstanceDefinitionName clone() => throw UnimplementedError();
   @override
@@ -4873,7 +5880,8 @@ class SubstanceDefinitionOfficial extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory SubstanceDefinitionOfficial.empty() => const SubstanceDefinitionOfficial();
+  factory SubstanceDefinitionOfficial.empty() =>
+      const SubstanceDefinitionOfficial();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionOfficial.fromJson(
@@ -5147,6 +6155,84 @@ class SubstanceDefinitionOfficial extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'authority':
+        return ['CodeableConcept'];
+      case 'status':
+        return ['CodeableConcept'];
+      case 'date':
+        return ['FhirDateTime'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [SubstanceDefinitionOfficial]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubstanceDefinitionOfficial createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'authority':
+        {
+          return copyWith(authority: CodeableConcept.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: CodeableConcept.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubstanceDefinitionOfficial clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool authority = false,
+    bool status = false,
+    bool date = false,
+  }) {
+    return SubstanceDefinitionOfficial(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      authority: authority ? null : this.authority,
+      status: status ? null : this.status,
+      date: date ? null : this.date,
+    );
   }
 
   @override
@@ -5486,7 +6572,9 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     if (substanceDefinitionX != null) {
       final fhirType = substanceDefinitionX!.fhirType;
       addField(
-          'substanceDefinition${fhirType.capitalize()}', substanceDefinitionX,);
+        'substanceDefinition${fhirType.capitalize()}',
+        substanceDefinitionX,
+      );
     }
 
     addField('type', type);
@@ -5741,6 +6829,144 @@ class SubstanceDefinitionRelationship extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'substanceDefinition':
+      case 'substanceDefinitionX':
+        return ['Reference', 'CodeableConcept'];
+      case 'substanceDefinitionReference':
+        return ['Reference'];
+      case 'substanceDefinitionCodeableConcept':
+        return ['CodeableConcept'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'isDefining':
+        return ['FhirBoolean'];
+      case 'amount':
+      case 'amountX':
+        return ['Quantity', 'Ratio', 'FhirString'];
+      case 'amountQuantity':
+        return ['Quantity'];
+      case 'amountRatio':
+        return ['Ratio'];
+      case 'amountString':
+        return ['FhirString'];
+      case 'ratioHighLimitAmount':
+        return ['Ratio'];
+      case 'comparator':
+        return ['CodeableConcept'];
+      case 'source':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [SubstanceDefinitionRelationship]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubstanceDefinitionRelationship createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'substanceDefinition':
+      case 'substanceDefinitionX':
+      case 'substanceDefinitionReference':
+        {
+          return copyWith(substanceDefinitionX: Reference.empty());
+        }
+      case 'substanceDefinitionCodeableConcept':
+        {
+          return copyWith(substanceDefinitionX: CodeableConcept.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'isDefining':
+        {
+          return copyWith(isDefining: FhirBoolean.empty());
+        }
+      case 'amount':
+      case 'amountX':
+      case 'amountQuantity':
+        {
+          return copyWith(amountX: Quantity.empty());
+        }
+      case 'amountRatio':
+        {
+          return copyWith(amountX: Ratio.empty());
+        }
+      case 'amountString':
+        {
+          return copyWith(amountX: FhirString.empty());
+        }
+      case 'ratioHighLimitAmount':
+        {
+          return copyWith(ratioHighLimitAmount: Ratio.empty());
+        }
+      case 'comparator':
+        {
+          return copyWith(comparator: CodeableConcept.empty());
+        }
+      case 'source':
+        {
+          return copyWith(source: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubstanceDefinitionRelationship clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool substanceDefinition = false,
+    bool isDefining = false,
+    bool amount = false,
+    bool ratioHighLimitAmount = false,
+    bool comparator = false,
+    bool source = false,
+  }) {
+    return SubstanceDefinitionRelationship(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      substanceDefinitionX: substanceDefinition ? null : substanceDefinitionX,
+      type: type,
+      isDefining: isDefining ? null : this.isDefining,
+      amountX: amount ? null : amountX,
+      ratioHighLimitAmount:
+          ratioHighLimitAmount ? null : this.ratioHighLimitAmount,
+      comparator: comparator ? null : this.comparator,
+      source: source ? null : this.source,
+    );
   }
 
   @override
@@ -6223,6 +7449,100 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'genus':
+        return ['CodeableConcept'];
+      case 'species':
+        return ['CodeableConcept'];
+      case 'part':
+        return ['CodeableConcept'];
+      case 'countryOfOrigin':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [SubstanceDefinitionSourceMaterial]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubstanceDefinitionSourceMaterial createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'genus':
+        {
+          return copyWith(genus: CodeableConcept.empty());
+        }
+      case 'species':
+        {
+          return copyWith(species: CodeableConcept.empty());
+        }
+      case 'part':
+        {
+          return copyWith(part_: CodeableConcept.empty());
+        }
+      case 'countryOfOrigin':
+        {
+          return copyWith(countryOfOrigin: <CodeableConcept>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubstanceDefinitionSourceMaterial clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool genus = false,
+    bool species = false,
+    bool part_ = false,
+    bool countryOfOrigin = false,
+  }) {
+    return SubstanceDefinitionSourceMaterial(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      genus: genus ? null : this.genus,
+      species: species ? null : this.species,
+      part_: part_ ? null : this.part_,
+      countryOfOrigin: countryOfOrigin ? null : this.countryOfOrigin,
+    );
   }
 
   @override

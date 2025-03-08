@@ -39,7 +39,8 @@ class PackagedProductDefinition extends DomainResource {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory PackagedProductDefinition.empty() => const PackagedProductDefinition();
+  factory PackagedProductDefinition.empty() =>
+      const PackagedProductDefinition();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PackagedProductDefinition.fromJson(
@@ -738,6 +739,217 @@ class PackagedProductDefinition extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'name':
+        return ['FhirString'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'packageFor':
+        return ['Reference'];
+      case 'status':
+        return ['CodeableConcept'];
+      case 'statusDate':
+        return ['FhirDateTime'];
+      case 'containedItemQuantity':
+        return ['Quantity'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'legalStatusOfSupply':
+        return ['PackagedProductDefinitionLegalStatusOfSupply'];
+      case 'marketingStatus':
+        return ['MarketingStatus'];
+      case 'characteristic':
+        return ['CodeableConcept'];
+      case 'copackagedIndicator':
+        return ['FhirBoolean'];
+      case 'manufacturer':
+        return ['Reference'];
+      case 'package':
+        return ['PackagedProductDefinitionPackage'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [PackagedProductDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  PackagedProductDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'packageFor':
+        {
+          return copyWith(packageFor: <Reference>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: CodeableConcept.empty());
+        }
+      case 'statusDate':
+        {
+          return copyWith(statusDate: FhirDateTime.empty());
+        }
+      case 'containedItemQuantity':
+        {
+          return copyWith(containedItemQuantity: <Quantity>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'legalStatusOfSupply':
+        {
+          return copyWith(
+            legalStatusOfSupply: <PackagedProductDefinitionLegalStatusOfSupply>[],
+          );
+        }
+      case 'marketingStatus':
+        {
+          return copyWith(marketingStatus: <MarketingStatus>[]);
+        }
+      case 'characteristic':
+        {
+          return copyWith(characteristic: <CodeableConcept>[]);
+        }
+      case 'copackagedIndicator':
+        {
+          return copyWith(copackagedIndicator: FhirBoolean.empty());
+        }
+      case 'manufacturer':
+        {
+          return copyWith(manufacturer: <Reference>[]);
+        }
+      case 'package':
+        {
+          return copyWith(package: PackagedProductDefinitionPackage.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  PackagedProductDefinition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool name = false,
+    bool type = false,
+    bool packageFor = false,
+    bool status = false,
+    bool statusDate = false,
+    bool containedItemQuantity = false,
+    bool description = false,
+    bool legalStatusOfSupply = false,
+    bool marketingStatus = false,
+    bool characteristic = false,
+    bool copackagedIndicator = false,
+    bool manufacturer = false,
+    bool package = false,
+  }) {
+    return PackagedProductDefinition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      name: name ? null : this.name,
+      type: type ? null : this.type,
+      packageFor: packageFor ? null : this.packageFor,
+      status: status ? null : this.status,
+      statusDate: statusDate ? null : this.statusDate,
+      containedItemQuantity:
+          containedItemQuantity ? null : this.containedItemQuantity,
+      description: description ? null : this.description,
+      legalStatusOfSupply:
+          legalStatusOfSupply ? null : this.legalStatusOfSupply,
+      marketingStatus: marketingStatus ? null : this.marketingStatus,
+      characteristic: characteristic ? null : this.characteristic,
+      copackagedIndicator:
+          copackagedIndicator ? null : this.copackagedIndicator,
+      manufacturer: manufacturer ? null : this.manufacturer,
+      package: package ? null : this.package,
+    );
+  }
+
   @override
   PackagedProductDefinition clone() => throw UnimplementedError();
   @override
@@ -1276,6 +1488,78 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [PackagedProductDefinitionLegalStatusOfSupply]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  PackagedProductDefinitionLegalStatusOfSupply createProperty(
+    String propertyName,
+  ) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  PackagedProductDefinitionLegalStatusOfSupply clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool jurisdiction = false,
+  }) {
+    return PackagedProductDefinitionLegalStatusOfSupply(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+    );
   }
 
   @override
@@ -1873,6 +2157,144 @@ class PackagedProductDefinitionPackage extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'quantity':
+        return ['FhirInteger'];
+      case 'material':
+        return ['CodeableConcept'];
+      case 'alternateMaterial':
+        return ['CodeableConcept'];
+      case 'shelfLifeStorage':
+        return ['PackagedProductDefinitionShelfLifeStorage'];
+      case 'manufacturer':
+        return ['Reference'];
+      case 'property':
+        return ['PackagedProductDefinitionProperty'];
+      case 'containedItem':
+        return ['PackagedProductDefinitionContainedItem'];
+      case 'package':
+        return ['PackagedProductDefinitionPackage'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [PackagedProductDefinitionPackage]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  PackagedProductDefinitionPackage createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: FhirInteger.empty());
+        }
+      case 'material':
+        {
+          return copyWith(material: <CodeableConcept>[]);
+        }
+      case 'alternateMaterial':
+        {
+          return copyWith(alternateMaterial: <CodeableConcept>[]);
+        }
+      case 'shelfLifeStorage':
+        {
+          return copyWith(
+            shelfLifeStorage: <PackagedProductDefinitionShelfLifeStorage>[],
+          );
+        }
+      case 'manufacturer':
+        {
+          return copyWith(manufacturer: <Reference>[]);
+        }
+      case 'property':
+        {
+          return copyWith(property: <PackagedProductDefinitionProperty>[]);
+        }
+      case 'containedItem':
+        {
+          return copyWith(
+            containedItem: <PackagedProductDefinitionContainedItem>[],
+          );
+        }
+      case 'package':
+        {
+          return copyWith(package: <PackagedProductDefinitionPackage>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  PackagedProductDefinitionPackage clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool type = false,
+    bool quantity = false,
+    bool material = false,
+    bool alternateMaterial = false,
+    bool shelfLifeStorage = false,
+    bool manufacturer = false,
+    bool property = false,
+    bool containedItem = false,
+    bool package = false,
+  }) {
+    return PackagedProductDefinitionPackage(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      type: type ? null : this.type,
+      quantity: quantity ? null : this.quantity,
+      material: material ? null : this.material,
+      alternateMaterial: alternateMaterial ? null : this.alternateMaterial,
+      shelfLifeStorage: shelfLifeStorage ? null : this.shelfLifeStorage,
+      manufacturer: manufacturer ? null : this.manufacturer,
+      property: property ? null : this.property,
+      containedItem: containedItem ? null : this.containedItem,
+      package: package ? null : this.package,
+    );
+  }
+
   @override
   PackagedProductDefinitionPackage clone() => throw UnimplementedError();
   @override
@@ -2425,6 +2847,99 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'period':
+      case 'periodX':
+        return ['FhirDuration', 'FhirString'];
+      case 'periodDuration':
+        return ['FhirDuration'];
+      case 'periodString':
+        return ['FhirString'];
+      case 'specialPrecautionsForStorage':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [PackagedProductDefinitionShelfLifeStorage]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  PackagedProductDefinitionShelfLifeStorage createProperty(
+    String propertyName,
+  ) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'period':
+      case 'periodX':
+      case 'periodDuration':
+        {
+          return copyWith(periodX: FhirDuration.empty());
+        }
+      case 'periodString':
+        {
+          return copyWith(periodX: FhirString.empty());
+        }
+      case 'specialPrecautionsForStorage':
+        {
+          return copyWith(specialPrecautionsForStorage: <CodeableConcept>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  PackagedProductDefinitionShelfLifeStorage clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool period = false,
+    bool specialPrecautionsForStorage = false,
+  }) {
+    return PackagedProductDefinitionShelfLifeStorage(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      periodX: period ? null : periodX,
+      specialPrecautionsForStorage: specialPrecautionsForStorage
+          ? null
+          : this.specialPrecautionsForStorage,
+    );
+  }
+
   @override
   PackagedProductDefinitionShelfLifeStorage clone() =>
       throw UnimplementedError();
@@ -2880,6 +3395,110 @@ class PackagedProductDefinitionProperty extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'value':
+      case 'valueX':
+        return [
+          'CodeableConcept',
+          'Quantity',
+          'FhirDate',
+          'FhirBoolean',
+          'Attachment',
+        ];
+      case 'valueCodeableConcept':
+        return ['CodeableConcept'];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueDate':
+        return ['FhirDate'];
+      case 'valueBoolean':
+        return ['FhirBoolean'];
+      case 'valueAttachment':
+        return ['Attachment'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [PackagedProductDefinitionProperty]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  PackagedProductDefinitionProperty createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueCodeableConcept':
+        {
+          return copyWith(valueX: CodeableConcept.empty());
+        }
+      case 'valueQuantity':
+        {
+          return copyWith(valueX: Quantity.empty());
+        }
+      case 'valueDate':
+        {
+          return copyWith(valueX: FhirDate.empty());
+        }
+      case 'valueBoolean':
+        {
+          return copyWith(valueX: FhirBoolean.empty());
+        }
+      case 'valueAttachment':
+        {
+          return copyWith(valueX: Attachment.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  PackagedProductDefinitionProperty clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool value = false,
+  }) {
+    return PackagedProductDefinitionProperty(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      valueX: value ? null : valueX,
+    );
+  }
+
   @override
   PackagedProductDefinitionProperty clone() => throw UnimplementedError();
   @override
@@ -3238,6 +3857,75 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'item':
+        return ['CodeableReference'];
+      case 'amount':
+        return ['Quantity'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [PackagedProductDefinitionContainedItem]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  PackagedProductDefinitionContainedItem createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'item':
+        {
+          return copyWith(item: CodeableReference.empty());
+        }
+      case 'amount':
+        {
+          return copyWith(amount: Quantity.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  PackagedProductDefinitionContainedItem clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool amount = false,
+  }) {
+    return PackagedProductDefinitionContainedItem(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      item: item,
+      amount: amount ? null : this.amount,
+    );
   }
 
   @override

@@ -956,6 +956,285 @@ class Media extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'basedOn':
+        return ['Reference'];
+      case 'partOf':
+        return ['Reference'];
+      case 'status':
+        return ['FhirCode'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'modality':
+        return ['CodeableConcept'];
+      case 'view':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'created':
+      case 'createdX':
+        return ['FhirDateTime', 'Period'];
+      case 'createdDateTime':
+        return ['FhirDateTime'];
+      case 'createdPeriod':
+        return ['Period'];
+      case 'issued':
+        return ['FhirInstant'];
+      case 'operator':
+        return ['Reference'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'bodySite':
+        return ['CodeableConcept'];
+      case 'deviceName':
+        return ['FhirString'];
+      case 'device':
+        return ['Reference'];
+      case 'height':
+        return ['FhirPositiveInt'];
+      case 'width':
+        return ['FhirPositiveInt'];
+      case 'frames':
+        return ['FhirPositiveInt'];
+      case 'duration':
+        return ['FhirDecimal'];
+      case 'content':
+        return ['Attachment'];
+      case 'note':
+        return ['Annotation'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Media]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Media createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'basedOn':
+        {
+          return copyWith(basedOn: <Reference>[]);
+        }
+      case 'partOf':
+        {
+          return copyWith(partOf: <Reference>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: EventStatus.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'modality':
+        {
+          return copyWith(modality: CodeableConcept.empty());
+        }
+      case 'view':
+        {
+          return copyWith(view: CodeableConcept.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'created':
+      case 'createdX':
+      case 'createdDateTime':
+        {
+          return copyWith(createdX: FhirDateTime.empty());
+        }
+      case 'createdPeriod':
+        {
+          return copyWith(createdX: Period.empty());
+        }
+      case 'issued':
+        {
+          return copyWith(issued: FhirInstant.empty());
+        }
+      case 'operator':
+        {
+          return copyWith(operator_: Reference.empty());
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: <CodeableConcept>[]);
+        }
+      case 'bodySite':
+        {
+          return copyWith(bodySite: CodeableConcept.empty());
+        }
+      case 'deviceName':
+        {
+          return copyWith(deviceName: FhirString.empty());
+        }
+      case 'device':
+        {
+          return copyWith(device: Reference.empty());
+        }
+      case 'height':
+        {
+          return copyWith(height: FhirPositiveInt.empty());
+        }
+      case 'width':
+        {
+          return copyWith(width: FhirPositiveInt.empty());
+        }
+      case 'frames':
+        {
+          return copyWith(frames: FhirPositiveInt.empty());
+        }
+      case 'duration':
+        {
+          return copyWith(duration: FhirDecimal.empty());
+        }
+      case 'content':
+        {
+          return copyWith(content: Attachment.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Media clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool basedOn = false,
+    bool partOf = false,
+    bool type = false,
+    bool modality = false,
+    bool view = false,
+    bool subject = false,
+    bool encounter = false,
+    bool created = false,
+    bool issued = false,
+    bool operator_ = false,
+    bool reasonCode = false,
+    bool bodySite = false,
+    bool deviceName = false,
+    bool device = false,
+    bool height = false,
+    bool width = false,
+    bool frames = false,
+    bool duration = false,
+    bool note = false,
+  }) {
+    return Media(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      basedOn: basedOn ? null : this.basedOn,
+      partOf: partOf ? null : this.partOf,
+      status: status,
+      type: type ? null : this.type,
+      modality: modality ? null : this.modality,
+      view: view ? null : this.view,
+      subject: subject ? null : this.subject,
+      encounter: encounter ? null : this.encounter,
+      createdX: created ? null : createdX,
+      issued: issued ? null : this.issued,
+      operator_: operator_ ? null : this.operator_,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      bodySite: bodySite ? null : this.bodySite,
+      deviceName: deviceName ? null : this.deviceName,
+      device: device ? null : this.device,
+      height: height ? null : this.height,
+      width: width ? null : this.width,
+      frames: frames ? null : this.frames,
+      duration: duration ? null : this.duration,
+      content: content,
+      note: note ? null : this.note,
+    );
+  }
+
   @override
   Media clone() => throw UnimplementedError();
   @override

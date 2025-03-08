@@ -670,6 +670,197 @@ class MessageHeader extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'event':
+      case 'eventX':
+        return ['Coding', 'FhirUri'];
+      case 'eventCoding':
+        return ['Coding'];
+      case 'eventUri':
+        return ['FhirUri'];
+      case 'destination':
+        return ['MessageHeaderDestination'];
+      case 'sender':
+        return ['Reference'];
+      case 'enterer':
+        return ['Reference'];
+      case 'author':
+        return ['Reference'];
+      case 'source':
+        return ['MessageHeaderSource'];
+      case 'responsible':
+        return ['Reference'];
+      case 'reason':
+        return ['CodeableConcept'];
+      case 'response':
+        return ['MessageHeaderResponse'];
+      case 'focus':
+        return ['Reference'];
+      case 'definition':
+        return ['FhirCanonical'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MessageHeader]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MessageHeader createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'event':
+      case 'eventX':
+      case 'eventCoding':
+        {
+          return copyWith(eventX: Coding.empty());
+        }
+      case 'eventUri':
+        {
+          return copyWith(eventX: FhirUri.empty());
+        }
+      case 'destination':
+        {
+          return copyWith(destination: <MessageHeaderDestination>[]);
+        }
+      case 'sender':
+        {
+          return copyWith(sender: Reference.empty());
+        }
+      case 'enterer':
+        {
+          return copyWith(enterer: Reference.empty());
+        }
+      case 'author':
+        {
+          return copyWith(author: Reference.empty());
+        }
+      case 'source':
+        {
+          return copyWith(source: MessageHeaderSource.empty());
+        }
+      case 'responsible':
+        {
+          return copyWith(responsible: Reference.empty());
+        }
+      case 'reason':
+        {
+          return copyWith(reason: CodeableConcept.empty());
+        }
+      case 'response':
+        {
+          return copyWith(response: MessageHeaderResponse.empty());
+        }
+      case 'focus':
+        {
+          return copyWith(focus: <Reference>[]);
+        }
+      case 'definition':
+        {
+          return copyWith(definition: FhirCanonical.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MessageHeader clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool destination = false,
+    bool sender = false,
+    bool enterer = false,
+    bool author = false,
+    bool responsible = false,
+    bool reason = false,
+    bool response = false,
+    bool focus = false,
+    bool definition = false,
+  }) {
+    return MessageHeader(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      eventX: eventX,
+      destination: destination ? null : this.destination,
+      sender: sender ? null : this.sender,
+      enterer: enterer ? null : this.enterer,
+      author: author ? null : this.author,
+      source: source,
+      responsible: responsible ? null : this.responsible,
+      reason: reason ? null : this.reason,
+      response: response ? null : this.response,
+      focus: focus ? null : this.focus,
+      definition: definition ? null : this.definition,
+    );
+  }
+
   @override
   MessageHeader clone() => throw UnimplementedError();
   @override
@@ -1200,6 +1391,91 @@ class MessageHeaderDestination extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'target':
+        return ['Reference'];
+      case 'endpoint':
+        return ['FhirUrl'];
+      case 'receiver':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MessageHeaderDestination]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MessageHeaderDestination createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'target':
+        {
+          return copyWith(target: Reference.empty());
+        }
+      case 'endpoint':
+        {
+          return copyWith(endpoint: FhirUrl.empty());
+        }
+      case 'receiver':
+        {
+          return copyWith(receiver: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MessageHeaderDestination clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool name = false,
+    bool target = false,
+    bool receiver = false,
+  }) {
+    return MessageHeaderDestination(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name ? null : this.name,
+      target: target ? null : this.target,
+      endpoint: endpoint,
+      receiver: receiver ? null : this.receiver,
+    );
+  }
+
   @override
   MessageHeaderDestination clone() => throw UnimplementedError();
   @override
@@ -1645,6 +1921,99 @@ class MessageHeaderSource extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'software':
+        return ['FhirString'];
+      case 'version':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactPoint'];
+      case 'endpoint':
+        return ['FhirUrl'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MessageHeaderSource]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MessageHeaderSource createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'software':
+        {
+          return copyWith(software: FhirString.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: ContactPoint.empty());
+        }
+      case 'endpoint':
+        {
+          return copyWith(endpoint: FhirUrl.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MessageHeaderSource clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool name = false,
+    bool software = false,
+    bool version = false,
+    bool contact = false,
+  }) {
+    return MessageHeaderSource(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name ? null : this.name,
+      software: software ? null : this.software,
+      version: version ? null : this.version,
+      contact: contact ? null : this.contact,
+      endpoint: endpoint,
+    );
+  }
+
   @override
   MessageHeaderSource clone() => throw UnimplementedError();
   @override
@@ -2046,6 +2415,82 @@ class MessageHeaderResponse extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['FhirId'];
+      case 'code':
+        return ['FhirCode'];
+      case 'details':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MessageHeaderResponse]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MessageHeaderResponse createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: FhirId.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: ResponseType.empty());
+        }
+      case 'details':
+        {
+          return copyWith(details: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MessageHeaderResponse clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool details = false,
+  }) {
+    return MessageHeaderResponse(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier,
+      code: code,
+      details: details ? null : this.details,
+    );
   }
 
   @override

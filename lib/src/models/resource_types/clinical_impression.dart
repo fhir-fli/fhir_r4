@@ -925,6 +925,270 @@ class ClinicalImpression extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'statusReason':
+        return ['CodeableConcept'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'description':
+        return ['FhirString'];
+      case 'subject':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'effective':
+      case 'effectiveX':
+        return ['FhirDateTime', 'Period'];
+      case 'effectiveDateTime':
+        return ['FhirDateTime'];
+      case 'effectivePeriod':
+        return ['Period'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'assessor':
+        return ['Reference'];
+      case 'previous':
+        return ['Reference'];
+      case 'problem':
+        return ['Reference'];
+      case 'investigation':
+        return ['ClinicalImpressionInvestigation'];
+      case 'protocol':
+        return ['FhirUri'];
+      case 'summary':
+        return ['FhirString'];
+      case 'finding':
+        return ['ClinicalImpressionFinding'];
+      case 'prognosisCodeableConcept':
+        return ['CodeableConcept'];
+      case 'prognosisReference':
+        return ['Reference'];
+      case 'supportingInfo':
+        return ['Reference'];
+      case 'note':
+        return ['Annotation'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ClinicalImpression]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClinicalImpression createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: ClinicalImpressionStatus.empty());
+        }
+      case 'statusReason':
+        {
+          return copyWith(statusReason: CodeableConcept.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'effective':
+      case 'effectiveX':
+      case 'effectiveDateTime':
+        {
+          return copyWith(effectiveX: FhirDateTime.empty());
+        }
+      case 'effectivePeriod':
+        {
+          return copyWith(effectiveX: Period.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'assessor':
+        {
+          return copyWith(assessor: Reference.empty());
+        }
+      case 'previous':
+        {
+          return copyWith(previous: Reference.empty());
+        }
+      case 'problem':
+        {
+          return copyWith(problem: <Reference>[]);
+        }
+      case 'investigation':
+        {
+          return copyWith(investigation: <ClinicalImpressionInvestigation>[]);
+        }
+      case 'protocol':
+        {
+          return copyWith(protocol: <FhirUri>[]);
+        }
+      case 'summary':
+        {
+          return copyWith(summary: FhirString.empty());
+        }
+      case 'finding':
+        {
+          return copyWith(finding: <ClinicalImpressionFinding>[]);
+        }
+      case 'prognosisCodeableConcept':
+        {
+          return copyWith(prognosisCodeableConcept: <CodeableConcept>[]);
+        }
+      case 'prognosisReference':
+        {
+          return copyWith(prognosisReference: <Reference>[]);
+        }
+      case 'supportingInfo':
+        {
+          return copyWith(supportingInfo: <Reference>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClinicalImpression clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool statusReason = false,
+    bool code = false,
+    bool description = false,
+    bool encounter = false,
+    bool effective = false,
+    bool date = false,
+    bool assessor = false,
+    bool previous = false,
+    bool problem = false,
+    bool investigation = false,
+    bool protocol = false,
+    bool summary = false,
+    bool finding = false,
+    bool prognosisCodeableConcept = false,
+    bool prognosisReference = false,
+    bool supportingInfo = false,
+    bool note = false,
+  }) {
+    return ClinicalImpression(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      statusReason: statusReason ? null : this.statusReason,
+      code: code ? null : this.code,
+      description: description ? null : this.description,
+      subject: subject,
+      encounter: encounter ? null : this.encounter,
+      effectiveX: effective ? null : effectiveX,
+      date: date ? null : this.date,
+      assessor: assessor ? null : this.assessor,
+      previous: previous ? null : this.previous,
+      problem: problem ? null : this.problem,
+      investigation: investigation ? null : this.investigation,
+      protocol: protocol ? null : this.protocol,
+      summary: summary ? null : this.summary,
+      finding: finding ? null : this.finding,
+      prognosisCodeableConcept:
+          prognosisCodeableConcept ? null : this.prognosisCodeableConcept,
+      prognosisReference: prognosisReference ? null : this.prognosisReference,
+      supportingInfo: supportingInfo ? null : this.supportingInfo,
+      note: note ? null : this.note,
+    );
+  }
+
   @override
   ClinicalImpression clone() => throw UnimplementedError();
   @override
@@ -1535,6 +1799,75 @@ class ClinicalImpressionInvestigation extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'item':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ClinicalImpressionInvestigation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClinicalImpressionInvestigation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'item':
+        {
+          return copyWith(item: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClinicalImpressionInvestigation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool item = false,
+  }) {
+    return ClinicalImpressionInvestigation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      item: item ? null : this.item,
+    );
+  }
+
   @override
   ClinicalImpressionInvestigation clone() => throw UnimplementedError();
   @override
@@ -1645,7 +1978,8 @@ class ClinicalImpressionFinding extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ClinicalImpressionFinding.empty() => const ClinicalImpressionFinding();
+  factory ClinicalImpressionFinding.empty() =>
+      const ClinicalImpressionFinding();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalImpressionFinding.fromJson(
@@ -1920,6 +2254,85 @@ class ClinicalImpressionFinding extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'itemCodeableConcept':
+        return ['CodeableConcept'];
+      case 'itemReference':
+        return ['Reference'];
+      case 'basis':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ClinicalImpressionFinding]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClinicalImpressionFinding createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'itemCodeableConcept':
+        {
+          return copyWith(itemCodeableConcept: CodeableConcept.empty());
+        }
+      case 'itemReference':
+        {
+          return copyWith(itemReference: Reference.empty());
+        }
+      case 'basis':
+        {
+          return copyWith(basis: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClinicalImpressionFinding clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool itemCodeableConcept = false,
+    bool itemReference = false,
+    bool basis = false,
+  }) {
+    return ClinicalImpressionFinding(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      itemCodeableConcept:
+          itemCodeableConcept ? null : this.itemCodeableConcept,
+      itemReference: itemReference ? null : this.itemReference,
+      basis: basis ? null : this.basis,
+    );
   }
 
   @override

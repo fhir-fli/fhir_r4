@@ -656,6 +656,188 @@ class Provenance extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'target':
+        return ['Reference'];
+      case 'occurred':
+      case 'occurredX':
+        return ['Period', 'FhirDateTime'];
+      case 'occurredPeriod':
+        return ['Period'];
+      case 'occurredDateTime':
+        return ['FhirDateTime'];
+      case 'recorded':
+        return ['FhirInstant'];
+      case 'policy':
+        return ['FhirUri'];
+      case 'location':
+        return ['Reference'];
+      case 'reason':
+        return ['CodeableConcept'];
+      case 'activity':
+        return ['CodeableConcept'];
+      case 'agent':
+        return ['ProvenanceAgent'];
+      case 'entity':
+        return ['ProvenanceEntity'];
+      case 'signature':
+        return ['Signature'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Provenance]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Provenance createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'target':
+        {
+          return copyWith(target: <Reference>[]);
+        }
+      case 'occurred':
+      case 'occurredX':
+      case 'occurredPeriod':
+        {
+          return copyWith(occurredX: Period.empty());
+        }
+      case 'occurredDateTime':
+        {
+          return copyWith(occurredX: FhirDateTime.empty());
+        }
+      case 'recorded':
+        {
+          return copyWith(recorded: FhirInstant.empty());
+        }
+      case 'policy':
+        {
+          return copyWith(policy: <FhirUri>[]);
+        }
+      case 'location':
+        {
+          return copyWith(location: Reference.empty());
+        }
+      case 'reason':
+        {
+          return copyWith(reason: <CodeableConcept>[]);
+        }
+      case 'activity':
+        {
+          return copyWith(activity: CodeableConcept.empty());
+        }
+      case 'agent':
+        {
+          return copyWith(agent: <ProvenanceAgent>[]);
+        }
+      case 'entity':
+        {
+          return copyWith(entity: <ProvenanceEntity>[]);
+        }
+      case 'signature':
+        {
+          return copyWith(signature: <Signature>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Provenance clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool occurred = false,
+    bool policy = false,
+    bool location = false,
+    bool reason = false,
+    bool activity = false,
+    bool entity = false,
+    bool signature = false,
+  }) {
+    return Provenance(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      target: target,
+      occurredX: occurred ? null : occurredX,
+      recorded: recorded,
+      policy: policy ? null : this.policy,
+      location: location ? null : this.location,
+      reason: reason ? null : this.reason,
+      activity: activity ? null : this.activity,
+      agent: agent,
+      entity: entity ? null : this.entity,
+      signature: signature ? null : this.signature,
+    );
+  }
+
   @override
   Provenance clone() => throw UnimplementedError();
   @override
@@ -1209,6 +1391,91 @@ class ProvenanceAgent extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'role':
+        return ['CodeableConcept'];
+      case 'who':
+        return ['Reference'];
+      case 'onBehalfOf':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ProvenanceAgent]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ProvenanceAgent createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'role':
+        {
+          return copyWith(role: <CodeableConcept>[]);
+        }
+      case 'who':
+        {
+          return copyWith(who: Reference.empty());
+        }
+      case 'onBehalfOf':
+        {
+          return copyWith(onBehalfOf: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ProvenanceAgent clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool role = false,
+    bool onBehalfOf = false,
+  }) {
+    return ProvenanceAgent(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      role: role ? null : this.role,
+      who: who,
+      onBehalfOf: onBehalfOf ? null : this.onBehalfOf,
+    );
+  }
+
   @override
   ProvenanceAgent clone() => throw UnimplementedError();
   @override
@@ -1614,6 +1881,82 @@ class ProvenanceEntity extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'role':
+        return ['FhirCode'];
+      case 'what':
+        return ['Reference'];
+      case 'agent':
+        return ['ProvenanceAgent'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ProvenanceEntity]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ProvenanceEntity createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'role':
+        {
+          return copyWith(role: ProvenanceEntityRole.empty());
+        }
+      case 'what':
+        {
+          return copyWith(what: Reference.empty());
+        }
+      case 'agent':
+        {
+          return copyWith(agent: <ProvenanceAgent>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ProvenanceEntity clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool agent = false,
+  }) {
+    return ProvenanceEntity(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      role: role,
+      what: what,
+      agent: agent ? null : this.agent,
+    );
   }
 
   @override

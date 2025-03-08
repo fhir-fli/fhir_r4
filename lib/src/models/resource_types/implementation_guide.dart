@@ -833,6 +833,255 @@ class ImplementationGuide extends CanonicalResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      case 'packageId':
+        return ['FhirId'];
+      case 'license':
+        return ['FhirCode'];
+      case 'fhirVersion':
+        return ['FhirCode'];
+      case 'dependsOn':
+        return ['ImplementationGuideDependsOn'];
+      case 'global':
+        return ['ImplementationGuideGlobal'];
+      case 'definition':
+        return ['ImplementationGuideDefinition'];
+      case 'manifest':
+        return ['ImplementationGuideManifest'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ImplementationGuide]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImplementationGuide createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'packageId':
+        {
+          return copyWith(packageId: FhirId.empty());
+        }
+      case 'license':
+        {
+          return copyWith(license: SPDXLicense.empty());
+        }
+      case 'fhirVersion':
+        {
+          return copyWith(fhirVersion: <FHIRVersion>[]);
+        }
+      case 'dependsOn':
+        {
+          return copyWith(dependsOn: <ImplementationGuideDependsOn>[]);
+        }
+      case 'global':
+        {
+          return copyWith(global: <ImplementationGuideGlobal>[]);
+        }
+      case 'definition':
+        {
+          return copyWith(definition: ImplementationGuideDefinition.empty());
+        }
+      case 'manifest':
+        {
+          return copyWith(manifest: ImplementationGuideManifest.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImplementationGuide clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool version = false,
+    bool title = false,
+    bool experimental = false,
+    bool date = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool copyright = false,
+    bool license = false,
+    bool dependsOn = false,
+    bool global = false,
+    bool definition = false,
+    bool manifest = false,
+  }) {
+    return ImplementationGuide(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url,
+      version: version ? null : this.version,
+      name: name,
+      title: title ? null : this.title,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      date: date ? null : this.date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      copyright: copyright ? null : this.copyright,
+      packageId: packageId,
+      license: license ? null : this.license,
+      fhirVersion: fhirVersion,
+      dependsOn: dependsOn ? null : this.dependsOn,
+      global: global ? null : this.global,
+      definition: definition ? null : this.definition,
+      manifest: manifest ? null : this.manifest,
+    );
+  }
+
   @override
   ImplementationGuide clone() => throw UnimplementedError();
   @override
@@ -1439,6 +1688,83 @@ class ImplementationGuideDependsOn extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'uri':
+        return ['FhirCanonical'];
+      case 'packageId':
+        return ['FhirId'];
+      case 'version':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ImplementationGuideDependsOn]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImplementationGuideDependsOn createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'uri':
+        {
+          return copyWith(uri: FhirCanonical.empty());
+        }
+      case 'packageId':
+        {
+          return copyWith(packageId: FhirId.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImplementationGuideDependsOn clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool packageId = false,
+    bool version = false,
+  }) {
+    return ImplementationGuideDependsOn(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      uri: uri,
+      packageId: packageId ? null : this.packageId,
+      version: version ? null : this.version,
+    );
+  }
+
   @override
   ImplementationGuideDependsOn clone() => throw UnimplementedError();
   @override
@@ -1797,6 +2123,74 @@ class ImplementationGuideGlobal extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirCode'];
+      case 'profile':
+        return ['FhirCanonical'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ImplementationGuideGlobal]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImplementationGuideGlobal createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: FhirCode.empty());
+        }
+      case 'profile':
+        {
+          return copyWith(profile: FhirCanonical.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImplementationGuideGlobal clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ImplementationGuideGlobal(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      profile: profile,
+    );
   }
 
   @override
@@ -2249,6 +2643,99 @@ class ImplementationGuideDefinition extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'grouping':
+        return ['ImplementationGuideGrouping'];
+      case 'resource':
+        return ['ImplementationGuideResource'];
+      case 'page':
+        return ['ImplementationGuidePage'];
+      case 'parameter':
+        return ['ImplementationGuideParameter'];
+      case 'template':
+        return ['ImplementationGuideTemplate'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ImplementationGuideDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImplementationGuideDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'grouping':
+        {
+          return copyWith(grouping: <ImplementationGuideGrouping>[]);
+        }
+      case 'resource':
+        {
+          return copyWith(resource: <ImplementationGuideResource>[]);
+        }
+      case 'page':
+        {
+          return copyWith(page: ImplementationGuidePage.empty());
+        }
+      case 'parameter':
+        {
+          return copyWith(parameter: <ImplementationGuideParameter>[]);
+        }
+      case 'template':
+        {
+          return copyWith(template: <ImplementationGuideTemplate>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImplementationGuideDefinition clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool grouping = false,
+    bool page = false,
+    bool parameter = false,
+    bool template = false,
+  }) {
+    return ImplementationGuideDefinition(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      grouping: grouping ? null : this.grouping,
+      resource: resource,
+      page: page ? null : this.page,
+      parameter: parameter ? null : this.parameter,
+      template: template ? null : this.template,
+    );
+  }
+
   @override
   ImplementationGuideDefinition clone() => throw UnimplementedError();
   @override
@@ -2653,6 +3140,75 @@ class ImplementationGuideGrouping extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ImplementationGuideGrouping]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImplementationGuideGrouping createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImplementationGuideGrouping clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+  }) {
+    return ImplementationGuideGrouping(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      description: description ? null : this.description,
+    );
   }
 
   @override
@@ -3155,6 +3711,118 @@ class ImplementationGuideResource extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'reference':
+        return ['Reference'];
+      case 'fhirVersion':
+        return ['FhirCode'];
+      case 'name':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirString'];
+      case 'example':
+      case 'exampleX':
+        return ['FhirBoolean', 'FhirCanonical'];
+      case 'exampleBoolean':
+        return ['FhirBoolean'];
+      case 'exampleCanonical':
+        return ['FhirCanonical'];
+      case 'groupingId':
+        return ['FhirId'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ImplementationGuideResource]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImplementationGuideResource createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'reference':
+        {
+          return copyWith(reference: Reference.empty());
+        }
+      case 'fhirVersion':
+        {
+          return copyWith(fhirVersion: <FHIRVersion>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'example':
+      case 'exampleX':
+      case 'exampleBoolean':
+        {
+          return copyWith(exampleX: FhirBoolean.empty());
+        }
+      case 'exampleCanonical':
+        {
+          return copyWith(exampleX: FhirCanonical.empty());
+        }
+      case 'groupingId':
+        {
+          return copyWith(groupingId: FhirId.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImplementationGuideResource clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool fhirVersion = false,
+    bool name = false,
+    bool description = false,
+    bool example = false,
+    bool groupingId = false,
+  }) {
+    return ImplementationGuideResource(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      reference: reference,
+      fhirVersion: fhirVersion ? null : this.fhirVersion,
+      name: name ? null : this.name,
+      description: description ? null : this.description,
+      exampleX: example ? null : exampleX,
+      groupingId: groupingId ? null : this.groupingId,
+    );
+  }
+
   @override
   ImplementationGuideResource clone() => throw UnimplementedError();
   @override
@@ -3637,6 +4305,100 @@ class ImplementationGuidePage extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+      case 'nameX':
+        return ['FhirUrl', 'Reference'];
+      case 'nameUrl':
+        return ['FhirUrl'];
+      case 'nameReference':
+        return ['Reference'];
+      case 'title':
+        return ['FhirString'];
+      case 'generation':
+        return ['FhirCode'];
+      case 'page':
+        return ['ImplementationGuidePage'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ImplementationGuidePage]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImplementationGuidePage createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+      case 'nameX':
+      case 'nameUrl':
+        {
+          return copyWith(nameX: FhirUrl.empty());
+        }
+      case 'nameReference':
+        {
+          return copyWith(nameX: Reference.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'generation':
+        {
+          return copyWith(generation: GuidePageGeneration.empty());
+        }
+      case 'page':
+        {
+          return copyWith(page: <ImplementationGuidePage>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImplementationGuidePage clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool page = false,
+  }) {
+    return ImplementationGuidePage(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      nameX: nameX,
+      title: title,
+      generation: generation,
+      page: page ? null : this.page,
+    );
+  }
+
   @override
   ImplementationGuidePage clone() => throw UnimplementedError();
   @override
@@ -4011,6 +4773,74 @@ class ImplementationGuideParameter extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['FhirCode'];
+      case 'value':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ImplementationGuideParameter]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImplementationGuideParameter createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: GuideParameterCode.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImplementationGuideParameter clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ImplementationGuideParameter(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      value: value,
+    );
   }
 
   @override
@@ -4389,6 +5219,82 @@ class ImplementationGuideTemplate extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['FhirCode'];
+      case 'source':
+        return ['FhirString'];
+      case 'scope':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ImplementationGuideTemplate]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImplementationGuideTemplate createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: FhirCode.empty());
+        }
+      case 'source':
+        {
+          return copyWith(source: FhirString.empty());
+        }
+      case 'scope':
+        {
+          return copyWith(scope: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImplementationGuideTemplate clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool scope = false,
+  }) {
+    return ImplementationGuideTemplate(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      source: source,
+      scope: scope ? null : this.scope,
+    );
+  }
+
   @override
   ImplementationGuideTemplate clone() => throw UnimplementedError();
   @override
@@ -4502,7 +5408,8 @@ class ImplementationGuideManifest extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ImplementationGuideManifest.empty() => const ImplementationGuideManifest(
+  factory ImplementationGuideManifest.empty() =>
+      const ImplementationGuideManifest(
         resource: <ImplementationGuideResource1>[],
       );
 
@@ -4837,6 +5744,99 @@ class ImplementationGuideManifest extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'rendering':
+        return ['FhirUrl'];
+      case 'resource':
+        return ['ImplementationGuideResource'];
+      case 'page':
+        return ['ImplementationGuidePage'];
+      case 'image':
+        return ['FhirString'];
+      case 'other':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ImplementationGuideManifest]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImplementationGuideManifest createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'rendering':
+        {
+          return copyWith(rendering: FhirUrl.empty());
+        }
+      case 'resource':
+        {
+          return copyWith(resource: <ImplementationGuideResource1>[]);
+        }
+      case 'page':
+        {
+          return copyWith(page: <ImplementationGuidePage1>[]);
+        }
+      case 'image':
+        {
+          return copyWith(image: <FhirString>[]);
+        }
+      case 'other':
+        {
+          return copyWith(other: <FhirString>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImplementationGuideManifest clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool rendering = false,
+    bool page = false,
+    bool image = false,
+    bool other = false,
+  }) {
+    return ImplementationGuideManifest(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      rendering: rendering ? null : this.rendering,
+      resource: resource,
+      page: page ? null : this.page,
+      image: image ? null : this.image,
+      other: other ? null : this.other,
+    );
   }
 
   @override
@@ -5311,6 +6311,94 @@ class ImplementationGuideResource1 extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'reference':
+        return ['Reference'];
+      case 'example':
+      case 'exampleX':
+        return ['FhirBoolean', 'FhirCanonical'];
+      case 'exampleBoolean':
+        return ['FhirBoolean'];
+      case 'exampleCanonical':
+        return ['FhirCanonical'];
+      case 'relativePath':
+        return ['FhirUrl'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ImplementationGuideResource1]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImplementationGuideResource1 createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'reference':
+        {
+          return copyWith(reference: Reference.empty());
+        }
+      case 'example':
+      case 'exampleX':
+      case 'exampleBoolean':
+        {
+          return copyWith(exampleX: FhirBoolean.empty());
+        }
+      case 'exampleCanonical':
+        {
+          return copyWith(exampleX: FhirCanonical.empty());
+        }
+      case 'relativePath':
+        {
+          return copyWith(relativePath: FhirUrl.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImplementationGuideResource1 clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool example = false,
+    bool relativePath = false,
+  }) {
+    return ImplementationGuideResource1(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      reference: reference,
+      exampleX: example ? null : exampleX,
+      relativePath: relativePath ? null : this.relativePath,
+    );
+  }
+
   @override
   ImplementationGuideResource1 clone() => throw UnimplementedError();
   @override
@@ -5694,6 +6782,83 @@ class ImplementationGuidePage1 extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'anchor':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ImplementationGuidePage1]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImplementationGuidePage1 createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'anchor':
+        {
+          return copyWith(anchor: <FhirString>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImplementationGuidePage1 clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool title = false,
+    bool anchor = false,
+  }) {
+    return ImplementationGuidePage1(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      title: title ? null : this.title,
+      anchor: anchor ? null : this.anchor,
+    );
   }
 
   @override

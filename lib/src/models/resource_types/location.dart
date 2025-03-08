@@ -796,6 +796,238 @@ class Location extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'operationalStatus':
+        return ['Coding'];
+      case 'name':
+        return ['FhirString'];
+      case 'alias':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirString'];
+      case 'mode':
+        return ['FhirCode'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'telecom':
+        return ['ContactPoint'];
+      case 'address':
+        return ['Address'];
+      case 'physicalType':
+        return ['CodeableConcept'];
+      case 'position':
+        return ['LocationPosition'];
+      case 'managingOrganization':
+        return ['Reference'];
+      case 'partOf':
+        return ['Reference'];
+      case 'hoursOfOperation':
+        return ['LocationHoursOfOperation'];
+      case 'availabilityExceptions':
+        return ['FhirString'];
+      case 'endpoint':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Location]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Location createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: LocationStatus.empty());
+        }
+      case 'operationalStatus':
+        {
+          return copyWith(operationalStatus: Coding.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'alias':
+        {
+          return copyWith(alias: <FhirString>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'mode':
+        {
+          return copyWith(mode: LocationMode.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: <CodeableConcept>[]);
+        }
+      case 'telecom':
+        {
+          return copyWith(telecom: <ContactPoint>[]);
+        }
+      case 'address':
+        {
+          return copyWith(address: Address.empty());
+        }
+      case 'physicalType':
+        {
+          return copyWith(physicalType: CodeableConcept.empty());
+        }
+      case 'position':
+        {
+          return copyWith(position: LocationPosition.empty());
+        }
+      case 'managingOrganization':
+        {
+          return copyWith(managingOrganization: Reference.empty());
+        }
+      case 'partOf':
+        {
+          return copyWith(partOf: Reference.empty());
+        }
+      case 'hoursOfOperation':
+        {
+          return copyWith(hoursOfOperation: <LocationHoursOfOperation>[]);
+        }
+      case 'availabilityExceptions':
+        {
+          return copyWith(availabilityExceptions: FhirString.empty());
+        }
+      case 'endpoint':
+        {
+          return copyWith(endpoint: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Location clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool status = false,
+    bool operationalStatus = false,
+    bool name = false,
+    bool alias = false,
+    bool description = false,
+    bool mode = false,
+    bool type = false,
+    bool telecom = false,
+    bool address = false,
+    bool physicalType = false,
+    bool position = false,
+    bool managingOrganization = false,
+    bool partOf = false,
+    bool hoursOfOperation = false,
+    bool availabilityExceptions = false,
+    bool endpoint = false,
+  }) {
+    return Location(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status ? null : this.status,
+      operationalStatus: operationalStatus ? null : this.operationalStatus,
+      name: name ? null : this.name,
+      alias: alias ? null : this.alias,
+      description: description ? null : this.description,
+      mode: mode ? null : this.mode,
+      type: type ? null : this.type,
+      telecom: telecom ? null : this.telecom,
+      address: address ? null : this.address,
+      physicalType: physicalType ? null : this.physicalType,
+      position: position ? null : this.position,
+      managingOrganization:
+          managingOrganization ? null : this.managingOrganization,
+      partOf: partOf ? null : this.partOf,
+      hoursOfOperation: hoursOfOperation ? null : this.hoursOfOperation,
+      availabilityExceptions:
+          availabilityExceptions ? null : this.availabilityExceptions,
+      endpoint: endpoint ? null : this.endpoint,
+    );
+  }
+
   @override
   Location clone() => throw UnimplementedError();
   @override
@@ -1377,6 +1609,82 @@ class LocationPosition extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'longitude':
+        return ['FhirDecimal'];
+      case 'latitude':
+        return ['FhirDecimal'];
+      case 'altitude':
+        return ['FhirDecimal'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [LocationPosition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  LocationPosition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'longitude':
+        {
+          return copyWith(longitude: FhirDecimal.empty());
+        }
+      case 'latitude':
+        {
+          return copyWith(latitude: FhirDecimal.empty());
+        }
+      case 'altitude':
+        {
+          return copyWith(altitude: FhirDecimal.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  LocationPosition clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool altitude = false,
+  }) {
+    return LocationPosition(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      longitude: longitude,
+      latitude: latitude,
+      altitude: altitude ? null : this.altitude,
+    );
+  }
+
   @override
   LocationPosition clone() => throw UnimplementedError();
   @override
@@ -1786,6 +2094,92 @@ class LocationHoursOfOperation extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'daysOfWeek':
+        return ['FhirCode'];
+      case 'allDay':
+        return ['FhirBoolean'];
+      case 'openingTime':
+        return ['FhirTime'];
+      case 'closingTime':
+        return ['FhirTime'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [LocationHoursOfOperation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  LocationHoursOfOperation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'daysOfWeek':
+        {
+          return copyWith(daysOfWeek: <DaysOfWeek>[]);
+        }
+      case 'allDay':
+        {
+          return copyWith(allDay: FhirBoolean.empty());
+        }
+      case 'openingTime':
+        {
+          return copyWith(openingTime: FhirTime.empty());
+        }
+      case 'closingTime':
+        {
+          return copyWith(closingTime: FhirTime.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  LocationHoursOfOperation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool daysOfWeek = false,
+    bool allDay = false,
+    bool openingTime = false,
+    bool closingTime = false,
+  }) {
+    return LocationHoursOfOperation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      daysOfWeek: daysOfWeek ? null : this.daysOfWeek,
+      allDay: allDay ? null : this.allDay,
+      openingTime: openingTime ? null : this.openingTime,
+      closingTime: closingTime ? null : this.closingTime,
+    );
   }
 
   @override

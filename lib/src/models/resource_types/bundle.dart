@@ -426,6 +426,123 @@ class Bundle extends Resource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'type':
+        return ['FhirCode'];
+      case 'timestamp':
+        return ['FhirInstant'];
+      case 'total':
+        return ['FhirUnsignedInt'];
+      case 'link':
+        return ['BundleLink'];
+      case 'entry':
+        return ['BundleEntry'];
+      case 'signature':
+        return ['Signature'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Bundle]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Bundle createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: Identifier.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: BundleType.empty());
+        }
+      case 'timestamp':
+        {
+          return copyWith(timestamp: FhirInstant.empty());
+        }
+      case 'total':
+        {
+          return copyWith(total: FhirUnsignedInt.empty());
+        }
+      case 'link':
+        {
+          return copyWith(link: <BundleLink>[]);
+        }
+      case 'entry':
+        {
+          return copyWith(entry: <BundleEntry>[]);
+        }
+      case 'signature':
+        {
+          return copyWith(signature: Signature.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Bundle clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool identifier = false,
+    bool timestamp = false,
+    bool total = false,
+    bool link = false,
+    bool entry = false,
+    bool signature = false,
+  }) {
+    return Bundle(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      identifier: identifier ? null : this.identifier,
+      type: type,
+      timestamp: timestamp ? null : this.timestamp,
+      total: total ? null : this.total,
+      link: link ? null : this.link,
+      entry: entry ? null : this.entry,
+      signature: signature ? null : this.signature,
+    );
+  }
+
   @override
   Bundle clone() => throw UnimplementedError();
   @override
@@ -823,6 +940,74 @@ class BundleLink extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'relation':
+        return ['FhirString'];
+      case 'url':
+        return ['FhirUri'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [BundleLink]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  BundleLink createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'relation':
+        {
+          return copyWith(relation: FhirString.empty());
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  BundleLink clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return BundleLink(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      relation: relation,
+      url: url,
+    );
   }
 
   @override
@@ -1296,6 +1481,108 @@ class BundleEntry extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'link':
+        return ['BundleLink'];
+      case 'fullUrl':
+        return ['FhirUri'];
+      case 'resource':
+        return ['Resource'];
+      case 'search':
+        return ['BundleSearch'];
+      case 'request':
+        return ['BundleRequest'];
+      case 'response':
+        return ['BundleResponse'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [BundleEntry]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  BundleEntry createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'link':
+        {
+          return copyWith(link: <BundleLink>[]);
+        }
+      case 'fullUrl':
+        {
+          return copyWith(fullUrl: FhirUri.empty());
+        }
+      case 'resource':
+        {
+          return copyWith(resource: Resource.empty());
+        }
+      case 'search':
+        {
+          return copyWith(search: BundleSearch.empty());
+        }
+      case 'request':
+        {
+          return copyWith(request: BundleRequest.empty());
+        }
+      case 'response':
+        {
+          return copyWith(response: BundleResponse.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  BundleEntry clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool link = false,
+    bool fullUrl = false,
+    bool resource = false,
+    bool search = false,
+    bool request = false,
+    bool response = false,
+  }) {
+    return BundleEntry(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      link: link ? null : this.link,
+      fullUrl: fullUrl ? null : this.fullUrl,
+      resource: resource ? null : this.resource,
+      search: search ? null : this.search,
+      request: request ? null : this.request,
+      response: response ? null : this.response,
+    );
+  }
+
   @override
   BundleEntry clone() => throw UnimplementedError();
   @override
@@ -1685,6 +1972,76 @@ class BundleSearch extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'mode':
+        return ['FhirCode'];
+      case 'score':
+        return ['FhirDecimal'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [BundleSearch]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  BundleSearch createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'mode':
+        {
+          return copyWith(mode: SearchEntryMode.empty());
+        }
+      case 'score':
+        {
+          return copyWith(score: FhirDecimal.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  BundleSearch clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool mode = false,
+    bool score = false,
+  }) {
+    return BundleSearch(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      mode: mode ? null : this.mode,
+      score: score ? null : this.score,
+    );
   }
 
   @override
@@ -2148,6 +2505,106 @@ class BundleRequest extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'method':
+        return ['FhirCode'];
+      case 'url':
+        return ['FhirUri'];
+      case 'ifNoneMatch':
+        return ['FhirString'];
+      case 'ifModifiedSince':
+        return ['FhirInstant'];
+      case 'ifMatch':
+        return ['FhirString'];
+      case 'ifNoneExist':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [BundleRequest]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  BundleRequest createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'method':
+        {
+          return copyWith(method: HTTPVerb.empty());
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'ifNoneMatch':
+        {
+          return copyWith(ifNoneMatch: FhirString.empty());
+        }
+      case 'ifModifiedSince':
+        {
+          return copyWith(ifModifiedSince: FhirInstant.empty());
+        }
+      case 'ifMatch':
+        {
+          return copyWith(ifMatch: FhirString.empty());
+        }
+      case 'ifNoneExist':
+        {
+          return copyWith(ifNoneExist: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  BundleRequest clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool ifNoneMatch = false,
+    bool ifModifiedSince = false,
+    bool ifMatch = false,
+    bool ifNoneExist = false,
+  }) {
+    return BundleRequest(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      method: method,
+      url: url,
+      ifNoneMatch: ifNoneMatch ? null : this.ifNoneMatch,
+      ifModifiedSince: ifModifiedSince ? null : this.ifModifiedSince,
+      ifMatch: ifMatch ? null : this.ifMatch,
+      ifNoneExist: ifNoneExist ? null : this.ifNoneExist,
+    );
   }
 
   @override
@@ -2616,6 +3073,99 @@ class BundleResponse extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'status':
+        return ['FhirString'];
+      case 'location':
+        return ['FhirUri'];
+      case 'etag':
+        return ['FhirString'];
+      case 'lastModified':
+        return ['FhirInstant'];
+      case 'outcome':
+        return ['Resource'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [BundleResponse]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  BundleResponse createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: FhirString.empty());
+        }
+      case 'location':
+        {
+          return copyWith(location: FhirUri.empty());
+        }
+      case 'etag':
+        {
+          return copyWith(etag: FhirString.empty());
+        }
+      case 'lastModified':
+        {
+          return copyWith(lastModified: FhirInstant.empty());
+        }
+      case 'outcome':
+        {
+          return copyWith(outcome: Resource.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  BundleResponse clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool location = false,
+    bool etag = false,
+    bool lastModified = false,
+    bool outcome = false,
+  }) {
+    return BundleResponse(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      status: status,
+      location: location ? null : this.location,
+      etag: etag ? null : this.etag,
+      lastModified: lastModified ? null : this.lastModified,
+      outcome: outcome ? null : this.outcome,
+    );
   }
 
   @override

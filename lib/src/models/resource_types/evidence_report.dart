@@ -893,6 +893,253 @@ class EvidenceReport extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'status':
+        return ['FhirCode'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'relatedIdentifier':
+        return ['Identifier'];
+      case 'citeAs':
+      case 'citeAsX':
+        return ['Reference', 'FhirMarkdown'];
+      case 'citeAsReference':
+        return ['Reference'];
+      case 'citeAsMarkdown':
+        return ['FhirMarkdown'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'note':
+        return ['Annotation'];
+      case 'relatedArtifact':
+        return ['RelatedArtifact'];
+      case 'subject':
+        return ['EvidenceReportSubject'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'author':
+        return ['ContactDetail'];
+      case 'editor':
+        return ['ContactDetail'];
+      case 'reviewer':
+        return ['ContactDetail'];
+      case 'endorser':
+        return ['ContactDetail'];
+      case 'relatesTo':
+        return ['EvidenceReportRelatesTo'];
+      case 'section':
+        return ['EvidenceReportSection'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [EvidenceReport]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EvidenceReport createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'relatedIdentifier':
+        {
+          return copyWith(relatedIdentifier: <Identifier>[]);
+        }
+      case 'citeAs':
+      case 'citeAsX':
+      case 'citeAsReference':
+        {
+          return copyWith(citeAsX: Reference.empty());
+        }
+      case 'citeAsMarkdown':
+        {
+          return copyWith(citeAsX: FhirMarkdown.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'relatedArtifact':
+        {
+          return copyWith(relatedArtifact: <RelatedArtifact>[]);
+        }
+      case 'subject':
+        {
+          return copyWith(subject: EvidenceReportSubject.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'author':
+        {
+          return copyWith(author: <ContactDetail>[]);
+        }
+      case 'editor':
+        {
+          return copyWith(editor: <ContactDetail>[]);
+        }
+      case 'reviewer':
+        {
+          return copyWith(reviewer: <ContactDetail>[]);
+        }
+      case 'endorser':
+        {
+          return copyWith(endorser: <ContactDetail>[]);
+        }
+      case 'relatesTo':
+        {
+          return copyWith(relatesTo: <EvidenceReportRelatesTo>[]);
+        }
+      case 'section':
+        {
+          return copyWith(section: <EvidenceReportSection>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  EvidenceReport clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool useContext = false,
+    bool identifier = false,
+    bool relatedIdentifier = false,
+    bool citeAs = false,
+    bool type = false,
+    bool note = false,
+    bool relatedArtifact = false,
+    bool publisher = false,
+    bool contact = false,
+    bool author = false,
+    bool editor = false,
+    bool reviewer = false,
+    bool endorser = false,
+    bool relatesTo = false,
+    bool section = false,
+  }) {
+    return EvidenceReport(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url ? null : this.url,
+      status: status,
+      useContext: useContext ? null : this.useContext,
+      identifier: identifier ? null : this.identifier,
+      relatedIdentifier: relatedIdentifier ? null : this.relatedIdentifier,
+      citeAsX: citeAs ? null : citeAsX,
+      type: type ? null : this.type,
+      note: note ? null : this.note,
+      relatedArtifact: relatedArtifact ? null : this.relatedArtifact,
+      subject: subject,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      author: author ? null : this.author,
+      editor: editor ? null : this.editor,
+      reviewer: reviewer ? null : this.reviewer,
+      endorser: endorser ? null : this.endorser,
+      relatesTo: relatesTo ? null : this.relatesTo,
+      section: section ? null : this.section,
+    );
+  }
+
   @override
   EvidenceReport clone() => throw UnimplementedError();
   @override
@@ -1505,6 +1752,76 @@ class EvidenceReportSubject extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'characteristic':
+        return ['EvidenceReportCharacteristic'];
+      case 'note':
+        return ['Annotation'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [EvidenceReportSubject]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EvidenceReportSubject createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'characteristic':
+        {
+          return copyWith(characteristic: <EvidenceReportCharacteristic>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  EvidenceReportSubject clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool characteristic = false,
+    bool note = false,
+  }) {
+    return EvidenceReportSubject(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      characteristic: characteristic ? null : this.characteristic,
+      note: note ? null : this.note,
+    );
+  }
+
   @override
   EvidenceReportSubject clone() => throw UnimplementedError();
   @override
@@ -2005,6 +2322,125 @@ class EvidenceReportCharacteristic extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'value':
+      case 'valueX':
+        return [
+          'Reference',
+          'CodeableConcept',
+          'FhirBoolean',
+          'Quantity',
+          'Range',
+        ];
+      case 'valueReference':
+        return ['Reference'];
+      case 'valueCodeableConcept':
+        return ['CodeableConcept'];
+      case 'valueBoolean':
+        return ['FhirBoolean'];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueRange':
+        return ['Range'];
+      case 'exclude':
+        return ['FhirBoolean'];
+      case 'period':
+        return ['Period'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [EvidenceReportCharacteristic]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EvidenceReportCharacteristic createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueReference':
+        {
+          return copyWith(valueX: Reference.empty());
+        }
+      case 'valueCodeableConcept':
+        {
+          return copyWith(valueX: CodeableConcept.empty());
+        }
+      case 'valueBoolean':
+        {
+          return copyWith(valueX: FhirBoolean.empty());
+        }
+      case 'valueQuantity':
+        {
+          return copyWith(valueX: Quantity.empty());
+        }
+      case 'valueRange':
+        {
+          return copyWith(valueX: Range.empty());
+        }
+      case 'exclude':
+        {
+          return copyWith(exclude: FhirBoolean.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  EvidenceReportCharacteristic clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool exclude = false,
+    bool period = false,
+  }) {
+    return EvidenceReportCharacteristic(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      valueX: valueX,
+      exclude: exclude ? null : this.exclude,
+      period: period ? null : this.period,
+    );
+  }
+
   @override
   EvidenceReportCharacteristic clone() => throw UnimplementedError();
   @override
@@ -2409,6 +2845,85 @@ class EvidenceReportRelatesTo extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['FhirCode'];
+      case 'target':
+      case 'targetX':
+        return ['Identifier', 'Reference'];
+      case 'targetIdentifier':
+        return ['Identifier'];
+      case 'targetReference':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [EvidenceReportRelatesTo]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EvidenceReportRelatesTo createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: ReportRelationshipType.empty());
+        }
+      case 'target':
+      case 'targetX':
+      case 'targetIdentifier':
+        {
+          return copyWith(targetX: Identifier.empty());
+        }
+      case 'targetReference':
+        {
+          return copyWith(targetX: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  EvidenceReportRelatesTo clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return EvidenceReportRelatesTo(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      targetX: targetX,
+    );
   }
 
   @override
@@ -3045,6 +3560,156 @@ class EvidenceReportSection extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'title':
+        return ['FhirString'];
+      case 'focus':
+        return ['CodeableConcept'];
+      case 'focusReference':
+        return ['Reference'];
+      case 'author':
+        return ['Reference'];
+      case 'text':
+        return ['Narrative'];
+      case 'mode':
+        return ['FhirCode'];
+      case 'orderedBy':
+        return ['CodeableConcept'];
+      case 'entryClassifier':
+        return ['CodeableConcept'];
+      case 'entryReference':
+        return ['Reference'];
+      case 'entryQuantity':
+        return ['Quantity'];
+      case 'emptyReason':
+        return ['CodeableConcept'];
+      case 'section':
+        return ['EvidenceReportSection'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [EvidenceReportSection]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EvidenceReportSection createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'focus':
+        {
+          return copyWith(focus: CodeableConcept.empty());
+        }
+      case 'focusReference':
+        {
+          return copyWith(focusReference: Reference.empty());
+        }
+      case 'author':
+        {
+          return copyWith(author: <Reference>[]);
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'mode':
+        {
+          return copyWith(mode: ListMode.empty());
+        }
+      case 'orderedBy':
+        {
+          return copyWith(orderedBy: CodeableConcept.empty());
+        }
+      case 'entryClassifier':
+        {
+          return copyWith(entryClassifier: <CodeableConcept>[]);
+        }
+      case 'entryReference':
+        {
+          return copyWith(entryReference: <Reference>[]);
+        }
+      case 'entryQuantity':
+        {
+          return copyWith(entryQuantity: <Quantity>[]);
+        }
+      case 'emptyReason':
+        {
+          return copyWith(emptyReason: CodeableConcept.empty());
+        }
+      case 'section':
+        {
+          return copyWith(section: <EvidenceReportSection>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  EvidenceReportSection clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool title = false,
+    bool focus = false,
+    bool focusReference = false,
+    bool author = false,
+    bool text = false,
+    bool mode = false,
+    bool orderedBy = false,
+    bool entryClassifier = false,
+    bool entryReference = false,
+    bool entryQuantity = false,
+    bool emptyReason = false,
+    bool section = false,
+  }) {
+    return EvidenceReportSection(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      title: title ? null : this.title,
+      focus: focus ? null : this.focus,
+      focusReference: focusReference ? null : this.focusReference,
+      author: author ? null : this.author,
+      text: text ? null : this.text,
+      mode: mode ? null : this.mode,
+      orderedBy: orderedBy ? null : this.orderedBy,
+      entryClassifier: entryClassifier ? null : this.entryClassifier,
+      entryReference: entryReference ? null : this.entryReference,
+      entryQuantity: entryQuantity ? null : this.entryQuantity,
+      emptyReason: emptyReason ? null : this.emptyReason,
+      section: section ? null : this.section,
+    );
   }
 
   @override

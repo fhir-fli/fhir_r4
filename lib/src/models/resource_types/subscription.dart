@@ -519,6 +519,152 @@ class Subscription extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'status':
+        return ['FhirCode'];
+      case 'contact':
+        return ['ContactPoint'];
+      case 'end':
+        return ['FhirInstant'];
+      case 'reason':
+        return ['FhirString'];
+      case 'criteria':
+        return ['FhirString'];
+      case 'error':
+        return ['FhirString'];
+      case 'channel':
+        return ['SubscriptionChannel'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Subscription]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Subscription createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: SubscriptionStatusCodes.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactPoint>[]);
+        }
+      case 'end':
+        {
+          return copyWith(end: FhirInstant.empty());
+        }
+      case 'reason':
+        {
+          return copyWith(reason: FhirString.empty());
+        }
+      case 'criteria':
+        {
+          return copyWith(criteria: FhirString.empty());
+        }
+      case 'error':
+        {
+          return copyWith(error: FhirString.empty());
+        }
+      case 'channel':
+        {
+          return copyWith(channel: SubscriptionChannel.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Subscription clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool contact = false,
+    bool end = false,
+    bool error = false,
+  }) {
+    return Subscription(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      status: status,
+      contact: contact ? null : this.contact,
+      end: end ? null : this.end,
+      reason: reason,
+      criteria: criteria,
+      error: error ? null : this.error,
+      channel: channel,
+    );
+  }
+
   @override
   Subscription clone() => throw UnimplementedError();
   @override
@@ -1009,6 +1155,91 @@ class SubscriptionChannel extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirCode'];
+      case 'endpoint':
+        return ['FhirUrl'];
+      case 'payload':
+        return ['FhirCode'];
+      case 'header':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [SubscriptionChannel]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubscriptionChannel createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: SubscriptionChannelType.empty());
+        }
+      case 'endpoint':
+        {
+          return copyWith(endpoint: FhirUrl.empty());
+        }
+      case 'payload':
+        {
+          return copyWith(payload: FhirCode.empty());
+        }
+      case 'header':
+        {
+          return copyWith(header: <FhirString>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubscriptionChannel clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool endpoint = false,
+    bool payload = false,
+    bool header = false,
+  }) {
+    return SubscriptionChannel(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      endpoint: endpoint ? null : this.endpoint,
+      payload: payload ? null : this.payload,
+      header: header ? null : this.header,
+    );
   }
 
   @override

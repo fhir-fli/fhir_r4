@@ -442,6 +442,25 @@ class FhirTime extends PrimitiveType<String>
         throw ArgumentError('Unhandled precision: $precision');
     }
   }
+
+  /// Creates an empty property in the object
+  @override
+  FhirTime createProperty(String propertyName) => this;
+
+  /// Clears the specified fields in a [FhirTime] object
+  @override
+  FhirTime clear({
+    bool input = false,
+    bool extension_ = false,
+    bool id = false,
+  }) {
+    return FhirTime(
+      input ? null : value,
+      element: element,
+      extension_: extension_ ? <FhirExtension>[] : this.extension_,
+      id: id ? null : this.id,
+    );
+  }
 }
 
 /// Extension on [TemporalPrecisionEnum] to check if it is a valid time

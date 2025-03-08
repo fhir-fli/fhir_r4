@@ -966,6 +966,291 @@ class MedicationKnowledge extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'status':
+        return ['FhirCode'];
+      case 'manufacturer':
+        return ['Reference'];
+      case 'doseForm':
+        return ['CodeableConcept'];
+      case 'amount':
+        return ['Quantity'];
+      case 'synonym':
+        return ['FhirString'];
+      case 'relatedMedicationKnowledge':
+        return ['MedicationKnowledgeRelatedMedicationKnowledge'];
+      case 'associatedMedication':
+        return ['Reference'];
+      case 'productType':
+        return ['CodeableConcept'];
+      case 'monograph':
+        return ['MedicationKnowledgeMonograph'];
+      case 'ingredient':
+        return ['MedicationKnowledgeIngredient'];
+      case 'preparationInstruction':
+        return ['FhirMarkdown'];
+      case 'intendedRoute':
+        return ['CodeableConcept'];
+      case 'cost':
+        return ['MedicationKnowledgeCost'];
+      case 'monitoringProgram':
+        return ['MedicationKnowledgeMonitoringProgram'];
+      case 'administrationGuidelines':
+        return ['MedicationKnowledgeAdministrationGuidelines'];
+      case 'medicineClassification':
+        return ['MedicationKnowledgeMedicineClassification'];
+      case 'packaging':
+        return ['MedicationKnowledgePackaging'];
+      case 'drugCharacteristic':
+        return ['MedicationKnowledgeDrugCharacteristic'];
+      case 'contraindication':
+        return ['Reference'];
+      case 'regulatory':
+        return ['MedicationKnowledgeRegulatory'];
+      case 'kinetics':
+        return ['MedicationKnowledgeKinetics'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationKnowledge]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledge createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: MedicationKnowledgeStatusCodes.empty());
+        }
+      case 'manufacturer':
+        {
+          return copyWith(manufacturer: Reference.empty());
+        }
+      case 'doseForm':
+        {
+          return copyWith(doseForm: CodeableConcept.empty());
+        }
+      case 'amount':
+        {
+          return copyWith(amount: Quantity.empty());
+        }
+      case 'synonym':
+        {
+          return copyWith(synonym: <FhirString>[]);
+        }
+      case 'relatedMedicationKnowledge':
+        {
+          return copyWith(
+            relatedMedicationKnowledge: <MedicationKnowledgeRelatedMedicationKnowledge>[],
+          );
+        }
+      case 'associatedMedication':
+        {
+          return copyWith(associatedMedication: <Reference>[]);
+        }
+      case 'productType':
+        {
+          return copyWith(productType: <CodeableConcept>[]);
+        }
+      case 'monograph':
+        {
+          return copyWith(monograph: <MedicationKnowledgeMonograph>[]);
+        }
+      case 'ingredient':
+        {
+          return copyWith(ingredient: <MedicationKnowledgeIngredient>[]);
+        }
+      case 'preparationInstruction':
+        {
+          return copyWith(preparationInstruction: FhirMarkdown.empty());
+        }
+      case 'intendedRoute':
+        {
+          return copyWith(intendedRoute: <CodeableConcept>[]);
+        }
+      case 'cost':
+        {
+          return copyWith(cost: <MedicationKnowledgeCost>[]);
+        }
+      case 'monitoringProgram':
+        {
+          return copyWith(
+            monitoringProgram: <MedicationKnowledgeMonitoringProgram>[],
+          );
+        }
+      case 'administrationGuidelines':
+        {
+          return copyWith(
+            administrationGuidelines: <MedicationKnowledgeAdministrationGuidelines>[],
+          );
+        }
+      case 'medicineClassification':
+        {
+          return copyWith(
+            medicineClassification: <MedicationKnowledgeMedicineClassification>[],
+          );
+        }
+      case 'packaging':
+        {
+          return copyWith(packaging: MedicationKnowledgePackaging.empty());
+        }
+      case 'drugCharacteristic':
+        {
+          return copyWith(
+            drugCharacteristic: <MedicationKnowledgeDrugCharacteristic>[],
+          );
+        }
+      case 'contraindication':
+        {
+          return copyWith(contraindication: <Reference>[]);
+        }
+      case 'regulatory':
+        {
+          return copyWith(regulatory: <MedicationKnowledgeRegulatory>[]);
+        }
+      case 'kinetics':
+        {
+          return copyWith(kinetics: <MedicationKnowledgeKinetics>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicationKnowledge clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool status = false,
+    bool manufacturer = false,
+    bool doseForm = false,
+    bool amount = false,
+    bool synonym = false,
+    bool relatedMedicationKnowledge = false,
+    bool associatedMedication = false,
+    bool productType = false,
+    bool monograph = false,
+    bool ingredient = false,
+    bool preparationInstruction = false,
+    bool intendedRoute = false,
+    bool cost = false,
+    bool monitoringProgram = false,
+    bool administrationGuidelines = false,
+    bool medicineClassification = false,
+    bool packaging = false,
+    bool drugCharacteristic = false,
+    bool contraindication = false,
+    bool regulatory = false,
+    bool kinetics = false,
+  }) {
+    return MedicationKnowledge(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      status: status ? null : this.status,
+      manufacturer: manufacturer ? null : this.manufacturer,
+      doseForm: doseForm ? null : this.doseForm,
+      amount: amount ? null : this.amount,
+      synonym: synonym ? null : this.synonym,
+      relatedMedicationKnowledge:
+          relatedMedicationKnowledge ? null : this.relatedMedicationKnowledge,
+      associatedMedication:
+          associatedMedication ? null : this.associatedMedication,
+      productType: productType ? null : this.productType,
+      monograph: monograph ? null : this.monograph,
+      ingredient: ingredient ? null : this.ingredient,
+      preparationInstruction:
+          preparationInstruction ? null : this.preparationInstruction,
+      intendedRoute: intendedRoute ? null : this.intendedRoute,
+      cost: cost ? null : this.cost,
+      monitoringProgram: monitoringProgram ? null : this.monitoringProgram,
+      administrationGuidelines:
+          administrationGuidelines ? null : this.administrationGuidelines,
+      medicineClassification:
+          medicineClassification ? null : this.medicineClassification,
+      packaging: packaging ? null : this.packaging,
+      drugCharacteristic: drugCharacteristic ? null : this.drugCharacteristic,
+      contraindication: contraindication ? null : this.contraindication,
+      regulatory: regulatory ? null : this.regulatory,
+      kinetics: kinetics ? null : this.kinetics,
+    );
+  }
+
   @override
   MedicationKnowledge clone() => throw UnimplementedError();
   @override
@@ -1627,6 +1912,76 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'reference':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationKnowledgeRelatedMedicationKnowledge]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgeRelatedMedicationKnowledge createProperty(
+    String propertyName,
+  ) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'reference':
+        {
+          return copyWith(reference: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicationKnowledgeRelatedMedicationKnowledge clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return MedicationKnowledgeRelatedMedicationKnowledge(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      reference: reference,
+    );
+  }
+
   @override
   MedicationKnowledgeRelatedMedicationKnowledge clone() =>
       throw UnimplementedError();
@@ -1987,6 +2342,76 @@ class MedicationKnowledgeMonograph extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'source':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationKnowledgeMonograph]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgeMonograph createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'source':
+        {
+          return copyWith(source: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicationKnowledgeMonograph clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool source = false,
+  }) {
+    return MedicationKnowledgeMonograph(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      source: source ? null : this.source,
+    );
   }
 
   @override
@@ -2408,6 +2833,94 @@ class MedicationKnowledgeIngredient extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'item':
+      case 'itemX':
+        return ['CodeableConcept', 'Reference'];
+      case 'itemCodeableConcept':
+        return ['CodeableConcept'];
+      case 'itemReference':
+        return ['Reference'];
+      case 'isActive':
+        return ['FhirBoolean'];
+      case 'strength':
+        return ['Ratio'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationKnowledgeIngredient]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgeIngredient createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'item':
+      case 'itemX':
+      case 'itemCodeableConcept':
+        {
+          return copyWith(itemX: CodeableConcept.empty());
+        }
+      case 'itemReference':
+        {
+          return copyWith(itemX: Reference.empty());
+        }
+      case 'isActive':
+        {
+          return copyWith(isActive: FhirBoolean.empty());
+        }
+      case 'strength':
+        {
+          return copyWith(strength: Ratio.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicationKnowledgeIngredient clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool isActive = false,
+    bool strength = false,
+  }) {
+    return MedicationKnowledgeIngredient(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      itemX: itemX,
+      isActive: isActive ? null : this.isActive,
+      strength: strength ? null : this.strength,
+    );
+  }
+
   @override
   MedicationKnowledgeIngredient clone() => throw UnimplementedError();
   @override
@@ -2793,6 +3306,82 @@ class MedicationKnowledgeCost extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'source':
+        return ['FhirString'];
+      case 'cost':
+        return ['Money'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationKnowledgeCost]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgeCost createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'source':
+        {
+          return copyWith(source: FhirString.empty());
+        }
+      case 'cost':
+        {
+          return copyWith(cost: Money.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicationKnowledgeCost clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool source = false,
+  }) {
+    return MedicationKnowledgeCost(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      source: source ? null : this.source,
+      cost: cost,
+    );
+  }
+
   @override
   MedicationKnowledgeCost clone() => throw UnimplementedError();
   @override
@@ -3152,6 +3741,76 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'name':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationKnowledgeMonitoringProgram]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgeMonitoringProgram createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicationKnowledgeMonitoringProgram clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool name = false,
+  }) {
+    return MedicationKnowledgeMonitoringProgram(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      name: name ? null : this.name,
+    );
   }
 
   @override
@@ -3581,6 +4240,100 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'dosage':
+        return ['MedicationKnowledgeDosage'];
+      case 'indication':
+      case 'indicationX':
+        return ['CodeableConcept', 'Reference'];
+      case 'indicationCodeableConcept':
+        return ['CodeableConcept'];
+      case 'indicationReference':
+        return ['Reference'];
+      case 'patientCharacteristics':
+        return ['MedicationKnowledgePatientCharacteristics'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationKnowledgeAdministrationGuidelines]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgeAdministrationGuidelines createProperty(
+    String propertyName,
+  ) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'dosage':
+        {
+          return copyWith(dosage: <MedicationKnowledgeDosage>[]);
+        }
+      case 'indication':
+      case 'indicationX':
+      case 'indicationCodeableConcept':
+        {
+          return copyWith(indicationX: CodeableConcept.empty());
+        }
+      case 'indicationReference':
+        {
+          return copyWith(indicationX: Reference.empty());
+        }
+      case 'patientCharacteristics':
+        {
+          return copyWith(
+            patientCharacteristics: <MedicationKnowledgePatientCharacteristics>[],
+          );
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicationKnowledgeAdministrationGuidelines clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool dosage = false,
+    bool indication = false,
+    bool patientCharacteristics = false,
+  }) {
+    return MedicationKnowledgeAdministrationGuidelines(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      dosage: dosage ? null : this.dosage,
+      indicationX: indication ? null : indicationX,
+      patientCharacteristics:
+          patientCharacteristics ? null : this.patientCharacteristics,
+    );
+  }
+
   @override
   MedicationKnowledgeAdministrationGuidelines clone() =>
       throw UnimplementedError();
@@ -3960,6 +4713,74 @@ class MedicationKnowledgeDosage extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'dosage':
+        return ['Dosage'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationKnowledgeDosage]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgeDosage createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'dosage':
+        {
+          return copyWith(dosage: <Dosage>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicationKnowledgeDosage clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return MedicationKnowledgeDosage(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      dosage: dosage,
+    );
+  }
+
   @override
   MedicationKnowledgeDosage clone() => throw UnimplementedError();
   @override
@@ -4217,8 +5038,10 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
     addField('extension', extension_);
     addField('modifierExtension', modifierExtension);
     final characteristicXFhirType = characteristicX.fhirType;
-    addField('characteristic${characteristicXFhirType.capitalize()}',
-        characteristicX,);
+    addField(
+      'characteristic${characteristicXFhirType.capitalize()}',
+      characteristicX,
+    );
 
     addField('value', value);
     return json;
@@ -4364,6 +5187,88 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'characteristic':
+      case 'characteristicX':
+        return ['CodeableConcept', 'Quantity'];
+      case 'characteristicCodeableConcept':
+        return ['CodeableConcept'];
+      case 'characteristicQuantity':
+        return ['Quantity'];
+      case 'value':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationKnowledgePatientCharacteristics]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgePatientCharacteristics createProperty(
+    String propertyName,
+  ) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'characteristic':
+      case 'characteristicX':
+      case 'characteristicCodeableConcept':
+        {
+          return copyWith(characteristicX: CodeableConcept.empty());
+        }
+      case 'characteristicQuantity':
+        {
+          return copyWith(characteristicX: Quantity.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: <FhirString>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicationKnowledgePatientCharacteristics clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool value = false,
+  }) {
+    return MedicationKnowledgePatientCharacteristics(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      characteristicX: characteristicX,
+      value: value ? null : this.value,
+    );
   }
 
   @override
@@ -4734,6 +5639,77 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'classification':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationKnowledgeMedicineClassification]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgeMedicineClassification createProperty(
+    String propertyName,
+  ) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'classification':
+        {
+          return copyWith(classification: <CodeableConcept>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicationKnowledgeMedicineClassification clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool classification = false,
+  }) {
+    return MedicationKnowledgeMedicineClassification(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      classification: classification ? null : this.classification,
+    );
+  }
+
   @override
   MedicationKnowledgeMedicineClassification clone() =>
       throw UnimplementedError();
@@ -5094,6 +6070,76 @@ class MedicationKnowledgePackaging extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'quantity':
+        return ['Quantity'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationKnowledgePackaging]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgePackaging createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicationKnowledgePackaging clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool quantity = false,
+  }) {
+    return MedicationKnowledgePackaging(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      quantity: quantity ? null : this.quantity,
+    );
   }
 
   @override
@@ -5521,6 +6567,104 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'value':
+      case 'valueX':
+        return [
+          'CodeableConcept',
+          'FhirString',
+          'Quantity',
+          'FhirBase64Binary',
+        ];
+      case 'valueCodeableConcept':
+        return ['CodeableConcept'];
+      case 'valueString':
+        return ['FhirString'];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueBase64Binary':
+        return ['FhirBase64Binary'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationKnowledgeDrugCharacteristic]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgeDrugCharacteristic createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueCodeableConcept':
+        {
+          return copyWith(valueX: CodeableConcept.empty());
+        }
+      case 'valueString':
+        {
+          return copyWith(valueX: FhirString.empty());
+        }
+      case 'valueQuantity':
+        {
+          return copyWith(valueX: Quantity.empty());
+        }
+      case 'valueBase64Binary':
+        {
+          return copyWith(valueX: FhirBase64Binary.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicationKnowledgeDrugCharacteristic clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool value = false,
+  }) {
+    return MedicationKnowledgeDrugCharacteristic(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      valueX: value ? null : valueX,
+    );
+  }
+
   @override
   MedicationKnowledgeDrugCharacteristic clone() => throw UnimplementedError();
   @override
@@ -5934,6 +7078,91 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'regulatoryAuthority':
+        return ['Reference'];
+      case 'substitution':
+        return ['MedicationKnowledgeSubstitution'];
+      case 'schedule':
+        return ['MedicationKnowledgeSchedule'];
+      case 'maxDispense':
+        return ['MedicationKnowledgeMaxDispense'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationKnowledgeRegulatory]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgeRegulatory createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'regulatoryAuthority':
+        {
+          return copyWith(regulatoryAuthority: Reference.empty());
+        }
+      case 'substitution':
+        {
+          return copyWith(substitution: <MedicationKnowledgeSubstitution>[]);
+        }
+      case 'schedule':
+        {
+          return copyWith(schedule: <MedicationKnowledgeSchedule>[]);
+        }
+      case 'maxDispense':
+        {
+          return copyWith(maxDispense: MedicationKnowledgeMaxDispense.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicationKnowledgeRegulatory clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool substitution = false,
+    bool schedule = false,
+    bool maxDispense = false,
+  }) {
+    return MedicationKnowledgeRegulatory(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      regulatoryAuthority: regulatoryAuthority,
+      substitution: substitution ? null : this.substitution,
+      schedule: schedule ? null : this.schedule,
+      maxDispense: maxDispense ? null : this.maxDispense,
+    );
+  }
+
   @override
   MedicationKnowledgeRegulatory clone() => throw UnimplementedError();
   @override
@@ -6318,6 +7547,74 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'allowed':
+        return ['FhirBoolean'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationKnowledgeSubstitution]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgeSubstitution createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'allowed':
+        {
+          return copyWith(allowed: FhirBoolean.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicationKnowledgeSubstitution clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return MedicationKnowledgeSubstitution(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      allowed: allowed,
+    );
+  }
+
   @override
   MedicationKnowledgeSubstitution clone() => throw UnimplementedError();
   @override
@@ -6643,6 +7940,67 @@ class MedicationKnowledgeSchedule extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'schedule':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationKnowledgeSchedule]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgeSchedule createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'schedule':
+        {
+          return copyWith(schedule: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicationKnowledgeSchedule clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return MedicationKnowledgeSchedule(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      schedule: schedule,
+    );
   }
 
   @override
@@ -6991,6 +8349,75 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'quantity':
+        return ['Quantity'];
+      case 'period':
+        return ['FhirDuration'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationKnowledgeMaxDispense]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgeMaxDispense createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: FhirDuration.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicationKnowledgeMaxDispense clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool period = false,
+  }) {
+    return MedicationKnowledgeMaxDispense(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      quantity: quantity,
+      period: period ? null : this.period,
+    );
+  }
+
   @override
   MedicationKnowledgeMaxDispense clone() => throw UnimplementedError();
   @override
@@ -7094,7 +8521,8 @@ class MedicationKnowledgeKinetics extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory MedicationKnowledgeKinetics.empty() => const MedicationKnowledgeKinetics();
+  factory MedicationKnowledgeKinetics.empty() =>
+      const MedicationKnowledgeKinetics();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationKnowledgeKinetics.fromJson(
@@ -7376,6 +8804,84 @@ class MedicationKnowledgeKinetics extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'areaUnderCurve':
+        return ['Quantity'];
+      case 'lethalDose50':
+        return ['Quantity'];
+      case 'halfLifePeriod':
+        return ['FhirDuration'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationKnowledgeKinetics]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationKnowledgeKinetics createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'areaUnderCurve':
+        {
+          return copyWith(areaUnderCurve: <Quantity>[]);
+        }
+      case 'lethalDose50':
+        {
+          return copyWith(lethalDose50: <Quantity>[]);
+        }
+      case 'halfLifePeriod':
+        {
+          return copyWith(halfLifePeriod: FhirDuration.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicationKnowledgeKinetics clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool areaUnderCurve = false,
+    bool lethalDose50 = false,
+    bool halfLifePeriod = false,
+  }) {
+    return MedicationKnowledgeKinetics(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      areaUnderCurve: areaUnderCurve ? null : this.areaUnderCurve,
+      lethalDose50: lethalDose50 ? null : this.lethalDose50,
+      halfLifePeriod: halfLifePeriod ? null : this.halfLifePeriod,
+    );
   }
 
   @override

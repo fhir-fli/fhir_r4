@@ -66,6 +66,20 @@ class TLeft1 extends Element {
   }
 
   @override
+  List<FhirBase> getChildrenByName(String name, [bool ordered = true]) {
+    switch (name) {
+      case 'id':
+        return [id!];
+      case 'extension':
+        return extension_!;
+      case 'a':
+        return a == null ? [] : [a!];
+      default:
+        return [];
+    }
+  }
+
+  @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) json['id'] = id!.value;

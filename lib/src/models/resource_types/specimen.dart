@@ -695,6 +695,205 @@ class Specimen extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'accessionIdentifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'receivedTime':
+        return ['FhirDateTime'];
+      case 'parent':
+        return ['Reference'];
+      case 'request':
+        return ['Reference'];
+      case 'collection':
+        return ['SpecimenCollection'];
+      case 'processing':
+        return ['SpecimenProcessing'];
+      case 'container':
+        return ['SpecimenContainer'];
+      case 'condition':
+        return ['CodeableConcept'];
+      case 'note':
+        return ['Annotation'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Specimen]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Specimen createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'accessionIdentifier':
+        {
+          return copyWith(accessionIdentifier: Identifier.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: SpecimenStatus.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'receivedTime':
+        {
+          return copyWith(receivedTime: FhirDateTime.empty());
+        }
+      case 'parent':
+        {
+          return copyWith(parent: <Reference>[]);
+        }
+      case 'request':
+        {
+          return copyWith(request: <Reference>[]);
+        }
+      case 'collection':
+        {
+          return copyWith(collection: SpecimenCollection.empty());
+        }
+      case 'processing':
+        {
+          return copyWith(processing: <SpecimenProcessing>[]);
+        }
+      case 'container':
+        {
+          return copyWith(container: <SpecimenContainer>[]);
+        }
+      case 'condition':
+        {
+          return copyWith(condition: <CodeableConcept>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Specimen clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool accessionIdentifier = false,
+    bool status = false,
+    bool type = false,
+    bool subject = false,
+    bool receivedTime = false,
+    bool parent = false,
+    bool request = false,
+    bool collection = false,
+    bool processing = false,
+    bool container = false,
+    bool condition = false,
+    bool note = false,
+  }) {
+    return Specimen(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      accessionIdentifier:
+          accessionIdentifier ? null : this.accessionIdentifier,
+      status: status ? null : this.status,
+      type: type ? null : this.type,
+      subject: subject ? null : this.subject,
+      receivedTime: receivedTime ? null : this.receivedTime,
+      parent: parent ? null : this.parent,
+      request: request ? null : this.request,
+      collection: collection ? null : this.collection,
+      processing: processing ? null : this.processing,
+      container: container ? null : this.container,
+      condition: condition ? null : this.condition,
+      note: note ? null : this.note,
+    );
+  }
+
   @override
   Specimen clone() => throw UnimplementedError();
   @override
@@ -1431,6 +1630,138 @@ class SpecimenCollection extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'collector':
+        return ['Reference'];
+      case 'collected':
+      case 'collectedX':
+        return ['FhirDateTime', 'Period'];
+      case 'collectedDateTime':
+        return ['FhirDateTime'];
+      case 'collectedPeriod':
+        return ['Period'];
+      case 'duration':
+        return ['FhirDuration'];
+      case 'quantity':
+        return ['Quantity'];
+      case 'method':
+        return ['CodeableConcept'];
+      case 'bodySite':
+        return ['CodeableConcept'];
+      case 'fastingStatus':
+      case 'fastingStatusX':
+        return ['CodeableConcept', 'FhirDuration'];
+      case 'fastingStatusCodeableConcept':
+        return ['CodeableConcept'];
+      case 'fastingStatusDuration':
+        return ['FhirDuration'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [SpecimenCollection]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SpecimenCollection createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'collector':
+        {
+          return copyWith(collector: Reference.empty());
+        }
+      case 'collected':
+      case 'collectedX':
+      case 'collectedDateTime':
+        {
+          return copyWith(collectedX: FhirDateTime.empty());
+        }
+      case 'collectedPeriod':
+        {
+          return copyWith(collectedX: Period.empty());
+        }
+      case 'duration':
+        {
+          return copyWith(duration: FhirDuration.empty());
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'method':
+        {
+          return copyWith(method: CodeableConcept.empty());
+        }
+      case 'bodySite':
+        {
+          return copyWith(bodySite: CodeableConcept.empty());
+        }
+      case 'fastingStatus':
+      case 'fastingStatusX':
+      case 'fastingStatusCodeableConcept':
+        {
+          return copyWith(fastingStatusX: CodeableConcept.empty());
+        }
+      case 'fastingStatusDuration':
+        {
+          return copyWith(fastingStatusX: FhirDuration.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SpecimenCollection clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool collector = false,
+    bool collected = false,
+    bool duration = false,
+    bool quantity = false,
+    bool method = false,
+    bool bodySite = false,
+    bool fastingStatus = false,
+  }) {
+    return SpecimenCollection(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      collector: collector ? null : this.collector,
+      collectedX: collected ? null : collectedX,
+      duration: duration ? null : this.duration,
+      quantity: quantity ? null : this.quantity,
+      method: method ? null : this.method,
+      bodySite: bodySite ? null : this.bodySite,
+      fastingStatusX: fastingStatus ? null : fastingStatusX,
+    );
+  }
+
   @override
   SpecimenCollection clone() => throw UnimplementedError();
   @override
@@ -1914,6 +2245,103 @@ class SpecimenProcessing extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'description':
+        return ['FhirString'];
+      case 'procedure':
+        return ['CodeableConcept'];
+      case 'additive':
+        return ['Reference'];
+      case 'time':
+      case 'timeX':
+        return ['FhirDateTime', 'Period'];
+      case 'timeDateTime':
+        return ['FhirDateTime'];
+      case 'timePeriod':
+        return ['Period'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [SpecimenProcessing]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SpecimenProcessing createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'procedure':
+        {
+          return copyWith(procedure: CodeableConcept.empty());
+        }
+      case 'additive':
+        {
+          return copyWith(additive: <Reference>[]);
+        }
+      case 'time':
+      case 'timeX':
+      case 'timeDateTime':
+        {
+          return copyWith(timeX: FhirDateTime.empty());
+        }
+      case 'timePeriod':
+        {
+          return copyWith(timeX: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SpecimenProcessing clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+    bool procedure = false,
+    bool additive = false,
+    bool time = false,
+  }) {
+    return SpecimenProcessing(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description ? null : this.description,
+      procedure: procedure ? null : this.procedure,
+      additive: additive ? null : this.additive,
+      timeX: time ? null : timeX,
+    );
   }
 
   @override
@@ -2437,6 +2865,119 @@ class SpecimenContainer extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'description':
+        return ['FhirString'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'capacity':
+        return ['Quantity'];
+      case 'specimenQuantity':
+        return ['Quantity'];
+      case 'additive':
+      case 'additiveX':
+        return ['CodeableConcept', 'Reference'];
+      case 'additiveCodeableConcept':
+        return ['CodeableConcept'];
+      case 'additiveReference':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [SpecimenContainer]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SpecimenContainer createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'capacity':
+        {
+          return copyWith(capacity: Quantity.empty());
+        }
+      case 'specimenQuantity':
+        {
+          return copyWith(specimenQuantity: Quantity.empty());
+        }
+      case 'additive':
+      case 'additiveX':
+      case 'additiveCodeableConcept':
+        {
+          return copyWith(additiveX: CodeableConcept.empty());
+        }
+      case 'additiveReference':
+        {
+          return copyWith(additiveX: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SpecimenContainer clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool description = false,
+    bool type = false,
+    bool capacity = false,
+    bool specimenQuantity = false,
+    bool additive = false,
+  }) {
+    return SpecimenContainer(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      description: description ? null : this.description,
+      type: type ? null : this.type,
+      capacity: capacity ? null : this.capacity,
+      specimenQuantity: specimenQuantity ? null : this.specimenQuantity,
+      additiveX: additive ? null : additiveX,
+    );
   }
 
   @override

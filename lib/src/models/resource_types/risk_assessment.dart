@@ -824,6 +824,245 @@ class RiskAssessment extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'basedOn':
+        return ['Reference'];
+      case 'parent':
+        return ['Reference'];
+      case 'status':
+        return ['FhirCode'];
+      case 'method':
+        return ['CodeableConcept'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'occurrence':
+      case 'occurrenceX':
+        return ['FhirDateTime', 'Period'];
+      case 'occurrenceDateTime':
+        return ['FhirDateTime'];
+      case 'occurrencePeriod':
+        return ['Period'];
+      case 'condition':
+        return ['Reference'];
+      case 'performer':
+        return ['Reference'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'basis':
+        return ['Reference'];
+      case 'prediction':
+        return ['RiskAssessmentPrediction'];
+      case 'mitigation':
+        return ['FhirString'];
+      case 'note':
+        return ['Annotation'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [RiskAssessment]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  RiskAssessment createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'basedOn':
+        {
+          return copyWith(basedOn: Reference.empty());
+        }
+      case 'parent':
+        {
+          return copyWith(parent: Reference.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: ObservationStatus.empty());
+        }
+      case 'method':
+        {
+          return copyWith(method: CodeableConcept.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'occurrence':
+      case 'occurrenceX':
+      case 'occurrenceDateTime':
+        {
+          return copyWith(occurrenceX: FhirDateTime.empty());
+        }
+      case 'occurrencePeriod':
+        {
+          return copyWith(occurrenceX: Period.empty());
+        }
+      case 'condition':
+        {
+          return copyWith(condition: Reference.empty());
+        }
+      case 'performer':
+        {
+          return copyWith(performer: Reference.empty());
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: <CodeableConcept>[]);
+        }
+      case 'reasonReference':
+        {
+          return copyWith(reasonReference: <Reference>[]);
+        }
+      case 'basis':
+        {
+          return copyWith(basis: <Reference>[]);
+        }
+      case 'prediction':
+        {
+          return copyWith(prediction: <RiskAssessmentPrediction>[]);
+        }
+      case 'mitigation':
+        {
+          return copyWith(mitigation: FhirString.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  RiskAssessment clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool basedOn = false,
+    bool parent = false,
+    bool method = false,
+    bool code = false,
+    bool encounter = false,
+    bool occurrence = false,
+    bool condition = false,
+    bool performer = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool basis = false,
+    bool prediction = false,
+    bool mitigation = false,
+    bool note = false,
+  }) {
+    return RiskAssessment(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      basedOn: basedOn ? null : this.basedOn,
+      parent: parent ? null : this.parent,
+      status: status,
+      method: method ? null : this.method,
+      code: code ? null : this.code,
+      subject: subject,
+      encounter: encounter ? null : this.encounter,
+      occurrenceX: occurrence ? null : occurrenceX,
+      condition: condition ? null : this.condition,
+      performer: performer ? null : this.performer,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      basis: basis ? null : this.basis,
+      prediction: prediction ? null : this.prediction,
+      mitigation: mitigation ? null : this.mitigation,
+      note: note ? null : this.note,
+    );
+  }
+
   @override
   RiskAssessment clone() => throw UnimplementedError();
   @override
@@ -1556,6 +1795,130 @@ class RiskAssessmentPrediction extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'outcome':
+        return ['CodeableConcept'];
+      case 'probability':
+      case 'probabilityX':
+        return ['FhirDecimal', 'Range'];
+      case 'probabilityDecimal':
+        return ['FhirDecimal'];
+      case 'probabilityRange':
+        return ['Range'];
+      case 'qualitativeRisk':
+        return ['CodeableConcept'];
+      case 'relativeRisk':
+        return ['FhirDecimal'];
+      case 'when':
+      case 'whenX':
+        return ['Period', 'Range'];
+      case 'whenPeriod':
+        return ['Period'];
+      case 'whenRange':
+        return ['Range'];
+      case 'rationale':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [RiskAssessmentPrediction]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  RiskAssessmentPrediction createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'outcome':
+        {
+          return copyWith(outcome: CodeableConcept.empty());
+        }
+      case 'probability':
+      case 'probabilityX':
+      case 'probabilityDecimal':
+        {
+          return copyWith(probabilityX: FhirDecimal.empty());
+        }
+      case 'probabilityRange':
+        {
+          return copyWith(probabilityX: Range.empty());
+        }
+      case 'qualitativeRisk':
+        {
+          return copyWith(qualitativeRisk: CodeableConcept.empty());
+        }
+      case 'relativeRisk':
+        {
+          return copyWith(relativeRisk: FhirDecimal.empty());
+        }
+      case 'when':
+      case 'whenX':
+      case 'whenPeriod':
+        {
+          return copyWith(whenX: Period.empty());
+        }
+      case 'whenRange':
+        {
+          return copyWith(whenX: Range.empty());
+        }
+      case 'rationale':
+        {
+          return copyWith(rationale: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  RiskAssessmentPrediction clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool outcome = false,
+    bool probability = false,
+    bool qualitativeRisk = false,
+    bool relativeRisk = false,
+    bool when = false,
+    bool rationale = false,
+  }) {
+    return RiskAssessmentPrediction(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      outcome: outcome ? null : this.outcome,
+      probabilityX: probability ? null : probabilityX,
+      qualitativeRisk: qualitativeRisk ? null : this.qualitativeRisk,
+      relativeRisk: relativeRisk ? null : this.relativeRisk,
+      whenX: when ? null : whenX,
+      rationale: rationale ? null : this.rationale,
+    );
   }
 
   @override

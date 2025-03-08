@@ -399,6 +399,105 @@ class Signature extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['Coding'];
+      case 'when':
+        return ['FhirInstant'];
+      case 'who':
+        return ['Reference'];
+      case 'onBehalfOf':
+        return ['Reference'];
+      case 'targetFormat':
+        return ['FhirCode'];
+      case 'sigFormat':
+        return ['FhirCode'];
+      case 'data':
+        return ['FhirBase64Binary'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Signature]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Signature createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: <Coding>[]);
+        }
+      case 'when':
+        {
+          return copyWith(when: FhirInstant.empty());
+        }
+      case 'who':
+        {
+          return copyWith(who: Reference.empty());
+        }
+      case 'onBehalfOf':
+        {
+          return copyWith(onBehalfOf: Reference.empty());
+        }
+      case 'targetFormat':
+        {
+          return copyWith(targetFormat: FhirCode.empty());
+        }
+      case 'sigFormat':
+        {
+          return copyWith(sigFormat: FhirCode.empty());
+        }
+      case 'data':
+        {
+          return copyWith(data: FhirBase64Binary.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Signature clear({
+    bool id = false,
+    bool extension_ = false,
+    bool onBehalfOf = false,
+    bool targetFormat = false,
+    bool sigFormat = false,
+    bool data = false,
+  }) {
+    return Signature(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      type: type,
+      when: when,
+      who: who,
+      onBehalfOf: onBehalfOf ? null : this.onBehalfOf,
+      targetFormat: targetFormat ? null : this.targetFormat,
+      sigFormat: sigFormat ? null : this.sigFormat,
+      data: data ? null : this.data,
+    );
+  }
+
   @override
   Signature clone() => throw UnimplementedError();
   @override

@@ -12,6 +12,9 @@ class TerminologyCache {
     }
   }
 
+  /// Map of expansion tokens to expansions
+  final Map<ValueSetCacheToken, ValueSetExpansionOutcome> _expansionCache = {};
+
   /// Defines the cache as either transient or permanent.
   static const bool transient = false;
 
@@ -388,6 +391,31 @@ class TerminologyCache {
 
   String _hashNWS(String input) {
     return base64Encode(utf8.encode(input.replaceAll(RegExp(r'\s'), '')));
+  }
+
+  /// Cache an expansion
+  void cacheExpansion(
+    ValueSetCacheToken token,
+    ValueSetExpansionOutcome outcome,
+    int mode,
+  ) {
+    _expansionCache[token] = outcome;
+    // In a real implementation,
+    // you would persist PERMANENT caches to disk using 'folder'
+  }
+
+  /// Generate a token for an expansion
+  ValueSetCacheToken generateExpandToken(ValueSet vs, bool hierarchical) {
+    return ValueSetCacheToken(
+      vs.url?.toString(),
+      vs.version?.value,
+      hierarchical,
+    );
+  }
+
+  /// Get a cached expansion
+  ValueSetExpansionOutcome? getExpansion(ValueSetCacheToken token) {
+    return _expansionCache[token];
   }
 }
 

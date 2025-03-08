@@ -21,7 +21,7 @@ class WorkerContext {
   bool isTxCaching = false;
   String? cacheId;
   final Set<String> cached = {};
-  final LoggingService logger = LoggingService(debug: true);
+  final LoggingService? logger = LoggingService(debug: true);
   final FhirToolingClient? txClient;
   Parameters? expParameters;
 
@@ -208,14 +208,14 @@ class WorkerContext {
 
   ValidationResult validateCode(
     ValidationOptions options,
-    String system,
-    String version,
+    String? system,
+    String? version,
     String code,
     String? display,
   ) {
     final coding = Coding(
-      system: system.toFhirUri,
-      version: version.toFhirString,
+      system: system?.toFhirUri,
+      version: version?.toFhirString,
       code: code.toFhirCode,
       display: display?.toFhirString,
     );
@@ -360,7 +360,7 @@ class WorkerContext {
 
   void tlog(String msg) {
     if (tlogging) {
-      logger.logDebugMessage(LogCategory.tx, msg);
+      logger?.logDebugMessage(LogCategory.tx, msg);
     }
   }
 

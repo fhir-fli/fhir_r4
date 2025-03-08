@@ -889,6 +889,253 @@ class DiagnosticReport extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'basedOn':
+        return ['Reference'];
+      case 'status':
+        return ['FhirCode'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'effective':
+      case 'effectiveX':
+        return ['FhirDateTime', 'Period'];
+      case 'effectiveDateTime':
+        return ['FhirDateTime'];
+      case 'effectivePeriod':
+        return ['Period'];
+      case 'issued':
+        return ['FhirInstant'];
+      case 'performer':
+        return ['Reference'];
+      case 'resultsInterpreter':
+        return ['Reference'];
+      case 'specimen':
+        return ['Reference'];
+      case 'result':
+        return ['Reference'];
+      case 'imagingStudy':
+        return ['Reference'];
+      case 'media':
+        return ['DiagnosticReportMedia'];
+      case 'conclusion':
+        return ['FhirString'];
+      case 'conclusionCode':
+        return ['CodeableConcept'];
+      case 'presentedForm':
+        return ['Attachment'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [DiagnosticReport]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DiagnosticReport createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'basedOn':
+        {
+          return copyWith(basedOn: <Reference>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: DiagnosticReportStatus.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'effective':
+      case 'effectiveX':
+      case 'effectiveDateTime':
+        {
+          return copyWith(effectiveX: FhirDateTime.empty());
+        }
+      case 'effectivePeriod':
+        {
+          return copyWith(effectiveX: Period.empty());
+        }
+      case 'issued':
+        {
+          return copyWith(issued: FhirInstant.empty());
+        }
+      case 'performer':
+        {
+          return copyWith(performer: <Reference>[]);
+        }
+      case 'resultsInterpreter':
+        {
+          return copyWith(resultsInterpreter: <Reference>[]);
+        }
+      case 'specimen':
+        {
+          return copyWith(specimen: <Reference>[]);
+        }
+      case 'result':
+        {
+          return copyWith(result: <Reference>[]);
+        }
+      case 'imagingStudy':
+        {
+          return copyWith(imagingStudy: <Reference>[]);
+        }
+      case 'media':
+        {
+          return copyWith(media: <DiagnosticReportMedia>[]);
+        }
+      case 'conclusion':
+        {
+          return copyWith(conclusion: FhirString.empty());
+        }
+      case 'conclusionCode':
+        {
+          return copyWith(conclusionCode: <CodeableConcept>[]);
+        }
+      case 'presentedForm':
+        {
+          return copyWith(presentedForm: <Attachment>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DiagnosticReport clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool basedOn = false,
+    bool category = false,
+    bool subject = false,
+    bool encounter = false,
+    bool effective = false,
+    bool issued = false,
+    bool performer = false,
+    bool resultsInterpreter = false,
+    bool specimen = false,
+    bool result = false,
+    bool imagingStudy = false,
+    bool media = false,
+    bool conclusion = false,
+    bool conclusionCode = false,
+    bool presentedForm = false,
+  }) {
+    return DiagnosticReport(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      basedOn: basedOn ? null : this.basedOn,
+      status: status,
+      category: category ? null : this.category,
+      code: code,
+      subject: subject ? null : this.subject,
+      encounter: encounter ? null : this.encounter,
+      effectiveX: effective ? null : effectiveX,
+      issued: issued ? null : this.issued,
+      performer: performer ? null : this.performer,
+      resultsInterpreter: resultsInterpreter ? null : this.resultsInterpreter,
+      specimen: specimen ? null : this.specimen,
+      result: result ? null : this.result,
+      imagingStudy: imagingStudy ? null : this.imagingStudy,
+      media: media ? null : this.media,
+      conclusion: conclusion ? null : this.conclusion,
+      conclusionCode: conclusionCode ? null : this.conclusionCode,
+      presentedForm: presentedForm ? null : this.presentedForm,
+    );
+  }
+
   @override
   DiagnosticReport clone() => throw UnimplementedError();
   @override
@@ -1487,6 +1734,75 @@ class DiagnosticReportMedia extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'comment':
+        return ['FhirString'];
+      case 'link':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [DiagnosticReportMedia]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DiagnosticReportMedia createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'comment':
+        {
+          return copyWith(comment: FhirString.empty());
+        }
+      case 'link':
+        {
+          return copyWith(link: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DiagnosticReportMedia clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool comment = false,
+  }) {
+    return DiagnosticReportMedia(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      comment: comment ? null : this.comment,
+      link: link,
+    );
   }
 
   @override

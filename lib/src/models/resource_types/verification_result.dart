@@ -705,6 +705,211 @@ class VerificationResult extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'target':
+        return ['Reference'];
+      case 'targetLocation':
+        return ['FhirString'];
+      case 'need':
+        return ['CodeableConcept'];
+      case 'status':
+        return ['FhirCode'];
+      case 'statusDate':
+        return ['FhirDateTime'];
+      case 'validationType':
+        return ['CodeableConcept'];
+      case 'validationProcess':
+        return ['CodeableConcept'];
+      case 'frequency':
+        return ['Timing'];
+      case 'lastPerformed':
+        return ['FhirDateTime'];
+      case 'nextScheduled':
+        return ['FhirDate'];
+      case 'failureAction':
+        return ['CodeableConcept'];
+      case 'primarySource':
+        return ['VerificationResultPrimarySource'];
+      case 'attestation':
+        return ['VerificationResultAttestation'];
+      case 'validator':
+        return ['VerificationResultValidator'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [VerificationResult]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  VerificationResult createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'target':
+        {
+          return copyWith(target: <Reference>[]);
+        }
+      case 'targetLocation':
+        {
+          return copyWith(targetLocation: <FhirString>[]);
+        }
+      case 'need':
+        {
+          return copyWith(need: CodeableConcept.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: Status.empty());
+        }
+      case 'statusDate':
+        {
+          return copyWith(statusDate: FhirDateTime.empty());
+        }
+      case 'validationType':
+        {
+          return copyWith(validationType: CodeableConcept.empty());
+        }
+      case 'validationProcess':
+        {
+          return copyWith(validationProcess: <CodeableConcept>[]);
+        }
+      case 'frequency':
+        {
+          return copyWith(frequency: Timing.empty());
+        }
+      case 'lastPerformed':
+        {
+          return copyWith(lastPerformed: FhirDateTime.empty());
+        }
+      case 'nextScheduled':
+        {
+          return copyWith(nextScheduled: FhirDate.empty());
+        }
+      case 'failureAction':
+        {
+          return copyWith(failureAction: CodeableConcept.empty());
+        }
+      case 'primarySource':
+        {
+          return copyWith(primarySource: <VerificationResultPrimarySource>[]);
+        }
+      case 'attestation':
+        {
+          return copyWith(attestation: VerificationResultAttestation.empty());
+        }
+      case 'validator':
+        {
+          return copyWith(validator: <VerificationResultValidator>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  VerificationResult clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool target = false,
+    bool targetLocation = false,
+    bool need = false,
+    bool statusDate = false,
+    bool validationType = false,
+    bool validationProcess = false,
+    bool frequency = false,
+    bool lastPerformed = false,
+    bool nextScheduled = false,
+    bool failureAction = false,
+    bool primarySource = false,
+    bool attestation = false,
+    bool validator = false,
+  }) {
+    return VerificationResult(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      target: target ? null : this.target,
+      targetLocation: targetLocation ? null : this.targetLocation,
+      need: need ? null : this.need,
+      status: status,
+      statusDate: statusDate ? null : this.statusDate,
+      validationType: validationType ? null : this.validationType,
+      validationProcess: validationProcess ? null : this.validationProcess,
+      frequency: frequency ? null : this.frequency,
+      lastPerformed: lastPerformed ? null : this.lastPerformed,
+      nextScheduled: nextScheduled ? null : this.nextScheduled,
+      failureAction: failureAction ? null : this.failureAction,
+      primarySource: primarySource ? null : this.primarySource,
+      attestation: attestation ? null : this.attestation,
+      validator: validator ? null : this.validator,
+    );
+  }
+
   @override
   VerificationResult clone() => throw UnimplementedError();
   @override
@@ -1370,6 +1575,117 @@ class VerificationResultPrimarySource extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'who':
+        return ['Reference'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'communicationMethod':
+        return ['CodeableConcept'];
+      case 'validationStatus':
+        return ['CodeableConcept'];
+      case 'validationDate':
+        return ['FhirDateTime'];
+      case 'canPushUpdates':
+        return ['CodeableConcept'];
+      case 'pushTypeAvailable':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [VerificationResultPrimarySource]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  VerificationResultPrimarySource createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'who':
+        {
+          return copyWith(who: Reference.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: <CodeableConcept>[]);
+        }
+      case 'communicationMethod':
+        {
+          return copyWith(communicationMethod: <CodeableConcept>[]);
+        }
+      case 'validationStatus':
+        {
+          return copyWith(validationStatus: CodeableConcept.empty());
+        }
+      case 'validationDate':
+        {
+          return copyWith(validationDate: FhirDateTime.empty());
+        }
+      case 'canPushUpdates':
+        {
+          return copyWith(canPushUpdates: CodeableConcept.empty());
+        }
+      case 'pushTypeAvailable':
+        {
+          return copyWith(pushTypeAvailable: <CodeableConcept>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  VerificationResultPrimarySource clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool who = false,
+    bool type = false,
+    bool communicationMethod = false,
+    bool validationStatus = false,
+    bool validationDate = false,
+    bool canPushUpdates = false,
+    bool pushTypeAvailable = false,
+  }) {
+    return VerificationResultPrimarySource(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      who: who ? null : this.who,
+      type: type ? null : this.type,
+      communicationMethod:
+          communicationMethod ? null : this.communicationMethod,
+      validationStatus: validationStatus ? null : this.validationStatus,
+      validationDate: validationDate ? null : this.validationDate,
+      canPushUpdates: canPushUpdates ? null : this.canPushUpdates,
+      pushTypeAvailable: pushTypeAvailable ? null : this.pushTypeAvailable,
+    );
+  }
+
   @override
   VerificationResultPrimarySource clone() => throw UnimplementedError();
   @override
@@ -1940,6 +2256,127 @@ class VerificationResultAttestation extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'who':
+        return ['Reference'];
+      case 'onBehalfOf':
+        return ['Reference'];
+      case 'communicationMethod':
+        return ['CodeableConcept'];
+      case 'date':
+        return ['FhirDate'];
+      case 'sourceIdentityCertificate':
+        return ['FhirString'];
+      case 'proxyIdentityCertificate':
+        return ['FhirString'];
+      case 'proxySignature':
+        return ['Signature'];
+      case 'sourceSignature':
+        return ['Signature'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [VerificationResultAttestation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  VerificationResultAttestation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'who':
+        {
+          return copyWith(who: Reference.empty());
+        }
+      case 'onBehalfOf':
+        {
+          return copyWith(onBehalfOf: Reference.empty());
+        }
+      case 'communicationMethod':
+        {
+          return copyWith(communicationMethod: CodeableConcept.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDate.empty());
+        }
+      case 'sourceIdentityCertificate':
+        {
+          return copyWith(sourceIdentityCertificate: FhirString.empty());
+        }
+      case 'proxyIdentityCertificate':
+        {
+          return copyWith(proxyIdentityCertificate: FhirString.empty());
+        }
+      case 'proxySignature':
+        {
+          return copyWith(proxySignature: Signature.empty());
+        }
+      case 'sourceSignature':
+        {
+          return copyWith(sourceSignature: Signature.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  VerificationResultAttestation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool who = false,
+    bool onBehalfOf = false,
+    bool communicationMethod = false,
+    bool date = false,
+    bool sourceIdentityCertificate = false,
+    bool proxyIdentityCertificate = false,
+    bool proxySignature = false,
+    bool sourceSignature = false,
+  }) {
+    return VerificationResultAttestation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      who: who ? null : this.who,
+      onBehalfOf: onBehalfOf ? null : this.onBehalfOf,
+      communicationMethod:
+          communicationMethod ? null : this.communicationMethod,
+      date: date ? null : this.date,
+      sourceIdentityCertificate:
+          sourceIdentityCertificate ? null : this.sourceIdentityCertificate,
+      proxyIdentityCertificate:
+          proxyIdentityCertificate ? null : this.proxyIdentityCertificate,
+      proxySignature: proxySignature ? null : this.proxySignature,
+      sourceSignature: sourceSignature ? null : this.sourceSignature,
+    );
+  }
+
   @override
   VerificationResultAttestation clone() => throw UnimplementedError();
   @override
@@ -2054,11 +2491,15 @@ class VerificationResultAttestation extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        sourceIdentityCertificate, o.sourceIdentityCertificate,)) {
+      sourceIdentityCertificate,
+      o.sourceIdentityCertificate,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(
-        proxyIdentityCertificate, o.proxyIdentityCertificate,)) {
+      proxyIdentityCertificate,
+      o.proxyIdentityCertificate,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(proxySignature, o.proxySignature)) {
@@ -2366,6 +2807,85 @@ class VerificationResultValidator extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'organization':
+        return ['Reference'];
+      case 'identityCertificate':
+        return ['FhirString'];
+      case 'attestationSignature':
+        return ['Signature'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [VerificationResultValidator]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  VerificationResultValidator createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'organization':
+        {
+          return copyWith(organization: Reference.empty());
+        }
+      case 'identityCertificate':
+        {
+          return copyWith(identityCertificate: FhirString.empty());
+        }
+      case 'attestationSignature':
+        {
+          return copyWith(attestationSignature: Signature.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  VerificationResultValidator clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identityCertificate = false,
+    bool attestationSignature = false,
+  }) {
+    return VerificationResultValidator(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      organization: organization,
+      identityCertificate:
+          identityCertificate ? null : this.identityCertificate,
+      attestationSignature:
+          attestationSignature ? null : this.attestationSignature,
+    );
   }
 
   @override

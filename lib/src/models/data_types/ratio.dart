@@ -269,6 +269,68 @@ class Ratio extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'numerator':
+        return ['Quantity'];
+      case 'denominator':
+        return ['Quantity'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Ratio]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Ratio createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'numerator':
+        {
+          return copyWith(numerator: Quantity.empty());
+        }
+      case 'denominator':
+        {
+          return copyWith(denominator: Quantity.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Ratio clear({
+    bool id = false,
+    bool extension_ = false,
+    bool numerator = false,
+    bool denominator = false,
+  }) {
+    return Ratio(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      numerator: numerator ? null : this.numerator,
+      denominator: denominator ? null : this.denominator,
+    );
+  }
+
   @override
   Ratio clone() => throw UnimplementedError();
   @override

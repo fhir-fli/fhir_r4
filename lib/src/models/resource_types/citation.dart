@@ -1153,6 +1153,331 @@ class Citation extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      case 'approvalDate':
+        return ['FhirDate'];
+      case 'lastReviewDate':
+        return ['FhirDate'];
+      case 'effectivePeriod':
+        return ['Period'];
+      case 'author':
+        return ['ContactDetail'];
+      case 'editor':
+        return ['ContactDetail'];
+      case 'reviewer':
+        return ['ContactDetail'];
+      case 'endorser':
+        return ['ContactDetail'];
+      case 'summary':
+        return ['CitationSummary'];
+      case 'classification':
+        return ['CitationClassification'];
+      case 'note':
+        return ['Annotation'];
+      case 'currentState':
+        return ['CodeableConcept'];
+      case 'statusDate':
+        return ['CitationStatusDate'];
+      case 'relatesTo':
+        return ['CitationRelatesTo'];
+      case 'citedArtifact':
+        return ['CitationCitedArtifact'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Citation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Citation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'approvalDate':
+        {
+          return copyWith(approvalDate: FhirDate.empty());
+        }
+      case 'lastReviewDate':
+        {
+          return copyWith(lastReviewDate: FhirDate.empty());
+        }
+      case 'effectivePeriod':
+        {
+          return copyWith(effectivePeriod: Period.empty());
+        }
+      case 'author':
+        {
+          return copyWith(author: <ContactDetail>[]);
+        }
+      case 'editor':
+        {
+          return copyWith(editor: <ContactDetail>[]);
+        }
+      case 'reviewer':
+        {
+          return copyWith(reviewer: <ContactDetail>[]);
+        }
+      case 'endorser':
+        {
+          return copyWith(endorser: <ContactDetail>[]);
+        }
+      case 'summary':
+        {
+          return copyWith(summary: <CitationSummary>[]);
+        }
+      case 'classification':
+        {
+          return copyWith(classification: <CitationClassification>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'currentState':
+        {
+          return copyWith(currentState: <CodeableConcept>[]);
+        }
+      case 'statusDate':
+        {
+          return copyWith(statusDate: <CitationStatusDate>[]);
+        }
+      case 'relatesTo':
+        {
+          return copyWith(relatesTo: <CitationRelatesTo>[]);
+        }
+      case 'citedArtifact':
+        {
+          return copyWith(citedArtifact: CitationCitedArtifact.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Citation clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool identifier = false,
+    bool version = false,
+    bool name = false,
+    bool title = false,
+    bool experimental = false,
+    bool date = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool purpose = false,
+    bool copyright = false,
+    bool approvalDate = false,
+    bool lastReviewDate = false,
+    bool effectivePeriod = false,
+    bool author = false,
+    bool editor = false,
+    bool reviewer = false,
+    bool endorser = false,
+    bool summary = false,
+    bool classification = false,
+    bool note = false,
+    bool currentState = false,
+    bool statusDate = false,
+    bool relatesTo = false,
+    bool citedArtifact = false,
+  }) {
+    return Citation(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url ? null : this.url,
+      identifier: identifier ? null : this.identifier,
+      version: version ? null : this.version,
+      name: name ? null : this.name,
+      title: title ? null : this.title,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      date: date ? null : this.date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      purpose: purpose ? null : this.purpose,
+      copyright: copyright ? null : this.copyright,
+      approvalDate: approvalDate ? null : this.approvalDate,
+      lastReviewDate: lastReviewDate ? null : this.lastReviewDate,
+      effectivePeriod: effectivePeriod ? null : this.effectivePeriod,
+      author: author ? null : this.author,
+      editor: editor ? null : this.editor,
+      reviewer: reviewer ? null : this.reviewer,
+      endorser: endorser ? null : this.endorser,
+      summary: summary ? null : this.summary,
+      classification: classification ? null : this.classification,
+      note: note ? null : this.note,
+      currentState: currentState ? null : this.currentState,
+      statusDate: statusDate ? null : this.statusDate,
+      relatesTo: relatesTo ? null : this.relatesTo,
+      citedArtifact: citedArtifact ? null : this.citedArtifact,
+    );
+  }
+
   @override
   Citation clone() => throw UnimplementedError();
   @override
@@ -1858,6 +2183,75 @@ class CitationSummary extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'style':
+        return ['CodeableConcept'];
+      case 'text':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationSummary]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationSummary createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'style':
+        {
+          return copyWith(style: CodeableConcept.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CitationSummary clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool style = false,
+  }) {
+    return CitationSummary(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      style: style ? null : this.style,
+      text: text,
+    );
+  }
+
   @override
   CitationSummary clone() => throw UnimplementedError();
   @override
@@ -2212,6 +2606,76 @@ class CitationClassification extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'classifier':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationClassification]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationClassification createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'classifier':
+        {
+          return copyWith(classifier: <CodeableConcept>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CitationClassification clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool classifier = false,
+  }) {
+    return CitationClassification(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      classifier: classifier ? null : this.classifier,
+    );
   }
 
   @override
@@ -2595,6 +3059,82 @@ class CitationStatusDate extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'activity':
+        return ['CodeableConcept'];
+      case 'actual':
+        return ['FhirBoolean'];
+      case 'period':
+        return ['Period'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationStatusDate]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationStatusDate createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'activity':
+        {
+          return copyWith(activity: CodeableConcept.empty());
+        }
+      case 'actual':
+        {
+          return copyWith(actual: FhirBoolean.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CitationStatusDate clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool actual = false,
+  }) {
+    return CitationStatusDate(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      activity: activity,
+      actual: actual ? null : this.actual,
+      period: period,
+    );
   }
 
   @override
@@ -3052,6 +3592,105 @@ class CitationRelatesTo extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'relationshipType':
+        return ['CodeableConcept'];
+      case 'targetClassifier':
+        return ['CodeableConcept'];
+      case 'target':
+      case 'targetX':
+        return ['FhirUri', 'Identifier', 'Reference', 'Attachment'];
+      case 'targetUri':
+        return ['FhirUri'];
+      case 'targetIdentifier':
+        return ['Identifier'];
+      case 'targetReference':
+        return ['Reference'];
+      case 'targetAttachment':
+        return ['Attachment'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationRelatesTo]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationRelatesTo createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'relationshipType':
+        {
+          return copyWith(relationshipType: CodeableConcept.empty());
+        }
+      case 'targetClassifier':
+        {
+          return copyWith(targetClassifier: <CodeableConcept>[]);
+        }
+      case 'target':
+      case 'targetX':
+      case 'targetUri':
+        {
+          return copyWith(targetX: FhirUri.empty());
+        }
+      case 'targetIdentifier':
+        {
+          return copyWith(targetX: Identifier.empty());
+        }
+      case 'targetReference':
+        {
+          return copyWith(targetX: Reference.empty());
+        }
+      case 'targetAttachment':
+        {
+          return copyWith(targetX: Attachment.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CitationRelatesTo clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool targetClassifier = false,
+  }) {
+    return CitationRelatesTo(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      relationshipType: relationshipType,
+      targetClassifier: targetClassifier ? null : this.targetClassifier,
+      targetX: targetX,
+    );
   }
 
   @override
@@ -3795,6 +4434,180 @@ class CitationCitedArtifact extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'relatedIdentifier':
+        return ['Identifier'];
+      case 'dateAccessed':
+        return ['FhirDateTime'];
+      case 'version':
+        return ['CitationVersion'];
+      case 'currentState':
+        return ['CodeableConcept'];
+      case 'statusDate':
+        return ['CitationStatusDate'];
+      case 'title':
+        return ['CitationTitle'];
+      case 'abstract':
+        return ['CitationAbstract'];
+      case 'part':
+        return ['CitationPart'];
+      case 'relatesTo':
+        return ['CitationRelatesTo'];
+      case 'publicationForm':
+        return ['CitationPublicationForm'];
+      case 'webLocation':
+        return ['CitationWebLocation'];
+      case 'classification':
+        return ['CitationClassification'];
+      case 'contributorship':
+        return ['CitationContributorship'];
+      case 'note':
+        return ['Annotation'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationCitedArtifact]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationCitedArtifact createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'relatedIdentifier':
+        {
+          return copyWith(relatedIdentifier: <Identifier>[]);
+        }
+      case 'dateAccessed':
+        {
+          return copyWith(dateAccessed: FhirDateTime.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: CitationVersion.empty());
+        }
+      case 'currentState':
+        {
+          return copyWith(currentState: <CodeableConcept>[]);
+        }
+      case 'statusDate':
+        {
+          return copyWith(statusDate: <CitationStatusDate>[]);
+        }
+      case 'title':
+        {
+          return copyWith(title: <CitationTitle>[]);
+        }
+      case 'abstract':
+        {
+          return copyWith(abstract_: <CitationAbstract>[]);
+        }
+      case 'part':
+        {
+          return copyWith(part_: CitationPart.empty());
+        }
+      case 'relatesTo':
+        {
+          return copyWith(relatesTo: <CitationRelatesTo>[]);
+        }
+      case 'publicationForm':
+        {
+          return copyWith(publicationForm: <CitationPublicationForm>[]);
+        }
+      case 'webLocation':
+        {
+          return copyWith(webLocation: <CitationWebLocation>[]);
+        }
+      case 'classification':
+        {
+          return copyWith(classification: <CitationClassification>[]);
+        }
+      case 'contributorship':
+        {
+          return copyWith(contributorship: CitationContributorship.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CitationCitedArtifact clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool relatedIdentifier = false,
+    bool dateAccessed = false,
+    bool version = false,
+    bool currentState = false,
+    bool statusDate = false,
+    bool title = false,
+    bool abstract_ = false,
+    bool part_ = false,
+    bool relatesTo = false,
+    bool publicationForm = false,
+    bool webLocation = false,
+    bool classification = false,
+    bool contributorship = false,
+    bool note = false,
+  }) {
+    return CitationCitedArtifact(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      relatedIdentifier: relatedIdentifier ? null : this.relatedIdentifier,
+      dateAccessed: dateAccessed ? null : this.dateAccessed,
+      version: version ? null : this.version,
+      currentState: currentState ? null : this.currentState,
+      statusDate: statusDate ? null : this.statusDate,
+      title: title ? null : this.title,
+      abstract_: abstract_ ? null : this.abstract_,
+      part_: part_ ? null : this.part_,
+      relatesTo: relatesTo ? null : this.relatesTo,
+      publicationForm: publicationForm ? null : this.publicationForm,
+      webLocation: webLocation ? null : this.webLocation,
+      classification: classification ? null : this.classification,
+      contributorship: contributorship ? null : this.contributorship,
+      note: note ? null : this.note,
+    );
+  }
+
   @override
   CitationCitedArtifact clone() => throw UnimplementedError();
   @override
@@ -4328,6 +5141,75 @@ class CitationVersion extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'value':
+        return ['FhirString'];
+      case 'baseCitation':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationVersion]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationVersion createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirString.empty());
+        }
+      case 'baseCitation':
+        {
+          return copyWith(baseCitation: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CitationVersion clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool baseCitation = false,
+  }) {
+    return CitationVersion(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      value: value,
+      baseCitation: baseCitation ? null : this.baseCitation,
+    );
+  }
+
   @override
   CitationVersion clone() => throw UnimplementedError();
   @override
@@ -4702,6 +5584,82 @@ class CitationStatusDate1 extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'activity':
+        return ['CodeableConcept'];
+      case 'actual':
+        return ['FhirBoolean'];
+      case 'period':
+        return ['Period'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationStatusDate1]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationStatusDate1 createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'activity':
+        {
+          return copyWith(activity: CodeableConcept.empty());
+        }
+      case 'actual':
+        {
+          return copyWith(actual: FhirBoolean.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CitationStatusDate1 clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool actual = false,
+  }) {
+    return CitationStatusDate1(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      activity: activity,
+      actual: actual ? null : this.actual,
+      period: period,
+    );
   }
 
   @override
@@ -5091,6 +6049,83 @@ class CitationTitle extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'language':
+        return ['CodeableConcept'];
+      case 'text':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationTitle]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationTitle createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: <CodeableConcept>[]);
+        }
+      case 'language':
+        {
+          return copyWith(language: CodeableConcept.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CitationTitle clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool language = false,
+  }) {
+    return CitationTitle(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      language: language ? null : this.language,
+      text: text,
+    );
   }
 
   @override
@@ -5510,6 +6545,91 @@ class CitationAbstract extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'language':
+        return ['CodeableConcept'];
+      case 'text':
+        return ['FhirMarkdown'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationAbstract]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationAbstract createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CodeableConcept.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: FhirMarkdown.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CitationAbstract clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool language = false,
+    bool copyright = false,
+  }) {
+    return CitationAbstract(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      language: language ? null : this.language,
+      text: text,
+      copyright: copyright ? null : this.copyright,
+    );
+  }
+
   @override
   CitationAbstract clone() => throw UnimplementedError();
   @override
@@ -5901,6 +7021,84 @@ class CitationPart extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'value':
+        return ['FhirString'];
+      case 'baseCitation':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationPart]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationPart createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirString.empty());
+        }
+      case 'baseCitation':
+        {
+          return copyWith(baseCitation: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CitationPart clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool value = false,
+    bool baseCitation = false,
+  }) {
+    return CitationPart(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      value: value ? null : this.value,
+      baseCitation: baseCitation ? null : this.baseCitation,
+    );
   }
 
   @override
@@ -6358,6 +7556,105 @@ class CitationRelatesTo1 extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'relationshipType':
+        return ['CodeableConcept'];
+      case 'targetClassifier':
+        return ['CodeableConcept'];
+      case 'target':
+      case 'targetX':
+        return ['FhirUri', 'Identifier', 'Reference', 'Attachment'];
+      case 'targetUri':
+        return ['FhirUri'];
+      case 'targetIdentifier':
+        return ['Identifier'];
+      case 'targetReference':
+        return ['Reference'];
+      case 'targetAttachment':
+        return ['Attachment'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationRelatesTo1]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationRelatesTo1 createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'relationshipType':
+        {
+          return copyWith(relationshipType: CodeableConcept.empty());
+        }
+      case 'targetClassifier':
+        {
+          return copyWith(targetClassifier: <CodeableConcept>[]);
+        }
+      case 'target':
+      case 'targetX':
+      case 'targetUri':
+        {
+          return copyWith(targetX: FhirUri.empty());
+        }
+      case 'targetIdentifier':
+        {
+          return copyWith(targetX: Identifier.empty());
+        }
+      case 'targetReference':
+        {
+          return copyWith(targetX: Reference.empty());
+        }
+      case 'targetAttachment':
+        {
+          return copyWith(targetX: Attachment.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CitationRelatesTo1 clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool targetClassifier = false,
+  }) {
+    return CitationRelatesTo1(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      relationshipType: relationshipType,
+      targetClassifier: targetClassifier ? null : this.targetClassifier,
+      targetX: targetX,
+    );
   }
 
   @override
@@ -6959,6 +8256,148 @@ class CitationPublicationForm extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'publishedIn':
+        return ['CitationPublishedIn'];
+      case 'periodicRelease':
+        return ['CitationPeriodicRelease'];
+      case 'articleDate':
+        return ['FhirDateTime'];
+      case 'lastRevisionDate':
+        return ['FhirDateTime'];
+      case 'language':
+        return ['CodeableConcept'];
+      case 'accessionNumber':
+        return ['FhirString'];
+      case 'pageString':
+        return ['FhirString'];
+      case 'firstPage':
+        return ['FhirString'];
+      case 'lastPage':
+        return ['FhirString'];
+      case 'pageCount':
+        return ['FhirString'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationPublicationForm]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationPublicationForm createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'publishedIn':
+        {
+          return copyWith(publishedIn: CitationPublishedIn.empty());
+        }
+      case 'periodicRelease':
+        {
+          return copyWith(periodicRelease: CitationPeriodicRelease.empty());
+        }
+      case 'articleDate':
+        {
+          return copyWith(articleDate: FhirDateTime.empty());
+        }
+      case 'lastRevisionDate':
+        {
+          return copyWith(lastRevisionDate: FhirDateTime.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: <CodeableConcept>[]);
+        }
+      case 'accessionNumber':
+        {
+          return copyWith(accessionNumber: FhirString.empty());
+        }
+      case 'pageString':
+        {
+          return copyWith(pageString: FhirString.empty());
+        }
+      case 'firstPage':
+        {
+          return copyWith(firstPage: FhirString.empty());
+        }
+      case 'lastPage':
+        {
+          return copyWith(lastPage: FhirString.empty());
+        }
+      case 'pageCount':
+        {
+          return copyWith(pageCount: FhirString.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CitationPublicationForm clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool publishedIn = false,
+    bool periodicRelease = false,
+    bool articleDate = false,
+    bool lastRevisionDate = false,
+    bool language = false,
+    bool accessionNumber = false,
+    bool pageString = false,
+    bool firstPage = false,
+    bool lastPage = false,
+    bool pageCount = false,
+    bool copyright = false,
+  }) {
+    return CitationPublicationForm(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      publishedIn: publishedIn ? null : this.publishedIn,
+      periodicRelease: periodicRelease ? null : this.periodicRelease,
+      articleDate: articleDate ? null : this.articleDate,
+      lastRevisionDate: lastRevisionDate ? null : this.lastRevisionDate,
+      language: language ? null : this.language,
+      accessionNumber: accessionNumber ? null : this.accessionNumber,
+      pageString: pageString ? null : this.pageString,
+      firstPage: firstPage ? null : this.firstPage,
+      lastPage: lastPage ? null : this.lastPage,
+      pageCount: pageCount ? null : this.pageCount,
+      copyright: copyright ? null : this.copyright,
+    );
+  }
+
   @override
   CitationPublicationForm clone() => throw UnimplementedError();
   @override
@@ -7470,6 +8909,100 @@ class CitationPublishedIn extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'title':
+        return ['FhirString'];
+      case 'publisher':
+        return ['Reference'];
+      case 'publisherLocation':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationPublishedIn]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationPublishedIn createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: Reference.empty());
+        }
+      case 'publisherLocation':
+        {
+          return copyWith(publisherLocation: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CitationPublishedIn clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool identifier = false,
+    bool title = false,
+    bool publisher = false,
+    bool publisherLocation = false,
+  }) {
+    return CitationPublishedIn(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      identifier: identifier ? null : this.identifier,
+      title: title ? null : this.title,
+      publisher: publisher ? null : this.publisher,
+      publisherLocation: publisherLocation ? null : this.publisherLocation,
+    );
+  }
+
   @override
   CitationPublishedIn clone() => throw UnimplementedError();
   @override
@@ -7904,6 +9437,92 @@ class CitationPeriodicRelease extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'citedMedium':
+        return ['CodeableConcept'];
+      case 'volume':
+        return ['FhirString'];
+      case 'issue':
+        return ['FhirString'];
+      case 'dateOfPublication':
+        return ['CitationDateOfPublication'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationPeriodicRelease]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationPeriodicRelease createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'citedMedium':
+        {
+          return copyWith(citedMedium: CodeableConcept.empty());
+        }
+      case 'volume':
+        {
+          return copyWith(volume: FhirString.empty());
+        }
+      case 'issue':
+        {
+          return copyWith(issue: FhirString.empty());
+        }
+      case 'dateOfPublication':
+        {
+          return copyWith(dateOfPublication: CitationDateOfPublication.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CitationPeriodicRelease clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool citedMedium = false,
+    bool volume = false,
+    bool issue = false,
+    bool dateOfPublication = false,
+  }) {
+    return CitationPeriodicRelease(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      citedMedium: citedMedium ? null : this.citedMedium,
+      volume: volume ? null : this.volume,
+      issue: issue ? null : this.issue,
+      dateOfPublication: dateOfPublication ? null : this.dateOfPublication,
+    );
+  }
+
   @override
   CitationPeriodicRelease clone() => throw UnimplementedError();
   @override
@@ -8026,7 +9645,8 @@ class CitationDateOfPublication extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory CitationDateOfPublication.empty() => const CitationDateOfPublication();
+  factory CitationDateOfPublication.empty() =>
+      const CitationDateOfPublication();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CitationDateOfPublication.fromJson(
@@ -8373,6 +9993,108 @@ class CitationDateOfPublication extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'date':
+        return ['FhirDate'];
+      case 'year':
+        return ['FhirString'];
+      case 'month':
+        return ['FhirString'];
+      case 'day':
+        return ['FhirString'];
+      case 'season':
+        return ['FhirString'];
+      case 'text':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationDateOfPublication]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationDateOfPublication createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDate.empty());
+        }
+      case 'year':
+        {
+          return copyWith(year: FhirString.empty());
+        }
+      case 'month':
+        {
+          return copyWith(month: FhirString.empty());
+        }
+      case 'day':
+        {
+          return copyWith(day: FhirString.empty());
+        }
+      case 'season':
+        {
+          return copyWith(season: FhirString.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CitationDateOfPublication clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool date = false,
+    bool year = false,
+    bool month = false,
+    bool day = false,
+    bool season = false,
+    bool text = false,
+  }) {
+    return CitationDateOfPublication(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      date: date ? null : this.date,
+      year: year ? null : this.year,
+      month: month ? null : this.month,
+      day: day ? null : this.day,
+      season: season ? null : this.season,
+      text: text ? null : this.text,
+    );
   }
 
   @override
@@ -8759,6 +10481,76 @@ class CitationWebLocation extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'url':
+        return ['FhirUri'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationWebLocation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationWebLocation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CitationWebLocation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool url = false,
+  }) {
+    return CitationWebLocation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      url: url ? null : this.url,
+    );
+  }
+
   @override
   CitationWebLocation clone() => throw UnimplementedError();
   @override
@@ -9138,6 +10930,84 @@ class CitationClassification1 extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'classifier':
+        return ['CodeableConcept'];
+      case 'whoClassified':
+        return ['CitationWhoClassified'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationClassification1]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationClassification1 createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'classifier':
+        {
+          return copyWith(classifier: <CodeableConcept>[]);
+        }
+      case 'whoClassified':
+        {
+          return copyWith(whoClassified: CitationWhoClassified.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CitationClassification1 clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool classifier = false,
+    bool whoClassified = false,
+  }) {
+    return CitationClassification1(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      classifier: classifier ? null : this.classifier,
+      whoClassified: whoClassified ? null : this.whoClassified,
+    );
   }
 
   @override
@@ -9583,6 +11453,101 @@ class CitationWhoClassified extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'person':
+        return ['Reference'];
+      case 'organization':
+        return ['Reference'];
+      case 'publisher':
+        return ['Reference'];
+      case 'classifierCopyright':
+        return ['FhirString'];
+      case 'freeToShare':
+        return ['FhirBoolean'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationWhoClassified]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationWhoClassified createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'person':
+        {
+          return copyWith(person: Reference.empty());
+        }
+      case 'organization':
+        {
+          return copyWith(organization: Reference.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: Reference.empty());
+        }
+      case 'classifierCopyright':
+        {
+          return copyWith(classifierCopyright: FhirString.empty());
+        }
+      case 'freeToShare':
+        {
+          return copyWith(freeToShare: FhirBoolean.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CitationWhoClassified clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool person = false,
+    bool organization = false,
+    bool publisher = false,
+    bool classifierCopyright = false,
+    bool freeToShare = false,
+  }) {
+    return CitationWhoClassified(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      person: person ? null : this.person,
+      organization: organization ? null : this.organization,
+      publisher: publisher ? null : this.publisher,
+      classifierCopyright:
+          classifierCopyright ? null : this.classifierCopyright,
+      freeToShare: freeToShare ? null : this.freeToShare,
+    );
+  }
+
   @override
   CitationWhoClassified clone() => throw UnimplementedError();
   @override
@@ -9992,6 +11957,84 @@ class CitationContributorship extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'complete':
+        return ['FhirBoolean'];
+      case 'entry':
+        return ['CitationEntry'];
+      case 'summary':
+        return ['CitationSummary'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationContributorship]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationContributorship createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'complete':
+        {
+          return copyWith(complete: FhirBoolean.empty());
+        }
+      case 'entry':
+        {
+          return copyWith(entry: <CitationEntry>[]);
+        }
+      case 'summary':
+        {
+          return copyWith(summary: <CitationSummary>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CitationContributorship clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool complete = false,
+    bool entry = false,
+    bool summary = false,
+  }) {
+    return CitationContributorship(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      complete: complete ? null : this.complete,
+      entry: entry ? null : this.entry,
+      summary: summary ? null : this.summary,
+    );
   }
 
   @override
@@ -10644,6 +12687,160 @@ class CitationEntry extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['HumanName'];
+      case 'initials':
+        return ['FhirString'];
+      case 'collectiveName':
+        return ['FhirString'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'affiliationInfo':
+        return ['CitationAffiliationInfo'];
+      case 'address':
+        return ['Address'];
+      case 'telecom':
+        return ['ContactPoint'];
+      case 'contributionType':
+        return ['CodeableConcept'];
+      case 'role':
+        return ['CodeableConcept'];
+      case 'contributionInstance':
+        return ['CitationContributionInstance'];
+      case 'correspondingContact':
+        return ['FhirBoolean'];
+      case 'listOrder':
+        return ['FhirPositiveInt'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationEntry]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationEntry createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: HumanName.empty());
+        }
+      case 'initials':
+        {
+          return copyWith(initials: FhirString.empty());
+        }
+      case 'collectiveName':
+        {
+          return copyWith(collectiveName: FhirString.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'affiliationInfo':
+        {
+          return copyWith(affiliationInfo: <CitationAffiliationInfo>[]);
+        }
+      case 'address':
+        {
+          return copyWith(address: <Address>[]);
+        }
+      case 'telecom':
+        {
+          return copyWith(telecom: <ContactPoint>[]);
+        }
+      case 'contributionType':
+        {
+          return copyWith(contributionType: <CodeableConcept>[]);
+        }
+      case 'role':
+        {
+          return copyWith(role: CodeableConcept.empty());
+        }
+      case 'contributionInstance':
+        {
+          return copyWith(
+            contributionInstance: <CitationContributionInstance>[],
+          );
+        }
+      case 'correspondingContact':
+        {
+          return copyWith(correspondingContact: FhirBoolean.empty());
+        }
+      case 'listOrder':
+        {
+          return copyWith(listOrder: FhirPositiveInt.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CitationEntry clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool name = false,
+    bool initials = false,
+    bool collectiveName = false,
+    bool identifier = false,
+    bool affiliationInfo = false,
+    bool address = false,
+    bool telecom = false,
+    bool contributionType = false,
+    bool role = false,
+    bool contributionInstance = false,
+    bool correspondingContact = false,
+    bool listOrder = false,
+  }) {
+    return CitationEntry(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name ? null : this.name,
+      initials: initials ? null : this.initials,
+      collectiveName: collectiveName ? null : this.collectiveName,
+      identifier: identifier ? null : this.identifier,
+      affiliationInfo: affiliationInfo ? null : this.affiliationInfo,
+      address: address ? null : this.address,
+      telecom: telecom ? null : this.telecom,
+      contributionType: contributionType ? null : this.contributionType,
+      role: role ? null : this.role,
+      contributionInstance:
+          contributionInstance ? null : this.contributionInstance,
+      correspondingContact:
+          correspondingContact ? null : this.correspondingContact,
+      listOrder: listOrder ? null : this.listOrder,
+    );
+  }
+
   @override
   CitationEntry clone() => throw UnimplementedError();
   @override
@@ -11149,6 +13346,84 @@ class CitationAffiliationInfo extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'affiliation':
+        return ['FhirString'];
+      case 'role':
+        return ['FhirString'];
+      case 'identifier':
+        return ['Identifier'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationAffiliationInfo]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationAffiliationInfo createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'affiliation':
+        {
+          return copyWith(affiliation: FhirString.empty());
+        }
+      case 'role':
+        {
+          return copyWith(role: FhirString.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CitationAffiliationInfo clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool affiliation = false,
+    bool role = false,
+    bool identifier = false,
+  }) {
+    return CitationAffiliationInfo(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      affiliation: affiliation ? null : this.affiliation,
+      role: role ? null : this.role,
+      identifier: identifier ? null : this.identifier,
+    );
+  }
+
   @override
   CitationAffiliationInfo clone() => throw UnimplementedError();
   @override
@@ -11516,6 +13791,75 @@ class CitationContributionInstance extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'time':
+        return ['FhirDateTime'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationContributionInstance]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationContributionInstance createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'time':
+        {
+          return copyWith(time: FhirDateTime.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CitationContributionInstance clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool time = false,
+  }) {
+    return CitationContributionInstance(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      time: time ? null : this.time,
+    );
   }
 
   @override
@@ -11921,6 +14265,91 @@ class CitationSummary1 extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'style':
+        return ['CodeableConcept'];
+      case 'source':
+        return ['CodeableConcept'];
+      case 'value':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CitationSummary1]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CitationSummary1 createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'style':
+        {
+          return copyWith(style: CodeableConcept.empty());
+        }
+      case 'source':
+        {
+          return copyWith(source: CodeableConcept.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CitationSummary1 clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool style = false,
+    bool source = false,
+  }) {
+    return CitationSummary1(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      style: style ? null : this.style,
+      source: source ? null : this.source,
+      value: value,
+    );
   }
 
   @override

@@ -881,6 +881,259 @@ class AdverseEvent extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'actuality':
+        return ['FhirCode'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'event':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'detected':
+        return ['FhirDateTime'];
+      case 'recordedDate':
+        return ['FhirDateTime'];
+      case 'resultingCondition':
+        return ['Reference'];
+      case 'location':
+        return ['Reference'];
+      case 'seriousness':
+        return ['CodeableConcept'];
+      case 'severity':
+        return ['CodeableConcept'];
+      case 'outcome':
+        return ['CodeableConcept'];
+      case 'recorder':
+        return ['Reference'];
+      case 'contributor':
+        return ['Reference'];
+      case 'suspectEntity':
+        return ['AdverseEventSuspectEntity'];
+      case 'subjectMedicalHistory':
+        return ['Reference'];
+      case 'referenceDocument':
+        return ['Reference'];
+      case 'study':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [AdverseEvent]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AdverseEvent createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: Identifier.empty());
+        }
+      case 'actuality':
+        {
+          return copyWith(actuality: AdverseEventActuality.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'event':
+        {
+          return copyWith(event: CodeableConcept.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'detected':
+        {
+          return copyWith(detected: FhirDateTime.empty());
+        }
+      case 'recordedDate':
+        {
+          return copyWith(recordedDate: FhirDateTime.empty());
+        }
+      case 'resultingCondition':
+        {
+          return copyWith(resultingCondition: <Reference>[]);
+        }
+      case 'location':
+        {
+          return copyWith(location: Reference.empty());
+        }
+      case 'seriousness':
+        {
+          return copyWith(seriousness: CodeableConcept.empty());
+        }
+      case 'severity':
+        {
+          return copyWith(severity: CodeableConcept.empty());
+        }
+      case 'outcome':
+        {
+          return copyWith(outcome: CodeableConcept.empty());
+        }
+      case 'recorder':
+        {
+          return copyWith(recorder: Reference.empty());
+        }
+      case 'contributor':
+        {
+          return copyWith(contributor: <Reference>[]);
+        }
+      case 'suspectEntity':
+        {
+          return copyWith(suspectEntity: <AdverseEventSuspectEntity>[]);
+        }
+      case 'subjectMedicalHistory':
+        {
+          return copyWith(subjectMedicalHistory: <Reference>[]);
+        }
+      case 'referenceDocument':
+        {
+          return copyWith(referenceDocument: <Reference>[]);
+        }
+      case 'study':
+        {
+          return copyWith(study: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  AdverseEvent clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool category = false,
+    bool event = false,
+    bool encounter = false,
+    bool date = false,
+    bool detected = false,
+    bool recordedDate = false,
+    bool resultingCondition = false,
+    bool location = false,
+    bool seriousness = false,
+    bool severity = false,
+    bool outcome = false,
+    bool recorder = false,
+    bool contributor = false,
+    bool suspectEntity = false,
+    bool subjectMedicalHistory = false,
+    bool referenceDocument = false,
+    bool study = false,
+  }) {
+    return AdverseEvent(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      actuality: actuality,
+      category: category ? null : this.category,
+      event: event ? null : this.event,
+      subject: subject,
+      encounter: encounter ? null : this.encounter,
+      date: date ? null : this.date,
+      detected: detected ? null : this.detected,
+      recordedDate: recordedDate ? null : this.recordedDate,
+      resultingCondition: resultingCondition ? null : this.resultingCondition,
+      location: location ? null : this.location,
+      seriousness: seriousness ? null : this.seriousness,
+      severity: severity ? null : this.severity,
+      outcome: outcome ? null : this.outcome,
+      recorder: recorder ? null : this.recorder,
+      contributor: contributor ? null : this.contributor,
+      suspectEntity: suspectEntity ? null : this.suspectEntity,
+      subjectMedicalHistory:
+          subjectMedicalHistory ? null : this.subjectMedicalHistory,
+      referenceDocument: referenceDocument ? null : this.referenceDocument,
+      study: study ? null : this.study,
+    );
+  }
+
   @override
   AdverseEvent clone() => throw UnimplementedError();
   @override
@@ -1472,6 +1725,75 @@ class AdverseEventSuspectEntity extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'instance':
+        return ['Reference'];
+      case 'causality':
+        return ['AdverseEventCausality'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [AdverseEventSuspectEntity]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AdverseEventSuspectEntity createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'instance':
+        {
+          return copyWith(instance: Reference.empty());
+        }
+      case 'causality':
+        {
+          return copyWith(causality: <AdverseEventCausality>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  AdverseEventSuspectEntity clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool causality = false,
+  }) {
+    return AdverseEventSuspectEntity(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      instance: instance,
+      causality: causality ? null : this.causality,
+    );
+  }
+
   @override
   AdverseEventSuspectEntity clone() => throw UnimplementedError();
   @override
@@ -1879,6 +2201,92 @@ class AdverseEventCausality extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'assessment':
+        return ['CodeableConcept'];
+      case 'productRelatedness':
+        return ['FhirString'];
+      case 'author':
+        return ['Reference'];
+      case 'method':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [AdverseEventCausality]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AdverseEventCausality createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'assessment':
+        {
+          return copyWith(assessment: CodeableConcept.empty());
+        }
+      case 'productRelatedness':
+        {
+          return copyWith(productRelatedness: FhirString.empty());
+        }
+      case 'author':
+        {
+          return copyWith(author: Reference.empty());
+        }
+      case 'method':
+        {
+          return copyWith(method: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  AdverseEventCausality clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool assessment = false,
+    bool productRelatedness = false,
+    bool author = false,
+    bool method = false,
+  }) {
+    return AdverseEventCausality(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      assessment: assessment ? null : this.assessment,
+      productRelatedness: productRelatedness ? null : this.productRelatedness,
+      author: author ? null : this.author,
+      method: method ? null : this.method,
+    );
   }
 
   @override

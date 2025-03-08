@@ -138,4 +138,17 @@ abstract class Resource extends FhirBase {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   });
+
+  /// Retrieves the type of the object by element name.
+  @override
+  List<String> typeByElementName(String elementName) {
+    return <String>[];
+  }
+
+  /// Creates an empty property in the object
+  @override
+  Resource createProperty(String propertyName);
+
+  @override
+  Resource clear();
 }

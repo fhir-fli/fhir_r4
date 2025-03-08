@@ -991,6 +991,282 @@ class Encounter extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'statusHistory':
+        return ['EncounterStatusHistory'];
+      case 'class':
+        return ['Coding'];
+      case 'classHistory':
+        return ['EncounterClassHistory'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'serviceType':
+        return ['CodeableConcept'];
+      case 'priority':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'episodeOfCare':
+        return ['Reference'];
+      case 'basedOn':
+        return ['Reference'];
+      case 'participant':
+        return ['EncounterParticipant'];
+      case 'appointment':
+        return ['Reference'];
+      case 'period':
+        return ['Period'];
+      case 'length':
+        return ['FhirDuration'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'diagnosis':
+        return ['EncounterDiagnosis'];
+      case 'account':
+        return ['Reference'];
+      case 'hospitalization':
+        return ['EncounterHospitalization'];
+      case 'location':
+        return ['EncounterLocation'];
+      case 'serviceProvider':
+        return ['Reference'];
+      case 'partOf':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Encounter]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Encounter createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: EncounterStatus.empty());
+        }
+      case 'statusHistory':
+        {
+          return copyWith(statusHistory: <EncounterStatusHistory>[]);
+        }
+      case 'class':
+        {
+          return copyWith(class_: Coding.empty());
+        }
+      case 'classHistory':
+        {
+          return copyWith(classHistory: <EncounterClassHistory>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: <CodeableConcept>[]);
+        }
+      case 'serviceType':
+        {
+          return copyWith(serviceType: CodeableConcept.empty());
+        }
+      case 'priority':
+        {
+          return copyWith(priority: CodeableConcept.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'episodeOfCare':
+        {
+          return copyWith(episodeOfCare: <Reference>[]);
+        }
+      case 'basedOn':
+        {
+          return copyWith(basedOn: <Reference>[]);
+        }
+      case 'participant':
+        {
+          return copyWith(participant: <EncounterParticipant>[]);
+        }
+      case 'appointment':
+        {
+          return copyWith(appointment: <Reference>[]);
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      case 'length':
+        {
+          return copyWith(length: FhirDuration.empty());
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: <CodeableConcept>[]);
+        }
+      case 'reasonReference':
+        {
+          return copyWith(reasonReference: <Reference>[]);
+        }
+      case 'diagnosis':
+        {
+          return copyWith(diagnosis: <EncounterDiagnosis>[]);
+        }
+      case 'account':
+        {
+          return copyWith(account: <Reference>[]);
+        }
+      case 'hospitalization':
+        {
+          return copyWith(hospitalization: EncounterHospitalization.empty());
+        }
+      case 'location':
+        {
+          return copyWith(location: <EncounterLocation>[]);
+        }
+      case 'serviceProvider':
+        {
+          return copyWith(serviceProvider: Reference.empty());
+        }
+      case 'partOf':
+        {
+          return copyWith(partOf: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Encounter clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool statusHistory = false,
+    bool classHistory = false,
+    bool type = false,
+    bool serviceType = false,
+    bool priority = false,
+    bool subject = false,
+    bool episodeOfCare = false,
+    bool basedOn = false,
+    bool participant = false,
+    bool appointment = false,
+    bool period = false,
+    bool length = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool diagnosis = false,
+    bool account = false,
+    bool hospitalization = false,
+    bool location = false,
+    bool serviceProvider = false,
+    bool partOf = false,
+  }) {
+    return Encounter(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      statusHistory: statusHistory ? null : this.statusHistory,
+      class_: class_,
+      classHistory: classHistory ? null : this.classHistory,
+      type: type ? null : this.type,
+      serviceType: serviceType ? null : this.serviceType,
+      priority: priority ? null : this.priority,
+      subject: subject ? null : this.subject,
+      episodeOfCare: episodeOfCare ? null : this.episodeOfCare,
+      basedOn: basedOn ? null : this.basedOn,
+      participant: participant ? null : this.participant,
+      appointment: appointment ? null : this.appointment,
+      period: period ? null : this.period,
+      length: length ? null : this.length,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      diagnosis: diagnosis ? null : this.diagnosis,
+      account: account ? null : this.account,
+      hospitalization: hospitalization ? null : this.hospitalization,
+      location: location ? null : this.location,
+      serviceProvider: serviceProvider ? null : this.serviceProvider,
+      partOf: partOf ? null : this.partOf,
+    );
+  }
+
   @override
   Encounter clone() => throw UnimplementedError();
   @override
@@ -1643,6 +1919,74 @@ class EncounterStatusHistory extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'status':
+        return ['FhirCode'];
+      case 'period':
+        return ['Period'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [EncounterStatusHistory]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EncounterStatusHistory createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: EncounterStatus.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  EncounterStatusHistory clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return EncounterStatusHistory(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      status: status,
+      period: period,
+    );
+  }
+
   @override
   EncounterStatusHistory clone() => throw UnimplementedError();
   @override
@@ -1998,6 +2342,74 @@ class EncounterClassHistory extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'class':
+        return ['Coding'];
+      case 'period':
+        return ['Period'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [EncounterClassHistory]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EncounterClassHistory createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'class':
+        {
+          return copyWith(class_: Coding.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  EncounterClassHistory clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return EncounterClassHistory(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      class_: class_,
+      period: period,
+    );
   }
 
   @override
@@ -2381,6 +2793,84 @@ class EncounterParticipant extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'period':
+        return ['Period'];
+      case 'individual':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [EncounterParticipant]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EncounterParticipant createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: <CodeableConcept>[]);
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      case 'individual':
+        {
+          return copyWith(individual: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  EncounterParticipant clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool period = false,
+    bool individual = false,
+  }) {
+    return EncounterParticipant(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      period: period ? null : this.period,
+      individual: individual ? null : this.individual,
+    );
   }
 
   @override
@@ -2777,6 +3267,83 @@ class EncounterDiagnosis extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'condition':
+        return ['Reference'];
+      case 'use':
+        return ['CodeableConcept'];
+      case 'rank':
+        return ['FhirPositiveInt'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [EncounterDiagnosis]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EncounterDiagnosis createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'condition':
+        {
+          return copyWith(condition: Reference.empty());
+        }
+      case 'use':
+        {
+          return copyWith(use: CodeableConcept.empty());
+        }
+      case 'rank':
+        {
+          return copyWith(rank: FhirPositiveInt.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  EncounterDiagnosis clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool use = false,
+    bool rank = false,
+  }) {
+    return EncounterDiagnosis(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      condition: condition,
+      use: use ? null : this.use,
+      rank: rank ? null : this.rank,
+    );
   }
 
   @override
@@ -3327,6 +3894,134 @@ class EncounterHospitalization extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'preAdmissionIdentifier':
+        return ['Identifier'];
+      case 'origin':
+        return ['Reference'];
+      case 'admitSource':
+        return ['CodeableConcept'];
+      case 'reAdmission':
+        return ['CodeableConcept'];
+      case 'dietPreference':
+        return ['CodeableConcept'];
+      case 'specialCourtesy':
+        return ['CodeableConcept'];
+      case 'specialArrangement':
+        return ['CodeableConcept'];
+      case 'destination':
+        return ['Reference'];
+      case 'dischargeDisposition':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [EncounterHospitalization]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EncounterHospitalization createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'preAdmissionIdentifier':
+        {
+          return copyWith(preAdmissionIdentifier: Identifier.empty());
+        }
+      case 'origin':
+        {
+          return copyWith(origin: Reference.empty());
+        }
+      case 'admitSource':
+        {
+          return copyWith(admitSource: CodeableConcept.empty());
+        }
+      case 'reAdmission':
+        {
+          return copyWith(reAdmission: CodeableConcept.empty());
+        }
+      case 'dietPreference':
+        {
+          return copyWith(dietPreference: <CodeableConcept>[]);
+        }
+      case 'specialCourtesy':
+        {
+          return copyWith(specialCourtesy: <CodeableConcept>[]);
+        }
+      case 'specialArrangement':
+        {
+          return copyWith(specialArrangement: <CodeableConcept>[]);
+        }
+      case 'destination':
+        {
+          return copyWith(destination: Reference.empty());
+        }
+      case 'dischargeDisposition':
+        {
+          return copyWith(dischargeDisposition: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  EncounterHospitalization clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool preAdmissionIdentifier = false,
+    bool origin = false,
+    bool admitSource = false,
+    bool reAdmission = false,
+    bool dietPreference = false,
+    bool specialCourtesy = false,
+    bool specialArrangement = false,
+    bool destination = false,
+    bool dischargeDisposition = false,
+  }) {
+    return EncounterHospitalization(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      preAdmissionIdentifier:
+          preAdmissionIdentifier ? null : this.preAdmissionIdentifier,
+      origin: origin ? null : this.origin,
+      admitSource: admitSource ? null : this.admitSource,
+      reAdmission: reAdmission ? null : this.reAdmission,
+      dietPreference: dietPreference ? null : this.dietPreference,
+      specialCourtesy: specialCourtesy ? null : this.specialCourtesy,
+      specialArrangement: specialArrangement ? null : this.specialArrangement,
+      destination: destination ? null : this.destination,
+      dischargeDisposition:
+          dischargeDisposition ? null : this.dischargeDisposition,
+    );
+  }
+
   @override
   EncounterHospitalization clone() => throw UnimplementedError();
   @override
@@ -3807,6 +4502,91 @@ class EncounterLocation extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'location':
+        return ['Reference'];
+      case 'status':
+        return ['FhirCode'];
+      case 'physicalType':
+        return ['CodeableConcept'];
+      case 'period':
+        return ['Period'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [EncounterLocation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  EncounterLocation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'location':
+        {
+          return copyWith(location: Reference.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: EncounterLocationStatus.empty());
+        }
+      case 'physicalType':
+        {
+          return copyWith(physicalType: CodeableConcept.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  EncounterLocation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool status = false,
+    bool physicalType = false,
+    bool period = false,
+  }) {
+    return EncounterLocation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      location: location,
+      status: status ? null : this.status,
+      physicalType: physicalType ? null : this.physicalType,
+      period: period ? null : this.period,
+    );
   }
 
   @override

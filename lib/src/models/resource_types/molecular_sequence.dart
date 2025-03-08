@@ -771,6 +771,229 @@ class MolecularSequence extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'type':
+        return ['FhirCode'];
+      case 'coordinateSystem':
+        return ['FhirInteger'];
+      case 'patient':
+        return ['Reference'];
+      case 'specimen':
+        return ['Reference'];
+      case 'device':
+        return ['Reference'];
+      case 'performer':
+        return ['Reference'];
+      case 'quantity':
+        return ['Quantity'];
+      case 'referenceSeq':
+        return ['MolecularSequenceReferenceSeq'];
+      case 'variant':
+        return ['MolecularSequenceVariant'];
+      case 'observedSeq':
+        return ['FhirString'];
+      case 'quality':
+        return ['MolecularSequenceQuality'];
+      case 'readCoverage':
+        return ['FhirInteger'];
+      case 'repository':
+        return ['MolecularSequenceRepository'];
+      case 'pointer':
+        return ['Reference'];
+      case 'structureVariant':
+        return ['MolecularSequenceStructureVariant'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MolecularSequence]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MolecularSequence createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: SequenceType.empty());
+        }
+      case 'coordinateSystem':
+        {
+          return copyWith(coordinateSystem: FhirInteger.empty());
+        }
+      case 'patient':
+        {
+          return copyWith(patient: Reference.empty());
+        }
+      case 'specimen':
+        {
+          return copyWith(specimen: Reference.empty());
+        }
+      case 'device':
+        {
+          return copyWith(device: Reference.empty());
+        }
+      case 'performer':
+        {
+          return copyWith(performer: Reference.empty());
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'referenceSeq':
+        {
+          return copyWith(referenceSeq: MolecularSequenceReferenceSeq.empty());
+        }
+      case 'variant':
+        {
+          return copyWith(variant: <MolecularSequenceVariant>[]);
+        }
+      case 'observedSeq':
+        {
+          return copyWith(observedSeq: FhirString.empty());
+        }
+      case 'quality':
+        {
+          return copyWith(quality: <MolecularSequenceQuality>[]);
+        }
+      case 'readCoverage':
+        {
+          return copyWith(readCoverage: FhirInteger.empty());
+        }
+      case 'repository':
+        {
+          return copyWith(repository: <MolecularSequenceRepository>[]);
+        }
+      case 'pointer':
+        {
+          return copyWith(pointer: <Reference>[]);
+        }
+      case 'structureVariant':
+        {
+          return copyWith(
+            structureVariant: <MolecularSequenceStructureVariant>[],
+          );
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MolecularSequence clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool type = false,
+    bool patient = false,
+    bool specimen = false,
+    bool device = false,
+    bool performer = false,
+    bool quantity = false,
+    bool referenceSeq = false,
+    bool variant = false,
+    bool observedSeq = false,
+    bool quality = false,
+    bool readCoverage = false,
+    bool repository = false,
+    bool pointer = false,
+    bool structureVariant = false,
+  }) {
+    return MolecularSequence(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      type: type ? null : this.type,
+      coordinateSystem: coordinateSystem,
+      patient: patient ? null : this.patient,
+      specimen: specimen ? null : this.specimen,
+      device: device ? null : this.device,
+      performer: performer ? null : this.performer,
+      quantity: quantity ? null : this.quantity,
+      referenceSeq: referenceSeq ? null : this.referenceSeq,
+      variant: variant ? null : this.variant,
+      observedSeq: observedSeq ? null : this.observedSeq,
+      quality: quality ? null : this.quality,
+      readCoverage: readCoverage ? null : this.readCoverage,
+      repository: repository ? null : this.repository,
+      pointer: pointer ? null : this.pointer,
+      structureVariant: structureVariant ? null : this.structureVariant,
+    );
+  }
+
   @override
   MolecularSequence clone() => throw UnimplementedError();
   @override
@@ -1511,6 +1734,133 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'chromosome':
+        return ['CodeableConcept'];
+      case 'genomeBuild':
+        return ['FhirString'];
+      case 'orientation':
+        return ['FhirCode'];
+      case 'referenceSeqId':
+        return ['CodeableConcept'];
+      case 'referenceSeqPointer':
+        return ['Reference'];
+      case 'referenceSeqString':
+        return ['FhirString'];
+      case 'strand':
+        return ['FhirCode'];
+      case 'windowStart':
+        return ['FhirInteger'];
+      case 'windowEnd':
+        return ['FhirInteger'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MolecularSequenceReferenceSeq]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MolecularSequenceReferenceSeq createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'chromosome':
+        {
+          return copyWith(chromosome: CodeableConcept.empty());
+        }
+      case 'genomeBuild':
+        {
+          return copyWith(genomeBuild: FhirString.empty());
+        }
+      case 'orientation':
+        {
+          return copyWith(orientation: OrientationType.empty());
+        }
+      case 'referenceSeqId':
+        {
+          return copyWith(referenceSeqId: CodeableConcept.empty());
+        }
+      case 'referenceSeqPointer':
+        {
+          return copyWith(referenceSeqPointer: Reference.empty());
+        }
+      case 'referenceSeqString':
+        {
+          return copyWith(referenceSeqString: FhirString.empty());
+        }
+      case 'strand':
+        {
+          return copyWith(strand: StrandType.empty());
+        }
+      case 'windowStart':
+        {
+          return copyWith(windowStart: FhirInteger.empty());
+        }
+      case 'windowEnd':
+        {
+          return copyWith(windowEnd: FhirInteger.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MolecularSequenceReferenceSeq clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool chromosome = false,
+    bool genomeBuild = false,
+    bool orientation = false,
+    bool referenceSeqId = false,
+    bool referenceSeqPointer = false,
+    bool referenceSeqString = false,
+    bool strand = false,
+    bool windowStart = false,
+    bool windowEnd = false,
+  }) {
+    return MolecularSequenceReferenceSeq(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      chromosome: chromosome ? null : this.chromosome,
+      genomeBuild: genomeBuild ? null : this.genomeBuild,
+      orientation: orientation ? null : this.orientation,
+      referenceSeqId: referenceSeqId ? null : this.referenceSeqId,
+      referenceSeqPointer:
+          referenceSeqPointer ? null : this.referenceSeqPointer,
+      referenceSeqString: referenceSeqString ? null : this.referenceSeqString,
+      strand: strand ? null : this.strand,
+      windowStart: windowStart ? null : this.windowStart,
+      windowEnd: windowEnd ? null : this.windowEnd,
+    );
+  }
+
   @override
   MolecularSequenceReferenceSeq clone() => throw UnimplementedError();
   @override
@@ -2040,6 +2390,108 @@ class MolecularSequenceVariant extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'start':
+        return ['FhirInteger'];
+      case 'end':
+        return ['FhirInteger'];
+      case 'observedAllele':
+        return ['FhirString'];
+      case 'referenceAllele':
+        return ['FhirString'];
+      case 'cigar':
+        return ['FhirString'];
+      case 'variantPointer':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MolecularSequenceVariant]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MolecularSequenceVariant createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'start':
+        {
+          return copyWith(start: FhirInteger.empty());
+        }
+      case 'end':
+        {
+          return copyWith(end: FhirInteger.empty());
+        }
+      case 'observedAllele':
+        {
+          return copyWith(observedAllele: FhirString.empty());
+        }
+      case 'referenceAllele':
+        {
+          return copyWith(referenceAllele: FhirString.empty());
+        }
+      case 'cigar':
+        {
+          return copyWith(cigar: FhirString.empty());
+        }
+      case 'variantPointer':
+        {
+          return copyWith(variantPointer: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MolecularSequenceVariant clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool start = false,
+    bool end = false,
+    bool observedAllele = false,
+    bool referenceAllele = false,
+    bool cigar = false,
+    bool variantPointer = false,
+  }) {
+    return MolecularSequenceVariant(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      start: start ? null : this.start,
+      end: end ? null : this.end,
+      observedAllele: observedAllele ? null : this.observedAllele,
+      referenceAllele: referenceAllele ? null : this.referenceAllele,
+      cigar: cigar ? null : this.cigar,
+      variantPointer: variantPointer ? null : this.variantPointer,
+    );
   }
 
   @override
@@ -2775,6 +3227,179 @@ class MolecularSequenceQuality extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirCode'];
+      case 'standardSequence':
+        return ['CodeableConcept'];
+      case 'start':
+        return ['FhirInteger'];
+      case 'end':
+        return ['FhirInteger'];
+      case 'score':
+        return ['Quantity'];
+      case 'method':
+        return ['CodeableConcept'];
+      case 'truthTP':
+        return ['FhirDecimal'];
+      case 'queryTP':
+        return ['FhirDecimal'];
+      case 'truthFN':
+        return ['FhirDecimal'];
+      case 'queryFP':
+        return ['FhirDecimal'];
+      case 'gtFP':
+        return ['FhirDecimal'];
+      case 'precision':
+        return ['FhirDecimal'];
+      case 'recall':
+        return ['FhirDecimal'];
+      case 'fScore':
+        return ['FhirDecimal'];
+      case 'roc':
+        return ['MolecularSequenceRoc'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MolecularSequenceQuality]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MolecularSequenceQuality createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: QualityType.empty());
+        }
+      case 'standardSequence':
+        {
+          return copyWith(standardSequence: CodeableConcept.empty());
+        }
+      case 'start':
+        {
+          return copyWith(start: FhirInteger.empty());
+        }
+      case 'end':
+        {
+          return copyWith(end: FhirInteger.empty());
+        }
+      case 'score':
+        {
+          return copyWith(score: Quantity.empty());
+        }
+      case 'method':
+        {
+          return copyWith(method: CodeableConcept.empty());
+        }
+      case 'truthTP':
+        {
+          return copyWith(truthTP: FhirDecimal.empty());
+        }
+      case 'queryTP':
+        {
+          return copyWith(queryTP: FhirDecimal.empty());
+        }
+      case 'truthFN':
+        {
+          return copyWith(truthFN: FhirDecimal.empty());
+        }
+      case 'queryFP':
+        {
+          return copyWith(queryFP: FhirDecimal.empty());
+        }
+      case 'gtFP':
+        {
+          return copyWith(gtFP: FhirDecimal.empty());
+        }
+      case 'precision':
+        {
+          return copyWith(precision: FhirDecimal.empty());
+        }
+      case 'recall':
+        {
+          return copyWith(recall: FhirDecimal.empty());
+        }
+      case 'fScore':
+        {
+          return copyWith(fScore: FhirDecimal.empty());
+        }
+      case 'roc':
+        {
+          return copyWith(roc: MolecularSequenceRoc.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MolecularSequenceQuality clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool standardSequence = false,
+    bool start = false,
+    bool end = false,
+    bool score = false,
+    bool method = false,
+    bool truthTP = false,
+    bool queryTP = false,
+    bool truthFN = false,
+    bool queryFP = false,
+    bool gtFP = false,
+    bool precision = false,
+    bool recall = false,
+    bool fScore = false,
+    bool roc = false,
+  }) {
+    return MolecularSequenceQuality(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      standardSequence: standardSequence ? null : this.standardSequence,
+      start: start ? null : this.start,
+      end: end ? null : this.end,
+      score: score ? null : this.score,
+      method: method ? null : this.method,
+      truthTP: truthTP ? null : this.truthTP,
+      queryTP: queryTP ? null : this.queryTP,
+      truthFN: truthFN ? null : this.truthFN,
+      queryFP: queryFP ? null : this.queryFP,
+      gtFP: gtFP ? null : this.gtFP,
+      precision: precision ? null : this.precision,
+      recall: recall ? null : this.recall,
+      fScore: fScore ? null : this.fScore,
+      roc: roc ? null : this.roc,
+    );
+  }
+
   @override
   MolecularSequenceQuality clone() => throw UnimplementedError();
   @override
@@ -3364,6 +3989,116 @@ class MolecularSequenceRoc extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'score':
+        return ['FhirInteger'];
+      case 'numTP':
+        return ['FhirInteger'];
+      case 'numFP':
+        return ['FhirInteger'];
+      case 'numFN':
+        return ['FhirInteger'];
+      case 'precision':
+        return ['FhirDecimal'];
+      case 'sensitivity':
+        return ['FhirDecimal'];
+      case 'fMeasure':
+        return ['FhirDecimal'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MolecularSequenceRoc]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MolecularSequenceRoc createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'score':
+        {
+          return copyWith(score: <FhirInteger>[]);
+        }
+      case 'numTP':
+        {
+          return copyWith(numTP: <FhirInteger>[]);
+        }
+      case 'numFP':
+        {
+          return copyWith(numFP: <FhirInteger>[]);
+        }
+      case 'numFN':
+        {
+          return copyWith(numFN: <FhirInteger>[]);
+        }
+      case 'precision':
+        {
+          return copyWith(precision: <FhirDecimal>[]);
+        }
+      case 'sensitivity':
+        {
+          return copyWith(sensitivity: <FhirDecimal>[]);
+        }
+      case 'fMeasure':
+        {
+          return copyWith(fMeasure: <FhirDecimal>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MolecularSequenceRoc clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool score = false,
+    bool numTP = false,
+    bool numFP = false,
+    bool numFN = false,
+    bool precision = false,
+    bool sensitivity = false,
+    bool fMeasure = false,
+  }) {
+    return MolecularSequenceRoc(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      score: score ? null : this.score,
+      numTP: numTP ? null : this.numTP,
+      numFP: numFP ? null : this.numFP,
+      numFN: numFN ? null : this.numFN,
+      precision: precision ? null : this.precision,
+      sensitivity: sensitivity ? null : this.sensitivity,
+      fMeasure: fMeasure ? null : this.fMeasure,
+    );
+  }
+
   @override
   MolecularSequenceRoc clone() => throw UnimplementedError();
   @override
@@ -3913,6 +4648,107 @@ class MolecularSequenceRepository extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirCode'];
+      case 'url':
+        return ['FhirUri'];
+      case 'name':
+        return ['FhirString'];
+      case 'datasetId':
+        return ['FhirString'];
+      case 'variantsetId':
+        return ['FhirString'];
+      case 'readsetId':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MolecularSequenceRepository]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MolecularSequenceRepository createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: RepositoryType.empty());
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'datasetId':
+        {
+          return copyWith(datasetId: FhirString.empty());
+        }
+      case 'variantsetId':
+        {
+          return copyWith(variantsetId: FhirString.empty());
+        }
+      case 'readsetId':
+        {
+          return copyWith(readsetId: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MolecularSequenceRepository clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool name = false,
+    bool datasetId = false,
+    bool variantsetId = false,
+    bool readsetId = false,
+  }) {
+    return MolecularSequenceRepository(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      url: url ? null : this.url,
+      name: name ? null : this.name,
+      datasetId: datasetId ? null : this.datasetId,
+      variantsetId: variantsetId ? null : this.variantsetId,
+      readsetId: readsetId ? null : this.readsetId,
+    );
+  }
+
   @override
   MolecularSequenceRepository clone() => throw UnimplementedError();
   @override
@@ -4374,6 +5210,100 @@ class MolecularSequenceStructureVariant extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'variantType':
+        return ['CodeableConcept'];
+      case 'exact':
+        return ['FhirBoolean'];
+      case 'length':
+        return ['FhirInteger'];
+      case 'outer':
+        return ['MolecularSequenceOuter'];
+      case 'inner':
+        return ['MolecularSequenceInner'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MolecularSequenceStructureVariant]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MolecularSequenceStructureVariant createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'variantType':
+        {
+          return copyWith(variantType: CodeableConcept.empty());
+        }
+      case 'exact':
+        {
+          return copyWith(exact: FhirBoolean.empty());
+        }
+      case 'length':
+        {
+          return copyWith(length: FhirInteger.empty());
+        }
+      case 'outer':
+        {
+          return copyWith(outer: MolecularSequenceOuter.empty());
+        }
+      case 'inner':
+        {
+          return copyWith(inner: MolecularSequenceInner.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MolecularSequenceStructureVariant clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool variantType = false,
+    bool exact = false,
+    bool length = false,
+    bool outer = false,
+    bool inner = false,
+  }) {
+    return MolecularSequenceStructureVariant(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      variantType: variantType ? null : this.variantType,
+      exact: exact ? null : this.exact,
+      length: length ? null : this.length,
+      outer: outer ? null : this.outer,
+      inner: inner ? null : this.inner,
+    );
+  }
+
   @override
   MolecularSequenceStructureVariant clone() => throw UnimplementedError();
   @override
@@ -4754,6 +5684,76 @@ class MolecularSequenceOuter extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'start':
+        return ['FhirInteger'];
+      case 'end':
+        return ['FhirInteger'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MolecularSequenceOuter]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MolecularSequenceOuter createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'start':
+        {
+          return copyWith(start: FhirInteger.empty());
+        }
+      case 'end':
+        {
+          return copyWith(end: FhirInteger.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MolecularSequenceOuter clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool start = false,
+    bool end = false,
+  }) {
+    return MolecularSequenceOuter(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      start: start ? null : this.start,
+      end: end ? null : this.end,
+    );
+  }
+
   @override
   MolecularSequenceOuter clone() => throw UnimplementedError();
   @override
@@ -5108,6 +6108,76 @@ class MolecularSequenceInner extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'start':
+        return ['FhirInteger'];
+      case 'end':
+        return ['FhirInteger'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MolecularSequenceInner]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MolecularSequenceInner createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'start':
+        {
+          return copyWith(start: FhirInteger.empty());
+        }
+      case 'end':
+        {
+          return copyWith(end: FhirInteger.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MolecularSequenceInner clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool start = false,
+    bool end = false,
+  }) {
+    return MolecularSequenceInner(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      start: start ? null : this.start,
+      end: end ? null : this.end,
+    );
   }
 
   @override

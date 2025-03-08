@@ -719,6 +719,212 @@ class RegulatedAuthorization extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'subject':
+        return ['Reference'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'region':
+        return ['CodeableConcept'];
+      case 'status':
+        return ['CodeableConcept'];
+      case 'statusDate':
+        return ['FhirDateTime'];
+      case 'validityPeriod':
+        return ['Period'];
+      case 'indication':
+        return ['CodeableReference'];
+      case 'intendedUse':
+        return ['CodeableConcept'];
+      case 'basis':
+        return ['CodeableConcept'];
+      case 'holder':
+        return ['Reference'];
+      case 'regulator':
+        return ['Reference'];
+      case 'case':
+        return ['RegulatedAuthorizationCase'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [RegulatedAuthorization]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  RegulatedAuthorization createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'subject':
+        {
+          return copyWith(subject: <Reference>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'region':
+        {
+          return copyWith(region: <CodeableConcept>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: CodeableConcept.empty());
+        }
+      case 'statusDate':
+        {
+          return copyWith(statusDate: FhirDateTime.empty());
+        }
+      case 'validityPeriod':
+        {
+          return copyWith(validityPeriod: Period.empty());
+        }
+      case 'indication':
+        {
+          return copyWith(indication: CodeableReference.empty());
+        }
+      case 'intendedUse':
+        {
+          return copyWith(intendedUse: CodeableConcept.empty());
+        }
+      case 'basis':
+        {
+          return copyWith(basis: <CodeableConcept>[]);
+        }
+      case 'holder':
+        {
+          return copyWith(holder: Reference.empty());
+        }
+      case 'regulator':
+        {
+          return copyWith(regulator: Reference.empty());
+        }
+      case 'case':
+        {
+          return copyWith(case_: RegulatedAuthorizationCase.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  RegulatedAuthorization clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool subject = false,
+    bool type = false,
+    bool description = false,
+    bool region = false,
+    bool status = false,
+    bool statusDate = false,
+    bool validityPeriod = false,
+    bool indication = false,
+    bool intendedUse = false,
+    bool basis = false,
+    bool holder = false,
+    bool regulator = false,
+    bool case_ = false,
+  }) {
+    return RegulatedAuthorization(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      subject: subject ? null : this.subject,
+      type: type ? null : this.type,
+      description: description ? null : this.description,
+      region: region ? null : this.region,
+      status: status ? null : this.status,
+      statusDate: statusDate ? null : this.statusDate,
+      validityPeriod: validityPeriod ? null : this.validityPeriod,
+      indication: indication ? null : this.indication,
+      intendedUse: intendedUse ? null : this.intendedUse,
+      basis: basis ? null : this.basis,
+      holder: holder ? null : this.holder,
+      regulator: regulator ? null : this.regulator,
+      case_: case_ ? null : this.case_,
+    );
+  }
+
   @override
   RegulatedAuthorization clone() => throw UnimplementedError();
   @override
@@ -992,7 +1198,8 @@ class RegulatedAuthorizationCase extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory RegulatedAuthorizationCase.empty() => const RegulatedAuthorizationCase();
+  factory RegulatedAuthorizationCase.empty() =>
+      const RegulatedAuthorizationCase();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RegulatedAuthorizationCase.fromJson(
@@ -1358,6 +1565,111 @@ class RegulatedAuthorizationCase extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'status':
+        return ['CodeableConcept'];
+      case 'date':
+      case 'dateX':
+        return ['Period', 'FhirDateTime'];
+      case 'datePeriod':
+        return ['Period'];
+      case 'dateDateTime':
+        return ['FhirDateTime'];
+      case 'application':
+        return ['RegulatedAuthorizationCase'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [RegulatedAuthorizationCase]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  RegulatedAuthorizationCase createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: Identifier.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: CodeableConcept.empty());
+        }
+      case 'date':
+      case 'dateX':
+      case 'datePeriod':
+        {
+          return copyWith(dateX: Period.empty());
+        }
+      case 'dateDateTime':
+        {
+          return copyWith(dateX: FhirDateTime.empty());
+        }
+      case 'application':
+        {
+          return copyWith(application: <RegulatedAuthorizationCase>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  RegulatedAuthorizationCase clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool type = false,
+    bool status = false,
+    bool date = false,
+    bool application = false,
+  }) {
+    return RegulatedAuthorizationCase(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      type: type ? null : this.type,
+      status: status ? null : this.status,
+      dateX: date ? null : dateX,
+      application: application ? null : this.application,
+    );
   }
 
   @override

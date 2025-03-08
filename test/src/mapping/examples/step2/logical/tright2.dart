@@ -11,6 +11,8 @@ class TRight2 extends Element {
     super.objectPath = 'TRight2',
   });
 
+  factory TRight2.empty() => const TRight2();
+
   /// FromJson Factory Constructor
   factory TRight2.fromJson(Map<String, dynamic> json) {
     const objectPath = 'TRight2';
@@ -73,5 +75,35 @@ class TRight2 extends Element {
       json['a2'] = a2!.value;
     }
     return json;
+  }
+
+  @override
+  TRight2 setChildByName(String name, dynamic value) {
+    switch (name) {
+      case 'id':
+        return copyWith(id: value as FhirString);
+      case 'extension':
+        return copyWith(extension_: value as List<FhirExtension>);
+      case 'a2':
+        return copyWith(a2: value as FhirString);
+      default:
+        return this;
+    }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['List<FhirExtension>'];
+      case 'a2':
+        return ['FhirString'];
+      default:
+        return [];
+    }
   }
 }

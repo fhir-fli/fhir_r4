@@ -214,6 +214,21 @@ class ValidationOptions {
     return this;
   }
 
+  /// Returns if the guess system is enabled.
+  bool isGuessSystem() {
+    return guessSystem;
+  }
+
+  /// Returns if useClient is enabled.
+  bool isUseClient() {
+    return useClient;
+  }
+
+  /// Returns if useServer is enabled.
+  bool isUseServer() {
+    return useServer;
+  }
+
   /// Converts the validation options to a JSON-like string.
   String toJson() {
     return {
@@ -261,6 +276,7 @@ class ValidationResult {
   ValidationResult({
     this.system,
     this.definition,
+    this.display,
     this.severity,
     this.message,
     this.errorClass,
@@ -286,6 +302,9 @@ class ValidationResult {
 
   /// The system URL.
   String? system;
+
+  /// The display name of the validated concept.
+  String? display;
 
   /// The severity of the validation result.
   IssueSeverity? severity;

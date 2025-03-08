@@ -1012,6 +1012,305 @@ class FamilyMemberHistory extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'instantiatesCanonical':
+        return ['FhirCanonical'];
+      case 'instantiatesUri':
+        return ['FhirUri'];
+      case 'status':
+        return ['FhirCode'];
+      case 'dataAbsentReason':
+        return ['CodeableConcept'];
+      case 'patient':
+        return ['Reference'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'name':
+        return ['FhirString'];
+      case 'relationship':
+        return ['CodeableConcept'];
+      case 'sex':
+        return ['CodeableConcept'];
+      case 'born':
+      case 'bornX':
+        return ['Period', 'FhirDate', 'FhirString'];
+      case 'bornPeriod':
+        return ['Period'];
+      case 'bornDate':
+        return ['FhirDate'];
+      case 'bornString':
+        return ['FhirString'];
+      case 'age':
+      case 'ageX':
+        return ['Age', 'Range', 'FhirString'];
+      case 'ageAge':
+        return ['Age'];
+      case 'ageRange':
+        return ['Range'];
+      case 'ageString':
+        return ['FhirString'];
+      case 'estimatedAge':
+        return ['FhirBoolean'];
+      case 'deceased':
+      case 'deceasedX':
+        return ['FhirBoolean', 'Age', 'Range', 'FhirDate', 'FhirString'];
+      case 'deceasedBoolean':
+        return ['FhirBoolean'];
+      case 'deceasedAge':
+        return ['Age'];
+      case 'deceasedRange':
+        return ['Range'];
+      case 'deceasedDate':
+        return ['FhirDate'];
+      case 'deceasedString':
+        return ['FhirString'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'note':
+        return ['Annotation'];
+      case 'condition':
+        return ['FamilyMemberHistoryCondition'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [FamilyMemberHistory]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  FamilyMemberHistory createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'instantiatesCanonical':
+        {
+          return copyWith(instantiatesCanonical: <FhirCanonical>[]);
+        }
+      case 'instantiatesUri':
+        {
+          return copyWith(instantiatesUri: <FhirUri>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: FamilyHistoryStatus.empty());
+        }
+      case 'dataAbsentReason':
+        {
+          return copyWith(dataAbsentReason: CodeableConcept.empty());
+        }
+      case 'patient':
+        {
+          return copyWith(patient: Reference.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'relationship':
+        {
+          return copyWith(relationship: CodeableConcept.empty());
+        }
+      case 'sex':
+        {
+          return copyWith(sex: CodeableConcept.empty());
+        }
+      case 'born':
+      case 'bornX':
+      case 'bornPeriod':
+        {
+          return copyWith(bornX: Period.empty());
+        }
+      case 'bornDate':
+        {
+          return copyWith(bornX: FhirDate.empty());
+        }
+      case 'bornString':
+        {
+          return copyWith(bornX: FhirString.empty());
+        }
+      case 'age':
+      case 'ageX':
+      case 'ageAge':
+        {
+          return copyWith(ageX: Age.empty());
+        }
+      case 'ageRange':
+        {
+          return copyWith(ageX: Range.empty());
+        }
+      case 'ageString':
+        {
+          return copyWith(ageX: FhirString.empty());
+        }
+      case 'estimatedAge':
+        {
+          return copyWith(estimatedAge: FhirBoolean.empty());
+        }
+      case 'deceased':
+      case 'deceasedX':
+      case 'deceasedBoolean':
+        {
+          return copyWith(deceasedX: FhirBoolean.empty());
+        }
+      case 'deceasedAge':
+        {
+          return copyWith(deceasedX: Age.empty());
+        }
+      case 'deceasedRange':
+        {
+          return copyWith(deceasedX: Range.empty());
+        }
+      case 'deceasedDate':
+        {
+          return copyWith(deceasedX: FhirDate.empty());
+        }
+      case 'deceasedString':
+        {
+          return copyWith(deceasedX: FhirString.empty());
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: <CodeableConcept>[]);
+        }
+      case 'reasonReference':
+        {
+          return copyWith(reasonReference: <Reference>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'condition':
+        {
+          return copyWith(condition: <FamilyMemberHistoryCondition>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  FamilyMemberHistory clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool instantiatesCanonical = false,
+    bool instantiatesUri = false,
+    bool dataAbsentReason = false,
+    bool date = false,
+    bool name = false,
+    bool sex = false,
+    bool born = false,
+    bool age = false,
+    bool estimatedAge = false,
+    bool deceased = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool note = false,
+    bool condition = false,
+  }) {
+    return FamilyMemberHistory(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      instantiatesCanonical:
+          instantiatesCanonical ? null : this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri ? null : this.instantiatesUri,
+      status: status,
+      dataAbsentReason: dataAbsentReason ? null : this.dataAbsentReason,
+      patient: patient,
+      date: date ? null : this.date,
+      name: name ? null : this.name,
+      relationship: relationship,
+      sex: sex ? null : this.sex,
+      bornX: born ? null : bornX,
+      ageX: age ? null : ageX,
+      estimatedAge: estimatedAge ? null : this.estimatedAge,
+      deceasedX: deceased ? null : deceasedX,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      note: note ? null : this.note,
+      condition: condition ? null : this.condition,
+    );
+  }
+
   @override
   FamilyMemberHistory clone() => throw UnimplementedError();
   @override
@@ -1737,6 +2036,122 @@ class FamilyMemberHistoryCondition extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'outcome':
+        return ['CodeableConcept'];
+      case 'contributedToDeath':
+        return ['FhirBoolean'];
+      case 'onset':
+      case 'onsetX':
+        return ['Age', 'Range', 'Period', 'FhirString'];
+      case 'onsetAge':
+        return ['Age'];
+      case 'onsetRange':
+        return ['Range'];
+      case 'onsetPeriod':
+        return ['Period'];
+      case 'onsetString':
+        return ['FhirString'];
+      case 'note':
+        return ['Annotation'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [FamilyMemberHistoryCondition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  FamilyMemberHistoryCondition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'outcome':
+        {
+          return copyWith(outcome: CodeableConcept.empty());
+        }
+      case 'contributedToDeath':
+        {
+          return copyWith(contributedToDeath: FhirBoolean.empty());
+        }
+      case 'onset':
+      case 'onsetX':
+      case 'onsetAge':
+        {
+          return copyWith(onsetX: Age.empty());
+        }
+      case 'onsetRange':
+        {
+          return copyWith(onsetX: Range.empty());
+        }
+      case 'onsetPeriod':
+        {
+          return copyWith(onsetX: Period.empty());
+        }
+      case 'onsetString':
+        {
+          return copyWith(onsetX: FhirString.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  FamilyMemberHistoryCondition clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool outcome = false,
+    bool contributedToDeath = false,
+    bool onset = false,
+    bool note = false,
+  }) {
+    return FamilyMemberHistoryCondition(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      outcome: outcome ? null : this.outcome,
+      contributedToDeath: contributedToDeath ? null : this.contributedToDeath,
+      onsetX: onset ? null : onsetX,
+      note: note ? null : this.note,
+    );
   }
 
   @override

@@ -970,6 +970,293 @@ class Condition extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'clinicalStatus':
+        return ['CodeableConcept'];
+      case 'verificationStatus':
+        return ['CodeableConcept'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'severity':
+        return ['CodeableConcept'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'bodySite':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'onset':
+      case 'onsetX':
+        return ['FhirDateTime', 'Age', 'Period', 'Range', 'FhirString'];
+      case 'onsetDateTime':
+        return ['FhirDateTime'];
+      case 'onsetAge':
+        return ['Age'];
+      case 'onsetPeriod':
+        return ['Period'];
+      case 'onsetRange':
+        return ['Range'];
+      case 'onsetString':
+        return ['FhirString'];
+      case 'abatement':
+      case 'abatementX':
+        return ['FhirDateTime', 'Age', 'Period', 'Range', 'FhirString'];
+      case 'abatementDateTime':
+        return ['FhirDateTime'];
+      case 'abatementAge':
+        return ['Age'];
+      case 'abatementPeriod':
+        return ['Period'];
+      case 'abatementRange':
+        return ['Range'];
+      case 'abatementString':
+        return ['FhirString'];
+      case 'recordedDate':
+        return ['FhirDateTime'];
+      case 'recorder':
+        return ['Reference'];
+      case 'asserter':
+        return ['Reference'];
+      case 'stage':
+        return ['ConditionStage'];
+      case 'evidence':
+        return ['ConditionEvidence'];
+      case 'note':
+        return ['Annotation'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Condition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Condition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'clinicalStatus':
+        {
+          return copyWith(clinicalStatus: CodeableConcept.empty());
+        }
+      case 'verificationStatus':
+        {
+          return copyWith(verificationStatus: CodeableConcept.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'severity':
+        {
+          return copyWith(severity: CodeableConcept.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'bodySite':
+        {
+          return copyWith(bodySite: <CodeableConcept>[]);
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'onset':
+      case 'onsetX':
+      case 'onsetDateTime':
+        {
+          return copyWith(onsetX: FhirDateTime.empty());
+        }
+      case 'onsetAge':
+        {
+          return copyWith(onsetX: Age.empty());
+        }
+      case 'onsetPeriod':
+        {
+          return copyWith(onsetX: Period.empty());
+        }
+      case 'onsetRange':
+        {
+          return copyWith(onsetX: Range.empty());
+        }
+      case 'onsetString':
+        {
+          return copyWith(onsetX: FhirString.empty());
+        }
+      case 'abatement':
+      case 'abatementX':
+      case 'abatementDateTime':
+        {
+          return copyWith(abatementX: FhirDateTime.empty());
+        }
+      case 'abatementAge':
+        {
+          return copyWith(abatementX: Age.empty());
+        }
+      case 'abatementPeriod':
+        {
+          return copyWith(abatementX: Period.empty());
+        }
+      case 'abatementRange':
+        {
+          return copyWith(abatementX: Range.empty());
+        }
+      case 'abatementString':
+        {
+          return copyWith(abatementX: FhirString.empty());
+        }
+      case 'recordedDate':
+        {
+          return copyWith(recordedDate: FhirDateTime.empty());
+        }
+      case 'recorder':
+        {
+          return copyWith(recorder: Reference.empty());
+        }
+      case 'asserter':
+        {
+          return copyWith(asserter: Reference.empty());
+        }
+      case 'stage':
+        {
+          return copyWith(stage: <ConditionStage>[]);
+        }
+      case 'evidence':
+        {
+          return copyWith(evidence: <ConditionEvidence>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Condition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool clinicalStatus = false,
+    bool verificationStatus = false,
+    bool category = false,
+    bool severity = false,
+    bool code = false,
+    bool bodySite = false,
+    bool encounter = false,
+    bool onset = false,
+    bool abatement = false,
+    bool recordedDate = false,
+    bool recorder = false,
+    bool asserter = false,
+    bool stage = false,
+    bool evidence = false,
+    bool note = false,
+  }) {
+    return Condition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      clinicalStatus: clinicalStatus ? null : this.clinicalStatus,
+      verificationStatus: verificationStatus ? null : this.verificationStatus,
+      category: category ? null : this.category,
+      severity: severity ? null : this.severity,
+      code: code ? null : this.code,
+      bodySite: bodySite ? null : this.bodySite,
+      subject: subject,
+      encounter: encounter ? null : this.encounter,
+      onsetX: onset ? null : onsetX,
+      abatementX: abatement ? null : abatementX,
+      recordedDate: recordedDate ? null : this.recordedDate,
+      recorder: recorder ? null : this.recorder,
+      asserter: asserter ? null : this.asserter,
+      stage: stage ? null : this.stage,
+      evidence: evidence ? null : this.evidence,
+      note: note ? null : this.note,
+    );
+  }
+
   @override
   Condition clone() => throw UnimplementedError();
   @override
@@ -1555,6 +1842,84 @@ class ConditionStage extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'summary':
+        return ['CodeableConcept'];
+      case 'assessment':
+        return ['Reference'];
+      case 'type':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ConditionStage]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ConditionStage createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'summary':
+        {
+          return copyWith(summary: CodeableConcept.empty());
+        }
+      case 'assessment':
+        {
+          return copyWith(assessment: <Reference>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ConditionStage clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool summary = false,
+    bool assessment = false,
+    bool type = false,
+  }) {
+    return ConditionStage(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      summary: summary ? null : this.summary,
+      assessment: assessment ? null : this.assessment,
+      type: type ? null : this.type,
+    );
+  }
+
   @override
   ConditionStage clone() => throw UnimplementedError();
   @override
@@ -1930,6 +2295,76 @@ class ConditionEvidence extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'detail':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ConditionEvidence]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ConditionEvidence createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: <CodeableConcept>[]);
+        }
+      case 'detail':
+        {
+          return copyWith(detail: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ConditionEvidence clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool detail = false,
+  }) {
+    return ConditionEvidence(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      detail: detail ? null : this.detail,
+    );
   }
 
   @override

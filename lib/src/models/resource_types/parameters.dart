@@ -268,6 +268,76 @@ class Parameters extends Resource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'parameter':
+        return ['ParametersParameter'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Parameters]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Parameters createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'parameter':
+        {
+          return copyWith(parameter: <ParametersParameter>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Parameters clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool parameter = false,
+  }) {
+    return Parameters(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      parameter: parameter ? null : this.parameter,
+    );
+  }
+
   @override
   Parameters clone() => throw UnimplementedError();
   @override
@@ -1471,6 +1541,441 @@ class ParametersParameter extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'value':
+      case 'valueX':
+        return [
+          'FhirBase64Binary',
+          'FhirBoolean',
+          'FhirCanonical',
+          'FhirCode',
+          'FhirDate',
+          'FhirDateTime',
+          'FhirDecimal',
+          'FhirId',
+          'FhirInstant',
+          'FhirInteger',
+          'FhirMarkdown',
+          'FhirOid',
+          'FhirPositiveInt',
+          'FhirString',
+          'FhirTime',
+          'FhirUnsignedInt',
+          'FhirUri',
+          'FhirUrl',
+          'FhirUuid',
+          'Address',
+          'Age',
+          'Annotation',
+          'Attachment',
+          'CodeableConcept',
+          'Coding',
+          'ContactPoint',
+          'Count',
+          'Distance',
+          'FhirDuration',
+          'HumanName',
+          'Identifier',
+          'Money',
+          'Period',
+          'Quantity',
+          'Range',
+          'Ratio',
+          'Reference',
+          'SampledData',
+          'Signature',
+          'Timing',
+          'ContactDetail',
+          'Contributor',
+          'DataRequirement',
+          'FhirExpression',
+          'ParameterDefinition',
+          'RelatedArtifact',
+          'TriggerDefinition',
+          'UsageContext',
+          'Dosage',
+          'FhirMeta',
+        ];
+      case 'valueBase64Binary':
+        return ['FhirBase64Binary'];
+      case 'valueBoolean':
+        return ['FhirBoolean'];
+      case 'valueCanonical':
+        return ['FhirCanonical'];
+      case 'valueCode':
+        return ['FhirCode'];
+      case 'valueDate':
+        return ['FhirDate'];
+      case 'valueDateTime':
+        return ['FhirDateTime'];
+      case 'valueDecimal':
+        return ['FhirDecimal'];
+      case 'valueId':
+        return ['FhirId'];
+      case 'valueInstant':
+        return ['FhirInstant'];
+      case 'valueInteger':
+        return ['FhirInteger'];
+      case 'valueMarkdown':
+        return ['FhirMarkdown'];
+      case 'valueOid':
+        return ['FhirOid'];
+      case 'valuePositiveInt':
+        return ['FhirPositiveInt'];
+      case 'valueString':
+        return ['FhirString'];
+      case 'valueTime':
+        return ['FhirTime'];
+      case 'valueUnsignedInt':
+        return ['FhirUnsignedInt'];
+      case 'valueUri':
+        return ['FhirUri'];
+      case 'valueUrl':
+        return ['FhirUrl'];
+      case 'valueUuid':
+        return ['FhirUuid'];
+      case 'valueAddress':
+        return ['Address'];
+      case 'valueAge':
+        return ['Age'];
+      case 'valueAnnotation':
+        return ['Annotation'];
+      case 'valueAttachment':
+        return ['Attachment'];
+      case 'valueCodeableConcept':
+        return ['CodeableConcept'];
+      case 'valueCoding':
+        return ['Coding'];
+      case 'valueContactPoint':
+        return ['ContactPoint'];
+      case 'valueCount':
+        return ['Count'];
+      case 'valueDistance':
+        return ['Distance'];
+      case 'valueDuration':
+        return ['FhirDuration'];
+      case 'valueHumanName':
+        return ['HumanName'];
+      case 'valueIdentifier':
+        return ['Identifier'];
+      case 'valueMoney':
+        return ['Money'];
+      case 'valuePeriod':
+        return ['Period'];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueRange':
+        return ['Range'];
+      case 'valueRatio':
+        return ['Ratio'];
+      case 'valueReference':
+        return ['Reference'];
+      case 'valueSampledData':
+        return ['SampledData'];
+      case 'valueSignature':
+        return ['Signature'];
+      case 'valueTiming':
+        return ['Timing'];
+      case 'valueContactDetail':
+        return ['ContactDetail'];
+      case 'valueContributor':
+        return ['Contributor'];
+      case 'valueDataRequirement':
+        return ['DataRequirement'];
+      case 'valueExpression':
+        return ['FhirExpression'];
+      case 'valueParameterDefinition':
+        return ['ParameterDefinition'];
+      case 'valueRelatedArtifact':
+        return ['RelatedArtifact'];
+      case 'valueTriggerDefinition':
+        return ['TriggerDefinition'];
+      case 'valueUsageContext':
+        return ['UsageContext'];
+      case 'valueDosage':
+        return ['Dosage'];
+      case 'valueMeta':
+        return ['FhirMeta'];
+      case 'resource':
+        return ['Resource'];
+      case 'part':
+        return ['ParametersParameter'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ParametersParameter]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ParametersParameter createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueBase64Binary':
+        {
+          return copyWith(valueX: FhirBase64Binary.empty());
+        }
+      case 'valueBoolean':
+        {
+          return copyWith(valueX: FhirBoolean.empty());
+        }
+      case 'valueCanonical':
+        {
+          return copyWith(valueX: FhirCanonical.empty());
+        }
+      case 'valueCode':
+        {
+          return copyWith(valueX: FhirCode.empty());
+        }
+      case 'valueDate':
+        {
+          return copyWith(valueX: FhirDate.empty());
+        }
+      case 'valueDateTime':
+        {
+          return copyWith(valueX: FhirDateTime.empty());
+        }
+      case 'valueDecimal':
+        {
+          return copyWith(valueX: FhirDecimal.empty());
+        }
+      case 'valueId':
+        {
+          return copyWith(valueX: FhirId.empty());
+        }
+      case 'valueInstant':
+        {
+          return copyWith(valueX: FhirInstant.empty());
+        }
+      case 'valueInteger':
+        {
+          return copyWith(valueX: FhirInteger.empty());
+        }
+      case 'valueMarkdown':
+        {
+          return copyWith(valueX: FhirMarkdown.empty());
+        }
+      case 'valueOid':
+        {
+          return copyWith(valueX: FhirOid.empty());
+        }
+      case 'valuePositiveInt':
+        {
+          return copyWith(valueX: FhirPositiveInt.empty());
+        }
+      case 'valueString':
+        {
+          return copyWith(valueX: FhirString.empty());
+        }
+      case 'valueTime':
+        {
+          return copyWith(valueX: FhirTime.empty());
+        }
+      case 'valueUnsignedInt':
+        {
+          return copyWith(valueX: FhirUnsignedInt.empty());
+        }
+      case 'valueUri':
+        {
+          return copyWith(valueX: FhirUri.empty());
+        }
+      case 'valueUrl':
+        {
+          return copyWith(valueX: FhirUrl.empty());
+        }
+      case 'valueUuid':
+        {
+          return copyWith(valueX: FhirUuid.empty());
+        }
+      case 'valueAddress':
+        {
+          return copyWith(valueX: Address.empty());
+        }
+      case 'valueAge':
+        {
+          return copyWith(valueX: Age.empty());
+        }
+      case 'valueAnnotation':
+        {
+          return copyWith(valueX: Annotation.empty());
+        }
+      case 'valueAttachment':
+        {
+          return copyWith(valueX: Attachment.empty());
+        }
+      case 'valueCodeableConcept':
+        {
+          return copyWith(valueX: CodeableConcept.empty());
+        }
+      case 'valueCoding':
+        {
+          return copyWith(valueX: Coding.empty());
+        }
+      case 'valueContactPoint':
+        {
+          return copyWith(valueX: ContactPoint.empty());
+        }
+      case 'valueCount':
+        {
+          return copyWith(valueX: Count.empty());
+        }
+      case 'valueDistance':
+        {
+          return copyWith(valueX: Distance.empty());
+        }
+      case 'valueDuration':
+        {
+          return copyWith(valueX: FhirDuration.empty());
+        }
+      case 'valueHumanName':
+        {
+          return copyWith(valueX: HumanName.empty());
+        }
+      case 'valueIdentifier':
+        {
+          return copyWith(valueX: Identifier.empty());
+        }
+      case 'valueMoney':
+        {
+          return copyWith(valueX: Money.empty());
+        }
+      case 'valuePeriod':
+        {
+          return copyWith(valueX: Period.empty());
+        }
+      case 'valueQuantity':
+        {
+          return copyWith(valueX: Quantity.empty());
+        }
+      case 'valueRange':
+        {
+          return copyWith(valueX: Range.empty());
+        }
+      case 'valueRatio':
+        {
+          return copyWith(valueX: Ratio.empty());
+        }
+      case 'valueReference':
+        {
+          return copyWith(valueX: Reference.empty());
+        }
+      case 'valueSampledData':
+        {
+          return copyWith(valueX: SampledData.empty());
+        }
+      case 'valueSignature':
+        {
+          return copyWith(valueX: Signature.empty());
+        }
+      case 'valueTiming':
+        {
+          return copyWith(valueX: Timing.empty());
+        }
+      case 'valueContactDetail':
+        {
+          return copyWith(valueX: ContactDetail.empty());
+        }
+      case 'valueContributor':
+        {
+          return copyWith(valueX: Contributor.empty());
+        }
+      case 'valueDataRequirement':
+        {
+          return copyWith(valueX: DataRequirement.empty());
+        }
+      case 'valueExpression':
+        {
+          return copyWith(valueX: FhirExpression.empty());
+        }
+      case 'valueParameterDefinition':
+        {
+          return copyWith(valueX: ParameterDefinition.empty());
+        }
+      case 'valueRelatedArtifact':
+        {
+          return copyWith(valueX: RelatedArtifact.empty());
+        }
+      case 'valueTriggerDefinition':
+        {
+          return copyWith(valueX: TriggerDefinition.empty());
+        }
+      case 'valueUsageContext':
+        {
+          return copyWith(valueX: UsageContext.empty());
+        }
+      case 'valueDosage':
+        {
+          return copyWith(valueX: Dosage.empty());
+        }
+      case 'valueMeta':
+        {
+          return copyWith(valueX: FhirMeta.empty());
+        }
+      case 'resource':
+        {
+          return copyWith(resource: Resource.empty());
+        }
+      case 'part':
+        {
+          return copyWith(part_: <ParametersParameter>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ParametersParameter clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool value = false,
+    bool resource = false,
+    bool part_ = false,
+  }) {
+    return ParametersParameter(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      valueX: value ? null : valueX,
+      resource: resource ? null : this.resource,
+      part_: part_ ? null : this.part_,
+    );
   }
 
   @override

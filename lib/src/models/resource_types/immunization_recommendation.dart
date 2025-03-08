@@ -466,6 +466,139 @@ class ImmunizationRecommendation extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'patient':
+        return ['Reference'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'authority':
+        return ['Reference'];
+      case 'recommendation':
+        return ['ImmunizationRecommendationRecommendation'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ImmunizationRecommendation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImmunizationRecommendation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'patient':
+        {
+          return copyWith(patient: Reference.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'authority':
+        {
+          return copyWith(authority: Reference.empty());
+        }
+      case 'recommendation':
+        {
+          return copyWith(
+            recommendation: <ImmunizationRecommendationRecommendation>[],
+          );
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImmunizationRecommendation clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool authority = false,
+  }) {
+    return ImmunizationRecommendation(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      patient: patient,
+      date: date,
+      authority: authority ? null : this.authority,
+      recommendation: recommendation,
+    );
+  }
+
   @override
   ImmunizationRecommendation clone() => throw UnimplementedError();
   @override
@@ -1258,6 +1391,183 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'vaccineCode':
+        return ['CodeableConcept'];
+      case 'targetDisease':
+        return ['CodeableConcept'];
+      case 'contraindicatedVaccineCode':
+        return ['CodeableConcept'];
+      case 'forecastStatus':
+        return ['CodeableConcept'];
+      case 'forecastReason':
+        return ['CodeableConcept'];
+      case 'dateCriterion':
+        return ['ImmunizationRecommendationDateCriterion'];
+      case 'description':
+        return ['FhirString'];
+      case 'series':
+        return ['FhirString'];
+      case 'doseNumber':
+      case 'doseNumberX':
+        return ['FhirPositiveInt', 'FhirString'];
+      case 'doseNumberPositiveInt':
+        return ['FhirPositiveInt'];
+      case 'doseNumberString':
+        return ['FhirString'];
+      case 'seriesDoses':
+      case 'seriesDosesX':
+        return ['FhirPositiveInt', 'FhirString'];
+      case 'seriesDosesPositiveInt':
+        return ['FhirPositiveInt'];
+      case 'seriesDosesString':
+        return ['FhirString'];
+      case 'supportingImmunization':
+        return ['Reference'];
+      case 'supportingPatientInformation':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ImmunizationRecommendationRecommendation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImmunizationRecommendationRecommendation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'vaccineCode':
+        {
+          return copyWith(vaccineCode: <CodeableConcept>[]);
+        }
+      case 'targetDisease':
+        {
+          return copyWith(targetDisease: CodeableConcept.empty());
+        }
+      case 'contraindicatedVaccineCode':
+        {
+          return copyWith(contraindicatedVaccineCode: <CodeableConcept>[]);
+        }
+      case 'forecastStatus':
+        {
+          return copyWith(forecastStatus: CodeableConcept.empty());
+        }
+      case 'forecastReason':
+        {
+          return copyWith(forecastReason: <CodeableConcept>[]);
+        }
+      case 'dateCriterion':
+        {
+          return copyWith(
+            dateCriterion: <ImmunizationRecommendationDateCriterion>[],
+          );
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'series':
+        {
+          return copyWith(series: FhirString.empty());
+        }
+      case 'doseNumber':
+      case 'doseNumberX':
+      case 'doseNumberPositiveInt':
+        {
+          return copyWith(doseNumberX: FhirPositiveInt.empty());
+        }
+      case 'doseNumberString':
+        {
+          return copyWith(doseNumberX: FhirString.empty());
+        }
+      case 'seriesDoses':
+      case 'seriesDosesX':
+      case 'seriesDosesPositiveInt':
+        {
+          return copyWith(seriesDosesX: FhirPositiveInt.empty());
+        }
+      case 'seriesDosesString':
+        {
+          return copyWith(seriesDosesX: FhirString.empty());
+        }
+      case 'supportingImmunization':
+        {
+          return copyWith(supportingImmunization: <Reference>[]);
+        }
+      case 'supportingPatientInformation':
+        {
+          return copyWith(supportingPatientInformation: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImmunizationRecommendationRecommendation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool vaccineCode = false,
+    bool targetDisease = false,
+    bool contraindicatedVaccineCode = false,
+    bool forecastReason = false,
+    bool dateCriterion = false,
+    bool description = false,
+    bool series = false,
+    bool doseNumber = false,
+    bool seriesDoses = false,
+    bool supportingImmunization = false,
+    bool supportingPatientInformation = false,
+  }) {
+    return ImmunizationRecommendationRecommendation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      vaccineCode: vaccineCode ? null : this.vaccineCode,
+      targetDisease: targetDisease ? null : this.targetDisease,
+      contraindicatedVaccineCode:
+          contraindicatedVaccineCode ? null : this.contraindicatedVaccineCode,
+      forecastStatus: forecastStatus,
+      forecastReason: forecastReason ? null : this.forecastReason,
+      dateCriterion: dateCriterion ? null : this.dateCriterion,
+      description: description ? null : this.description,
+      series: series ? null : this.series,
+      doseNumberX: doseNumber ? null : doseNumberX,
+      seriesDosesX: seriesDoses ? null : seriesDosesX,
+      supportingImmunization:
+          supportingImmunization ? null : this.supportingImmunization,
+      supportingPatientInformation: supportingPatientInformation
+          ? null
+          : this.supportingPatientInformation,
+    );
+  }
+
   @override
   ImmunizationRecommendationRecommendation clone() =>
       throw UnimplementedError();
@@ -1734,6 +2044,74 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'value':
+        return ['FhirDateTime'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ImmunizationRecommendationDateCriterion]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImmunizationRecommendationDateCriterion createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirDateTime.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImmunizationRecommendationDateCriterion clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ImmunizationRecommendationDateCriterion(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      value: value,
+    );
   }
 
   @override

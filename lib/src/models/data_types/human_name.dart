@@ -390,6 +390,108 @@ class HumanName extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'use':
+        return ['FhirCode'];
+      case 'text':
+        return ['FhirString'];
+      case 'family':
+        return ['FhirString'];
+      case 'given':
+        return ['FhirString'];
+      case 'prefix':
+        return ['FhirString'];
+      case 'suffix':
+        return ['FhirString'];
+      case 'period':
+        return ['Period'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [HumanName]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  HumanName createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'use':
+        {
+          return copyWith(use: NameUse.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: FhirString.empty());
+        }
+      case 'family':
+        {
+          return copyWith(family: FhirString.empty());
+        }
+      case 'given':
+        {
+          return copyWith(given: <FhirString>[]);
+        }
+      case 'prefix':
+        {
+          return copyWith(prefix: <FhirString>[]);
+        }
+      case 'suffix':
+        {
+          return copyWith(suffix: <FhirString>[]);
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  HumanName clear({
+    bool id = false,
+    bool extension_ = false,
+    bool use = false,
+    bool text = false,
+    bool family = false,
+    bool given = false,
+    bool prefix = false,
+    bool suffix = false,
+    bool period = false,
+  }) {
+    return HumanName(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      use: use ? null : this.use,
+      text: text ? null : this.text,
+      family: family ? null : this.family,
+      given: given ? null : this.given,
+      prefix: prefix ? null : this.prefix,
+      suffix: suffix ? null : this.suffix,
+      period: period ? null : this.period,
+    );
+  }
+
   @override
   HumanName clone() => throw UnimplementedError();
   @override

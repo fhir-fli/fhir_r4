@@ -238,4 +238,14 @@ class TLeft12az1 extends BackboneElement {
         az2 == other.az2 &&
         listEquals<FhirBase>(az3, other.az3);
   }
+
+  @override
+  TLeft12az1 createProperty(String elementName) {
+    throw UnimplementedError();
+  }
+
+  @override
+  TLeft12az1 clear({bool extension_ = false, bool id = false}) {
+    throw UnimplementedError();
+  }
 }

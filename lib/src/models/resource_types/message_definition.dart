@@ -975,6 +975,304 @@ class MessageDefinition extends CanonicalResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'replaces':
+        return ['FhirCanonical'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      case 'base':
+        return ['FhirCanonical'];
+      case 'parent':
+        return ['FhirCanonical'];
+      case 'event':
+      case 'eventX':
+        return ['Coding', 'FhirUri'];
+      case 'eventCoding':
+        return ['Coding'];
+      case 'eventUri':
+        return ['FhirUri'];
+      case 'category':
+        return ['FhirCode'];
+      case 'focus':
+        return ['MessageDefinitionFocus'];
+      case 'responseRequired':
+        return ['FhirCode'];
+      case 'allowedResponse':
+        return ['MessageDefinitionAllowedResponse'];
+      case 'graph':
+        return ['FhirCanonical'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MessageDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MessageDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'replaces':
+        {
+          return copyWith(replaces: <FhirCanonical>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'base':
+        {
+          return copyWith(base: FhirCanonical.empty());
+        }
+      case 'parent':
+        {
+          return copyWith(parent: <FhirCanonical>[]);
+        }
+      case 'event':
+      case 'eventX':
+      case 'eventCoding':
+        {
+          return copyWith(eventX: Coding.empty());
+        }
+      case 'eventUri':
+        {
+          return copyWith(eventX: FhirUri.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: MessageSignificanceCategory.empty());
+        }
+      case 'focus':
+        {
+          return copyWith(focus: <MessageDefinitionFocus>[]);
+        }
+      case 'responseRequired':
+        {
+          return copyWith(
+            responseRequired: MessageheaderResponseRequest.empty(),
+          );
+        }
+      case 'allowedResponse':
+        {
+          return copyWith(
+            allowedResponse: <MessageDefinitionAllowedResponse>[],
+          );
+        }
+      case 'graph':
+        {
+          return copyWith(graph: <FhirCanonical>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MessageDefinition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool identifier = false,
+    bool version = false,
+    bool name = false,
+    bool title = false,
+    bool replaces = false,
+    bool experimental = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool purpose = false,
+    bool copyright = false,
+    bool base = false,
+    bool parent = false,
+    bool category = false,
+    bool focus = false,
+    bool responseRequired = false,
+    bool allowedResponse = false,
+    bool graph = false,
+  }) {
+    return MessageDefinition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url ? null : this.url,
+      identifier: identifier ? null : this.identifier,
+      version: version ? null : this.version,
+      name: name ? null : this.name,
+      title: title ? null : this.title,
+      replaces: replaces ? null : this.replaces,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      date: date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      purpose: purpose ? null : this.purpose,
+      copyright: copyright ? null : this.copyright,
+      base: base ? null : this.base,
+      parent: parent ? null : this.parent,
+      eventX: eventX,
+      category: category ? null : this.category,
+      focus: focus ? null : this.focus,
+      responseRequired: responseRequired ? null : this.responseRequired,
+      allowedResponse: allowedResponse ? null : this.allowedResponse,
+      graph: graph ? null : this.graph,
+    );
+  }
+
   @override
   MessageDefinition clone() => throw UnimplementedError();
   @override
@@ -1661,6 +1959,90 @@ class MessageDefinitionFocus extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['FhirCode'];
+      case 'profile':
+        return ['FhirCanonical'];
+      case 'min':
+        return ['FhirUnsignedInt'];
+      case 'max':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MessageDefinitionFocus]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MessageDefinitionFocus createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: FhirCode.empty());
+        }
+      case 'profile':
+        {
+          return copyWith(profile: FhirCanonical.empty());
+        }
+      case 'min':
+        {
+          return copyWith(min: FhirUnsignedInt.empty());
+        }
+      case 'max':
+        {
+          return copyWith(max: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MessageDefinitionFocus clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool profile = false,
+    bool max = false,
+  }) {
+    return MessageDefinitionFocus(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      profile: profile ? null : this.profile,
+      min: min,
+      max: max ? null : this.max,
+    );
+  }
+
   @override
   MessageDefinitionFocus clone() => throw UnimplementedError();
   @override
@@ -2031,6 +2413,75 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'message':
+        return ['FhirCanonical'];
+      case 'situation':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MessageDefinitionAllowedResponse]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MessageDefinitionAllowedResponse createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'message':
+        {
+          return copyWith(message: FhirCanonical.empty());
+        }
+      case 'situation':
+        {
+          return copyWith(situation: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MessageDefinitionAllowedResponse clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool situation = false,
+  }) {
+    return MessageDefinitionAllowedResponse(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      message: message,
+      situation: situation ? null : this.situation,
+    );
   }
 
   @override

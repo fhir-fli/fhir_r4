@@ -1026,6 +1026,312 @@ class StructureDefinition extends CanonicalResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      case 'keyword':
+        return ['Coding'];
+      case 'fhirVersion':
+        return ['FhirCode'];
+      case 'mapping':
+        return ['StructureDefinitionMapping'];
+      case 'kind':
+        return ['FhirCode'];
+      case 'abstract':
+        return ['FhirBoolean'];
+      case 'context':
+        return ['StructureDefinitionContext'];
+      case 'contextInvariant':
+        return ['FhirString'];
+      case 'type':
+        return ['FhirUri'];
+      case 'baseDefinition':
+        return ['FhirCanonical'];
+      case 'derivation':
+        return ['FhirCode'];
+      case 'snapshot':
+        return ['StructureDefinitionSnapshot'];
+      case 'differential':
+        return ['StructureDefinitionDifferential'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [StructureDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  StructureDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'keyword':
+        {
+          return copyWith(keyword: <Coding>[]);
+        }
+      case 'fhirVersion':
+        {
+          return copyWith(fhirVersion: FHIRVersion.empty());
+        }
+      case 'mapping':
+        {
+          return copyWith(mapping: <StructureDefinitionMapping>[]);
+        }
+      case 'kind':
+        {
+          return copyWith(kind: StructureDefinitionKind.empty());
+        }
+      case 'abstract':
+        {
+          return copyWith(abstract_: FhirBoolean.empty());
+        }
+      case 'context':
+        {
+          return copyWith(context: <StructureDefinitionContext>[]);
+        }
+      case 'contextInvariant':
+        {
+          return copyWith(contextInvariant: <FhirString>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: FhirUri.empty());
+        }
+      case 'baseDefinition':
+        {
+          return copyWith(baseDefinition: FhirCanonical.empty());
+        }
+      case 'derivation':
+        {
+          return copyWith(derivation: TypeDerivationRule.empty());
+        }
+      case 'snapshot':
+        {
+          return copyWith(snapshot: StructureDefinitionSnapshot.empty());
+        }
+      case 'differential':
+        {
+          return copyWith(
+            differential: StructureDefinitionDifferential.empty(),
+          );
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  StructureDefinition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool version = false,
+    bool title = false,
+    bool experimental = false,
+    bool date = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool purpose = false,
+    bool copyright = false,
+    bool keyword = false,
+    bool fhirVersion = false,
+    bool mapping = false,
+    bool context = false,
+    bool contextInvariant = false,
+    bool baseDefinition = false,
+    bool derivation = false,
+    bool snapshot = false,
+    bool differential = false,
+  }) {
+    return StructureDefinition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url,
+      identifier: identifier ? null : this.identifier,
+      version: version ? null : this.version,
+      name: name,
+      title: title ? null : this.title,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      date: date ? null : this.date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      purpose: purpose ? null : this.purpose,
+      copyright: copyright ? null : this.copyright,
+      keyword: keyword ? null : this.keyword,
+      fhirVersion: fhirVersion ? null : this.fhirVersion,
+      mapping: mapping ? null : this.mapping,
+      kind: kind,
+      abstract_: abstract_,
+      context: context ? null : this.context,
+      contextInvariant: contextInvariant ? null : this.contextInvariant,
+      type: type,
+      baseDefinition: baseDefinition ? null : this.baseDefinition,
+      derivation: derivation ? null : this.derivation,
+      snapshot: snapshot ? null : this.snapshot,
+      differential: differential ? null : this.differential,
+    );
+  }
+
   @override
   StructureDefinition clone() => throw UnimplementedError();
   @override
@@ -1726,6 +2032,91 @@ class StructureDefinitionMapping extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identity':
+        return ['FhirId'];
+      case 'uri':
+        return ['FhirUri'];
+      case 'name':
+        return ['FhirString'];
+      case 'comment':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [StructureDefinitionMapping]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  StructureDefinitionMapping createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identity':
+        {
+          return copyWith(identity: FhirId.empty());
+        }
+      case 'uri':
+        {
+          return copyWith(uri: FhirUri.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'comment':
+        {
+          return copyWith(comment: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  StructureDefinitionMapping clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool uri = false,
+    bool name = false,
+    bool comment = false,
+  }) {
+    return StructureDefinitionMapping(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identity: identity,
+      uri: uri ? null : this.uri,
+      name: name ? null : this.name,
+      comment: comment ? null : this.comment,
+    );
+  }
+
   @override
   StructureDefinitionMapping clone() => throw UnimplementedError();
   @override
@@ -2095,6 +2486,74 @@ class StructureDefinitionContext extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirCode'];
+      case 'expression':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [StructureDefinitionContext]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  StructureDefinitionContext createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: ExtensionContextType.empty());
+        }
+      case 'expression':
+        {
+          return copyWith(expression: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  StructureDefinitionContext clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return StructureDefinitionContext(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      expression: expression,
+    );
+  }
+
   @override
   StructureDefinitionContext clone() => throw UnimplementedError();
   @override
@@ -2196,7 +2655,8 @@ class StructureDefinitionSnapshot extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory StructureDefinitionSnapshot.empty() => const StructureDefinitionSnapshot(
+  factory StructureDefinitionSnapshot.empty() =>
+      const StructureDefinitionSnapshot(
         element: <ElementDefinition>[],
       );
 
@@ -2425,6 +2885,67 @@ class StructureDefinitionSnapshot extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'element':
+        return ['ElementDefinition'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [StructureDefinitionSnapshot]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  StructureDefinitionSnapshot createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'element':
+        {
+          return copyWith(element: <ElementDefinition>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  StructureDefinitionSnapshot clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return StructureDefinitionSnapshot(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      element: element,
+    );
   }
 
   @override
@@ -2757,6 +3278,67 @@ class StructureDefinitionDifferential extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'element':
+        return ['ElementDefinition'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [StructureDefinitionDifferential]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  StructureDefinitionDifferential createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'element':
+        {
+          return copyWith(element: <ElementDefinition>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  StructureDefinitionDifferential clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return StructureDefinitionDifferential(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      element: element,
+    );
   }
 
   @override

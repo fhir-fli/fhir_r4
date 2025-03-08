@@ -389,6 +389,106 @@ class ParameterDefinition extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirCode'];
+      case 'use':
+        return ['FhirCode'];
+      case 'min':
+        return ['FhirInteger'];
+      case 'max':
+        return ['FhirString'];
+      case 'documentation':
+        return ['FhirString'];
+      case 'type':
+        return ['FhirCode'];
+      case 'profile':
+        return ['FhirCanonical'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ParameterDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ParameterDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirCode.empty());
+        }
+      case 'use':
+        {
+          return copyWith(use: OperationParameterUse.empty());
+        }
+      case 'min':
+        {
+          return copyWith(min: FhirInteger.empty());
+        }
+      case 'max':
+        {
+          return copyWith(max: FhirString.empty());
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: FHIRAllTypes.empty());
+        }
+      case 'profile':
+        {
+          return copyWith(profile: FhirCanonical.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ParameterDefinition clear({
+    bool id = false,
+    bool extension_ = false,
+    bool name = false,
+    bool min = false,
+    bool max = false,
+    bool documentation = false,
+    bool profile = false,
+  }) {
+    return ParameterDefinition(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      name: name ? null : this.name,
+      use: use,
+      min: min ? null : this.min,
+      max: max ? null : this.max,
+      documentation: documentation ? null : this.documentation,
+      type: type,
+      profile: profile ? null : this.profile,
+    );
+  }
+
   @override
   ParameterDefinition clone() => throw UnimplementedError();
   @override

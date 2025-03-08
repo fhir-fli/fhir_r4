@@ -267,4 +267,23 @@ class FhirUrl extends PrimitiveType<Uri>
   static String decodeQueryComponent(String text, {Encoding encoding = utf8}) {
     return Uri.decodeQueryComponent(text, encoding: encoding);
   }
+
+  /// Creates an empty property in the object
+  @override
+  FhirUrl createProperty(String propertyName) => this;
+
+  /// Clears the specified fields in a [FhirUrl] object
+  @override
+  FhirUrl clear({
+    bool input = false,
+    bool extension_ = false,
+    bool id = false,
+  }) {
+    return FhirUrl(
+      input ? null : this.input,
+      element: element,
+      extension_: extension_ ? <FhirExtension>[] : this.extension_,
+      id: id ? null : this.id,
+    );
+  }
 }

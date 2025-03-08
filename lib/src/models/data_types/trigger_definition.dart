@@ -412,6 +412,114 @@ class TriggerDefinition extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirCode'];
+      case 'name':
+        return ['FhirString'];
+      case 'timing':
+      case 'timingX':
+        return ['Timing', 'Reference', 'FhirDate', 'FhirDateTime'];
+      case 'timingTiming':
+        return ['Timing'];
+      case 'timingReference':
+        return ['Reference'];
+      case 'timingDate':
+        return ['FhirDate'];
+      case 'timingDateTime':
+        return ['FhirDateTime'];
+      case 'data':
+        return ['DataRequirement'];
+      case 'condition':
+        return ['FhirExpression'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TriggerDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TriggerDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: TriggerType.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'timing':
+      case 'timingX':
+      case 'timingTiming':
+        {
+          return copyWith(timingX: Timing.empty());
+        }
+      case 'timingReference':
+        {
+          return copyWith(timingX: Reference.empty());
+        }
+      case 'timingDate':
+        {
+          return copyWith(timingX: FhirDate.empty());
+        }
+      case 'timingDateTime':
+        {
+          return copyWith(timingX: FhirDateTime.empty());
+        }
+      case 'data':
+        {
+          return copyWith(data: <DataRequirement>[]);
+        }
+      case 'condition':
+        {
+          return copyWith(condition: FhirExpression.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TriggerDefinition clear({
+    bool id = false,
+    bool extension_ = false,
+    bool name = false,
+    bool timing = false,
+    bool data = false,
+    bool condition = false,
+  }) {
+    return TriggerDefinition(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      type: type,
+      name: name ? null : this.name,
+      timingX: timing ? null : timingX,
+      data: data ? null : this.data,
+      condition: condition ? null : this.condition,
+    );
+  }
+
   @override
   TriggerDefinition clone() => throw UnimplementedError();
   @override

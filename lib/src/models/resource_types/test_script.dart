@@ -1006,6 +1006,289 @@ class TestScript extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      case 'origin':
+        return ['TestScriptOrigin'];
+      case 'destination':
+        return ['TestScriptDestination'];
+      case 'metadata':
+        return ['TestScriptMetadata'];
+      case 'fixture':
+        return ['TestScriptFixture'];
+      case 'profile':
+        return ['Reference'];
+      case 'variable':
+        return ['TestScriptVariable'];
+      case 'setup':
+        return ['TestScriptSetup'];
+      case 'test':
+        return ['TestScriptTest'];
+      case 'teardown':
+        return ['TestScriptTeardown'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TestScript]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScript createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: Identifier.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'origin':
+        {
+          return copyWith(origin: <TestScriptOrigin>[]);
+        }
+      case 'destination':
+        {
+          return copyWith(destination: <TestScriptDestination>[]);
+        }
+      case 'metadata':
+        {
+          return copyWith(metadata: TestScriptMetadata.empty());
+        }
+      case 'fixture':
+        {
+          return copyWith(fixture: <TestScriptFixture>[]);
+        }
+      case 'profile':
+        {
+          return copyWith(profile: <Reference>[]);
+        }
+      case 'variable':
+        {
+          return copyWith(variable: <TestScriptVariable>[]);
+        }
+      case 'setup':
+        {
+          return copyWith(setup: TestScriptSetup.empty());
+        }
+      case 'test':
+        {
+          return copyWith(test: <TestScriptTest>[]);
+        }
+      case 'teardown':
+        {
+          return copyWith(teardown: TestScriptTeardown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestScript clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool version = false,
+    bool title = false,
+    bool experimental = false,
+    bool date = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool purpose = false,
+    bool copyright = false,
+    bool origin = false,
+    bool destination = false,
+    bool metadata = false,
+    bool fixture = false,
+    bool profile = false,
+    bool variable = false,
+    bool setup = false,
+    bool test = false,
+    bool teardown = false,
+  }) {
+    return TestScript(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url,
+      identifier: identifier ? null : this.identifier,
+      version: version ? null : this.version,
+      name: name,
+      title: title ? null : this.title,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      date: date ? null : this.date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      purpose: purpose ? null : this.purpose,
+      copyright: copyright ? null : this.copyright,
+      origin: origin ? null : this.origin,
+      destination: destination ? null : this.destination,
+      metadata: metadata ? null : this.metadata,
+      fixture: fixture ? null : this.fixture,
+      profile: profile ? null : this.profile,
+      variable: variable ? null : this.variable,
+      setup: setup ? null : this.setup,
+      test: test ? null : this.test,
+      teardown: teardown ? null : this.teardown,
+    );
+  }
+
   @override
   TestScript clone() => throw UnimplementedError();
   @override
@@ -1637,6 +1920,74 @@ class TestScriptOrigin extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'index':
+        return ['FhirInteger'];
+      case 'profile':
+        return ['Coding'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TestScriptOrigin]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptOrigin createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'index':
+        {
+          return copyWith(index: FhirInteger.empty());
+        }
+      case 'profile':
+        {
+          return copyWith(profile: Coding.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestScriptOrigin clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return TestScriptOrigin(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      index: index,
+      profile: profile,
+    );
+  }
+
   @override
   TestScriptOrigin clone() => throw UnimplementedError();
   @override
@@ -1988,6 +2339,74 @@ class TestScriptDestination extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'index':
+        return ['FhirInteger'];
+      case 'profile':
+        return ['Coding'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TestScriptDestination]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptDestination createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'index':
+        {
+          return copyWith(index: FhirInteger.empty());
+        }
+      case 'profile':
+        {
+          return copyWith(profile: Coding.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestScriptDestination clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return TestScriptDestination(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      index: index,
+      profile: profile,
+    );
   }
 
   @override
@@ -2350,6 +2769,75 @@ class TestScriptMetadata extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'link':
+        return ['TestScriptLink'];
+      case 'capability':
+        return ['TestScriptCapability'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TestScriptMetadata]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptMetadata createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'link':
+        {
+          return copyWith(link: <TestScriptLink>[]);
+        }
+      case 'capability':
+        {
+          return copyWith(capability: <TestScriptCapability>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestScriptMetadata clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool link = false,
+  }) {
+    return TestScriptMetadata(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      link: link ? null : this.link,
+      capability: capability,
+    );
   }
 
   @override
@@ -2717,6 +3205,75 @@ class TestScriptLink extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'description':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TestScriptLink]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptLink createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestScriptLink clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+  }) {
+    return TestScriptLink(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url,
+      description: description ? null : this.description,
+    );
   }
 
   @override
@@ -3201,6 +3758,113 @@ class TestScriptCapability extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'required':
+        return ['FhirBoolean'];
+      case 'validated':
+        return ['FhirBoolean'];
+      case 'description':
+        return ['FhirString'];
+      case 'origin':
+        return ['FhirInteger'];
+      case 'destination':
+        return ['FhirInteger'];
+      case 'link':
+        return ['FhirUri'];
+      case 'capabilities':
+        return ['FhirCanonical'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TestScriptCapability]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptCapability createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'required':
+        {
+          return copyWith(required_: FhirBoolean.empty());
+        }
+      case 'validated':
+        {
+          return copyWith(validated: FhirBoolean.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'origin':
+        {
+          return copyWith(origin: <FhirInteger>[]);
+        }
+      case 'destination':
+        {
+          return copyWith(destination: FhirInteger.empty());
+        }
+      case 'link':
+        {
+          return copyWith(link: <FhirUri>[]);
+        }
+      case 'capabilities':
+        {
+          return copyWith(capabilities: FhirCanonical.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestScriptCapability clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+    bool origin = false,
+    bool destination = false,
+    bool link = false,
+  }) {
+    return TestScriptCapability(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      required_: required_,
+      validated: validated,
+      description: description ? null : this.description,
+      origin: origin ? null : this.origin,
+      destination: destination ? null : this.destination,
+      link: link ? null : this.link,
+      capabilities: capabilities,
+    );
+  }
+
   @override
   TestScriptCapability clone() => throw UnimplementedError();
   @override
@@ -3637,6 +4301,82 @@ class TestScriptFixture extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'autocreate':
+        return ['FhirBoolean'];
+      case 'autodelete':
+        return ['FhirBoolean'];
+      case 'resource':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TestScriptFixture]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptFixture createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'autocreate':
+        {
+          return copyWith(autocreate: FhirBoolean.empty());
+        }
+      case 'autodelete':
+        {
+          return copyWith(autodelete: FhirBoolean.empty());
+        }
+      case 'resource':
+        {
+          return copyWith(resource: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestScriptFixture clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool resource = false,
+  }) {
+    return TestScriptFixture(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      autocreate: autocreate,
+      autodelete: autodelete,
+      resource: resource ? null : this.resource,
+    );
   }
 
   @override
@@ -4158,6 +4898,123 @@ class TestScriptVariable extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'defaultValue':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirString'];
+      case 'expression':
+        return ['FhirString'];
+      case 'headerField':
+        return ['FhirString'];
+      case 'hint':
+        return ['FhirString'];
+      case 'path':
+        return ['FhirString'];
+      case 'sourceId':
+        return ['FhirId'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TestScriptVariable]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptVariable createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'defaultValue':
+        {
+          return copyWith(defaultValue: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'expression':
+        {
+          return copyWith(expression: FhirString.empty());
+        }
+      case 'headerField':
+        {
+          return copyWith(headerField: FhirString.empty());
+        }
+      case 'hint':
+        {
+          return copyWith(hint: FhirString.empty());
+        }
+      case 'path':
+        {
+          return copyWith(path: FhirString.empty());
+        }
+      case 'sourceId':
+        {
+          return copyWith(sourceId: FhirId.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestScriptVariable clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool defaultValue = false,
+    bool description = false,
+    bool expression = false,
+    bool headerField = false,
+    bool hint = false,
+    bool path = false,
+    bool sourceId = false,
+  }) {
+    return TestScriptVariable(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      defaultValue: defaultValue ? null : this.defaultValue,
+      description: description ? null : this.description,
+      expression: expression ? null : this.expression,
+      headerField: headerField ? null : this.headerField,
+      hint: hint ? null : this.hint,
+      path: path ? null : this.path,
+      sourceId: sourceId ? null : this.sourceId,
+    );
+  }
+
   @override
   TestScriptVariable clone() => throw UnimplementedError();
   @override
@@ -4537,6 +5394,67 @@ class TestScriptSetup extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'action':
+        return ['TestScriptAction'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TestScriptSetup]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptSetup createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'action':
+        {
+          return copyWith(action: <TestScriptAction>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestScriptSetup clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return TestScriptSetup(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      action: action,
+    );
+  }
+
   @override
   TestScriptSetup clone() => throw UnimplementedError();
   @override
@@ -4887,6 +5805,76 @@ class TestScriptAction extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'operation':
+        return ['TestScriptOperation'];
+      case 'assert':
+        return ['TestScriptAssert'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TestScriptAction]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptAction createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'operation':
+        {
+          return copyWith(operation: TestScriptOperation.empty());
+        }
+      case 'assert':
+        {
+          return copyWith(assert_: TestScriptAssert.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestScriptAction clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool operation = false,
+    bool assert_ = false,
+  }) {
+    return TestScriptAction(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      operation: operation ? null : this.operation,
+      assert_: assert_ ? null : this.assert_,
+    );
   }
 
   @override
@@ -5630,6 +6618,195 @@ class TestScriptOperation extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['Coding'];
+      case 'resource':
+        return ['FhirCode'];
+      case 'label':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirString'];
+      case 'accept':
+        return ['FhirCode'];
+      case 'contentType':
+        return ['FhirCode'];
+      case 'destination':
+        return ['FhirInteger'];
+      case 'encodeRequestUrl':
+        return ['FhirBoolean'];
+      case 'method':
+        return ['FhirCode'];
+      case 'origin':
+        return ['FhirInteger'];
+      case 'params':
+        return ['FhirString'];
+      case 'requestHeader':
+        return ['TestScriptRequestHeader'];
+      case 'requestId':
+        return ['FhirId'];
+      case 'responseId':
+        return ['FhirId'];
+      case 'sourceId':
+        return ['FhirId'];
+      case 'targetId':
+        return ['FhirId'];
+      case 'url':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TestScriptOperation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptOperation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: Coding.empty());
+        }
+      case 'resource':
+        {
+          return copyWith(resource: FhirCode.empty());
+        }
+      case 'label':
+        {
+          return copyWith(label: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'accept':
+        {
+          return copyWith(accept: FhirCode.empty());
+        }
+      case 'contentType':
+        {
+          return copyWith(contentType: FhirCode.empty());
+        }
+      case 'destination':
+        {
+          return copyWith(destination: FhirInteger.empty());
+        }
+      case 'encodeRequestUrl':
+        {
+          return copyWith(encodeRequestUrl: FhirBoolean.empty());
+        }
+      case 'method':
+        {
+          return copyWith(method: TestScriptRequestMethodCode.empty());
+        }
+      case 'origin':
+        {
+          return copyWith(origin: FhirInteger.empty());
+        }
+      case 'params':
+        {
+          return copyWith(params: FhirString.empty());
+        }
+      case 'requestHeader':
+        {
+          return copyWith(requestHeader: <TestScriptRequestHeader>[]);
+        }
+      case 'requestId':
+        {
+          return copyWith(requestId: FhirId.empty());
+        }
+      case 'responseId':
+        {
+          return copyWith(responseId: FhirId.empty());
+        }
+      case 'sourceId':
+        {
+          return copyWith(sourceId: FhirId.empty());
+        }
+      case 'targetId':
+        {
+          return copyWith(targetId: FhirId.empty());
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestScriptOperation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool resource = false,
+    bool label = false,
+    bool description = false,
+    bool accept = false,
+    bool contentType = false,
+    bool destination = false,
+    bool method = false,
+    bool origin = false,
+    bool params = false,
+    bool requestHeader = false,
+    bool requestId = false,
+    bool responseId = false,
+    bool sourceId = false,
+    bool targetId = false,
+    bool url = false,
+  }) {
+    return TestScriptOperation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      resource: resource ? null : this.resource,
+      label: label ? null : this.label,
+      description: description ? null : this.description,
+      accept: accept ? null : this.accept,
+      contentType: contentType ? null : this.contentType,
+      destination: destination ? null : this.destination,
+      encodeRequestUrl: encodeRequestUrl,
+      method: method ? null : this.method,
+      origin: origin ? null : this.origin,
+      params: params ? null : this.params,
+      requestHeader: requestHeader ? null : this.requestHeader,
+      requestId: requestId ? null : this.requestId,
+      responseId: responseId ? null : this.responseId,
+      sourceId: sourceId ? null : this.sourceId,
+      targetId: targetId ? null : this.targetId,
+      url: url ? null : this.url,
+    );
+  }
+
   @override
   TestScriptOperation clone() => throw UnimplementedError();
   @override
@@ -6106,6 +7283,74 @@ class TestScriptRequestHeader extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'field':
+        return ['FhirString'];
+      case 'value':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TestScriptRequestHeader]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptRequestHeader createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'field':
+        {
+          return copyWith(field: FhirString.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestScriptRequestHeader clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return TestScriptRequestHeader(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      field: field,
+      value: value,
+    );
   }
 
   @override
@@ -6978,6 +8223,237 @@ class TestScriptAssert extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'label':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirString'];
+      case 'direction':
+        return ['FhirCode'];
+      case 'compareToSourceId':
+        return ['FhirString'];
+      case 'compareToSourceExpression':
+        return ['FhirString'];
+      case 'compareToSourcePath':
+        return ['FhirString'];
+      case 'contentType':
+        return ['FhirCode'];
+      case 'expression':
+        return ['FhirString'];
+      case 'headerField':
+        return ['FhirString'];
+      case 'minimumId':
+        return ['FhirString'];
+      case 'navigationLinks':
+        return ['FhirBoolean'];
+      case 'operator':
+        return ['FhirCode'];
+      case 'path':
+        return ['FhirString'];
+      case 'requestMethod':
+        return ['FhirCode'];
+      case 'requestURL':
+        return ['FhirString'];
+      case 'resource':
+        return ['FhirCode'];
+      case 'response':
+        return ['FhirCode'];
+      case 'responseCode':
+        return ['FhirString'];
+      case 'sourceId':
+        return ['FhirId'];
+      case 'validateProfileId':
+        return ['FhirId'];
+      case 'value':
+        return ['FhirString'];
+      case 'warningOnly':
+        return ['FhirBoolean'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TestScriptAssert]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptAssert createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'label':
+        {
+          return copyWith(label: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'direction':
+        {
+          return copyWith(direction: AssertionDirectionType.empty());
+        }
+      case 'compareToSourceId':
+        {
+          return copyWith(compareToSourceId: FhirString.empty());
+        }
+      case 'compareToSourceExpression':
+        {
+          return copyWith(compareToSourceExpression: FhirString.empty());
+        }
+      case 'compareToSourcePath':
+        {
+          return copyWith(compareToSourcePath: FhirString.empty());
+        }
+      case 'contentType':
+        {
+          return copyWith(contentType: FhirCode.empty());
+        }
+      case 'expression':
+        {
+          return copyWith(expression: FhirString.empty());
+        }
+      case 'headerField':
+        {
+          return copyWith(headerField: FhirString.empty());
+        }
+      case 'minimumId':
+        {
+          return copyWith(minimumId: FhirString.empty());
+        }
+      case 'navigationLinks':
+        {
+          return copyWith(navigationLinks: FhirBoolean.empty());
+        }
+      case 'operator':
+        {
+          return copyWith(operator_: AssertionOperatorType.empty());
+        }
+      case 'path':
+        {
+          return copyWith(path: FhirString.empty());
+        }
+      case 'requestMethod':
+        {
+          return copyWith(requestMethod: TestScriptRequestMethodCode.empty());
+        }
+      case 'requestURL':
+        {
+          return copyWith(requestURL: FhirString.empty());
+        }
+      case 'resource':
+        {
+          return copyWith(resource: FhirCode.empty());
+        }
+      case 'response':
+        {
+          return copyWith(response: AssertionResponseTypes.empty());
+        }
+      case 'responseCode':
+        {
+          return copyWith(responseCode: FhirString.empty());
+        }
+      case 'sourceId':
+        {
+          return copyWith(sourceId: FhirId.empty());
+        }
+      case 'validateProfileId':
+        {
+          return copyWith(validateProfileId: FhirId.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirString.empty());
+        }
+      case 'warningOnly':
+        {
+          return copyWith(warningOnly: FhirBoolean.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestScriptAssert clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool label = false,
+    bool description = false,
+    bool direction = false,
+    bool compareToSourceId = false,
+    bool compareToSourceExpression = false,
+    bool compareToSourcePath = false,
+    bool contentType = false,
+    bool expression = false,
+    bool headerField = false,
+    bool minimumId = false,
+    bool navigationLinks = false,
+    bool operator_ = false,
+    bool path = false,
+    bool requestMethod = false,
+    bool requestURL = false,
+    bool resource = false,
+    bool response = false,
+    bool responseCode = false,
+    bool sourceId = false,
+    bool validateProfileId = false,
+    bool value = false,
+  }) {
+    return TestScriptAssert(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      label: label ? null : this.label,
+      description: description ? null : this.description,
+      direction: direction ? null : this.direction,
+      compareToSourceId: compareToSourceId ? null : this.compareToSourceId,
+      compareToSourceExpression:
+          compareToSourceExpression ? null : this.compareToSourceExpression,
+      compareToSourcePath:
+          compareToSourcePath ? null : this.compareToSourcePath,
+      contentType: contentType ? null : this.contentType,
+      expression: expression ? null : this.expression,
+      headerField: headerField ? null : this.headerField,
+      minimumId: minimumId ? null : this.minimumId,
+      navigationLinks: navigationLinks ? null : this.navigationLinks,
+      operator_: operator_ ? null : this.operator_,
+      path: path ? null : this.path,
+      requestMethod: requestMethod ? null : this.requestMethod,
+      requestURL: requestURL ? null : this.requestURL,
+      resource: resource ? null : this.resource,
+      response: response ? null : this.response,
+      responseCode: responseCode ? null : this.responseCode,
+      sourceId: sourceId ? null : this.sourceId,
+      validateProfileId: validateProfileId ? null : this.validateProfileId,
+      value: value ? null : this.value,
+      warningOnly: warningOnly,
+    );
+  }
+
   @override
   TestScriptAssert clone() => throw UnimplementedError();
   @override
@@ -7162,7 +8638,9 @@ class TestScriptAssert extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        compareToSourceExpression, o.compareToSourceExpression,)) {
+      compareToSourceExpression,
+      o.compareToSourceExpression,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(compareToSourcePath, o.compareToSourcePath)) {
@@ -7520,6 +8998,83 @@ class TestScriptTest extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirString'];
+      case 'action':
+        return ['TestScriptAction'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TestScriptTest]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptTest createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'action':
+        {
+          return copyWith(action: <TestScriptAction>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestScriptTest clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool name = false,
+    bool description = false,
+  }) {
+    return TestScriptTest(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name ? null : this.name,
+      description: description ? null : this.description,
+      action: action,
+    );
   }
 
   @override
@@ -7890,6 +9445,76 @@ class TestScriptAction1 extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'operation':
+        return ['TestScriptOperation'];
+      case 'assert':
+        return ['TestScriptAssert'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TestScriptAction1]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptAction1 createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'operation':
+        {
+          return copyWith(operation: TestScriptOperation.empty());
+        }
+      case 'assert':
+        {
+          return copyWith(assert_: TestScriptAssert.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestScriptAction1 clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool operation = false,
+    bool assert_ = false,
+  }) {
+    return TestScriptAction1(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      operation: operation ? null : this.operation,
+      assert_: assert_ ? null : this.assert_,
+    );
+  }
+
   @override
   TestScriptAction1 clone() => throw UnimplementedError();
   @override
@@ -8222,6 +9847,67 @@ class TestScriptTeardown extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'action':
+        return ['TestScriptAction'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TestScriptTeardown]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptTeardown createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'action':
+        {
+          return copyWith(action: <TestScriptAction>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestScriptTeardown clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return TestScriptTeardown(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      action: action,
+    );
+  }
+
   @override
   TestScriptTeardown clone() => throw UnimplementedError();
   @override
@@ -8546,6 +10232,67 @@ class TestScriptAction2 extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'operation':
+        return ['TestScriptOperation'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TestScriptAction2]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TestScriptAction2 createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'operation':
+        {
+          return copyWith(operation: TestScriptOperation.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TestScriptAction2 clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return TestScriptAction2(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      operation: operation,
+    );
   }
 
   @override

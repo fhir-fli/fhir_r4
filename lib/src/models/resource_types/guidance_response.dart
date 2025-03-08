@@ -816,6 +816,235 @@ class GuidanceResponse extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'requestIdentifier':
+        return ['Identifier'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'module':
+      case 'moduleX':
+        return ['FhirUri', 'FhirCanonical', 'CodeableConcept'];
+      case 'moduleUri':
+        return ['FhirUri'];
+      case 'moduleCanonical':
+        return ['FhirCanonical'];
+      case 'moduleCodeableConcept':
+        return ['CodeableConcept'];
+      case 'status':
+        return ['FhirCode'];
+      case 'subject':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'occurrenceDateTime':
+        return ['FhirDateTime'];
+      case 'performer':
+        return ['Reference'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'note':
+        return ['Annotation'];
+      case 'evaluationMessage':
+        return ['Reference'];
+      case 'outputParameters':
+        return ['Reference'];
+      case 'result':
+        return ['Reference'];
+      case 'dataRequirement':
+        return ['DataRequirement'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [GuidanceResponse]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  GuidanceResponse createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'requestIdentifier':
+        {
+          return copyWith(requestIdentifier: Identifier.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'module':
+      case 'moduleX':
+      case 'moduleUri':
+        {
+          return copyWith(moduleX: FhirUri.empty());
+        }
+      case 'moduleCanonical':
+        {
+          return copyWith(moduleX: FhirCanonical.empty());
+        }
+      case 'moduleCodeableConcept':
+        {
+          return copyWith(moduleX: CodeableConcept.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: GuidanceResponseStatus.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'occurrenceDateTime':
+        {
+          return copyWith(occurrenceDateTime: FhirDateTime.empty());
+        }
+      case 'performer':
+        {
+          return copyWith(performer: Reference.empty());
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: <CodeableConcept>[]);
+        }
+      case 'reasonReference':
+        {
+          return copyWith(reasonReference: <Reference>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'evaluationMessage':
+        {
+          return copyWith(evaluationMessage: <Reference>[]);
+        }
+      case 'outputParameters':
+        {
+          return copyWith(outputParameters: Reference.empty());
+        }
+      case 'result':
+        {
+          return copyWith(result: Reference.empty());
+        }
+      case 'dataRequirement':
+        {
+          return copyWith(dataRequirement: <DataRequirement>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  GuidanceResponse clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool requestIdentifier = false,
+    bool identifier = false,
+    bool subject = false,
+    bool encounter = false,
+    bool occurrenceDateTime = false,
+    bool performer = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool note = false,
+    bool evaluationMessage = false,
+    bool outputParameters = false,
+    bool result = false,
+    bool dataRequirement = false,
+  }) {
+    return GuidanceResponse(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      requestIdentifier: requestIdentifier ? null : this.requestIdentifier,
+      identifier: identifier ? null : this.identifier,
+      moduleX: moduleX,
+      status: status,
+      subject: subject ? null : this.subject,
+      encounter: encounter ? null : this.encounter,
+      occurrenceDateTime: occurrenceDateTime ? null : this.occurrenceDateTime,
+      performer: performer ? null : this.performer,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      note: note ? null : this.note,
+      evaluationMessage: evaluationMessage ? null : this.evaluationMessage,
+      outputParameters: outputParameters ? null : this.outputParameters,
+      result: result ? null : this.result,
+      dataRequirement: dataRequirement ? null : this.dataRequirement,
+    );
+  }
+
   @override
   GuidanceResponse clone() => throw UnimplementedError();
   @override

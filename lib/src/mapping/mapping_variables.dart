@@ -4,7 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Enum representing the different modes of a variable during FHIR mapping
-enum VariableMode {
+enum MappingVariableMode {
   /// Represents an input variable
   INPUT,
 
@@ -18,23 +18,23 @@ enum VariableMode {
   @override
   String toString() {
     switch (this) {
-      case VariableMode.INPUT:
+      case MappingVariableMode.INPUT:
         return 'Input';
-      case VariableMode.OUTPUT:
+      case MappingVariableMode.OUTPUT:
         return 'Output';
-      case VariableMode.SHARED:
+      case MappingVariableMode.SHARED:
         return 'Shared';
     }
   }
 }
 
 /// Class representing a variable in a FHIR mapping
-class Variable {
+class MappingVariable {
   /// Constructor for a variable
-  Variable(this.mode, this.name, this.base);
+  MappingVariable(this.mode, this.name, this.base);
 
   /// The mode of the variable
-  final VariableMode mode;
+  final MappingVariableMode mode;
 
   /// The name of the variable
   final String name;
@@ -43,12 +43,12 @@ class Variable {
   final FhirBase base;
 
   /// SummaryFunction
-  String summary() => prettyPrintJson(base.toJson());
+  String summary() => '${base.fhirType}: ${prettyPrintJson(base.toJson())}';
 }
 
 /// Class representing a collection of variables in a FHIR mapping
-class Variables {
-  final List<Variable> _variables = [];
+class MappingVariables {
+  final List<MappingVariable> _variables = [];
 
   /// Prints off the actual names of the variables
   String variableNames() {
@@ -56,21 +56,21 @@ class Variables {
           ..write('Input: ')
           ..writeln(
             _variables
-                .where((e) => e.mode == VariableMode.INPUT)
+                .where((e) => e.mode == MappingVariableMode.INPUT)
                 .map((v) => v.name)
                 .join(', '),
           )
           ..write('Output: ')
           ..writeln(
             _variables
-                .where((e) => e.mode == VariableMode.OUTPUT)
+                .where((e) => e.mode == MappingVariableMode.OUTPUT)
                 .map((v) => v.name)
                 .join(', '),
           )
           ..write('Shared: ')
           ..writeln(
             _variables
-                .where((e) => e.mode == VariableMode.SHARED)
+                .where((e) => e.mode == MappingVariableMode.SHARED)
                 .map((v) => v.name)
                 .join(', '),
           ))
@@ -78,32 +78,37 @@ class Variables {
   }
 
   /// Adds a variable to the collection
-  void add(VariableMode mode, String name, FhirBase value) {
+  void add(MappingVariableMode mode, String name, FhirBase value) {
+    print('mode $mode');
+    print('name $name');
+    print('value $value');
     _variables
       ..removeWhere((v) => v.mode == mode && v.name == name)
-      ..add(Variable(mode, name, value));
+      ..add(MappingVariable(mode, name, value));
   }
 
   /// Adds an input variable to the collection
-  FhirBase? get(VariableMode mode, String name) {
-    return _variables
-        .firstWhereOrNull((v) => v.mode == mode && v.name == name)
-        ?.base;
+  FhirBase? get(MappingVariableMode mode, String? name) {
+    return name == null
+        ? null
+        : _variables
+            .firstWhereOrNull((v) => v.mode == mode && v.name == name)
+            ?.base;
   }
 
   /// Retrieves an input variable from the collection
   FhirBase? getInputVar(String name) {
-    return get(VariableMode.INPUT, name);
+    return get(MappingVariableMode.INPUT, name);
   }
 
   /// Retrieves an output variable from the collection
   FhirBase? getOutputVar(String? name) {
-    return name == null ? null : get(VariableMode.OUTPUT, name);
+    return name == null ? null : get(MappingVariableMode.OUTPUT, name);
   }
 
   /// Retrieves a shared variable from the collection
-  Variables copy() {
-    final copy = Variables();
+  MappingVariables copy() {
+    final copy = MappingVariables();
     copy._variables.addAll(_variables);
     return copy;
   }
@@ -111,9 +116,9 @@ class Variables {
   /// Summary function providing information about input, output,
   /// and shared variables
   String summary() {
-    final inputVars = _variablesSummary(VariableMode.INPUT);
-    final outputVars = _variablesSummary(VariableMode.OUTPUT);
-    final sharedVars = _variablesSummary(VariableMode.SHARED);
+    final inputVars = _variablesSummary(MappingVariableMode.INPUT);
+    final outputVars = _variablesSummary(MappingVariableMode.OUTPUT);
+    final sharedVars = _variablesSummary(MappingVariableMode.SHARED);
 
     return '\nsource variables\n  [\n$inputVars\n]\n'
         '\ntarget variables\n  [\n$outputVars\n]\n'
@@ -122,22 +127,22 @@ class Variables {
 
   /// Summary function providing information about source variables
   String sourceSummary() {
-    final sourceVars = _variablesSummary(VariableMode.INPUT);
+    final sourceVars = _variablesSummary(MappingVariableMode.INPUT);
 
     return '\nsource variables\n  [\n$sourceVars\n]\n';
   }
 
   /// Summary function providing information about target variables
   String targetSummary() {
-    final outputVars = _variablesSummary(VariableMode.OUTPUT);
+    final outputVars = _variablesSummary(MappingVariableMode.OUTPUT);
 
     return '\ntarget variables\n  [\n$outputVars\n]\n';
   }
 
   // Helper function to generate summaries for each variable mode
-  String _variablesSummary(VariableMode mode) => _variables
+  String _variablesSummary(MappingVariableMode mode) => _variables
       .where((v) => v.mode == mode)
-      .map((v) => v.summary())
+      .map((v) => '${v.name}: ${v.summary()}')
       .whereType<String>()
       .join('\n');
 

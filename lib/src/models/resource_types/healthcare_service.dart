@@ -1021,6 +1021,295 @@ class HealthcareService extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'active':
+        return ['FhirBoolean'];
+      case 'providedBy':
+        return ['Reference'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'specialty':
+        return ['CodeableConcept'];
+      case 'location':
+        return ['Reference'];
+      case 'name':
+        return ['FhirString'];
+      case 'comment':
+        return ['FhirString'];
+      case 'extraDetails':
+        return ['FhirMarkdown'];
+      case 'photo':
+        return ['Attachment'];
+      case 'telecom':
+        return ['ContactPoint'];
+      case 'coverageArea':
+        return ['Reference'];
+      case 'serviceProvisionCode':
+        return ['CodeableConcept'];
+      case 'eligibility':
+        return ['HealthcareServiceEligibility'];
+      case 'program':
+        return ['CodeableConcept'];
+      case 'characteristic':
+        return ['CodeableConcept'];
+      case 'communication':
+        return ['CodeableConcept'];
+      case 'referralMethod':
+        return ['CodeableConcept'];
+      case 'appointmentRequired':
+        return ['FhirBoolean'];
+      case 'availableTime':
+        return ['HealthcareServiceAvailableTime'];
+      case 'notAvailable':
+        return ['HealthcareServiceNotAvailable'];
+      case 'availabilityExceptions':
+        return ['FhirString'];
+      case 'endpoint':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [HealthcareService]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  HealthcareService createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'active':
+        {
+          return copyWith(active: FhirBoolean.empty());
+        }
+      case 'providedBy':
+        {
+          return copyWith(providedBy: Reference.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: <CodeableConcept>[]);
+        }
+      case 'specialty':
+        {
+          return copyWith(specialty: <CodeableConcept>[]);
+        }
+      case 'location':
+        {
+          return copyWith(location: <Reference>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'comment':
+        {
+          return copyWith(comment: FhirString.empty());
+        }
+      case 'extraDetails':
+        {
+          return copyWith(extraDetails: FhirMarkdown.empty());
+        }
+      case 'photo':
+        {
+          return copyWith(photo: Attachment.empty());
+        }
+      case 'telecom':
+        {
+          return copyWith(telecom: <ContactPoint>[]);
+        }
+      case 'coverageArea':
+        {
+          return copyWith(coverageArea: <Reference>[]);
+        }
+      case 'serviceProvisionCode':
+        {
+          return copyWith(serviceProvisionCode: <CodeableConcept>[]);
+        }
+      case 'eligibility':
+        {
+          return copyWith(eligibility: <HealthcareServiceEligibility>[]);
+        }
+      case 'program':
+        {
+          return copyWith(program: <CodeableConcept>[]);
+        }
+      case 'characteristic':
+        {
+          return copyWith(characteristic: <CodeableConcept>[]);
+        }
+      case 'communication':
+        {
+          return copyWith(communication: <CodeableConcept>[]);
+        }
+      case 'referralMethod':
+        {
+          return copyWith(referralMethod: <CodeableConcept>[]);
+        }
+      case 'appointmentRequired':
+        {
+          return copyWith(appointmentRequired: FhirBoolean.empty());
+        }
+      case 'availableTime':
+        {
+          return copyWith(availableTime: <HealthcareServiceAvailableTime>[]);
+        }
+      case 'notAvailable':
+        {
+          return copyWith(notAvailable: <HealthcareServiceNotAvailable>[]);
+        }
+      case 'availabilityExceptions':
+        {
+          return copyWith(availabilityExceptions: FhirString.empty());
+        }
+      case 'endpoint':
+        {
+          return copyWith(endpoint: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  HealthcareService clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool active = false,
+    bool providedBy = false,
+    bool category = false,
+    bool type = false,
+    bool specialty = false,
+    bool location = false,
+    bool name = false,
+    bool comment = false,
+    bool extraDetails = false,
+    bool photo = false,
+    bool telecom = false,
+    bool coverageArea = false,
+    bool serviceProvisionCode = false,
+    bool eligibility = false,
+    bool program = false,
+    bool characteristic = false,
+    bool communication = false,
+    bool referralMethod = false,
+    bool appointmentRequired = false,
+    bool availableTime = false,
+    bool notAvailable = false,
+    bool availabilityExceptions = false,
+    bool endpoint = false,
+  }) {
+    return HealthcareService(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      active: active ? null : this.active,
+      providedBy: providedBy ? null : this.providedBy,
+      category: category ? null : this.category,
+      type: type ? null : this.type,
+      specialty: specialty ? null : this.specialty,
+      location: location ? null : this.location,
+      name: name ? null : this.name,
+      comment: comment ? null : this.comment,
+      extraDetails: extraDetails ? null : this.extraDetails,
+      photo: photo ? null : this.photo,
+      telecom: telecom ? null : this.telecom,
+      coverageArea: coverageArea ? null : this.coverageArea,
+      serviceProvisionCode:
+          serviceProvisionCode ? null : this.serviceProvisionCode,
+      eligibility: eligibility ? null : this.eligibility,
+      program: program ? null : this.program,
+      characteristic: characteristic ? null : this.characteristic,
+      communication: communication ? null : this.communication,
+      referralMethod: referralMethod ? null : this.referralMethod,
+      appointmentRequired:
+          appointmentRequired ? null : this.appointmentRequired,
+      availableTime: availableTime ? null : this.availableTime,
+      notAvailable: notAvailable ? null : this.notAvailable,
+      availabilityExceptions:
+          availabilityExceptions ? null : this.availabilityExceptions,
+      endpoint: endpoint ? null : this.endpoint,
+    );
+  }
+
   @override
   HealthcareService clone() => throw UnimplementedError();
   @override
@@ -1702,6 +1991,76 @@ class HealthcareServiceEligibility extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'comment':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [HealthcareServiceEligibility]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  HealthcareServiceEligibility createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'comment':
+        {
+          return copyWith(comment: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  HealthcareServiceEligibility clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool comment = false,
+  }) {
+    return HealthcareServiceEligibility(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      comment: comment ? null : this.comment,
+    );
+  }
+
   @override
   HealthcareServiceEligibility clone() => throw UnimplementedError();
   @override
@@ -2109,6 +2468,92 @@ class HealthcareServiceAvailableTime extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'daysOfWeek':
+        return ['FhirCode'];
+      case 'allDay':
+        return ['FhirBoolean'];
+      case 'availableStartTime':
+        return ['FhirTime'];
+      case 'availableEndTime':
+        return ['FhirTime'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [HealthcareServiceAvailableTime]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  HealthcareServiceAvailableTime createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'daysOfWeek':
+        {
+          return copyWith(daysOfWeek: <DaysOfWeek>[]);
+        }
+      case 'allDay':
+        {
+          return copyWith(allDay: FhirBoolean.empty());
+        }
+      case 'availableStartTime':
+        {
+          return copyWith(availableStartTime: FhirTime.empty());
+        }
+      case 'availableEndTime':
+        {
+          return copyWith(availableEndTime: FhirTime.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  HealthcareServiceAvailableTime clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool daysOfWeek = false,
+    bool allDay = false,
+    bool availableStartTime = false,
+    bool availableEndTime = false,
+  }) {
+    return HealthcareServiceAvailableTime(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      daysOfWeek: daysOfWeek ? null : this.daysOfWeek,
+      allDay: allDay ? null : this.allDay,
+      availableStartTime: availableStartTime ? null : this.availableStartTime,
+      availableEndTime: availableEndTime ? null : this.availableEndTime,
+    );
+  }
+
   @override
   HealthcareServiceAvailableTime clone() => throw UnimplementedError();
   @override
@@ -2486,6 +2931,75 @@ class HealthcareServiceNotAvailable extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'description':
+        return ['FhirString'];
+      case 'during':
+        return ['Period'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [HealthcareServiceNotAvailable]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  HealthcareServiceNotAvailable createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'during':
+        {
+          return copyWith(during: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  HealthcareServiceNotAvailable clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool during = false,
+  }) {
+    return HealthcareServiceNotAvailable(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description,
+      during: during ? null : this.during,
+    );
   }
 
   @override

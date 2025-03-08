@@ -1026,6 +1026,292 @@ class ResearchStudy extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'title':
+        return ['FhirString'];
+      case 'protocol':
+        return ['Reference'];
+      case 'partOf':
+        return ['Reference'];
+      case 'status':
+        return ['FhirCode'];
+      case 'primaryPurposeType':
+        return ['CodeableConcept'];
+      case 'phase':
+        return ['CodeableConcept'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'focus':
+        return ['CodeableConcept'];
+      case 'condition':
+        return ['CodeableConcept'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'relatedArtifact':
+        return ['RelatedArtifact'];
+      case 'keyword':
+        return ['CodeableConcept'];
+      case 'location':
+        return ['CodeableConcept'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'enrollment':
+        return ['Reference'];
+      case 'period':
+        return ['Period'];
+      case 'sponsor':
+        return ['Reference'];
+      case 'principalInvestigator':
+        return ['Reference'];
+      case 'site':
+        return ['Reference'];
+      case 'reasonStopped':
+        return ['CodeableConcept'];
+      case 'note':
+        return ['Annotation'];
+      case 'arm':
+        return ['ResearchStudyArm'];
+      case 'objective':
+        return ['ResearchStudyObjective'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ResearchStudy]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ResearchStudy createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'protocol':
+        {
+          return copyWith(protocol: <Reference>[]);
+        }
+      case 'partOf':
+        {
+          return copyWith(partOf: <Reference>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: ResearchStudyStatus.empty());
+        }
+      case 'primaryPurposeType':
+        {
+          return copyWith(primaryPurposeType: CodeableConcept.empty());
+        }
+      case 'phase':
+        {
+          return copyWith(phase: CodeableConcept.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'focus':
+        {
+          return copyWith(focus: <CodeableConcept>[]);
+        }
+      case 'condition':
+        {
+          return copyWith(condition: <CodeableConcept>[]);
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'relatedArtifact':
+        {
+          return copyWith(relatedArtifact: <RelatedArtifact>[]);
+        }
+      case 'keyword':
+        {
+          return copyWith(keyword: <CodeableConcept>[]);
+        }
+      case 'location':
+        {
+          return copyWith(location: <CodeableConcept>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'enrollment':
+        {
+          return copyWith(enrollment: <Reference>[]);
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      case 'sponsor':
+        {
+          return copyWith(sponsor: Reference.empty());
+        }
+      case 'principalInvestigator':
+        {
+          return copyWith(principalInvestigator: Reference.empty());
+        }
+      case 'site':
+        {
+          return copyWith(site: <Reference>[]);
+        }
+      case 'reasonStopped':
+        {
+          return copyWith(reasonStopped: CodeableConcept.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'arm':
+        {
+          return copyWith(arm: <ResearchStudyArm>[]);
+        }
+      case 'objective':
+        {
+          return copyWith(objective: <ResearchStudyObjective>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ResearchStudy clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool title = false,
+    bool protocol = false,
+    bool partOf = false,
+    bool primaryPurposeType = false,
+    bool phase = false,
+    bool category = false,
+    bool focus = false,
+    bool condition = false,
+    bool contact = false,
+    bool relatedArtifact = false,
+    bool keyword = false,
+    bool location = false,
+    bool description = false,
+    bool enrollment = false,
+    bool period = false,
+    bool sponsor = false,
+    bool principalInvestigator = false,
+    bool site = false,
+    bool reasonStopped = false,
+    bool note = false,
+    bool arm = false,
+    bool objective = false,
+  }) {
+    return ResearchStudy(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      title: title ? null : this.title,
+      protocol: protocol ? null : this.protocol,
+      partOf: partOf ? null : this.partOf,
+      status: status,
+      primaryPurposeType: primaryPurposeType ? null : this.primaryPurposeType,
+      phase: phase ? null : this.phase,
+      category: category ? null : this.category,
+      focus: focus ? null : this.focus,
+      condition: condition ? null : this.condition,
+      contact: contact ? null : this.contact,
+      relatedArtifact: relatedArtifact ? null : this.relatedArtifact,
+      keyword: keyword ? null : this.keyword,
+      location: location ? null : this.location,
+      description: description ? null : this.description,
+      enrollment: enrollment ? null : this.enrollment,
+      period: period ? null : this.period,
+      sponsor: sponsor ? null : this.sponsor,
+      principalInvestigator:
+          principalInvestigator ? null : this.principalInvestigator,
+      site: site ? null : this.site,
+      reasonStopped: reasonStopped ? null : this.reasonStopped,
+      note: note ? null : this.note,
+      arm: arm ? null : this.arm,
+      objective: objective ? null : this.objective,
+    );
+  }
+
   @override
   ResearchStudy clone() => throw UnimplementedError();
   @override
@@ -1727,6 +2013,83 @@ class ResearchStudyArm extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'description':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ResearchStudyArm]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ResearchStudyArm createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ResearchStudyArm clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool description = false,
+  }) {
+    return ResearchStudyArm(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      type: type ? null : this.type,
+      description: description ? null : this.description,
+    );
+  }
+
   @override
   ResearchStudyArm clone() => throw UnimplementedError();
   @override
@@ -2087,6 +2450,76 @@ class ResearchStudyObjective extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'type':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ResearchStudyObjective]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ResearchStudyObjective createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ResearchStudyObjective clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool name = false,
+    bool type = false,
+  }) {
+    return ResearchStudyObjective(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name ? null : this.name,
+      type: type ? null : this.type,
+    );
   }
 
   @override

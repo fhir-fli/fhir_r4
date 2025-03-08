@@ -557,6 +557,162 @@ class Ingredient extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'for':
+        return ['Reference'];
+      case 'role':
+        return ['CodeableConcept'];
+      case 'function':
+        return ['CodeableConcept'];
+      case 'allergenicIndicator':
+        return ['FhirBoolean'];
+      case 'manufacturer':
+        return ['IngredientManufacturer'];
+      case 'substance':
+        return ['IngredientSubstance'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Ingredient]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Ingredient createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: Identifier.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'for':
+        {
+          return copyWith(for_: <Reference>[]);
+        }
+      case 'role':
+        {
+          return copyWith(role: CodeableConcept.empty());
+        }
+      case 'function':
+        {
+          return copyWith(function_: <CodeableConcept>[]);
+        }
+      case 'allergenicIndicator':
+        {
+          return copyWith(allergenicIndicator: FhirBoolean.empty());
+        }
+      case 'manufacturer':
+        {
+          return copyWith(manufacturer: <IngredientManufacturer>[]);
+        }
+      case 'substance':
+        {
+          return copyWith(substance: IngredientSubstance.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Ingredient clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool for_ = false,
+    bool function_ = false,
+    bool allergenicIndicator = false,
+    bool manufacturer = false,
+  }) {
+    return Ingredient(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      for_: for_ ? null : this.for_,
+      role: role,
+      function_: function_ ? null : this.function_,
+      allergenicIndicator:
+          allergenicIndicator ? null : this.allergenicIndicator,
+      manufacturer: manufacturer ? null : this.manufacturer,
+      substance: substance,
+    );
+  }
+
   @override
   Ingredient clone() => throw UnimplementedError();
   @override
@@ -1025,6 +1181,75 @@ class IngredientManufacturer extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'role':
+        return ['FhirCode'];
+      case 'manufacturer':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [IngredientManufacturer]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  IngredientManufacturer createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'role':
+        {
+          return copyWith(role: IngredientManufacturerRole.empty());
+        }
+      case 'manufacturer':
+        {
+          return copyWith(manufacturer: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  IngredientManufacturer clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool role = false,
+  }) {
+    return IngredientManufacturer(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      role: role ? null : this.role,
+      manufacturer: manufacturer,
+    );
+  }
+
   @override
   IngredientManufacturer clone() => throw UnimplementedError();
   @override
@@ -1383,6 +1608,75 @@ class IngredientSubstance extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableReference'];
+      case 'strength':
+        return ['IngredientStrength'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [IngredientSubstance]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  IngredientSubstance createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableReference.empty());
+        }
+      case 'strength':
+        {
+          return copyWith(strength: <IngredientStrength>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  IngredientSubstance clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool strength = false,
+  }) {
+    return IngredientSubstance(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      strength: strength ? null : this.strength,
+    );
   }
 
   @override
@@ -1975,6 +2269,138 @@ class IngredientStrength extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'presentation':
+      case 'presentationX':
+        return ['Ratio', 'RatioRange'];
+      case 'presentationRatio':
+        return ['Ratio'];
+      case 'presentationRatioRange':
+        return ['RatioRange'];
+      case 'textPresentation':
+        return ['FhirString'];
+      case 'concentration':
+      case 'concentrationX':
+        return ['Ratio', 'RatioRange'];
+      case 'concentrationRatio':
+        return ['Ratio'];
+      case 'concentrationRatioRange':
+        return ['RatioRange'];
+      case 'textConcentration':
+        return ['FhirString'];
+      case 'measurementPoint':
+        return ['FhirString'];
+      case 'country':
+        return ['CodeableConcept'];
+      case 'referenceStrength':
+        return ['IngredientReferenceStrength'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [IngredientStrength]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  IngredientStrength createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'presentation':
+      case 'presentationX':
+      case 'presentationRatio':
+        {
+          return copyWith(presentationX: Ratio.empty());
+        }
+      case 'presentationRatioRange':
+        {
+          return copyWith(presentationX: RatioRange.empty());
+        }
+      case 'textPresentation':
+        {
+          return copyWith(textPresentation: FhirString.empty());
+        }
+      case 'concentration':
+      case 'concentrationX':
+      case 'concentrationRatio':
+        {
+          return copyWith(concentrationX: Ratio.empty());
+        }
+      case 'concentrationRatioRange':
+        {
+          return copyWith(concentrationX: RatioRange.empty());
+        }
+      case 'textConcentration':
+        {
+          return copyWith(textConcentration: FhirString.empty());
+        }
+      case 'measurementPoint':
+        {
+          return copyWith(measurementPoint: FhirString.empty());
+        }
+      case 'country':
+        {
+          return copyWith(country: <CodeableConcept>[]);
+        }
+      case 'referenceStrength':
+        {
+          return copyWith(referenceStrength: <IngredientReferenceStrength>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  IngredientStrength clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool presentation = false,
+    bool textPresentation = false,
+    bool concentration = false,
+    bool textConcentration = false,
+    bool measurementPoint = false,
+    bool country = false,
+    bool referenceStrength = false,
+  }) {
+    return IngredientStrength(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      presentationX: presentation ? null : presentationX,
+      textPresentation: textPresentation ? null : this.textPresentation,
+      concentrationX: concentration ? null : concentrationX,
+      textConcentration: textConcentration ? null : this.textConcentration,
+      measurementPoint: measurementPoint ? null : this.measurementPoint,
+      country: country ? null : this.country,
+      referenceStrength: referenceStrength ? null : this.referenceStrength,
+    );
+  }
+
   @override
   IngredientStrength clone() => throw UnimplementedError();
   @override
@@ -2477,6 +2903,102 @@ class IngredientReferenceStrength extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'substance':
+        return ['CodeableReference'];
+      case 'strength':
+      case 'strengthX':
+        return ['Ratio', 'RatioRange'];
+      case 'strengthRatio':
+        return ['Ratio'];
+      case 'strengthRatioRange':
+        return ['RatioRange'];
+      case 'measurementPoint':
+        return ['FhirString'];
+      case 'country':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [IngredientReferenceStrength]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  IngredientReferenceStrength createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'substance':
+        {
+          return copyWith(substance: CodeableReference.empty());
+        }
+      case 'strength':
+      case 'strengthX':
+      case 'strengthRatio':
+        {
+          return copyWith(strengthX: Ratio.empty());
+        }
+      case 'strengthRatioRange':
+        {
+          return copyWith(strengthX: RatioRange.empty());
+        }
+      case 'measurementPoint':
+        {
+          return copyWith(measurementPoint: FhirString.empty());
+        }
+      case 'country':
+        {
+          return copyWith(country: <CodeableConcept>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  IngredientReferenceStrength clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool substance = false,
+    bool measurementPoint = false,
+    bool country = false,
+  }) {
+    return IngredientReferenceStrength(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      substance: substance ? null : this.substance,
+      strengthX: strengthX,
+      measurementPoint: measurementPoint ? null : this.measurementPoint,
+      country: country ? null : this.country,
+    );
   }
 
   @override

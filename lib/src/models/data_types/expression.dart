@@ -339,6 +339,91 @@ class FhirExpression extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'description':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirId'];
+      case 'language':
+        return ['FhirCode'];
+      case 'expression':
+        return ['FhirString'];
+      case 'reference':
+        return ['FhirUri'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [FhirExpression]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  FhirExpression createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirId.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: ExpressionLanguage.empty());
+        }
+      case 'expression':
+        {
+          return copyWith(expression: FhirString.empty());
+        }
+      case 'reference':
+        {
+          return copyWith(reference: FhirUri.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  FhirExpression clear({
+    bool id = false,
+    bool extension_ = false,
+    bool description = false,
+    bool name = false,
+    bool expression = false,
+    bool reference = false,
+  }) {
+    return FhirExpression(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      description: description ? null : this.description,
+      name: name ? null : this.name,
+      language: language,
+      expression: expression ? null : this.expression,
+      reference: reference ? null : this.reference,
+    );
+  }
+
   @override
   FhirExpression clone() => throw UnimplementedError();
   @override

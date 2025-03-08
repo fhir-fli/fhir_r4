@@ -1012,7 +1012,8 @@ extension StringExtensionForFHIR on String {
         return 'FhirString';
       case 'evidencevariable':
         return 'EvidenceModelCharacteristicVariable';
-      default: return this;
+      default:
+        return this;
     }
   }
 

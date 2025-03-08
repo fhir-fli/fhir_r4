@@ -337,6 +337,92 @@ class ContactPoint extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'system':
+        return ['FhirCode'];
+      case 'value':
+        return ['FhirString'];
+      case 'use':
+        return ['FhirCode'];
+      case 'rank':
+        return ['FhirPositiveInt'];
+      case 'period':
+        return ['Period'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ContactPoint]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContactPoint createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'system':
+        {
+          return copyWith(system: ContactPointSystem.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirString.empty());
+        }
+      case 'use':
+        {
+          return copyWith(use: ContactPointUse.empty());
+        }
+      case 'rank':
+        {
+          return copyWith(rank: FhirPositiveInt.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ContactPoint clear({
+    bool id = false,
+    bool extension_ = false,
+    bool system = false,
+    bool value = false,
+    bool use = false,
+    bool rank = false,
+    bool period = false,
+  }) {
+    return ContactPoint(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      system: system ? null : this.system,
+      value: value ? null : this.value,
+      use: use ? null : this.use,
+      rank: rank ? null : this.rank,
+      period: period ? null : this.period,
+    );
+  }
+
   @override
   ContactPoint clone() => throw UnimplementedError();
   @override

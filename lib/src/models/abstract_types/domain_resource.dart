@@ -145,4 +145,17 @@ abstract class DomainResource extends Resource {
     List<String>? formatCommentsPost,
     List<dynamic>? annotations,
   });
+
+  /// Retrieves the type of the object by element name.
+  @override
+  List<String> typeByElementName(String elementName) {
+    return <String>[];
+  }
+
+  /// Creates an empty property in the object
+  @override
+  DomainResource createProperty(String propertyName);
+
+  @override
+  DomainResource clear();
 }

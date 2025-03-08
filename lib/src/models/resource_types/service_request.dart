@@ -1409,6 +1409,407 @@ class ServiceRequest extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'instantiatesCanonical':
+        return ['FhirCanonical'];
+      case 'instantiatesUri':
+        return ['FhirUri'];
+      case 'basedOn':
+        return ['Reference'];
+      case 'replaces':
+        return ['Reference'];
+      case 'requisition':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'intent':
+        return ['FhirCode'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'priority':
+        return ['FhirCode'];
+      case 'doNotPerform':
+        return ['FhirBoolean'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'orderDetail':
+        return ['CodeableConcept'];
+      case 'quantity':
+      case 'quantityX':
+        return ['Quantity', 'Ratio', 'Range'];
+      case 'quantityQuantity':
+        return ['Quantity'];
+      case 'quantityRatio':
+        return ['Ratio'];
+      case 'quantityRange':
+        return ['Range'];
+      case 'subject':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'occurrence':
+      case 'occurrenceX':
+        return ['FhirDateTime', 'Period', 'Timing'];
+      case 'occurrenceDateTime':
+        return ['FhirDateTime'];
+      case 'occurrencePeriod':
+        return ['Period'];
+      case 'occurrenceTiming':
+        return ['Timing'];
+      case 'asNeeded':
+      case 'asNeededX':
+        return ['FhirBoolean', 'CodeableConcept'];
+      case 'asNeededBoolean':
+        return ['FhirBoolean'];
+      case 'asNeededCodeableConcept':
+        return ['CodeableConcept'];
+      case 'authoredOn':
+        return ['FhirDateTime'];
+      case 'requester':
+        return ['Reference'];
+      case 'performerType':
+        return ['CodeableConcept'];
+      case 'performer':
+        return ['Reference'];
+      case 'locationCode':
+        return ['CodeableConcept'];
+      case 'locationReference':
+        return ['Reference'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'insurance':
+        return ['Reference'];
+      case 'supportingInfo':
+        return ['Reference'];
+      case 'specimen':
+        return ['Reference'];
+      case 'bodySite':
+        return ['CodeableConcept'];
+      case 'note':
+        return ['Annotation'];
+      case 'patientInstruction':
+        return ['FhirString'];
+      case 'relevantHistory':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ServiceRequest]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ServiceRequest createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'instantiatesCanonical':
+        {
+          return copyWith(instantiatesCanonical: <FhirCanonical>[]);
+        }
+      case 'instantiatesUri':
+        {
+          return copyWith(instantiatesUri: <FhirUri>[]);
+        }
+      case 'basedOn':
+        {
+          return copyWith(basedOn: <Reference>[]);
+        }
+      case 'replaces':
+        {
+          return copyWith(replaces: <Reference>[]);
+        }
+      case 'requisition':
+        {
+          return copyWith(requisition: Identifier.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: RequestStatus.empty());
+        }
+      case 'intent':
+        {
+          return copyWith(intent: RequestIntent.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'priority':
+        {
+          return copyWith(priority: RequestPriority.empty());
+        }
+      case 'doNotPerform':
+        {
+          return copyWith(doNotPerform: FhirBoolean.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'orderDetail':
+        {
+          return copyWith(orderDetail: <CodeableConcept>[]);
+        }
+      case 'quantity':
+      case 'quantityX':
+      case 'quantityQuantity':
+        {
+          return copyWith(quantityX: Quantity.empty());
+        }
+      case 'quantityRatio':
+        {
+          return copyWith(quantityX: Ratio.empty());
+        }
+      case 'quantityRange':
+        {
+          return copyWith(quantityX: Range.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'occurrence':
+      case 'occurrenceX':
+      case 'occurrenceDateTime':
+        {
+          return copyWith(occurrenceX: FhirDateTime.empty());
+        }
+      case 'occurrencePeriod':
+        {
+          return copyWith(occurrenceX: Period.empty());
+        }
+      case 'occurrenceTiming':
+        {
+          return copyWith(occurrenceX: Timing.empty());
+        }
+      case 'asNeeded':
+      case 'asNeededX':
+      case 'asNeededBoolean':
+        {
+          return copyWith(asNeededX: FhirBoolean.empty());
+        }
+      case 'asNeededCodeableConcept':
+        {
+          return copyWith(asNeededX: CodeableConcept.empty());
+        }
+      case 'authoredOn':
+        {
+          return copyWith(authoredOn: FhirDateTime.empty());
+        }
+      case 'requester':
+        {
+          return copyWith(requester: Reference.empty());
+        }
+      case 'performerType':
+        {
+          return copyWith(performerType: CodeableConcept.empty());
+        }
+      case 'performer':
+        {
+          return copyWith(performer: <Reference>[]);
+        }
+      case 'locationCode':
+        {
+          return copyWith(locationCode: <CodeableConcept>[]);
+        }
+      case 'locationReference':
+        {
+          return copyWith(locationReference: <Reference>[]);
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: <CodeableConcept>[]);
+        }
+      case 'reasonReference':
+        {
+          return copyWith(reasonReference: <Reference>[]);
+        }
+      case 'insurance':
+        {
+          return copyWith(insurance: <Reference>[]);
+        }
+      case 'supportingInfo':
+        {
+          return copyWith(supportingInfo: <Reference>[]);
+        }
+      case 'specimen':
+        {
+          return copyWith(specimen: <Reference>[]);
+        }
+      case 'bodySite':
+        {
+          return copyWith(bodySite: <CodeableConcept>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'patientInstruction':
+        {
+          return copyWith(patientInstruction: FhirString.empty());
+        }
+      case 'relevantHistory':
+        {
+          return copyWith(relevantHistory: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ServiceRequest clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool instantiatesCanonical = false,
+    bool instantiatesUri = false,
+    bool basedOn = false,
+    bool replaces = false,
+    bool requisition = false,
+    bool category = false,
+    bool priority = false,
+    bool doNotPerform = false,
+    bool code = false,
+    bool orderDetail = false,
+    bool quantity = false,
+    bool encounter = false,
+    bool occurrence = false,
+    bool asNeeded = false,
+    bool authoredOn = false,
+    bool requester = false,
+    bool performerType = false,
+    bool performer = false,
+    bool locationCode = false,
+    bool locationReference = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool insurance = false,
+    bool supportingInfo = false,
+    bool specimen = false,
+    bool bodySite = false,
+    bool note = false,
+    bool patientInstruction = false,
+    bool relevantHistory = false,
+  }) {
+    return ServiceRequest(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      instantiatesCanonical:
+          instantiatesCanonical ? null : this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri ? null : this.instantiatesUri,
+      basedOn: basedOn ? null : this.basedOn,
+      replaces: replaces ? null : this.replaces,
+      requisition: requisition ? null : this.requisition,
+      status: status,
+      intent: intent,
+      category: category ? null : this.category,
+      priority: priority ? null : this.priority,
+      doNotPerform: doNotPerform ? null : this.doNotPerform,
+      code: code ? null : this.code,
+      orderDetail: orderDetail ? null : this.orderDetail,
+      quantityX: quantity ? null : quantityX,
+      subject: subject,
+      encounter: encounter ? null : this.encounter,
+      occurrenceX: occurrence ? null : occurrenceX,
+      asNeededX: asNeeded ? null : asNeededX,
+      authoredOn: authoredOn ? null : this.authoredOn,
+      requester: requester ? null : this.requester,
+      performerType: performerType ? null : this.performerType,
+      performer: performer ? null : this.performer,
+      locationCode: locationCode ? null : this.locationCode,
+      locationReference: locationReference ? null : this.locationReference,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      insurance: insurance ? null : this.insurance,
+      supportingInfo: supportingInfo ? null : this.supportingInfo,
+      specimen: specimen ? null : this.specimen,
+      bodySite: bodySite ? null : this.bodySite,
+      note: note ? null : this.note,
+      patientInstruction: patientInstruction ? null : this.patientInstruction,
+      relevantHistory: relevantHistory ? null : this.relevantHistory,
+    );
+  }
+
   @override
   ServiceRequest clone() => throw UnimplementedError();
   @override

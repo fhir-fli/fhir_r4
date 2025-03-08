@@ -627,6 +627,184 @@ class AuditEvent extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['Coding'];
+      case 'subtype':
+        return ['Coding'];
+      case 'action':
+        return ['FhirCode'];
+      case 'period':
+        return ['Period'];
+      case 'recorded':
+        return ['FhirInstant'];
+      case 'outcome':
+        return ['FhirCode'];
+      case 'outcomeDesc':
+        return ['FhirString'];
+      case 'purposeOfEvent':
+        return ['CodeableConcept'];
+      case 'agent':
+        return ['AuditEventAgent'];
+      case 'source':
+        return ['AuditEventSource'];
+      case 'entity':
+        return ['AuditEventEntity'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [AuditEvent]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AuditEvent createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: Coding.empty());
+        }
+      case 'subtype':
+        {
+          return copyWith(subtype: <Coding>[]);
+        }
+      case 'action':
+        {
+          return copyWith(action: AuditEventAction.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      case 'recorded':
+        {
+          return copyWith(recorded: FhirInstant.empty());
+        }
+      case 'outcome':
+        {
+          return copyWith(outcome: AuditEventOutcome.empty());
+        }
+      case 'outcomeDesc':
+        {
+          return copyWith(outcomeDesc: FhirString.empty());
+        }
+      case 'purposeOfEvent':
+        {
+          return copyWith(purposeOfEvent: <CodeableConcept>[]);
+        }
+      case 'agent':
+        {
+          return copyWith(agent: <AuditEventAgent>[]);
+        }
+      case 'source':
+        {
+          return copyWith(source: AuditEventSource.empty());
+        }
+      case 'entity':
+        {
+          return copyWith(entity: <AuditEventEntity>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  AuditEvent clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool subtype = false,
+    bool action = false,
+    bool period = false,
+    bool outcome = false,
+    bool outcomeDesc = false,
+    bool purposeOfEvent = false,
+    bool entity = false,
+  }) {
+    return AuditEvent(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      subtype: subtype ? null : this.subtype,
+      action: action ? null : this.action,
+      period: period ? null : this.period,
+      recorded: recorded,
+      outcome: outcome ? null : this.outcome,
+      outcomeDesc: outcomeDesc ? null : this.outcomeDesc,
+      purposeOfEvent: purposeOfEvent ? null : this.purposeOfEvent,
+      agent: agent,
+      source: source,
+      entity: entity ? null : this.entity,
+    );
+  }
+
   @override
   AuditEvent clone() => throw UnimplementedError();
   @override
@@ -1364,6 +1542,147 @@ class AuditEventAgent extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'role':
+        return ['CodeableConcept'];
+      case 'who':
+        return ['Reference'];
+      case 'altId':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'requestor':
+        return ['FhirBoolean'];
+      case 'location':
+        return ['Reference'];
+      case 'policy':
+        return ['FhirUri'];
+      case 'media':
+        return ['Coding'];
+      case 'network':
+        return ['AuditEventNetwork'];
+      case 'purposeOfUse':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [AuditEventAgent]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AuditEventAgent createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'role':
+        {
+          return copyWith(role: <CodeableConcept>[]);
+        }
+      case 'who':
+        {
+          return copyWith(who: Reference.empty());
+        }
+      case 'altId':
+        {
+          return copyWith(altId: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'requestor':
+        {
+          return copyWith(requestor: FhirBoolean.empty());
+        }
+      case 'location':
+        {
+          return copyWith(location: Reference.empty());
+        }
+      case 'policy':
+        {
+          return copyWith(policy: <FhirUri>[]);
+        }
+      case 'media':
+        {
+          return copyWith(media: Coding.empty());
+        }
+      case 'network':
+        {
+          return copyWith(network: AuditEventNetwork.empty());
+        }
+      case 'purposeOfUse':
+        {
+          return copyWith(purposeOfUse: <CodeableConcept>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  AuditEventAgent clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool role = false,
+    bool who = false,
+    bool altId = false,
+    bool name = false,
+    bool location = false,
+    bool policy = false,
+    bool media = false,
+    bool network = false,
+    bool purposeOfUse = false,
+  }) {
+    return AuditEventAgent(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      role: role ? null : this.role,
+      who: who ? null : this.who,
+      altId: altId ? null : this.altId,
+      name: name ? null : this.name,
+      requestor: requestor,
+      location: location ? null : this.location,
+      policy: policy ? null : this.policy,
+      media: media ? null : this.media,
+      network: network ? null : this.network,
+      purposeOfUse: purposeOfUse ? null : this.purposeOfUse,
+    );
+  }
+
   @override
   AuditEventAgent clone() => throw UnimplementedError();
   @override
@@ -1812,6 +2131,76 @@ class AuditEventNetwork extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'address':
+        return ['FhirString'];
+      case 'type':
+        return ['FhirCode'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [AuditEventNetwork]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AuditEventNetwork createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'address':
+        {
+          return copyWith(address: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: AuditEventAgentNetworkType.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  AuditEventNetwork clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool address = false,
+    bool type = false,
+  }) {
+    return AuditEventNetwork(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      address: address ? null : this.address,
+      type: type ? null : this.type,
+    );
+  }
+
   @override
   AuditEventNetwork clone() => throw UnimplementedError();
   @override
@@ -2193,6 +2582,83 @@ class AuditEventSource extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'site':
+        return ['FhirString'];
+      case 'observer':
+        return ['Reference'];
+      case 'type':
+        return ['Coding'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [AuditEventSource]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AuditEventSource createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'site':
+        {
+          return copyWith(site: FhirString.empty());
+        }
+      case 'observer':
+        {
+          return copyWith(observer: Reference.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: <Coding>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  AuditEventSource clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool site = false,
+    bool type = false,
+  }) {
+    return AuditEventSource(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      site: site ? null : this.site,
+      observer: observer,
+      type: type ? null : this.type,
+    );
   }
 
   @override
@@ -2748,6 +3214,132 @@ class AuditEventEntity extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'what':
+        return ['Reference'];
+      case 'type':
+        return ['Coding'];
+      case 'role':
+        return ['Coding'];
+      case 'lifecycle':
+        return ['Coding'];
+      case 'securityLabel':
+        return ['Coding'];
+      case 'name':
+        return ['FhirString'];
+      case 'description':
+        return ['FhirString'];
+      case 'query':
+        return ['FhirBase64Binary'];
+      case 'detail':
+        return ['AuditEventDetail'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [AuditEventEntity]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AuditEventEntity createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'what':
+        {
+          return copyWith(what: Reference.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: Coding.empty());
+        }
+      case 'role':
+        {
+          return copyWith(role: Coding.empty());
+        }
+      case 'lifecycle':
+        {
+          return copyWith(lifecycle: Coding.empty());
+        }
+      case 'securityLabel':
+        {
+          return copyWith(securityLabel: <Coding>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'query':
+        {
+          return copyWith(query: FhirBase64Binary.empty());
+        }
+      case 'detail':
+        {
+          return copyWith(detail: <AuditEventDetail>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  AuditEventEntity clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool what = false,
+    bool type = false,
+    bool role = false,
+    bool lifecycle = false,
+    bool securityLabel = false,
+    bool name = false,
+    bool description = false,
+    bool query = false,
+    bool detail = false,
+  }) {
+    return AuditEventEntity(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      what: what ? null : this.what,
+      type: type ? null : this.type,
+      role: role ? null : this.role,
+      lifecycle: lifecycle ? null : this.lifecycle,
+      securityLabel: securityLabel ? null : this.securityLabel,
+      name: name ? null : this.name,
+      description: description ? null : this.description,
+      query: query ? null : this.query,
+      detail: detail ? null : this.detail,
+    );
+  }
+
   @override
   AuditEventEntity clone() => throw UnimplementedError();
   @override
@@ -3205,6 +3797,85 @@ class AuditEventDetail extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirString'];
+      case 'value':
+      case 'valueX':
+        return ['FhirString', 'FhirBase64Binary'];
+      case 'valueString':
+        return ['FhirString'];
+      case 'valueBase64Binary':
+        return ['FhirBase64Binary'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [AuditEventDetail]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AuditEventDetail createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: FhirString.empty());
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueString':
+        {
+          return copyWith(valueX: FhirString.empty());
+        }
+      case 'valueBase64Binary':
+        {
+          return copyWith(valueX: FhirBase64Binary.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  AuditEventDetail clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return AuditEventDetail(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      valueX: valueX,
+    );
   }
 
   @override

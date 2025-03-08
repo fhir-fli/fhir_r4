@@ -542,6 +542,160 @@ class VisionPrescription extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'created':
+        return ['FhirDateTime'];
+      case 'patient':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'dateWritten':
+        return ['FhirDateTime'];
+      case 'prescriber':
+        return ['Reference'];
+      case 'lensSpecification':
+        return ['VisionPrescriptionLensSpecification'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [VisionPrescription]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  VisionPrescription createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: FinancialResourceStatusCodes.empty());
+        }
+      case 'created':
+        {
+          return copyWith(created: FhirDateTime.empty());
+        }
+      case 'patient':
+        {
+          return copyWith(patient: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'dateWritten':
+        {
+          return copyWith(dateWritten: FhirDateTime.empty());
+        }
+      case 'prescriber':
+        {
+          return copyWith(prescriber: Reference.empty());
+        }
+      case 'lensSpecification':
+        {
+          return copyWith(
+            lensSpecification: <VisionPrescriptionLensSpecification>[],
+          );
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  VisionPrescription clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool encounter = false,
+  }) {
+    return VisionPrescription(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      created: created,
+      patient: patient,
+      encounter: encounter ? null : this.encounter,
+      dateWritten: dateWritten,
+      prescriber: prescriber,
+      lensSpecification: lensSpecification,
+    );
+  }
+
   @override
   VisionPrescription clone() => throw UnimplementedError();
   @override
@@ -1306,6 +1460,170 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'product':
+        return ['CodeableConcept'];
+      case 'eye':
+        return ['FhirCode'];
+      case 'sphere':
+        return ['FhirDecimal'];
+      case 'cylinder':
+        return ['FhirDecimal'];
+      case 'axis':
+        return ['FhirInteger'];
+      case 'prism':
+        return ['VisionPrescriptionPrism'];
+      case 'add':
+        return ['FhirDecimal'];
+      case 'power':
+        return ['FhirDecimal'];
+      case 'backCurve':
+        return ['FhirDecimal'];
+      case 'diameter':
+        return ['FhirDecimal'];
+      case 'duration':
+        return ['Quantity'];
+      case 'color':
+        return ['FhirString'];
+      case 'brand':
+        return ['FhirString'];
+      case 'note':
+        return ['Annotation'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [VisionPrescriptionLensSpecification]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  VisionPrescriptionLensSpecification createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'product':
+        {
+          return copyWith(product: CodeableConcept.empty());
+        }
+      case 'eye':
+        {
+          return copyWith(eye: VisionEyes.empty());
+        }
+      case 'sphere':
+        {
+          return copyWith(sphere: FhirDecimal.empty());
+        }
+      case 'cylinder':
+        {
+          return copyWith(cylinder: FhirDecimal.empty());
+        }
+      case 'axis':
+        {
+          return copyWith(axis: FhirInteger.empty());
+        }
+      case 'prism':
+        {
+          return copyWith(prism: <VisionPrescriptionPrism>[]);
+        }
+      case 'add':
+        {
+          return copyWith(add: FhirDecimal.empty());
+        }
+      case 'power':
+        {
+          return copyWith(power: FhirDecimal.empty());
+        }
+      case 'backCurve':
+        {
+          return copyWith(backCurve: FhirDecimal.empty());
+        }
+      case 'diameter':
+        {
+          return copyWith(diameter: FhirDecimal.empty());
+        }
+      case 'duration':
+        {
+          return copyWith(duration: Quantity.empty());
+        }
+      case 'color':
+        {
+          return copyWith(color: FhirString.empty());
+        }
+      case 'brand':
+        {
+          return copyWith(brand: FhirString.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  VisionPrescriptionLensSpecification clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool sphere = false,
+    bool cylinder = false,
+    bool axis = false,
+    bool prism = false,
+    bool add = false,
+    bool power = false,
+    bool backCurve = false,
+    bool diameter = false,
+    bool duration = false,
+    bool color = false,
+    bool brand = false,
+    bool note = false,
+  }) {
+    return VisionPrescriptionLensSpecification(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      product: product,
+      eye: eye,
+      sphere: sphere ? null : this.sphere,
+      cylinder: cylinder ? null : this.cylinder,
+      axis: axis ? null : this.axis,
+      prism: prism ? null : this.prism,
+      add: add ? null : this.add,
+      power: power ? null : this.power,
+      backCurve: backCurve ? null : this.backCurve,
+      diameter: diameter ? null : this.diameter,
+      duration: duration ? null : this.duration,
+      color: color ? null : this.color,
+      brand: brand ? null : this.brand,
+      note: note ? null : this.note,
+    );
+  }
+
   @override
   VisionPrescriptionLensSpecification clone() => throw UnimplementedError();
   @override
@@ -1765,6 +2083,74 @@ class VisionPrescriptionPrism extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'amount':
+        return ['FhirDecimal'];
+      case 'base':
+        return ['FhirCode'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [VisionPrescriptionPrism]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  VisionPrescriptionPrism createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'amount':
+        {
+          return copyWith(amount: FhirDecimal.empty());
+        }
+      case 'base':
+        {
+          return copyWith(base: VisionBase.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  VisionPrescriptionPrism clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return VisionPrescriptionPrism(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      amount: amount,
+      base: base,
+    );
   }
 
   @override

@@ -856,6 +856,37 @@ class FhirDb {
     }
   }
 
+  /// Retrieves a all Canonical Resources of a type from the database
+  Future<List<T>> getAllCanonicalByType<T extends CanonicalResource>({
+    required R4ResourceType type,
+    String? pw,
+  }) async {
+    await _ensureInit(pw: pw);
+    final cipher = cipherFromKey(key: pw);
+    try {
+      final Box<Map<String, dynamic>> box;
+      if (!Hive.isBoxOpen('canonical_resources')) {
+        box = await Hive.openBox<Map<String, dynamic>>(
+          'canonical_resources',
+          encryptionCipher: cipher,
+        );
+      } else {
+        box = Hive.box('canonical_resources');
+      }
+      final resourceList = <T>[];
+      final newResources = box.values
+          .where((value) => value['resourceType'] == type.toString())
+          .toList();
+      resourceList.addAll(
+        newResources.map(CanonicalResource.fromJson) as Iterable<T>,
+      );
+      return resourceList;
+    } catch (e) {
+      log('Failed to get canonical resource: $e');
+      return <T>[];
+    }
+  }
+
   /// Saves a Canonical Resource to the database
   Future<void> saveCanonicalResource({
     required CanonicalResource resource,

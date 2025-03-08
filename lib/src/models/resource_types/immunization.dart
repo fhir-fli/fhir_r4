@@ -1125,6 +1125,331 @@ class Immunization extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'statusReason':
+        return ['CodeableConcept'];
+      case 'vaccineCode':
+        return ['CodeableConcept'];
+      case 'patient':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'occurrence':
+      case 'occurrenceX':
+        return ['FhirDateTime', 'FhirString'];
+      case 'occurrenceDateTime':
+        return ['FhirDateTime'];
+      case 'occurrenceString':
+        return ['FhirString'];
+      case 'recorded':
+        return ['FhirDateTime'];
+      case 'primarySource':
+        return ['FhirBoolean'];
+      case 'reportOrigin':
+        return ['CodeableConcept'];
+      case 'location':
+        return ['Reference'];
+      case 'manufacturer':
+        return ['Reference'];
+      case 'lotNumber':
+        return ['FhirString'];
+      case 'expirationDate':
+        return ['FhirDate'];
+      case 'site':
+        return ['CodeableConcept'];
+      case 'route':
+        return ['CodeableConcept'];
+      case 'doseQuantity':
+        return ['Quantity'];
+      case 'performer':
+        return ['ImmunizationPerformer'];
+      case 'note':
+        return ['Annotation'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'isSubpotent':
+        return ['FhirBoolean'];
+      case 'subpotentReason':
+        return ['CodeableConcept'];
+      case 'education':
+        return ['ImmunizationEducation'];
+      case 'programEligibility':
+        return ['CodeableConcept'];
+      case 'fundingSource':
+        return ['CodeableConcept'];
+      case 'reaction':
+        return ['ImmunizationReaction'];
+      case 'protocolApplied':
+        return ['ImmunizationProtocolApplied'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Immunization]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Immunization createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: ImmunizationStatusCodes.empty());
+        }
+      case 'statusReason':
+        {
+          return copyWith(statusReason: CodeableConcept.empty());
+        }
+      case 'vaccineCode':
+        {
+          return copyWith(vaccineCode: CodeableConcept.empty());
+        }
+      case 'patient':
+        {
+          return copyWith(patient: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'occurrence':
+      case 'occurrenceX':
+      case 'occurrenceDateTime':
+        {
+          return copyWith(occurrenceX: FhirDateTime.empty());
+        }
+      case 'occurrenceString':
+        {
+          return copyWith(occurrenceX: FhirString.empty());
+        }
+      case 'recorded':
+        {
+          return copyWith(recorded: FhirDateTime.empty());
+        }
+      case 'primarySource':
+        {
+          return copyWith(primarySource: FhirBoolean.empty());
+        }
+      case 'reportOrigin':
+        {
+          return copyWith(reportOrigin: CodeableConcept.empty());
+        }
+      case 'location':
+        {
+          return copyWith(location: Reference.empty());
+        }
+      case 'manufacturer':
+        {
+          return copyWith(manufacturer: Reference.empty());
+        }
+      case 'lotNumber':
+        {
+          return copyWith(lotNumber: FhirString.empty());
+        }
+      case 'expirationDate':
+        {
+          return copyWith(expirationDate: FhirDate.empty());
+        }
+      case 'site':
+        {
+          return copyWith(site: CodeableConcept.empty());
+        }
+      case 'route':
+        {
+          return copyWith(route: CodeableConcept.empty());
+        }
+      case 'doseQuantity':
+        {
+          return copyWith(doseQuantity: Quantity.empty());
+        }
+      case 'performer':
+        {
+          return copyWith(performer: <ImmunizationPerformer>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: <CodeableConcept>[]);
+        }
+      case 'reasonReference':
+        {
+          return copyWith(reasonReference: <Reference>[]);
+        }
+      case 'isSubpotent':
+        {
+          return copyWith(isSubpotent: FhirBoolean.empty());
+        }
+      case 'subpotentReason':
+        {
+          return copyWith(subpotentReason: <CodeableConcept>[]);
+        }
+      case 'education':
+        {
+          return copyWith(education: <ImmunizationEducation>[]);
+        }
+      case 'programEligibility':
+        {
+          return copyWith(programEligibility: <CodeableConcept>[]);
+        }
+      case 'fundingSource':
+        {
+          return copyWith(fundingSource: CodeableConcept.empty());
+        }
+      case 'reaction':
+        {
+          return copyWith(reaction: <ImmunizationReaction>[]);
+        }
+      case 'protocolApplied':
+        {
+          return copyWith(protocolApplied: <ImmunizationProtocolApplied>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Immunization clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool statusReason = false,
+    bool encounter = false,
+    bool recorded = false,
+    bool primarySource = false,
+    bool reportOrigin = false,
+    bool location = false,
+    bool manufacturer = false,
+    bool lotNumber = false,
+    bool expirationDate = false,
+    bool site = false,
+    bool route = false,
+    bool doseQuantity = false,
+    bool performer = false,
+    bool note = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool isSubpotent = false,
+    bool subpotentReason = false,
+    bool education = false,
+    bool programEligibility = false,
+    bool fundingSource = false,
+    bool reaction = false,
+    bool protocolApplied = false,
+  }) {
+    return Immunization(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      statusReason: statusReason ? null : this.statusReason,
+      vaccineCode: vaccineCode,
+      patient: patient,
+      encounter: encounter ? null : this.encounter,
+      occurrenceX: occurrenceX,
+      recorded: recorded ? null : this.recorded,
+      primarySource: primarySource ? null : this.primarySource,
+      reportOrigin: reportOrigin ? null : this.reportOrigin,
+      location: location ? null : this.location,
+      manufacturer: manufacturer ? null : this.manufacturer,
+      lotNumber: lotNumber ? null : this.lotNumber,
+      expirationDate: expirationDate ? null : this.expirationDate,
+      site: site ? null : this.site,
+      route: route ? null : this.route,
+      doseQuantity: doseQuantity ? null : this.doseQuantity,
+      performer: performer ? null : this.performer,
+      note: note ? null : this.note,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      isSubpotent: isSubpotent ? null : this.isSubpotent,
+      subpotentReason: subpotentReason ? null : this.subpotentReason,
+      education: education ? null : this.education,
+      programEligibility: programEligibility ? null : this.programEligibility,
+      fundingSource: fundingSource ? null : this.fundingSource,
+      reaction: reaction ? null : this.reaction,
+      protocolApplied: protocolApplied ? null : this.protocolApplied,
+    );
+  }
+
   @override
   Immunization clone() => throw UnimplementedError();
   @override
@@ -1795,6 +2120,75 @@ class ImmunizationPerformer extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'function':
+        return ['CodeableConcept'];
+      case 'actor':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ImmunizationPerformer]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImmunizationPerformer createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'function':
+        {
+          return copyWith(function_: CodeableConcept.empty());
+        }
+      case 'actor':
+        {
+          return copyWith(actor: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImmunizationPerformer clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool function_ = false,
+  }) {
+    return ImmunizationPerformer(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      function_: function_ ? null : this.function_,
+      actor: actor,
+    );
+  }
+
   @override
   ImmunizationPerformer clone() => throw UnimplementedError();
   @override
@@ -2199,6 +2593,92 @@ class ImmunizationEducation extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'documentType':
+        return ['FhirString'];
+      case 'reference':
+        return ['FhirUri'];
+      case 'publicationDate':
+        return ['FhirDateTime'];
+      case 'presentationDate':
+        return ['FhirDateTime'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ImmunizationEducation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImmunizationEducation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'documentType':
+        {
+          return copyWith(documentType: FhirString.empty());
+        }
+      case 'reference':
+        {
+          return copyWith(reference: FhirUri.empty());
+        }
+      case 'publicationDate':
+        {
+          return copyWith(publicationDate: FhirDateTime.empty());
+        }
+      case 'presentationDate':
+        {
+          return copyWith(presentationDate: FhirDateTime.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImmunizationEducation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool documentType = false,
+    bool reference = false,
+    bool publicationDate = false,
+    bool presentationDate = false,
+  }) {
+    return ImmunizationEducation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      documentType: documentType ? null : this.documentType,
+      reference: reference ? null : this.reference,
+      publicationDate: publicationDate ? null : this.publicationDate,
+      presentationDate: presentationDate ? null : this.presentationDate,
+    );
+  }
+
   @override
   ImmunizationEducation clone() => throw UnimplementedError();
   @override
@@ -2591,6 +3071,84 @@ class ImmunizationReaction extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'detail':
+        return ['Reference'];
+      case 'reported':
+        return ['FhirBoolean'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ImmunizationReaction]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImmunizationReaction createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'detail':
+        {
+          return copyWith(detail: Reference.empty());
+        }
+      case 'reported':
+        {
+          return copyWith(reported: FhirBoolean.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImmunizationReaction clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool date = false,
+    bool detail = false,
+    bool reported = false,
+  }) {
+    return ImmunizationReaction(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      date: date ? null : this.date,
+      detail: detail ? null : this.detail,
+      reported: reported ? null : this.reported,
+    );
   }
 
   @override
@@ -3111,6 +3669,121 @@ class ImmunizationProtocolApplied extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'series':
+        return ['FhirString'];
+      case 'authority':
+        return ['Reference'];
+      case 'targetDisease':
+        return ['CodeableConcept'];
+      case 'doseNumber':
+      case 'doseNumberX':
+        return ['FhirPositiveInt', 'FhirString'];
+      case 'doseNumberPositiveInt':
+        return ['FhirPositiveInt'];
+      case 'doseNumberString':
+        return ['FhirString'];
+      case 'seriesDoses':
+      case 'seriesDosesX':
+        return ['FhirPositiveInt', 'FhirString'];
+      case 'seriesDosesPositiveInt':
+        return ['FhirPositiveInt'];
+      case 'seriesDosesString':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ImmunizationProtocolApplied]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImmunizationProtocolApplied createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'series':
+        {
+          return copyWith(series: FhirString.empty());
+        }
+      case 'authority':
+        {
+          return copyWith(authority: Reference.empty());
+        }
+      case 'targetDisease':
+        {
+          return copyWith(targetDisease: <CodeableConcept>[]);
+        }
+      case 'doseNumber':
+      case 'doseNumberX':
+      case 'doseNumberPositiveInt':
+        {
+          return copyWith(doseNumberX: FhirPositiveInt.empty());
+        }
+      case 'doseNumberString':
+        {
+          return copyWith(doseNumberX: FhirString.empty());
+        }
+      case 'seriesDoses':
+      case 'seriesDosesX':
+      case 'seriesDosesPositiveInt':
+        {
+          return copyWith(seriesDosesX: FhirPositiveInt.empty());
+        }
+      case 'seriesDosesString':
+        {
+          return copyWith(seriesDosesX: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImmunizationProtocolApplied clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool series = false,
+    bool authority = false,
+    bool targetDisease = false,
+    bool seriesDoses = false,
+  }) {
+    return ImmunizationProtocolApplied(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      series: series ? null : this.series,
+      authority: authority ? null : this.authority,
+      targetDisease: targetDisease ? null : this.targetDisease,
+      doseNumberX: doseNumberX,
+      seriesDosesX: seriesDoses ? null : seriesDosesX,
+    );
   }
 
   @override

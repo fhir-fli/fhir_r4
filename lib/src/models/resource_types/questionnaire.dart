@@ -887,6 +887,275 @@ class Questionnaire extends CanonicalResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'derivedFrom':
+        return ['FhirCanonical'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'subjectType':
+        return ['FhirCode'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      case 'approvalDate':
+        return ['FhirDate'];
+      case 'lastReviewDate':
+        return ['FhirDate'];
+      case 'effectivePeriod':
+        return ['Period'];
+      case 'code':
+        return ['Coding'];
+      case 'item':
+        return ['QuestionnaireItem'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Questionnaire]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Questionnaire createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'derivedFrom':
+        {
+          return copyWith(derivedFrom: <FhirCanonical>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'subjectType':
+        {
+          return copyWith(subjectType: <FhirCode>[]);
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'approvalDate':
+        {
+          return copyWith(approvalDate: FhirDate.empty());
+        }
+      case 'lastReviewDate':
+        {
+          return copyWith(lastReviewDate: FhirDate.empty());
+        }
+      case 'effectivePeriod':
+        {
+          return copyWith(effectivePeriod: Period.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: <Coding>[]);
+        }
+      case 'item':
+        {
+          return copyWith(item: <QuestionnaireItem>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Questionnaire clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool identifier = false,
+    bool version = false,
+    bool name = false,
+    bool title = false,
+    bool derivedFrom = false,
+    bool experimental = false,
+    bool subjectType = false,
+    bool date = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool purpose = false,
+    bool copyright = false,
+    bool approvalDate = false,
+    bool lastReviewDate = false,
+    bool effectivePeriod = false,
+    bool code = false,
+    bool item = false,
+  }) {
+    return Questionnaire(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url ? null : this.url,
+      identifier: identifier ? null : this.identifier,
+      version: version ? null : this.version,
+      name: name ? null : this.name,
+      title: title ? null : this.title,
+      derivedFrom: derivedFrom ? null : this.derivedFrom,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      subjectType: subjectType ? null : this.subjectType,
+      date: date ? null : this.date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      purpose: purpose ? null : this.purpose,
+      copyright: copyright ? null : this.copyright,
+      approvalDate: approvalDate ? null : this.approvalDate,
+      lastReviewDate: lastReviewDate ? null : this.lastReviewDate,
+      effectivePeriod: effectivePeriod ? null : this.effectivePeriod,
+      code: code ? null : this.code,
+      item: item ? null : this.item,
+    );
+  }
+
   @override
   Questionnaire clone() => throw UnimplementedError();
   @override
@@ -1898,6 +2167,186 @@ class QuestionnaireItem extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'linkId':
+        return ['FhirString'];
+      case 'definition':
+        return ['FhirUri'];
+      case 'code':
+        return ['Coding'];
+      case 'prefix':
+        return ['FhirString'];
+      case 'text':
+        return ['FhirString'];
+      case 'type':
+        return ['FhirCode'];
+      case 'enableWhen':
+        return ['QuestionnaireEnableWhen'];
+      case 'enableBehavior':
+        return ['FhirCode'];
+      case 'required':
+        return ['FhirBoolean'];
+      case 'repeats':
+        return ['FhirBoolean'];
+      case 'readOnly':
+        return ['FhirBoolean'];
+      case 'maxLength':
+        return ['FhirInteger'];
+      case 'answerValueSet':
+        return ['FhirCanonical'];
+      case 'answerOption':
+        return ['QuestionnaireAnswerOption'];
+      case 'initial':
+        return ['QuestionnaireInitial'];
+      case 'item':
+        return ['QuestionnaireItem'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [QuestionnaireItem]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  QuestionnaireItem createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'linkId':
+        {
+          return copyWith(linkId: FhirString.empty());
+        }
+      case 'definition':
+        {
+          return copyWith(definition: FhirUri.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: <Coding>[]);
+        }
+      case 'prefix':
+        {
+          return copyWith(prefix: FhirString.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: QuestionnaireItemType.empty());
+        }
+      case 'enableWhen':
+        {
+          return copyWith(enableWhen: <QuestionnaireEnableWhen>[]);
+        }
+      case 'enableBehavior':
+        {
+          return copyWith(enableBehavior: EnableWhenBehavior.empty());
+        }
+      case 'required':
+        {
+          return copyWith(required_: FhirBoolean.empty());
+        }
+      case 'repeats':
+        {
+          return copyWith(repeats: FhirBoolean.empty());
+        }
+      case 'readOnly':
+        {
+          return copyWith(readOnly: FhirBoolean.empty());
+        }
+      case 'maxLength':
+        {
+          return copyWith(maxLength: FhirInteger.empty());
+        }
+      case 'answerValueSet':
+        {
+          return copyWith(answerValueSet: FhirCanonical.empty());
+        }
+      case 'answerOption':
+        {
+          return copyWith(answerOption: <QuestionnaireAnswerOption>[]);
+        }
+      case 'initial':
+        {
+          return copyWith(initial: <QuestionnaireInitial>[]);
+        }
+      case 'item':
+        {
+          return copyWith(item: <QuestionnaireItem>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  QuestionnaireItem clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool definition = false,
+    bool code = false,
+    bool prefix = false,
+    bool text = false,
+    bool enableWhen = false,
+    bool enableBehavior = false,
+    bool required_ = false,
+    bool repeats = false,
+    bool readOnly = false,
+    bool maxLength = false,
+    bool answerValueSet = false,
+    bool answerOption = false,
+    bool initial = false,
+    bool item = false,
+  }) {
+    return QuestionnaireItem(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      linkId: linkId,
+      definition: definition ? null : this.definition,
+      code: code ? null : this.code,
+      prefix: prefix ? null : this.prefix,
+      text: text ? null : this.text,
+      type: type,
+      enableWhen: enableWhen ? null : this.enableWhen,
+      enableBehavior: enableBehavior ? null : this.enableBehavior,
+      required_: required_ ? null : this.required_,
+      repeats: repeats ? null : this.repeats,
+      readOnly: readOnly ? null : this.readOnly,
+      maxLength: maxLength ? null : this.maxLength,
+      answerValueSet: answerValueSet ? null : this.answerValueSet,
+      answerOption: answerOption ? null : this.answerOption,
+      initial: initial ? null : this.initial,
+      item: item ? null : this.item,
+    );
+  }
+
   @override
   QuestionnaireItem clone() => throw UnimplementedError();
   @override
@@ -2589,6 +3038,151 @@ class QuestionnaireEnableWhen extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'question':
+        return ['FhirString'];
+      case 'operator':
+        return ['FhirCode'];
+      case 'answer':
+      case 'answerX':
+        return [
+          'FhirBoolean',
+          'FhirDecimal',
+          'FhirInteger',
+          'FhirDate',
+          'FhirDateTime',
+          'FhirTime',
+          'FhirString',
+          'Coding',
+          'Quantity',
+          'Reference',
+        ];
+      case 'answerBoolean':
+        return ['FhirBoolean'];
+      case 'answerDecimal':
+        return ['FhirDecimal'];
+      case 'answerInteger':
+        return ['FhirInteger'];
+      case 'answerDate':
+        return ['FhirDate'];
+      case 'answerDateTime':
+        return ['FhirDateTime'];
+      case 'answerTime':
+        return ['FhirTime'];
+      case 'answerString':
+        return ['FhirString'];
+      case 'answerCoding':
+        return ['Coding'];
+      case 'answerQuantity':
+        return ['Quantity'];
+      case 'answerReference':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [QuestionnaireEnableWhen]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  QuestionnaireEnableWhen createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'question':
+        {
+          return copyWith(question: FhirString.empty());
+        }
+      case 'operator':
+        {
+          return copyWith(operator_: QuestionnaireItemOperator.empty());
+        }
+      case 'answer':
+      case 'answerX':
+      case 'answerBoolean':
+        {
+          return copyWith(answerX: FhirBoolean.empty());
+        }
+      case 'answerDecimal':
+        {
+          return copyWith(answerX: FhirDecimal.empty());
+        }
+      case 'answerInteger':
+        {
+          return copyWith(answerX: FhirInteger.empty());
+        }
+      case 'answerDate':
+        {
+          return copyWith(answerX: FhirDate.empty());
+        }
+      case 'answerDateTime':
+        {
+          return copyWith(answerX: FhirDateTime.empty());
+        }
+      case 'answerTime':
+        {
+          return copyWith(answerX: FhirTime.empty());
+        }
+      case 'answerString':
+        {
+          return copyWith(answerX: FhirString.empty());
+        }
+      case 'answerCoding':
+        {
+          return copyWith(answerX: Coding.empty());
+        }
+      case 'answerQuantity':
+        {
+          return copyWith(answerX: Quantity.empty());
+        }
+      case 'answerReference':
+        {
+          return copyWith(answerX: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  QuestionnaireEnableWhen clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return QuestionnaireEnableWhen(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      question: question,
+      operator_: operator_,
+      answerX: answerX,
+    );
+  }
+
   @override
   QuestionnaireEnableWhen clone() => throw UnimplementedError();
   @override
@@ -3049,6 +3643,117 @@ class QuestionnaireAnswerOption extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'value':
+      case 'valueX':
+        return [
+          'FhirInteger',
+          'FhirDate',
+          'FhirTime',
+          'FhirString',
+          'Coding',
+          'Reference',
+        ];
+      case 'valueInteger':
+        return ['FhirInteger'];
+      case 'valueDate':
+        return ['FhirDate'];
+      case 'valueTime':
+        return ['FhirTime'];
+      case 'valueString':
+        return ['FhirString'];
+      case 'valueCoding':
+        return ['Coding'];
+      case 'valueReference':
+        return ['Reference'];
+      case 'initialSelected':
+        return ['FhirBoolean'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [QuestionnaireAnswerOption]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  QuestionnaireAnswerOption createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueInteger':
+        {
+          return copyWith(valueX: FhirInteger.empty());
+        }
+      case 'valueDate':
+        {
+          return copyWith(valueX: FhirDate.empty());
+        }
+      case 'valueTime':
+        {
+          return copyWith(valueX: FhirTime.empty());
+        }
+      case 'valueString':
+        {
+          return copyWith(valueX: FhirString.empty());
+        }
+      case 'valueCoding':
+        {
+          return copyWith(valueX: Coding.empty());
+        }
+      case 'valueReference':
+        {
+          return copyWith(valueX: Reference.empty());
+        }
+      case 'initialSelected':
+        {
+          return copyWith(initialSelected: FhirBoolean.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  QuestionnaireAnswerOption clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool initialSelected = false,
+  }) {
+    return QuestionnaireAnswerOption(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      valueX: valueX,
+      initialSelected: initialSelected ? null : this.initialSelected,
+    );
   }
 
   @override
@@ -3574,6 +4279,151 @@ class QuestionnaireInitial extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'value':
+      case 'valueX':
+        return [
+          'FhirBoolean',
+          'FhirDecimal',
+          'FhirInteger',
+          'FhirDate',
+          'FhirDateTime',
+          'FhirTime',
+          'FhirString',
+          'FhirUri',
+          'Attachment',
+          'Coding',
+          'Quantity',
+          'Reference',
+        ];
+      case 'valueBoolean':
+        return ['FhirBoolean'];
+      case 'valueDecimal':
+        return ['FhirDecimal'];
+      case 'valueInteger':
+        return ['FhirInteger'];
+      case 'valueDate':
+        return ['FhirDate'];
+      case 'valueDateTime':
+        return ['FhirDateTime'];
+      case 'valueTime':
+        return ['FhirTime'];
+      case 'valueString':
+        return ['FhirString'];
+      case 'valueUri':
+        return ['FhirUri'];
+      case 'valueAttachment':
+        return ['Attachment'];
+      case 'valueCoding':
+        return ['Coding'];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueReference':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [QuestionnaireInitial]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  QuestionnaireInitial createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueBoolean':
+        {
+          return copyWith(valueX: FhirBoolean.empty());
+        }
+      case 'valueDecimal':
+        {
+          return copyWith(valueX: FhirDecimal.empty());
+        }
+      case 'valueInteger':
+        {
+          return copyWith(valueX: FhirInteger.empty());
+        }
+      case 'valueDate':
+        {
+          return copyWith(valueX: FhirDate.empty());
+        }
+      case 'valueDateTime':
+        {
+          return copyWith(valueX: FhirDateTime.empty());
+        }
+      case 'valueTime':
+        {
+          return copyWith(valueX: FhirTime.empty());
+        }
+      case 'valueString':
+        {
+          return copyWith(valueX: FhirString.empty());
+        }
+      case 'valueUri':
+        {
+          return copyWith(valueX: FhirUri.empty());
+        }
+      case 'valueAttachment':
+        {
+          return copyWith(valueX: Attachment.empty());
+        }
+      case 'valueCoding':
+        {
+          return copyWith(valueX: Coding.empty());
+        }
+      case 'valueQuantity':
+        {
+          return copyWith(valueX: Quantity.empty());
+        }
+      case 'valueReference':
+        {
+          return copyWith(valueX: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  QuestionnaireInitial clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return QuestionnaireInitial(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      valueX: valueX,
+    );
   }
 
   @override

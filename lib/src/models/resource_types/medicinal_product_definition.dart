@@ -59,7 +59,8 @@ class MedicinalProductDefinition extends DomainResource {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory MedicinalProductDefinition.empty() => const MedicinalProductDefinition(
+  factory MedicinalProductDefinition.empty() =>
+      const MedicinalProductDefinition(
         name: <MedicinalProductDefinitionName>[],
       );
 
@@ -1161,6 +1162,338 @@ class MedicinalProductDefinition extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'domain':
+        return ['CodeableConcept'];
+      case 'version':
+        return ['FhirString'];
+      case 'status':
+        return ['CodeableConcept'];
+      case 'statusDate':
+        return ['FhirDateTime'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'combinedPharmaceuticalDoseForm':
+        return ['CodeableConcept'];
+      case 'route':
+        return ['CodeableConcept'];
+      case 'indication':
+        return ['FhirMarkdown'];
+      case 'legalStatusOfSupply':
+        return ['CodeableConcept'];
+      case 'additionalMonitoringIndicator':
+        return ['CodeableConcept'];
+      case 'specialMeasures':
+        return ['CodeableConcept'];
+      case 'pediatricUseIndicator':
+        return ['CodeableConcept'];
+      case 'classification':
+        return ['CodeableConcept'];
+      case 'marketingStatus':
+        return ['MarketingStatus'];
+      case 'packagedMedicinalProduct':
+        return ['CodeableConcept'];
+      case 'ingredient':
+        return ['CodeableConcept'];
+      case 'impurity':
+        return ['CodeableReference'];
+      case 'attachedDocument':
+        return ['Reference'];
+      case 'masterFile':
+        return ['Reference'];
+      case 'contact':
+        return ['MedicinalProductDefinitionContact'];
+      case 'clinicalTrial':
+        return ['Reference'];
+      case 'code':
+        return ['Coding'];
+      case 'name':
+        return ['MedicinalProductDefinitionName'];
+      case 'crossReference':
+        return ['MedicinalProductDefinitionCrossReference'];
+      case 'operation':
+        return ['MedicinalProductDefinitionOperation'];
+      case 'characteristic':
+        return ['MedicinalProductDefinitionCharacteristic'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicinalProductDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicinalProductDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'domain':
+        {
+          return copyWith(domain: CodeableConcept.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: CodeableConcept.empty());
+        }
+      case 'statusDate':
+        {
+          return copyWith(statusDate: FhirDateTime.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'combinedPharmaceuticalDoseForm':
+        {
+          return copyWith(
+            combinedPharmaceuticalDoseForm: CodeableConcept.empty(),
+          );
+        }
+      case 'route':
+        {
+          return copyWith(route: <CodeableConcept>[]);
+        }
+      case 'indication':
+        {
+          return copyWith(indication: FhirMarkdown.empty());
+        }
+      case 'legalStatusOfSupply':
+        {
+          return copyWith(legalStatusOfSupply: CodeableConcept.empty());
+        }
+      case 'additionalMonitoringIndicator':
+        {
+          return copyWith(
+            additionalMonitoringIndicator: CodeableConcept.empty(),
+          );
+        }
+      case 'specialMeasures':
+        {
+          return copyWith(specialMeasures: <CodeableConcept>[]);
+        }
+      case 'pediatricUseIndicator':
+        {
+          return copyWith(pediatricUseIndicator: CodeableConcept.empty());
+        }
+      case 'classification':
+        {
+          return copyWith(classification: <CodeableConcept>[]);
+        }
+      case 'marketingStatus':
+        {
+          return copyWith(marketingStatus: <MarketingStatus>[]);
+        }
+      case 'packagedMedicinalProduct':
+        {
+          return copyWith(packagedMedicinalProduct: <CodeableConcept>[]);
+        }
+      case 'ingredient':
+        {
+          return copyWith(ingredient: <CodeableConcept>[]);
+        }
+      case 'impurity':
+        {
+          return copyWith(impurity: <CodeableReference>[]);
+        }
+      case 'attachedDocument':
+        {
+          return copyWith(attachedDocument: <Reference>[]);
+        }
+      case 'masterFile':
+        {
+          return copyWith(masterFile: <Reference>[]);
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <MedicinalProductDefinitionContact>[]);
+        }
+      case 'clinicalTrial':
+        {
+          return copyWith(clinicalTrial: <Reference>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: <Coding>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: <MedicinalProductDefinitionName>[]);
+        }
+      case 'crossReference':
+        {
+          return copyWith(
+            crossReference: <MedicinalProductDefinitionCrossReference>[],
+          );
+        }
+      case 'operation':
+        {
+          return copyWith(operation: <MedicinalProductDefinitionOperation>[]);
+        }
+      case 'characteristic':
+        {
+          return copyWith(
+            characteristic: <MedicinalProductDefinitionCharacteristic>[],
+          );
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicinalProductDefinition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool type = false,
+    bool domain = false,
+    bool version = false,
+    bool status = false,
+    bool statusDate = false,
+    bool description = false,
+    bool combinedPharmaceuticalDoseForm = false,
+    bool route = false,
+    bool indication = false,
+    bool legalStatusOfSupply = false,
+    bool additionalMonitoringIndicator = false,
+    bool specialMeasures = false,
+    bool pediatricUseIndicator = false,
+    bool classification = false,
+    bool marketingStatus = false,
+    bool packagedMedicinalProduct = false,
+    bool ingredient = false,
+    bool impurity = false,
+    bool attachedDocument = false,
+    bool masterFile = false,
+    bool contact = false,
+    bool clinicalTrial = false,
+    bool code = false,
+    bool crossReference = false,
+    bool operation = false,
+    bool characteristic = false,
+  }) {
+    return MedicinalProductDefinition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      type: type ? null : this.type,
+      domain: domain ? null : this.domain,
+      version: version ? null : this.version,
+      status: status ? null : this.status,
+      statusDate: statusDate ? null : this.statusDate,
+      description: description ? null : this.description,
+      combinedPharmaceuticalDoseForm: combinedPharmaceuticalDoseForm
+          ? null
+          : this.combinedPharmaceuticalDoseForm,
+      route: route ? null : this.route,
+      indication: indication ? null : this.indication,
+      legalStatusOfSupply:
+          legalStatusOfSupply ? null : this.legalStatusOfSupply,
+      additionalMonitoringIndicator: additionalMonitoringIndicator
+          ? null
+          : this.additionalMonitoringIndicator,
+      specialMeasures: specialMeasures ? null : this.specialMeasures,
+      pediatricUseIndicator:
+          pediatricUseIndicator ? null : this.pediatricUseIndicator,
+      classification: classification ? null : this.classification,
+      marketingStatus: marketingStatus ? null : this.marketingStatus,
+      packagedMedicinalProduct:
+          packagedMedicinalProduct ? null : this.packagedMedicinalProduct,
+      ingredient: ingredient ? null : this.ingredient,
+      impurity: impurity ? null : this.impurity,
+      attachedDocument: attachedDocument ? null : this.attachedDocument,
+      masterFile: masterFile ? null : this.masterFile,
+      contact: contact ? null : this.contact,
+      clinicalTrial: clinicalTrial ? null : this.clinicalTrial,
+      code: code ? null : this.code,
+      name: name,
+      crossReference: crossReference ? null : this.crossReference,
+      operation: operation ? null : this.operation,
+      characteristic: characteristic ? null : this.characteristic,
+    );
+  }
+
   @override
   MedicinalProductDefinition clone() => throw UnimplementedError();
   @override
@@ -1494,7 +1827,9 @@ class MedicinalProductDefinition extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-        combinedPharmaceuticalDoseForm, o.combinedPharmaceuticalDoseForm,)) {
+      combinedPharmaceuticalDoseForm,
+      o.combinedPharmaceuticalDoseForm,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1510,7 +1845,9 @@ class MedicinalProductDefinition extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-        additionalMonitoringIndicator, o.additionalMonitoringIndicator,)) {
+      additionalMonitoringIndicator,
+      o.additionalMonitoringIndicator,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1881,6 +2218,75 @@ class MedicinalProductDefinitionContact extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'contact':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicinalProductDefinitionContact]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicinalProductDefinitionContact createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicinalProductDefinitionContact clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+  }) {
+    return MedicinalProductDefinitionContact(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      contact: contact,
+    );
   }
 
   @override
@@ -2295,6 +2701,93 @@ class MedicinalProductDefinitionName extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'productName':
+        return ['FhirString'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'namePart':
+        return ['MedicinalProductDefinitionNamePart'];
+      case 'countryLanguage':
+        return ['MedicinalProductDefinitionCountryLanguage'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicinalProductDefinitionName]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicinalProductDefinitionName createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'productName':
+        {
+          return copyWith(productName: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'namePart':
+        {
+          return copyWith(namePart: <MedicinalProductDefinitionNamePart>[]);
+        }
+      case 'countryLanguage':
+        {
+          return copyWith(
+            countryLanguage: <MedicinalProductDefinitionCountryLanguage>[],
+          );
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicinalProductDefinitionName clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool namePart = false,
+    bool countryLanguage = false,
+  }) {
+    return MedicinalProductDefinitionName(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      productName: productName,
+      type: type ? null : this.type,
+      namePart: namePart ? null : this.namePart,
+      countryLanguage: countryLanguage ? null : this.countryLanguage,
+    );
+  }
+
   @override
   MedicinalProductDefinitionName clone() => throw UnimplementedError();
   @override
@@ -2677,6 +3170,74 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'part':
+        return ['FhirString'];
+      case 'type':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicinalProductDefinitionNamePart]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicinalProductDefinitionNamePart createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'part':
+        {
+          return copyWith(part_: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicinalProductDefinitionNamePart clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return MedicinalProductDefinitionNamePart(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      part_: part_,
+      type: type,
+    );
+  }
+
   @override
   MedicinalProductDefinitionNamePart clone() => throw UnimplementedError();
   @override
@@ -3056,6 +3617,84 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'country':
+        return ['CodeableConcept'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'language':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicinalProductDefinitionCountryLanguage]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicinalProductDefinitionCountryLanguage createProperty(
+    String propertyName,
+  ) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'country':
+        {
+          return copyWith(country: CodeableConcept.empty());
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: CodeableConcept.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicinalProductDefinitionCountryLanguage clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool jurisdiction = false,
+  }) {
+    return MedicinalProductDefinitionCountryLanguage(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      country: country,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      language: language,
+    );
+  }
+
   @override
   MedicinalProductDefinitionCountryLanguage clone() =>
       throw UnimplementedError();
@@ -3420,6 +4059,75 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'product':
+        return ['CodeableReference'];
+      case 'type':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicinalProductDefinitionCrossReference]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicinalProductDefinitionCrossReference createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'product':
+        {
+          return copyWith(product: CodeableReference.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicinalProductDefinitionCrossReference clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+  }) {
+    return MedicinalProductDefinitionCrossReference(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      product: product,
+      type: type ? null : this.type,
+    );
   }
 
   @override
@@ -3836,6 +4544,93 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableReference'];
+      case 'effectiveDate':
+        return ['Period'];
+      case 'organization':
+        return ['Reference'];
+      case 'confidentialityIndicator':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicinalProductDefinitionOperation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicinalProductDefinitionOperation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableReference.empty());
+        }
+      case 'effectiveDate':
+        {
+          return copyWith(effectiveDate: Period.empty());
+        }
+      case 'organization':
+        {
+          return copyWith(organization: <Reference>[]);
+        }
+      case 'confidentialityIndicator':
+        {
+          return copyWith(confidentialityIndicator: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicinalProductDefinitionOperation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool effectiveDate = false,
+    bool organization = false,
+    bool confidentialityIndicator = false,
+  }) {
+    return MedicinalProductDefinitionOperation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      effectiveDate: effectiveDate ? null : this.effectiveDate,
+      organization: organization ? null : this.organization,
+      confidentialityIndicator:
+          confidentialityIndicator ? null : this.confidentialityIndicator,
+    );
+  }
+
   @override
   MedicinalProductDefinitionOperation clone() => throw UnimplementedError();
   @override
@@ -3934,7 +4729,9 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        confidentialityIndicator, o.confidentialityIndicator,)) {
+      confidentialityIndicator,
+      o.confidentialityIndicator,
+    )) {
       return false;
     }
     return true;
@@ -4298,6 +5095,110 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'value':
+      case 'valueX':
+        return [
+          'CodeableConcept',
+          'Quantity',
+          'FhirDate',
+          'FhirBoolean',
+          'Attachment',
+        ];
+      case 'valueCodeableConcept':
+        return ['CodeableConcept'];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueDate':
+        return ['FhirDate'];
+      case 'valueBoolean':
+        return ['FhirBoolean'];
+      case 'valueAttachment':
+        return ['Attachment'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicinalProductDefinitionCharacteristic]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicinalProductDefinitionCharacteristic createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueCodeableConcept':
+        {
+          return copyWith(valueX: CodeableConcept.empty());
+        }
+      case 'valueQuantity':
+        {
+          return copyWith(valueX: Quantity.empty());
+        }
+      case 'valueDate':
+        {
+          return copyWith(valueX: FhirDate.empty());
+        }
+      case 'valueBoolean':
+        {
+          return copyWith(valueX: FhirBoolean.empty());
+        }
+      case 'valueAttachment':
+        {
+          return copyWith(valueX: Attachment.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicinalProductDefinitionCharacteristic clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool value = false,
+  }) {
+    return MedicinalProductDefinitionCharacteristic(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      valueX: value ? null : valueX,
+    );
   }
 
   @override

@@ -1058,6 +1058,310 @@ class ClaimResponse extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'subType':
+        return ['CodeableConcept'];
+      case 'use':
+        return ['FhirCode'];
+      case 'patient':
+        return ['Reference'];
+      case 'created':
+        return ['FhirDateTime'];
+      case 'insurer':
+        return ['Reference'];
+      case 'requestor':
+        return ['Reference'];
+      case 'request':
+        return ['Reference'];
+      case 'outcome':
+        return ['FhirCode'];
+      case 'disposition':
+        return ['FhirString'];
+      case 'preAuthRef':
+        return ['FhirString'];
+      case 'preAuthPeriod':
+        return ['Period'];
+      case 'payeeType':
+        return ['CodeableConcept'];
+      case 'item':
+        return ['ClaimResponseItem'];
+      case 'addItem':
+        return ['ClaimResponseAddItem'];
+      case 'adjudication':
+        return ['ClaimResponseAdjudication'];
+      case 'total':
+        return ['ClaimResponseTotal'];
+      case 'payment':
+        return ['ClaimResponsePayment'];
+      case 'fundsReserve':
+        return ['CodeableConcept'];
+      case 'formCode':
+        return ['CodeableConcept'];
+      case 'form':
+        return ['Attachment'];
+      case 'processNote':
+        return ['ClaimResponseProcessNote'];
+      case 'communicationRequest':
+        return ['Reference'];
+      case 'insurance':
+        return ['ClaimResponseInsurance'];
+      case 'error':
+        return ['ClaimResponseError'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ClaimResponse]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClaimResponse createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: FinancialResourceStatusCodes.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'subType':
+        {
+          return copyWith(subType: CodeableConcept.empty());
+        }
+      case 'use':
+        {
+          return copyWith(use: Use.empty());
+        }
+      case 'patient':
+        {
+          return copyWith(patient: Reference.empty());
+        }
+      case 'created':
+        {
+          return copyWith(created: FhirDateTime.empty());
+        }
+      case 'insurer':
+        {
+          return copyWith(insurer: Reference.empty());
+        }
+      case 'requestor':
+        {
+          return copyWith(requestor: Reference.empty());
+        }
+      case 'request':
+        {
+          return copyWith(request: Reference.empty());
+        }
+      case 'outcome':
+        {
+          return copyWith(outcome: RemittanceOutcome.empty());
+        }
+      case 'disposition':
+        {
+          return copyWith(disposition: FhirString.empty());
+        }
+      case 'preAuthRef':
+        {
+          return copyWith(preAuthRef: FhirString.empty());
+        }
+      case 'preAuthPeriod':
+        {
+          return copyWith(preAuthPeriod: Period.empty());
+        }
+      case 'payeeType':
+        {
+          return copyWith(payeeType: CodeableConcept.empty());
+        }
+      case 'item':
+        {
+          return copyWith(item: <ClaimResponseItem>[]);
+        }
+      case 'addItem':
+        {
+          return copyWith(addItem: <ClaimResponseAddItem>[]);
+        }
+      case 'adjudication':
+        {
+          return copyWith(adjudication: <ClaimResponseAdjudication>[]);
+        }
+      case 'total':
+        {
+          return copyWith(total: <ClaimResponseTotal>[]);
+        }
+      case 'payment':
+        {
+          return copyWith(payment: ClaimResponsePayment.empty());
+        }
+      case 'fundsReserve':
+        {
+          return copyWith(fundsReserve: CodeableConcept.empty());
+        }
+      case 'formCode':
+        {
+          return copyWith(formCode: CodeableConcept.empty());
+        }
+      case 'form':
+        {
+          return copyWith(form: Attachment.empty());
+        }
+      case 'processNote':
+        {
+          return copyWith(processNote: <ClaimResponseProcessNote>[]);
+        }
+      case 'communicationRequest':
+        {
+          return copyWith(communicationRequest: <Reference>[]);
+        }
+      case 'insurance':
+        {
+          return copyWith(insurance: <ClaimResponseInsurance>[]);
+        }
+      case 'error':
+        {
+          return copyWith(error: <ClaimResponseError>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClaimResponse clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool subType = false,
+    bool requestor = false,
+    bool request = false,
+    bool disposition = false,
+    bool preAuthRef = false,
+    bool preAuthPeriod = false,
+    bool payeeType = false,
+    bool item = false,
+    bool addItem = false,
+    bool adjudication = false,
+    bool total = false,
+    bool payment = false,
+    bool fundsReserve = false,
+    bool formCode = false,
+    bool form = false,
+    bool processNote = false,
+    bool communicationRequest = false,
+    bool insurance = false,
+    bool error = false,
+  }) {
+    return ClaimResponse(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      type: type,
+      subType: subType ? null : this.subType,
+      use: use,
+      patient: patient,
+      created: created,
+      insurer: insurer,
+      requestor: requestor ? null : this.requestor,
+      request: request ? null : this.request,
+      outcome: outcome,
+      disposition: disposition ? null : this.disposition,
+      preAuthRef: preAuthRef ? null : this.preAuthRef,
+      preAuthPeriod: preAuthPeriod ? null : this.preAuthPeriod,
+      payeeType: payeeType ? null : this.payeeType,
+      item: item ? null : this.item,
+      addItem: addItem ? null : this.addItem,
+      adjudication: adjudication ? null : this.adjudication,
+      total: total ? null : this.total,
+      payment: payment ? null : this.payment,
+      fundsReserve: fundsReserve ? null : this.fundsReserve,
+      formCode: formCode ? null : this.formCode,
+      form: form ? null : this.form,
+      processNote: processNote ? null : this.processNote,
+      communicationRequest:
+          communicationRequest ? null : this.communicationRequest,
+      insurance: insurance ? null : this.insurance,
+      error: error ? null : this.error,
+    );
+  }
+
   @override
   ClaimResponse clone() => throw UnimplementedError();
   @override
@@ -1774,6 +2078,90 @@ class ClaimResponseItem extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'itemSequence':
+        return ['FhirPositiveInt'];
+      case 'noteNumber':
+        return ['FhirPositiveInt'];
+      case 'adjudication':
+        return ['ClaimResponseAdjudication'];
+      case 'detail':
+        return ['ClaimResponseDetail'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ClaimResponseItem]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClaimResponseItem createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'itemSequence':
+        {
+          return copyWith(itemSequence: FhirPositiveInt.empty());
+        }
+      case 'noteNumber':
+        {
+          return copyWith(noteNumber: <FhirPositiveInt>[]);
+        }
+      case 'adjudication':
+        {
+          return copyWith(adjudication: <ClaimResponseAdjudication>[]);
+        }
+      case 'detail':
+        {
+          return copyWith(detail: <ClaimResponseDetail>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClaimResponseItem clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool noteNumber = false,
+    bool detail = false,
+  }) {
+    return ClaimResponseItem(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      itemSequence: itemSequence,
+      noteNumber: noteNumber ? null : this.noteNumber,
+      adjudication: adjudication,
+      detail: detail ? null : this.detail,
+    );
+  }
+
   @override
   ClaimResponseItem clone() => throw UnimplementedError();
   @override
@@ -2222,6 +2610,91 @@ class ClaimResponseAdjudication extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'reason':
+        return ['CodeableConcept'];
+      case 'amount':
+        return ['Money'];
+      case 'value':
+        return ['FhirDecimal'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ClaimResponseAdjudication]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClaimResponseAdjudication createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'category':
+        {
+          return copyWith(category: CodeableConcept.empty());
+        }
+      case 'reason':
+        {
+          return copyWith(reason: CodeableConcept.empty());
+        }
+      case 'amount':
+        {
+          return copyWith(amount: Money.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirDecimal.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClaimResponseAdjudication clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool reason = false,
+    bool amount = false,
+    bool value = false,
+  }) {
+    return ClaimResponseAdjudication(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      category: category,
+      reason: reason ? null : this.reason,
+      amount: amount ? null : this.amount,
+      value: value ? null : this.value,
+    );
+  }
+
   @override
   ClaimResponseAdjudication clone() => throw UnimplementedError();
   @override
@@ -2649,6 +3122,90 @@ class ClaimResponseDetail extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'detailSequence':
+        return ['FhirPositiveInt'];
+      case 'noteNumber':
+        return ['FhirPositiveInt'];
+      case 'adjudication':
+        return ['ClaimResponseAdjudication'];
+      case 'subDetail':
+        return ['ClaimResponseSubDetail'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ClaimResponseDetail]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClaimResponseDetail createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'detailSequence':
+        {
+          return copyWith(detailSequence: FhirPositiveInt.empty());
+        }
+      case 'noteNumber':
+        {
+          return copyWith(noteNumber: <FhirPositiveInt>[]);
+        }
+      case 'adjudication':
+        {
+          return copyWith(adjudication: <ClaimResponseAdjudication>[]);
+        }
+      case 'subDetail':
+        {
+          return copyWith(subDetail: <ClaimResponseSubDetail>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClaimResponseDetail clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool noteNumber = false,
+    bool subDetail = false,
+  }) {
+    return ClaimResponseDetail(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      detailSequence: detailSequence,
+      noteNumber: noteNumber ? null : this.noteNumber,
+      adjudication: adjudication,
+      subDetail: subDetail ? null : this.subDetail,
+    );
+  }
+
   @override
   ClaimResponseDetail clone() => throw UnimplementedError();
   @override
@@ -3066,6 +3623,83 @@ class ClaimResponseSubDetail extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'subDetailSequence':
+        return ['FhirPositiveInt'];
+      case 'noteNumber':
+        return ['FhirPositiveInt'];
+      case 'adjudication':
+        return ['ClaimResponseAdjudication'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ClaimResponseSubDetail]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClaimResponseSubDetail createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'subDetailSequence':
+        {
+          return copyWith(subDetailSequence: FhirPositiveInt.empty());
+        }
+      case 'noteNumber':
+        {
+          return copyWith(noteNumber: <FhirPositiveInt>[]);
+        }
+      case 'adjudication':
+        {
+          return copyWith(adjudication: <ClaimResponseAdjudication>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClaimResponseSubDetail clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool noteNumber = false,
+    bool adjudication = false,
+  }) {
+    return ClaimResponseSubDetail(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      subDetailSequence: subDetailSequence,
+      noteNumber: noteNumber ? null : this.noteNumber,
+      adjudication: adjudication ? null : this.adjudication,
+    );
   }
 
   @override
@@ -3972,6 +4606,230 @@ class ClaimResponseAddItem extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'itemSequence':
+        return ['FhirPositiveInt'];
+      case 'detailSequence':
+        return ['FhirPositiveInt'];
+      case 'subdetailSequence':
+        return ['FhirPositiveInt'];
+      case 'provider':
+        return ['Reference'];
+      case 'productOrService':
+        return ['CodeableConcept'];
+      case 'modifier':
+        return ['CodeableConcept'];
+      case 'programCode':
+        return ['CodeableConcept'];
+      case 'serviced':
+      case 'servicedX':
+        return ['FhirDate', 'Period'];
+      case 'servicedDate':
+        return ['FhirDate'];
+      case 'servicedPeriod':
+        return ['Period'];
+      case 'location':
+      case 'locationX':
+        return ['CodeableConcept', 'Address', 'Reference'];
+      case 'locationCodeableConcept':
+        return ['CodeableConcept'];
+      case 'locationAddress':
+        return ['Address'];
+      case 'locationReference':
+        return ['Reference'];
+      case 'quantity':
+        return ['Quantity'];
+      case 'unitPrice':
+        return ['Money'];
+      case 'factor':
+        return ['FhirDecimal'];
+      case 'net':
+        return ['Money'];
+      case 'bodySite':
+        return ['CodeableConcept'];
+      case 'subSite':
+        return ['CodeableConcept'];
+      case 'noteNumber':
+        return ['FhirPositiveInt'];
+      case 'adjudication':
+        return ['ClaimResponseAdjudication'];
+      case 'detail':
+        return ['ClaimResponseDetail'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ClaimResponseAddItem]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClaimResponseAddItem createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'itemSequence':
+        {
+          return copyWith(itemSequence: <FhirPositiveInt>[]);
+        }
+      case 'detailSequence':
+        {
+          return copyWith(detailSequence: <FhirPositiveInt>[]);
+        }
+      case 'subdetailSequence':
+        {
+          return copyWith(subdetailSequence: <FhirPositiveInt>[]);
+        }
+      case 'provider':
+        {
+          return copyWith(provider: <Reference>[]);
+        }
+      case 'productOrService':
+        {
+          return copyWith(productOrService: CodeableConcept.empty());
+        }
+      case 'modifier':
+        {
+          return copyWith(modifier: <CodeableConcept>[]);
+        }
+      case 'programCode':
+        {
+          return copyWith(programCode: <CodeableConcept>[]);
+        }
+      case 'serviced':
+      case 'servicedX':
+      case 'servicedDate':
+        {
+          return copyWith(servicedX: FhirDate.empty());
+        }
+      case 'servicedPeriod':
+        {
+          return copyWith(servicedX: Period.empty());
+        }
+      case 'location':
+      case 'locationX':
+      case 'locationCodeableConcept':
+        {
+          return copyWith(locationX: CodeableConcept.empty());
+        }
+      case 'locationAddress':
+        {
+          return copyWith(locationX: Address.empty());
+        }
+      case 'locationReference':
+        {
+          return copyWith(locationX: Reference.empty());
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'unitPrice':
+        {
+          return copyWith(unitPrice: Money.empty());
+        }
+      case 'factor':
+        {
+          return copyWith(factor: FhirDecimal.empty());
+        }
+      case 'net':
+        {
+          return copyWith(net: Money.empty());
+        }
+      case 'bodySite':
+        {
+          return copyWith(bodySite: CodeableConcept.empty());
+        }
+      case 'subSite':
+        {
+          return copyWith(subSite: <CodeableConcept>[]);
+        }
+      case 'noteNumber':
+        {
+          return copyWith(noteNumber: <FhirPositiveInt>[]);
+        }
+      case 'adjudication':
+        {
+          return copyWith(adjudication: <ClaimResponseAdjudication>[]);
+        }
+      case 'detail':
+        {
+          return copyWith(detail: <ClaimResponseDetail>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClaimResponseAddItem clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool itemSequence = false,
+    bool detailSequence = false,
+    bool subdetailSequence = false,
+    bool provider = false,
+    bool modifier = false,
+    bool programCode = false,
+    bool serviced = false,
+    bool location = false,
+    bool quantity = false,
+    bool unitPrice = false,
+    bool factor = false,
+    bool net = false,
+    bool bodySite = false,
+    bool subSite = false,
+    bool noteNumber = false,
+    bool detail = false,
+  }) {
+    return ClaimResponseAddItem(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      itemSequence: itemSequence ? null : this.itemSequence,
+      detailSequence: detailSequence ? null : this.detailSequence,
+      subdetailSequence: subdetailSequence ? null : this.subdetailSequence,
+      provider: provider ? null : this.provider,
+      productOrService: productOrService,
+      modifier: modifier ? null : this.modifier,
+      programCode: programCode ? null : this.programCode,
+      servicedX: serviced ? null : servicedX,
+      locationX: location ? null : locationX,
+      quantity: quantity ? null : this.quantity,
+      unitPrice: unitPrice ? null : this.unitPrice,
+      factor: factor ? null : this.factor,
+      net: net ? null : this.net,
+      bodySite: bodySite ? null : this.bodySite,
+      subSite: subSite ? null : this.subSite,
+      noteNumber: noteNumber ? null : this.noteNumber,
+      adjudication: adjudication,
+      detail: detail ? null : this.detail,
+    );
+  }
+
   @override
   ClaimResponseAddItem clone() => throw UnimplementedError();
   @override
@@ -4718,6 +5576,130 @@ class ClaimResponseDetail1 extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'productOrService':
+        return ['CodeableConcept'];
+      case 'modifier':
+        return ['CodeableConcept'];
+      case 'quantity':
+        return ['Quantity'];
+      case 'unitPrice':
+        return ['Money'];
+      case 'factor':
+        return ['FhirDecimal'];
+      case 'net':
+        return ['Money'];
+      case 'noteNumber':
+        return ['FhirPositiveInt'];
+      case 'adjudication':
+        return ['ClaimResponseAdjudication'];
+      case 'subDetail':
+        return ['ClaimResponseSubDetail'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ClaimResponseDetail1]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClaimResponseDetail1 createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'productOrService':
+        {
+          return copyWith(productOrService: CodeableConcept.empty());
+        }
+      case 'modifier':
+        {
+          return copyWith(modifier: <CodeableConcept>[]);
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'unitPrice':
+        {
+          return copyWith(unitPrice: Money.empty());
+        }
+      case 'factor':
+        {
+          return copyWith(factor: FhirDecimal.empty());
+        }
+      case 'net':
+        {
+          return copyWith(net: Money.empty());
+        }
+      case 'noteNumber':
+        {
+          return copyWith(noteNumber: <FhirPositiveInt>[]);
+        }
+      case 'adjudication':
+        {
+          return copyWith(adjudication: <ClaimResponseAdjudication>[]);
+        }
+      case 'subDetail':
+        {
+          return copyWith(subDetail: <ClaimResponseSubDetail>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClaimResponseDetail1 clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool modifier = false,
+    bool quantity = false,
+    bool unitPrice = false,
+    bool factor = false,
+    bool net = false,
+    bool noteNumber = false,
+    bool subDetail = false,
+  }) {
+    return ClaimResponseDetail1(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      productOrService: productOrService,
+      modifier: modifier ? null : this.modifier,
+      quantity: quantity ? null : this.quantity,
+      unitPrice: unitPrice ? null : this.unitPrice,
+      factor: factor ? null : this.factor,
+      net: net ? null : this.net,
+      noteNumber: noteNumber ? null : this.noteNumber,
+      adjudication: adjudication,
+      subDetail: subDetail ? null : this.subDetail,
+    );
+  }
+
   @override
   ClaimResponseDetail1 clone() => throw UnimplementedError();
   @override
@@ -5321,6 +6303,122 @@ class ClaimResponseSubDetail1 extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'productOrService':
+        return ['CodeableConcept'];
+      case 'modifier':
+        return ['CodeableConcept'];
+      case 'quantity':
+        return ['Quantity'];
+      case 'unitPrice':
+        return ['Money'];
+      case 'factor':
+        return ['FhirDecimal'];
+      case 'net':
+        return ['Money'];
+      case 'noteNumber':
+        return ['FhirPositiveInt'];
+      case 'adjudication':
+        return ['ClaimResponseAdjudication'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ClaimResponseSubDetail1]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClaimResponseSubDetail1 createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'productOrService':
+        {
+          return copyWith(productOrService: CodeableConcept.empty());
+        }
+      case 'modifier':
+        {
+          return copyWith(modifier: <CodeableConcept>[]);
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'unitPrice':
+        {
+          return copyWith(unitPrice: Money.empty());
+        }
+      case 'factor':
+        {
+          return copyWith(factor: FhirDecimal.empty());
+        }
+      case 'net':
+        {
+          return copyWith(net: Money.empty());
+        }
+      case 'noteNumber':
+        {
+          return copyWith(noteNumber: <FhirPositiveInt>[]);
+        }
+      case 'adjudication':
+        {
+          return copyWith(adjudication: <ClaimResponseAdjudication>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClaimResponseSubDetail1 clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool modifier = false,
+    bool quantity = false,
+    bool unitPrice = false,
+    bool factor = false,
+    bool net = false,
+    bool noteNumber = false,
+  }) {
+    return ClaimResponseSubDetail1(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      productOrService: productOrService,
+      modifier: modifier ? null : this.modifier,
+      quantity: quantity ? null : this.quantity,
+      unitPrice: unitPrice ? null : this.unitPrice,
+      factor: factor ? null : this.factor,
+      net: net ? null : this.net,
+      noteNumber: noteNumber ? null : this.noteNumber,
+      adjudication: adjudication,
+    );
+  }
+
   @override
   ClaimResponseSubDetail1 clone() => throw UnimplementedError();
   @override
@@ -5743,6 +6841,74 @@ class ClaimResponseTotal extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'amount':
+        return ['Money'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ClaimResponseTotal]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClaimResponseTotal createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'category':
+        {
+          return copyWith(category: CodeableConcept.empty());
+        }
+      case 'amount':
+        {
+          return copyWith(amount: Money.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClaimResponseTotal clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ClaimResponseTotal(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      category: category,
+      amount: amount,
+    );
   }
 
   @override
@@ -6199,6 +7365,106 @@ class ClaimResponsePayment extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'adjustment':
+        return ['Money'];
+      case 'adjustmentReason':
+        return ['CodeableConcept'];
+      case 'date':
+        return ['FhirDate'];
+      case 'amount':
+        return ['Money'];
+      case 'identifier':
+        return ['Identifier'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ClaimResponsePayment]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClaimResponsePayment createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'adjustment':
+        {
+          return copyWith(adjustment: Money.empty());
+        }
+      case 'adjustmentReason':
+        {
+          return copyWith(adjustmentReason: CodeableConcept.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDate.empty());
+        }
+      case 'amount':
+        {
+          return copyWith(amount: Money.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: Identifier.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClaimResponsePayment clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool adjustment = false,
+    bool adjustmentReason = false,
+    bool date = false,
+    bool identifier = false,
+  }) {
+    return ClaimResponsePayment(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      adjustment: adjustment ? null : this.adjustment,
+      adjustmentReason: adjustmentReason ? null : this.adjustmentReason,
+      date: date ? null : this.date,
+      amount: amount,
+      identifier: identifier ? null : this.identifier,
+    );
+  }
+
   @override
   ClaimResponsePayment clone() => throw UnimplementedError();
   @override
@@ -6632,6 +7898,91 @@ class ClaimResponseProcessNote extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'number':
+        return ['FhirPositiveInt'];
+      case 'type':
+        return ['FhirCode'];
+      case 'text':
+        return ['FhirString'];
+      case 'language':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ClaimResponseProcessNote]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClaimResponseProcessNote createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'number':
+        {
+          return copyWith(number: FhirPositiveInt.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: NoteType.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: FhirString.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClaimResponseProcessNote clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool number = false,
+    bool type = false,
+    bool language = false,
+  }) {
+    return ClaimResponseProcessNote(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      number: number ? null : this.number,
+      type: type ? null : this.type,
+      text: text,
+      language: language ? null : this.language,
+    );
   }
 
   @override
@@ -7083,6 +8434,98 @@ class ClaimResponseInsurance extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'sequence':
+        return ['FhirPositiveInt'];
+      case 'focal':
+        return ['FhirBoolean'];
+      case 'coverage':
+        return ['Reference'];
+      case 'businessArrangement':
+        return ['FhirString'];
+      case 'claimResponse':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ClaimResponseInsurance]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClaimResponseInsurance createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'sequence':
+        {
+          return copyWith(sequence: FhirPositiveInt.empty());
+        }
+      case 'focal':
+        {
+          return copyWith(focal: FhirBoolean.empty());
+        }
+      case 'coverage':
+        {
+          return copyWith(coverage: Reference.empty());
+        }
+      case 'businessArrangement':
+        {
+          return copyWith(businessArrangement: FhirString.empty());
+        }
+      case 'claimResponse':
+        {
+          return copyWith(claimResponse: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClaimResponseInsurance clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool businessArrangement = false,
+    bool claimResponse = false,
+  }) {
+    return ClaimResponseInsurance(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      sequence: sequence,
+      focal: focal,
+      coverage: coverage,
+      businessArrangement:
+          businessArrangement ? null : this.businessArrangement,
+      claimResponse: claimResponse ? null : this.claimResponse,
+    );
+  }
+
   @override
   ClaimResponseInsurance clone() => throw UnimplementedError();
   @override
@@ -7514,6 +8957,91 @@ class ClaimResponseError extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'itemSequence':
+        return ['FhirPositiveInt'];
+      case 'detailSequence':
+        return ['FhirPositiveInt'];
+      case 'subDetailSequence':
+        return ['FhirPositiveInt'];
+      case 'code':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ClaimResponseError]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ClaimResponseError createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'itemSequence':
+        {
+          return copyWith(itemSequence: FhirPositiveInt.empty());
+        }
+      case 'detailSequence':
+        {
+          return copyWith(detailSequence: FhirPositiveInt.empty());
+        }
+      case 'subDetailSequence':
+        {
+          return copyWith(subDetailSequence: FhirPositiveInt.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ClaimResponseError clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool itemSequence = false,
+    bool detailSequence = false,
+    bool subDetailSequence = false,
+  }) {
+    return ClaimResponseError(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      itemSequence: itemSequence ? null : this.itemSequence,
+      detailSequence: detailSequence ? null : this.detailSequence,
+      subDetailSequence: subDetailSequence ? null : this.subDetailSequence,
+      code: code,
+    );
   }
 
   @override

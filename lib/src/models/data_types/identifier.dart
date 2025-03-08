@@ -365,6 +365,100 @@ class Identifier extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'use':
+        return ['FhirCode'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'system':
+        return ['FhirUri'];
+      case 'value':
+        return ['FhirString'];
+      case 'period':
+        return ['Period'];
+      case 'assigner':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Identifier]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Identifier createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'use':
+        {
+          return copyWith(use: IdentifierUse.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'system':
+        {
+          return copyWith(system: FhirUri.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirString.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      case 'assigner':
+        {
+          return copyWith(assigner: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Identifier clear({
+    bool id = false,
+    bool extension_ = false,
+    bool use = false,
+    bool type = false,
+    bool system = false,
+    bool value = false,
+    bool period = false,
+    bool assigner = false,
+  }) {
+    return Identifier(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      use: use ? null : this.use,
+      type: type ? null : this.type,
+      system: system ? null : this.system,
+      value: value ? null : this.value,
+      period: period ? null : this.period,
+      assigner: assigner ? null : this.assigner,
+    );
+  }
+
   @override
   Identifier clone() => throw UnimplementedError();
   @override

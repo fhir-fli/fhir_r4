@@ -996,6 +996,306 @@ class CapabilityStatement extends CanonicalResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      case 'kind':
+        return ['FhirCode'];
+      case 'instantiates':
+        return ['FhirCanonical'];
+      case 'imports':
+        return ['FhirCanonical'];
+      case 'software':
+        return ['CapabilityStatementSoftware'];
+      case 'implementation':
+        return ['CapabilityStatementImplementation'];
+      case 'fhirVersion':
+        return ['FhirCode'];
+      case 'format':
+        return ['FhirCode'];
+      case 'patchFormat':
+        return ['FhirCode'];
+      case 'implementationGuide':
+        return ['FhirCanonical'];
+      case 'rest':
+        return ['CapabilityStatementRest'];
+      case 'messaging':
+        return ['CapabilityStatementMessaging'];
+      case 'document':
+        return ['CapabilityStatementDocument'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CapabilityStatement]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CapabilityStatement createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'kind':
+        {
+          return copyWith(kind: CapabilityStatementKind.empty());
+        }
+      case 'instantiates':
+        {
+          return copyWith(instantiates: <FhirCanonical>[]);
+        }
+      case 'imports':
+        {
+          return copyWith(imports: <FhirCanonical>[]);
+        }
+      case 'software':
+        {
+          return copyWith(software: CapabilityStatementSoftware.empty());
+        }
+      case 'implementation':
+        {
+          return copyWith(
+            implementation: CapabilityStatementImplementation.empty(),
+          );
+        }
+      case 'fhirVersion':
+        {
+          return copyWith(fhirVersion: FHIRVersion.empty());
+        }
+      case 'format':
+        {
+          return copyWith(format: <FhirCode>[]);
+        }
+      case 'patchFormat':
+        {
+          return copyWith(patchFormat: <FhirCode>[]);
+        }
+      case 'implementationGuide':
+        {
+          return copyWith(implementationGuide: <FhirCanonical>[]);
+        }
+      case 'rest':
+        {
+          return copyWith(rest: <CapabilityStatementRest>[]);
+        }
+      case 'messaging':
+        {
+          return copyWith(messaging: <CapabilityStatementMessaging>[]);
+        }
+      case 'document':
+        {
+          return copyWith(document: <CapabilityStatementDocument>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CapabilityStatement clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool version = false,
+    bool name = false,
+    bool title = false,
+    bool experimental = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool purpose = false,
+    bool copyright = false,
+    bool instantiates = false,
+    bool imports = false,
+    bool software = false,
+    bool implementation = false,
+    bool patchFormat = false,
+    bool implementationGuide = false,
+    bool rest = false,
+    bool messaging = false,
+    bool document = false,
+  }) {
+    return CapabilityStatement(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url ? null : this.url,
+      version: version ? null : this.version,
+      name: name ? null : this.name,
+      title: title ? null : this.title,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      date: date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      purpose: purpose ? null : this.purpose,
+      copyright: copyright ? null : this.copyright,
+      kind: kind,
+      instantiates: instantiates ? null : this.instantiates,
+      imports: imports ? null : this.imports,
+      software: software ? null : this.software,
+      implementation: implementation ? null : this.implementation,
+      fhirVersion: fhirVersion,
+      format: format,
+      patchFormat: patchFormat ? null : this.patchFormat,
+      implementationGuide:
+          implementationGuide ? null : this.implementationGuide,
+      rest: rest ? null : this.rest,
+      messaging: messaging ? null : this.messaging,
+      document: document ? null : this.document,
+    );
+  }
+
   @override
   CapabilityStatement clone() => throw UnimplementedError();
   @override
@@ -1683,6 +1983,83 @@ class CapabilityStatementSoftware extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'version':
+        return ['FhirString'];
+      case 'releaseDate':
+        return ['FhirDateTime'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CapabilityStatementSoftware]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CapabilityStatementSoftware createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'releaseDate':
+        {
+          return copyWith(releaseDate: FhirDateTime.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CapabilityStatementSoftware clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool version = false,
+    bool releaseDate = false,
+  }) {
+    return CapabilityStatementSoftware(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      version: version ? null : this.version,
+      releaseDate: releaseDate ? null : this.releaseDate,
+    );
+  }
+
   @override
   CapabilityStatementSoftware clone() => throw UnimplementedError();
   @override
@@ -2072,6 +2449,83 @@ class CapabilityStatementImplementation extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'description':
+        return ['FhirString'];
+      case 'url':
+        return ['FhirUrl'];
+      case 'custodian':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CapabilityStatementImplementation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CapabilityStatementImplementation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUrl.empty());
+        }
+      case 'custodian':
+        {
+          return copyWith(custodian: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CapabilityStatementImplementation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool custodian = false,
+  }) {
+    return CapabilityStatementImplementation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      description: description,
+      url: url ? null : this.url,
+      custodian: custodian ? null : this.custodian,
+    );
   }
 
   @override
@@ -2610,6 +3064,123 @@ class CapabilityStatementRest extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'mode':
+        return ['FhirCode'];
+      case 'documentation':
+        return ['FhirMarkdown'];
+      case 'security':
+        return ['CapabilityStatementSecurity'];
+      case 'resource':
+        return ['CapabilityStatementResource'];
+      case 'interaction':
+        return ['CapabilityStatementInteraction'];
+      case 'searchParam':
+        return ['CapabilityStatementSearchParam'];
+      case 'operation':
+        return ['CapabilityStatementOperation'];
+      case 'compartment':
+        return ['FhirCanonical'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CapabilityStatementRest]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CapabilityStatementRest createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'mode':
+        {
+          return copyWith(mode: RestfulCapabilityMode.empty());
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: FhirMarkdown.empty());
+        }
+      case 'security':
+        {
+          return copyWith(security: CapabilityStatementSecurity.empty());
+        }
+      case 'resource':
+        {
+          return copyWith(resource: <CapabilityStatementResource>[]);
+        }
+      case 'interaction':
+        {
+          return copyWith(interaction: <CapabilityStatementInteraction>[]);
+        }
+      case 'searchParam':
+        {
+          return copyWith(searchParam: <CapabilityStatementSearchParam>[]);
+        }
+      case 'operation':
+        {
+          return copyWith(operation: <CapabilityStatementOperation>[]);
+        }
+      case 'compartment':
+        {
+          return copyWith(compartment: <FhirCanonical>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CapabilityStatementRest clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool documentation = false,
+    bool security = false,
+    bool resource = false,
+    bool interaction = false,
+    bool searchParam = false,
+    bool operation = false,
+    bool compartment = false,
+  }) {
+    return CapabilityStatementRest(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      mode: mode,
+      documentation: documentation ? null : this.documentation,
+      security: security ? null : this.security,
+      resource: resource ? null : this.resource,
+      interaction: interaction ? null : this.interaction,
+      searchParam: searchParam ? null : this.searchParam,
+      operation: operation ? null : this.operation,
+      compartment: compartment ? null : this.compartment,
+    );
+  }
+
   @override
   CapabilityStatementRest clone() => throw UnimplementedError();
   @override
@@ -2796,7 +3367,8 @@ class CapabilityStatementSecurity extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory CapabilityStatementSecurity.empty() => const CapabilityStatementSecurity();
+  factory CapabilityStatementSecurity.empty() =>
+      const CapabilityStatementSecurity();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementSecurity.fromJson(
@@ -3074,6 +3646,84 @@ class CapabilityStatementSecurity extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'cors':
+        return ['FhirBoolean'];
+      case 'service':
+        return ['CodeableConcept'];
+      case 'description':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CapabilityStatementSecurity]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CapabilityStatementSecurity createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'cors':
+        {
+          return copyWith(cors: FhirBoolean.empty());
+        }
+      case 'service':
+        {
+          return copyWith(service: <CodeableConcept>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CapabilityStatementSecurity clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool cors = false,
+    bool service = false,
+    bool description = false,
+  }) {
+    return CapabilityStatementSecurity(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      cors: cors ? null : this.cors,
+      service: service ? null : this.service,
+      description: description ? null : this.description,
+    );
   }
 
   @override
@@ -3856,6 +4506,195 @@ class CapabilityStatementResource extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirCode'];
+      case 'profile':
+        return ['FhirCanonical'];
+      case 'supportedProfile':
+        return ['FhirCanonical'];
+      case 'documentation':
+        return ['FhirMarkdown'];
+      case 'interaction':
+        return ['CapabilityStatementInteraction'];
+      case 'versioning':
+        return ['FhirCode'];
+      case 'readHistory':
+        return ['FhirBoolean'];
+      case 'updateCreate':
+        return ['FhirBoolean'];
+      case 'conditionalCreate':
+        return ['FhirBoolean'];
+      case 'conditionalRead':
+        return ['FhirCode'];
+      case 'conditionalUpdate':
+        return ['FhirBoolean'];
+      case 'conditionalDelete':
+        return ['FhirCode'];
+      case 'referencePolicy':
+        return ['FhirCode'];
+      case 'searchInclude':
+        return ['FhirString'];
+      case 'searchRevInclude':
+        return ['FhirString'];
+      case 'searchParam':
+        return ['CapabilityStatementSearchParam'];
+      case 'operation':
+        return ['CapabilityStatementOperation'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CapabilityStatementResource]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CapabilityStatementResource createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: FhirCode.empty());
+        }
+      case 'profile':
+        {
+          return copyWith(profile: FhirCanonical.empty());
+        }
+      case 'supportedProfile':
+        {
+          return copyWith(supportedProfile: <FhirCanonical>[]);
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: FhirMarkdown.empty());
+        }
+      case 'interaction':
+        {
+          return copyWith(interaction: <CapabilityStatementInteraction>[]);
+        }
+      case 'versioning':
+        {
+          return copyWith(versioning: ResourceVersionPolicy.empty());
+        }
+      case 'readHistory':
+        {
+          return copyWith(readHistory: FhirBoolean.empty());
+        }
+      case 'updateCreate':
+        {
+          return copyWith(updateCreate: FhirBoolean.empty());
+        }
+      case 'conditionalCreate':
+        {
+          return copyWith(conditionalCreate: FhirBoolean.empty());
+        }
+      case 'conditionalRead':
+        {
+          return copyWith(conditionalRead: ConditionalReadStatus.empty());
+        }
+      case 'conditionalUpdate':
+        {
+          return copyWith(conditionalUpdate: FhirBoolean.empty());
+        }
+      case 'conditionalDelete':
+        {
+          return copyWith(conditionalDelete: ConditionalDeleteStatus.empty());
+        }
+      case 'referencePolicy':
+        {
+          return copyWith(referencePolicy: <ReferenceHandlingPolicy>[]);
+        }
+      case 'searchInclude':
+        {
+          return copyWith(searchInclude: <FhirString>[]);
+        }
+      case 'searchRevInclude':
+        {
+          return copyWith(searchRevInclude: <FhirString>[]);
+        }
+      case 'searchParam':
+        {
+          return copyWith(searchParam: <CapabilityStatementSearchParam>[]);
+        }
+      case 'operation':
+        {
+          return copyWith(operation: <CapabilityStatementOperation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CapabilityStatementResource clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool profile = false,
+    bool supportedProfile = false,
+    bool documentation = false,
+    bool interaction = false,
+    bool versioning = false,
+    bool readHistory = false,
+    bool updateCreate = false,
+    bool conditionalCreate = false,
+    bool conditionalRead = false,
+    bool conditionalUpdate = false,
+    bool conditionalDelete = false,
+    bool referencePolicy = false,
+    bool searchInclude = false,
+    bool searchRevInclude = false,
+    bool searchParam = false,
+    bool operation = false,
+  }) {
+    return CapabilityStatementResource(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      profile: profile ? null : this.profile,
+      supportedProfile: supportedProfile ? null : this.supportedProfile,
+      documentation: documentation ? null : this.documentation,
+      interaction: interaction ? null : this.interaction,
+      versioning: versioning ? null : this.versioning,
+      readHistory: readHistory ? null : this.readHistory,
+      updateCreate: updateCreate ? null : this.updateCreate,
+      conditionalCreate: conditionalCreate ? null : this.conditionalCreate,
+      conditionalRead: conditionalRead ? null : this.conditionalRead,
+      conditionalUpdate: conditionalUpdate ? null : this.conditionalUpdate,
+      conditionalDelete: conditionalDelete ? null : this.conditionalDelete,
+      referencePolicy: referencePolicy ? null : this.referencePolicy,
+      searchInclude: searchInclude ? null : this.searchInclude,
+      searchRevInclude: searchRevInclude ? null : this.searchRevInclude,
+      searchParam: searchParam ? null : this.searchParam,
+      operation: operation ? null : this.operation,
+    );
+  }
+
   @override
   CapabilityStatementResource clone() => throw UnimplementedError();
   @override
@@ -4380,6 +5219,75 @@ class CapabilityStatementInteraction extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['FhirCode'];
+      case 'documentation':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CapabilityStatementInteraction]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CapabilityStatementInteraction createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: TypeRestfulInteraction.empty());
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CapabilityStatementInteraction clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool documentation = false,
+  }) {
+    return CapabilityStatementInteraction(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      documentation: documentation ? null : this.documentation,
+    );
+  }
+
   @override
   CapabilityStatementInteraction clone() => throw UnimplementedError();
   @override
@@ -4792,6 +5700,90 @@ class CapabilityStatementSearchParam extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'definition':
+        return ['FhirCanonical'];
+      case 'type':
+        return ['FhirCode'];
+      case 'documentation':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CapabilityStatementSearchParam]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CapabilityStatementSearchParam createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'definition':
+        {
+          return copyWith(definition: FhirCanonical.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: SearchParamType.empty());
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CapabilityStatementSearchParam clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool definition = false,
+    bool documentation = false,
+  }) {
+    return CapabilityStatementSearchParam(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      definition: definition ? null : this.definition,
+      type: type,
+      documentation: documentation ? null : this.documentation,
+    );
+  }
+
   @override
   CapabilityStatementSearchParam clone() => throw UnimplementedError();
   @override
@@ -5199,6 +6191,82 @@ class CapabilityStatementOperation extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'definition':
+        return ['FhirCanonical'];
+      case 'documentation':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CapabilityStatementOperation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CapabilityStatementOperation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'definition':
+        {
+          return copyWith(definition: FhirCanonical.empty());
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CapabilityStatementOperation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool documentation = false,
+  }) {
+    return CapabilityStatementOperation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      definition: definition,
+      documentation: documentation ? null : this.documentation,
+    );
+  }
+
   @override
   CapabilityStatementOperation clone() => throw UnimplementedError();
   @override
@@ -5560,6 +6628,75 @@ class CapabilityStatementInteraction1 extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['FhirCode'];
+      case 'documentation':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CapabilityStatementInteraction1]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CapabilityStatementInteraction1 createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: SystemRestfulInteraction.empty());
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CapabilityStatementInteraction1 clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool documentation = false,
+  }) {
+    return CapabilityStatementInteraction1(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      documentation: documentation ? null : this.documentation,
+    );
   }
 
   @override
@@ -5980,6 +7117,94 @@ class CapabilityStatementMessaging extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'endpoint':
+        return ['CapabilityStatementEndpoint'];
+      case 'reliableCache':
+        return ['FhirUnsignedInt'];
+      case 'documentation':
+        return ['FhirMarkdown'];
+      case 'supportedMessage':
+        return ['CapabilityStatementSupportedMessage'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CapabilityStatementMessaging]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CapabilityStatementMessaging createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'endpoint':
+        {
+          return copyWith(endpoint: <CapabilityStatementEndpoint>[]);
+        }
+      case 'reliableCache':
+        {
+          return copyWith(reliableCache: FhirUnsignedInt.empty());
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: FhirMarkdown.empty());
+        }
+      case 'supportedMessage':
+        {
+          return copyWith(
+            supportedMessage: <CapabilityStatementSupportedMessage>[],
+          );
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CapabilityStatementMessaging clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool endpoint = false,
+    bool reliableCache = false,
+    bool documentation = false,
+    bool supportedMessage = false,
+  }) {
+    return CapabilityStatementMessaging(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      endpoint: endpoint ? null : this.endpoint,
+      reliableCache: reliableCache ? null : this.reliableCache,
+      documentation: documentation ? null : this.documentation,
+      supportedMessage: supportedMessage ? null : this.supportedMessage,
+    );
+  }
+
   @override
   CapabilityStatementMessaging clone() => throw UnimplementedError();
   @override
@@ -6364,6 +7589,74 @@ class CapabilityStatementEndpoint extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'protocol':
+        return ['Coding'];
+      case 'address':
+        return ['FhirUrl'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CapabilityStatementEndpoint]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CapabilityStatementEndpoint createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'protocol':
+        {
+          return copyWith(protocol: Coding.empty());
+        }
+      case 'address':
+        {
+          return copyWith(address: FhirUrl.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CapabilityStatementEndpoint clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return CapabilityStatementEndpoint(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      protocol: protocol,
+      address: address,
+    );
+  }
+
   @override
   CapabilityStatementEndpoint clone() => throw UnimplementedError();
   @override
@@ -6717,6 +8010,74 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'mode':
+        return ['FhirCode'];
+      case 'definition':
+        return ['FhirCanonical'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CapabilityStatementSupportedMessage]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CapabilityStatementSupportedMessage createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'mode':
+        {
+          return copyWith(mode: EventCapabilityMode.empty());
+        }
+      case 'definition':
+        {
+          return copyWith(definition: FhirCanonical.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CapabilityStatementSupportedMessage clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return CapabilityStatementSupportedMessage(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      mode: mode,
+      definition: definition,
+    );
   }
 
   @override
@@ -7097,6 +8458,82 @@ class CapabilityStatementDocument extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'mode':
+        return ['FhirCode'];
+      case 'documentation':
+        return ['FhirMarkdown'];
+      case 'profile':
+        return ['FhirCanonical'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [CapabilityStatementDocument]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  CapabilityStatementDocument createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'mode':
+        {
+          return copyWith(mode: DocumentMode.empty());
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: FhirMarkdown.empty());
+        }
+      case 'profile':
+        {
+          return copyWith(profile: FhirCanonical.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  CapabilityStatementDocument clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool documentation = false,
+  }) {
+    return CapabilityStatementDocument(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      mode: mode,
+      documentation: documentation ? null : this.documentation,
+      profile: profile,
+    );
   }
 
   @override

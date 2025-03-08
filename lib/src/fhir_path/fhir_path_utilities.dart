@@ -436,4 +436,21 @@ class ClassTypeInfo extends FhirBase {
       'namespace': getNamespace(),
     };
   }
+
+  @override
+  ClassTypeInfo createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'instance':
+        {
+          return copyWith() as ClassTypeInfo;
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  @override
+  ClassTypeInfo clear() {
+    return ClassTypeInfo(instance);
+  }
 }

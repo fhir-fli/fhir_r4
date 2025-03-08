@@ -610,6 +610,177 @@ class Dosage extends BackboneType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'sequence':
+        return ['FhirInteger'];
+      case 'text':
+        return ['FhirString'];
+      case 'additionalInstruction':
+        return ['CodeableConcept'];
+      case 'patientInstruction':
+        return ['FhirString'];
+      case 'timing':
+        return ['Timing'];
+      case 'asNeeded':
+      case 'asNeededX':
+        return ['FhirBoolean', 'CodeableConcept'];
+      case 'asNeededBoolean':
+        return ['FhirBoolean'];
+      case 'asNeededCodeableConcept':
+        return ['CodeableConcept'];
+      case 'site':
+        return ['CodeableConcept'];
+      case 'route':
+        return ['CodeableConcept'];
+      case 'method':
+        return ['CodeableConcept'];
+      case 'doseAndRate':
+        return ['DosageDoseAndRate'];
+      case 'maxDosePerPeriod':
+        return ['Ratio'];
+      case 'maxDosePerAdministration':
+        return ['Quantity'];
+      case 'maxDosePerLifetime':
+        return ['Quantity'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Dosage]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Dosage createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'sequence':
+        {
+          return copyWith(sequence: FhirInteger.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: FhirString.empty());
+        }
+      case 'additionalInstruction':
+        {
+          return copyWith(additionalInstruction: <CodeableConcept>[]);
+        }
+      case 'patientInstruction':
+        {
+          return copyWith(patientInstruction: FhirString.empty());
+        }
+      case 'timing':
+        {
+          return copyWith(timing: Timing.empty());
+        }
+      case 'asNeeded':
+      case 'asNeededX':
+      case 'asNeededBoolean':
+        {
+          return copyWith(asNeededX: FhirBoolean.empty());
+        }
+      case 'asNeededCodeableConcept':
+        {
+          return copyWith(asNeededX: CodeableConcept.empty());
+        }
+      case 'site':
+        {
+          return copyWith(site: CodeableConcept.empty());
+        }
+      case 'route':
+        {
+          return copyWith(route: CodeableConcept.empty());
+        }
+      case 'method':
+        {
+          return copyWith(method: CodeableConcept.empty());
+        }
+      case 'doseAndRate':
+        {
+          return copyWith(doseAndRate: <DosageDoseAndRate>[]);
+        }
+      case 'maxDosePerPeriod':
+        {
+          return copyWith(maxDosePerPeriod: Ratio.empty());
+        }
+      case 'maxDosePerAdministration':
+        {
+          return copyWith(maxDosePerAdministration: Quantity.empty());
+        }
+      case 'maxDosePerLifetime':
+        {
+          return copyWith(maxDosePerLifetime: Quantity.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Dosage clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool sequence = false,
+    bool text = false,
+    bool additionalInstruction = false,
+    bool patientInstruction = false,
+    bool timing = false,
+    bool asNeeded = false,
+    bool site = false,
+    bool route = false,
+    bool method = false,
+    bool doseAndRate = false,
+    bool maxDosePerPeriod = false,
+    bool maxDosePerAdministration = false,
+    bool maxDosePerLifetime = false,
+  }) {
+    return Dosage(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      sequence: sequence ? null : this.sequence,
+      text: text ? null : this.text,
+      additionalInstruction:
+          additionalInstruction ? null : this.additionalInstruction,
+      patientInstruction: patientInstruction ? null : this.patientInstruction,
+      timing: timing ? null : this.timing,
+      asNeededX: asNeeded ? null : asNeededX,
+      site: site ? null : this.site,
+      route: route ? null : this.route,
+      method: method ? null : this.method,
+      doseAndRate: doseAndRate ? null : this.doseAndRate,
+      maxDosePerPeriod: maxDosePerPeriod ? null : this.maxDosePerPeriod,
+      maxDosePerAdministration:
+          maxDosePerAdministration ? null : this.maxDosePerAdministration,
+      maxDosePerLifetime: maxDosePerLifetime ? null : this.maxDosePerLifetime,
+    );
+  }
+
   @override
   Dosage clone() => throw UnimplementedError();
   @override
@@ -784,7 +955,9 @@ class Dosage extends BackboneType
       return false;
     }
     if (!equalsDeepWithNull(
-        maxDosePerAdministration, o.maxDosePerAdministration,)) {
+      maxDosePerAdministration,
+      o.maxDosePerAdministration,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(maxDosePerLifetime, o.maxDosePerLifetime)) {
@@ -1152,6 +1325,104 @@ class DosageDoseAndRate extends Element {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'dose':
+      case 'doseX':
+        return ['Range', 'Quantity'];
+      case 'doseRange':
+        return ['Range'];
+      case 'doseQuantity':
+        return ['Quantity'];
+      case 'rate':
+      case 'rateX':
+        return ['Ratio', 'Range', 'Quantity'];
+      case 'rateRatio':
+        return ['Ratio'];
+      case 'rateRange':
+        return ['Range'];
+      case 'rateQuantity':
+        return ['Quantity'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [DosageDoseAndRate]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DosageDoseAndRate createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'dose':
+      case 'doseX':
+      case 'doseRange':
+        {
+          return copyWith(doseX: Range.empty());
+        }
+      case 'doseQuantity':
+        {
+          return copyWith(doseX: Quantity.empty());
+        }
+      case 'rate':
+      case 'rateX':
+      case 'rateRatio':
+        {
+          return copyWith(rateX: Ratio.empty());
+        }
+      case 'rateRange':
+        {
+          return copyWith(rateX: Range.empty());
+        }
+      case 'rateQuantity':
+        {
+          return copyWith(rateX: Quantity.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DosageDoseAndRate clear({
+    bool id = false,
+    bool extension_ = false,
+    bool type = false,
+    bool dose = false,
+    bool rate = false,
+  }) {
+    return DosageDoseAndRate(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      type: type ? null : this.type,
+      doseX: dose ? null : doseX,
+      rateX: rate ? null : rateX,
+    );
   }
 
   @override

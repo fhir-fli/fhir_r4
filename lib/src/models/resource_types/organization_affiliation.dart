@@ -677,6 +677,197 @@ class OrganizationAffiliation extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'active':
+        return ['FhirBoolean'];
+      case 'period':
+        return ['Period'];
+      case 'organization':
+        return ['Reference'];
+      case 'participatingOrganization':
+        return ['Reference'];
+      case 'network':
+        return ['Reference'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'specialty':
+        return ['CodeableConcept'];
+      case 'location':
+        return ['Reference'];
+      case 'healthcareService':
+        return ['Reference'];
+      case 'telecom':
+        return ['ContactPoint'];
+      case 'endpoint':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [OrganizationAffiliation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  OrganizationAffiliation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'active':
+        {
+          return copyWith(active: FhirBoolean.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      case 'organization':
+        {
+          return copyWith(organization: Reference.empty());
+        }
+      case 'participatingOrganization':
+        {
+          return copyWith(participatingOrganization: Reference.empty());
+        }
+      case 'network':
+        {
+          return copyWith(network: <Reference>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: <CodeableConcept>[]);
+        }
+      case 'specialty':
+        {
+          return copyWith(specialty: <CodeableConcept>[]);
+        }
+      case 'location':
+        {
+          return copyWith(location: <Reference>[]);
+        }
+      case 'healthcareService':
+        {
+          return copyWith(healthcareService: <Reference>[]);
+        }
+      case 'telecom':
+        {
+          return copyWith(telecom: <ContactPoint>[]);
+        }
+      case 'endpoint':
+        {
+          return copyWith(endpoint: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  OrganizationAffiliation clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool active = false,
+    bool period = false,
+    bool organization = false,
+    bool participatingOrganization = false,
+    bool network = false,
+    bool code = false,
+    bool specialty = false,
+    bool location = false,
+    bool healthcareService = false,
+    bool telecom = false,
+    bool endpoint = false,
+  }) {
+    return OrganizationAffiliation(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      active: active ? null : this.active,
+      period: period ? null : this.period,
+      organization: organization ? null : this.organization,
+      participatingOrganization:
+          participatingOrganization ? null : this.participatingOrganization,
+      network: network ? null : this.network,
+      code: code ? null : this.code,
+      specialty: specialty ? null : this.specialty,
+      location: location ? null : this.location,
+      healthcareService: healthcareService ? null : this.healthcareService,
+      telecom: telecom ? null : this.telecom,
+      endpoint: endpoint ? null : this.endpoint,
+    );
+  }
+
   @override
   OrganizationAffiliation clone() => throw UnimplementedError();
   @override
@@ -885,7 +1076,9 @@ class OrganizationAffiliation extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-        participatingOrganization, o.participatingOrganization,)) {
+      participatingOrganization,
+      o.participatingOrganization,
+    )) {
       return false;
     }
     if (!listEquals<Reference>(

@@ -325,6 +325,91 @@ class Binary extends Resource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'contentType':
+        return ['FhirCode'];
+      case 'securityContext':
+        return ['Reference'];
+      case 'data':
+        return ['FhirBase64Binary'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Binary]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Binary createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'contentType':
+        {
+          return copyWith(contentType: FhirCode.empty());
+        }
+      case 'securityContext':
+        {
+          return copyWith(securityContext: Reference.empty());
+        }
+      case 'data':
+        {
+          return copyWith(data: FhirBase64Binary.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Binary clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool securityContext = false,
+    bool data = false,
+  }) {
+    return Binary(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      contentType: contentType,
+      securityContext: securityContext ? null : this.securityContext,
+      data: data ? null : this.data,
+    );
+  }
+
   @override
   Binary clone() => throw UnimplementedError();
   @override

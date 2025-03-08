@@ -982,6 +982,291 @@ class DeviceDefinition extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'udiDeviceIdentifier':
+        return ['DeviceDefinitionUdiDeviceIdentifier'];
+      case 'manufacturer':
+      case 'manufacturerX':
+        return ['FhirString', 'Reference'];
+      case 'manufacturerString':
+        return ['FhirString'];
+      case 'manufacturerReference':
+        return ['Reference'];
+      case 'deviceName':
+        return ['DeviceDefinitionDeviceName'];
+      case 'modelNumber':
+        return ['FhirString'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'specialization':
+        return ['DeviceDefinitionSpecialization'];
+      case 'version':
+        return ['FhirString'];
+      case 'safety':
+        return ['CodeableConcept'];
+      case 'shelfLifeStorage':
+        return ['ProductShelfLife'];
+      case 'physicalCharacteristics':
+        return ['ProdCharacteristic'];
+      case 'languageCode':
+        return ['CodeableConcept'];
+      case 'capability':
+        return ['DeviceDefinitionCapability'];
+      case 'property':
+        return ['DeviceDefinitionProperty'];
+      case 'owner':
+        return ['Reference'];
+      case 'contact':
+        return ['ContactPoint'];
+      case 'url':
+        return ['FhirUri'];
+      case 'onlineInformation':
+        return ['FhirUri'];
+      case 'note':
+        return ['Annotation'];
+      case 'quantity':
+        return ['Quantity'];
+      case 'parentDevice':
+        return ['Reference'];
+      case 'material':
+        return ['DeviceDefinitionMaterial'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [DeviceDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DeviceDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'udiDeviceIdentifier':
+        {
+          return copyWith(
+            udiDeviceIdentifier: <DeviceDefinitionUdiDeviceIdentifier>[],
+          );
+        }
+      case 'manufacturer':
+      case 'manufacturerX':
+      case 'manufacturerString':
+        {
+          return copyWith(manufacturerX: FhirString.empty());
+        }
+      case 'manufacturerReference':
+        {
+          return copyWith(manufacturerX: Reference.empty());
+        }
+      case 'deviceName':
+        {
+          return copyWith(deviceName: <DeviceDefinitionDeviceName>[]);
+        }
+      case 'modelNumber':
+        {
+          return copyWith(modelNumber: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'specialization':
+        {
+          return copyWith(specialization: <DeviceDefinitionSpecialization>[]);
+        }
+      case 'version':
+        {
+          return copyWith(version: <FhirString>[]);
+        }
+      case 'safety':
+        {
+          return copyWith(safety: <CodeableConcept>[]);
+        }
+      case 'shelfLifeStorage':
+        {
+          return copyWith(shelfLifeStorage: <ProductShelfLife>[]);
+        }
+      case 'physicalCharacteristics':
+        {
+          return copyWith(physicalCharacteristics: ProdCharacteristic.empty());
+        }
+      case 'languageCode':
+        {
+          return copyWith(languageCode: <CodeableConcept>[]);
+        }
+      case 'capability':
+        {
+          return copyWith(capability: <DeviceDefinitionCapability>[]);
+        }
+      case 'property':
+        {
+          return copyWith(property: <DeviceDefinitionProperty>[]);
+        }
+      case 'owner':
+        {
+          return copyWith(owner: Reference.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactPoint>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'onlineInformation':
+        {
+          return copyWith(onlineInformation: FhirUri.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'parentDevice':
+        {
+          return copyWith(parentDevice: Reference.empty());
+        }
+      case 'material':
+        {
+          return copyWith(material: <DeviceDefinitionMaterial>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DeviceDefinition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool udiDeviceIdentifier = false,
+    bool manufacturer = false,
+    bool deviceName = false,
+    bool modelNumber = false,
+    bool type = false,
+    bool specialization = false,
+    bool version = false,
+    bool safety = false,
+    bool shelfLifeStorage = false,
+    bool physicalCharacteristics = false,
+    bool languageCode = false,
+    bool capability = false,
+    bool property = false,
+    bool owner = false,
+    bool contact = false,
+    bool url = false,
+    bool onlineInformation = false,
+    bool note = false,
+    bool quantity = false,
+    bool parentDevice = false,
+    bool material = false,
+  }) {
+    return DeviceDefinition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      udiDeviceIdentifier:
+          udiDeviceIdentifier ? null : this.udiDeviceIdentifier,
+      manufacturerX: manufacturer ? null : manufacturerX,
+      deviceName: deviceName ? null : this.deviceName,
+      modelNumber: modelNumber ? null : this.modelNumber,
+      type: type ? null : this.type,
+      specialization: specialization ? null : this.specialization,
+      version: version ? null : this.version,
+      safety: safety ? null : this.safety,
+      shelfLifeStorage: shelfLifeStorage ? null : this.shelfLifeStorage,
+      physicalCharacteristics:
+          physicalCharacteristics ? null : this.physicalCharacteristics,
+      languageCode: languageCode ? null : this.languageCode,
+      capability: capability ? null : this.capability,
+      property: property ? null : this.property,
+      owner: owner ? null : this.owner,
+      contact: contact ? null : this.contact,
+      url: url ? null : this.url,
+      onlineInformation: onlineInformation ? null : this.onlineInformation,
+      note: note ? null : this.note,
+      quantity: quantity ? null : this.quantity,
+      parentDevice: parentDevice ? null : this.parentDevice,
+      material: material ? null : this.material,
+    );
+  }
+
   @override
   DeviceDefinition clone() => throw UnimplementedError();
   @override
@@ -1296,7 +1581,9 @@ class DeviceDefinition extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-        physicalCharacteristics, o.physicalCharacteristics,)) {
+      physicalCharacteristics,
+      o.physicalCharacteristics,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1652,6 +1939,81 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'deviceIdentifier':
+        return ['FhirString'];
+      case 'issuer':
+        return ['FhirUri'];
+      case 'jurisdiction':
+        return ['FhirUri'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [DeviceDefinitionUdiDeviceIdentifier]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DeviceDefinitionUdiDeviceIdentifier createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'deviceIdentifier':
+        {
+          return copyWith(deviceIdentifier: FhirString.empty());
+        }
+      case 'issuer':
+        {
+          return copyWith(issuer: FhirUri.empty());
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: FhirUri.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DeviceDefinitionUdiDeviceIdentifier clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return DeviceDefinitionUdiDeviceIdentifier(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      deviceIdentifier: deviceIdentifier,
+      issuer: issuer,
+      jurisdiction: jurisdiction,
+    );
   }
 
   @override
@@ -2015,6 +2377,74 @@ class DeviceDefinitionDeviceName extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'type':
+        return ['FhirCode'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [DeviceDefinitionDeviceName]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DeviceDefinitionDeviceName createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: DeviceNameType.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DeviceDefinitionDeviceName clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return DeviceDefinitionDeviceName(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      type: type,
+    );
+  }
+
   @override
   DeviceDefinitionDeviceName clone() => throw UnimplementedError();
   @override
@@ -2368,6 +2798,75 @@ class DeviceDefinitionSpecialization extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'systemType':
+        return ['FhirString'];
+      case 'version':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [DeviceDefinitionSpecialization]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DeviceDefinitionSpecialization createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'systemType':
+        {
+          return copyWith(systemType: FhirString.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DeviceDefinitionSpecialization clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool version = false,
+  }) {
+    return DeviceDefinitionSpecialization(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      systemType: systemType,
+      version: version ? null : this.version,
+    );
   }
 
   @override
@@ -2724,6 +3223,75 @@ class DeviceDefinitionCapability extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'description':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [DeviceDefinitionCapability]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DeviceDefinitionCapability createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: <CodeableConcept>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DeviceDefinitionCapability clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool description = false,
+  }) {
+    return DeviceDefinitionCapability(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      description: description ? null : this.description,
+    );
   }
 
   @override
@@ -3118,6 +3686,83 @@ class DeviceDefinitionProperty extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueCode':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [DeviceDefinitionProperty]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DeviceDefinitionProperty createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'valueQuantity':
+        {
+          return copyWith(valueQuantity: <Quantity>[]);
+        }
+      case 'valueCode':
+        {
+          return copyWith(valueCode: <CodeableConcept>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DeviceDefinitionProperty clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool valueQuantity = false,
+    bool valueCode = false,
+  }) {
+    return DeviceDefinitionProperty(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      valueQuantity: valueQuantity ? null : this.valueQuantity,
+      valueCode: valueCode ? null : this.valueCode,
+    );
   }
 
   @override
@@ -3517,6 +4162,84 @@ class DeviceDefinitionMaterial extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'substance':
+        return ['CodeableConcept'];
+      case 'alternate':
+        return ['FhirBoolean'];
+      case 'allergenicIndicator':
+        return ['FhirBoolean'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [DeviceDefinitionMaterial]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DeviceDefinitionMaterial createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'substance':
+        {
+          return copyWith(substance: CodeableConcept.empty());
+        }
+      case 'alternate':
+        {
+          return copyWith(alternate: FhirBoolean.empty());
+        }
+      case 'allergenicIndicator':
+        {
+          return copyWith(allergenicIndicator: FhirBoolean.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DeviceDefinitionMaterial clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool alternate = false,
+    bool allergenicIndicator = false,
+  }) {
+    return DeviceDefinitionMaterial(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      substance: substance,
+      alternate: alternate ? null : this.alternate,
+      allergenicIndicator:
+          allergenicIndicator ? null : this.allergenicIndicator,
+    );
   }
 
   @override

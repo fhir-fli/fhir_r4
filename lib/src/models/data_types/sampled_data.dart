@@ -393,6 +393,105 @@ class SampledData extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'origin':
+        return ['Quantity'];
+      case 'period':
+        return ['FhirDecimal'];
+      case 'factor':
+        return ['FhirDecimal'];
+      case 'lowerLimit':
+        return ['FhirDecimal'];
+      case 'upperLimit':
+        return ['FhirDecimal'];
+      case 'dimensions':
+        return ['FhirPositiveInt'];
+      case 'data':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [SampledData]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SampledData createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'origin':
+        {
+          return copyWith(origin: Quantity.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: FhirDecimal.empty());
+        }
+      case 'factor':
+        {
+          return copyWith(factor: FhirDecimal.empty());
+        }
+      case 'lowerLimit':
+        {
+          return copyWith(lowerLimit: FhirDecimal.empty());
+        }
+      case 'upperLimit':
+        {
+          return copyWith(upperLimit: FhirDecimal.empty());
+        }
+      case 'dimensions':
+        {
+          return copyWith(dimensions: FhirPositiveInt.empty());
+        }
+      case 'data':
+        {
+          return copyWith(data: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SampledData clear({
+    bool id = false,
+    bool extension_ = false,
+    bool factor = false,
+    bool lowerLimit = false,
+    bool upperLimit = false,
+    bool data = false,
+  }) {
+    return SampledData(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      origin: origin,
+      period: period,
+      factor: factor ? null : this.factor,
+      lowerLimit: lowerLimit ? null : this.lowerLimit,
+      upperLimit: upperLimit ? null : this.upperLimit,
+      dimensions: dimensions,
+      data: data ? null : this.data,
+    );
+  }
+
   @override
   SampledData clone() => throw UnimplementedError();
   @override

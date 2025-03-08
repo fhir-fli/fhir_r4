@@ -807,6 +807,235 @@ class NutritionOrder extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'instantiatesCanonical':
+        return ['FhirCanonical'];
+      case 'instantiatesUri':
+        return ['FhirUri'];
+      case 'instantiates':
+        return ['FhirUri'];
+      case 'status':
+        return ['FhirCode'];
+      case 'intent':
+        return ['FhirCode'];
+      case 'patient':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'dateTime':
+        return ['FhirDateTime'];
+      case 'orderer':
+        return ['Reference'];
+      case 'allergyIntolerance':
+        return ['Reference'];
+      case 'foodPreferenceModifier':
+        return ['CodeableConcept'];
+      case 'excludeFoodModifier':
+        return ['CodeableConcept'];
+      case 'oralDiet':
+        return ['NutritionOrderOralDiet'];
+      case 'supplement':
+        return ['NutritionOrderSupplement'];
+      case 'enteralFormula':
+        return ['NutritionOrderEnteralFormula'];
+      case 'note':
+        return ['Annotation'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [NutritionOrder]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  NutritionOrder createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'instantiatesCanonical':
+        {
+          return copyWith(instantiatesCanonical: <FhirCanonical>[]);
+        }
+      case 'instantiatesUri':
+        {
+          return copyWith(instantiatesUri: <FhirUri>[]);
+        }
+      case 'instantiates':
+        {
+          return copyWith(instantiates: <FhirUri>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: RequestStatus.empty());
+        }
+      case 'intent':
+        {
+          return copyWith(intent: RequestIntent.empty());
+        }
+      case 'patient':
+        {
+          return copyWith(patient: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'dateTime':
+        {
+          return copyWith(dateTime: FhirDateTime.empty());
+        }
+      case 'orderer':
+        {
+          return copyWith(orderer: Reference.empty());
+        }
+      case 'allergyIntolerance':
+        {
+          return copyWith(allergyIntolerance: <Reference>[]);
+        }
+      case 'foodPreferenceModifier':
+        {
+          return copyWith(foodPreferenceModifier: <CodeableConcept>[]);
+        }
+      case 'excludeFoodModifier':
+        {
+          return copyWith(excludeFoodModifier: <CodeableConcept>[]);
+        }
+      case 'oralDiet':
+        {
+          return copyWith(oralDiet: NutritionOrderOralDiet.empty());
+        }
+      case 'supplement':
+        {
+          return copyWith(supplement: <NutritionOrderSupplement>[]);
+        }
+      case 'enteralFormula':
+        {
+          return copyWith(enteralFormula: NutritionOrderEnteralFormula.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  NutritionOrder clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool instantiatesCanonical = false,
+    bool instantiatesUri = false,
+    bool instantiates = false,
+    bool encounter = false,
+    bool orderer = false,
+    bool allergyIntolerance = false,
+    bool foodPreferenceModifier = false,
+    bool excludeFoodModifier = false,
+    bool oralDiet = false,
+    bool supplement = false,
+    bool enteralFormula = false,
+    bool note = false,
+  }) {
+    return NutritionOrder(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      instantiatesCanonical:
+          instantiatesCanonical ? null : this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri ? null : this.instantiatesUri,
+      instantiates: instantiates ? null : this.instantiates,
+      status: status,
+      intent: intent,
+      patient: patient,
+      encounter: encounter ? null : this.encounter,
+      dateTime: dateTime,
+      orderer: orderer ? null : this.orderer,
+      allergyIntolerance: allergyIntolerance ? null : this.allergyIntolerance,
+      foodPreferenceModifier:
+          foodPreferenceModifier ? null : this.foodPreferenceModifier,
+      excludeFoodModifier:
+          excludeFoodModifier ? null : this.excludeFoodModifier,
+      oralDiet: oralDiet ? null : this.oralDiet,
+      supplement: supplement ? null : this.supplement,
+      enteralFormula: enteralFormula ? null : this.enteralFormula,
+      note: note ? null : this.note,
+    );
+  }
+
   @override
   NutritionOrder clone() => throw UnimplementedError();
   @override
@@ -1508,6 +1737,109 @@ class NutritionOrderOralDiet extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'schedule':
+        return ['Timing'];
+      case 'nutrient':
+        return ['NutritionOrderNutrient'];
+      case 'texture':
+        return ['NutritionOrderTexture'];
+      case 'fluidConsistencyType':
+        return ['CodeableConcept'];
+      case 'instruction':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [NutritionOrderOralDiet]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  NutritionOrderOralDiet createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: <CodeableConcept>[]);
+        }
+      case 'schedule':
+        {
+          return copyWith(schedule: <Timing>[]);
+        }
+      case 'nutrient':
+        {
+          return copyWith(nutrient: <NutritionOrderNutrient>[]);
+        }
+      case 'texture':
+        {
+          return copyWith(texture: <NutritionOrderTexture>[]);
+        }
+      case 'fluidConsistencyType':
+        {
+          return copyWith(fluidConsistencyType: <CodeableConcept>[]);
+        }
+      case 'instruction':
+        {
+          return copyWith(instruction: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  NutritionOrderOralDiet clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool schedule = false,
+    bool nutrient = false,
+    bool texture = false,
+    bool fluidConsistencyType = false,
+    bool instruction = false,
+  }) {
+    return NutritionOrderOralDiet(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      schedule: schedule ? null : this.schedule,
+      nutrient: nutrient ? null : this.nutrient,
+      texture: texture ? null : this.texture,
+      fluidConsistencyType:
+          fluidConsistencyType ? null : this.fluidConsistencyType,
+      instruction: instruction ? null : this.instruction,
+    );
+  }
+
   @override
   NutritionOrderOralDiet clone() => throw UnimplementedError();
   @override
@@ -1928,6 +2260,76 @@ class NutritionOrderNutrient extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'modifier':
+        return ['CodeableConcept'];
+      case 'amount':
+        return ['Quantity'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [NutritionOrderNutrient]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  NutritionOrderNutrient createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'modifier':
+        {
+          return copyWith(modifier: CodeableConcept.empty());
+        }
+      case 'amount':
+        {
+          return copyWith(amount: Quantity.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  NutritionOrderNutrient clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool modifier = false,
+    bool amount = false,
+  }) {
+    return NutritionOrderNutrient(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      modifier: modifier ? null : this.modifier,
+      amount: amount ? null : this.amount,
+    );
+  }
+
   @override
   NutritionOrderNutrient clone() => throw UnimplementedError();
   @override
@@ -2281,6 +2683,76 @@ class NutritionOrderTexture extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'modifier':
+        return ['CodeableConcept'];
+      case 'foodType':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [NutritionOrderTexture]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  NutritionOrderTexture createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'modifier':
+        {
+          return copyWith(modifier: CodeableConcept.empty());
+        }
+      case 'foodType':
+        {
+          return copyWith(foodType: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  NutritionOrderTexture clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool modifier = false,
+    bool foodType = false,
+  }) {
+    return NutritionOrderTexture(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      modifier: modifier ? null : this.modifier,
+      foodType: foodType ? null : this.foodType,
+    );
   }
 
   @override
@@ -2718,6 +3190,100 @@ class NutritionOrderSupplement extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'productName':
+        return ['FhirString'];
+      case 'schedule':
+        return ['Timing'];
+      case 'quantity':
+        return ['Quantity'];
+      case 'instruction':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [NutritionOrderSupplement]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  NutritionOrderSupplement createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'productName':
+        {
+          return copyWith(productName: FhirString.empty());
+        }
+      case 'schedule':
+        {
+          return copyWith(schedule: <Timing>[]);
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'instruction':
+        {
+          return copyWith(instruction: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  NutritionOrderSupplement clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool productName = false,
+    bool schedule = false,
+    bool quantity = false,
+    bool instruction = false,
+  }) {
+    return NutritionOrderSupplement(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      productName: productName ? null : this.productName,
+      schedule: schedule ? null : this.schedule,
+      quantity: quantity ? null : this.quantity,
+      instruction: instruction ? null : this.instruction,
+    );
   }
 
   @override
@@ -3300,6 +3866,136 @@ class NutritionOrderEnteralFormula extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'baseFormulaType':
+        return ['CodeableConcept'];
+      case 'baseFormulaProductName':
+        return ['FhirString'];
+      case 'additiveType':
+        return ['CodeableConcept'];
+      case 'additiveProductName':
+        return ['FhirString'];
+      case 'caloricDensity':
+        return ['Quantity'];
+      case 'routeofAdministration':
+        return ['CodeableConcept'];
+      case 'administration':
+        return ['NutritionOrderAdministration'];
+      case 'maxVolumeToDeliver':
+        return ['Quantity'];
+      case 'administrationInstruction':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [NutritionOrderEnteralFormula]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  NutritionOrderEnteralFormula createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'baseFormulaType':
+        {
+          return copyWith(baseFormulaType: CodeableConcept.empty());
+        }
+      case 'baseFormulaProductName':
+        {
+          return copyWith(baseFormulaProductName: FhirString.empty());
+        }
+      case 'additiveType':
+        {
+          return copyWith(additiveType: CodeableConcept.empty());
+        }
+      case 'additiveProductName':
+        {
+          return copyWith(additiveProductName: FhirString.empty());
+        }
+      case 'caloricDensity':
+        {
+          return copyWith(caloricDensity: Quantity.empty());
+        }
+      case 'routeofAdministration':
+        {
+          return copyWith(routeofAdministration: CodeableConcept.empty());
+        }
+      case 'administration':
+        {
+          return copyWith(administration: <NutritionOrderAdministration>[]);
+        }
+      case 'maxVolumeToDeliver':
+        {
+          return copyWith(maxVolumeToDeliver: Quantity.empty());
+        }
+      case 'administrationInstruction':
+        {
+          return copyWith(administrationInstruction: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  NutritionOrderEnteralFormula clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool baseFormulaType = false,
+    bool baseFormulaProductName = false,
+    bool additiveType = false,
+    bool additiveProductName = false,
+    bool caloricDensity = false,
+    bool routeofAdministration = false,
+    bool administration = false,
+    bool maxVolumeToDeliver = false,
+    bool administrationInstruction = false,
+  }) {
+    return NutritionOrderEnteralFormula(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      baseFormulaType: baseFormulaType ? null : this.baseFormulaType,
+      baseFormulaProductName:
+          baseFormulaProductName ? null : this.baseFormulaProductName,
+      additiveType: additiveType ? null : this.additiveType,
+      additiveProductName:
+          additiveProductName ? null : this.additiveProductName,
+      caloricDensity: caloricDensity ? null : this.caloricDensity,
+      routeofAdministration:
+          routeofAdministration ? null : this.routeofAdministration,
+      administration: administration ? null : this.administration,
+      maxVolumeToDeliver: maxVolumeToDeliver ? null : this.maxVolumeToDeliver,
+      administrationInstruction:
+          administrationInstruction ? null : this.administrationInstruction,
+    );
+  }
+
   @override
   NutritionOrderEnteralFormula clone() => throw UnimplementedError();
   @override
@@ -3438,7 +4134,9 @@ class NutritionOrderEnteralFormula extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        administrationInstruction, o.administrationInstruction,)) {
+      administrationInstruction,
+      o.administrationInstruction,
+    )) {
       return false;
     }
     return true;
@@ -3784,6 +4482,95 @@ class NutritionOrderAdministration extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'schedule':
+        return ['Timing'];
+      case 'quantity':
+        return ['Quantity'];
+      case 'rate':
+      case 'rateX':
+        return ['Quantity', 'Ratio'];
+      case 'rateQuantity':
+        return ['Quantity'];
+      case 'rateRatio':
+        return ['Ratio'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [NutritionOrderAdministration]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  NutritionOrderAdministration createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'schedule':
+        {
+          return copyWith(schedule: Timing.empty());
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'rate':
+      case 'rateX':
+      case 'rateQuantity':
+        {
+          return copyWith(rateX: Quantity.empty());
+        }
+      case 'rateRatio':
+        {
+          return copyWith(rateX: Ratio.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  NutritionOrderAdministration clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool schedule = false,
+    bool quantity = false,
+    bool rate = false,
+  }) {
+    return NutritionOrderAdministration(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      schedule: schedule ? null : this.schedule,
+      quantity: quantity ? null : this.quantity,
+      rateX: rate ? null : rateX,
+    );
   }
 
   @override

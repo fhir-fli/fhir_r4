@@ -897,6 +897,258 @@ class ImagingStudy extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'modality':
+        return ['Coding'];
+      case 'subject':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'started':
+        return ['FhirDateTime'];
+      case 'basedOn':
+        return ['Reference'];
+      case 'referrer':
+        return ['Reference'];
+      case 'interpreter':
+        return ['Reference'];
+      case 'endpoint':
+        return ['Reference'];
+      case 'numberOfSeries':
+        return ['FhirUnsignedInt'];
+      case 'numberOfInstances':
+        return ['FhirUnsignedInt'];
+      case 'procedureReference':
+        return ['Reference'];
+      case 'procedureCode':
+        return ['CodeableConcept'];
+      case 'location':
+        return ['Reference'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'note':
+        return ['Annotation'];
+      case 'description':
+        return ['FhirString'];
+      case 'series':
+        return ['ImagingStudySeries'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ImagingStudy]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImagingStudy createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: ImagingStudyStatus.empty());
+        }
+      case 'modality':
+        {
+          return copyWith(modality: <Coding>[]);
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'started':
+        {
+          return copyWith(started: FhirDateTime.empty());
+        }
+      case 'basedOn':
+        {
+          return copyWith(basedOn: <Reference>[]);
+        }
+      case 'referrer':
+        {
+          return copyWith(referrer: Reference.empty());
+        }
+      case 'interpreter':
+        {
+          return copyWith(interpreter: <Reference>[]);
+        }
+      case 'endpoint':
+        {
+          return copyWith(endpoint: <Reference>[]);
+        }
+      case 'numberOfSeries':
+        {
+          return copyWith(numberOfSeries: FhirUnsignedInt.empty());
+        }
+      case 'numberOfInstances':
+        {
+          return copyWith(numberOfInstances: FhirUnsignedInt.empty());
+        }
+      case 'procedureReference':
+        {
+          return copyWith(procedureReference: Reference.empty());
+        }
+      case 'procedureCode':
+        {
+          return copyWith(procedureCode: <CodeableConcept>[]);
+        }
+      case 'location':
+        {
+          return copyWith(location: Reference.empty());
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: <CodeableConcept>[]);
+        }
+      case 'reasonReference':
+        {
+          return copyWith(reasonReference: <Reference>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'series':
+        {
+          return copyWith(series: <ImagingStudySeries>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImagingStudy clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool modality = false,
+    bool encounter = false,
+    bool started = false,
+    bool basedOn = false,
+    bool referrer = false,
+    bool interpreter = false,
+    bool endpoint = false,
+    bool numberOfSeries = false,
+    bool numberOfInstances = false,
+    bool procedureReference = false,
+    bool procedureCode = false,
+    bool location = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool note = false,
+    bool description = false,
+    bool series = false,
+  }) {
+    return ImagingStudy(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      modality: modality ? null : this.modality,
+      subject: subject,
+      encounter: encounter ? null : this.encounter,
+      started: started ? null : this.started,
+      basedOn: basedOn ? null : this.basedOn,
+      referrer: referrer ? null : this.referrer,
+      interpreter: interpreter ? null : this.interpreter,
+      endpoint: endpoint ? null : this.endpoint,
+      numberOfSeries: numberOfSeries ? null : this.numberOfSeries,
+      numberOfInstances: numberOfInstances ? null : this.numberOfInstances,
+      procedureReference: procedureReference ? null : this.procedureReference,
+      procedureCode: procedureCode ? null : this.procedureCode,
+      location: location ? null : this.location,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      note: note ? null : this.note,
+      description: description ? null : this.description,
+      series: series ? null : this.series,
+    );
+  }
+
   @override
   ImagingStudy clone() => throw UnimplementedError();
   @override
@@ -1781,6 +2033,154 @@ class ImagingStudySeries extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'uid':
+        return ['FhirId'];
+      case 'number':
+        return ['FhirUnsignedInt'];
+      case 'modality':
+        return ['Coding'];
+      case 'description':
+        return ['FhirString'];
+      case 'numberOfInstances':
+        return ['FhirUnsignedInt'];
+      case 'endpoint':
+        return ['Reference'];
+      case 'bodySite':
+        return ['Coding'];
+      case 'laterality':
+        return ['Coding'];
+      case 'specimen':
+        return ['Reference'];
+      case 'started':
+        return ['FhirDateTime'];
+      case 'performer':
+        return ['ImagingStudyPerformer'];
+      case 'instance':
+        return ['ImagingStudyInstance'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ImagingStudySeries]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImagingStudySeries createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'uid':
+        {
+          return copyWith(uid: FhirId.empty());
+        }
+      case 'number':
+        {
+          return copyWith(number: FhirUnsignedInt.empty());
+        }
+      case 'modality':
+        {
+          return copyWith(modality: Coding.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'numberOfInstances':
+        {
+          return copyWith(numberOfInstances: FhirUnsignedInt.empty());
+        }
+      case 'endpoint':
+        {
+          return copyWith(endpoint: <Reference>[]);
+        }
+      case 'bodySite':
+        {
+          return copyWith(bodySite: Coding.empty());
+        }
+      case 'laterality':
+        {
+          return copyWith(laterality: Coding.empty());
+        }
+      case 'specimen':
+        {
+          return copyWith(specimen: <Reference>[]);
+        }
+      case 'started':
+        {
+          return copyWith(started: FhirDateTime.empty());
+        }
+      case 'performer':
+        {
+          return copyWith(performer: <ImagingStudyPerformer>[]);
+        }
+      case 'instance':
+        {
+          return copyWith(instance: <ImagingStudyInstance>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImagingStudySeries clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool number = false,
+    bool description = false,
+    bool numberOfInstances = false,
+    bool endpoint = false,
+    bool bodySite = false,
+    bool laterality = false,
+    bool specimen = false,
+    bool started = false,
+    bool performer = false,
+    bool instance = false,
+  }) {
+    return ImagingStudySeries(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      uid: uid,
+      number: number ? null : this.number,
+      modality: modality,
+      description: description ? null : this.description,
+      numberOfInstances: numberOfInstances ? null : this.numberOfInstances,
+      endpoint: endpoint ? null : this.endpoint,
+      bodySite: bodySite ? null : this.bodySite,
+      laterality: laterality ? null : this.laterality,
+      specimen: specimen ? null : this.specimen,
+      started: started ? null : this.started,
+      performer: performer ? null : this.performer,
+      instance: instance ? null : this.instance,
+    );
+  }
+
   @override
   ImagingStudySeries clone() => throw UnimplementedError();
   @override
@@ -2241,6 +2641,75 @@ class ImagingStudyPerformer extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'function':
+        return ['CodeableConcept'];
+      case 'actor':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ImagingStudyPerformer]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImagingStudyPerformer createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'function':
+        {
+          return copyWith(function_: CodeableConcept.empty());
+        }
+      case 'actor':
+        {
+          return copyWith(actor: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImagingStudyPerformer clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool function_ = false,
+  }) {
+    return ImagingStudyPerformer(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      function_: function_ ? null : this.function_,
+      actor: actor,
+    );
+  }
+
   @override
   ImagingStudyPerformer clone() => throw UnimplementedError();
   @override
@@ -2641,6 +3110,90 @@ class ImagingStudyInstance extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'uid':
+        return ['FhirId'];
+      case 'sopClass':
+        return ['Coding'];
+      case 'number':
+        return ['FhirUnsignedInt'];
+      case 'title':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ImagingStudyInstance]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ImagingStudyInstance createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'uid':
+        {
+          return copyWith(uid: FhirId.empty());
+        }
+      case 'sopClass':
+        {
+          return copyWith(sopClass: Coding.empty());
+        }
+      case 'number':
+        {
+          return copyWith(number: FhirUnsignedInt.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ImagingStudyInstance clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool number = false,
+    bool title = false,
+  }) {
+    return ImagingStudyInstance(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      uid: uid,
+      sopClass: sopClass,
+      number: number ? null : this.number,
+      title: title ? null : this.title,
+    );
   }
 
   @override

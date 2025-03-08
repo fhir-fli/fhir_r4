@@ -148,18 +148,6 @@ class Element extends FhirBase {
     }
   }
 
-  /// Optionally, if we want to use hashes like in Java:
-  dynamic getPropertyByHash(int hash) {
-    switch (hash) {
-      case 3355: // hash for 'id'
-        return id;
-      case -612557761: // hash for 'extension'
-        return extension_;
-      default:
-        throw ArgumentError('Unknown property hash: $hash');
-    }
-  }
-
   /// Implementing the setProperty method
   Element setProperty(String name, dynamic value) {
     switch (name) {
@@ -179,28 +167,6 @@ class Element extends FhirBase {
         }
       default:
         throw ArgumentError('Unknown property name: $name');
-    }
-  }
-
-  /// Optionally, if we want to use hashes like in Java:
-  Element setPropertyByHash(int hash, dynamic value) {
-    switch (hash) {
-      case 3355: // hash for 'id'
-        if (value is String) {
-          return Element(id: value.toFhirString, extension_: extension_);
-        } else {
-          throw ArgumentError('Invalid type for id. Expected String.');
-        }
-      case -612557761: // hash for 'extension'
-        if (value is List<FhirExtension>) {
-          return Element(id: id, extension_: value);
-        } else {
-          throw ArgumentError(
-            'Invalid type for extension. Expected List<FhirExtension>.',
-          );
-        }
-      default:
-        throw ArgumentError('Unknown property hash: $hash');
     }
   }
 
@@ -299,5 +265,40 @@ class Element extends FhirBase {
         throw Exception('Cannot set child value for $name');
     }
     throw Exception('Cannot set child value for $name');
+  }
+
+  /// Retrieves the type of the object by element name.
+  @override
+  List<String> typeByElementName(String elementName) {
+    switch (elementName) {
+      case 'id':
+        return <String>['FhirString'];
+      case 'extension':
+        return <String>['FhirExtension'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates an empty property in the object
+  @override
+  Element createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        return copyWith(id: FhirString.empty());
+      case 'extension':
+        return copyWith(extension_: <FhirExtension>[]);
+      default:
+        throw Exception('Cannot make property for $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Element clear({bool id = false, bool extension_ = false}) {
+    return Element(
+      id: id == true ? FhirString.empty() : this.id,
+      extension_: extension_ == true ? <FhirExtension>[] : this.extension_,
+    );
   }
 }

@@ -1209,6 +1209,352 @@ class Procedure extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'instantiatesCanonical':
+        return ['FhirCanonical'];
+      case 'instantiatesUri':
+        return ['FhirUri'];
+      case 'basedOn':
+        return ['Reference'];
+      case 'partOf':
+        return ['Reference'];
+      case 'status':
+        return ['FhirCode'];
+      case 'statusReason':
+        return ['CodeableConcept'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'performed':
+      case 'performedX':
+        return ['FhirDateTime', 'Period', 'FhirString', 'Age', 'Range'];
+      case 'performedDateTime':
+        return ['FhirDateTime'];
+      case 'performedPeriod':
+        return ['Period'];
+      case 'performedString':
+        return ['FhirString'];
+      case 'performedAge':
+        return ['Age'];
+      case 'performedRange':
+        return ['Range'];
+      case 'recorder':
+        return ['Reference'];
+      case 'asserter':
+        return ['Reference'];
+      case 'performer':
+        return ['ProcedurePerformer'];
+      case 'location':
+        return ['Reference'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'bodySite':
+        return ['CodeableConcept'];
+      case 'outcome':
+        return ['CodeableConcept'];
+      case 'report':
+        return ['Reference'];
+      case 'complication':
+        return ['CodeableConcept'];
+      case 'complicationDetail':
+        return ['Reference'];
+      case 'followUp':
+        return ['CodeableConcept'];
+      case 'note':
+        return ['Annotation'];
+      case 'focalDevice':
+        return ['ProcedureFocalDevice'];
+      case 'usedReference':
+        return ['Reference'];
+      case 'usedCode':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Procedure]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Procedure createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'instantiatesCanonical':
+        {
+          return copyWith(instantiatesCanonical: <FhirCanonical>[]);
+        }
+      case 'instantiatesUri':
+        {
+          return copyWith(instantiatesUri: <FhirUri>[]);
+        }
+      case 'basedOn':
+        {
+          return copyWith(basedOn: <Reference>[]);
+        }
+      case 'partOf':
+        {
+          return copyWith(partOf: <Reference>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: EventStatus.empty());
+        }
+      case 'statusReason':
+        {
+          return copyWith(statusReason: CodeableConcept.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: CodeableConcept.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'performed':
+      case 'performedX':
+      case 'performedDateTime':
+        {
+          return copyWith(performedX: FhirDateTime.empty());
+        }
+      case 'performedPeriod':
+        {
+          return copyWith(performedX: Period.empty());
+        }
+      case 'performedString':
+        {
+          return copyWith(performedX: FhirString.empty());
+        }
+      case 'performedAge':
+        {
+          return copyWith(performedX: Age.empty());
+        }
+      case 'performedRange':
+        {
+          return copyWith(performedX: Range.empty());
+        }
+      case 'recorder':
+        {
+          return copyWith(recorder: Reference.empty());
+        }
+      case 'asserter':
+        {
+          return copyWith(asserter: Reference.empty());
+        }
+      case 'performer':
+        {
+          return copyWith(performer: <ProcedurePerformer>[]);
+        }
+      case 'location':
+        {
+          return copyWith(location: Reference.empty());
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: <CodeableConcept>[]);
+        }
+      case 'reasonReference':
+        {
+          return copyWith(reasonReference: <Reference>[]);
+        }
+      case 'bodySite':
+        {
+          return copyWith(bodySite: <CodeableConcept>[]);
+        }
+      case 'outcome':
+        {
+          return copyWith(outcome: CodeableConcept.empty());
+        }
+      case 'report':
+        {
+          return copyWith(report: <Reference>[]);
+        }
+      case 'complication':
+        {
+          return copyWith(complication: <CodeableConcept>[]);
+        }
+      case 'complicationDetail':
+        {
+          return copyWith(complicationDetail: <Reference>[]);
+        }
+      case 'followUp':
+        {
+          return copyWith(followUp: <CodeableConcept>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'focalDevice':
+        {
+          return copyWith(focalDevice: <ProcedureFocalDevice>[]);
+        }
+      case 'usedReference':
+        {
+          return copyWith(usedReference: <Reference>[]);
+        }
+      case 'usedCode':
+        {
+          return copyWith(usedCode: <CodeableConcept>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Procedure clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool instantiatesCanonical = false,
+    bool instantiatesUri = false,
+    bool basedOn = false,
+    bool partOf = false,
+    bool statusReason = false,
+    bool category = false,
+    bool code = false,
+    bool encounter = false,
+    bool performed = false,
+    bool recorder = false,
+    bool asserter = false,
+    bool performer = false,
+    bool location = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool bodySite = false,
+    bool outcome = false,
+    bool report = false,
+    bool complication = false,
+    bool complicationDetail = false,
+    bool followUp = false,
+    bool note = false,
+    bool focalDevice = false,
+    bool usedReference = false,
+    bool usedCode = false,
+  }) {
+    return Procedure(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      instantiatesCanonical:
+          instantiatesCanonical ? null : this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri ? null : this.instantiatesUri,
+      basedOn: basedOn ? null : this.basedOn,
+      partOf: partOf ? null : this.partOf,
+      status: status,
+      statusReason: statusReason ? null : this.statusReason,
+      category: category ? null : this.category,
+      code: code ? null : this.code,
+      subject: subject,
+      encounter: encounter ? null : this.encounter,
+      performedX: performed ? null : performedX,
+      recorder: recorder ? null : this.recorder,
+      asserter: asserter ? null : this.asserter,
+      performer: performer ? null : this.performer,
+      location: location ? null : this.location,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      bodySite: bodySite ? null : this.bodySite,
+      outcome: outcome ? null : this.outcome,
+      report: report ? null : this.report,
+      complication: complication ? null : this.complication,
+      complicationDetail: complicationDetail ? null : this.complicationDetail,
+      followUp: followUp ? null : this.followUp,
+      note: note ? null : this.note,
+      focalDevice: focalDevice ? null : this.focalDevice,
+      usedReference: usedReference ? null : this.usedReference,
+      usedCode: usedCode ? null : this.usedCode,
+    );
+  }
+
   @override
   Procedure clone() => throw UnimplementedError();
   @override
@@ -1953,6 +2299,83 @@ class ProcedurePerformer extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'function':
+        return ['CodeableConcept'];
+      case 'actor':
+        return ['Reference'];
+      case 'onBehalfOf':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ProcedurePerformer]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ProcedurePerformer createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'function':
+        {
+          return copyWith(function_: CodeableConcept.empty());
+        }
+      case 'actor':
+        {
+          return copyWith(actor: Reference.empty());
+        }
+      case 'onBehalfOf':
+        {
+          return copyWith(onBehalfOf: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ProcedurePerformer clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool function_ = false,
+    bool onBehalfOf = false,
+  }) {
+    return ProcedurePerformer(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      function_: function_ ? null : this.function_,
+      actor: actor,
+      onBehalfOf: onBehalfOf ? null : this.onBehalfOf,
+    );
+  }
+
   @override
   ProcedurePerformer clone() => throw UnimplementedError();
   @override
@@ -2313,6 +2736,75 @@ class ProcedureFocalDevice extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'action':
+        return ['CodeableConcept'];
+      case 'manipulated':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ProcedureFocalDevice]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ProcedureFocalDevice createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'action':
+        {
+          return copyWith(action: CodeableConcept.empty());
+        }
+      case 'manipulated':
+        {
+          return copyWith(manipulated: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ProcedureFocalDevice clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool action = false,
+  }) {
+    return ProcedureFocalDevice(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      action: action ? null : this.action,
+      manipulated: manipulated,
+    );
   }
 
   @override

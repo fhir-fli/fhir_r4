@@ -480,6 +480,126 @@ class DataRequirement extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirCode'];
+      case 'profile':
+        return ['FhirCanonical'];
+      case 'subject':
+      case 'subjectX':
+        return ['CodeableConcept', 'Reference'];
+      case 'subjectCodeableConcept':
+        return ['CodeableConcept'];
+      case 'subjectReference':
+        return ['Reference'];
+      case 'mustSupport':
+        return ['FhirString'];
+      case 'codeFilter':
+        return ['DataRequirementCodeFilter'];
+      case 'dateFilter':
+        return ['DataRequirementDateFilter'];
+      case 'limit':
+        return ['FhirPositiveInt'];
+      case 'sort':
+        return ['DataRequirementSort'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [DataRequirement]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DataRequirement createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: FHIRAllTypes.empty());
+        }
+      case 'profile':
+        {
+          return copyWith(profile: <FhirCanonical>[]);
+        }
+      case 'subject':
+      case 'subjectX':
+      case 'subjectCodeableConcept':
+        {
+          return copyWith(subjectX: CodeableConcept.empty());
+        }
+      case 'subjectReference':
+        {
+          return copyWith(subjectX: Reference.empty());
+        }
+      case 'mustSupport':
+        {
+          return copyWith(mustSupport: <FhirString>[]);
+        }
+      case 'codeFilter':
+        {
+          return copyWith(codeFilter: <DataRequirementCodeFilter>[]);
+        }
+      case 'dateFilter':
+        {
+          return copyWith(dateFilter: <DataRequirementDateFilter>[]);
+        }
+      case 'limit':
+        {
+          return copyWith(limit: FhirPositiveInt.empty());
+        }
+      case 'sort':
+        {
+          return copyWith(sort: <DataRequirementSort>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DataRequirement clear({
+    bool id = false,
+    bool extension_ = false,
+    bool profile = false,
+    bool subject = false,
+    bool mustSupport = false,
+    bool codeFilter = false,
+    bool dateFilter = false,
+    bool limit = false,
+    bool sort = false,
+  }) {
+    return DataRequirement(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      type: type,
+      profile: profile ? null : this.profile,
+      subjectX: subject ? null : subjectX,
+      mustSupport: mustSupport ? null : this.mustSupport,
+      codeFilter: codeFilter ? null : this.codeFilter,
+      dateFilter: dateFilter ? null : this.dateFilter,
+      limit: limit ? null : this.limit,
+      sort: sort ? null : this.sort,
+    );
+  }
+
   @override
   DataRequirement clone() => throw UnimplementedError();
   @override
@@ -652,7 +772,8 @@ class DataRequirementCodeFilter extends Element {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory DataRequirementCodeFilter.empty() => const DataRequirementCodeFilter();
+  factory DataRequirementCodeFilter.empty() =>
+      const DataRequirementCodeFilter();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DataRequirementCodeFilter.fromJson(
@@ -948,6 +1069,84 @@ class DataRequirementCodeFilter extends Element {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'path':
+        return ['FhirString'];
+      case 'searchParam':
+        return ['FhirString'];
+      case 'valueSet':
+        return ['FhirCanonical'];
+      case 'code':
+        return ['Coding'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [DataRequirementCodeFilter]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DataRequirementCodeFilter createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'path':
+        {
+          return copyWith(path: FhirString.empty());
+        }
+      case 'searchParam':
+        {
+          return copyWith(searchParam: FhirString.empty());
+        }
+      case 'valueSet':
+        {
+          return copyWith(valueSet: FhirCanonical.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: <Coding>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DataRequirementCodeFilter clear({
+    bool id = false,
+    bool extension_ = false,
+    bool path = false,
+    bool searchParam = false,
+    bool valueSet = false,
+    bool code = false,
+  }) {
+    return DataRequirementCodeFilter(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      path: path ? null : this.path,
+      searchParam: searchParam ? null : this.searchParam,
+      valueSet: valueSet ? null : this.valueSet,
+      code: code ? null : this.code,
+    );
+  }
+
   @override
   DataRequirementCodeFilter clone() => throw UnimplementedError();
   @override
@@ -1059,7 +1258,8 @@ class DataRequirementDateFilter extends Element {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory DataRequirementDateFilter.empty() => const DataRequirementDateFilter();
+  factory DataRequirementDateFilter.empty() =>
+      const DataRequirementDateFilter();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DataRequirementDateFilter.fromJson(
@@ -1377,6 +1577,93 @@ class DataRequirementDateFilter extends Element {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'path':
+        return ['FhirString'];
+      case 'searchParam':
+        return ['FhirString'];
+      case 'value':
+      case 'valueX':
+        return ['FhirDateTime', 'Period', 'FhirDuration'];
+      case 'valueDateTime':
+        return ['FhirDateTime'];
+      case 'valuePeriod':
+        return ['Period'];
+      case 'valueDuration':
+        return ['FhirDuration'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [DataRequirementDateFilter]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DataRequirementDateFilter createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'path':
+        {
+          return copyWith(path: FhirString.empty());
+        }
+      case 'searchParam':
+        {
+          return copyWith(searchParam: FhirString.empty());
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueDateTime':
+        {
+          return copyWith(valueX: FhirDateTime.empty());
+        }
+      case 'valuePeriod':
+        {
+          return copyWith(valueX: Period.empty());
+        }
+      case 'valueDuration':
+        {
+          return copyWith(valueX: FhirDuration.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DataRequirementDateFilter clear({
+    bool id = false,
+    bool extension_ = false,
+    bool path = false,
+    bool searchParam = false,
+    bool value = false,
+  }) {
+    return DataRequirementDateFilter(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      path: path ? null : this.path,
+      searchParam: searchParam ? null : this.searchParam,
+      valueX: value ? null : valueX,
+    );
   }
 
   @override
@@ -1699,6 +1986,66 @@ class DataRequirementSort extends Element {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'path':
+        return ['FhirString'];
+      case 'direction':
+        return ['FhirCode'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [DataRequirementSort]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DataRequirementSort createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'path':
+        {
+          return copyWith(path: FhirString.empty());
+        }
+      case 'direction':
+        {
+          return copyWith(direction: SortDirection.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DataRequirementSort clear({
+    bool id = false,
+    bool extension_ = false,
+  }) {
+    return DataRequirementSort(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      path: path,
+      direction: direction,
+    );
   }
 
   @override

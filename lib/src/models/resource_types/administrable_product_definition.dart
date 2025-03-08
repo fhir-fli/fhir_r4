@@ -644,6 +644,181 @@ class AdministrableProductDefinition extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'formOf':
+        return ['Reference'];
+      case 'administrableDoseForm':
+        return ['CodeableConcept'];
+      case 'unitOfPresentation':
+        return ['CodeableConcept'];
+      case 'producedFrom':
+        return ['Reference'];
+      case 'ingredient':
+        return ['CodeableConcept'];
+      case 'device':
+        return ['Reference'];
+      case 'property':
+        return ['AdministrableProductDefinitionProperty'];
+      case 'routeOfAdministration':
+        return ['AdministrableProductDefinitionRouteOfAdministration'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [AdministrableProductDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AdministrableProductDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'formOf':
+        {
+          return copyWith(formOf: <Reference>[]);
+        }
+      case 'administrableDoseForm':
+        {
+          return copyWith(administrableDoseForm: CodeableConcept.empty());
+        }
+      case 'unitOfPresentation':
+        {
+          return copyWith(unitOfPresentation: CodeableConcept.empty());
+        }
+      case 'producedFrom':
+        {
+          return copyWith(producedFrom: <Reference>[]);
+        }
+      case 'ingredient':
+        {
+          return copyWith(ingredient: <CodeableConcept>[]);
+        }
+      case 'device':
+        {
+          return copyWith(device: Reference.empty());
+        }
+      case 'property':
+        {
+          return copyWith(property: <AdministrableProductDefinitionProperty>[]);
+        }
+      case 'routeOfAdministration':
+        {
+          return copyWith(
+            routeOfAdministration: <AdministrableProductDefinitionRouteOfAdministration>[],
+          );
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  AdministrableProductDefinition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool formOf = false,
+    bool administrableDoseForm = false,
+    bool unitOfPresentation = false,
+    bool producedFrom = false,
+    bool ingredient = false,
+    bool device = false,
+    bool property = false,
+  }) {
+    return AdministrableProductDefinition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      formOf: formOf ? null : this.formOf,
+      administrableDoseForm:
+          administrableDoseForm ? null : this.administrableDoseForm,
+      unitOfPresentation: unitOfPresentation ? null : this.unitOfPresentation,
+      producedFrom: producedFrom ? null : this.producedFrom,
+      ingredient: ingredient ? null : this.ingredient,
+      device: device ? null : this.device,
+      property: property ? null : this.property,
+      routeOfAdministration: routeOfAdministration,
+    );
+  }
+
   @override
   AdministrableProductDefinition clone() => throw UnimplementedError();
   @override
@@ -1254,6 +1429,118 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'value':
+      case 'valueX':
+        return [
+          'CodeableConcept',
+          'Quantity',
+          'FhirDate',
+          'FhirBoolean',
+          'Attachment',
+        ];
+      case 'valueCodeableConcept':
+        return ['CodeableConcept'];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueDate':
+        return ['FhirDate'];
+      case 'valueBoolean':
+        return ['FhirBoolean'];
+      case 'valueAttachment':
+        return ['Attachment'];
+      case 'status':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [AdministrableProductDefinitionProperty]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AdministrableProductDefinitionProperty createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueCodeableConcept':
+        {
+          return copyWith(valueX: CodeableConcept.empty());
+        }
+      case 'valueQuantity':
+        {
+          return copyWith(valueX: Quantity.empty());
+        }
+      case 'valueDate':
+        {
+          return copyWith(valueX: FhirDate.empty());
+        }
+      case 'valueBoolean':
+        {
+          return copyWith(valueX: FhirBoolean.empty());
+        }
+      case 'valueAttachment':
+        {
+          return copyWith(valueX: Attachment.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  AdministrableProductDefinitionProperty clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool value = false,
+    bool status = false,
+  }) {
+    return AdministrableProductDefinitionProperty(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      valueX: value ? null : valueX,
+      status: status ? null : this.status,
+    );
+  }
+
   @override
   AdministrableProductDefinitionProperty clone() => throw UnimplementedError();
   @override
@@ -1752,6 +2039,120 @@ class AdministrableProductDefinitionRouteOfAdministration
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'firstDose':
+        return ['Quantity'];
+      case 'maxSingleDose':
+        return ['Quantity'];
+      case 'maxDosePerDay':
+        return ['Quantity'];
+      case 'maxDosePerTreatmentPeriod':
+        return ['Ratio'];
+      case 'maxTreatmentPeriod':
+        return ['FhirDuration'];
+      case 'targetSpecies':
+        return ['AdministrableProductDefinitionTargetSpecies'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [AdministrableProductDefinitionRouteOfAdministration]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AdministrableProductDefinitionRouteOfAdministration createProperty(
+    String propertyName,
+  ) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'firstDose':
+        {
+          return copyWith(firstDose: Quantity.empty());
+        }
+      case 'maxSingleDose':
+        {
+          return copyWith(maxSingleDose: Quantity.empty());
+        }
+      case 'maxDosePerDay':
+        {
+          return copyWith(maxDosePerDay: Quantity.empty());
+        }
+      case 'maxDosePerTreatmentPeriod':
+        {
+          return copyWith(maxDosePerTreatmentPeriod: Ratio.empty());
+        }
+      case 'maxTreatmentPeriod':
+        {
+          return copyWith(maxTreatmentPeriod: FhirDuration.empty());
+        }
+      case 'targetSpecies':
+        {
+          return copyWith(
+            targetSpecies: <AdministrableProductDefinitionTargetSpecies>[],
+          );
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  AdministrableProductDefinitionRouteOfAdministration clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool firstDose = false,
+    bool maxSingleDose = false,
+    bool maxDosePerDay = false,
+    bool maxDosePerTreatmentPeriod = false,
+    bool maxTreatmentPeriod = false,
+    bool targetSpecies = false,
+  }) {
+    return AdministrableProductDefinitionRouteOfAdministration(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      firstDose: firstDose ? null : this.firstDose,
+      maxSingleDose: maxSingleDose ? null : this.maxSingleDose,
+      maxDosePerDay: maxDosePerDay ? null : this.maxDosePerDay,
+      maxDosePerTreatmentPeriod:
+          maxDosePerTreatmentPeriod ? null : this.maxDosePerTreatmentPeriod,
+      maxTreatmentPeriod: maxTreatmentPeriod ? null : this.maxTreatmentPeriod,
+      targetSpecies: targetSpecies ? null : this.targetSpecies,
+    );
+  }
+
   @override
   AdministrableProductDefinitionRouteOfAdministration clone() =>
       throw UnimplementedError();
@@ -1866,7 +2267,9 @@ class AdministrableProductDefinitionRouteOfAdministration
       return false;
     }
     if (!equalsDeepWithNull(
-        maxDosePerTreatmentPeriod, o.maxDosePerTreatmentPeriod,)) {
+      maxDosePerTreatmentPeriod,
+      o.maxDosePerTreatmentPeriod,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(maxTreatmentPeriod, o.maxTreatmentPeriod)) {
@@ -2159,6 +2562,79 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'withdrawalPeriod':
+        return ['AdministrableProductDefinitionWithdrawalPeriod'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [AdministrableProductDefinitionTargetSpecies]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AdministrableProductDefinitionTargetSpecies createProperty(
+    String propertyName,
+  ) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'withdrawalPeriod':
+        {
+          return copyWith(
+            withdrawalPeriod: <AdministrableProductDefinitionWithdrawalPeriod>[],
+          );
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  AdministrableProductDefinitionTargetSpecies clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool withdrawalPeriod = false,
+  }) {
+    return AdministrableProductDefinitionTargetSpecies(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      withdrawalPeriod: withdrawalPeriod ? null : this.withdrawalPeriod,
+    );
   }
 
   @override
@@ -2548,6 +3024,85 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'tissue':
+        return ['CodeableConcept'];
+      case 'value':
+        return ['Quantity'];
+      case 'supportingInformation':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [AdministrableProductDefinitionWithdrawalPeriod]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AdministrableProductDefinitionWithdrawalPeriod createProperty(
+    String propertyName,
+  ) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'tissue':
+        {
+          return copyWith(tissue: CodeableConcept.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: Quantity.empty());
+        }
+      case 'supportingInformation':
+        {
+          return copyWith(supportingInformation: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  AdministrableProductDefinitionWithdrawalPeriod clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool supportingInformation = false,
+  }) {
+    return AdministrableProductDefinitionWithdrawalPeriod(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      tissue: tissue,
+      value: value,
+      supportingInformation:
+          supportingInformation ? null : this.supportingInformation,
+    );
   }
 
   @override

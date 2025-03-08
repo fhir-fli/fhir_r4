@@ -193,4 +193,19 @@ class TRight7Aa extends BackboneElement {
         listEquals<FhirBase>(extension_, other.extension_) &&
         ab == other.ab;
   }
+
+  @override
+  BackboneElement createProperty(String name) {
+    switch (name) {
+      case 'ab':
+        return TRight7Aa(ab: FhirString.empty());
+      default:
+        throw ArgumentError('Unknown property $name');
+    }
+  }
+
+  @override
+  TRight7Aa clear({bool extension_ = false, bool id = false}) {
+    throw UnimplementedError();
+  }
 }

@@ -1302,6 +1302,374 @@ class ResearchElementDefinition extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'shortTitle':
+        return ['FhirString'];
+      case 'subtitle':
+        return ['FhirString'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'subject':
+      case 'subjectX':
+        return ['CodeableConcept', 'Reference'];
+      case 'subjectCodeableConcept':
+        return ['CodeableConcept'];
+      case 'subjectReference':
+        return ['Reference'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'comment':
+        return ['FhirString'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'usage':
+        return ['FhirString'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      case 'approvalDate':
+        return ['FhirDate'];
+      case 'lastReviewDate':
+        return ['FhirDate'];
+      case 'effectivePeriod':
+        return ['Period'];
+      case 'topic':
+        return ['CodeableConcept'];
+      case 'author':
+        return ['ContactDetail'];
+      case 'editor':
+        return ['ContactDetail'];
+      case 'reviewer':
+        return ['ContactDetail'];
+      case 'endorser':
+        return ['ContactDetail'];
+      case 'relatedArtifact':
+        return ['RelatedArtifact'];
+      case 'library':
+        return ['FhirCanonical'];
+      case 'type':
+        return ['FhirCode'];
+      case 'variableType':
+        return ['FhirCode'];
+      case 'characteristic':
+        return ['ResearchElementDefinitionCharacteristic'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ResearchElementDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ResearchElementDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'shortTitle':
+        {
+          return copyWith(shortTitle: FhirString.empty());
+        }
+      case 'subtitle':
+        {
+          return copyWith(subtitle: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'subject':
+      case 'subjectX':
+      case 'subjectCodeableConcept':
+        {
+          return copyWith(subjectX: CodeableConcept.empty());
+        }
+      case 'subjectReference':
+        {
+          return copyWith(subjectX: Reference.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'comment':
+        {
+          return copyWith(comment: <FhirString>[]);
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'usage':
+        {
+          return copyWith(usage: FhirString.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'approvalDate':
+        {
+          return copyWith(approvalDate: FhirDate.empty());
+        }
+      case 'lastReviewDate':
+        {
+          return copyWith(lastReviewDate: FhirDate.empty());
+        }
+      case 'effectivePeriod':
+        {
+          return copyWith(effectivePeriod: Period.empty());
+        }
+      case 'topic':
+        {
+          return copyWith(topic: <CodeableConcept>[]);
+        }
+      case 'author':
+        {
+          return copyWith(author: <ContactDetail>[]);
+        }
+      case 'editor':
+        {
+          return copyWith(editor: <ContactDetail>[]);
+        }
+      case 'reviewer':
+        {
+          return copyWith(reviewer: <ContactDetail>[]);
+        }
+      case 'endorser':
+        {
+          return copyWith(endorser: <ContactDetail>[]);
+        }
+      case 'relatedArtifact':
+        {
+          return copyWith(relatedArtifact: <RelatedArtifact>[]);
+        }
+      case 'library':
+        {
+          return copyWith(library_: <FhirCanonical>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: ResearchElementType.empty());
+        }
+      case 'variableType':
+        {
+          return copyWith(variableType: VariableType.empty());
+        }
+      case 'characteristic':
+        {
+          return copyWith(
+            characteristic: <ResearchElementDefinitionCharacteristic>[],
+          );
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ResearchElementDefinition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool identifier = false,
+    bool version = false,
+    bool name = false,
+    bool title = false,
+    bool shortTitle = false,
+    bool subtitle = false,
+    bool experimental = false,
+    bool subject = false,
+    bool date = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool comment = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool purpose = false,
+    bool usage = false,
+    bool copyright = false,
+    bool approvalDate = false,
+    bool lastReviewDate = false,
+    bool effectivePeriod = false,
+    bool topic = false,
+    bool author = false,
+    bool editor = false,
+    bool reviewer = false,
+    bool endorser = false,
+    bool relatedArtifact = false,
+    bool library_ = false,
+    bool variableType = false,
+  }) {
+    return ResearchElementDefinition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url ? null : this.url,
+      identifier: identifier ? null : this.identifier,
+      version: version ? null : this.version,
+      name: name ? null : this.name,
+      title: title ? null : this.title,
+      shortTitle: shortTitle ? null : this.shortTitle,
+      subtitle: subtitle ? null : this.subtitle,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      subjectX: subject ? null : subjectX,
+      date: date ? null : this.date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      comment: comment ? null : this.comment,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      purpose: purpose ? null : this.purpose,
+      usage: usage ? null : this.usage,
+      copyright: copyright ? null : this.copyright,
+      approvalDate: approvalDate ? null : this.approvalDate,
+      lastReviewDate: lastReviewDate ? null : this.lastReviewDate,
+      effectivePeriod: effectivePeriod ? null : this.effectivePeriod,
+      topic: topic ? null : this.topic,
+      author: author ? null : this.author,
+      editor: editor ? null : this.editor,
+      reviewer: reviewer ? null : this.reviewer,
+      endorser: endorser ? null : this.endorser,
+      relatedArtifact: relatedArtifact ? null : this.relatedArtifact,
+      library_: library_ ? null : this.library_,
+      type: type,
+      variableType: variableType ? null : this.variableType,
+      characteristic: characteristic,
+    );
+  }
+
   @override
   ResearchElementDefinition clone() => throw UnimplementedError();
   @override
@@ -2112,17 +2480,25 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     addField('studyEffectiveTimeFromStart', studyEffectiveTimeFromStart);
     addField('studyEffectiveGroupMeasure', studyEffectiveGroupMeasure);
     addField(
-        'participantEffectiveDescription', participantEffectiveDescription,);
+      'participantEffectiveDescription',
+      participantEffectiveDescription,
+    );
     if (participantEffectiveX != null) {
       final fhirType = participantEffectiveX!.fhirType;
-      addField('participantEffective${fhirType.capitalize()}',
-          participantEffectiveX,);
+      addField(
+        'participantEffective${fhirType.capitalize()}',
+        participantEffectiveX,
+      );
     }
 
     addField(
-        'participantEffectiveTimeFromStart', participantEffectiveTimeFromStart,);
+      'participantEffectiveTimeFromStart',
+      participantEffectiveTimeFromStart,
+    );
     addField(
-        'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure,);
+      'participantEffectiveGroupMeasure',
+      participantEffectiveGroupMeasure,
+    );
     return json;
   }
 
@@ -2520,6 +2896,243 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'definition':
+      case 'definitionX':
+        return [
+          'CodeableConcept',
+          'FhirCanonical',
+          'FhirExpression',
+          'DataRequirement',
+        ];
+      case 'definitionCodeableConcept':
+        return ['CodeableConcept'];
+      case 'definitionCanonical':
+        return ['FhirCanonical'];
+      case 'definitionExpression':
+        return ['FhirExpression'];
+      case 'definitionDataRequirement':
+        return ['DataRequirement'];
+      case 'usageContext':
+        return ['UsageContext'];
+      case 'exclude':
+        return ['FhirBoolean'];
+      case 'unitOfMeasure':
+        return ['CodeableConcept'];
+      case 'studyEffectiveDescription':
+        return ['FhirString'];
+      case 'studyEffective':
+      case 'studyEffectiveX':
+        return ['FhirDateTime', 'Period', 'FhirDuration', 'Timing'];
+      case 'studyEffectiveDateTime':
+        return ['FhirDateTime'];
+      case 'studyEffectivePeriod':
+        return ['Period'];
+      case 'studyEffectiveDuration':
+        return ['FhirDuration'];
+      case 'studyEffectiveTiming':
+        return ['Timing'];
+      case 'studyEffectiveTimeFromStart':
+        return ['FhirDuration'];
+      case 'studyEffectiveGroupMeasure':
+        return ['FhirCode'];
+      case 'participantEffectiveDescription':
+        return ['FhirString'];
+      case 'participantEffective':
+      case 'participantEffectiveX':
+        return ['FhirDateTime', 'Period', 'FhirDuration', 'Timing'];
+      case 'participantEffectiveDateTime':
+        return ['FhirDateTime'];
+      case 'participantEffectivePeriod':
+        return ['Period'];
+      case 'participantEffectiveDuration':
+        return ['FhirDuration'];
+      case 'participantEffectiveTiming':
+        return ['Timing'];
+      case 'participantEffectiveTimeFromStart':
+        return ['FhirDuration'];
+      case 'participantEffectiveGroupMeasure':
+        return ['FhirCode'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ResearchElementDefinitionCharacteristic]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ResearchElementDefinitionCharacteristic createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'definition':
+      case 'definitionX':
+      case 'definitionCodeableConcept':
+        {
+          return copyWith(definitionX: CodeableConcept.empty());
+        }
+      case 'definitionCanonical':
+        {
+          return copyWith(definitionX: FhirCanonical.empty());
+        }
+      case 'definitionExpression':
+        {
+          return copyWith(definitionX: FhirExpression.empty());
+        }
+      case 'definitionDataRequirement':
+        {
+          return copyWith(definitionX: DataRequirement.empty());
+        }
+      case 'usageContext':
+        {
+          return copyWith(usageContext: <UsageContext>[]);
+        }
+      case 'exclude':
+        {
+          return copyWith(exclude: FhirBoolean.empty());
+        }
+      case 'unitOfMeasure':
+        {
+          return copyWith(unitOfMeasure: CodeableConcept.empty());
+        }
+      case 'studyEffectiveDescription':
+        {
+          return copyWith(studyEffectiveDescription: FhirString.empty());
+        }
+      case 'studyEffective':
+      case 'studyEffectiveX':
+      case 'studyEffectiveDateTime':
+        {
+          return copyWith(studyEffectiveX: FhirDateTime.empty());
+        }
+      case 'studyEffectivePeriod':
+        {
+          return copyWith(studyEffectiveX: Period.empty());
+        }
+      case 'studyEffectiveDuration':
+        {
+          return copyWith(studyEffectiveX: FhirDuration.empty());
+        }
+      case 'studyEffectiveTiming':
+        {
+          return copyWith(studyEffectiveX: Timing.empty());
+        }
+      case 'studyEffectiveTimeFromStart':
+        {
+          return copyWith(studyEffectiveTimeFromStart: FhirDuration.empty());
+        }
+      case 'studyEffectiveGroupMeasure':
+        {
+          return copyWith(studyEffectiveGroupMeasure: GroupMeasure.empty());
+        }
+      case 'participantEffectiveDescription':
+        {
+          return copyWith(participantEffectiveDescription: FhirString.empty());
+        }
+      case 'participantEffective':
+      case 'participantEffectiveX':
+      case 'participantEffectiveDateTime':
+        {
+          return copyWith(participantEffectiveX: FhirDateTime.empty());
+        }
+      case 'participantEffectivePeriod':
+        {
+          return copyWith(participantEffectiveX: Period.empty());
+        }
+      case 'participantEffectiveDuration':
+        {
+          return copyWith(participantEffectiveX: FhirDuration.empty());
+        }
+      case 'participantEffectiveTiming':
+        {
+          return copyWith(participantEffectiveX: Timing.empty());
+        }
+      case 'participantEffectiveTimeFromStart':
+        {
+          return copyWith(
+            participantEffectiveTimeFromStart: FhirDuration.empty(),
+          );
+        }
+      case 'participantEffectiveGroupMeasure':
+        {
+          return copyWith(
+            participantEffectiveGroupMeasure: GroupMeasure.empty(),
+          );
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ResearchElementDefinitionCharacteristic clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool usageContext = false,
+    bool exclude = false,
+    bool unitOfMeasure = false,
+    bool studyEffectiveDescription = false,
+    bool studyEffective = false,
+    bool studyEffectiveTimeFromStart = false,
+    bool studyEffectiveGroupMeasure = false,
+    bool participantEffectiveDescription = false,
+    bool participantEffective = false,
+    bool participantEffectiveTimeFromStart = false,
+    bool participantEffectiveGroupMeasure = false,
+  }) {
+    return ResearchElementDefinitionCharacteristic(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      definitionX: definitionX,
+      usageContext: usageContext ? null : this.usageContext,
+      exclude: exclude ? null : this.exclude,
+      unitOfMeasure: unitOfMeasure ? null : this.unitOfMeasure,
+      studyEffectiveDescription:
+          studyEffectiveDescription ? null : this.studyEffectiveDescription,
+      studyEffectiveX: studyEffective ? null : studyEffectiveX,
+      studyEffectiveTimeFromStart:
+          studyEffectiveTimeFromStart ? null : this.studyEffectiveTimeFromStart,
+      studyEffectiveGroupMeasure:
+          studyEffectiveGroupMeasure ? null : this.studyEffectiveGroupMeasure,
+      participantEffectiveDescription: participantEffectiveDescription
+          ? null
+          : this.participantEffectiveDescription,
+      participantEffectiveX:
+          participantEffective ? null : participantEffectiveX,
+      participantEffectiveTimeFromStart: participantEffectiveTimeFromStart
+          ? null
+          : this.participantEffectiveTimeFromStart,
+      participantEffectiveGroupMeasure: participantEffectiveGroupMeasure
+          ? null
+          : this.participantEffectiveGroupMeasure,
+    );
+  }
+
   @override
   ResearchElementDefinitionCharacteristic clone() => throw UnimplementedError();
   @override
@@ -2665,33 +3278,45 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-        studyEffectiveDescription, o.studyEffectiveDescription,)) {
+      studyEffectiveDescription,
+      o.studyEffectiveDescription,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(studyEffectiveX, o.studyEffectiveX)) {
       return false;
     }
     if (!equalsDeepWithNull(
-        studyEffectiveTimeFromStart, o.studyEffectiveTimeFromStart,)) {
+      studyEffectiveTimeFromStart,
+      o.studyEffectiveTimeFromStart,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(
-        studyEffectiveGroupMeasure, o.studyEffectiveGroupMeasure,)) {
+      studyEffectiveGroupMeasure,
+      o.studyEffectiveGroupMeasure,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(
-        participantEffectiveDescription, o.participantEffectiveDescription,)) {
+      participantEffectiveDescription,
+      o.participantEffectiveDescription,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(participantEffectiveX, o.participantEffectiveX)) {
       return false;
     }
-    if (!equalsDeepWithNull(participantEffectiveTimeFromStart,
-        o.participantEffectiveTimeFromStart,)) {
+    if (!equalsDeepWithNull(
+      participantEffectiveTimeFromStart,
+      o.participantEffectiveTimeFromStart,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(
-        participantEffectiveGroupMeasure, o.participantEffectiveGroupMeasure,)) {
+      participantEffectiveGroupMeasure,
+      o.participantEffectiveGroupMeasure,
+    )) {
       return false;
     }
     return true;

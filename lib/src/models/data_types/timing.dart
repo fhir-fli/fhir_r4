@@ -333,6 +333,84 @@ class Timing extends BackboneType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'event':
+        return ['FhirDateTime'];
+      case 'repeat':
+        return ['TimingRepeat'];
+      case 'code':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Timing]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Timing createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'event':
+        {
+          return copyWith(event: <FhirDateTime>[]);
+        }
+      case 'repeat':
+        {
+          return copyWith(repeat: TimingRepeat.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Timing clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool event = false,
+    bool repeat = false,
+    bool code = false,
+  }) {
+    return Timing(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      event: event ? null : this.event,
+      repeat: repeat ? null : this.repeat,
+      code: code ? null : this.code,
+    );
+  }
+
   @override
   Timing clone() => throw UnimplementedError();
   @override
@@ -1071,6 +1149,189 @@ class TimingRepeat extends Element {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'bounds':
+      case 'boundsX':
+        return ['FhirDuration', 'Range', 'Period'];
+      case 'boundsDuration':
+        return ['FhirDuration'];
+      case 'boundsRange':
+        return ['Range'];
+      case 'boundsPeriod':
+        return ['Period'];
+      case 'count':
+        return ['FhirPositiveInt'];
+      case 'countMax':
+        return ['FhirPositiveInt'];
+      case 'duration':
+        return ['FhirDecimal'];
+      case 'durationMax':
+        return ['FhirDecimal'];
+      case 'durationUnit':
+        return ['FhirCode'];
+      case 'frequency':
+        return ['FhirPositiveInt'];
+      case 'frequencyMax':
+        return ['FhirPositiveInt'];
+      case 'period':
+        return ['FhirDecimal'];
+      case 'periodMax':
+        return ['FhirDecimal'];
+      case 'periodUnit':
+        return ['FhirCode'];
+      case 'dayOfWeek':
+        return ['FhirCode'];
+      case 'timeOfDay':
+        return ['FhirTime'];
+      case 'when':
+        return ['FhirCode'];
+      case 'offset':
+        return ['FhirUnsignedInt'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [TimingRepeat]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  TimingRepeat createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'bounds':
+      case 'boundsX':
+      case 'boundsDuration':
+        {
+          return copyWith(boundsX: FhirDuration.empty());
+        }
+      case 'boundsRange':
+        {
+          return copyWith(boundsX: Range.empty());
+        }
+      case 'boundsPeriod':
+        {
+          return copyWith(boundsX: Period.empty());
+        }
+      case 'count':
+        {
+          return copyWith(count: FhirPositiveInt.empty());
+        }
+      case 'countMax':
+        {
+          return copyWith(countMax: FhirPositiveInt.empty());
+        }
+      case 'duration':
+        {
+          return copyWith(duration: FhirDecimal.empty());
+        }
+      case 'durationMax':
+        {
+          return copyWith(durationMax: FhirDecimal.empty());
+        }
+      case 'durationUnit':
+        {
+          return copyWith(durationUnit: UnitsOfTime.empty());
+        }
+      case 'frequency':
+        {
+          return copyWith(frequency: FhirPositiveInt.empty());
+        }
+      case 'frequencyMax':
+        {
+          return copyWith(frequencyMax: FhirPositiveInt.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: FhirDecimal.empty());
+        }
+      case 'periodMax':
+        {
+          return copyWith(periodMax: FhirDecimal.empty());
+        }
+      case 'periodUnit':
+        {
+          return copyWith(periodUnit: UnitsOfTime.empty());
+        }
+      case 'dayOfWeek':
+        {
+          return copyWith(dayOfWeek: <DaysOfWeek>[]);
+        }
+      case 'timeOfDay':
+        {
+          return copyWith(timeOfDay: <FhirTime>[]);
+        }
+      case 'when':
+        {
+          return copyWith(when: <EventTiming>[]);
+        }
+      case 'offset':
+        {
+          return copyWith(offset: FhirUnsignedInt.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  TimingRepeat clear({
+    bool id = false,
+    bool extension_ = false,
+    bool bounds = false,
+    bool count = false,
+    bool countMax = false,
+    bool duration = false,
+    bool durationMax = false,
+    bool durationUnit = false,
+    bool frequency = false,
+    bool frequencyMax = false,
+    bool period = false,
+    bool periodMax = false,
+    bool periodUnit = false,
+    bool dayOfWeek = false,
+    bool timeOfDay = false,
+    bool when = false,
+    bool offset = false,
+  }) {
+    return TimingRepeat(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      boundsX: bounds ? null : boundsX,
+      count: count ? null : this.count,
+      countMax: countMax ? null : this.countMax,
+      duration: duration ? null : this.duration,
+      durationMax: durationMax ? null : this.durationMax,
+      durationUnit: durationUnit ? null : this.durationUnit,
+      frequency: frequency ? null : this.frequency,
+      frequencyMax: frequencyMax ? null : this.frequencyMax,
+      period: period ? null : this.period,
+      periodMax: periodMax ? null : this.periodMax,
+      periodUnit: periodUnit ? null : this.periodUnit,
+      dayOfWeek: dayOfWeek ? null : this.dayOfWeek,
+      timeOfDay: timeOfDay ? null : this.timeOfDay,
+      when: when ? null : this.when,
+      offset: offset ? null : this.offset,
+    );
   }
 
   @override

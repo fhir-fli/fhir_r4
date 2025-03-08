@@ -1081,6 +1081,314 @@ class MedicationDispense extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'partOf':
+        return ['Reference'];
+      case 'status':
+        return ['FhirCode'];
+      case 'statusReason':
+      case 'statusReasonX':
+        return ['CodeableConcept', 'Reference'];
+      case 'statusReasonCodeableConcept':
+        return ['CodeableConcept'];
+      case 'statusReasonReference':
+        return ['Reference'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'medication':
+      case 'medicationX':
+        return ['CodeableConcept', 'Reference'];
+      case 'medicationCodeableConcept':
+        return ['CodeableConcept'];
+      case 'medicationReference':
+        return ['Reference'];
+      case 'subject':
+        return ['Reference'];
+      case 'context':
+        return ['Reference'];
+      case 'supportingInformation':
+        return ['Reference'];
+      case 'performer':
+        return ['MedicationDispensePerformer'];
+      case 'location':
+        return ['Reference'];
+      case 'authorizingPrescription':
+        return ['Reference'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'quantity':
+        return ['Quantity'];
+      case 'daysSupply':
+        return ['Quantity'];
+      case 'whenPrepared':
+        return ['FhirDateTime'];
+      case 'whenHandedOver':
+        return ['FhirDateTime'];
+      case 'destination':
+        return ['Reference'];
+      case 'receiver':
+        return ['Reference'];
+      case 'note':
+        return ['Annotation'];
+      case 'dosageInstruction':
+        return ['Dosage'];
+      case 'substitution':
+        return ['MedicationDispenseSubstitution'];
+      case 'detectedIssue':
+        return ['Reference'];
+      case 'eventHistory':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationDispense]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationDispense createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'partOf':
+        {
+          return copyWith(partOf: <Reference>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: MedicationDispenseStatusCodes.empty());
+        }
+      case 'statusReason':
+      case 'statusReasonX':
+      case 'statusReasonCodeableConcept':
+        {
+          return copyWith(statusReasonX: CodeableConcept.empty());
+        }
+      case 'statusReasonReference':
+        {
+          return copyWith(statusReasonX: Reference.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: CodeableConcept.empty());
+        }
+      case 'medication':
+      case 'medicationX':
+      case 'medicationCodeableConcept':
+        {
+          return copyWith(medicationX: CodeableConcept.empty());
+        }
+      case 'medicationReference':
+        {
+          return copyWith(medicationX: Reference.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'context':
+        {
+          return copyWith(context: Reference.empty());
+        }
+      case 'supportingInformation':
+        {
+          return copyWith(supportingInformation: <Reference>[]);
+        }
+      case 'performer':
+        {
+          return copyWith(performer: <MedicationDispensePerformer>[]);
+        }
+      case 'location':
+        {
+          return copyWith(location: Reference.empty());
+        }
+      case 'authorizingPrescription':
+        {
+          return copyWith(authorizingPrescription: <Reference>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'daysSupply':
+        {
+          return copyWith(daysSupply: Quantity.empty());
+        }
+      case 'whenPrepared':
+        {
+          return copyWith(whenPrepared: FhirDateTime.empty());
+        }
+      case 'whenHandedOver':
+        {
+          return copyWith(whenHandedOver: FhirDateTime.empty());
+        }
+      case 'destination':
+        {
+          return copyWith(destination: Reference.empty());
+        }
+      case 'receiver':
+        {
+          return copyWith(receiver: <Reference>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'dosageInstruction':
+        {
+          return copyWith(dosageInstruction: <Dosage>[]);
+        }
+      case 'substitution':
+        {
+          return copyWith(substitution: MedicationDispenseSubstitution.empty());
+        }
+      case 'detectedIssue':
+        {
+          return copyWith(detectedIssue: <Reference>[]);
+        }
+      case 'eventHistory':
+        {
+          return copyWith(eventHistory: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicationDispense clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool partOf = false,
+    bool statusReason = false,
+    bool category = false,
+    bool subject = false,
+    bool context = false,
+    bool supportingInformation = false,
+    bool performer = false,
+    bool location = false,
+    bool authorizingPrescription = false,
+    bool type = false,
+    bool quantity = false,
+    bool daysSupply = false,
+    bool whenPrepared = false,
+    bool whenHandedOver = false,
+    bool destination = false,
+    bool receiver = false,
+    bool note = false,
+    bool dosageInstruction = false,
+    bool substitution = false,
+    bool detectedIssue = false,
+    bool eventHistory = false,
+  }) {
+    return MedicationDispense(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      partOf: partOf ? null : this.partOf,
+      status: status,
+      statusReasonX: statusReason ? null : statusReasonX,
+      category: category ? null : this.category,
+      medicationX: medicationX,
+      subject: subject ? null : this.subject,
+      context: context ? null : this.context,
+      supportingInformation:
+          supportingInformation ? null : this.supportingInformation,
+      performer: performer ? null : this.performer,
+      location: location ? null : this.location,
+      authorizingPrescription:
+          authorizingPrescription ? null : this.authorizingPrescription,
+      type: type ? null : this.type,
+      quantity: quantity ? null : this.quantity,
+      daysSupply: daysSupply ? null : this.daysSupply,
+      whenPrepared: whenPrepared ? null : this.whenPrepared,
+      whenHandedOver: whenHandedOver ? null : this.whenHandedOver,
+      destination: destination ? null : this.destination,
+      receiver: receiver ? null : this.receiver,
+      note: note ? null : this.note,
+      dosageInstruction: dosageInstruction ? null : this.dosageInstruction,
+      substitution: substitution ? null : this.substitution,
+      detectedIssue: detectedIssue ? null : this.detectedIssue,
+      eventHistory: eventHistory ? null : this.eventHistory,
+    );
+  }
+
   @override
   MedicationDispense clone() => throw UnimplementedError();
   @override
@@ -1720,6 +2028,75 @@ class MedicationDispensePerformer extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'function':
+        return ['CodeableConcept'];
+      case 'actor':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationDispensePerformer]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationDispensePerformer createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'function':
+        {
+          return copyWith(function_: CodeableConcept.empty());
+        }
+      case 'actor':
+        {
+          return copyWith(actor: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicationDispensePerformer clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool function_ = false,
+  }) {
+    return MedicationDispensePerformer(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      function_: function_ ? null : this.function_,
+      actor: actor,
+    );
+  }
+
   @override
   MedicationDispensePerformer clone() => throw UnimplementedError();
   @override
@@ -2137,6 +2514,91 @@ class MedicationDispenseSubstitution extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'wasSubstituted':
+        return ['FhirBoolean'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'reason':
+        return ['CodeableConcept'];
+      case 'responsibleParty':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [MedicationDispenseSubstitution]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  MedicationDispenseSubstitution createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'wasSubstituted':
+        {
+          return copyWith(wasSubstituted: FhirBoolean.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'reason':
+        {
+          return copyWith(reason: <CodeableConcept>[]);
+        }
+      case 'responsibleParty':
+        {
+          return copyWith(responsibleParty: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  MedicationDispenseSubstitution clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool reason = false,
+    bool responsibleParty = false,
+  }) {
+    return MedicationDispenseSubstitution(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      wasSubstituted: wasSubstituted,
+      type: type ? null : this.type,
+      reason: reason ? null : this.reason,
+      responsibleParty: responsibleParty ? null : this.responsibleParty,
+    );
   }
 
   @override

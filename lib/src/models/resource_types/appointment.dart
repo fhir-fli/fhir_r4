@@ -968,6 +968,275 @@ class Appointment extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'cancelationReason':
+        return ['CodeableConcept'];
+      case 'serviceCategory':
+        return ['CodeableConcept'];
+      case 'serviceType':
+        return ['CodeableConcept'];
+      case 'specialty':
+        return ['CodeableConcept'];
+      case 'appointmentType':
+        return ['CodeableConcept'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'priority':
+        return ['FhirUnsignedInt'];
+      case 'description':
+        return ['FhirString'];
+      case 'supportingInformation':
+        return ['Reference'];
+      case 'start':
+        return ['FhirInstant'];
+      case 'end':
+        return ['FhirInstant'];
+      case 'minutesDuration':
+        return ['FhirPositiveInt'];
+      case 'slot':
+        return ['Reference'];
+      case 'created':
+        return ['FhirDateTime'];
+      case 'comment':
+        return ['FhirString'];
+      case 'patientInstruction':
+        return ['FhirString'];
+      case 'basedOn':
+        return ['Reference'];
+      case 'participant':
+        return ['AppointmentParticipant'];
+      case 'requestedPeriod':
+        return ['Period'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Appointment]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Appointment createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: AppointmentStatus.empty());
+        }
+      case 'cancelationReason':
+        {
+          return copyWith(cancelationReason: CodeableConcept.empty());
+        }
+      case 'serviceCategory':
+        {
+          return copyWith(serviceCategory: <CodeableConcept>[]);
+        }
+      case 'serviceType':
+        {
+          return copyWith(serviceType: <CodeableConcept>[]);
+        }
+      case 'specialty':
+        {
+          return copyWith(specialty: <CodeableConcept>[]);
+        }
+      case 'appointmentType':
+        {
+          return copyWith(appointmentType: CodeableConcept.empty());
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: <CodeableConcept>[]);
+        }
+      case 'reasonReference':
+        {
+          return copyWith(reasonReference: <Reference>[]);
+        }
+      case 'priority':
+        {
+          return copyWith(priority: FhirUnsignedInt.empty());
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'supportingInformation':
+        {
+          return copyWith(supportingInformation: <Reference>[]);
+        }
+      case 'start':
+        {
+          return copyWith(start: FhirInstant.empty());
+        }
+      case 'end':
+        {
+          return copyWith(end: FhirInstant.empty());
+        }
+      case 'minutesDuration':
+        {
+          return copyWith(minutesDuration: FhirPositiveInt.empty());
+        }
+      case 'slot':
+        {
+          return copyWith(slot: <Reference>[]);
+        }
+      case 'created':
+        {
+          return copyWith(created: FhirDateTime.empty());
+        }
+      case 'comment':
+        {
+          return copyWith(comment: FhirString.empty());
+        }
+      case 'patientInstruction':
+        {
+          return copyWith(patientInstruction: FhirString.empty());
+        }
+      case 'basedOn':
+        {
+          return copyWith(basedOn: <Reference>[]);
+        }
+      case 'participant':
+        {
+          return copyWith(participant: <AppointmentParticipant>[]);
+        }
+      case 'requestedPeriod':
+        {
+          return copyWith(requestedPeriod: <Period>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Appointment clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool cancelationReason = false,
+    bool serviceCategory = false,
+    bool serviceType = false,
+    bool specialty = false,
+    bool appointmentType = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool priority = false,
+    bool description = false,
+    bool supportingInformation = false,
+    bool start = false,
+    bool end = false,
+    bool minutesDuration = false,
+    bool slot = false,
+    bool created = false,
+    bool comment = false,
+    bool patientInstruction = false,
+    bool basedOn = false,
+    bool requestedPeriod = false,
+  }) {
+    return Appointment(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      cancelationReason: cancelationReason ? null : this.cancelationReason,
+      serviceCategory: serviceCategory ? null : this.serviceCategory,
+      serviceType: serviceType ? null : this.serviceType,
+      specialty: specialty ? null : this.specialty,
+      appointmentType: appointmentType ? null : this.appointmentType,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      priority: priority ? null : this.priority,
+      description: description ? null : this.description,
+      supportingInformation:
+          supportingInformation ? null : this.supportingInformation,
+      start: start ? null : this.start,
+      end: end ? null : this.end,
+      minutesDuration: minutesDuration ? null : this.minutesDuration,
+      slot: slot ? null : this.slot,
+      created: created ? null : this.created,
+      comment: comment ? null : this.comment,
+      patientInstruction: patientInstruction ? null : this.patientInstruction,
+      basedOn: basedOn ? null : this.basedOn,
+      participant: participant,
+      requestedPeriod: requestedPeriod ? null : this.requestedPeriod,
+    );
+  }
+
   @override
   Appointment clone() => throw UnimplementedError();
   @override
@@ -1676,6 +1945,99 @@ class AppointmentParticipant extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'actor':
+        return ['Reference'];
+      case 'required':
+        return ['FhirCode'];
+      case 'status':
+        return ['FhirCode'];
+      case 'period':
+        return ['Period'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [AppointmentParticipant]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AppointmentParticipant createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: <CodeableConcept>[]);
+        }
+      case 'actor':
+        {
+          return copyWith(actor: Reference.empty());
+        }
+      case 'required':
+        {
+          return copyWith(required_: ParticipantRequired.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: ParticipationStatus.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  AppointmentParticipant clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool actor = false,
+    bool required_ = false,
+    bool period = false,
+  }) {
+    return AppointmentParticipant(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      actor: actor ? null : this.actor,
+      required_: required_ ? null : this.required_,
+      status: status,
+      period: period ? null : this.period,
+    );
   }
 
   @override

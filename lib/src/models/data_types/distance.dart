@@ -313,6 +313,92 @@ class Distance extends Quantity
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'value':
+        return ['FhirDecimal'];
+      case 'comparator':
+        return ['FhirCode'];
+      case 'unit':
+        return ['FhirString'];
+      case 'system':
+        return ['FhirUri'];
+      case 'code':
+        return ['FhirCode'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Distance]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Distance createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirDecimal.empty());
+        }
+      case 'comparator':
+        {
+          return copyWith(comparator: QuantityComparator.empty());
+        }
+      case 'unit':
+        {
+          return copyWith(unit: FhirString.empty());
+        }
+      case 'system':
+        {
+          return copyWith(system: FhirUri.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: FhirCode.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Distance clear({
+    bool id = false,
+    bool extension_ = false,
+    bool value = false,
+    bool comparator = false,
+    bool unit = false,
+    bool system = false,
+    bool code = false,
+  }) {
+    return Distance(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      value: value ? null : this.value,
+      comparator: comparator ? null : this.comparator,
+      unit: unit ? null : this.unit,
+      system: system ? null : this.system,
+      code: code ? null : this.code,
+    );
+  }
+
   @override
   Distance clone() => throw UnimplementedError();
   @override

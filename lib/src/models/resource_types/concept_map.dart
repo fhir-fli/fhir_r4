@@ -848,6 +848,265 @@ class ConceptMap extends CanonicalResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'status':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      case 'source':
+      case 'sourceX':
+        return ['FhirUri', 'FhirCanonical'];
+      case 'sourceUri':
+        return ['FhirUri'];
+      case 'sourceCanonical':
+        return ['FhirCanonical'];
+      case 'target':
+      case 'targetX':
+        return ['FhirUri', 'FhirCanonical'];
+      case 'targetUri':
+        return ['FhirUri'];
+      case 'targetCanonical':
+        return ['FhirCanonical'];
+      case 'group':
+        return ['ConceptMapGroup'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ConceptMap]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ConceptMap createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: Identifier.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      case 'source':
+      case 'sourceX':
+      case 'sourceUri':
+        {
+          return copyWith(sourceX: FhirUri.empty());
+        }
+      case 'sourceCanonical':
+        {
+          return copyWith(sourceX: FhirCanonical.empty());
+        }
+      case 'target':
+      case 'targetX':
+      case 'targetUri':
+        {
+          return copyWith(targetX: FhirUri.empty());
+        }
+      case 'targetCanonical':
+        {
+          return copyWith(targetX: FhirCanonical.empty());
+        }
+      case 'group':
+        {
+          return copyWith(group: <ConceptMapGroup>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ConceptMap clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool identifier = false,
+    bool version = false,
+    bool name = false,
+    bool title = false,
+    bool experimental = false,
+    bool date = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool purpose = false,
+    bool copyright = false,
+    bool source = false,
+    bool target = false,
+    bool group = false,
+  }) {
+    return ConceptMap(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url ? null : this.url,
+      identifier: identifier ? null : this.identifier,
+      version: version ? null : this.version,
+      name: name ? null : this.name,
+      title: title ? null : this.title,
+      status: status,
+      experimental: experimental ? null : this.experimental,
+      date: date ? null : this.date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      purpose: purpose ? null : this.purpose,
+      copyright: copyright ? null : this.copyright,
+      sourceX: source ? null : sourceX,
+      targetX: target ? null : targetX,
+      group: group ? null : this.group,
+    );
+  }
+
   @override
   ConceptMap clone() => throw UnimplementedError();
   @override
@@ -1506,6 +1765,107 @@ class ConceptMapGroup extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'source':
+        return ['FhirUri'];
+      case 'sourceVersion':
+        return ['FhirString'];
+      case 'target':
+        return ['FhirUri'];
+      case 'targetVersion':
+        return ['FhirString'];
+      case 'element':
+        return ['ConceptMapElement'];
+      case 'unmapped':
+        return ['ConceptMapUnmapped'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ConceptMapGroup]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ConceptMapGroup createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'source':
+        {
+          return copyWith(source: FhirUri.empty());
+        }
+      case 'sourceVersion':
+        {
+          return copyWith(sourceVersion: FhirString.empty());
+        }
+      case 'target':
+        {
+          return copyWith(target: FhirUri.empty());
+        }
+      case 'targetVersion':
+        {
+          return copyWith(targetVersion: FhirString.empty());
+        }
+      case 'element':
+        {
+          return copyWith(element: <ConceptMapElement>[]);
+        }
+      case 'unmapped':
+        {
+          return copyWith(unmapped: ConceptMapUnmapped.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ConceptMapGroup clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool source = false,
+    bool sourceVersion = false,
+    bool target = false,
+    bool targetVersion = false,
+    bool unmapped = false,
+  }) {
+    return ConceptMapGroup(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      source: source ? null : this.source,
+      sourceVersion: sourceVersion ? null : this.sourceVersion,
+      target: target ? null : this.target,
+      targetVersion: targetVersion ? null : this.targetVersion,
+      element: element,
+      unmapped: unmapped ? null : this.unmapped,
+    );
+  }
+
   @override
   ConceptMapGroup clone() => throw UnimplementedError();
   @override
@@ -1926,6 +2286,84 @@ class ConceptMapElement extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['FhirCode'];
+      case 'display':
+        return ['FhirString'];
+      case 'target':
+        return ['ConceptMapTarget'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ConceptMapElement]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ConceptMapElement createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: FhirCode.empty());
+        }
+      case 'display':
+        {
+          return copyWith(display: FhirString.empty());
+        }
+      case 'target':
+        {
+          return copyWith(target: <ConceptMapTarget>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ConceptMapElement clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool display = false,
+    bool target = false,
+  }) {
+    return ConceptMapElement(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      display: display ? null : this.display,
+      target: target ? null : this.target,
+    );
   }
 
   @override
@@ -2413,6 +2851,107 @@ class ConceptMapTarget extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['FhirCode'];
+      case 'display':
+        return ['FhirString'];
+      case 'equivalence':
+        return ['FhirCode'];
+      case 'comment':
+        return ['FhirString'];
+      case 'dependsOn':
+        return ['ConceptMapDependsOn'];
+      case 'product':
+        return ['ConceptMapDependsOn'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ConceptMapTarget]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ConceptMapTarget createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: FhirCode.empty());
+        }
+      case 'display':
+        {
+          return copyWith(display: FhirString.empty());
+        }
+      case 'equivalence':
+        {
+          return copyWith(equivalence: ConceptMapEquivalence.empty());
+        }
+      case 'comment':
+        {
+          return copyWith(comment: FhirString.empty());
+        }
+      case 'dependsOn':
+        {
+          return copyWith(dependsOn: <ConceptMapDependsOn>[]);
+        }
+      case 'product':
+        {
+          return copyWith(product: <ConceptMapDependsOn>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ConceptMapTarget clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool display = false,
+    bool comment = false,
+    bool dependsOn = false,
+    bool product = false,
+  }) {
+    return ConceptMapTarget(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      display: display ? null : this.display,
+      equivalence: equivalence,
+      comment: comment ? null : this.comment,
+      dependsOn: dependsOn ? null : this.dependsOn,
+      product: product ? null : this.product,
+    );
+  }
+
   @override
   ConceptMapTarget clone() => throw UnimplementedError();
   @override
@@ -2868,6 +3407,90 @@ class ConceptMapDependsOn extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'property':
+        return ['FhirUri'];
+      case 'system':
+        return ['FhirCanonical'];
+      case 'value':
+        return ['FhirString'];
+      case 'display':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ConceptMapDependsOn]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ConceptMapDependsOn createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'property':
+        {
+          return copyWith(property: FhirUri.empty());
+        }
+      case 'system':
+        {
+          return copyWith(system: FhirCanonical.empty());
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirString.empty());
+        }
+      case 'display':
+        {
+          return copyWith(display: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ConceptMapDependsOn clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool system = false,
+    bool display = false,
+  }) {
+    return ConceptMapDependsOn(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      property: property,
+      system: system ? null : this.system,
+      value: value,
+      display: display ? null : this.display,
+    );
+  }
+
   @override
   ConceptMapDependsOn clone() => throw UnimplementedError();
   @override
@@ -3295,6 +3918,91 @@ class ConceptMapUnmapped extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'mode':
+        return ['FhirCode'];
+      case 'code':
+        return ['FhirCode'];
+      case 'display':
+        return ['FhirString'];
+      case 'url':
+        return ['FhirCanonical'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ConceptMapUnmapped]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ConceptMapUnmapped createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'mode':
+        {
+          return copyWith(mode: ConceptMapGroupUnmappedMode.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: FhirCode.empty());
+        }
+      case 'display':
+        {
+          return copyWith(display: FhirString.empty());
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirCanonical.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ConceptMapUnmapped clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool display = false,
+    bool url = false,
+  }) {
+    return ConceptMapUnmapped(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      mode: mode,
+      code: code ? null : this.code,
+      display: display ? null : this.display,
+      url: url ? null : this.url,
+    );
   }
 
   @override

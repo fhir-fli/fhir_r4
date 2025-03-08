@@ -347,4 +347,23 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
     if (other is int) return BigInt.from(other);
     return BigInt.tryParse(other.toString());
   }
+
+  /// Creates an empty property in the object
+  @override
+  FhirInteger64 createProperty(String propertyName) => this;
+
+  /// Clears the specified fields in a [FhirInteger64] object
+  @override
+  FhirInteger64 clear({
+    bool input = false,
+    bool extension_ = false,
+    bool id = false,
+  }) {
+    return FhirInteger64(
+      input ? null : this.input,
+      element: element,
+      extension_: extension_ ? <FhirExtension>[] : this.extension_,
+      id: id ? null : this.id,
+    );
+  }
 }

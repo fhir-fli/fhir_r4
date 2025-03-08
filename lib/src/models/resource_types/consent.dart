@@ -735,6 +735,212 @@ class Consent extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'scope':
+        return ['CodeableConcept'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'patient':
+        return ['Reference'];
+      case 'dateTime':
+        return ['FhirDateTime'];
+      case 'performer':
+        return ['Reference'];
+      case 'organization':
+        return ['Reference'];
+      case 'source':
+      case 'sourceX':
+        return ['Attachment', 'Reference'];
+      case 'sourceAttachment':
+        return ['Attachment'];
+      case 'sourceReference':
+        return ['Reference'];
+      case 'policy':
+        return ['ConsentPolicy'];
+      case 'policyRule':
+        return ['CodeableConcept'];
+      case 'verification':
+        return ['ConsentVerification'];
+      case 'provision':
+        return ['ConsentProvision'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Consent]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Consent createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: ConsentState.empty());
+        }
+      case 'scope':
+        {
+          return copyWith(scope: CodeableConcept.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'patient':
+        {
+          return copyWith(patient: Reference.empty());
+        }
+      case 'dateTime':
+        {
+          return copyWith(dateTime: FhirDateTime.empty());
+        }
+      case 'performer':
+        {
+          return copyWith(performer: <Reference>[]);
+        }
+      case 'organization':
+        {
+          return copyWith(organization: <Reference>[]);
+        }
+      case 'source':
+      case 'sourceX':
+      case 'sourceAttachment':
+        {
+          return copyWith(sourceX: Attachment.empty());
+        }
+      case 'sourceReference':
+        {
+          return copyWith(sourceX: Reference.empty());
+        }
+      case 'policy':
+        {
+          return copyWith(policy: <ConsentPolicy>[]);
+        }
+      case 'policyRule':
+        {
+          return copyWith(policyRule: CodeableConcept.empty());
+        }
+      case 'verification':
+        {
+          return copyWith(verification: <ConsentVerification>[]);
+        }
+      case 'provision':
+        {
+          return copyWith(provision: ConsentProvision.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Consent clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool patient = false,
+    bool dateTime = false,
+    bool performer = false,
+    bool organization = false,
+    bool source = false,
+    bool policy = false,
+    bool policyRule = false,
+    bool verification = false,
+    bool provision = false,
+  }) {
+    return Consent(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      scope: scope,
+      category: category,
+      patient: patient ? null : this.patient,
+      dateTime: dateTime ? null : this.dateTime,
+      performer: performer ? null : this.performer,
+      organization: organization ? null : this.organization,
+      sourceX: source ? null : sourceX,
+      policy: policy ? null : this.policy,
+      policyRule: policyRule ? null : this.policyRule,
+      verification: verification ? null : this.verification,
+      provision: provision ? null : this.provision,
+    );
+  }
+
   @override
   Consent clone() => throw UnimplementedError();
   @override
@@ -1261,6 +1467,76 @@ class ConsentPolicy extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'authority':
+        return ['FhirUri'];
+      case 'uri':
+        return ['FhirUri'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ConsentPolicy]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ConsentPolicy createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'authority':
+        {
+          return copyWith(authority: FhirUri.empty());
+        }
+      case 'uri':
+        {
+          return copyWith(uri: FhirUri.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ConsentPolicy clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool authority = false,
+    bool uri = false,
+  }) {
+    return ConsentPolicy(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      authority: authority ? null : this.authority,
+      uri: uri ? null : this.uri,
+    );
+  }
+
   @override
   ConsentPolicy clone() => throw UnimplementedError();
   @override
@@ -1639,6 +1915,83 @@ class ConsentVerification extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'verified':
+        return ['FhirBoolean'];
+      case 'verifiedWith':
+        return ['Reference'];
+      case 'verificationDate':
+        return ['FhirDateTime'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ConsentVerification]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ConsentVerification createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'verified':
+        {
+          return copyWith(verified: FhirBoolean.empty());
+        }
+      case 'verifiedWith':
+        {
+          return copyWith(verifiedWith: Reference.empty());
+        }
+      case 'verificationDate':
+        {
+          return copyWith(verificationDate: FhirDateTime.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ConsentVerification clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool verifiedWith = false,
+    bool verificationDate = false,
+  }) {
+    return ConsentVerification(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      verified: verified,
+      verifiedWith: verifiedWith ? null : this.verifiedWith,
+      verificationDate: verificationDate ? null : this.verificationDate,
+    );
   }
 
   @override
@@ -2267,6 +2620,148 @@ class ConsentProvision extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirCode'];
+      case 'period':
+        return ['Period'];
+      case 'actor':
+        return ['ConsentActor'];
+      case 'action':
+        return ['CodeableConcept'];
+      case 'securityLabel':
+        return ['Coding'];
+      case 'purpose':
+        return ['Coding'];
+      case 'class':
+        return ['Coding'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'dataPeriod':
+        return ['Period'];
+      case 'data':
+        return ['ConsentData'];
+      case 'provision':
+        return ['ConsentProvision'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ConsentProvision]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ConsentProvision createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: ConsentProvisionType.empty());
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      case 'actor':
+        {
+          return copyWith(actor: <ConsentActor>[]);
+        }
+      case 'action':
+        {
+          return copyWith(action: <CodeableConcept>[]);
+        }
+      case 'securityLabel':
+        {
+          return copyWith(securityLabel: <Coding>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: <Coding>[]);
+        }
+      case 'class':
+        {
+          return copyWith(class_: <Coding>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: <CodeableConcept>[]);
+        }
+      case 'dataPeriod':
+        {
+          return copyWith(dataPeriod: Period.empty());
+        }
+      case 'data':
+        {
+          return copyWith(data: <ConsentData>[]);
+        }
+      case 'provision':
+        {
+          return copyWith(provision: <ConsentProvision>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ConsentProvision clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool type = false,
+    bool period = false,
+    bool actor = false,
+    bool action = false,
+    bool securityLabel = false,
+    bool purpose = false,
+    bool class_ = false,
+    bool code = false,
+    bool dataPeriod = false,
+    bool data = false,
+    bool provision = false,
+  }) {
+    return ConsentProvision(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type ? null : this.type,
+      period: period ? null : this.period,
+      actor: actor ? null : this.actor,
+      action: action ? null : this.action,
+      securityLabel: securityLabel ? null : this.securityLabel,
+      purpose: purpose ? null : this.purpose,
+      class_: class_ ? null : this.class_,
+      code: code ? null : this.code,
+      dataPeriod: dataPeriod ? null : this.dataPeriod,
+      data: data ? null : this.data,
+      provision: provision ? null : this.provision,
+    );
+  }
+
   @override
   ConsentProvision clone() => throw UnimplementedError();
   @override
@@ -2750,6 +3245,74 @@ class ConsentActor extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'role':
+        return ['CodeableConcept'];
+      case 'reference':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ConsentActor]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ConsentActor createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'role':
+        {
+          return copyWith(role: CodeableConcept.empty());
+        }
+      case 'reference':
+        {
+          return copyWith(reference: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ConsentActor clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ConsentActor(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      role: role,
+      reference: reference,
+    );
+  }
+
   @override
   ConsentActor clone() => throw UnimplementedError();
   @override
@@ -3102,6 +3665,74 @@ class ConsentData extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'meaning':
+        return ['FhirCode'];
+      case 'reference':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ConsentData]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ConsentData createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'meaning':
+        {
+          return copyWith(meaning: ConsentDataMeaning.empty());
+        }
+      case 'reference':
+        {
+          return copyWith(reference: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ConsentData clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ConsentData(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      meaning: meaning,
+      reference: reference,
+    );
   }
 
   @override

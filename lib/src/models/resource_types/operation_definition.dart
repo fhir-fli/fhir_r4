@@ -976,6 +976,301 @@ class OperationDefinition extends CanonicalResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'url':
+        return ['FhirUri'];
+      case 'version':
+        return ['FhirString'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'status':
+        return ['FhirCode'];
+      case 'kind':
+        return ['FhirCode'];
+      case 'experimental':
+        return ['FhirBoolean'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'publisher':
+        return ['FhirString'];
+      case 'contact':
+        return ['ContactDetail'];
+      case 'description':
+        return ['FhirMarkdown'];
+      case 'useContext':
+        return ['UsageContext'];
+      case 'jurisdiction':
+        return ['CodeableConcept'];
+      case 'purpose':
+        return ['FhirMarkdown'];
+      case 'affectsState':
+        return ['FhirBoolean'];
+      case 'code':
+        return ['FhirCode'];
+      case 'comment':
+        return ['FhirMarkdown'];
+      case 'base':
+        return ['FhirCanonical'];
+      case 'resource':
+        return ['FhirCode'];
+      case 'system':
+        return ['FhirBoolean'];
+      case 'type':
+        return ['FhirBoolean'];
+      case 'instance':
+        return ['FhirBoolean'];
+      case 'inputProfile':
+        return ['FhirCanonical'];
+      case 'outputProfile':
+        return ['FhirCanonical'];
+      case 'parameter':
+        return ['OperationDefinitionParameter'];
+      case 'overload':
+        return ['OperationDefinitionOverload'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [OperationDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  OperationDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: PublicationStatus.empty());
+        }
+      case 'kind':
+        {
+          return copyWith(kind: OperationKind.empty());
+        }
+      case 'experimental':
+        {
+          return copyWith(experimental: FhirBoolean.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: FhirString.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactDetail>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirMarkdown.empty());
+        }
+      case 'useContext':
+        {
+          return copyWith(useContext: <UsageContext>[]);
+        }
+      case 'jurisdiction':
+        {
+          return copyWith(jurisdiction: <CodeableConcept>[]);
+        }
+      case 'purpose':
+        {
+          return copyWith(purpose: FhirMarkdown.empty());
+        }
+      case 'affectsState':
+        {
+          return copyWith(affectsState: FhirBoolean.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: FhirCode.empty());
+        }
+      case 'comment':
+        {
+          return copyWith(comment: FhirMarkdown.empty());
+        }
+      case 'base':
+        {
+          return copyWith(base: FhirCanonical.empty());
+        }
+      case 'resource':
+        {
+          return copyWith(resource: <FhirCode>[]);
+        }
+      case 'system':
+        {
+          return copyWith(system: FhirBoolean.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: FhirBoolean.empty());
+        }
+      case 'instance':
+        {
+          return copyWith(instance: FhirBoolean.empty());
+        }
+      case 'inputProfile':
+        {
+          return copyWith(inputProfile: FhirCanonical.empty());
+        }
+      case 'outputProfile':
+        {
+          return copyWith(outputProfile: FhirCanonical.empty());
+        }
+      case 'parameter':
+        {
+          return copyWith(parameter: <OperationDefinitionParameter>[]);
+        }
+      case 'overload':
+        {
+          return copyWith(overload: <OperationDefinitionOverload>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  OperationDefinition clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool url = false,
+    bool version = false,
+    bool title = false,
+    bool experimental = false,
+    bool date = false,
+    bool publisher = false,
+    bool contact = false,
+    bool description = false,
+    bool useContext = false,
+    bool jurisdiction = false,
+    bool purpose = false,
+    bool affectsState = false,
+    bool comment = false,
+    bool base = false,
+    bool resource = false,
+    bool inputProfile = false,
+    bool outputProfile = false,
+    bool parameter = false,
+    bool overload = false,
+  }) {
+    return OperationDefinition(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      url: url ? null : this.url,
+      version: version ? null : this.version,
+      name: name,
+      title: title ? null : this.title,
+      status: status,
+      kind: kind,
+      experimental: experimental ? null : this.experimental,
+      date: date ? null : this.date,
+      publisher: publisher ? null : this.publisher,
+      contact: contact ? null : this.contact,
+      description: description ? null : this.description,
+      useContext: useContext ? null : this.useContext,
+      jurisdiction: jurisdiction ? null : this.jurisdiction,
+      purpose: purpose ? null : this.purpose,
+      affectsState: affectsState ? null : this.affectsState,
+      code: code,
+      comment: comment ? null : this.comment,
+      base: base ? null : this.base,
+      resource: resource ? null : this.resource,
+      system: system,
+      type: type,
+      instance: instance,
+      inputProfile: inputProfile ? null : this.inputProfile,
+      outputProfile: outputProfile ? null : this.outputProfile,
+      parameter: parameter ? null : this.parameter,
+      overload: overload ? null : this.overload,
+    );
+  }
+
   @override
   OperationDefinition clone() => throw UnimplementedError();
   @override
@@ -1843,6 +2138,146 @@ class OperationDefinitionParameter extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirCode'];
+      case 'use':
+        return ['FhirCode'];
+      case 'min':
+        return ['FhirInteger'];
+      case 'max':
+        return ['FhirString'];
+      case 'documentation':
+        return ['FhirString'];
+      case 'type':
+        return ['FhirCode'];
+      case 'targetProfile':
+        return ['FhirCanonical'];
+      case 'searchType':
+        return ['FhirCode'];
+      case 'binding':
+        return ['OperationDefinitionBinding'];
+      case 'referencedFrom':
+        return ['OperationDefinitionReferencedFrom'];
+      case 'part':
+        return ['OperationDefinitionParameter'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [OperationDefinitionParameter]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  OperationDefinitionParameter createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirCode.empty());
+        }
+      case 'use':
+        {
+          return copyWith(use: OperationParameterUse.empty());
+        }
+      case 'min':
+        {
+          return copyWith(min: FhirInteger.empty());
+        }
+      case 'max':
+        {
+          return copyWith(max: FhirString.empty());
+        }
+      case 'documentation':
+        {
+          return copyWith(documentation: FhirString.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: FHIRAllTypes.empty());
+        }
+      case 'targetProfile':
+        {
+          return copyWith(targetProfile: <FhirCanonical>[]);
+        }
+      case 'searchType':
+        {
+          return copyWith(searchType: SearchParamType.empty());
+        }
+      case 'binding':
+        {
+          return copyWith(binding: OperationDefinitionBinding.empty());
+        }
+      case 'referencedFrom':
+        {
+          return copyWith(
+            referencedFrom: <OperationDefinitionReferencedFrom>[],
+          );
+        }
+      case 'part':
+        {
+          return copyWith(part_: <OperationDefinitionParameter>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  OperationDefinitionParameter clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool documentation = false,
+    bool type = false,
+    bool targetProfile = false,
+    bool searchType = false,
+    bool binding = false,
+    bool referencedFrom = false,
+    bool part_ = false,
+  }) {
+    return OperationDefinitionParameter(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      name: name,
+      use: use,
+      min: min,
+      max: max,
+      documentation: documentation ? null : this.documentation,
+      type: type ? null : this.type,
+      targetProfile: targetProfile ? null : this.targetProfile,
+      searchType: searchType ? null : this.searchType,
+      binding: binding ? null : this.binding,
+      referencedFrom: referencedFrom ? null : this.referencedFrom,
+      part_: part_ ? null : this.part_,
+    );
+  }
+
   @override
   OperationDefinitionParameter clone() => throw UnimplementedError();
   @override
@@ -2291,6 +2726,74 @@ class OperationDefinitionBinding extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'strength':
+        return ['FhirCode'];
+      case 'valueSet':
+        return ['FhirCanonical'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [OperationDefinitionBinding]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  OperationDefinitionBinding createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'strength':
+        {
+          return copyWith(strength: BindingStrength.empty());
+        }
+      case 'valueSet':
+        {
+          return copyWith(valueSet: FhirCanonical.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  OperationDefinitionBinding clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return OperationDefinitionBinding(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      strength: strength,
+      valueSet: valueSet,
+    );
+  }
+
   @override
   OperationDefinitionBinding clone() => throw UnimplementedError();
   @override
@@ -2648,6 +3151,75 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'source':
+        return ['FhirString'];
+      case 'sourceId':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [OperationDefinitionReferencedFrom]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  OperationDefinitionReferencedFrom createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'source':
+        {
+          return copyWith(source: FhirString.empty());
+        }
+      case 'sourceId':
+        {
+          return copyWith(sourceId: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  OperationDefinitionReferencedFrom clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool sourceId = false,
+  }) {
+    return OperationDefinitionReferencedFrom(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      source: source,
+      sourceId: sourceId ? null : this.sourceId,
+    );
+  }
+
   @override
   OperationDefinitionReferencedFrom clone() => throw UnimplementedError();
   @override
@@ -2751,7 +3323,8 @@ class OperationDefinitionOverload extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory OperationDefinitionOverload.empty() => const OperationDefinitionOverload();
+  factory OperationDefinitionOverload.empty() =>
+      const OperationDefinitionOverload();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OperationDefinitionOverload.fromJson(
@@ -3000,6 +3573,76 @@ class OperationDefinitionOverload extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'parameterName':
+        return ['FhirString'];
+      case 'comment':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [OperationDefinitionOverload]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  OperationDefinitionOverload createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'parameterName':
+        {
+          return copyWith(parameterName: <FhirString>[]);
+        }
+      case 'comment':
+        {
+          return copyWith(comment: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  OperationDefinitionOverload clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool parameterName = false,
+    bool comment = false,
+  }) {
+    return OperationDefinitionOverload(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      parameterName: parameterName ? null : this.parameterName,
+      comment: comment ? null : this.comment,
+    );
   }
 
   @override

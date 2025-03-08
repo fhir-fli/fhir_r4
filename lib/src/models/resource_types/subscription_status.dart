@@ -523,6 +523,158 @@ class SubscriptionStatus extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'status':
+        return ['FhirCode'];
+      case 'type':
+        return ['FhirCode'];
+      case 'eventsSinceSubscriptionStart':
+        return ['FhirString'];
+      case 'notificationEvent':
+        return ['SubscriptionStatusNotificationEvent'];
+      case 'subscription':
+        return ['Reference'];
+      case 'topic':
+        return ['FhirCanonical'];
+      case 'error':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [SubscriptionStatus]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubscriptionStatus createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: SubscriptionStatusCodes.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: SubscriptionNotificationType.empty());
+        }
+      case 'eventsSinceSubscriptionStart':
+        {
+          return copyWith(eventsSinceSubscriptionStart: FhirString.empty());
+        }
+      case 'notificationEvent':
+        {
+          return copyWith(
+            notificationEvent: <SubscriptionStatusNotificationEvent>[],
+          );
+        }
+      case 'subscription':
+        {
+          return copyWith(subscription: Reference.empty());
+        }
+      case 'topic':
+        {
+          return copyWith(topic: FhirCanonical.empty());
+        }
+      case 'error':
+        {
+          return copyWith(error: <CodeableConcept>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubscriptionStatus clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool status = false,
+    bool eventsSinceSubscriptionStart = false,
+    bool notificationEvent = false,
+    bool topic = false,
+    bool error = false,
+  }) {
+    return SubscriptionStatus(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      status: status ? null : this.status,
+      type: type,
+      eventsSinceSubscriptionStart: eventsSinceSubscriptionStart
+          ? null
+          : this.eventsSinceSubscriptionStart,
+      notificationEvent: notificationEvent ? null : this.notificationEvent,
+      subscription: subscription,
+      topic: topic ? null : this.topic,
+      error: error ? null : this.error,
+    );
+  }
+
   @override
   SubscriptionStatus clone() => throw UnimplementedError();
   @override
@@ -673,7 +825,9 @@ class SubscriptionStatus extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-        eventsSinceSubscriptionStart, o.eventsSinceSubscriptionStart,)) {
+      eventsSinceSubscriptionStart,
+      o.eventsSinceSubscriptionStart,
+    )) {
       return false;
     }
     if (!listEquals<SubscriptionStatusNotificationEvent>(
@@ -1029,6 +1183,91 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'eventNumber':
+        return ['FhirString'];
+      case 'timestamp':
+        return ['FhirInstant'];
+      case 'focus':
+        return ['Reference'];
+      case 'additionalContext':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [SubscriptionStatusNotificationEvent]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  SubscriptionStatusNotificationEvent createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'eventNumber':
+        {
+          return copyWith(eventNumber: FhirString.empty());
+        }
+      case 'timestamp':
+        {
+          return copyWith(timestamp: FhirInstant.empty());
+        }
+      case 'focus':
+        {
+          return copyWith(focus: Reference.empty());
+        }
+      case 'additionalContext':
+        {
+          return copyWith(additionalContext: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  SubscriptionStatusNotificationEvent clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool timestamp = false,
+    bool focus = false,
+    bool additionalContext = false,
+  }) {
+    return SubscriptionStatusNotificationEvent(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      eventNumber: eventNumber,
+      timestamp: timestamp ? null : this.timestamp,
+      focus: focus ? null : this.focus,
+      additionalContext: additionalContext ? null : this.additionalContext,
+    );
   }
 
   @override

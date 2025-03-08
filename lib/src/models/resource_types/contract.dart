@@ -1345,6 +1345,387 @@ class Contract extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'url':
+        return ['FhirUri'];
+      case 'version':
+        return ['FhirString'];
+      case 'status':
+        return ['FhirCode'];
+      case 'legalState':
+        return ['CodeableConcept'];
+      case 'instantiatesCanonical':
+        return ['Reference'];
+      case 'instantiatesUri':
+        return ['FhirUri'];
+      case 'contentDerivative':
+        return ['CodeableConcept'];
+      case 'issued':
+        return ['FhirDateTime'];
+      case 'applies':
+        return ['Period'];
+      case 'expirationType':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'authority':
+        return ['Reference'];
+      case 'domain':
+        return ['Reference'];
+      case 'site':
+        return ['Reference'];
+      case 'name':
+        return ['FhirString'];
+      case 'title':
+        return ['FhirString'];
+      case 'subtitle':
+        return ['FhirString'];
+      case 'alias':
+        return ['FhirString'];
+      case 'author':
+        return ['Reference'];
+      case 'scope':
+        return ['CodeableConcept'];
+      case 'topic':
+      case 'topicX':
+        return ['CodeableConcept', 'Reference'];
+      case 'topicCodeableConcept':
+        return ['CodeableConcept'];
+      case 'topicReference':
+        return ['Reference'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'subType':
+        return ['CodeableConcept'];
+      case 'contentDefinition':
+        return ['ContractContentDefinition'];
+      case 'term':
+        return ['ContractTerm'];
+      case 'supportingInfo':
+        return ['Reference'];
+      case 'relevantHistory':
+        return ['Reference'];
+      case 'signer':
+        return ['ContractSigner'];
+      case 'friendly':
+        return ['ContractFriendly'];
+      case 'legal':
+        return ['ContractLegal'];
+      case 'rule':
+        return ['ContractRule'];
+      case 'legallyBinding':
+      case 'legallyBindingX':
+        return ['Attachment', 'Reference'];
+      case 'legallyBindingAttachment':
+        return ['Attachment'];
+      case 'legallyBindingReference':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Contract]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Contract createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUri.empty());
+        }
+      case 'version':
+        {
+          return copyWith(version: FhirString.empty());
+        }
+      case 'status':
+        {
+          return copyWith(status: ContractResourceStatusCodes.empty());
+        }
+      case 'legalState':
+        {
+          return copyWith(legalState: CodeableConcept.empty());
+        }
+      case 'instantiatesCanonical':
+        {
+          return copyWith(instantiatesCanonical: Reference.empty());
+        }
+      case 'instantiatesUri':
+        {
+          return copyWith(instantiatesUri: FhirUri.empty());
+        }
+      case 'contentDerivative':
+        {
+          return copyWith(contentDerivative: CodeableConcept.empty());
+        }
+      case 'issued':
+        {
+          return copyWith(issued: FhirDateTime.empty());
+        }
+      case 'applies':
+        {
+          return copyWith(applies: Period.empty());
+        }
+      case 'expirationType':
+        {
+          return copyWith(expirationType: CodeableConcept.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: <Reference>[]);
+        }
+      case 'authority':
+        {
+          return copyWith(authority: <Reference>[]);
+        }
+      case 'domain':
+        {
+          return copyWith(domain: <Reference>[]);
+        }
+      case 'site':
+        {
+          return copyWith(site: <Reference>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'subtitle':
+        {
+          return copyWith(subtitle: FhirString.empty());
+        }
+      case 'alias':
+        {
+          return copyWith(alias: <FhirString>[]);
+        }
+      case 'author':
+        {
+          return copyWith(author: Reference.empty());
+        }
+      case 'scope':
+        {
+          return copyWith(scope: CodeableConcept.empty());
+        }
+      case 'topic':
+      case 'topicX':
+      case 'topicCodeableConcept':
+        {
+          return copyWith(topicX: CodeableConcept.empty());
+        }
+      case 'topicReference':
+        {
+          return copyWith(topicX: Reference.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'subType':
+        {
+          return copyWith(subType: <CodeableConcept>[]);
+        }
+      case 'contentDefinition':
+        {
+          return copyWith(contentDefinition: ContractContentDefinition.empty());
+        }
+      case 'term':
+        {
+          return copyWith(term: <ContractTerm>[]);
+        }
+      case 'supportingInfo':
+        {
+          return copyWith(supportingInfo: <Reference>[]);
+        }
+      case 'relevantHistory':
+        {
+          return copyWith(relevantHistory: <Reference>[]);
+        }
+      case 'signer':
+        {
+          return copyWith(signer: <ContractSigner>[]);
+        }
+      case 'friendly':
+        {
+          return copyWith(friendly: <ContractFriendly>[]);
+        }
+      case 'legal':
+        {
+          return copyWith(legal: <ContractLegal>[]);
+        }
+      case 'rule':
+        {
+          return copyWith(rule: <ContractRule>[]);
+        }
+      case 'legallyBinding':
+      case 'legallyBindingX':
+      case 'legallyBindingAttachment':
+        {
+          return copyWith(legallyBindingX: Attachment.empty());
+        }
+      case 'legallyBindingReference':
+        {
+          return copyWith(legallyBindingX: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Contract clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool url = false,
+    bool version = false,
+    bool status = false,
+    bool legalState = false,
+    bool instantiatesCanonical = false,
+    bool instantiatesUri = false,
+    bool contentDerivative = false,
+    bool issued = false,
+    bool applies = false,
+    bool expirationType = false,
+    bool subject = false,
+    bool authority = false,
+    bool domain = false,
+    bool site = false,
+    bool name = false,
+    bool title = false,
+    bool subtitle = false,
+    bool alias = false,
+    bool author = false,
+    bool scope = false,
+    bool topic = false,
+    bool type = false,
+    bool subType = false,
+    bool contentDefinition = false,
+    bool term = false,
+    bool supportingInfo = false,
+    bool relevantHistory = false,
+    bool signer = false,
+    bool friendly = false,
+    bool legal = false,
+    bool rule = false,
+    bool legallyBinding = false,
+  }) {
+    return Contract(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      url: url ? null : this.url,
+      version: version ? null : this.version,
+      status: status ? null : this.status,
+      legalState: legalState ? null : this.legalState,
+      instantiatesCanonical:
+          instantiatesCanonical ? null : this.instantiatesCanonical,
+      instantiatesUri: instantiatesUri ? null : this.instantiatesUri,
+      contentDerivative: contentDerivative ? null : this.contentDerivative,
+      issued: issued ? null : this.issued,
+      applies: applies ? null : this.applies,
+      expirationType: expirationType ? null : this.expirationType,
+      subject: subject ? null : this.subject,
+      authority: authority ? null : this.authority,
+      domain: domain ? null : this.domain,
+      site: site ? null : this.site,
+      name: name ? null : this.name,
+      title: title ? null : this.title,
+      subtitle: subtitle ? null : this.subtitle,
+      alias: alias ? null : this.alias,
+      author: author ? null : this.author,
+      scope: scope ? null : this.scope,
+      topicX: topic ? null : topicX,
+      type: type ? null : this.type,
+      subType: subType ? null : this.subType,
+      contentDefinition: contentDefinition ? null : this.contentDefinition,
+      term: term ? null : this.term,
+      supportingInfo: supportingInfo ? null : this.supportingInfo,
+      relevantHistory: relevantHistory ? null : this.relevantHistory,
+      signer: signer ? null : this.signer,
+      friendly: friendly ? null : this.friendly,
+      legal: legal ? null : this.legal,
+      rule: rule ? null : this.rule,
+      legallyBindingX: legallyBinding ? null : legallyBindingX,
+    );
+  }
+
   @override
   Contract clone() => throw UnimplementedError();
   @override
@@ -2194,6 +2575,108 @@ class ContractContentDefinition extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'subType':
+        return ['CodeableConcept'];
+      case 'publisher':
+        return ['Reference'];
+      case 'publicationDate':
+        return ['FhirDateTime'];
+      case 'publicationStatus':
+        return ['FhirCode'];
+      case 'copyright':
+        return ['FhirMarkdown'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ContractContentDefinition]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractContentDefinition createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'subType':
+        {
+          return copyWith(subType: CodeableConcept.empty());
+        }
+      case 'publisher':
+        {
+          return copyWith(publisher: Reference.empty());
+        }
+      case 'publicationDate':
+        {
+          return copyWith(publicationDate: FhirDateTime.empty());
+        }
+      case 'publicationStatus':
+        {
+          return copyWith(
+            publicationStatus: ContractResourcePublicationStatusCodes.empty(),
+          );
+        }
+      case 'copyright':
+        {
+          return copyWith(copyright: FhirMarkdown.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ContractContentDefinition clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool subType = false,
+    bool publisher = false,
+    bool publicationDate = false,
+    bool copyright = false,
+  }) {
+    return ContractContentDefinition(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      subType: subType ? null : this.subType,
+      publisher: publisher ? null : this.publisher,
+      publicationDate: publicationDate ? null : this.publicationDate,
+      publicationStatus: publicationStatus,
+      copyright: copyright ? null : this.copyright,
+    );
+  }
+
   @override
   ContractContentDefinition clone() => throw UnimplementedError();
   @override
@@ -2889,6 +3372,166 @@ class ContractTerm extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'issued':
+        return ['FhirDateTime'];
+      case 'applies':
+        return ['Period'];
+      case 'topic':
+      case 'topicX':
+        return ['CodeableConcept', 'Reference'];
+      case 'topicCodeableConcept':
+        return ['CodeableConcept'];
+      case 'topicReference':
+        return ['Reference'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'subType':
+        return ['CodeableConcept'];
+      case 'text':
+        return ['FhirString'];
+      case 'securityLabel':
+        return ['ContractSecurityLabel'];
+      case 'offer':
+        return ['ContractOffer'];
+      case 'asset':
+        return ['ContractAsset'];
+      case 'action':
+        return ['ContractAction'];
+      case 'group':
+        return ['ContractTerm'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ContractTerm]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractTerm createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: Identifier.empty());
+        }
+      case 'issued':
+        {
+          return copyWith(issued: FhirDateTime.empty());
+        }
+      case 'applies':
+        {
+          return copyWith(applies: Period.empty());
+        }
+      case 'topic':
+      case 'topicX':
+      case 'topicCodeableConcept':
+        {
+          return copyWith(topicX: CodeableConcept.empty());
+        }
+      case 'topicReference':
+        {
+          return copyWith(topicX: Reference.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'subType':
+        {
+          return copyWith(subType: CodeableConcept.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: FhirString.empty());
+        }
+      case 'securityLabel':
+        {
+          return copyWith(securityLabel: <ContractSecurityLabel>[]);
+        }
+      case 'offer':
+        {
+          return copyWith(offer: ContractOffer.empty());
+        }
+      case 'asset':
+        {
+          return copyWith(asset: <ContractAsset>[]);
+        }
+      case 'action':
+        {
+          return copyWith(action: <ContractAction>[]);
+        }
+      case 'group':
+        {
+          return copyWith(group: <ContractTerm>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ContractTerm clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool issued = false,
+    bool applies = false,
+    bool topic = false,
+    bool type = false,
+    bool subType = false,
+    bool text = false,
+    bool securityLabel = false,
+    bool asset = false,
+    bool action = false,
+    bool group = false,
+  }) {
+    return ContractTerm(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      issued: issued ? null : this.issued,
+      applies: applies ? null : this.applies,
+      topicX: topic ? null : topicX,
+      type: type ? null : this.type,
+      subType: subType ? null : this.subType,
+      text: text ? null : this.text,
+      securityLabel: securityLabel ? null : this.securityLabel,
+      offer: offer,
+      asset: asset ? null : this.asset,
+      action: action ? null : this.action,
+      group: group ? null : this.group,
+    );
+  }
+
   @override
   ContractTerm clone() => throw UnimplementedError();
   @override
@@ -3410,6 +4053,91 @@ class ContractSecurityLabel extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'number':
+        return ['FhirUnsignedInt'];
+      case 'classification':
+        return ['Coding'];
+      case 'category':
+        return ['Coding'];
+      case 'control':
+        return ['Coding'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ContractSecurityLabel]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractSecurityLabel createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'number':
+        {
+          return copyWith(number: <FhirUnsignedInt>[]);
+        }
+      case 'classification':
+        {
+          return copyWith(classification: Coding.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <Coding>[]);
+        }
+      case 'control':
+        {
+          return copyWith(control: <Coding>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ContractSecurityLabel clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool number = false,
+    bool category = false,
+    bool control = false,
+  }) {
+    return ContractSecurityLabel(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      number: number ? null : this.number,
+      classification: classification,
+      category: category ? null : this.category,
+      control: control ? null : this.control,
+    );
   }
 
   @override
@@ -4022,6 +4750,141 @@ class ContractOffer extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'party':
+        return ['ContractParty'];
+      case 'topic':
+        return ['Reference'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'decision':
+        return ['CodeableConcept'];
+      case 'decisionMode':
+        return ['CodeableConcept'];
+      case 'answer':
+        return ['ContractAnswer'];
+      case 'text':
+        return ['FhirString'];
+      case 'linkId':
+        return ['FhirString'];
+      case 'securityLabelNumber':
+        return ['FhirUnsignedInt'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ContractOffer]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractOffer createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'party':
+        {
+          return copyWith(party: <ContractParty>[]);
+        }
+      case 'topic':
+        {
+          return copyWith(topic: Reference.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'decision':
+        {
+          return copyWith(decision: CodeableConcept.empty());
+        }
+      case 'decisionMode':
+        {
+          return copyWith(decisionMode: <CodeableConcept>[]);
+        }
+      case 'answer':
+        {
+          return copyWith(answer: <ContractAnswer>[]);
+        }
+      case 'text':
+        {
+          return copyWith(text: FhirString.empty());
+        }
+      case 'linkId':
+        {
+          return copyWith(linkId: <FhirString>[]);
+        }
+      case 'securityLabelNumber':
+        {
+          return copyWith(securityLabelNumber: <FhirUnsignedInt>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ContractOffer clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool party = false,
+    bool topic = false,
+    bool type = false,
+    bool decision = false,
+    bool decisionMode = false,
+    bool answer = false,
+    bool text = false,
+    bool linkId = false,
+    bool securityLabelNumber = false,
+  }) {
+    return ContractOffer(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      party: party ? null : this.party,
+      topic: topic ? null : this.topic,
+      type: type ? null : this.type,
+      decision: decision ? null : this.decision,
+      decisionMode: decisionMode ? null : this.decisionMode,
+      answer: answer ? null : this.answer,
+      text: text ? null : this.text,
+      linkId: linkId ? null : this.linkId,
+      securityLabelNumber:
+          securityLabelNumber ? null : this.securityLabelNumber,
+    );
+  }
+
   @override
   ContractOffer clone() => throw UnimplementedError();
   @override
@@ -4481,6 +5344,74 @@ class ContractParty extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'reference':
+        return ['Reference'];
+      case 'role':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ContractParty]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractParty createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'reference':
+        {
+          return copyWith(reference: <Reference>[]);
+        }
+      case 'role':
+        {
+          return copyWith(role: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ContractParty clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ContractParty(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      reference: reference,
+      role: role,
+    );
   }
 
   @override
@@ -5015,6 +5946,151 @@ class ContractAnswer extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'value':
+      case 'valueX':
+        return [
+          'FhirBoolean',
+          'FhirDecimal',
+          'FhirInteger',
+          'FhirDate',
+          'FhirDateTime',
+          'FhirTime',
+          'FhirString',
+          'FhirUri',
+          'Attachment',
+          'Coding',
+          'Quantity',
+          'Reference',
+        ];
+      case 'valueBoolean':
+        return ['FhirBoolean'];
+      case 'valueDecimal':
+        return ['FhirDecimal'];
+      case 'valueInteger':
+        return ['FhirInteger'];
+      case 'valueDate':
+        return ['FhirDate'];
+      case 'valueDateTime':
+        return ['FhirDateTime'];
+      case 'valueTime':
+        return ['FhirTime'];
+      case 'valueString':
+        return ['FhirString'];
+      case 'valueUri':
+        return ['FhirUri'];
+      case 'valueAttachment':
+        return ['Attachment'];
+      case 'valueCoding':
+        return ['Coding'];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueReference':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ContractAnswer]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractAnswer createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueBoolean':
+        {
+          return copyWith(valueX: FhirBoolean.empty());
+        }
+      case 'valueDecimal':
+        {
+          return copyWith(valueX: FhirDecimal.empty());
+        }
+      case 'valueInteger':
+        {
+          return copyWith(valueX: FhirInteger.empty());
+        }
+      case 'valueDate':
+        {
+          return copyWith(valueX: FhirDate.empty());
+        }
+      case 'valueDateTime':
+        {
+          return copyWith(valueX: FhirDateTime.empty());
+        }
+      case 'valueTime':
+        {
+          return copyWith(valueX: FhirTime.empty());
+        }
+      case 'valueString':
+        {
+          return copyWith(valueX: FhirString.empty());
+        }
+      case 'valueUri':
+        {
+          return copyWith(valueX: FhirUri.empty());
+        }
+      case 'valueAttachment':
+        {
+          return copyWith(valueX: Attachment.empty());
+        }
+      case 'valueCoding':
+        {
+          return copyWith(valueX: Coding.empty());
+        }
+      case 'valueQuantity':
+        {
+          return copyWith(valueX: Quantity.empty());
+        }
+      case 'valueReference':
+        {
+          return copyWith(valueX: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ContractAnswer clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ContractAnswer(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      valueX: valueX,
+    );
   }
 
   @override
@@ -5728,6 +6804,181 @@ class ContractAsset extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'scope':
+        return ['CodeableConcept'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'typeReference':
+        return ['Reference'];
+      case 'subtype':
+        return ['CodeableConcept'];
+      case 'relationship':
+        return ['Coding'];
+      case 'context':
+        return ['ContractContext'];
+      case 'condition':
+        return ['FhirString'];
+      case 'periodType':
+        return ['CodeableConcept'];
+      case 'period':
+        return ['Period'];
+      case 'usePeriod':
+        return ['Period'];
+      case 'text':
+        return ['FhirString'];
+      case 'linkId':
+        return ['FhirString'];
+      case 'answer':
+        return ['ContractAnswer'];
+      case 'securityLabelNumber':
+        return ['FhirUnsignedInt'];
+      case 'valuedItem':
+        return ['ContractValuedItem'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ContractAsset]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractAsset createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'scope':
+        {
+          return copyWith(scope: CodeableConcept.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: <CodeableConcept>[]);
+        }
+      case 'typeReference':
+        {
+          return copyWith(typeReference: <Reference>[]);
+        }
+      case 'subtype':
+        {
+          return copyWith(subtype: <CodeableConcept>[]);
+        }
+      case 'relationship':
+        {
+          return copyWith(relationship: Coding.empty());
+        }
+      case 'context':
+        {
+          return copyWith(context: <ContractContext>[]);
+        }
+      case 'condition':
+        {
+          return copyWith(condition: FhirString.empty());
+        }
+      case 'periodType':
+        {
+          return copyWith(periodType: <CodeableConcept>[]);
+        }
+      case 'period':
+        {
+          return copyWith(period: <Period>[]);
+        }
+      case 'usePeriod':
+        {
+          return copyWith(usePeriod: <Period>[]);
+        }
+      case 'text':
+        {
+          return copyWith(text: FhirString.empty());
+        }
+      case 'linkId':
+        {
+          return copyWith(linkId: <FhirString>[]);
+        }
+      case 'answer':
+        {
+          return copyWith(answer: <ContractAnswer>[]);
+        }
+      case 'securityLabelNumber':
+        {
+          return copyWith(securityLabelNumber: <FhirUnsignedInt>[]);
+        }
+      case 'valuedItem':
+        {
+          return copyWith(valuedItem: <ContractValuedItem>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ContractAsset clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool scope = false,
+    bool type = false,
+    bool typeReference = false,
+    bool subtype = false,
+    bool relationship = false,
+    bool context = false,
+    bool condition = false,
+    bool periodType = false,
+    bool period = false,
+    bool usePeriod = false,
+    bool text = false,
+    bool linkId = false,
+    bool answer = false,
+    bool securityLabelNumber = false,
+    bool valuedItem = false,
+  }) {
+    return ContractAsset(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      scope: scope ? null : this.scope,
+      type: type ? null : this.type,
+      typeReference: typeReference ? null : this.typeReference,
+      subtype: subtype ? null : this.subtype,
+      relationship: relationship ? null : this.relationship,
+      context: context ? null : this.context,
+      condition: condition ? null : this.condition,
+      periodType: periodType ? null : this.periodType,
+      period: period ? null : this.period,
+      usePeriod: usePeriod ? null : this.usePeriod,
+      text: text ? null : this.text,
+      linkId: linkId ? null : this.linkId,
+      answer: answer ? null : this.answer,
+      securityLabelNumber:
+          securityLabelNumber ? null : this.securityLabelNumber,
+      valuedItem: valuedItem ? null : this.valuedItem,
+    );
+  }
+
   @override
   ContractAsset clone() => throw UnimplementedError();
   @override
@@ -6291,6 +7542,84 @@ class ContractContext extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'reference':
+        return ['Reference'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'text':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ContractContext]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractContext createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'reference':
+        {
+          return copyWith(reference: Reference.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: <CodeableConcept>[]);
+        }
+      case 'text':
+        {
+          return copyWith(text: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ContractContext clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool reference = false,
+    bool code = false,
+    bool text = false,
+  }) {
+    return ContractContext(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      reference: reference ? null : this.reference,
+      code: code ? null : this.code,
+      text: text ? null : this.text,
+    );
   }
 
   @override
@@ -7011,6 +8340,184 @@ class ContractValuedItem extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'entity':
+      case 'entityX':
+        return ['CodeableConcept', 'Reference'];
+      case 'entityCodeableConcept':
+        return ['CodeableConcept'];
+      case 'entityReference':
+        return ['Reference'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'effectiveTime':
+        return ['FhirDateTime'];
+      case 'quantity':
+        return ['Quantity'];
+      case 'unitPrice':
+        return ['Money'];
+      case 'factor':
+        return ['FhirDecimal'];
+      case 'points':
+        return ['FhirDecimal'];
+      case 'net':
+        return ['Money'];
+      case 'payment':
+        return ['FhirString'];
+      case 'paymentDate':
+        return ['FhirDateTime'];
+      case 'responsible':
+        return ['Reference'];
+      case 'recipient':
+        return ['Reference'];
+      case 'linkId':
+        return ['FhirString'];
+      case 'securityLabelNumber':
+        return ['FhirUnsignedInt'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ContractValuedItem]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractValuedItem createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'entity':
+      case 'entityX':
+      case 'entityCodeableConcept':
+        {
+          return copyWith(entityX: CodeableConcept.empty());
+        }
+      case 'entityReference':
+        {
+          return copyWith(entityX: Reference.empty());
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: Identifier.empty());
+        }
+      case 'effectiveTime':
+        {
+          return copyWith(effectiveTime: FhirDateTime.empty());
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'unitPrice':
+        {
+          return copyWith(unitPrice: Money.empty());
+        }
+      case 'factor':
+        {
+          return copyWith(factor: FhirDecimal.empty());
+        }
+      case 'points':
+        {
+          return copyWith(points: FhirDecimal.empty());
+        }
+      case 'net':
+        {
+          return copyWith(net: Money.empty());
+        }
+      case 'payment':
+        {
+          return copyWith(payment: FhirString.empty());
+        }
+      case 'paymentDate':
+        {
+          return copyWith(paymentDate: FhirDateTime.empty());
+        }
+      case 'responsible':
+        {
+          return copyWith(responsible: Reference.empty());
+        }
+      case 'recipient':
+        {
+          return copyWith(recipient: Reference.empty());
+        }
+      case 'linkId':
+        {
+          return copyWith(linkId: <FhirString>[]);
+        }
+      case 'securityLabelNumber':
+        {
+          return copyWith(securityLabelNumber: <FhirUnsignedInt>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ContractValuedItem clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool entity = false,
+    bool identifier = false,
+    bool effectiveTime = false,
+    bool quantity = false,
+    bool unitPrice = false,
+    bool factor = false,
+    bool points = false,
+    bool net = false,
+    bool payment = false,
+    bool paymentDate = false,
+    bool responsible = false,
+    bool recipient = false,
+    bool linkId = false,
+    bool securityLabelNumber = false,
+  }) {
+    return ContractValuedItem(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      entityX: entity ? null : entityX,
+      identifier: identifier ? null : this.identifier,
+      effectiveTime: effectiveTime ? null : this.effectiveTime,
+      quantity: quantity ? null : this.quantity,
+      unitPrice: unitPrice ? null : this.unitPrice,
+      factor: factor ? null : this.factor,
+      points: points ? null : this.points,
+      net: net ? null : this.net,
+      payment: payment ? null : this.payment,
+      paymentDate: paymentDate ? null : this.paymentDate,
+      responsible: responsible ? null : this.responsible,
+      recipient: recipient ? null : this.recipient,
+      linkId: linkId ? null : this.linkId,
+      securityLabelNumber:
+          securityLabelNumber ? null : this.securityLabelNumber,
+    );
   }
 
   @override
@@ -8045,6 +9552,243 @@ class ContractAction extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'doNotPerform':
+        return ['FhirBoolean'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['ContractSubject'];
+      case 'intent':
+        return ['CodeableConcept'];
+      case 'linkId':
+        return ['FhirString'];
+      case 'status':
+        return ['CodeableConcept'];
+      case 'context':
+        return ['Reference'];
+      case 'contextLinkId':
+        return ['FhirString'];
+      case 'occurrence':
+      case 'occurrenceX':
+        return ['FhirDateTime', 'Period', 'Timing'];
+      case 'occurrenceDateTime':
+        return ['FhirDateTime'];
+      case 'occurrencePeriod':
+        return ['Period'];
+      case 'occurrenceTiming':
+        return ['Timing'];
+      case 'requester':
+        return ['Reference'];
+      case 'requesterLinkId':
+        return ['FhirString'];
+      case 'performerType':
+        return ['CodeableConcept'];
+      case 'performerRole':
+        return ['CodeableConcept'];
+      case 'performer':
+        return ['Reference'];
+      case 'performerLinkId':
+        return ['FhirString'];
+      case 'reasonCode':
+        return ['CodeableConcept'];
+      case 'reasonReference':
+        return ['Reference'];
+      case 'reason':
+        return ['FhirString'];
+      case 'reasonLinkId':
+        return ['FhirString'];
+      case 'note':
+        return ['Annotation'];
+      case 'securityLabelNumber':
+        return ['FhirUnsignedInt'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ContractAction]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractAction createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'doNotPerform':
+        {
+          return copyWith(doNotPerform: FhirBoolean.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: <ContractSubject>[]);
+        }
+      case 'intent':
+        {
+          return copyWith(intent: CodeableConcept.empty());
+        }
+      case 'linkId':
+        {
+          return copyWith(linkId: <FhirString>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: CodeableConcept.empty());
+        }
+      case 'context':
+        {
+          return copyWith(context: Reference.empty());
+        }
+      case 'contextLinkId':
+        {
+          return copyWith(contextLinkId: <FhirString>[]);
+        }
+      case 'occurrence':
+      case 'occurrenceX':
+      case 'occurrenceDateTime':
+        {
+          return copyWith(occurrenceX: FhirDateTime.empty());
+        }
+      case 'occurrencePeriod':
+        {
+          return copyWith(occurrenceX: Period.empty());
+        }
+      case 'occurrenceTiming':
+        {
+          return copyWith(occurrenceX: Timing.empty());
+        }
+      case 'requester':
+        {
+          return copyWith(requester: <Reference>[]);
+        }
+      case 'requesterLinkId':
+        {
+          return copyWith(requesterLinkId: <FhirString>[]);
+        }
+      case 'performerType':
+        {
+          return copyWith(performerType: <CodeableConcept>[]);
+        }
+      case 'performerRole':
+        {
+          return copyWith(performerRole: CodeableConcept.empty());
+        }
+      case 'performer':
+        {
+          return copyWith(performer: Reference.empty());
+        }
+      case 'performerLinkId':
+        {
+          return copyWith(performerLinkId: <FhirString>[]);
+        }
+      case 'reasonCode':
+        {
+          return copyWith(reasonCode: <CodeableConcept>[]);
+        }
+      case 'reasonReference':
+        {
+          return copyWith(reasonReference: <Reference>[]);
+        }
+      case 'reason':
+        {
+          return copyWith(reason: <FhirString>[]);
+        }
+      case 'reasonLinkId':
+        {
+          return copyWith(reasonLinkId: <FhirString>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'securityLabelNumber':
+        {
+          return copyWith(securityLabelNumber: <FhirUnsignedInt>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ContractAction clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool doNotPerform = false,
+    bool subject = false,
+    bool linkId = false,
+    bool context = false,
+    bool contextLinkId = false,
+    bool occurrence = false,
+    bool requester = false,
+    bool requesterLinkId = false,
+    bool performerType = false,
+    bool performerRole = false,
+    bool performer = false,
+    bool performerLinkId = false,
+    bool reasonCode = false,
+    bool reasonReference = false,
+    bool reason = false,
+    bool reasonLinkId = false,
+    bool note = false,
+    bool securityLabelNumber = false,
+  }) {
+    return ContractAction(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      doNotPerform: doNotPerform ? null : this.doNotPerform,
+      type: type,
+      subject: subject ? null : this.subject,
+      intent: intent,
+      linkId: linkId ? null : this.linkId,
+      status: status,
+      context: context ? null : this.context,
+      contextLinkId: contextLinkId ? null : this.contextLinkId,
+      occurrenceX: occurrence ? null : occurrenceX,
+      requester: requester ? null : this.requester,
+      requesterLinkId: requesterLinkId ? null : this.requesterLinkId,
+      performerType: performerType ? null : this.performerType,
+      performerRole: performerRole ? null : this.performerRole,
+      performer: performer ? null : this.performer,
+      performerLinkId: performerLinkId ? null : this.performerLinkId,
+      reasonCode: reasonCode ? null : this.reasonCode,
+      reasonReference: reasonReference ? null : this.reasonReference,
+      reason: reason ? null : this.reason,
+      reasonLinkId: reasonLinkId ? null : this.reasonLinkId,
+      note: note ? null : this.note,
+      securityLabelNumber:
+          securityLabelNumber ? null : this.securityLabelNumber,
+    );
+  }
+
   @override
   ContractAction clone() => throw UnimplementedError();
   @override
@@ -8644,6 +10388,75 @@ class ContractSubject extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'reference':
+        return ['Reference'];
+      case 'role':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ContractSubject]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractSubject createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'reference':
+        {
+          return copyWith(reference: <Reference>[]);
+        }
+      case 'role':
+        {
+          return copyWith(role: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ContractSubject clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool role = false,
+  }) {
+    return ContractSubject(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      reference: reference,
+      role: role ? null : this.role,
+    );
+  }
+
   @override
   ContractSubject clone() => throw UnimplementedError();
   @override
@@ -9033,6 +10846,81 @@ class ContractSigner extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['Coding'];
+      case 'party':
+        return ['Reference'];
+      case 'signature':
+        return ['Signature'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ContractSigner]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractSigner createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: Coding.empty());
+        }
+      case 'party':
+        {
+          return copyWith(party: Reference.empty());
+        }
+      case 'signature':
+        {
+          return copyWith(signature: <Signature>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ContractSigner clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ContractSigner(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      type: type,
+      party: party,
+      signature: signature,
+    );
+  }
+
   @override
   ContractSigner clone() => throw UnimplementedError();
   @override
@@ -9420,6 +11308,78 @@ class ContractFriendly extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'content':
+      case 'contentX':
+        return ['Attachment', 'Reference'];
+      case 'contentAttachment':
+        return ['Attachment'];
+      case 'contentReference':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ContractFriendly]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractFriendly createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'content':
+      case 'contentX':
+      case 'contentAttachment':
+        {
+          return copyWith(contentX: Attachment.empty());
+        }
+      case 'contentReference':
+        {
+          return copyWith(contentX: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ContractFriendly clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ContractFriendly(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      contentX: contentX,
+    );
+  }
+
   @override
   ContractFriendly clone() => throw UnimplementedError();
   @override
@@ -9774,6 +11734,78 @@ class ContractLegal extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'content':
+      case 'contentX':
+        return ['Attachment', 'Reference'];
+      case 'contentAttachment':
+        return ['Attachment'];
+      case 'contentReference':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ContractLegal]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractLegal createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'content':
+      case 'contentX':
+      case 'contentAttachment':
+        {
+          return copyWith(contentX: Attachment.empty());
+        }
+      case 'contentReference':
+        {
+          return copyWith(contentX: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ContractLegal clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ContractLegal(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      contentX: contentX,
+    );
   }
 
   @override
@@ -10132,6 +12164,78 @@ class ContractRule extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'content':
+      case 'contentX':
+        return ['Attachment', 'Reference'];
+      case 'contentAttachment':
+        return ['Attachment'];
+      case 'contentReference':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ContractRule]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContractRule createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'content':
+      case 'contentX':
+      case 'contentAttachment':
+        {
+          return copyWith(contentX: Attachment.empty());
+        }
+      case 'contentReference':
+        {
+          return copyWith(contentX: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ContractRule clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+  }) {
+    return ContractRule(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      contentX: contentX,
+    );
   }
 
   @override

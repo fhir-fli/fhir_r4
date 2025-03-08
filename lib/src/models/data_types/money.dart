@@ -262,6 +262,68 @@ class Money extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'value':
+        return ['FhirDecimal'];
+      case 'currency':
+        return ['FhirCode'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Money]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Money createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'value':
+        {
+          return copyWith(value: FhirDecimal.empty());
+        }
+      case 'currency':
+        {
+          return copyWith(currency: FhirCode.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Money clear({
+    bool id = false,
+    bool extension_ = false,
+    bool value = false,
+    bool currency = false,
+  }) {
+    return Money(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      value: value ? null : this.value,
+      currency: currency ? null : this.currency,
+    );
+  }
+
   @override
   Money clone() => throw UnimplementedError();
   @override

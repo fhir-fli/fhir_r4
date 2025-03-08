@@ -1269,6 +1269,390 @@ class Observation extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'basedOn':
+        return ['Reference'];
+      case 'partOf':
+        return ['Reference'];
+      case 'status':
+        return ['FhirCode'];
+      case 'category':
+        return ['CodeableConcept'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'focus':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'effective':
+      case 'effectiveX':
+        return ['FhirDateTime', 'Period', 'Timing', 'FhirInstant'];
+      case 'effectiveDateTime':
+        return ['FhirDateTime'];
+      case 'effectivePeriod':
+        return ['Period'];
+      case 'effectiveTiming':
+        return ['Timing'];
+      case 'effectiveInstant':
+        return ['FhirInstant'];
+      case 'issued':
+        return ['FhirInstant'];
+      case 'performer':
+        return ['Reference'];
+      case 'value':
+      case 'valueX':
+        return [
+          'Quantity',
+          'CodeableConcept',
+          'FhirString',
+          'FhirBoolean',
+          'FhirInteger',
+          'Range',
+          'Ratio',
+          'SampledData',
+          'FhirTime',
+          'FhirDateTime',
+          'Period',
+        ];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueCodeableConcept':
+        return ['CodeableConcept'];
+      case 'valueString':
+        return ['FhirString'];
+      case 'valueBoolean':
+        return ['FhirBoolean'];
+      case 'valueInteger':
+        return ['FhirInteger'];
+      case 'valueRange':
+        return ['Range'];
+      case 'valueRatio':
+        return ['Ratio'];
+      case 'valueSampledData':
+        return ['SampledData'];
+      case 'valueTime':
+        return ['FhirTime'];
+      case 'valueDateTime':
+        return ['FhirDateTime'];
+      case 'valuePeriod':
+        return ['Period'];
+      case 'dataAbsentReason':
+        return ['CodeableConcept'];
+      case 'interpretation':
+        return ['CodeableConcept'];
+      case 'note':
+        return ['Annotation'];
+      case 'bodySite':
+        return ['CodeableConcept'];
+      case 'method':
+        return ['CodeableConcept'];
+      case 'specimen':
+        return ['Reference'];
+      case 'device':
+        return ['Reference'];
+      case 'referenceRange':
+        return ['ObservationReferenceRange'];
+      case 'hasMember':
+        return ['Reference'];
+      case 'derivedFrom':
+        return ['Reference'];
+      case 'component':
+        return ['ObservationComponent'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Observation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Observation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'basedOn':
+        {
+          return copyWith(basedOn: <Reference>[]);
+        }
+      case 'partOf':
+        {
+          return copyWith(partOf: <Reference>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: ObservationStatus.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <CodeableConcept>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'focus':
+        {
+          return copyWith(focus: <Reference>[]);
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'effective':
+      case 'effectiveX':
+      case 'effectiveDateTime':
+        {
+          return copyWith(effectiveX: FhirDateTime.empty());
+        }
+      case 'effectivePeriod':
+        {
+          return copyWith(effectiveX: Period.empty());
+        }
+      case 'effectiveTiming':
+        {
+          return copyWith(effectiveX: Timing.empty());
+        }
+      case 'effectiveInstant':
+        {
+          return copyWith(effectiveX: FhirInstant.empty());
+        }
+      case 'issued':
+        {
+          return copyWith(issued: FhirInstant.empty());
+        }
+      case 'performer':
+        {
+          return copyWith(performer: <Reference>[]);
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueQuantity':
+        {
+          return copyWith(valueX: Quantity.empty());
+        }
+      case 'valueCodeableConcept':
+        {
+          return copyWith(valueX: CodeableConcept.empty());
+        }
+      case 'valueString':
+        {
+          return copyWith(valueX: FhirString.empty());
+        }
+      case 'valueBoolean':
+        {
+          return copyWith(valueX: FhirBoolean.empty());
+        }
+      case 'valueInteger':
+        {
+          return copyWith(valueX: FhirInteger.empty());
+        }
+      case 'valueRange':
+        {
+          return copyWith(valueX: Range.empty());
+        }
+      case 'valueRatio':
+        {
+          return copyWith(valueX: Ratio.empty());
+        }
+      case 'valueSampledData':
+        {
+          return copyWith(valueX: SampledData.empty());
+        }
+      case 'valueTime':
+        {
+          return copyWith(valueX: FhirTime.empty());
+        }
+      case 'valueDateTime':
+        {
+          return copyWith(valueX: FhirDateTime.empty());
+        }
+      case 'valuePeriod':
+        {
+          return copyWith(valueX: Period.empty());
+        }
+      case 'dataAbsentReason':
+        {
+          return copyWith(dataAbsentReason: CodeableConcept.empty());
+        }
+      case 'interpretation':
+        {
+          return copyWith(interpretation: <CodeableConcept>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'bodySite':
+        {
+          return copyWith(bodySite: CodeableConcept.empty());
+        }
+      case 'method':
+        {
+          return copyWith(method: CodeableConcept.empty());
+        }
+      case 'specimen':
+        {
+          return copyWith(specimen: Reference.empty());
+        }
+      case 'device':
+        {
+          return copyWith(device: Reference.empty());
+        }
+      case 'referenceRange':
+        {
+          return copyWith(referenceRange: <ObservationReferenceRange>[]);
+        }
+      case 'hasMember':
+        {
+          return copyWith(hasMember: <Reference>[]);
+        }
+      case 'derivedFrom':
+        {
+          return copyWith(derivedFrom: <Reference>[]);
+        }
+      case 'component':
+        {
+          return copyWith(component: <ObservationComponent>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Observation clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool basedOn = false,
+    bool partOf = false,
+    bool category = false,
+    bool subject = false,
+    bool focus = false,
+    bool encounter = false,
+    bool effective = false,
+    bool issued = false,
+    bool performer = false,
+    bool value = false,
+    bool dataAbsentReason = false,
+    bool interpretation = false,
+    bool note = false,
+    bool bodySite = false,
+    bool method = false,
+    bool specimen = false,
+    bool device = false,
+    bool referenceRange = false,
+    bool hasMember = false,
+    bool derivedFrom = false,
+    bool component = false,
+  }) {
+    return Observation(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      basedOn: basedOn ? null : this.basedOn,
+      partOf: partOf ? null : this.partOf,
+      status: status,
+      category: category ? null : this.category,
+      code: code,
+      subject: subject ? null : this.subject,
+      focus: focus ? null : this.focus,
+      encounter: encounter ? null : this.encounter,
+      effectiveX: effective ? null : effectiveX,
+      issued: issued ? null : this.issued,
+      performer: performer ? null : this.performer,
+      valueX: value ? null : valueX,
+      dataAbsentReason: dataAbsentReason ? null : this.dataAbsentReason,
+      interpretation: interpretation ? null : this.interpretation,
+      note: note ? null : this.note,
+      bodySite: bodySite ? null : this.bodySite,
+      method: method ? null : this.method,
+      specimen: specimen ? null : this.specimen,
+      device: device ? null : this.device,
+      referenceRange: referenceRange ? null : this.referenceRange,
+      hasMember: hasMember ? null : this.hasMember,
+      derivedFrom: derivedFrom ? null : this.derivedFrom,
+      component: component ? null : this.component,
+    );
+  }
+
   @override
   Observation clone() => throw UnimplementedError();
   @override
@@ -1676,7 +2060,8 @@ class ObservationReferenceRange extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ObservationReferenceRange.empty() => const ObservationReferenceRange();
+  factory ObservationReferenceRange.empty() =>
+      const ObservationReferenceRange();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ObservationReferenceRange.fromJson(
@@ -2041,6 +2426,108 @@ class ObservationReferenceRange extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'low':
+        return ['Quantity'];
+      case 'high':
+        return ['Quantity'];
+      case 'type':
+        return ['CodeableConcept'];
+      case 'appliesTo':
+        return ['CodeableConcept'];
+      case 'age':
+        return ['Range'];
+      case 'text':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ObservationReferenceRange]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ObservationReferenceRange createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'low':
+        {
+          return copyWith(low: Quantity.empty());
+        }
+      case 'high':
+        {
+          return copyWith(high: Quantity.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: CodeableConcept.empty());
+        }
+      case 'appliesTo':
+        {
+          return copyWith(appliesTo: <CodeableConcept>[]);
+        }
+      case 'age':
+        {
+          return copyWith(age: Range.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: FhirString.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ObservationReferenceRange clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool low = false,
+    bool high = false,
+    bool type = false,
+    bool appliesTo = false,
+    bool age = false,
+    bool text = false,
+  }) {
+    return ObservationReferenceRange(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      low: low ? null : this.low,
+      high: high ? null : this.high,
+      type: type ? null : this.type,
+      appliesTo: appliesTo ? null : this.appliesTo,
+      age: age ? null : this.age,
+      text: text ? null : this.text,
+    );
   }
 
   @override
@@ -2705,6 +3192,176 @@ class ObservationComponent extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'value':
+      case 'valueX':
+        return [
+          'Quantity',
+          'CodeableConcept',
+          'FhirString',
+          'FhirBoolean',
+          'FhirInteger',
+          'Range',
+          'Ratio',
+          'SampledData',
+          'FhirTime',
+          'FhirDateTime',
+          'Period',
+        ];
+      case 'valueQuantity':
+        return ['Quantity'];
+      case 'valueCodeableConcept':
+        return ['CodeableConcept'];
+      case 'valueString':
+        return ['FhirString'];
+      case 'valueBoolean':
+        return ['FhirBoolean'];
+      case 'valueInteger':
+        return ['FhirInteger'];
+      case 'valueRange':
+        return ['Range'];
+      case 'valueRatio':
+        return ['Ratio'];
+      case 'valueSampledData':
+        return ['SampledData'];
+      case 'valueTime':
+        return ['FhirTime'];
+      case 'valueDateTime':
+        return ['FhirDateTime'];
+      case 'valuePeriod':
+        return ['Period'];
+      case 'dataAbsentReason':
+        return ['CodeableConcept'];
+      case 'interpretation':
+        return ['CodeableConcept'];
+      case 'referenceRange':
+        return ['ObservationReferenceRange'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ObservationComponent]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ObservationComponent createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'value':
+      case 'valueX':
+      case 'valueQuantity':
+        {
+          return copyWith(valueX: Quantity.empty());
+        }
+      case 'valueCodeableConcept':
+        {
+          return copyWith(valueX: CodeableConcept.empty());
+        }
+      case 'valueString':
+        {
+          return copyWith(valueX: FhirString.empty());
+        }
+      case 'valueBoolean':
+        {
+          return copyWith(valueX: FhirBoolean.empty());
+        }
+      case 'valueInteger':
+        {
+          return copyWith(valueX: FhirInteger.empty());
+        }
+      case 'valueRange':
+        {
+          return copyWith(valueX: Range.empty());
+        }
+      case 'valueRatio':
+        {
+          return copyWith(valueX: Ratio.empty());
+        }
+      case 'valueSampledData':
+        {
+          return copyWith(valueX: SampledData.empty());
+        }
+      case 'valueTime':
+        {
+          return copyWith(valueX: FhirTime.empty());
+        }
+      case 'valueDateTime':
+        {
+          return copyWith(valueX: FhirDateTime.empty());
+        }
+      case 'valuePeriod':
+        {
+          return copyWith(valueX: Period.empty());
+        }
+      case 'dataAbsentReason':
+        {
+          return copyWith(dataAbsentReason: CodeableConcept.empty());
+        }
+      case 'interpretation':
+        {
+          return copyWith(interpretation: <CodeableConcept>[]);
+        }
+      case 'referenceRange':
+        {
+          return copyWith(referenceRange: <ObservationReferenceRange>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ObservationComponent clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool value = false,
+    bool dataAbsentReason = false,
+    bool interpretation = false,
+    bool referenceRange = false,
+  }) {
+    return ObservationComponent(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code,
+      valueX: value ? null : valueX,
+      dataAbsentReason: dataAbsentReason ? null : this.dataAbsentReason,
+      interpretation: interpretation ? null : this.interpretation,
+      referenceRange: referenceRange ? null : this.referenceRange,
+    );
   }
 
   @override

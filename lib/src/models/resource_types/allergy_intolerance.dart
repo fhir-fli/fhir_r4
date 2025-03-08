@@ -859,6 +859,256 @@ class AllergyIntolerance extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'clinicalStatus':
+        return ['CodeableConcept'];
+      case 'verificationStatus':
+        return ['CodeableConcept'];
+      case 'type':
+        return ['FhirCode'];
+      case 'category':
+        return ['FhirCode'];
+      case 'criticality':
+        return ['FhirCode'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'patient':
+        return ['Reference'];
+      case 'encounter':
+        return ['Reference'];
+      case 'onset':
+      case 'onsetX':
+        return ['FhirDateTime', 'Age', 'Period', 'Range', 'FhirString'];
+      case 'onsetDateTime':
+        return ['FhirDateTime'];
+      case 'onsetAge':
+        return ['Age'];
+      case 'onsetPeriod':
+        return ['Period'];
+      case 'onsetRange':
+        return ['Range'];
+      case 'onsetString':
+        return ['FhirString'];
+      case 'recordedDate':
+        return ['FhirDateTime'];
+      case 'recorder':
+        return ['Reference'];
+      case 'asserter':
+        return ['Reference'];
+      case 'lastOccurrence':
+        return ['FhirDateTime'];
+      case 'note':
+        return ['Annotation'];
+      case 'reaction':
+        return ['AllergyIntoleranceReaction'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [AllergyIntolerance]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AllergyIntolerance createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'clinicalStatus':
+        {
+          return copyWith(clinicalStatus: CodeableConcept.empty());
+        }
+      case 'verificationStatus':
+        {
+          return copyWith(verificationStatus: CodeableConcept.empty());
+        }
+      case 'type':
+        {
+          return copyWith(type: AllergyIntoleranceType.empty());
+        }
+      case 'category':
+        {
+          return copyWith(category: <AllergyIntoleranceCategory>[]);
+        }
+      case 'criticality':
+        {
+          return copyWith(criticality: AllergyIntoleranceCriticality.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'patient':
+        {
+          return copyWith(patient: Reference.empty());
+        }
+      case 'encounter':
+        {
+          return copyWith(encounter: Reference.empty());
+        }
+      case 'onset':
+      case 'onsetX':
+      case 'onsetDateTime':
+        {
+          return copyWith(onsetX: FhirDateTime.empty());
+        }
+      case 'onsetAge':
+        {
+          return copyWith(onsetX: Age.empty());
+        }
+      case 'onsetPeriod':
+        {
+          return copyWith(onsetX: Period.empty());
+        }
+      case 'onsetRange':
+        {
+          return copyWith(onsetX: Range.empty());
+        }
+      case 'onsetString':
+        {
+          return copyWith(onsetX: FhirString.empty());
+        }
+      case 'recordedDate':
+        {
+          return copyWith(recordedDate: FhirDateTime.empty());
+        }
+      case 'recorder':
+        {
+          return copyWith(recorder: Reference.empty());
+        }
+      case 'asserter':
+        {
+          return copyWith(asserter: Reference.empty());
+        }
+      case 'lastOccurrence':
+        {
+          return copyWith(lastOccurrence: FhirDateTime.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'reaction':
+        {
+          return copyWith(reaction: <AllergyIntoleranceReaction>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  AllergyIntolerance clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool clinicalStatus = false,
+    bool verificationStatus = false,
+    bool type = false,
+    bool category = false,
+    bool criticality = false,
+    bool code = false,
+    bool encounter = false,
+    bool onset = false,
+    bool recordedDate = false,
+    bool recorder = false,
+    bool asserter = false,
+    bool lastOccurrence = false,
+    bool note = false,
+    bool reaction = false,
+  }) {
+    return AllergyIntolerance(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      clinicalStatus: clinicalStatus ? null : this.clinicalStatus,
+      verificationStatus: verificationStatus ? null : this.verificationStatus,
+      type: type ? null : this.type,
+      category: category ? null : this.category,
+      criticality: criticality ? null : this.criticality,
+      code: code ? null : this.code,
+      patient: patient,
+      encounter: encounter ? null : this.encounter,
+      onsetX: onset ? null : onsetX,
+      recordedDate: recordedDate ? null : this.recordedDate,
+      recorder: recorder ? null : this.recorder,
+      asserter: asserter ? null : this.asserter,
+      lastOccurrence: lastOccurrence ? null : this.lastOccurrence,
+      note: note ? null : this.note,
+      reaction: reaction ? null : this.reaction,
+    );
+  }
+
   @override
   AllergyIntolerance clone() => throw UnimplementedError();
   @override
@@ -1145,7 +1395,8 @@ class AllergyIntoleranceReaction extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory AllergyIntoleranceReaction.empty() => const AllergyIntoleranceReaction(
+  factory AllergyIntoleranceReaction.empty() =>
+      const AllergyIntoleranceReaction(
         manifestation: <CodeableConcept>[],
       );
 
@@ -1537,6 +1788,115 @@ class AllergyIntoleranceReaction extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'substance':
+        return ['CodeableConcept'];
+      case 'manifestation':
+        return ['CodeableConcept'];
+      case 'description':
+        return ['FhirString'];
+      case 'onset':
+        return ['FhirDateTime'];
+      case 'severity':
+        return ['FhirCode'];
+      case 'exposureRoute':
+        return ['CodeableConcept'];
+      case 'note':
+        return ['Annotation'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [AllergyIntoleranceReaction]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  AllergyIntoleranceReaction createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'substance':
+        {
+          return copyWith(substance: CodeableConcept.empty());
+        }
+      case 'manifestation':
+        {
+          return copyWith(manifestation: <CodeableConcept>[]);
+        }
+      case 'description':
+        {
+          return copyWith(description: FhirString.empty());
+        }
+      case 'onset':
+        {
+          return copyWith(onset: FhirDateTime.empty());
+        }
+      case 'severity':
+        {
+          return copyWith(severity: AllergyIntoleranceSeverity.empty());
+        }
+      case 'exposureRoute':
+        {
+          return copyWith(exposureRoute: CodeableConcept.empty());
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  AllergyIntoleranceReaction clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool substance = false,
+    bool description = false,
+    bool onset = false,
+    bool severity = false,
+    bool exposureRoute = false,
+    bool note = false,
+  }) {
+    return AllergyIntoleranceReaction(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      substance: substance ? null : this.substance,
+      manifestation: manifestation,
+      description: description ? null : this.description,
+      onset: onset ? null : this.onset,
+      severity: severity ? null : this.severity,
+      exposureRoute: exposureRoute ? null : this.exposureRoute,
+      note: note ? null : this.note,
+    );
   }
 
   @override

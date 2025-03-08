@@ -528,6 +528,148 @@ class ProdCharacteristic extends BackboneType {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'height':
+        return ['Quantity'];
+      case 'width':
+        return ['Quantity'];
+      case 'depth':
+        return ['Quantity'];
+      case 'weight':
+        return ['Quantity'];
+      case 'nominalVolume':
+        return ['Quantity'];
+      case 'externalDiameter':
+        return ['Quantity'];
+      case 'shape':
+        return ['FhirString'];
+      case 'color':
+        return ['FhirString'];
+      case 'imprint':
+        return ['FhirString'];
+      case 'image':
+        return ['Attachment'];
+      case 'scoring':
+        return ['CodeableConcept'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ProdCharacteristic]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ProdCharacteristic createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'height':
+        {
+          return copyWith(height: Quantity.empty());
+        }
+      case 'width':
+        {
+          return copyWith(width: Quantity.empty());
+        }
+      case 'depth':
+        {
+          return copyWith(depth: Quantity.empty());
+        }
+      case 'weight':
+        {
+          return copyWith(weight: Quantity.empty());
+        }
+      case 'nominalVolume':
+        {
+          return copyWith(nominalVolume: Quantity.empty());
+        }
+      case 'externalDiameter':
+        {
+          return copyWith(externalDiameter: Quantity.empty());
+        }
+      case 'shape':
+        {
+          return copyWith(shape: FhirString.empty());
+        }
+      case 'color':
+        {
+          return copyWith(color: <FhirString>[]);
+        }
+      case 'imprint':
+        {
+          return copyWith(imprint: <FhirString>[]);
+        }
+      case 'image':
+        {
+          return copyWith(image: <Attachment>[]);
+        }
+      case 'scoring':
+        {
+          return copyWith(scoring: CodeableConcept.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ProdCharacteristic clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool height = false,
+    bool width = false,
+    bool depth = false,
+    bool weight = false,
+    bool nominalVolume = false,
+    bool externalDiameter = false,
+    bool shape = false,
+    bool color = false,
+    bool imprint = false,
+    bool image = false,
+    bool scoring = false,
+  }) {
+    return ProdCharacteristic(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      height: height ? null : this.height,
+      width: width ? null : this.width,
+      depth: depth ? null : this.depth,
+      weight: weight ? null : this.weight,
+      nominalVolume: nominalVolume ? null : this.nominalVolume,
+      externalDiameter: externalDiameter ? null : this.externalDiameter,
+      shape: shape ? null : this.shape,
+      color: color ? null : this.color,
+      imprint: imprint ? null : this.imprint,
+      image: image ? null : this.image,
+      scoring: scoring ? null : this.scoring,
+    );
+  }
+
   @override
   ProdCharacteristic clone() => throw UnimplementedError();
   @override

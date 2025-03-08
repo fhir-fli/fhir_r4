@@ -700,6 +700,206 @@ class DetectedIssue extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'severity':
+        return ['FhirCode'];
+      case 'patient':
+        return ['Reference'];
+      case 'identified':
+      case 'identifiedX':
+        return ['FhirDateTime', 'Period'];
+      case 'identifiedDateTime':
+        return ['FhirDateTime'];
+      case 'identifiedPeriod':
+        return ['Period'];
+      case 'author':
+        return ['Reference'];
+      case 'implicated':
+        return ['Reference'];
+      case 'evidence':
+        return ['DetectedIssueEvidence'];
+      case 'detail':
+        return ['FhirString'];
+      case 'reference':
+        return ['FhirUri'];
+      case 'mitigation':
+        return ['DetectedIssueMitigation'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [DetectedIssue]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DetectedIssue createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: ObservationStatus.empty());
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'severity':
+        {
+          return copyWith(severity: DetectedIssueSeverity.empty());
+        }
+      case 'patient':
+        {
+          return copyWith(patient: Reference.empty());
+        }
+      case 'identified':
+      case 'identifiedX':
+      case 'identifiedDateTime':
+        {
+          return copyWith(identifiedX: FhirDateTime.empty());
+        }
+      case 'identifiedPeriod':
+        {
+          return copyWith(identifiedX: Period.empty());
+        }
+      case 'author':
+        {
+          return copyWith(author: Reference.empty());
+        }
+      case 'implicated':
+        {
+          return copyWith(implicated: <Reference>[]);
+        }
+      case 'evidence':
+        {
+          return copyWith(evidence: <DetectedIssueEvidence>[]);
+        }
+      case 'detail':
+        {
+          return copyWith(detail: FhirString.empty());
+        }
+      case 'reference':
+        {
+          return copyWith(reference: FhirUri.empty());
+        }
+      case 'mitigation':
+        {
+          return copyWith(mitigation: <DetectedIssueMitigation>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DetectedIssue clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool code = false,
+    bool severity = false,
+    bool patient = false,
+    bool identified = false,
+    bool author = false,
+    bool implicated = false,
+    bool evidence = false,
+    bool detail = false,
+    bool reference = false,
+    bool mitigation = false,
+  }) {
+    return DetectedIssue(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      code: code ? null : this.code,
+      severity: severity ? null : this.severity,
+      patient: patient ? null : this.patient,
+      identifiedX: identified ? null : identifiedX,
+      author: author ? null : this.author,
+      implicated: implicated ? null : this.implicated,
+      evidence: evidence ? null : this.evidence,
+      detail: detail ? null : this.detail,
+      reference: reference ? null : this.reference,
+      mitigation: mitigation ? null : this.mitigation,
+    );
+  }
+
   @override
   DetectedIssue clone() => throw UnimplementedError();
   @override
@@ -1210,6 +1410,76 @@ class DetectedIssueEvidence extends BackboneElement {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'detail':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [DetectedIssueEvidence]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DetectedIssueEvidence createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: <CodeableConcept>[]);
+        }
+      case 'detail':
+        {
+          return copyWith(detail: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DetectedIssueEvidence clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool code = false,
+    bool detail = false,
+  }) {
+    return DetectedIssueEvidence(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      code: code ? null : this.code,
+      detail: detail ? null : this.detail,
+    );
+  }
+
   @override
   DetectedIssueEvidence clone() => throw UnimplementedError();
   @override
@@ -1604,6 +1874,83 @@ class DetectedIssueMitigation extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'action':
+        return ['CodeableConcept'];
+      case 'date':
+        return ['FhirDateTime'];
+      case 'author':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [DetectedIssueMitigation]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  DetectedIssueMitigation createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'action':
+        {
+          return copyWith(action: CodeableConcept.empty());
+        }
+      case 'date':
+        {
+          return copyWith(date: FhirDateTime.empty());
+        }
+      case 'author':
+        {
+          return copyWith(author: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  DetectedIssueMitigation clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool date = false,
+    bool author = false,
+  }) {
+    return DetectedIssueMitigation(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      action: action,
+      date: date ? null : this.date,
+      author: author ? null : this.author,
+    );
   }
 
   @override

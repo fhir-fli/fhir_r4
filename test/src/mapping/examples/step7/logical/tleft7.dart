@@ -191,4 +191,19 @@ class TLeft7Aa extends BackboneElement {
         listEquals<FhirBase>(extension_, other.extension_) &&
         ab == other.ab;
   }
+
+  @override
+  BackboneElement createProperty(String name) {
+    switch (name) {
+      case 'ab':
+        return TLeft7Aa(ab: FhirString(''));
+      default:
+        return this;
+    }
+  }
+
+  @override
+  TLeft7Aa clear({bool extension_ = false, bool id = false}) {
+    throw UnimplementedError();
+  }
 }

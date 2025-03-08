@@ -279,4 +279,23 @@ class FhirCanonical extends PrimitiveType<Uri>
   static String decodeQueryComponent(String text, {Encoding encoding = utf8}) {
     return Uri.decodeQueryComponent(text, encoding: encoding);
   }
+
+  /// Creates an empty property in the object
+  @override
+  FhirCanonical createProperty(String propertyName) => this;
+
+  /// Clears the specified fields in a [FhirCanonical] object
+  @override
+  FhirCanonical clear({
+    bool input = false,
+    bool extension_ = false,
+    bool id = false,
+  }) {
+    return FhirCanonical(
+      input ? null : this.input,
+      element: element,
+      extension_: extension_ ? <FhirExtension>[] : this.extension_,
+      id: id ? null : this.id,
+    );
+  }
 }

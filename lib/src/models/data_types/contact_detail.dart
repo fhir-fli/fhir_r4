@@ -262,6 +262,68 @@ class ContactDetail extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'name':
+        return ['FhirString'];
+      case 'telecom':
+        return ['ContactPoint'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ContactDetail]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ContactDetail createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'telecom':
+        {
+          return copyWith(telecom: <ContactPoint>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ContactDetail clear({
+    bool id = false,
+    bool extension_ = false,
+    bool name = false,
+    bool telecom = false,
+  }) {
+    return ContactDetail(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      name: name ? null : this.name,
+      telecom: telecom ? null : this.telecom,
+    );
+  }
+
   @override
   ContactDetail clone() => throw UnimplementedError();
   @override

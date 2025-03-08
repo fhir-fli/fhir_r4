@@ -432,6 +432,116 @@ class Attachment extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'contentType':
+        return ['FhirCode'];
+      case 'language':
+        return ['FhirCode'];
+      case 'data':
+        return ['FhirBase64Binary'];
+      case 'url':
+        return ['FhirUrl'];
+      case 'size':
+        return ['FhirUnsignedInt'];
+      case 'hash':
+        return ['FhirBase64Binary'];
+      case 'title':
+        return ['FhirString'];
+      case 'creation':
+        return ['FhirDateTime'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [Attachment]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  Attachment createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'contentType':
+        {
+          return copyWith(contentType: FhirCode.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'data':
+        {
+          return copyWith(data: FhirBase64Binary.empty());
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUrl.empty());
+        }
+      case 'size':
+        {
+          return copyWith(size: FhirUnsignedInt.empty());
+        }
+      case 'hash':
+        {
+          return copyWith(hash: FhirBase64Binary.empty());
+        }
+      case 'title':
+        {
+          return copyWith(title: FhirString.empty());
+        }
+      case 'creation':
+        {
+          return copyWith(creation: FhirDateTime.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  Attachment clear({
+    bool id = false,
+    bool extension_ = false,
+    bool contentType = false,
+    bool language = false,
+    bool data = false,
+    bool url = false,
+    bool size = false,
+    bool hash = false,
+    bool title = false,
+    bool creation = false,
+  }) {
+    return Attachment(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      contentType: contentType ? null : this.contentType,
+      language: language ? null : this.language,
+      data: data ? null : this.data,
+      url: url ? null : this.url,
+      size: size ? null : this.size,
+      hash: hash ? null : this.hash,
+      title: title ? null : this.title,
+      creation: creation ? null : this.creation,
+    );
+  }
+
   @override
   Attachment clone() => throw UnimplementedError();
   @override

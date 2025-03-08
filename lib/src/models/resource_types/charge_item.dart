@@ -1124,6 +1124,337 @@ class ChargeItem extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'definitionUri':
+        return ['FhirUri'];
+      case 'definitionCanonical':
+        return ['FhirCanonical'];
+      case 'status':
+        return ['FhirCode'];
+      case 'partOf':
+        return ['Reference'];
+      case 'code':
+        return ['CodeableConcept'];
+      case 'subject':
+        return ['Reference'];
+      case 'context':
+        return ['Reference'];
+      case 'occurrence':
+      case 'occurrenceX':
+        return ['FhirDateTime', 'Period', 'Timing'];
+      case 'occurrenceDateTime':
+        return ['FhirDateTime'];
+      case 'occurrencePeriod':
+        return ['Period'];
+      case 'occurrenceTiming':
+        return ['Timing'];
+      case 'performer':
+        return ['ChargeItemPerformer'];
+      case 'performingOrganization':
+        return ['Reference'];
+      case 'requestingOrganization':
+        return ['Reference'];
+      case 'costCenter':
+        return ['Reference'];
+      case 'quantity':
+        return ['Quantity'];
+      case 'bodysite':
+        return ['CodeableConcept'];
+      case 'factorOverride':
+        return ['FhirDecimal'];
+      case 'priceOverride':
+        return ['Money'];
+      case 'overrideReason':
+        return ['FhirString'];
+      case 'enterer':
+        return ['Reference'];
+      case 'enteredDate':
+        return ['FhirDateTime'];
+      case 'reason':
+        return ['CodeableConcept'];
+      case 'service':
+        return ['Reference'];
+      case 'product':
+      case 'productX':
+        return ['Reference', 'CodeableConcept'];
+      case 'productReference':
+        return ['Reference'];
+      case 'productCodeableConcept':
+        return ['CodeableConcept'];
+      case 'account':
+        return ['Reference'];
+      case 'note':
+        return ['Annotation'];
+      case 'supportingInformation':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ChargeItem]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ChargeItem createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'definitionUri':
+        {
+          return copyWith(definitionUri: <FhirUri>[]);
+        }
+      case 'definitionCanonical':
+        {
+          return copyWith(definitionCanonical: <FhirCanonical>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: ChargeItemStatus.empty());
+        }
+      case 'partOf':
+        {
+          return copyWith(partOf: <Reference>[]);
+        }
+      case 'code':
+        {
+          return copyWith(code: CodeableConcept.empty());
+        }
+      case 'subject':
+        {
+          return copyWith(subject: Reference.empty());
+        }
+      case 'context':
+        {
+          return copyWith(context: Reference.empty());
+        }
+      case 'occurrence':
+      case 'occurrenceX':
+      case 'occurrenceDateTime':
+        {
+          return copyWith(occurrenceX: FhirDateTime.empty());
+        }
+      case 'occurrencePeriod':
+        {
+          return copyWith(occurrenceX: Period.empty());
+        }
+      case 'occurrenceTiming':
+        {
+          return copyWith(occurrenceX: Timing.empty());
+        }
+      case 'performer':
+        {
+          return copyWith(performer: <ChargeItemPerformer>[]);
+        }
+      case 'performingOrganization':
+        {
+          return copyWith(performingOrganization: Reference.empty());
+        }
+      case 'requestingOrganization':
+        {
+          return copyWith(requestingOrganization: Reference.empty());
+        }
+      case 'costCenter':
+        {
+          return copyWith(costCenter: Reference.empty());
+        }
+      case 'quantity':
+        {
+          return copyWith(quantity: Quantity.empty());
+        }
+      case 'bodysite':
+        {
+          return copyWith(bodysite: <CodeableConcept>[]);
+        }
+      case 'factorOverride':
+        {
+          return copyWith(factorOverride: FhirDecimal.empty());
+        }
+      case 'priceOverride':
+        {
+          return copyWith(priceOverride: Money.empty());
+        }
+      case 'overrideReason':
+        {
+          return copyWith(overrideReason: FhirString.empty());
+        }
+      case 'enterer':
+        {
+          return copyWith(enterer: Reference.empty());
+        }
+      case 'enteredDate':
+        {
+          return copyWith(enteredDate: FhirDateTime.empty());
+        }
+      case 'reason':
+        {
+          return copyWith(reason: <CodeableConcept>[]);
+        }
+      case 'service':
+        {
+          return copyWith(service: <Reference>[]);
+        }
+      case 'product':
+      case 'productX':
+      case 'productReference':
+        {
+          return copyWith(productX: Reference.empty());
+        }
+      case 'productCodeableConcept':
+        {
+          return copyWith(productX: CodeableConcept.empty());
+        }
+      case 'account':
+        {
+          return copyWith(account: <Reference>[]);
+        }
+      case 'note':
+        {
+          return copyWith(note: <Annotation>[]);
+        }
+      case 'supportingInformation':
+        {
+          return copyWith(supportingInformation: <Reference>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ChargeItem clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool definitionUri = false,
+    bool definitionCanonical = false,
+    bool partOf = false,
+    bool context = false,
+    bool occurrence = false,
+    bool performer = false,
+    bool performingOrganization = false,
+    bool requestingOrganization = false,
+    bool costCenter = false,
+    bool quantity = false,
+    bool bodysite = false,
+    bool factorOverride = false,
+    bool priceOverride = false,
+    bool overrideReason = false,
+    bool enterer = false,
+    bool enteredDate = false,
+    bool reason = false,
+    bool service = false,
+    bool product = false,
+    bool account = false,
+    bool note = false,
+    bool supportingInformation = false,
+  }) {
+    return ChargeItem(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      definitionUri: definitionUri ? null : this.definitionUri,
+      definitionCanonical:
+          definitionCanonical ? null : this.definitionCanonical,
+      status: status,
+      partOf: partOf ? null : this.partOf,
+      code: code,
+      subject: subject,
+      context: context ? null : this.context,
+      occurrenceX: occurrence ? null : occurrenceX,
+      performer: performer ? null : this.performer,
+      performingOrganization:
+          performingOrganization ? null : this.performingOrganization,
+      requestingOrganization:
+          requestingOrganization ? null : this.requestingOrganization,
+      costCenter: costCenter ? null : this.costCenter,
+      quantity: quantity ? null : this.quantity,
+      bodysite: bodysite ? null : this.bodysite,
+      factorOverride: factorOverride ? null : this.factorOverride,
+      priceOverride: priceOverride ? null : this.priceOverride,
+      overrideReason: overrideReason ? null : this.overrideReason,
+      enterer: enterer ? null : this.enterer,
+      enteredDate: enteredDate ? null : this.enteredDate,
+      reason: reason ? null : this.reason,
+      service: service ? null : this.service,
+      productX: product ? null : productX,
+      account: account ? null : this.account,
+      note: note ? null : this.note,
+      supportingInformation:
+          supportingInformation ? null : this.supportingInformation,
+    );
+  }
+
   @override
   ChargeItem clone() => throw UnimplementedError();
   @override
@@ -1784,6 +2115,75 @@ class ChargeItemPerformer extends BackboneElement {
       default:
         throw Exception('Cannot set child value for $name');
     }
+  }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'function':
+        return ['CodeableConcept'];
+      case 'actor':
+        return ['Reference'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [ChargeItemPerformer]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  ChargeItemPerformer createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'function':
+        {
+          return copyWith(function_: CodeableConcept.empty());
+        }
+      case 'actor':
+        {
+          return copyWith(actor: Reference.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  ChargeItemPerformer clear({
+    bool id = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool function_ = false,
+  }) {
+    return ChargeItemPerformer(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      function_: function_ ? null : this.function_,
+      actor: actor,
+    );
   }
 
   @override

@@ -389,6 +389,107 @@ class RelatedArtifact extends DataType
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'type':
+        return ['FhirCode'];
+      case 'label':
+        return ['FhirString'];
+      case 'display':
+        return ['FhirString'];
+      case 'citation':
+        return ['FhirMarkdown'];
+      case 'url':
+        return ['FhirUrl'];
+      case 'document':
+        return ['Attachment'];
+      case 'resource':
+        return ['FhirCanonical'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [RelatedArtifact]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  RelatedArtifact createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'type':
+        {
+          return copyWith(type: RelatedArtifactType.empty());
+        }
+      case 'label':
+        {
+          return copyWith(label: FhirString.empty());
+        }
+      case 'display':
+        {
+          return copyWith(display: FhirString.empty());
+        }
+      case 'citation':
+        {
+          return copyWith(citation: FhirMarkdown.empty());
+        }
+      case 'url':
+        {
+          return copyWith(url: FhirUrl.empty());
+        }
+      case 'document':
+        {
+          return copyWith(document: Attachment.empty());
+        }
+      case 'resource':
+        {
+          return copyWith(resource: FhirCanonical.empty());
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  RelatedArtifact clear({
+    bool id = false,
+    bool extension_ = false,
+    bool label = false,
+    bool display = false,
+    bool citation = false,
+    bool url = false,
+    bool document = false,
+    bool resource = false,
+  }) {
+    return RelatedArtifact(
+      id: id ? null : this.id,
+      extension_: extension_ ? null : this.extension_,
+      type: type,
+      label: label ? null : this.label,
+      display: display ? null : this.display,
+      citation: citation ? null : this.citation,
+      url: url ? null : this.url,
+      document: document ? null : this.document,
+      resource: resource ? null : this.resource,
+    );
+  }
+
   @override
   RelatedArtifact clone() => throw UnimplementedError();
   @override

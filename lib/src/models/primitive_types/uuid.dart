@@ -312,4 +312,23 @@ class FhirUuid extends PrimitiveType<UuidValue?>
 
   /// Returns a new [FhirUuid] with extensions disallowed.
   FhirUuid noExtensions() => copyWith(disallowExtensions: true);
+
+  /// Creates an empty property in the object
+  @override
+  FhirUuid createProperty(String propertyName) => this;
+
+  /// Clears the specified fields in a [FhirUuid] object
+  @override
+  FhirUuid clear({
+    bool input = false,
+    bool extension_ = false,
+    bool id = false,
+  }) {
+    return FhirUuid(
+      input ? null : value?.toString(),
+      element: element,
+      extension_: extension_ ? <FhirExtension>[] : this.extension_,
+      id: id ? null : this.id,
+    );
+  }
 }

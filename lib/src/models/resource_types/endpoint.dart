@@ -630,6 +630,185 @@ class FhirEndpoint extends DomainResource {
     }
   }
 
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'meta':
+        return ['FhirMeta'];
+      case 'implicitRules':
+        return ['FhirUri'];
+      case 'language':
+        return ['FhirCode'];
+      case 'text':
+        return ['Narrative'];
+      case 'contained':
+        return ['Resource'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'modifierExtension':
+        return ['FhirExtension'];
+      case 'identifier':
+        return ['Identifier'];
+      case 'status':
+        return ['FhirCode'];
+      case 'connectionType':
+        return ['Coding'];
+      case 'name':
+        return ['FhirString'];
+      case 'managingOrganization':
+        return ['Reference'];
+      case 'contact':
+        return ['ContactPoint'];
+      case 'period':
+        return ['Period'];
+      case 'payloadType':
+        return ['CodeableConcept'];
+      case 'payloadMimeType':
+        return ['FhirCode'];
+      case 'address':
+        return ['FhirUrl'];
+      case 'header':
+        return ['FhirString'];
+      default:
+        return <String>[];
+    }
+  }
+
+  /// Creates a new [FhirEndpoint]
+  ///  with a chosen field set to an empty object.
+  /// If [propertyName] matches the field, that field is replaced by its
+  /// `.empty()` variant (or list of `.empty()`).
+  @override
+  FhirEndpoint createProperty(String propertyName) {
+    switch (propertyName) {
+      case 'id':
+        {
+          return copyWith(id: FhirString.empty());
+        }
+      case 'meta':
+        {
+          return copyWith(meta: FhirMeta.empty());
+        }
+      case 'implicitRules':
+        {
+          return copyWith(implicitRules: FhirUri.empty());
+        }
+      case 'language':
+        {
+          return copyWith(language: CommonLanguages.empty());
+        }
+      case 'text':
+        {
+          return copyWith(text: Narrative.empty());
+        }
+      case 'contained':
+        {
+          return copyWith(contained: <Resource>[]);
+        }
+      case 'extension':
+        {
+          return copyWith(extension_: <FhirExtension>[]);
+        }
+      case 'modifierExtension':
+        {
+          return copyWith(modifierExtension: <FhirExtension>[]);
+        }
+      case 'identifier':
+        {
+          return copyWith(identifier: <Identifier>[]);
+        }
+      case 'status':
+        {
+          return copyWith(status: EndpointStatus.empty());
+        }
+      case 'connectionType':
+        {
+          return copyWith(connectionType: Coding.empty());
+        }
+      case 'name':
+        {
+          return copyWith(name: FhirString.empty());
+        }
+      case 'managingOrganization':
+        {
+          return copyWith(managingOrganization: Reference.empty());
+        }
+      case 'contact':
+        {
+          return copyWith(contact: <ContactPoint>[]);
+        }
+      case 'period':
+        {
+          return copyWith(period: Period.empty());
+        }
+      case 'payloadType':
+        {
+          return copyWith(payloadType: <CodeableConcept>[]);
+        }
+      case 'payloadMimeType':
+        {
+          return copyWith(payloadMimeType: <FhirCode>[]);
+        }
+      case 'address':
+        {
+          return copyWith(address: FhirUrl.empty());
+        }
+      case 'header':
+        {
+          return copyWith(header: <FhirString>[]);
+        }
+      default:
+        throw ArgumentError('No matching property: $propertyName');
+    }
+  }
+
+  /// Clears specific fields in this object
+  @override
+  FhirEndpoint clear({
+    bool id = false,
+    bool meta = false,
+    bool implicitRules = false,
+    bool language = false,
+    bool text = false,
+    bool contained = false,
+    bool extension_ = false,
+    bool modifierExtension = false,
+    bool identifier = false,
+    bool name = false,
+    bool managingOrganization = false,
+    bool contact = false,
+    bool period = false,
+    bool payloadMimeType = false,
+    bool header = false,
+  }) {
+    return FhirEndpoint(
+      id: id ? null : this.id,
+      meta: meta ? null : this.meta,
+      implicitRules: implicitRules ? null : this.implicitRules,
+      language: language ? null : this.language,
+      text: text ? null : this.text,
+      contained: contained ? null : this.contained,
+      extension_: extension_ ? null : this.extension_,
+      modifierExtension: modifierExtension ? null : this.modifierExtension,
+      identifier: identifier ? null : this.identifier,
+      status: status,
+      connectionType: connectionType,
+      name: name ? null : this.name,
+      managingOrganization:
+          managingOrganization ? null : this.managingOrganization,
+      contact: contact ? null : this.contact,
+      period: period ? null : this.period,
+      payloadType: payloadType,
+      payloadMimeType: payloadMimeType ? null : this.payloadMimeType,
+      address: address,
+      header: header ? null : this.header,
+    );
+  }
+
   @override
   FhirEndpoint clone() => throw UnimplementedError();
   @override
