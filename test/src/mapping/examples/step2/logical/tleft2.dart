@@ -74,4 +74,18 @@ class TLeft2 extends Element {
     }
     return json;
   }
+
+  @override
+  List<FhirBase> getChildrenByName(String name, [bool ordered = true]) {
+    switch (name) {
+      case 'id':
+        return [id!];
+      case 'extension':
+        return extension_!;
+      case 'a1':
+        return a1 == null ? [] : [a1!];
+      default:
+        return [];
+    }
+  }
 }

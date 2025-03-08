@@ -5,15 +5,17 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/src/extensions/structure_map.dart';
 import 'package:uuid/uuid.dart';
 
 Future<FhirBase?> fhirMappingEngine(
   FhirBase source,
   StructureMap map,
   FhirDb cache,
+  FhirBase? target,
 ) async {
   final mapEngine = FhirMapEngine(cache, map);
-  final transform = await mapEngine.transform('', source, map, null);
+  final transform = await mapEngine.transform('', source, map, target);
   return transform;
 }
 
@@ -62,17 +64,32 @@ class FhirMapEngine {
     if (inputName == null) {
       throw MappingDefinitionException(message: 'No input name found');
     }
-    final vars = Variables()..add(VariableMode.INPUT, inputName, source);
-    String? targetName;
-    if (target != null) {
-      targetName = _getInputName(g, StructureMapInputMode.target, 'target');
-      if (targetName == null) {
-        throw MappingDefinitionException(message: 'No target name found');
+    final vars = MappingVariables()
+      ..add(MappingVariableMode.INPUT, inputName, source);
+    final String? targetName =
+        _getInputName(g, StructureMapInputMode.target, 'target');
+    if (targetName != null) {
+      if (target != null) {
+        vars.add(MappingVariableMode.OUTPUT, targetName, target);
+      } else {
+        final type = _getInputType(g, StructureMapInputMode.target);
+        if (type != null) {
+          final newTarget = emptyFromType(type);
+          if (newTarget != null) {
+            vars.add(MappingVariableMode.OUTPUT, targetName, newTarget);
+          } else {
+            throw FHIRException(
+              message: 'Unable to create target of type $type',
+            );
+          }
+        } else {
+          throw FHIRException(
+            message: 'Not handled yet: creating a type of $type',
+          );
+        }
       }
-      vars.add(VariableMode.OUTPUT, targetName, target);
-    } else if (_getInputName(g, StructureMapInputMode.target, null) != null) {
-      final type = _getInputType(g, StructureMapInputMode.target) ?? '';
-      throw FHIRException(message: 'Not handled yet: creating a type of $type');
+    } else {
+      throw FHIRException(message: 'No target name found');
     }
 
     await _executeGroup('', context, map, vars, g, true);
@@ -124,7 +141,7 @@ class FhirMapEngine {
     String indent,
     TransformContext context,
     StructureMap? map,
-    Variables vars,
+    MappingVariables vars,
     StructureMapGroup? group,
     bool atRoot,
   ) async {
@@ -153,22 +170,19 @@ class FhirMapEngine {
     String indent,
     TransformContext context,
     StructureMap? map,
-    Variables vars,
+    MappingVariables vars,
     StructureMapGroup? group,
     StructureMapRule rule,
     bool atRoot,
   ) async {
-    print('$indent Executing Rule: ${rule.name}');
-
     // Ensure single source and create copy of variables
     if (rule.source.length != 1) {
       throw Exception('Rule "${rule.name}" has multiple sources.');
     }
     final srcVars = vars.copy();
-    print('$indent Created copy of vars: ${srcVars.summary()}');
 
     // Process rule sources and targets
-    final sourceVarsList = _processSource(
+    final source = await _processSource(
       rule.name.toString(),
       context,
       srcVars,
@@ -176,18 +190,13 @@ class FhirMapEngine {
       map?.url.toString(),
       indent,
     );
-    print(
-      '$indent Source variables after _processSource: '
-      '${sourceVarsList?.map((e) => e.summary()).toList()}',
-    );
 
-    for (final sourceVars in sourceVarsList ?? <Variables>[]) {
+    for (final MappingVariables v in source ?? <MappingVariables>[]) {
       for (final target in rule.target ?? <StructureMapTarget>[]) {
-        print('$indent Processing target: ${target.context}');
         await _processTarget(
           rule.name.toString(),
           context,
-          sourceVars,
+          v,
           map,
           group,
           target,
@@ -202,7 +211,7 @@ class FhirMapEngine {
             '$indent  ',
             context,
             map,
-            srcVars,
+            v,
             group,
             childrule,
             false,
@@ -214,7 +223,7 @@ class FhirMapEngine {
             '$indent  ',
             context,
             map,
-            srcVars,
+            v,
             group,
             dependent,
           );
@@ -226,14 +235,16 @@ class FhirMapEngine {
           rule.target?.first.transform == StructureMapTransform.create &&
           !(rule.target?.first.parameter?.isNotEmpty ?? false)) {
         final FhirBase? src =
-            srcVars.get(VariableMode.INPUT, rule.source.first.variable?.value);
-        final FhirBase? tgt = srcVars.get(
-          VariableMode.OUTPUT,
+            v.get(MappingVariableMode.INPUT, rule.source.first.variable?.value);
+        final FhirBase? tgt = v.get(
+          MappingVariableMode.OUTPUT,
           rule.target?.firstOrNull?.variable?.value,
         );
         if (src == null || tgt == null) {
           continue;
         }
+        print('srcTpe: ${src.fhirType}');
+        print('tgtType: ${tgt.fhirType}');
         final String srcType = src.fhirType;
         final String tgtType = tgt.fhirType;
         final ResolvedGroup defGroup = await _resolveGroupByTypes(
@@ -243,7 +254,7 @@ class FhirMapEngine {
           srcType,
           tgtType,
         );
-        final Variables vdef = Variables();
+        final MappingVariables vdef = MappingVariables();
         final inputName = defGroup.target!.input[0].name.value;
         if (inputName == null) {
           throw MappingDefinitionException(message: 'No input name found');
@@ -253,8 +264,8 @@ class FhirMapEngine {
           throw MappingDefinitionException(message: 'No target name found');
         }
         vdef
-          ..add(VariableMode.INPUT, inputName, src)
-          ..add(VariableMode.OUTPUT, targetName, tgt);
+          ..add(MappingVariableMode.INPUT, inputName, src)
+          ..add(MappingVariableMode.OUTPUT, targetName, tgt);
         await _executeGroup(
           '$indent  ',
           context,
@@ -271,7 +282,7 @@ class FhirMapEngine {
     String indent,
     TransformContext context,
     StructureMap? map,
-    Variables vin,
+    MappingVariables vin,
     StructureMapGroup? group,
     StructureMapDependent dependent,
   ) {
@@ -283,16 +294,16 @@ class FhirMapEngine {
             'the invocation has ${dependent.variable.length} variables',
       );
     }
-    final Variables v = Variables();
+    final MappingVariables v = MappingVariables();
     for (int i = 0; i < rg.target!.input.length; i++) {
       final input = rg.target!.input[i];
       final varVal = dependent.variable[i].value;
       final mode = input.mode == StructureMapInputMode.source
-          ? VariableMode.INPUT
-          : VariableMode.OUTPUT;
+          ? MappingVariableMode.INPUT
+          : MappingVariableMode.OUTPUT;
       var vv = varVal == null ? null : vin.get(mode, varVal);
-      if (vv == null && mode == VariableMode.INPUT) {
-        vv = vin.get(VariableMode.OUTPUT, varVal);
+      if (vv == null && mode == MappingVariableMode.INPUT) {
+        vv = vin.get(MappingVariableMode.OUTPUT, varVal);
       }
       if (vv == null) {
         throw FHIRException(
@@ -322,6 +333,7 @@ class FhirMapEngine {
     List<String> types,
   ) async {
     final String type = fhirBase.fhirType;
+
     final String kn = 'type^$type';
     if (source?.hasUserData(kn) ?? false) {
       return source!.getUserData(kn) as String;
@@ -624,14 +636,14 @@ class FhirMapEngine {
     return res;
   }
 
-  List<Variables>? _processSource(
+  Future<List<MappingVariables>?> _processSource(
     String ruleId,
     TransformContext context,
-    Variables vars,
+    MappingVariables vars,
     StructureMapSource src,
     String? pathForErrors,
     String indent,
-  ) {
+  ) async {
     final List<FhirBase> items = <FhirBase>[];
     if (src.context.value == '@search') {
       // Evaluate an expression, then do a search
@@ -641,14 +653,16 @@ class FhirMapEngine {
         expr = fpe.parse(src.element?.value ?? '');
         src.setUserData(MAP_SEARCH_EXPRESSION, expr);
       }
-      final String search =
-          fpe.evaluateToString(vars, null, null, ''.toFhirString, expr);
       // TODO(Dokotela): implement services
+      // final String search =
+      //     fpe.evaluateToString(vars, null, null, ''.toFhirString, expr);
       // if (services != null) {
       //   items = services!.performSearch(context.appInfo, search);
       // }
     } else {
-      final FhirBase? b = vars.get(VariableMode.INPUT, src.context.value);
+      final FhirBase? b =
+          vars.get(MappingVariableMode.INPUT, src.context.value);
+
       if (b == null) {
         throw FHIRException(
           message: 'Unknown input variable ${src.context} in $pathForErrors '
@@ -656,10 +670,10 @@ class FhirMapEngine {
         );
       }
 
-      if (src.element != null) {
+      if (src.element == null) {
         items.add(b);
       } else {
-        _getChildrenByName(b, src.element?.value ?? '', items);
+        await _getChildrenByName(b, src.element?.value ?? '', items);
         if (items.isEmpty && src.defaultValueX != null) {
           items.add(src.defaultValueX!);
         }
@@ -677,14 +691,21 @@ class FhirMapEngine {
         expr = fpe.parse(src.condition?.value ?? '');
         src.setUserData(MAP_WHERE_EXPRESSION, expr);
       }
+      print('Expression: $expr');
       final List<FhirBase> remove = <FhirBase>[];
       for (final item in items) {
-        final Variables varsForSource = vars.copy();
+        final MappingVariables varsForSource = vars.copy();
         if (src.variable != null) {
-          varsForSource.add(VariableMode.INPUT, src.variable!.value!, item);
+          varsForSource.add(
+            MappingVariableMode.INPUT,
+            src.variable!.value!,
+            item,
+          );
         }
+        print('varsforsource: ${varsForSource.summary()}');
         final bool passed =
             fpe.evaluateToBoolean(varsForSource, null, null, item, expr);
+        print('passed condition: $passed');
         if (!passed) {
           remove.add(item);
         }
@@ -702,12 +723,17 @@ class FhirMapEngine {
         src.setUserData(MAP_WHERE_CHECK, expr);
       }
       for (final item in items) {
-        final Variables varsForSource = vars.copy();
+        final MappingVariables varsForSource = vars.copy();
         if (src.variable != null) {
-          varsForSource.add(VariableMode.INPUT, src.variable!.value!, item);
+          varsForSource.add(
+            MappingVariableMode.INPUT,
+            src.variable!.value!,
+            item,
+          );
         }
         final bool passed =
             fpe.evaluateToBoolean(varsForSource, null, null, item, expr);
+        print('passed: $passed');
         if (!passed) {
           throw FHIRException(
             message: 'Rule "$ruleId": Check condition failed',
@@ -724,9 +750,13 @@ class FhirMapEngine {
       }
       final List<String> logs = <String>[];
       for (final item in items) {
-        final Variables varsForSource = vars.copy();
+        final MappingVariables varsForSource = vars.copy();
         if (src.variable != null) {
-          varsForSource.add(VariableMode.INPUT, src.variable!.value!, item);
+          varsForSource.add(
+            MappingVariableMode.INPUT,
+            src.variable!.value!,
+            item,
+          );
         }
         logs.add(fpe.evaluateToString(varsForSource, null, null, item, expr));
       }
@@ -767,11 +797,11 @@ class FhirMapEngine {
       }
     }
 
-    final List<Variables> result = <Variables>[];
+    final List<MappingVariables> result = <MappingVariables>[];
     for (final r in items) {
-      final Variables v = vars.copy();
+      final MappingVariables v = vars.copy();
       if (src.variable != null) {
-        v.add(VariableMode.INPUT, src.variable!.value!, r);
+        v.add(MappingVariableMode.INPUT, src.variable!.value!, r);
       }
       result.add(v);
     }
@@ -796,24 +826,26 @@ class FhirMapEngine {
   Future<void> _processTarget(
     String rulePath,
     TransformContext context,
-    Variables vars,
+    MappingVariables vars,
     StructureMap? map,
     StructureMapGroup? group,
     StructureMapTarget tgt,
     String? srcVar,
     bool atRoot,
-    Variables sharedVars,
+    MappingVariables sharedVars,
   ) async {
+    print('process target');
     FhirBase? dest;
     if (tgt.context != null) {
-      dest = vars.get(VariableMode.OUTPUT, tgt.context!.value);
+      dest = vars.get(MappingVariableMode.OUTPUT, tgt.context!.value);
       if (dest == null) {
         throw FHIRException(
-          message: 'Rul "$rulePath": target context not known: ${tgt.context}',
+          message: 'Rule "$rulePath": target context not known: ${tgt.context}',
         );
       }
     }
     FhirBase? v;
+    print('transformtype: ${tgt.transform?.toJson()}');
     if (tgt.transform != null) {
       v = await _runTransform(
         rulePath,
@@ -827,27 +859,33 @@ class FhirMapEngine {
         srcVar,
         atRoot,
       );
+      print('transformed v: ${v?.fhirType} ${v?.toJson()}');
       if (v != null && dest != null) {
         try {
           if (tgt.element == null) {
             throw FHIRException(message: 'Element is null');
           }
-          v = dest.setChildByName(tgt.element!.value!, v);
+          dest = dest.setChildByName(tgt.element!.value!, v);
+          sharedVars.add(MappingVariableMode.OUTPUT, tgt.context!.value!, dest);
         } catch (e) {
           throw FHIRException(
-            message: 'Error setting ${tgt.element} on ${dest.fhirType} '
+            message: 'Error setting ${tgt.element} on ${dest?.fhirType} '
                 'for rule $rulePath to value $v: $e',
           );
         }
       }
     } else if (dest != null) {
       if (tgt.listMode?.contains(StructureMapTargetListMode.share) ?? false) {
-        v = sharedVars.get(VariableMode.SHARED, tgt.listRuleId?.value);
+        v = sharedVars.get(MappingVariableMode.SHARED, tgt.listRuleId?.value);
         if (v == null) {
           dest = dest.createProperty(tgt.element?.value ?? '');
           v = dest.getChildByName(tgt.element?.value ?? '');
           if (tgt.listRuleId != null && v != null) {
-            sharedVars.add(VariableMode.SHARED, tgt.listRuleId!.value!, v);
+            sharedVars.add(
+              MappingVariableMode.SHARED,
+              tgt.listRuleId!.value!,
+              v,
+            );
           }
         }
       } else if (tgt.element != null) {
@@ -859,9 +897,15 @@ class FhirMapEngine {
         v = dest;
       }
     }
+    print('variables');
+    print(tgt.variable);
+    print(v?.toJson());
+    print('v type: ${v?.fhirType}');
     if (tgt.variable != null && v != null) {
-      vars.add(VariableMode.OUTPUT, tgt.variable!.value!, v);
+      vars.add(MappingVariableMode.OUTPUT, tgt.variable!.value!, v);
     }
+
+    print('end process target: ${vars.summary()}');
   }
 
   Future<FhirBase?> _runTransform(
@@ -870,7 +914,7 @@ class FhirMapEngine {
     StructureMap? map,
     StructureMapGroup? group,
     StructureMapTarget tgt,
-    Variables vars,
+    MappingVariables vars,
     FhirBase? dest,
     String element,
     String? srcVar,
@@ -884,15 +928,18 @@ class FhirMapEngine {
             if (tgt.parameter?.isEmpty ?? true) {
               // must figure out type
               List<String> types = <String>[];
+
               if (dest != null) {
                 types = dest.typeByElementName(element);
               }
+
               if (types.length == 1 &&
                   types[0] != '*' &&
                   types[0] != 'Resource') {
                 tn = types[0];
               } else if (srcVar != null) {
-                final FhirBase? srcObj = vars.get(VariableMode.INPUT, srcVar);
+                final FhirBase? srcObj =
+                    vars.get(MappingVariableMode.INPUT, srcVar);
                 if (srcObj != null) {
                   tn = await _determineTypeFromSourceType(
                     map,
@@ -935,6 +982,7 @@ class FhirMapEngine {
             }
 
             FhirBase res;
+
             // if (services != null) {
             //   res = services!.createType(context.appInfo, tn, profileUtilities);
             // } else {
@@ -996,18 +1044,34 @@ class FhirMapEngine {
           {
             if (tgt.parameter?.length == 2) {
               String src = _getParamString(vars, tgt.parameter![0]) ?? '';
-              final String len = _getParamStringNoNull(
-                vars,
-                tgt.parameter![1],
-                tgt.toString(),
-              );
-              if (int.tryParse(len) != null) {
-                final int l = int.parse(len);
+              if (tgt.parameter![1].value is FhirNumber) {
+                final int? l =
+                    (tgt.parameter![1].value! as FhirNumber).value?.toInt();
+                if (l == null) {
+                  throw FHIRException(
+                    message: 'Rule "$rulePath": Transform TRUNCATE requires a '
+                        'number as the second parameter',
+                  );
+                }
                 if (src.length > l) {
                   src = src.substring(0, l);
                 }
+                return src.toFhirString;
+              } else {
+                print('param string: $src');
+                final String len = _getParamStringNoNull(
+                  vars,
+                  tgt.parameter![1],
+                  tgt.toString(),
+                );
+                if (int.tryParse(len) != null) {
+                  final int l = int.parse(len);
+                  if (src.length > l) {
+                    src = src.substring(0, l);
+                  }
+                }
+                return src.toFhirString;
               }
-              return src.toFhirString;
             } else {
               throw FHIRException(
                 message: 'Rule "$rulePath": '
@@ -1343,7 +1407,8 @@ class FhirMapEngine {
       }
     } catch (e) {
       throw FHIRException(
-        message: 'Exception executing transform $tgt on Rule "$rulePath": $e',
+        message: 'Exception executing transform ${tgt.toJson()} on Rule '
+            '"$rulePath": $e',
         cause: e is Exception ? e : null,
       );
     }
@@ -1417,11 +1482,12 @@ class FhirMapEngine {
   }
 
   String _getParamStringNoNull(
-    Variables vars,
+    MappingVariables vars,
     StructureMapParameter parameter,
     String message,
   ) {
     final FhirBase? b = _getParam(vars, parameter);
+    print('param: ${b?.toJson()}');
     if (b == null) {
       throw FHIRException(
         message: 'Unable to find a value for $parameter. Context: $message',
@@ -1429,21 +1495,23 @@ class FhirMapEngine {
     }
     if (b is! PrimitiveType) {
       throw FHIRException(
-        message: 'Found a value for $parameter, but it has type ${b.fhirType} '
-            'and cannot be treated as a string. Context: $message',
+        message: 'Found a value for ${parameter.toJson()}, but it has type '
+            '${b.fhirType} and cannot be treated as a string. '
+            'Context: $message',
       );
     }
     if (b.value is! String) {
       throw FHIRException(
-        message: 'Found a value for $parameter, but it has type ${b.fhirType} '
-            'and cannot be treated as a string. Context: $message',
+        message: 'Found a value for ${parameter.toJson()}, but it has type '
+            '${b.fhirType} and cannot be treated as a string. '
+            'Context: $message',
       );
     }
     return b.primitiveValue!;
   }
 
   String? _getParamString(
-    Variables vars,
+    MappingVariables vars,
     StructureMapParameter parameter,
   ) {
     final FhirBase? b = _getParam(vars, parameter);
@@ -1453,17 +1521,17 @@ class FhirMapEngine {
     return b.primitiveValue!;
   }
 
-  FhirBase? _getParam(Variables vars, StructureMapParameter parameter) {
+  FhirBase? _getParam(MappingVariables vars, StructureMapParameter parameter) {
     final DataType p = parameter.valueX;
     if (p is! FhirId) {
       return p;
     } else {
       final String n = p.toString();
-      FhirBase? b = vars.get(VariableMode.INPUT, n);
-      b ??= vars.get(VariableMode.OUTPUT, n);
+      FhirBase? b = vars.get(MappingVariableMode.INPUT, n);
+      b ??= vars.get(MappingVariableMode.OUTPUT, n);
       if (b == null) {
         throw MappingDefinitionException(
-          message: 'Variable $n not found (${vars.summary()})',
+          message: 'MappingVariable $n not found (${vars.summary()})',
         );
       }
       return b;
@@ -1473,7 +1541,7 @@ class FhirMapEngine {
   Future<FhirBase?> _translate(
     TransformContext context,
     StructureMap? map,
-    Variables variables,
+    MappingVariables variables,
     List<StructureMapParameter> parameters,
   ) async {
     final sourceElement = _getParam(variables, parameters.first);
@@ -1600,7 +1668,7 @@ class FhirMapEngine {
   }
 
   String? _getParamStringGeneral(
-    Variables variables,
+    MappingVariables variables,
     StructureMapParameter parameter,
     StructureMap? map, {
     required bool throwIfNull,

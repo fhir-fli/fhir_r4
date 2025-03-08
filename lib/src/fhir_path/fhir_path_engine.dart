@@ -657,6 +657,7 @@ class FHIRPathEngine {
       context: base,
       thisItem: base,
     )..definedVariables = environment;
+    print('ExecuteContext: $context');
     return execute(context, list, node, true);
   }
 
@@ -1034,6 +1035,8 @@ class FHIRPathEngine {
   ) {
     // Acquire context for special variables ($this, $total, $index, etc.)
     var context = contextForParameter(inContext);
+    print('newcontext: $context');
+    print('expressionkind: ${exp.kind}');
 
     // This will hold the evaluated results for the current node
     var work = <FhirBase>[];
@@ -1093,7 +1096,10 @@ class FHIRPathEngine {
           work.add(context.index);
         } else {
           for (final item in focus) {
+            print('focusItem: ${item.toJson()}');
+            print('exp: $exp');
             final outcome = executeForItem(context, item, exp, atEntry: true);
+            print('outcome: $outcome');
             work.addAll(outcome);
           }
         }
@@ -1186,6 +1192,7 @@ class FHIRPathEngine {
     if (atEntry && context.appInfo != null && hostServices != null) {
       final temp = hostServices!
           .resolveConstant(this, context.appInfo, exp.name, true, false);
+      print('temp: $temp');
       if (temp.isNotEmpty) {
         result.addAll(temp);
         return result;
@@ -1199,7 +1206,9 @@ class FHIRPathEngine {
         exp.name![0].toUpperCase() == exp.name![0]) {
       // Handle constant items
       if (item is PrimitiveType) {
+        print('item is PrimitiveType');
         final itemType = item.fhirType;
+        print('itemtype: $itemType');
         if (itemType == exp.name) {
           result.add(item);
           return result;
@@ -1207,32 +1216,33 @@ class FHIRPathEngine {
       }
 
       // Handle resources
-      var sd = _fetchTypeDefinition(item.fhirType);
+      final sd = _fetchTypeDefinition(item.fhirType);
       if (sd == null) {
         // Logical model case
+        print('logical model: ${exp.name}');
         if (exp.name == item.fhirType) {
           result.add(item);
         }
       } else {
-        // Traverse through base definitions
-        while (sd != null) {
-          if (sd.type.toString() == exp.name) {
+        StructureDefinition? current = sd;
+        print('sdtype: ${current.type}');
+        while (current != null) {
+          print('currenttype: ${current.type}');
+          if (current.type.toString() == exp.name) {
             result.add(item);
             break;
           }
-          // final baseDefinitionUri = sd.baseDefinition?.toString();
-          // if (baseDefinitionUri == null || baseDefinitionUri.isEmpty) {
-          //   break;
-          // }
-          sd = worker.fetchResource<StructureDefinition>(
-            uri: sd.baseDefinition?.toString(),
+          current = worker.fetchResource<StructureDefinition>(
+            uri: current.baseDefinition?.toString(),
           );
         }
       }
     } else {
+      print(
+          'getting children by name: ${result.map((e) => e.toJson()).toList()}');
       // Step 3: Default case - Get children by name
-
       getChildrenByName(item, exp.name!, result);
+      print('got children by name: ${result.map((e) => e.toJson()).toList()}');
     }
     // Step 4: Fallback to resolve constants if result is empty
     if (atEntry &&
@@ -1244,6 +1254,8 @@ class FHIRPathEngine {
             .resolveConstant(this, context.appInfo, exp.name, false, false),
       );
     }
+
+    print('returning result: ${result.map((e) => e.toJson()).toList()}');
 
     return result;
   }
@@ -2784,9 +2796,7 @@ class FHIRPathEngine {
     FpOperation? operation,
     ExpressionNode expr,
   ) {
-    if (left.isEmpty) {
-      return null;
-    }
+    if (left.isEmpty) return null;
     switch (operation) {
       case FpOperation.And:
         return isBoolean(left, false) ? makeBoolean(false) : null;

@@ -12,6 +12,8 @@ class TRight3 extends Element {
     super.objectPath = 'TRight3',
   });
 
+  factory TRight3.empty() => const TRight3();
+
   /// Factory constructor to create an instance of [TRight3] from JSON
   factory TRight3.fromJson(Map<String, dynamic> json) {
     const objectPath = 'TRight3';
@@ -116,5 +118,19 @@ class TRight3 extends Element {
     return id == o.id &&
         const DeepCollectionEquality().equals(extension_, o.extension_) &&
         a2 == o.a2;
+  }
+
+  @override
+  TRight3 setChildByName(String name, dynamic value) {
+    switch (name) {
+      case 'id':
+        return copyWith(id: value as FhirString);
+      case 'extension':
+        return copyWith(extension_: value as List<FhirExtension>);
+      case 'a2':
+        return copyWith(a2: value as FhirString);
+      default:
+        return this;
+    }
   }
 }
