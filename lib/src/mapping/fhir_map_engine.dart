@@ -23,6 +23,8 @@ class FhirMapEngine {
   FhirMapEngine(this.cache, this.map)
       : resolver = DefinitionResolver(cache, map) {
     context = TransformationContext(resolver);
+    services = FHIRPathHostServices();
+    fpe = FHIRPathEngine(WorkerContext(), services);
     // transformer = Transformer(map, context, resolver);
   }
   final FhirDb cache;
@@ -30,7 +32,8 @@ class FhirMapEngine {
   final DefinitionResolver resolver;
   late final TransformationContext context;
   // late final Transformer transformer;
-  final FHIRPathEngine fpe = FHIRPathEngine(WorkerContext());
+  late final IEvaluationContext? services;
+  late final FHIRPathEngine fpe;
   int rules = 0;
 
   static const String MAP_WHERE_CHECK = 'map.where.check';
@@ -656,9 +659,9 @@ class FhirMapEngine {
       // TODO(Dokotela): implement services
       // final String search =
       //     fpe.evaluateToString(vars, null, null, ''.toFhirString, expr);
-      // if (services != null) {
-      //   items = services!.performSearch(context.appInfo, search);
-      // }
+
+      // items = services.performSearch(context.appInfo, search);
+      throw FHIRException(message: 'Search not implemented');
     } else {
       final FhirBase? b =
           vars.get(MappingVariableMode.INPUT, src.context.value);
@@ -702,6 +705,17 @@ class FhirMapEngine {
             item,
           );
         }
+        final srcBase = vars.get(MappingVariableMode.INPUT, src.context.value);
+        final children = srcBase?.listChildrenNames();
+        for (final child in children ?? <String>[]) {
+          final varBase = vars.get(MappingVariableMode.INPUT, child);
+          if (varBase == null) {
+            final childItem = srcBase!.getChildByName(child);
+            if (childItem != null) {
+              varsForSource.add(MappingVariableMode.INPUT, child, childItem);
+            }
+          }
+        }
         print('varsforsource: ${varsForSource.summary()}');
         final bool passed =
             fpe.evaluateToBoolean(varsForSource, null, null, item, expr);
@@ -730,6 +744,17 @@ class FhirMapEngine {
             src.variable!.value!,
             item,
           );
+        }
+        final srcBase = vars.get(MappingVariableMode.INPUT, src.context.value);
+        final children = srcBase?.listChildrenNames();
+        for (final child in children ?? <String>[]) {
+          final varBase = vars.get(MappingVariableMode.INPUT, child);
+          if (varBase == null) {
+            final childItem = srcBase!.getChildByName(child);
+            if (childItem != null) {
+              varsForSource.add(MappingVariableMode.INPUT, child, childItem);
+            }
+          }
         }
         final bool passed =
             fpe.evaluateToBoolean(varsForSource, null, null, item, expr);

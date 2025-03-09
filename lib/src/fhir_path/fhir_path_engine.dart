@@ -10,7 +10,7 @@ import 'package:ucum/ucum.dart';
 
 class FHIRPathEngine {
   /// Constructor
-  FHIRPathEngine(this.worker)
+  FHIRPathEngine(this.worker, [this.hostServices])
       : terminologyServiceOptions = ValidationOptions.defaults() {
     for (final sd in worker.getStructures()) {
       if (sd.derivation == TypeDerivationRule.specialization &&
@@ -1190,6 +1190,7 @@ class FHIRPathEngine {
     final result = <FhirBase>[];
     // Step 1: Resolve constants if at entry
     if (atEntry && context.appInfo != null && hostServices != null) {
+      print('name: ${exp.name}');
       final temp = hostServices!
           .resolveConstant(this, context.appInfo, exp.name, true, false);
       print('temp: $temp');
