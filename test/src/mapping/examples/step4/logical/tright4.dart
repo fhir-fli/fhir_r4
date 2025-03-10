@@ -12,6 +12,8 @@ class TRight4 extends Element {
     super.objectPath = 'TRight4',
   });
 
+  factory TRight4.empty() => const TRight4();
+
   /// Factory constructor to create an instance of [TRight4] from JSON
   factory TRight4.fromJson(Map<String, dynamic> json) {
     const objectPath = 'TRight4';
@@ -115,5 +117,19 @@ class TRight4 extends Element {
     return id == o.id &&
         const DeepCollectionEquality().equals(extension_, o.extension_) &&
         a21 == o.a21;
+  }
+
+  @override
+  TRight4 setChildByName(String name, dynamic value) {
+    switch (name) {
+      case 'id':
+        return copyWith(id: value as FhirString);
+      case 'extension':
+        return copyWith(extension_: value as List<FhirExtension>);
+      case 'a21':
+        return copyWith(a21: value as FhirInteger);
+      default:
+        throw ArgumentError('Invalid child name: $name');
+    }
   }
 }

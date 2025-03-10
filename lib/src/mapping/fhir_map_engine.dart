@@ -95,13 +95,31 @@ class FhirMapEngine {
       throw FHIRException(message: 'No target name found');
     }
 
-    await _executeGroup('', context, map, vars, g, true);
-    final result = vars.getOutputVar(targetName);
-    if (result == null) {
-      throw FHIRException(message: 'No output found');
-    } else {
-      return result;
+    try {
+      await _executeGroup('', context, map, vars, g, true);
+      final result = vars.getOutputVar(targetName);
+      if (result == null) {
+        throw FHIRException(message: 'No output found');
+      } else {
+        return result;
+      }
+    } catch (e) {
+      return e is FHIRException
+          ? _createOutcome(e.message ?? e.toString())
+          : _createOutcome(e.toString());
     }
+  }
+
+  OperationOutcome _createOutcome(String message) {
+    return OperationOutcome(
+      issue: [
+        OperationOutcomeIssue(
+          severity: IssueSeverity.error,
+          code: IssueType.processing,
+          diagnostics: message.toFhirString,
+        ),
+      ],
+    );
   }
 
   String? _getInputType(StructureMapGroup g, StructureMapInputMode mode) {
@@ -758,10 +776,9 @@ class FhirMapEngine {
         }
         final bool passed =
             fpe.evaluateToBoolean(varsForSource, null, null, item, expr);
-        print('passed: $passed');
         if (!passed) {
           throw FHIRException(
-            message: 'Rule "$ruleId": Check condition failed',
+            message: "Rule '$ruleId', Check condition failed, $expr",
           );
         }
       }
@@ -1431,11 +1448,13 @@ class FhirMapEngine {
           }
       }
     } catch (e) {
-      throw FHIRException(
-        message: 'Exception executing transform ${tgt.toJson()} on Rule '
-            '"$rulePath": $e',
-        cause: e is Exception ? e : null,
-      );
+      throw e is FHIRException
+          ? e
+          : FHIRException(
+              message: 'Exception executing transform ${tgt.toJson()} on Rule '
+                  '"$rulePath": $e',
+              cause: e is Exception ? e : null,
+            );
     }
   }
 

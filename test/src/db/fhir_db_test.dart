@@ -480,7 +480,7 @@ Future<void> main() async {
     test(
       '(& Resources)',
       () async {
-        final dir = Directory('test/src/fhir_db/assets');
+        final dir = Directory('test/src/db/assets');
         final subscription =
             fhirDb.subject(resourceType: R4ResourceType.Observation).listen(
           (Resource? resource) {
