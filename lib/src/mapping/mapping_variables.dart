@@ -79,9 +79,6 @@ class MappingVariables {
 
   /// Adds a variable to the collection
   void add(MappingVariableMode mode, String name, FhirBase value) {
-    print('mode $mode');
-    print('name $name');
-    print('value $value');
     _variables
       ..removeWhere((v) => v.mode == mode && v.name == name)
       ..add(MappingVariable(mode, name, value));
