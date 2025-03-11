@@ -59,7 +59,7 @@ abstract class FhirBulk {
         }
       }
     } else if (contentType == 'application/x-tar') {
-      final unzipped = GZipDecoder().decodeBytes(content as List<int>);
+      final unzipped = const GZipDecoder().decodeBytes(content as List<int>);
       final archive = TarDecoder().decodeBytes(unzipped);
       for (final file in archive) {
         if (file.isFile) {
@@ -68,7 +68,7 @@ abstract class FhirBulk {
         }
       }
     } else if (contentType == 'application/gzip') {
-      final data = GZipDecoder().decodeBytes(content as List<int>);
+      final data = const GZipDecoder().decodeBytes(content as List<int>);
       resourceList.addAll(fromNdJson(utf8.decode(data)));
     }
     return resourceList;
@@ -118,7 +118,7 @@ abstract class FhirBulk {
 
   /// This function converts a map of ndJson Strings (really any strings, but
   /// it was made for ndJson strings), and converts them into the bytes for a
-  /// .gz file.
+  /// SINGLE.gz file.
   ///
   /// Each function takes a Map<String, String> value as an argument. It assumes
   /// that each value should be stored in a different file, and the key is the
@@ -132,12 +132,9 @@ abstract class FhirBulk {
   /// have to do a File('fhirData.gz').writeAsBytes(value) in order to store
   /// the result somewhere.
   static List<int>? toGZipFile(Map<String, String> ndJsonStrings) {
-    final archive = Archive();
-    ndJsonStrings.forEach((String key, String value) {
-      final file = ArchiveFile('$key.ndjson', value.length, utf8.encode(value));
-      archive.addFile(file);
-    });
-    return GZipEncoder().encode(archive);
+    final fileString = ndJsonStrings.values.join('\n');
+    final bytes = utf8.encode(fileString);
+    return const GZipEncoder().encodeBytes(bytes);
   }
 
   /// This function converts a map of ndJson Strings (really any strings, but
@@ -164,6 +161,6 @@ abstract class FhirBulk {
       archive.addFile(file);
     });
     final tarredArchive = TarEncoder().encode(archive);
-    return GZipEncoder().encode(tarredArchive);
+    return const GZipEncoder().encode(tarredArchive);
   }
 }
