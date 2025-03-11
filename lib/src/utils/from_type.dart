@@ -38,10 +38,6 @@ FhirBase? fromType(dynamic value, String type) {
       return value is Map<String, dynamic>
           ? FhirCode.fromJson(value)
           : FhirCode.tryParse(value);
-    case 'fhircodeenum':
-      return value is Map<String, dynamic>
-          ? FhirCodeEnum.fromJson(value)
-          : FhirCodeEnum.tryParse(value);
     case 'fhirdate':
       return value is Map<String, dynamic>
           ? FhirDate.fromJson(value)

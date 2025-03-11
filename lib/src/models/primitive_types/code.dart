@@ -40,6 +40,24 @@ class FhirCode extends PrimitiveType<String>
     }
   }
 
+  /// Public constructor because not all classes exist in the Primitives Library
+  FhirCode.public(
+    String? rawInput, {
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    bool? disallowExtensions,
+    String objectPath = 'Code',
+  }) : this._(
+          validatedValue: rawInput != null ? _validateCode(rawInput) : null,
+          input: rawInput,
+          element: element,
+          id: id,
+          extension_: extension_,
+          disallowExtensions: disallowExtensions,
+          objectPath: objectPath,
+        );
+
   /// Public factory constructor with input validation
   // ignore: sort_unnamed_constructors_first
   factory FhirCode(

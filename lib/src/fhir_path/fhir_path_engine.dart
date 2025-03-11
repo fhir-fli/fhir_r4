@@ -1240,7 +1240,8 @@ class FHIRPathEngine {
       }
     } else {
       print(
-          'getting children by name: ${result.map((e) => e.toJson()).toList()}');
+        'getting children by name: ${result.map((e) => e.toJson()).toList()}',
+      );
       // Step 3: Default case - Get children by name
       getChildrenByName(item, exp.name!, result);
       print('got children by name: ${result.map((e) => e.toJson()).toList()}');

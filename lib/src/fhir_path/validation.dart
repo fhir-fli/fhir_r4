@@ -374,13 +374,13 @@ class ValidationResult {
 class TerminologyServiceErrorClass extends FhirCode {
   // Private constructor for internal use (like enum)
   TerminologyServiceErrorClass._(
-    super.value, {
+    super.rawValue, {
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'Code',
-  });
+  }) : super.public();
 
   /// Factory constructor to create [TerminologyServiceErrorClass] from JSON.
   factory TerminologyServiceErrorClass.fromJson(
@@ -517,7 +517,7 @@ class TerminologyServiceErrorClass extends FhirCode {
         annotations: annotations ?? this.element?.annotations,
       ),
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 }
