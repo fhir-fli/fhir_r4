@@ -1,6 +1,4 @@
-import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
-import 'package:yaml/yaml.dart';
+part of 'primitive_types.dart';
 
 /// Extension to convert a [num] to a [FhirInteger64].
 extension FhirInteger64NumExtension on num {
@@ -23,23 +21,62 @@ extension FhirInteger64BigIntExtension on BigInt {
 /// Represents a 64-bit integer in the FHIR specification.
 class FhirInteger64 extends PrimitiveType<BigInt?>
     implements Comparable<FhirInteger64> {
-  /// Constructor that ensures valid input.
-  FhirInteger64(
-    this.input, {
+  /// Private underscore constructor that assigns [validatedValue] to
+  /// `super._(value: validatedValue)` and checks if both [value] & [element]
+  /// are null => throw.
+  FhirInteger64._({
+    required BigInt? validatedValue,
+    this.input,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'Integer64',
-  }) : super(input != null ? _validateInteger64(input) : null) {
+  }) : super._(value: validatedValue) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required for FhirInteger64');
     }
   }
 
+  /// Single public constructor that ensures valid input.
+  /// If [input] is not null, calls `_validateInteger64(input)`;
+  /// otherwise `null`.
+  // ignore: sort_unnamed_constructors_first
+  factory FhirInteger64(
+    BigInt? input, {
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    bool? disallowExtensions,
+    String objectPath = 'Integer64',
+  }) {
+    final validated = input != null ? _validateInteger64(input) : null;
+    return FhirInteger64._(
+      validatedValue: validated,
+      input: input,
+      element: element,
+      id: id,
+      extension_: extension_,
+      disallowExtensions: disallowExtensions,
+      objectPath: objectPath,
+    );
+  }
+
   /// Factory constructor to create a [FhirInteger64] from a [num].
-  factory FhirInteger64.fromNum(num input, {Element? element}) {
-    return FhirInteger64(BigInt.from(input), element: element);
+  factory FhirInteger64.fromNum(
+    num input, {
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    bool? disallowExtensions,
+  }) {
+    return FhirInteger64(
+      BigInt.from(input),
+      element: element,
+      id: id,
+      extension_: extension_,
+      disallowExtensions: disallowExtensions,
+    );
   }
 
   /// Factory constructor to create a [FhirInteger64] from a [String].
@@ -47,17 +84,37 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
     String input, {
     Element? element,
     String? objectPath,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    bool? disallowExtensions,
   }) {
     return FhirInteger64(
       BigInt.parse(input),
       element: element,
-      objectPath: objectPath,
+      id: id,
+      extension_: extension_,
+      disallowExtensions: disallowExtensions,
+      objectPath: objectPath ?? 'Integer64',
     );
   }
 
   /// Factory constructor to create a [FhirInteger64] from a [BigInt].
-  factory FhirInteger64.fromBigInt(BigInt input, {Element? element}) {
-    return FhirInteger64(input, element: element);
+  factory FhirInteger64.fromBigInt(
+    BigInt input, {
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    bool? disallowExtensions,
+    String objectPath = 'Integer64',
+  }) {
+    return FhirInteger64(
+      input,
+      element: element,
+      id: id,
+      extension_: extension_,
+      disallowExtensions: disallowExtensions,
+      objectPath: objectPath,
+    );
   }
 
   /// Creates empty [FhirInteger64] object
@@ -68,8 +125,8 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
   factory FhirInteger64.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    final objectPath = json['objectPath'] as String?;
+    final element = elementJson == null ? null : Element.fromJson(elementJson);
+    final objectPath = json['objectPath'] as String? ?? 'Integer64';
     return FhirInteger64.fromString(
       value ?? '',
       element: element,
@@ -95,9 +152,15 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
   /// Attempts to parse the input as [FhirInteger64].
   static FhirInteger64? tryParse(dynamic input) {
     try {
-      if (input is BigInt) return FhirInteger64(input);
-      if (input is num) return FhirInteger64.fromNum(input);
-      if (input is String) return FhirInteger64.fromString(input);
+      if (input is BigInt) {
+        return FhirInteger64(input);
+      }
+      if (input is num) {
+        return FhirInteger64.fromNum(input);
+      }
+      if (input is String) {
+        return FhirInteger64.fromString(input);
+      }
       return null;
     } catch (_) {
       return null;
@@ -105,12 +168,7 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
   }
 
   /// Validates that the input is a valid 64-bit integer.
-  static BigInt _validateInteger64(dynamic input) {
-    if (input is BigInt) return input;
-    if (input is int) return BigInt.from(input);
-    if (input is String) return BigInt.parse(input);
-    throw FormatException('Invalid FhirInteger64 value: $input');
-  }
+  static BigInt _validateInteger64(BigInt input) => input;
 
   /// The original input value.
   final BigInt? input;
@@ -137,11 +195,11 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
       );
     }
     return List.generate(values.length, (i) {
-      final value = values[i] as String?;
-      final element = elements?[i] != null
+      final val = values[i] as String?;
+      final elem = elements?[i] != null
           ? Element.fromJson(elements![i] as Map<String, dynamic>)
           : null;
-      return FhirInteger64.fromString(value ?? '', element: element);
+      return FhirInteger64.fromString(val ?? '', element: elem);
     });
   }
 
@@ -165,8 +223,10 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
       value == null || other.value == null ? 0 : value!.compareTo(other.value!);
 
   @override
-  bool equalsDeep(FhirBase? o) =>
-      o is FhirInteger64 && o.value == value && o.element == element;
+  bool equalsDeep(FhirBase? other) =>
+      other is FhirInteger64 &&
+      other.value == value &&
+      other.element == element;
 
   /// Checks equality.
   @override
@@ -184,8 +244,10 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
 
   /// Clones the current instance.
   @override
-  FhirInteger64 clone() =>
-      FhirInteger64.fromBigInt(value!, element: element?.clone() as Element?);
+  FhirInteger64 clone() => FhirInteger64.fromBigInt(
+        value!,
+        element: element?.clone() as Element?,
+      );
 
   /// Creates a modified copy with updated properties.
   @override
@@ -213,14 +275,16 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 
   /// Returns a new [FhirInteger64] with extensions disallowed.
   FhirInteger64 noExtensions() => copyWith(disallowExtensions: true);
 
-  /// Arithmetic Operators
+  // ──────────────────────────────────────────────────────────────────────────
+  // Arithmetic Operators
+  // ──────────────────────────────────────────────────────────────────────────
 
   /// Addition operator.
   FhirInteger64? operator +(dynamic other) => _operate(other, (a, b) => a + b);
@@ -231,7 +295,7 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
   /// Multiplication operator.
   FhirInteger64? operator *(dynamic other) => _operate(other, (a, b) => a * b);
 
-  /// Division operator.
+  /// Division operator (integer).
   FhirInteger64? operator ~/(dynamic other) =>
       _operate(other, (a, b) => a ~/ b);
 
@@ -241,9 +305,11 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
   /// Unary negation operator.
   FhirInteger64? operator -() => value == null ? null : FhirInteger64(-value!);
 
-  /// Division operator.
-  FhirInteger64? operator /(dynamic other) =>
-      _operate(other, (a, b) => BigInt.from(a / b));
+  /// Division operator (floating).
+  FhirInteger64? operator /(dynamic other) => _operate(
+        other,
+        (a, b) => BigInt.from(a / b),
+      );
 
   /// Power operator.
   FhirInteger64? pow(int exponent) =>
@@ -253,7 +319,9 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
   FhirInteger64? modInverse(FhirInteger64 modulus) =>
       value == null ? null : FhirInteger64(value!.modInverse(modulus.value!));
 
-  /// Bitwise Operators
+  // ──────────────────────────────────────────────────────────────────────────
+  // Bitwise Operators
+  // ──────────────────────────────────────────────────────────────────────────
 
   /// Bitwise AND operator.
   FhirInteger64? operator &(dynamic other) => _operate(other, (a, b) => a & b);
@@ -268,10 +336,21 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
   FhirInteger64? operator ~() => value == null ? null : FhirInteger64(~value!);
 
   /// Bitwise Shift Operators
+  ///
+  /// Shift the bits of this integer to the left by [shiftAmount].
+  /// Shifting to the left makes the number larger, effectively multiplying the
+  /// number by pow(2, shiftIndex).
+  /// There is no limit on the size of the result. It may be relevant to limit
+  /// intermediate values by using the "and" operator with a suitable mask.
+  /// It is an error if [shiftAmount] is negative.
   FhirInteger64? operator <<(int shiftAmount) =>
       value == null ? null : FhirInteger64(value! << shiftAmount);
 
-  /// Bitwise Shift Operators
+  /// Shift the bits of this integer to the right by [shiftAmount].
+  /// Shifting to the right makes the number smaller and drops the least
+  /// significant bits, effectively doing an integer division by
+  /// pow(2, shiftIndex).
+  /// It is an error if [shiftAmount] is negative.
   FhirInteger64? operator >>(int shiftAmount) =>
       value == null ? null : FhirInteger64(value! >> shiftAmount);
 
@@ -308,37 +387,41 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
   /// Convert to a double.
   double? toDouble() => value?.toDouble();
 
-  /// Comparison Operators
+  // ──────────────────────────────────────────────────────────────────────────
+  // Comparison Operators
+  // ──────────────────────────────────────────────────────────────────────────
 
-  /// Equality operator.
+  /// Less than operator.
   bool operator <(dynamic other) => _compare(other, (a, b) => a < b);
 
   /// Less than or equal to operator.
   bool operator <=(dynamic other) => _compare(other, (a, b) => a <= b);
 
-  /// Greater than or equal to operator.
+  /// Greater than operator.
   bool operator >(dynamic other) => _compare(other, (a, b) => a > b);
 
   /// Greater than or equal to operator.
   bool operator >=(dynamic other) => _compare(other, (a, b) => a >= b);
 
-  /// Helper Methods
+  // ──────────────────────────────────────────────────────────────────────────
+  // Helper Methods
+  // ──────────────────────────────────────────────────────────────────────────
 
   bool _compare(dynamic other, bool Function(BigInt, BigInt) compare) {
     if (value == null) return false;
-    final otherValue = _extractValue(other);
-    if (otherValue == null) return false;
-    return compare(value!, otherValue);
+    final otherVal = _extractValue(other);
+    if (otherVal == null) return false;
+    return compare(value!, otherVal);
   }
 
   FhirInteger64? _operate(
     dynamic other,
     BigInt Function(BigInt, BigInt) operation,
   ) {
-    final otherValue = _extractValue(other);
-    return value == null || otherValue == null
+    final otherVal = _extractValue(other);
+    return (value == null || otherVal == null)
         ? null
-        : FhirInteger64(operation(value!, otherValue));
+        : FhirInteger64(operation(value!, otherVal));
   }
 
   BigInt? _extractValue(dynamic other) {

@@ -1,7 +1,4 @@
-import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
-import 'package:xml/xml.dart';
-import 'package:yaml/yaml.dart';
+part of 'primitive_types.dart';
 
 /// Extension to convert a [String] to a [FhirXhtml].
 extension FhirXhtmlExtension on String {
@@ -11,29 +8,63 @@ extension FhirXhtmlExtension on String {
 
 /// Represents the FHIR primitive type `xhtml`.
 class FhirXhtml extends PrimitiveType<String?> {
-  /// Constructor that accepts and validates an XHTML string, or allows `null`.
-  FhirXhtml(
-    String? input, {
+  /// Private underscore constructor that just assigns a validated XHTML
+  /// (or null) to `super._(value: validatedValue)`, then checks if both are
+  /// null => throw.
+  FhirXhtml._({
+    required String? validatedValue,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'Xhtml',
-  }) : super(input != null ? _validateXhtml(input) : null) {
+  }) : super._(value: validatedValue) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required for FhirXhtml');
     }
   }
 
+  /// Public factory constructor that accepts and validates an XHTML string, or
+  /// allows `null`. If it's non-null, it calls `_validateXhtml`.
+  // ignore: sort_unnamed_constructors_first
+  factory FhirXhtml(
+    String? input, {
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    bool? disallowExtensions,
+    String objectPath = 'Xhtml',
+  }) {
+    final validated = input != null ? _validateXhtml(input) : null;
+    return FhirXhtml._(
+      validatedValue: validated,
+      element: element,
+      id: id,
+      extension_: extension_,
+      disallowExtensions: disallowExtensions,
+      objectPath: objectPath,
+    );
+  }
+
   /// Constructor that accepts already validated XHTML string, or `null`.
-  FhirXhtml.fromValidatedXhtml(
-    super.value, {
-    super.element,
-    super.id,
-    super.extension_,
-    super.disallowExtensions,
-    super.objectPath = 'Xhtml',
-  });
+  factory FhirXhtml.fromValidatedXhtml(
+    String? validatedValue, {
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    bool? disallowExtensions,
+    String objectPath = 'Xhtml',
+  }) {
+    // We skip the final validation because we trust it's already validated
+    return FhirXhtml._(
+      validatedValue: validatedValue,
+      element: element,
+      id: id,
+      extension_: extension_,
+      disallowExtensions: disallowExtensions,
+      objectPath: objectPath,
+    );
+  }
 
   /// Creates empty [FhirXhtml] object
   factory FhirXhtml.empty() => FhirXhtml(null, element: Element.empty());
@@ -43,7 +74,7 @@ class FhirXhtml extends PrimitiveType<String?> {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    final objectPath = json['objectPath'] as String?;
+    final objectPath = json['objectPath'] as String? ?? 'Xhtml';
     return FhirXhtml(value, element: element, objectPath: objectPath);
   }
 
@@ -218,8 +249,8 @@ class FhirXhtml extends PrimitiveType<String?> {
   String toJsonString() => jsonEncode(toJson());
 
   @override
-  bool equalsDeep(FhirBase? o) =>
-      o is FhirXhtml && o.value == value && o.element == element;
+  bool equalsDeep(FhirBase? other) =>
+      other is FhirXhtml && other.value == value && other.element == element;
 
   /// Equality and hashCode overrides to account for nullable values.
   @override
@@ -269,7 +300,7 @@ class FhirXhtml extends PrimitiveType<String?> {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 

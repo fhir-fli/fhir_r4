@@ -54,7 +54,7 @@ void booleanTest() {
       try {
         FhirBoolean.fromJson({'value': 'invalid'});
       } catch (e) {
-        expect(e, isA<TypeError>());
+        expect(e, isA<ArgumentError>());
       }
     });
 

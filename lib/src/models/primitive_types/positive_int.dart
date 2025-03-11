@@ -1,6 +1,4 @@
-import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
-import 'package:yaml/yaml.dart';
+part of 'primitive_types.dart';
 
 /// Extension to convert a [num] to a [FhirPositiveInt].
 extension FhirPositiveIntExtension on num {
@@ -32,18 +30,53 @@ class FhirPositiveInt extends FhirNumber
         MaxValueXElementDefinition,
         ValueXElementDefinitionExample,
         ValueXExtension {
-  /// Constructor that ensures valid input.
-  FhirPositiveInt(
-    this.input, {
+  /// Private underscore constructor
+  FhirPositiveInt._({
+    required int? validatedValue,
+    this.input,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'PositiveInt',
-  }) : super(input != null ? _validatePositiveInt(input) : null) {
-    if (value == null && element == null) {
-      throw ArgumentError('A value or element is required for FhirPositiveInt');
+  }) : super._(validatedValue: validatedValue);
+
+  /// Public factory constructor that does validation
+  // ignore: sort_unnamed_constructors_first
+  factory FhirPositiveInt(
+    dynamic rawInput, {
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    bool? disallowExtensions,
+    String objectPath = 'PositiveInt',
+  }) {
+    // 1) Validate
+    int? finalInt;
+    if (rawInput == null && element == null) {
+      throw ArgumentError(
+        'A value or element is required for FhirPositiveInt.',
+      );
     }
+    if (rawInput is num) {
+      final validated = _validatePositiveInt(rawInput);
+      finalInt = validated;
+    } else if (rawInput != null) {
+      throw FormatException(
+        'FhirPositiveInt supports only num or null, got: $rawInput',
+      );
+    }
+
+    // 2) Return the private constructor
+    return FhirPositiveInt._(
+      validatedValue: finalInt,
+      input: rawInput is num ? rawInput : null,
+      element: element,
+      id: id,
+      extension_: extension_,
+      disallowExtensions: disallowExtensions,
+      objectPath: objectPath,
+    );
   }
 
   /// Creates empty [FhirPositiveInt] object
@@ -53,80 +86,49 @@ class FhirPositiveInt extends FhirNumber
   /// Factory constructor to create [FhirPositiveInt] from JSON input.
   factory FhirPositiveInt.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as num?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    final objectPath = json['objectPath'] as String?;
-    return FhirPositiveInt(
-      value?.toInt(),
-      element: element,
-      objectPath: objectPath,
-    );
+    final elemJson = json['_value'] as Map<String, dynamic>?;
+    final element = elemJson == null ? null : Element.fromJson(elemJson);
+    final objectPath = json['objectPath'] as String? ?? 'PositiveInt';
+
+    return FhirPositiveInt(value, element: element, objectPath: objectPath);
   }
 
   /// Factory constructor to create [FhirPositiveInt] from YAML input.
   static FhirPositiveInt fromYaml(dynamic yaml) {
-    return yaml is String
-        ? FhirPositiveInt.fromJson(
-            jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
-          )
-        : yaml is YamlMap
-            ? FhirPositiveInt.fromJson(
-                jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
-              )
-            : throw const FormatException(
-                'Invalid input for FhirPositiveInt: '
-                'not a valid YAML string or map.',
-              );
+    if (yaml is String) {
+      return FhirPositiveInt.fromJson(
+        jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
+      );
+    } else if (yaml is YamlMap) {
+      return FhirPositiveInt.fromJson(
+        jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
+      );
+    } else {
+      throw const FormatException(
+        'Invalid input for FhirPositiveInt: not a valid YAML string or map.',
+      );
+    }
   }
 
   /// Static method to try parsing input as [FhirPositiveInt], returns `null`
   /// if unsuccessful.
   static FhirPositiveInt? tryParse(dynamic input) {
-    if (input is int && input > 0) {
-      try {
-        return FhirPositiveInt(input);
-      } catch (_) {
-        return null;
-      }
+    try {
+      return FhirPositiveInt(input);
+    } catch (_) {
+      return null;
     }
-    return null;
   }
 
   /// Validates that the input is a positive integer.
-  static int _validatePositiveInt(num? input) {
-    if (input == null || input <= 0 || input is! int) {
-      throw FormatException('Invalid FhirPositiveInt value: $input. '
-          'Must be an integer greater than zero.');
-    }
-    return input;
-  }
 
-  /// Converts a list of JSON values to a list of [FhirPositiveInt] instances.
-  static List<FhirPositiveInt> fromJsonList(
-    List<dynamic> values,
-    List<dynamic>? elements,
-  ) {
-    if (elements != null && elements.length != values.length) {
-      throw const FormatException(
-        'Values and elements must have the same length',
+  static int _validatePositiveInt(num input) {
+    if (input <= 0 || input is! int) {
+      throw FormatException(
+        'Invalid FhirPositiveInt value: $input. Must be int > 0.',
       );
     }
-
-    return List.generate(values.length, (i) {
-      final value = values[i] as num?;
-      final element = elements?[i] != null
-          ? Element.fromJson(elements![i] as Map<String, dynamic>)
-          : null;
-      return FhirPositiveInt(value?.toInt(), element: element);
-    });
-  }
-
-  /// Converts a list of [FhirPositiveInt] instances to a JSON-compatible map.
-  static Map<String, dynamic> toJsonList(List<FhirPositiveInt> integers) {
-    return {
-      'value': integers.map((integer) => integer.value).toList(),
-      '_value': integers.map((integer) => integer.element?.toJson()).toList(),
-    };
+    return input;
   }
 
   /// The original input value (for serialization purposes)
@@ -138,22 +140,26 @@ class FhirPositiveInt extends FhirNumber
 
   /// Serializes the instance to JSON with standardized keys.
   @override
-  Map<String, dynamic> toJson() => {
-        if (value != null) 'value': value,
-        if (element != null) '_value': element!.toJson(),
-      };
+  Map<String, dynamic> toJson() {
+    return {
+      if (value != null) 'value': value,
+      if (element != null) '_value': element!.toJson(),
+    };
+  }
 
   /// Provides a string representation of the instance.
   @override
-  String toString() => value.toString();
+  String toString() => value?.toString() ?? 'null';
 
   /// Retrieves the primitive value of the object.
   @override
   String? get primitiveValue => value?.toString();
 
   @override
-  bool equalsDeep(FhirBase? o) =>
-      o is FhirPositiveInt && o.value == value && o.element == element;
+  bool equalsDeep(FhirBase? other) =>
+      other is FhirPositiveInt &&
+      other.value == value &&
+      other.element == element;
 
   /// Overrides equality operator to compare instances.
   @override
@@ -168,12 +174,10 @@ class FhirPositiveInt extends FhirNumber
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   int get hashCode => Object.hash(value, element);
 
-  /// Clones the current instance.
+  // Clone / copyWith
   @override
-  FhirPositiveInt clone() => FhirPositiveInt(
-        value as int?,
-        element: element?.clone() as Element?,
-      );
+  FhirPositiveInt clone() =>
+      FhirPositiveInt(value, element: element?.clone() as Element?);
 
   /// Sets disallowExtensions to true.
   FhirPositiveInt noExtensions() => copyWith(disallowExtensions: true);
@@ -204,7 +208,7 @@ class FhirPositiveInt extends FhirNumber
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 

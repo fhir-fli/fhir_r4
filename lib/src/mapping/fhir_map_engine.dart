@@ -23,6 +23,8 @@ class FhirMapEngine {
   FhirMapEngine(this.cache, this.map)
       : resolver = DefinitionResolver(cache, map) {
     context = TransformationContext(resolver);
+    services = FHIRPathHostServices();
+    fpe = FHIRPathEngine(WorkerContext(), services);
     // transformer = Transformer(map, context, resolver);
   }
   final FhirDb cache;
@@ -30,7 +32,8 @@ class FhirMapEngine {
   final DefinitionResolver resolver;
   late final TransformationContext context;
   // late final Transformer transformer;
-  final FHIRPathEngine fpe = FHIRPathEngine(WorkerContext());
+  late final IEvaluationContext? services;
+  late final FHIRPathEngine fpe;
   int rules = 0;
 
   static const String MAP_WHERE_CHECK = 'map.where.check';
@@ -92,13 +95,31 @@ class FhirMapEngine {
       throw FHIRException(message: 'No target name found');
     }
 
-    await _executeGroup('', context, map, vars, g, true);
-    final result = vars.getOutputVar(targetName);
-    if (result == null) {
-      throw FHIRException(message: 'No output found');
-    } else {
-      return result;
+    try {
+      await _executeGroup('', context, map, vars, g, true);
+      final result = vars.getOutputVar(targetName);
+      if (result == null) {
+        throw FHIRException(message: 'No output found');
+      } else {
+        return result;
+      }
+    } catch (e) {
+      return e is FHIRException
+          ? _createOutcome(e.message ?? e.toString())
+          : _createOutcome(e.toString());
     }
+  }
+
+  OperationOutcome _createOutcome(String message) {
+    return OperationOutcome(
+      issue: [
+        OperationOutcomeIssue(
+          severity: IssueSeverity.error,
+          code: IssueType.processing,
+          diagnostics: message.toFhirString,
+        ),
+      ],
+    );
   }
 
   String? _getInputType(StructureMapGroup g, StructureMapInputMode mode) {
@@ -656,9 +677,9 @@ class FhirMapEngine {
       // TODO(Dokotela): implement services
       // final String search =
       //     fpe.evaluateToString(vars, null, null, ''.toFhirString, expr);
-      // if (services != null) {
-      //   items = services!.performSearch(context.appInfo, search);
-      // }
+
+      // items = services.performSearch(context.appInfo, search);
+      throw FHIRException(message: 'Search not implemented');
     } else {
       final FhirBase? b =
           vars.get(MappingVariableMode.INPUT, src.context.value);
@@ -702,6 +723,17 @@ class FhirMapEngine {
             item,
           );
         }
+        final srcBase = vars.get(MappingVariableMode.INPUT, src.context.value);
+        final children = srcBase?.listChildrenNames();
+        for (final child in children ?? <String>[]) {
+          final varBase = vars.get(MappingVariableMode.INPUT, child);
+          if (varBase == null) {
+            final childItem = srcBase!.getChildByName(child);
+            if (childItem != null) {
+              varsForSource.add(MappingVariableMode.INPUT, child, childItem);
+            }
+          }
+        }
         print('varsforsource: ${varsForSource.summary()}');
         final bool passed =
             fpe.evaluateToBoolean(varsForSource, null, null, item, expr);
@@ -731,12 +763,22 @@ class FhirMapEngine {
             item,
           );
         }
+        final srcBase = vars.get(MappingVariableMode.INPUT, src.context.value);
+        final children = srcBase?.listChildrenNames();
+        for (final child in children ?? <String>[]) {
+          final varBase = vars.get(MappingVariableMode.INPUT, child);
+          if (varBase == null) {
+            final childItem = srcBase!.getChildByName(child);
+            if (childItem != null) {
+              varsForSource.add(MappingVariableMode.INPUT, child, childItem);
+            }
+          }
+        }
         final bool passed =
             fpe.evaluateToBoolean(varsForSource, null, null, item, expr);
-        print('passed: $passed');
         if (!passed) {
           throw FHIRException(
-            message: 'Rule "$ruleId": Check condition failed',
+            message: "Rule '$ruleId', Check condition failed, $expr",
           );
         }
       }
@@ -1406,11 +1448,13 @@ class FhirMapEngine {
           }
       }
     } catch (e) {
-      throw FHIRException(
-        message: 'Exception executing transform ${tgt.toJson()} on Rule '
-            '"$rulePath": $e',
-        cause: e is Exception ? e : null,
-      );
+      throw e is FHIRException
+          ? e
+          : FHIRException(
+              message: 'Exception executing transform ${tgt.toJson()} on Rule '
+                  '"$rulePath": $e',
+              cause: e is Exception ? e : null,
+            );
     }
   }
 

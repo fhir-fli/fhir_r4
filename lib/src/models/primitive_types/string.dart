@@ -1,6 +1,4 @@
-import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
-import 'package:yaml/yaml.dart';
+part of 'primitive_types.dart';
 
 /// Extension to convert a [String] to [FhirString].
 extension FhirStringExtension on String {
@@ -64,18 +62,40 @@ class FhirString extends PrimitiveType<String>
         PatternXElementDefinition,
         ValueXElementDefinitionExample,
         ValueXExtension {
-  /// Constructs a [FhirString] with validation.
-  FhirString(
-    super.input, {
+  /// Private underscore constructor that ensures if both [validatedValue] and
+  /// [element] are null, we throw an error.
+  FhirString._({
+    required String? validatedValue,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'String',
-  }) {
+  }) : super._(value: validatedValue) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required for FhirString');
     }
+  }
+
+  /// Constructs a [FhirString] with validation.
+  // ignore: sort_unnamed_constructors_first
+  factory FhirString(
+    String? input, {
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    bool? disallowExtensions,
+    String objectPath = 'String',
+  }) {
+    // No extra validation beyond "value or element" check
+    return FhirString._(
+      validatedValue: input,
+      element: element,
+      id: id,
+      extension_: extension_,
+      disallowExtensions: disallowExtensions,
+      objectPath: objectPath,
+    );
   }
 
   /// Creates empty [FhirString] object
@@ -83,11 +103,11 @@ class FhirString extends PrimitiveType<String>
 
   /// Factory constructor to create [FhirString] from JSON.
   factory FhirString.fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    final objectPath = json['objectPath'] as String?;
-    return FhirString(value, element: element, objectPath: objectPath);
+    final val = json['value'] as String?;
+    final elemJson = json['_value'] as Map<String, dynamic>?;
+    final element = elemJson != null ? Element.fromJson(elemJson) : null;
+    final objectPath = json['objectPath'] as String? ?? 'String';
+    return FhirString(val, element: element, objectPath: objectPath);
   }
 
   /// Factory constructor to create [FhirString] from YAML.
@@ -135,8 +155,8 @@ class FhirString extends PrimitiveType<String>
   String? get primitiveValue => value?.toString();
 
   @override
-  bool equalsDeep(FhirBase? o) =>
-      o is FhirString && o.value == value && o.element == element;
+  bool equalsDeep(FhirBase? other) =>
+      other is FhirString && other.value == value && other.element == element;
 
   /// Overrides equality operator.
   @override
@@ -153,8 +173,10 @@ class FhirString extends PrimitiveType<String>
 
   /// Clones the current [FhirString] instance.
   @override
-  FhirString clone() =>
-      FhirString(value, element: element?.clone() as Element?);
+  FhirString clone() => FhirString(
+        value,
+        element: element?.clone() as Element?,
+      );
 
   /// Sets disallowExtensions to true
   FhirString noExtensions() => copyWith(disallowExtensions: true);
@@ -185,11 +207,12 @@ class FhirString extends PrimitiveType<String>
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 
   // ----------------- Overriding String Methods -----------------
+  // (All your existing doc comments & logic retained)
 
   /// The length of the string.
   int get length => value?.length ?? 0;
@@ -307,11 +330,11 @@ class FhirString extends PrimitiveType<String>
     }
 
     return List.generate(values.length, (i) {
-      final value = values[i] as String?;
-      final element = elements?[i] != null
+      final val = values[i] as String?;
+      final elem = elements?[i] != null
           ? Element.fromJson(elements![i] as Map<String, dynamic>)
           : null;
-      return FhirString(value, element: element);
+      return FhirString(val, element: elem);
     });
   }
 

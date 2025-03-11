@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, public_member_api_docs
 
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
@@ -317,4 +317,121 @@ class TransformContext {
 
   /// Creates a [TransformContext] with an [appInfo] object.
   final Object appInfo;
+}
+
+class Property {}
+
+class PropertyWithType {
+  PropertyWithType(
+    this.path,
+    this.baseProperty,
+    this.profileProperty,
+    this.types,
+  );
+
+  String path;
+  Property baseProperty;
+  Property? profileProperty;
+  TypeDetails types;
+
+  String summary() {
+    return path;
+  }
+}
+
+class VariableForProfiling {
+  VariableForProfiling(this.mode, this.name, this.property);
+  MappingVariableMode mode;
+  String name;
+  PropertyWithType property;
+
+  String summary() {
+    return '$name: ${property.summary()}';
+  }
+}
+
+class VariablesForProfiling {
+  VariablesForProfiling({required this.optional, required this.repeating});
+  List<VariableForProfiling> list = <VariableForProfiling>[];
+  bool optional;
+  bool repeating;
+
+  void addProperty(
+    MappingVariableMode mode,
+    String name,
+    String path,
+    Property property,
+    TypeDetails types,
+  ) {
+    add(mode, name, PropertyWithType(path, property, null, types));
+  }
+
+  void addProperties(
+    MappingVariableMode mode,
+    String name,
+    String path,
+    Property baseProperty,
+    Property profileProperty,
+    TypeDetails types,
+  ) {
+    add(
+      mode,
+      name,
+      PropertyWithType(path, baseProperty, profileProperty, types),
+    );
+  }
+
+  void add(MappingVariableMode mode, String name, PropertyWithType property) {
+    VariableForProfiling? vv;
+    for (final v in list) {
+      if ((v.mode == mode) && v.name == name) {
+        vv = v;
+      }
+    }
+    if (vv != null) list.remove(vv);
+    list.add(VariableForProfiling(mode, name, property));
+  }
+
+  VariablesForProfiling copyWith({bool? optional, bool? repeating}) {
+    final result = VariablesForProfiling(
+      optional: optional ?? this.optional,
+      repeating: repeating ?? this.repeating,
+    );
+    result.list.addAll(list);
+    return result;
+  }
+
+  VariableForProfiling? get(MappingVariableMode? mode, String name) {
+    if (mode == null) {
+      for (final v in list) {
+        if ((v.mode == MappingVariableMode.OUTPUT) && v.name == name) {
+          return v;
+        }
+      }
+      for (final v in list) {
+        if ((v.mode == MappingVariableMode.INPUT) && v.name == name) {
+          return v;
+        }
+      }
+    }
+    for (final v in list) {
+      if ((v.mode == mode) && v.name == name) {
+        return v;
+      }
+    }
+    return null;
+  }
+
+  String summary() {
+    final s = StringBuffer();
+    final t = StringBuffer();
+    for (final v in list) {
+      if (v.mode == MappingVariableMode.INPUT) {
+        s.write(', ${v.summary()}');
+      } else {
+        t.write(', ${v.summary()}');
+      }
+    }
+    return 'source variables [$s], target variables [$t]';
+  }
 }

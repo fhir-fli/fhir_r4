@@ -1,8 +1,6 @@
-import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
-import 'package:yaml/yaml.dart';
+part of 'primitive_types.dart';
 
-/// Extension to convert a [String] to [FhirOid].
+/// Extension to convert a [String] to a [FhirOid].
 extension FhirOidExtension on String {
   /// Converts a [String] to a [FhirOid].
   FhirOid get toFhirOid => FhirOid(this);
@@ -20,18 +18,43 @@ class FhirOid extends PrimitiveType<String>
         PatternXElementDefinition,
         ValueXElementDefinitionExample,
         ValueXExtension {
-  /// Constructs a [FhirOid] from a String input with validation.
-  FhirOid(
-    String? input, {
+  /// Private underscore constructor: no external validation,
+  /// but ensures that if [validatedValue] is null and [element] is null,
+  /// we throw an error.
+  FhirOid._({
+    required String? validatedValue,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'Oid',
-  }) : super(_validateOid(input)) {
+  }) : super._(value: validatedValue) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required for FhirOid');
     }
+  }
+
+  /// Constructs a [FhirOid] from a String input with validation.
+  // ignore: sort_unnamed_constructors_first
+  factory FhirOid(
+    String? input, {
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    bool? disallowExtensions,
+    String objectPath = 'Oid',
+  }) {
+    // If not null, validate. Otherwise remain null if also no element.
+    final validated = _validateOid(input);
+
+    return FhirOid._(
+      validatedValue: validated,
+      element: element,
+      id: id,
+      extension_: extension_,
+      disallowExtensions: disallowExtensions,
+      objectPath: objectPath,
+    );
   }
 
   /// Creates empty [FhirOid] object
@@ -40,9 +63,9 @@ class FhirOid extends PrimitiveType<String>
   /// Factory constructor to create [FhirOid] from JSON.
   factory FhirOid.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    final objectPath = json['objectPath'] as String?;
+    final elemJson = json['_value'] as Map<String, dynamic>?;
+    final element = elemJson != null ? Element.fromJson(elemJson) : null;
+    final objectPath = json['objectPath'] as String? ?? 'Oid';
     return FhirOid(value, element: element, objectPath: objectPath);
   }
 
@@ -104,8 +127,8 @@ class FhirOid extends PrimitiveType<String>
   String? get primitiveValue => value?.toString();
 
   @override
-  bool equalsDeep(FhirBase? o) =>
-      o is FhirOid && o.value == value && o.element == element;
+  bool equalsDeep(FhirBase? other) =>
+      other is FhirOid && other.value == value && other.element == element;
 
   /// Overrides the equality operator.
   @override
@@ -122,7 +145,10 @@ class FhirOid extends PrimitiveType<String>
 
   /// Clones the current [FhirOid] instance.
   @override
-  FhirOid clone() => FhirOid(value, element: element?.clone() as Element?);
+  FhirOid clone() => FhirOid(
+        value,
+        element: element?.clone() as Element?,
+      );
 
   /// Creates a modified copy with updated properties.
   @override
@@ -150,7 +176,7 @@ class FhirOid extends PrimitiveType<String>
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 
@@ -169,11 +195,11 @@ class FhirOid extends PrimitiveType<String>
     }
 
     return List.generate(values.length, (i) {
-      final value = values[i] as String?;
-      final element = elements?[i] != null
+      final val = values[i] as String?;
+      final elem = elements?[i] != null
           ? Element.fromJson(elements![i] as Map<String, dynamic>)
           : null;
-      return FhirOid(value, element: element);
+      return FhirOid(val, element: elem);
     });
   }
 

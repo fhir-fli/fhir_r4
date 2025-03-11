@@ -10,7 +10,7 @@ import 'package:ucum/ucum.dart';
 
 class FHIRPathEngine {
   /// Constructor
-  FHIRPathEngine(this.worker)
+  FHIRPathEngine(this.worker, [this.hostServices])
       : terminologyServiceOptions = ValidationOptions.defaults() {
     for (final sd in worker.getStructures()) {
       if (sd.derivation == TypeDerivationRule.specialization &&
@@ -1190,6 +1190,7 @@ class FHIRPathEngine {
     final result = <FhirBase>[];
     // Step 1: Resolve constants if at entry
     if (atEntry && context.appInfo != null && hostServices != null) {
+      print('name: ${exp.name}');
       final temp = hostServices!
           .resolveConstant(this, context.appInfo, exp.name, true, false);
       print('temp: $temp');
@@ -1239,7 +1240,8 @@ class FHIRPathEngine {
       }
     } else {
       print(
-          'getting children by name: ${result.map((e) => e.toJson()).toList()}');
+        'getting children by name: ${result.map((e) => e.toJson()).toList()}',
+      );
       // Step 3: Default case - Get children by name
       getChildrenByName(item, exp.name!, result);
       print('got children by name: ${result.map((e) => e.toJson()).toList()}');
@@ -7651,9 +7653,7 @@ class FHIRPathEngine {
   }
 
   String convertToString(FhirBase item) {
-    if (item is IIdType) {
-      return item.getIdPart();
-    } else if (item is PrimitiveType) {
+    if (item is PrimitiveType) {
       return item.value.toString();
     } else if (item is Quantity) {
       final q = item.copyWith();

@@ -7,7 +7,6 @@ export 'fhir_path_utilities.dart';
 export 'fhir_publication.dart';
 export 'fhir_tooling_client.dart';
 export 'icoding.dart';
-export 'iid_type.dart';
 export 'loggers.dart';
 export 'source_location.dart';
 export 'terminology_cache.dart';

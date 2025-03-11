@@ -1,6 +1,4 @@
-import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
-import 'package:yaml/yaml.dart';
+part of 'primitive_types.dart';
 
 /// Extension on [DateTime] to convert to a [FhirDate].
 extension FhirDateExtension on DateTime {
@@ -51,6 +49,53 @@ class FhirDate extends FhirDateTimeBase
         ValueXExtension,
         TimingXTriggerDefinition,
         StartXGoal {
+  /// Private underscore constructor.
+  /// Notice it calls `super._internal(...)` with the final fields.
+  /// We do NO extra runtime logic here—just assignment.
+  FhirDate._({
+    required super.validatedValue,
+    required super.year,
+    required super.month,
+    required super.day,
+    super.timeZoneOffset,
+    required super.isUtc,
+    super.element,
+    super.id,
+    super.extension_,
+    super.disallowExtensions,
+    super.objectPath = 'Date',
+  }) : super._();
+
+  /// Public **factory** that replaces your old `fromBase` constructor logic.
+  /// We parse or assign the provided fields, then call the private underscore.
+  factory FhirDate.fromBase({
+    required String? value,
+    required int? year,
+    required int? month,
+    required int? day,
+    required bool isUtc,
+    num? timeZoneOffset,
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    bool? disallowExtensions,
+    String objectPath = 'Date',
+  }) {
+    return FhirDate._(
+      validatedValue: value,
+      year: year,
+      month: month,
+      day: day,
+      timeZoneOffset: timeZoneOffset,
+      isUtc: isUtc,
+      element: element,
+      id: id,
+      extension_: extension_,
+      disallowExtensions: disallowExtensions,
+      objectPath: objectPath,
+    );
+  }
+
   /// Factory constructor to create a [FhirDate] from individual units.
   ///
   /// Requires [year], while [month], [day], and [isUtc] are optional.
@@ -68,21 +113,6 @@ class FhirDate extends FhirDateTimeBase
         isUtc: isUtc ?? false,
         element: element,
       ) as FhirDate;
-
-  /// Constructor from base units, used internally.
-  FhirDate.fromBase({
-    required super.value,
-    required super.year,
-    required super.month,
-    required super.day,
-    required super.isUtc,
-    super.timeZoneOffset,
-    super.element,
-    super.id,
-    super.extension_,
-    super.disallowExtensions,
-    super.objectPath = 'Date',
-  });
 
   /// Factory constructor to create a [FhirDate] from a [String].
   factory FhirDate.fromString(
@@ -201,8 +231,8 @@ class FhirDate extends FhirDateTimeBase
   int get hashCode => value.hashCode;
 
   @override
-  bool equalsDeep(FhirBase? o) =>
-      o is FhirDate && o.value == value && o.element == element;
+  bool equalsDeep(FhirBase? other) =>
+      other is FhirDate && other.value == value && other.element == element;
 
   /// Overrides the equality operator to compare two [FhirDate] objects.
   @override
