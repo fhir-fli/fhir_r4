@@ -1,6 +1,6 @@
 # FHIR_DB (TODO: Update)
 
-This is the newest iteration of this package. I've started to look into using Dart and a small, lightweight database on the server side, and this prompted a number of updates. The biggest is that I think I'm going to change this over to Hive. It seems to be faster and works in pure dart. If you don't like the changes or really want me to keep some of the old stuf, feel free to email me <grey@fhirfli.dev>.
+This is the newest iteration of this package. I've started to look into using Dart and a small, lightweight database on the server side, and this prompted a number of updates. The biggest is that I think I'm going to change this over to Hive. It seems to be faster and works in pure dart. If you don't like the changes or really want me to keep some of the old stuff, feel free to email me <grey@fhirfli.dev>.
 
 ## [Changes](https://www.youtube.com/watch?v=xg3J5slvB-k)
 
@@ -47,7 +47,7 @@ Other Considerations
 
 ## Using the Db
 
-### 2 idiosnycrasies to be aware of surrounding encryption
+### 2 idiosyncrasies to be aware of surrounding encryption
 
 1. Passwords and ciphers. Hive uses a 256-bit AES Cipher for encryption. This can be generated from a password, and I've included a function that does just this. However, it's important to always pass in the same password/cipher. If you open a box with the wrong password, you won't get any data, but you may mess up the box, even when you try and use it later with the correct password. I'm working on ways to fix this, but it may involve storing the cipher using flutter_secure_storage so we're always sure we pass the correct one in. 
 
