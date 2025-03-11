@@ -1,8 +1,6 @@
-import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
-import 'package:yaml/yaml.dart';
+part of 'primitive_types.dart';
 
-/// Extension to convert a [String] to a [FhirId].
+/// Extension to convert a [String] to [FhirId].
 extension FhirIdExtension on String {
   /// Converts a [String] to a [FhirId].
   FhirId get toFhirId => FhirId(this);
@@ -21,18 +19,43 @@ class FhirId extends PrimitiveType<String>
         PatternXElementDefinition,
         ValueXElementDefinitionExample,
         ValueXExtension {
-  /// Public constructor with input validation.
-  FhirId(
-    String? input, {
+  /// Private underscore constructor that performs no external validation,
+  /// but checks if both [validatedValue] and [element] are null afterward.
+  FhirId._({
+    required String? validatedValue,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'Id',
-  }) : super(input != null ? _validateId(input) : null) {
+  }) : super._(value: validatedValue) {
+    // Retain the original runtime check: if no value & no element => throw.
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required for FhirId');
     }
+  }
+
+  /// Public factory constructor with input validation.
+  // ignore: sort_unnamed_constructors_first
+  factory FhirId(
+    String? input, {
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    bool? disallowExtensions,
+    String objectPath = 'Id',
+  }) {
+    // If [input] is non-null, validate it; else remain null if also no element.
+    final validated = input != null ? _validateId(input) : null;
+
+    return FhirId._(
+      validatedValue: validated,
+      element: element,
+      id: id,
+      extension_: extension_,
+      disallowExtensions: disallowExtensions,
+      objectPath: objectPath,
+    );
   }
 
   /// Creates empty [FhirId] object
@@ -43,7 +66,7 @@ class FhirId extends PrimitiveType<String>
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    final objectPath = json['objectPath'] as String?;
+    final objectPath = json['objectPath'] as String? ?? 'Id';
     return FhirId(value, element: element, objectPath: objectPath);
   }
 
@@ -116,11 +139,11 @@ class FhirId extends PrimitiveType<String>
     }
 
     return List.generate(values.length, (i) {
-      final value = values[i] as String?;
-      final element = elements?[i] != null
+      final val = values[i] as String?;
+      final elem = elements?[i] != null
           ? Element.fromJson(elements![i] as Map<String, dynamic>)
           : null;
-      return FhirId(value, element: element);
+      return FhirId(val, element: elem);
     });
   }
 
@@ -141,8 +164,8 @@ class FhirId extends PrimitiveType<String>
   String? get primitiveValue => value?.toString();
 
   @override
-  bool equalsDeep(FhirBase? o) =>
-      o is FhirId && o.value == value && o.element == element;
+  bool equalsDeep(FhirBase? other) =>
+      other is FhirId && other.value == value && other.element == element;
 
   /// Overrides equality operator.
   @override
@@ -190,7 +213,7 @@ class FhirId extends PrimitiveType<String>
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 

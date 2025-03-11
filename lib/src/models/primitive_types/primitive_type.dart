@@ -1,27 +1,20 @@
-import 'package:fhir_r4/fhir_r4.dart';
+part of 'primitive_types.dart';
 
 /// Abstract base class for all FHIR primitive types
 abstract class PrimitiveType<T> extends DataType {
-  /// Main constructor for [PrimitiveType<T> ]
-  PrimitiveType(
-    this.value, {
+  /// Internal constructor used only by subclasses (same library).
+  /// It's *not* const, because we do runtime merging of extensions.
+  PrimitiveType._({
+    required this.value,
     this.element,
     super.id,
     List<FhirExtension>? extension_,
     super.disallowExtensions,
-    super.objectPath = 'PrimitiveType',
+    String objectPath = 'PrimitiveType',
   }) : super(
-          extension_: extension_ == null && element?.extension_ == null
-              ? null
-              : extension_ != null
-                  ? element?.extension_ != null
-                      ? [...extension_, ...element!.extension_!]
-                      : extension_
-                  : element?.extension_,
+          extension_: _mergeExtensions(extension_, element),
+          objectPath: objectPath,
         );
-
-  @override
-  String get fhirType => 'PrimitiveType';
 
   /// The primitive value (nullable)
   final T? value;
@@ -29,39 +22,48 @@ abstract class PrimitiveType<T> extends DataType {
   /// Optional metadata element (nullable)
   final Element? element;
 
-  /// Boolean getter to determine if the value is present
+  /// By default, the FHIR type is just 'PrimitiveType',
+  /// though subclasses often override it (e.g., 'boolean', 'decimal', etc.).
+  @override
+  String get fhirType => 'PrimitiveType';
+
+  /// Returns `true` if `value != null`
   bool get hasValue => value != null;
 
-  /// Boolean getter to determine if the element is present
+  /// Returns `true` if `element != null`
   bool get hasElement => element != null;
 
-  /// Boolean getter to determine if both value and element are present
+  /// Returns `true` if both are non-null
   bool get hasValueAndElement => hasValue && hasElement;
 
-  /// Converts the instance to JSON, handling both value and element
+  /// Default JSON serialization merges `value` and `_value` (Element).
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
-    if (value != null) json['value'] = value;
-    if (element != null) json['_value'] = element!.toJson();
+    if (value != null) {
+      json['value'] = value;
+    }
+    if (element != null) {
+      json['_value'] = element!.toJson();
+    }
     return json;
   }
 
-  /// Checks equality between two instances (deep comparison)
+  /// By default, deep equality checks `value`, `element`, and `userData`
   @override
-  bool equalsDeep(FhirBase? o) {
-    return o is PrimitiveType<T> &&
-        value == o.value &&
-        element == o.element &&
-        userData == o.userData;
+  bool equalsDeep(FhirBase? other) {
+    return other is PrimitiveType<T> &&
+        value == other.value &&
+        element == other.element &&
+        userData == other.userData;
   }
 
-  /// Checks equality between two instances (shallow comparison)
+  /// By default, shallow equality checks just `value`
   @override
   bool equalsShallow(FhirBase other) =>
-      other is PrimitiveType && value == other.value;
+      other is PrimitiveType<T> && value == other.value;
 
-  /// Overrides `==` for equality comparison
+  /// Our own convenience method
   bool equals(Object other) {
     if (identical(this, other)) return true;
     if (other is! PrimitiveType<T>) return false;
@@ -72,25 +74,26 @@ abstract class PrimitiveType<T> extends DataType {
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(Object other) => equals(other);
 
-  /// Overrides `hashCode` for use in hash-based collections
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   int get hashCode => Object.hash(value, element);
 
-  /// Provides a string representation of the instance
+  /// If we have a value, return "ClassName[value]",
+  /// otherwise default super.toString().
   @override
   String toString() =>
       value != null ? '$runtimeType[$value]' : super.toString();
 
-  /// Retrieves the primitive value of the object.
+  /// The "primitive" representation as a string
   @override
   String? get primitiveValue => value?.toString();
 
-  /// Clone method to create a deep copy of the instance
+  /// Subclasses must each implement clone() returning their own concrete type
   @override
   PrimitiveType<T> clone();
 
-  /// CopyWith method to create a modified copy of the instance
+  /// Subclasses must each implement copyWith() returning their own
+  /// concrete type
   @override
   PrimitiveType<T> copyWith({
     T? newValue,
@@ -104,7 +107,27 @@ abstract class PrimitiveType<T> extends DataType {
     String? objectPath,
   });
 
-  /// Creates an empty property in the object
+  /// Subclasses must implement createProperty if they have special logic,
+  /// else can simply return `this`.
   @override
   PrimitiveType<T> createProperty(String propertyName);
+
+  /// Merges the child constructor's [extension_] with [element?.extension_].
+  /// If both are non-null, we concatenate. If only one is non-null, we use it.
+  static List<FhirExtension>? _mergeExtensions(
+    List<FhirExtension>? baseExtensions,
+    Element? element,
+  ) {
+    final elementExtensions = element?.extension_;
+    if (baseExtensions == null && elementExtensions == null) {
+      return null;
+    }
+    if (baseExtensions == null) {
+      return elementExtensions;
+    }
+    if (elementExtensions == null) {
+      return baseExtensions;
+    }
+    return [...baseExtensions, ...elementExtensions];
+  }
 }

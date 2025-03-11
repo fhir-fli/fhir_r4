@@ -1,6 +1,4 @@
-import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
-import 'package:yaml/yaml.dart';
+part of 'primitive_types.dart';
 
 /// Extension on String to convert a String to [FhirTime].
 extension FhirTimeExtension on String {
@@ -31,19 +29,43 @@ class FhirTime extends PrimitiveType<String>
         MaxValueXElementDefinition,
         ValueXElementDefinitionExample,
         ValueXExtension {
-  /// Constructor that accepts a valid [String] input representing a time and
-  /// validates the input. Optionally takes an [Element].
-  FhirTime(
-    String? input, {
+  /// Private underscore constructor that assigns a validated time (or null) to
+  /// `super._(value: validatedValue)`. It also checks if both [value] and
+  /// [element] are null, throwing an [ArgumentError] if so.
+  FhirTime._({
+    required String? validatedValue,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'Time',
-  }) : super(_validateTime(input)) {
+  }) : super._(value: validatedValue) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required for FhirTime');
     }
+  }
+
+  /// **Single public factory constructor** that accepts a [String?] [input].
+  /// - Validates via `_validateTime(input)` if not null
+  /// - Calls the private underscore constructor.
+  // ignore: sort_unnamed_constructors_first
+  factory FhirTime(
+    String? input, {
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    bool? disallowExtensions,
+    String objectPath = 'Time',
+  }) {
+    final validated = _validateTime(input);
+    return FhirTime._(
+      validatedValue: validated,
+      element: element,
+      id: id,
+      extension_: extension_,
+      disallowExtensions: disallowExtensions,
+      objectPath: objectPath,
+    );
   }
 
   /// Factory method to construct [FhirTime] from time units (hour, minute,
@@ -72,11 +94,11 @@ class FhirTime extends PrimitiveType<String>
 
   /// Factory constructor to create [FhirTime] from JSON.
   factory FhirTime.fromJson(Map<String, dynamic> json) {
-    final value = json['value'] as String?;
+    final val = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    final objectPath = json['objectPath'] as String?;
-    return FhirTime(value, element: element, objectPath: objectPath);
+    final objectPath = json['objectPath'] as String? ?? 'Time';
+    return FhirTime(val, element: element, objectPath: objectPath);
   }
 
   /// Factory constructor to create [FhirTime] from YAML.
@@ -110,7 +132,7 @@ class FhirTime extends PrimitiveType<String>
   /// [FormatException] if the input is not valid.
   static String? _validateTime(String? input) {
     if (input == null) {
-      return input;
+      return null;
     }
     final timeRegex = RegExp(
       r'^([01][0-9]|2[0-3])(:([0-5][0-9])(:([0-5][0-9]|60)(\.[0-9]+)?)?)?$',
@@ -245,10 +267,12 @@ class FhirTime extends PrimitiveType<String>
           if (lhsValue != rhsValue) {
             return false;
           }
+        // continue checking remaining parts
         case Comparator.equivalent:
           if (lhsValue != rhsValue) {
             return false;
           }
+        // continue checking
         case Comparator.greaterThan:
           if (lhsValue < rhsValue) {
             return false;
@@ -275,6 +299,7 @@ class FhirTime extends PrimitiveType<String>
           }
       }
     }
+
     return comparator == Comparator.equal ||
         comparator == Comparator.equivalent ||
         comparator == Comparator.greaterThanEqual ||
@@ -287,8 +312,8 @@ class FhirTime extends PrimitiveType<String>
   int get hashCode => value.hashCode;
 
   @override
-  bool equalsDeep(FhirBase? o) =>
-      o is FhirTime && o.value == value && o.element == element;
+  bool equalsDeep(FhirBase? other) =>
+      other is FhirTime && other.value == value && other.element == element;
 
   /// Equality operator for comparing two [FhirTime] objects.
   @override
@@ -348,7 +373,7 @@ class FhirTime extends PrimitiveType<String>
   @override
   String? get primitiveValue => value?.toString();
 
-  /// Converts [FhirTime] to a JSON string.
+  /// Converts [FhirTime] to a JSON map.
   @override
   Map<String, dynamic> toJson() {
     return {
@@ -383,7 +408,7 @@ class FhirTime extends PrimitiveType<String>
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 

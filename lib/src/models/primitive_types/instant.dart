@@ -1,6 +1,4 @@
-import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
-import 'package:yaml/yaml.dart';
+part of 'primitive_types.dart';
 
 /// Extension to convert a [DateTime] to a [FhirInstant].
 extension FhirInstantExtension on DateTime {
@@ -29,6 +27,70 @@ class FhirInstant extends FhirDateTimeBase
         MaxValueXElementDefinition,
         ValueXElementDefinitionExample,
         ValueXExtension {
+  /// Private underscore constructor.
+  /// Notice it calls `super._internal(...)` with the final fields.
+  /// We do NO extra runtime logic here—just assignment.
+  FhirInstant._({
+    required super.validatedValue,
+    required super.year,
+    required super.month,
+    required super.day,
+    required super.hour,
+    required super.minute,
+    required super.second,
+    required super.millisecond,
+    required super.microsecond,
+    required super.timeZoneOffset,
+    required super.isUtc,
+    super.element,
+    super.id,
+    super.extension_,
+    super.disallowExtensions,
+    super.objectPath = 'Instant',
+  }) : super._();
+
+  /// Public **factory** that replaces your old `fromBase` constructor logic.
+  /// We parse or assign the provided fields, then call the private underscore.
+  factory FhirInstant.fromBase({
+    required String? value,
+    required int? year,
+    required int? month,
+    required int? day,
+    required int? hour,
+    required int? minute,
+    required int? second,
+    required int? millisecond,
+    required String? microsecond,
+    required num? timeZoneOffset,
+    required bool isUtc,
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    bool? disallowExtensions,
+    String objectPath = 'DateTime',
+  }) {
+    // If you need any specialized logic, do it here.
+    // Otherwise, just pass everything to the private constructor:
+    return FhirInstant._(
+      validatedValue: value,
+      year: year,
+      month: month,
+      day: day,
+      hour: hour,
+      minute: minute,
+      second: second,
+      millisecond: millisecond,
+      microsecond: microsecond,
+      timeZoneOffset: timeZoneOffset,
+      isUtc: isUtc,
+      element: element,
+      id: id,
+      extension_: extension_,
+      disallowExtensions: disallowExtensions,
+      objectPath: objectPath,
+    );
+  }
+
   /// Factory constructor to create a [FhirInstant] from individual units.
   factory FhirInstant.fromUnits({
     required int year,
@@ -56,26 +118,6 @@ class FhirInstant extends FhirDateTimeBase
         isUtc: isUtc ?? false,
         element: element,
       ) as FhirInstant;
-
-  /// Constructor to create a [FhirInstant] from base values.
-  FhirInstant.fromBase({
-    required super.value,
-    required super.year,
-    required super.month,
-    required super.day,
-    required super.hour,
-    required super.minute,
-    required super.second,
-    required super.millisecond,
-    required super.microsecond,
-    required super.timeZoneOffset,
-    required super.isUtc,
-    super.element,
-    super.id,
-    super.extension_,
-    super.disallowExtensions,
-    super.objectPath = 'Instant',
-  });
 
   /// Factory constructor to create a [FhirInstant] from a [String].
   factory FhirInstant.fromString(
@@ -201,8 +243,8 @@ class FhirInstant extends FhirDateTimeBase
   int get hashCode => value.hashCode;
 
   @override
-  bool equalsDeep(FhirBase? o) =>
-      o is FhirInstant && o.value == value && o.element == element;
+  bool equalsDeep(FhirBase? other) =>
+      other is FhirInstant && other.value == value && other.element == element;
 
   /// Compares two [FhirInstant] objects for equality.
   @override

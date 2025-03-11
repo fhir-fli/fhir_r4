@@ -1,11 +1,14 @@
-import 'package:fhir_r4/fhir_r4.dart';
+part of 'primitive_types.dart';
 
 /// [DateTime](https://www.hl7.org/fhir/datatypes.html#dateTime)
 abstract class FhirDateTimeBase extends PrimitiveType<String>
     implements Comparable<FhirDateTimeBase> {
-  /// Constructor with validation logic
-  FhirDateTimeBase({
-    String? value,
+  /// Private underscore constructor with the same parameters and logic,
+  /// but no longer public. We pass [validatedValue] into `super._(value: ...)`
+  /// and then run `_validateDateTimeComponents()`.
+  FhirDateTimeBase._({
+    /// The string representation of the date-time once it's validated.
+    required String? validatedValue,
     required this.year,
     required this.isUtc,
     this.month,
@@ -21,7 +24,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'DateTimeBase',
-  }) : super(value) {
+  }) : super._(value: validatedValue) {
     _validateDateTimeComponents();
   }
 
@@ -482,7 +485,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
           isUtc: false,
           element: element,
           disallowExtensions: disallowExtensions,
-          objectPath: objectPath,
+          objectPath: objectPath ?? 'DateTime',
         );
       } else if (dateTimeMap['year'] == null) {
         throw ArgumentError('Year is required for FhirDateTime');
@@ -501,7 +504,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
         isUtc: dateTimeMap['isUtc'] == 0,
         element: element,
         disallowExtensions: disallowExtensions,
-        objectPath: objectPath,
+        objectPath: objectPath ?? 'DateTime',
       );
     } else if (T == FhirDate) {
       if (dateTimeMap.isEmpty) {
@@ -513,7 +516,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
           isUtc: false,
           element: element,
           disallowExtensions: disallowExtensions,
-          objectPath: objectPath,
+          objectPath: objectPath ?? 'Date',
         );
       } else if (dateTimeMap['year'] == null) {
         throw ArgumentError('Year is required for FhirDate');
@@ -527,7 +530,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
         isUtc: dateTimeMap['isUtc'] == 0,
         element: element,
         disallowExtensions: disallowExtensions,
-        objectPath: objectPath,
+        objectPath: objectPath ?? 'Date',
       );
     } else if (T == FhirInstant) {
       if (dateTimeMap.isEmpty) {
@@ -545,7 +548,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
           isUtc: false,
           element: element,
           disallowExtensions: disallowExtensions,
-          objectPath: objectPath,
+          objectPath: objectPath ?? 'Instant',
         );
       } else if (dateTimeMap['year'] == null ||
           dateTimeMap['month'] == null ||
@@ -572,7 +575,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
         isUtc: dateTimeMap['isUtc'] == 0,
         element: element,
         disallowExtensions: disallowExtensions,
-        objectPath: objectPath,
+        objectPath: objectPath ?? 'Instant',
       );
       return instant;
     } else {
@@ -900,8 +903,10 @@ abstract class FhirDateTimeBase extends PrimitiveType<String>
   int get hashCode => value.hashCode;
 
   @override
-  bool equalsDeep(FhirBase? o) =>
-      o is FhirDateTimeBase && o.value == value && o.element == element;
+  bool equalsDeep(FhirBase? other) =>
+      other is FhirDateTimeBase &&
+      other.value == value &&
+      other.element == element;
 
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes

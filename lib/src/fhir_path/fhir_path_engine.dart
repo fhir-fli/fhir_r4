@@ -7652,9 +7652,7 @@ class FHIRPathEngine {
   }
 
   String convertToString(FhirBase item) {
-    if (item is IIdType) {
-      return item.getIdPart();
-    } else if (item is PrimitiveType) {
+    if (item is PrimitiveType) {
       return item.value.toString();
     } else if (item is Quantity) {
       final q = item.copyWith();

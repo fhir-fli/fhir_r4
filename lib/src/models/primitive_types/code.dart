@@ -1,81 +1,9 @@
-import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
-import 'package:yaml/yaml.dart';
+part of 'primitive_types.dart';
 
 /// Extension to add `toFhirCode` method on all [String] instances
 extension FhirCodeExtension on String {
   /// Converts a [String] to a [FhirCode]
   FhirCode get toFhirCode => FhirCode(this);
-}
-
-/// Extension of FhirCode for Specific FhirCode
-class FhirCodeEnum extends FhirCode {
-  /// Constructor
-  FhirCodeEnum(
-    super.value, {
-    this.system,
-    this.version,
-    this.display,
-    super.element,
-    super.id,
-    super.extension_,
-    super.disallowExtensions,
-    super.objectPath,
-  });
-
-  /// Creates empty [FhirCodeEnum] object
-  factory FhirCodeEnum.empty() => FhirCodeEnum(null, element: Element.empty());
-
-  /// Factory constructor to create [ActionConditionKind] from JSON.
-  factory FhirCodeEnum.fromJson(
-    Map<String, dynamic> json,
-  ) {
-    final value = json['value'] as String?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    if (value == null && element != null) {
-      return FhirCodeEnum(null, element: element);
-    } else if (value == null && element == null) {
-      throw ArgumentError(
-        'ActionConditionKind cannot be constructed from JSON.',
-      );
-    }
-    return FhirCodeEnum(
-      value,
-      element: element,
-    );
-  }
-
-  /// Attempts to parse the input as a [FhirCode], returning `null` if
-  /// parsing fails
-  static FhirCodeEnum? tryParse(dynamic input) {
-    if (input is String) {
-      try {
-        return FhirCodeEnum(input);
-      } catch (_) {
-        return null;
-      }
-    }
-    return null;
-  }
-
-  /// [system]
-  /// The identification of the code system that defines the meaning of the
-  /// symbol in the code.
-  final FhirUri? system;
-
-  /// [version]
-  /// The version of the code system which was used when choosing this code.
-  /// Note that a well-maintained code system does not need the version
-  /// reported, because the meaning of codes is consistent across versions.
-  /// However this cannot consistently be assured, and when the meaning is
-  /// not guaranteed to be consistent, the version SHOULD be exchanged.
-  final FhirString? version;
-
-  /// [display]
-  /// A representation of the meaning of the code in the system, following
-  /// the rules of the system.
-  final FhirString? display;
 }
 
 /// FHIR primitive type `code`
@@ -92,18 +20,47 @@ class FhirCode extends PrimitiveType<String>
         PatternXElementDefinition,
         ValueXElementDefinitionExample,
         ValueXExtension {
-  /// Constructor with input validation and storage
-  FhirCode(
-    this.input, {
+  /// Private underscore constructor that simply calls
+  /// `super._(value: validatedValue)`
+  /// and performs the final check for `(value == null && element == null)`.
+  ///
+  /// Typically, any string validation (like `_validateCode`)
+  /// is done before calling `_`.
+  FhirCode._({
+    required String? validatedValue,
+    this.input,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'Code',
-  }) : super(input != null ? _validateCode(input) : null) {
+  }) : super._(value: validatedValue) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required for FhirCode');
     }
+  }
+
+  /// Public factory constructor with input validation
+  // ignore: sort_unnamed_constructors_first
+  factory FhirCode(
+    String? rawInput, {
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    bool? disallowExtensions,
+    String objectPath = 'Code',
+  }) {
+    // If rawInput is non-null, validate it
+    final validated = rawInput != null ? _validateCode(rawInput) : null;
+    return FhirCode._(
+      validatedValue: validated,
+      input: rawInput,
+      element: element,
+      id: id,
+      extension_: extension_,
+      disallowExtensions: disallowExtensions,
+      objectPath: objectPath,
+    );
   }
 
   /// Creates empty [FhirCode] object
@@ -114,8 +71,12 @@ class FhirCode extends PrimitiveType<String>
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    final objectPath = json['objectPath'] as String?;
-    return FhirCode(value, element: element, objectPath: objectPath);
+    final objectPath = json['objectPath'] as String? ?? 'Code';
+    return FhirCode(
+      value,
+      element: element,
+      objectPath: objectPath,
+    );
   }
 
   /// Factory constructor to create a [FhirCode] from YAML
@@ -145,12 +106,12 @@ class FhirCode extends PrimitiveType<String>
   }
 
   /// Validates the input string as a valid FHIR code
-  static String _validateCode(String input) {
+  static String _validateCode(String raw) {
     final regex = RegExp(r'^[^\s]+(\s[^\s]+)*$');
-    if (regex.hasMatch(input)) {
-      return input;
+    if (regex.hasMatch(raw)) {
+      return raw;
     }
-    throw FormatException('Invalid FHIR Code:$input');
+    throw FormatException('Invalid FHIR Code:$raw');
   }
 
   /// The original input value (for serialization purposes)
@@ -165,38 +126,6 @@ class FhirCode extends PrimitiveType<String>
   /// Boolean checks for the presence of both value and element
   bool get valueAndElement => value != null && element != null;
 
-  /// Serializes the instance to JSON with standardized keys
-  @override
-  Map<String, dynamic> toJson() => {
-        if (input != null) 'value': input,
-        if (element != null) '_value': element!.toJson(),
-      };
-
-  /// Converts a list of JSON values to a list of [FhirCode] instances
-  static List<FhirCode> fromJsonList(
-    List<dynamic> values,
-    List<dynamic>? elements,
-  ) {
-    if (elements != null && elements.length != values.length) {
-      throw const FormatException(
-        'Values and elements must have the same length',
-      );
-    }
-    return List.generate(values.length, (i) {
-      final value = values[i] as String?;
-      final element = elements?[i] != null
-          ? Element.fromJson(elements![i] as Map<String, dynamic>)
-          : null;
-      return FhirCode(value, element: element);
-    });
-  }
-
-  /// Converts a list of [FhirCode] instances to a JSON-compatible map
-  static Map<String, dynamic> toJsonList(List<FhirCode> codes) => {
-        'value': codes.map((code) => code.input).toList(),
-        '_value': codes.map((code) => code.element?.toJson()).toList(),
-      };
-
   /// Returns the FHIR type as a [String]
   @override
   String get fhirType => 'code';
@@ -207,11 +136,11 @@ class FhirCode extends PrimitiveType<String>
 
   /// Retrieves the primitive value of the object.
   @override
-  String? get primitiveValue => value?.toString();
+  String? get primitiveValue => value;
 
   @override
-  bool equalsDeep(FhirBase? o) =>
-      o is FhirCode && o.value == value && o.element == element;
+  bool equalsDeep(FhirBase? other) =>
+      other is FhirCode && other.value == value && other.element == element;
 
   /// Overrides equality operator
   @override
@@ -228,7 +157,10 @@ class FhirCode extends PrimitiveType<String>
 
   /// Creates a deep copy of the instance
   @override
-  FhirCode clone() => FhirCode(input, element: element?.clone() as Element?);
+  FhirCode clone() => FhirCode(
+        input,
+        element: element?.clone() as Element?,
+      );
 
   /// Creates a modified copy with updated properties
   @override
@@ -256,9 +188,16 @@ class FhirCode extends PrimitiveType<String>
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() => {
+        if (input != null) 'value': input,
+        if (element != null) '_value': element!.toJson(),
+      };
 
   /// Returns a new [FhirCode] with extensions disallowed.
   FhirCode noExtensions() => copyWith(disallowExtensions: true);

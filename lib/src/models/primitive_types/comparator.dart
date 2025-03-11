@@ -1,3 +1,5 @@
+part of 'primitive_types.dart';
+
 /// A value set that defines a set of codes that are used to indicate the
 enum Comparator {
   /// The value of the target is equal to the reference value.

@@ -1,6 +1,4 @@
-import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
-import 'package:yaml/yaml.dart';
+part of 'primitive_types.dart';
 
 /// Extension to convert a [String] to [FhirMarkdown].
 extension FhirMarkdownExtension on String {
@@ -22,18 +20,40 @@ class FhirMarkdown extends PrimitiveType<String>
         PatternXElementDefinition,
         ValueXElementDefinitionExample,
         ValueXExtension {
-  /// Constructor enforcing input validation.
-  FhirMarkdown(
-    String? input, {
+  /// Private underscore constructor that enforces if both [validatedValue] and
+  /// [element] are null => throw.
+  FhirMarkdown._({
+    required String? validatedValue,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
     super.objectPath = 'Markdown',
-  }) : super(_validateMarkdown(input)) {
+  }) : super._(value: validatedValue) {
     if (value == null && element == null) {
       throw ArgumentError('A value or element is required for FhirMarkdown');
     }
+  }
+
+  /// Single public constructor enforcing input validation.
+  // ignore: sort_unnamed_constructors_first
+  factory FhirMarkdown(
+    String? input, {
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    bool? disallowExtensions,
+    String objectPath = 'Markdown',
+  }) {
+    final validated = _validateMarkdown(input);
+    return FhirMarkdown._(
+      validatedValue: validated,
+      element: element,
+      id: id,
+      extension_: extension_,
+      disallowExtensions: disallowExtensions,
+      objectPath: objectPath,
+    );
   }
 
   /// Creates empty [FhirMarkdown] object
@@ -44,7 +64,7 @@ class FhirMarkdown extends PrimitiveType<String>
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    final objectPath = json['objectPath'] as String?;
+    final objectPath = json['objectPath'] as String? ?? 'Markdown';
     return FhirMarkdown(value, element: element, objectPath: objectPath);
   }
 
@@ -76,8 +96,10 @@ class FhirMarkdown extends PrimitiveType<String>
   /// Validates the input and ensures it conforms to markdown rules.
   static String? _validateMarkdown(String? input) {
     if (input == null) {
-      return input;
+      return null;
     }
+    // This is a basic check that there's at least some non-whitespace
+    // character. You can refine it if you have stricter markdown requirements.
     if (RegExp(r'[ \r\n\t\S]+').hasMatch(input)) {
       return input;
     }
@@ -108,8 +130,8 @@ class FhirMarkdown extends PrimitiveType<String>
   String? get primitiveValue => value?.toString();
 
   @override
-  bool equalsDeep(FhirBase? o) =>
-      o is FhirMarkdown && o.value == value && o.element == element;
+  bool equalsDeep(FhirBase? other) =>
+      other is FhirMarkdown && other.value == value && other.element == element;
 
   /// Compares this instance for equality with another object.
   @override
@@ -126,8 +148,10 @@ class FhirMarkdown extends PrimitiveType<String>
 
   /// Clones the current [FhirMarkdown] instance.
   @override
-  FhirMarkdown clone() =>
-      FhirMarkdown(value, element: element?.clone() as Element?);
+  FhirMarkdown clone() => FhirMarkdown(
+        value,
+        element: element?.clone() as Element?,
+      );
 
   /// Creates a modified copy with updated properties.
   @override
@@ -155,7 +179,7 @@ class FhirMarkdown extends PrimitiveType<String>
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 
@@ -174,11 +198,11 @@ class FhirMarkdown extends PrimitiveType<String>
     }
 
     return List.generate(values.length, (i) {
-      final value = values[i] as String;
-      final element = elements?[i] != null
+      final val = values[i] as String;
+      final elem = elements?[i] != null
           ? Element.fromJson(elements![i] as Map<String, dynamic>)
           : null;
-      return FhirMarkdown(value, element: element);
+      return FhirMarkdown(val, element: elem);
     });
   }
 

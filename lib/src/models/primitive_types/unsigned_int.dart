@@ -1,6 +1,4 @@
-import 'dart:convert';
-import 'package:fhir_r4/fhir_r4.dart';
-import 'package:yaml/yaml.dart';
+part of 'primitive_types.dart';
 
 /// Extension to convert a [num] to a [FhirUnsignedInt].
 extension FhirUnsignedIntExtension on num {
@@ -30,18 +28,53 @@ class FhirUnsignedInt extends FhirNumber
         MaxValueXElementDefinition,
         ValueXElementDefinitionExample,
         ValueXExtension {
-  /// Constructor that ensures valid input.
-  FhirUnsignedInt(
-    this.input, {
+  /// Private underscore constructor
+  FhirUnsignedInt._({
+    required int? validatedValue,
+    this.input,
     super.element,
     super.id,
     super.extension_,
     super.disallowExtensions,
-    super.objectPath = 'UnsignedInt',
-  }) : super(input != null ? _validateUnsignedInt(input) : null) {
-    if (value == null && element == null) {
-      throw ArgumentError('A value or element is required for FhirUnsignedInt');
+    super.objectPath = 'PositiveInt',
+  }) : super._(validatedValue: validatedValue);
+
+  /// Public factory constructor that does validation
+  // ignore: sort_unnamed_constructors_first
+  factory FhirUnsignedInt(
+    dynamic rawInput, {
+    Element? element,
+    FhirString? id,
+    List<FhirExtension>? extension_,
+    bool? disallowExtensions,
+    String objectPath = 'PositiveInt',
+  }) {
+    // 1) Validate
+    int? finalInt;
+    if (rawInput == null && element == null) {
+      throw ArgumentError(
+        'A value or element is required for FhirUnsignedInt.',
+      );
     }
+    if (rawInput is num) {
+      final validated = _validatePositiveInt(rawInput);
+      finalInt = validated;
+    } else if (rawInput != null) {
+      throw FormatException(
+        'FhirUnsignedInt supports only num or null, got: $rawInput',
+      );
+    }
+
+    // 2) Return the private constructor
+    return FhirUnsignedInt._(
+      validatedValue: finalInt,
+      input: rawInput is num ? rawInput : null,
+      element: element,
+      id: id,
+      extension_: extension_,
+      disallowExtensions: disallowExtensions,
+      objectPath: objectPath,
+    );
   }
 
   /// Creates empty [FhirUnsignedInt] object
@@ -51,80 +84,49 @@ class FhirUnsignedInt extends FhirNumber
   /// Factory constructor to create [FhirUnsignedInt] from JSON input.
   factory FhirUnsignedInt.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as num?;
-    final elementJson = json['_value'] as Map<String, dynamic>?;
-    final element = elementJson != null ? Element.fromJson(elementJson) : null;
-    final objectPath = json['objectPath'] as String?;
-    return FhirUnsignedInt(
-      value?.toInt(),
-      element: element,
-      objectPath: objectPath,
-    );
+    final elemJson = json['_value'] as Map<String, dynamic>?;
+    final element = elemJson == null ? null : Element.fromJson(elemJson);
+    final objectPath = json['objectPath'] as String? ?? 'PositiveInt';
+
+    return FhirUnsignedInt(value, element: element, objectPath: objectPath);
   }
 
   /// Factory constructor to create [FhirUnsignedInt] from YAML input.
   static FhirUnsignedInt fromYaml(dynamic yaml) {
-    return yaml is String
-        ? FhirUnsignedInt.fromJson(
-            jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
-          )
-        : yaml is YamlMap
-            ? FhirUnsignedInt.fromJson(
-                jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
-              )
-            : throw const FormatException(
-                'Invalid input for FhirUnsignedInt: '
-                'not a valid YAML string or map.',
-              );
+    if (yaml is String) {
+      return FhirUnsignedInt.fromJson(
+        jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
+      );
+    } else if (yaml is YamlMap) {
+      return FhirUnsignedInt.fromJson(
+        jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
+      );
+    } else {
+      throw const FormatException(
+        'Invalid input for FhirUnsignedInt: not a valid YAML string or map.',
+      );
+    }
   }
 
   /// Static method to try parsing input as [FhirUnsignedInt], returns `null`
   /// if unsuccessful.
   static FhirUnsignedInt? tryParse(dynamic input) {
-    if (input is int && input > 0) {
-      try {
-        return FhirUnsignedInt(input);
-      } catch (_) {
-        return null;
-      }
+    try {
+      return FhirUnsignedInt(input);
+    } catch (_) {
+      return null;
     }
-    return null;
   }
 
-  /// Validates that the input is a unsigned integer.
-  static int _validateUnsignedInt(num? input) {
-    if (input == null || input < 0 || input is! int) {
-      throw FormatException('Invalid FhirUnsignedInt value: $input. '
-          'Must be an integer greater than zero.');
-    }
-    return input;
-  }
+  /// Validates that the input is a positive integer.
 
-  /// Converts a list of JSON values to a list of [FhirUnsignedInt] instances.
-  static List<FhirUnsignedInt> fromJsonList(
-    List<dynamic> values,
-    List<dynamic>? elements,
-  ) {
-    if (elements != null && elements.length != values.length) {
-      throw const FormatException(
-        'Values and elements must have the same length',
+  static int _validatePositiveInt(num input) {
+    if (input < 0 || input is! int) {
+      throw FormatException(
+        'Invalid FhirUnsignedInt value: $input. Must be int > 0.',
       );
     }
-
-    return List.generate(values.length, (i) {
-      final value = values[i] as num?;
-      final element = elements?[i] != null
-          ? Element.fromJson(elements![i] as Map<String, dynamic>)
-          : null;
-      return FhirUnsignedInt(value?.toInt(), element: element);
-    });
-  }
-
-  /// Converts a list of [FhirUnsignedInt] instances to a JSON-compatible map.
-  static Map<String, dynamic> toJsonList(List<FhirUnsignedInt> integers) {
-    return {
-      'value': integers.map((integer) => integer.value).toList(),
-      '_value': integers.map((integer) => integer.element?.toJson()).toList(),
-    };
+    return input;
   }
 
   /// The original input value (for serialization purposes)
@@ -132,26 +134,30 @@ class FhirUnsignedInt extends FhirNumber
 
   /// Returns the FHIR type as a string.
   @override
-  String get fhirType => 'unsignedInt';
+  String get fhirType => 'positiveInt';
 
   /// Serializes the instance to JSON with standardized keys.
   @override
-  Map<String, dynamic> toJson() => {
-        if (value != null) 'value': value,
-        if (element != null) '_value': element!.toJson(),
-      };
+  Map<String, dynamic> toJson() {
+    return {
+      if (value != null) 'value': value,
+      if (element != null) '_value': element!.toJson(),
+    };
+  }
 
   /// Provides a string representation of the instance.
   @override
-  String toString() => value.toString();
+  String toString() => value?.toString() ?? 'null';
 
   /// Retrieves the primitive value of the object.
   @override
   String? get primitiveValue => value?.toString();
 
   @override
-  bool equalsDeep(FhirBase? o) =>
-      o is FhirUnsignedInt && o.value == value && o.element == element;
+  bool equalsDeep(FhirBase? other) =>
+      other is FhirUnsignedInt &&
+      other.value == value &&
+      other.element == element;
 
   /// Overrides equality operator to compare instances.
   @override
@@ -166,12 +172,10 @@ class FhirUnsignedInt extends FhirNumber
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   int get hashCode => Object.hash(value, element);
 
-  /// Clones the current instance.
+  // Clone / copyWith
   @override
-  FhirUnsignedInt clone() => FhirUnsignedInt(
-        value as int?,
-        element: element?.clone() as Element?,
-      );
+  FhirUnsignedInt clone() =>
+      FhirUnsignedInt(value, element: element?.clone() as Element?);
 
   /// Sets disallowExtensions to true.
   FhirUnsignedInt noExtensions() => copyWith(disallowExtensions: true);
@@ -202,7 +206,7 @@ class FhirUnsignedInt extends FhirNumber
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       disallowExtensions: disallowExtensions ?? this.disallowExtensions,
-      objectPath: objectPath ?? this.objectPath,
+      objectPath: objectPath ?? this.objectPath!,
     );
   }
 

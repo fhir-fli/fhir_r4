@@ -1,3 +1,5 @@
+part of 'primitive_types.dart';
+
 /// [ExtendedDuration] represents a time duration, breaking it down
 /// into different units (years, months, weeks, days, etc.).
 class ExtendedDuration {
