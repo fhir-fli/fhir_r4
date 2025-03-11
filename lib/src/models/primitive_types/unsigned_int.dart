@@ -134,7 +134,7 @@ class FhirUnsignedInt extends FhirNumber
 
   /// Returns the FHIR type as a string.
   @override
-  String get fhirType => 'positiveInt';
+  String get fhirType => 'unsignedInt';
 
   /// Serializes the instance to JSON with standardized keys.
   @override

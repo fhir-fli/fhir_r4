@@ -135,7 +135,7 @@ class FhirInteger extends FhirNumber
 
   /// Returns the FHIR type as a string.
   @override
-  String get fhirType => 'positiveInt';
+  String get fhirType => 'integer';
 
   /// Serializes the instance to JSON with standardized keys.
   @override

@@ -202,7 +202,7 @@ class FhirUri extends PrimitiveType<Uri>
   // ──────────────────────────────────────────────────────────────────────────
 
   @override
-  String get fhirType => 'canonical';
+  String get fhirType => 'uri';
 
   @override
   String toString() => value?.toString() ?? 'null';
