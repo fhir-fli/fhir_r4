@@ -2,7 +2,7 @@
 
 ## More FHIR functionality in Flutter
 
-This pacakge is designed to allow easier RESTful requests to FHIR APIs. Most of the basic requests are described on the [RESTful API](https://www.hl7.org/fhir/https.html) page of [HL7 FHIR](https://hl7.org/fhir/), or on the page for [Search parameters](https://www.hl7.org/fhir/search.html). Not all search parameters are implemented yet, but all FHIR interactions and operations are supported.
+This package is designed to allow easier RESTful requests to FHIR APIs. Most of the basic requests are described on the [RESTful API](https://www.hl7.org/fhir/https.html) page of [HL7 FHIR](https://hl7.org/fhir/), or on the page for [Search parameters](https://www.hl7.org/fhir/search.html). Not all search parameters are implemented yet, but all FHIR interactions and operations are supported.
 
 ## It's not complicated, but it is detailed
 
@@ -10,7 +10,7 @@ The basic idea is simple
 ```
 VERB [base]/[type]/[id] {?_format=[mime-type]}
 ```
-The base is whatever website you want to query (for all examples on this page, we're going to use HAPI's public server: https://hapi.fhir.org/baseR4), type is the [Resource Type](https://hl7.org/fhir/resourcelist.html), and id is the id of the resource you're intersted in. The full FHIR spec defines three formal mime-types: 
+The base is whatever website you want to query (for all examples on this page, we're going to use HAPI's public server: https://hapi.fhir.org/baseR4), type is the [Resource Type](https://hl7.org/fhir/resourcelist.html), and id is the id of the resource you're interested in. The full FHIR spec defines three formal mime-types: 
 * ```application/fhir+xml```
 * ```application/fhir+json```
 * ```application/fhir+turtle``` (No, no one knows what the hell turtle is).
@@ -38,7 +38,7 @@ However, for this package we only allow ```application/fhir+json```. Support for
 When possible enums are used and that includes resourceTypes, to ensure data quality and alignment with the specification.
 
 ### Read Request
-Let's try and read Patient, id: 12345. (Side note: most of these classs are (freezed)[https://pub.dev/packages/freezed] unions. Meaning they function the same for all versions of FHIR, just replace the R4 below with dstu2, stu3, or r5).
+Let's try and read Patient, id: 12345. (Side note: most of these classes are (freezed)[https://pub.dev/packages/freezed] unions. Meaning they function the same for all versions of FHIR, just replace the R4 below with dstu2, stu3, or r5).
 ```dart
   var request = FhirRequest.read(
     base: Uri.parse('http://hapi.fhir.org/baseR4'),
@@ -407,7 +407,7 @@ Result:
 GET http://hapi.fhir.org/baseR4/Observation?_format%3D$mimeType%26_lastUpdated%3Dle2010-10-01
 ```
 #### *Date*
-There are some specifications on exaclty how the comparisons are done using dates, [you can find them here](https://www.hl7.org/fhir/search.html#date). One more example is finding an event between two dates.
+There are some specifications on exactly how the comparisons are done using dates, [you can find them here](https://www.hl7.org/fhir/search.html#date). One more example is finding an event between two dates.
 ```dart
       final List<String> parameters = [
         'birthdate=ge2010-01-01',
@@ -523,7 +523,7 @@ Please note that for the prefix ```:of-type``` it requires ALL 3 parameters, a s
 ### Searching Mime Types ToDo: not sure when I'll ever use this, I'll get around to it eventually
 
 #### *Quantity*
-For quantity you're allowed to define a prefix, number, system and code. Sysem and code are similar to Token above, except that if you put a system, you also need a code, but otherwise both are optional. So you could just put  a number (```5.4```), you could put a number and a code (```5.4||mg```) or a number, system and a code (```5.4|https://unitsofmeasure.org|mg```). Putting them all together to search for all the observations where the value of is about 5.4 mg where mg is understood as a UCUM unit
+For quantity you're allowed to define a prefix, number, system and code. System and code are similar to Token above, except that if you put a system, you also need a code, but otherwise both are optional. So you could just put  a number (```5.4```), you could put a number and a code (```5.4||mg```) or a number, system and a code (```5.4|https://unitsofmeasure.org|mg```). Putting them all together to search for all the observations where the value of is about 5.4 mg where mg is understood as a UCUM unit
 ```dart
       final List<String> parameters = [
         'value-quantity=ap5.4|http://unitsofmeasure.org|mg'
@@ -569,6 +569,6 @@ GET http://hapi.fhir.org/baseR4/Observation?_format%3D$mimeType%26subject%3DPati
 ```
 #### ToDo: Lots of things still to build
 
-As I've been working on SQL queries, I'm trying to align them with RESTful calls, and so I've gone back to trying to create a more structured way of creating them for this package. They are still incomplete however. Also, I'm not sure I'm ever going to attempt chaining and reverse chaining, so I will always leave the ability to pass in specific parameters. In all honesty, it's still probably easier most of the time to jsut write your own parameters. This is likely to be most useful when you have a LOT of search parameters that you're including, and even then, there are so many permutations, I'm still not sure. 
+As I've been working on SQL queries, I'm trying to align them with RESTful calls, and so I've gone back to trying to create a more structured way of creating them for this package. They are still incomplete however. Also, I'm not sure I'm ever going to attempt chaining and reverse chaining, so I will always leave the ability to pass in specific parameters. In all honesty, it's still probably easier most of the time to just write your own parameters. This is likely to be most useful when you have a LOT of search parameters that you're including, and even then, there are so many permutations, I'm still not sure. 
 
 FHIR® is a registered trademark of Health Level Seven International (HL7) and its use does not constitute an endorsement of products by HL7®

@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, avoid_print,
+// ignore_for_file: public_member_api_docs, avoid_print, lines_longer_than_80_chars
 // ignore_for_file: omit_local_variable_types, constant_identifier_names
 
 import 'dart:convert';
@@ -1023,20 +1023,22 @@ class FhirMapEngine {
               );
             }
 
-            FhirBase res;
+            return _typeFactory(tn);
+
+            // FhirBase res;
 
             // if (services != null) {
             //   res = services!.createType(context.appInfo, tn, profileUtilities);
             // } else {
-            res = _typeFactory(tn);
+            // res = _typeFactory(tn);
             // }
-            if (res is Resource && res.fhirType != 'Parameters') {
-              // if (services != null) {
-              //   res =
-              //       services!.createResource(context.appInfo, res, root) ?? res;
-              // }
-            }
-            return res;
+            // if (res is Resource && res.fhirType != 'Parameters') {
+            //   if (services != null) {
+            //     res =
+            //         services!.createResource(context.appInfo, res, root) ?? res;
+            //   }
+            // }
+            // return res;
           }
 
         case 'copy':
