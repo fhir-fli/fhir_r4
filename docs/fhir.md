@@ -41,7 +41,7 @@ This [demonstration](https://github.com/MayJuun/fluttercon_health) was done at F
 - The Codes have to due with the fact that [code is not supposed to have leading or trailing white space](https://www.hl7.org/fhir/datatypes.html#code). But some of the test examples do.
 - The issues with the IDs are that [IDs are not supposed to be more than 64 characters](https://www.hl7.org/fhir/datatypes.html#id), but some have more.
 - There are a few tests that have null values in them. This will throw and error.
-- Also, for r5, there are some fields that I'm not sure if they're supposed to be lists or not, and there are a number of reference I'm not sure if I have the correct name (because the names differe on the website vs. the downloadable schema). I've kept whichever one seemed to be present in the examples.
+- Also, for r5, there are some fields that I'm not sure if they're supposed to be lists or not, and there are a number of reference I'm not sure if I have the correct name (because the name is different on the website vs. the downloadable schema). I've kept whichever one seemed to be present in the examples.
 - For validating the toYaml() functions, I first read the map into a Resource, convert it into Yaml, convert it back into a Resource, and then use that in the validation function above.
 
 ## Code Generation
