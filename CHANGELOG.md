@@ -1,5 +1,10 @@
 # fhir_r4
 
+## [0.3.0-1]
+
+* Lots and Lots of changes.
+* Once I get Mapping working properly, I'll create some actual documentation
+
 ## [0.2.0]
 
 * Getting ready for FlutterCon!
