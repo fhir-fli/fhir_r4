@@ -1,20 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:fhir_r4/src/validation/utils/fhir_spec_profiles.dart';
 import 'package:http/http.dart';
 
 /// Singleton cache instance
 final FhirDb resourceCache = FhirDb();
-
-/// Load all resources from the FHIR spec into the cache.
-Future<void> loadResourceCache() async {
-  final sds = structureDefinitions.split('\n');
-  for (final sd in sds) {
-    final resource = StructureDefinition.fromJsonString(sd);
-    await resourceCache.saveCanonicalResource(resource: resource);
-  }
-}
 
 /// Utility method to retrieve a resource from the given URL, checking online
 /// first and then locally if not found.

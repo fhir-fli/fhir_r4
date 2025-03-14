@@ -5,7 +5,6 @@ import 'package:test/test.dart';
 void main() {
   group('validateStructure Tests', () {
     test('Validates a simple ObjectNode successfully', () async {
-      await loadResourceCache();
       final node = ObjectNode(path: 'Patient')
         ..children.add(
           PropertyNode(path: 'Patient.id')
