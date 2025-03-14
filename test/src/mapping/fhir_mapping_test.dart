@@ -18,8 +18,6 @@ import 'examples/step4/export.dart';
 // import 'examples/step9/export.dart';
 
 Future<void> main() async {
-  await loadResourceCache();
-
   group('1', () {
     resourceCache
       ..saveCanonicalResource(resource: structureDefinitionTLeft1)
