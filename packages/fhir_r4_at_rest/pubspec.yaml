@@ -17,6 +17,7 @@ environment:
   sdk: ^3.5.0
 
 dependencies:
+  fhir_r4: ^0.3.0-1
   archive: ^4.0.4
   collection: ^1.18.0
   crypto: ^3.0.6

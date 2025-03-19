@@ -1,6 +1,15 @@
-name: fhir_r4
+name: fhirR4
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+
+dependency_overrides:
+  fhir_r4:
+    path: packages/fhir_r4
+  fhir_r4_at_rest:
+    path: packages/fhir_r4_at_rest
+
 dev_dependencies:
   melos: ^6.3.2

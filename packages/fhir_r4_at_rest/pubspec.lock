@@ -177,6 +177,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  fhir_r4:
+    dependency: "direct main"
+    description:
+      name: fhir_r4
+      sha256: "031d179d2fb56f2de975ac0c780325ce9223c3a0400ba8d1f7df4c99081238f8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.0-1"
   file:
     dependency: transitive
     description:
