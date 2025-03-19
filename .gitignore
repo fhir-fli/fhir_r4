@@ -6,4 +6,7 @@
 **/.DS_Store
 .packages
 build/
-pubspec.lock
+
+# melos
+# melos does NOT want pubspec.lock files to be ignored
+*pubspec_overrides.yaml

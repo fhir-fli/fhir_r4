@@ -1,0 +1,5 @@
+name: fhir_r4
+
+packages:
+  - apps/**
+  - packages/**

@@ -1,0 +1,37 @@
+name: fhir_r4_at_rest
+description: Dart library simplifying FHIR RESTFul requests.
+version: 0.3.0-2
+homepage: https://www.fhirfli.dev/
+repository: https://github.com/fhir-fli/fhir_r4
+
+# This package supports all platforms listed below.
+platforms:
+  android:
+  ios:
+  linux:
+  macos:
+  web:
+  windows:
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  archive: ^4.0.4
+  collection: ^1.18.0
+  crypto: ^3.0.6
+  hive_ce: ^2.6.0
+  http: ^1.2.2
+  mime: ^2.0.0
+  rxdart: ^0.28.0
+  ucum: ^0.6.0
+  universal_io: ^2.2.2
+  uuid: ^4.5.0
+  xml: ^6.5.0
+  yaml: ^3.1.2
+
+dev_dependencies:
+  build_runner: ^2.4.13
+  mocktail: ^1.0.4
+  test: ^1.25.8
+  very_good_analysis: ^7.0.0

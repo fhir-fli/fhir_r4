@@ -55,12 +55,3 @@ Future<void> compareDir(String directory) async {
     }
   }
 }
-
-String prettyJson(Map<dynamic, dynamic> map) =>
-    const JsonEncoder.withIndent('    ').convert(map);
-
-String prettyPrintJson(Map<dynamic, dynamic> map) =>
-    const JsonEncoder.withIndent('    ').convert(map);
-
-String jsonPrettyPrint(Map<dynamic, dynamic> map) =>
-    const JsonEncoder.withIndent('    ').convert(map);
