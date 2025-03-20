@@ -1,7 +1,7 @@
 /// A Very Good Project created by Very Good CLI.
 library;
 
-export 'src/bulk/bulk.dart';
+export '../packages/fhir_r4_bulk/lib/bulk.dart';
 export '../packages/fhir_r4_db/lib/db.dart';
 export 'src/exceptions/exceptions.dart';
 export 'src/extensions/extensions.dart';
