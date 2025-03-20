@@ -1,0 +1,61 @@
+{
+    "resourceType": "StructureMap",
+    "id": "conformsto",
+    "url": "http://ahdis.ch/matchbox/fml/conformsto",
+    "name": "conformsto",
+    "status": "draft",
+    "structure": [
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+            "mode": "source",
+            "alias": "Patient"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/Patient",
+            "mode": "target",
+            "alias": "Patient"
+        }
+    ],
+    "group": [
+        {
+            "name": "ConformsTo",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "Patient",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "Patient",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "conformsTo",
+                    "source": [
+                        {
+                            "context": "src",
+                            "condition": "$this.conformsTo('http://hl7.org/fhir/StructureDefinition/Patient')"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "gender",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "male"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

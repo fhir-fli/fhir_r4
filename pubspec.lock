@@ -9,14 +9,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.2+1"
-  archive:
-    dependency: transitive
-    description:
-      name: archive
-      sha256: "0c64e928dcbefddecd234205422bcfc2b5e6d31be0b86fef0d0dd48d7b4c9742"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.0.4"
   args:
     dependency: transitive
     description:
@@ -97,14 +89,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.6"
-  ffi:
-    dependency: transitive
-    description:
-      name: ffi
-      sha256: "289279317b4b16eb2bb7e271abccd4bf84ec9bdcbe999e278a94b804f5630418"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.4"
   fhir_r4:
     dependency: "direct overridden"
     description:
@@ -151,14 +135,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.2"
-  hive_ce:
-    dependency: transitive
-    description:
-      name: hive_ce
-      sha256: ac66daee46ad46486a1ed12cf91e9d7479c875fb46889be8d2c96b557406647f
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.10.1"
   http:
     dependency: transitive
     description:
@@ -215,14 +191,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.16.0"
-  mime:
-    dependency: transitive
-    description:
-      name: mime
-      sha256: "41a20518f0cb1256669420fdba0cd90d21561e560ac240f26ef8322e45bb7ed6"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.0"
   mustache_template:
     dependency: transitive
     description:
@@ -263,14 +231,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.1"
-  posix:
-    dependency: transitive
-    description:
-      name: posix
-      sha256: a0117dc2167805aa9125b82eee515cc891819bac2f538c83646d355b16f58b9a
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.0.1"
   process:
     dependency: transitive
     description:
@@ -311,14 +271,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.0"
-  rxdart:
-    dependency: transitive
-    description:
-      name: rxdart
-      sha256: "5c3004a4a8dbb94bd4bf5412a4def4acdaa12e12f269737a5751369e12d1a962"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.28.0"
   source_span:
     dependency: transitive
     description:
@@ -367,22 +319,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.4.0"
-  ucum:
-    dependency: transitive
-    description:
-      name: ucum
-      sha256: e92bcd575e1ac33f0eb68d9f371625365f362083d0d20873b7a6850ee81cfb8b
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.6.0"
-  universal_io:
-    dependency: transitive
-    description:
-      name: universal_io
-      sha256: "1722b2dcc462b4b2f3ee7d188dad008b6eb4c40bbd03a3de451d82c78bba9aad"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.2.2"
   uuid:
     dependency: transitive
     description:
@@ -424,4 +360,4 @@ packages:
     source: hosted
     version: "2.2.2"
 sdks:
-  dart: ">=3.7.0 <4.0.0"
+  dart: ">=3.6.0 <4.0.0"

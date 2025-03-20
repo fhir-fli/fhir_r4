@@ -1,0 +1,134 @@
+{
+    "resourceType": "StructureMap",
+    "id": "stringtocoding",
+    "url": "http://ahdis.ch/matchbox/fml/stringtocoding",
+    "name": "stringtocoding",
+    "status": "draft",
+    "structure": [
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse",
+            "mode": "source",
+            "alias": "QuestionnaireResponse"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit",
+            "mode": "target",
+            "alias": "ExplanationOfBenefit"
+        }
+    ],
+    "group": [
+        {
+            "name": "stringtocoding",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "src",
+                    "type": "QuestionnaireResponse",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "ExplanationOfBenefit",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "item",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "item",
+                            "variable": "item"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "contextType": "variable",
+                            "variable": "eob",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueId": "tgt"
+                                }
+                            ]
+                        }
+                    ],
+                    "dependent": [
+                        {
+                            "name": "item",
+                            "variable": [
+                                "item",
+                                "eob"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "item",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "src",
+                    "mode": "source"
+                },
+                {
+                    "name": "tgt",
+                    "type": "ExplanationOfBenefit",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "code2coding",
+                    "source": [
+                        {
+                            "context": "src",
+                            "element": "item",
+                            "variable": "item",
+                            "condition": "linkId in ('patient.claim-type')"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "tgt",
+                            "contextType": "variable",
+                            "element": "type",
+                            "variable": "code"
+                        },
+                        {
+                            "context": "code",
+                            "contextType": "variable",
+                            "element": "coding",
+                            "variable": "coding"
+                        },
+                        {
+                            "context": "coding",
+                            "contextType": "variable",
+                            "element": "system",
+                            "transform": "copy",
+                            "parameter": [
+                                {
+                                    "valueString": "http://terminology.hl7.org/CodeSystem/claim-type"
+                                }
+                            ]
+                        },
+                        {
+                            "context": "coding",
+                            "contextType": "variable",
+                            "element": "code",
+                            "transform": "evaluate",
+                            "parameter": [
+                                {
+                                    "valueString": "%item.answer.value"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
