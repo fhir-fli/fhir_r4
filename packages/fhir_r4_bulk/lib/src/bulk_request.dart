@@ -3,6 +3,7 @@
 import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_bulk/bulk.dart';
 import 'package:http/http.dart';
 
 /// A class to handle FHIR Bulk requests

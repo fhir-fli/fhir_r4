@@ -2,6 +2,7 @@ import 'dart:collection';
 import 'dart:math';
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_path/fhir_r4_path.dart';
 
 ///
 /// This manages a cached list of resources, and provides high speed access by

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_at_rest/fhir_r4_at_rest.dart';
 import 'package:test/test.dart';
 
 void main() {

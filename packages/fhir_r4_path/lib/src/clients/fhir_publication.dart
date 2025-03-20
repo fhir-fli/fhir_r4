@@ -1,6 +1,6 @@
-// ignore_for_file: public_member_api_docs, prefer_single_quotes
+// ignore_for_file: public_member_api_docs
 
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_path/fhir_r4_path.dart';
 
 enum FhirPublication {
   null_,
@@ -41,23 +41,23 @@ enum FhirPublication {
   String toCode() {
     switch (this) {
       case FhirPublication.dstu1:
-        return "0.01";
+        return '0.01';
       case FhirPublication.dstu2:
-        return "1.0.2";
+        return '1.0.2';
       case FhirPublication.dstu2016May:
-        return "1.4.0";
+        return '1.4.0';
       case FhirPublication.stu3:
-        return "3.0.2";
+        return '3.0.2';
       case FhirPublication.r4:
-        return "4.0.1";
+        return '4.0.1';
       case FhirPublication.r4b:
-        return "4.3.0";
+        return '4.3.0';
       case FhirPublication.r5:
-        return "5.0.0";
+        return '5.0.0';
       case FhirPublication.r6:
-        return "6.0.0";
+        return '6.0.0';
       case FhirPublication.null_:
-        return "??";
+        return '??';
     }
   }
 }

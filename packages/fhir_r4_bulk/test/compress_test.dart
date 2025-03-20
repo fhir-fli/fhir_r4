@@ -3,6 +3,7 @@
 import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_bulk/bulk.dart';
 import 'package:test/test.dart';
 
 import 'ndjson/ndjson.dart';

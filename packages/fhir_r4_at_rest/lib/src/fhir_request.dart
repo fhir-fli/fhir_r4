@@ -2,7 +2,7 @@
 
 import 'dart:convert';
 
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_at_rest/fhir_r4_at_rest.dart';
 import 'package:http/http.dart' as http;
 
 /// Enum to represent the summary parameter

@@ -1,9 +1,11 @@
 // ignore_for_file: avoid_print, lines_longer_than_80_chars
 
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_db/fhir_r4_db.dart';
 import 'package:hive_ce/hive.dart';
 import 'package:test/test.dart';
 
@@ -510,9 +512,16 @@ Future<void> main() async {
             print(file);
             var i = 0;
 
-            final resources = file.contains('ndjson')
-                ? await FhirBulk.fromFile(file)
-                : <Resource>[];
+            final resources = <Resource>[];
+            for (final file in fileList) {
+              final fileContents = File(file).readAsStringSync();
+              for (final content in fileContents.split('\n')) {
+                if (content.isNotEmpty) {
+                  final resource = Resource.fromJson(jsonDecode(content));
+                  resources.add(resource);
+                }
+              }
+            }
 
             for (final resource in resources) {
               i++;

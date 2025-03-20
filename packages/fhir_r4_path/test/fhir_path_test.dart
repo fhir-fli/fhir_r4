@@ -1,4 +1,4 @@
-import 'fhir_path_parser_test.dart';
+import 'test_parser.dart';
 import 'test_arg_fxns.dart';
 import 'test_basic_operators.dart';
 import 'test_basic_types.dart';
@@ -10,7 +10,7 @@ import 'test_questionnaire.dart';
 
 void main() {
   testBasicTypes();
-  fhirPathParserTest();
+  testParser();
   testPaths();
   testBasicOperators();
   testDateTimes();

@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, avoid_print
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_path/fhir_r4_path.dart';
 
 import 'package:ucum/ucum.dart';
 

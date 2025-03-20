@@ -4,6 +4,7 @@ import 'dart:developer';
 
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_db/fhir_r4_db.dart';
 import 'package:hive_ce/hive.dart';
 import 'package:rxdart/rxdart.dart';
 

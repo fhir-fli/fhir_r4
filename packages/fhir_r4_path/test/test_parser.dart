@@ -1,8 +1,9 @@
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_path/fhir_r4_path.dart';
 
 import 'package:test/test.dart';
 
-void fhirPathParserTest() {
+void testParser() {
   group('FHIRPathEngine Parsing Tests', () {
     final worker = WorkerContext();
     final testEngine = FHIRPathEngine(worker);
