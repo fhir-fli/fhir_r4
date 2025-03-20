@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:http/http.dart';
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// Validates the structure of a FHIR resource against a given
 /// StructureDefinition.
@@ -12,7 +12,7 @@ Future<ValidationResults> validateStructure({
   required Map<String, ElementDefinition> elements,
   required String type,
   String? url,
-  required Client client,
+  required ResourceCache resourceCache,
 }) async {
   return _objectNode(
     url,
@@ -21,7 +21,7 @@ Future<ValidationResults> validateStructure({
     type,
     elements,
     ValidationResults(),
-    client,
+    resourceCache,
   );
 }
 
@@ -38,7 +38,7 @@ Future<ValidationResults> _traverseAst(
   String replacePath,
   Map<String, ElementDefinition> elements,
   ValidationResults results,
-  Client client,
+  ResourceCache resourceCache,
 ) async {
   if (node is ObjectNode) {
     return _objectNode(
@@ -48,7 +48,7 @@ Future<ValidationResults> _traverseAst(
       replacePath,
       elements,
       results,
-      client,
+      resourceCache,
     );
   } else if (node is ArrayNode) {
     return _arrayNode(
@@ -58,7 +58,7 @@ Future<ValidationResults> _traverseAst(
       replacePath,
       elements,
       results,
-      client,
+      resourceCache,
     );
   } else if (node is PropertyNode) {
     return _propertyNode(
@@ -68,7 +68,7 @@ Future<ValidationResults> _traverseAst(
       replacePath,
       elements,
       results,
-      client,
+      resourceCache,
     );
   } else {
     throw Exception('Invalid node type: ${node.runtimeType} at ${node.path}');
@@ -87,7 +87,7 @@ Future<ValidationResults> _objectNode(
   String replacePath,
   Map<String, ElementDefinition> elements,
   ValidationResults results,
-  Client client,
+  ResourceCache resourceCache,
 ) async {
   var newResults = results.copyWith();
 
@@ -100,7 +100,7 @@ Future<ValidationResults> _objectNode(
       replacePath,
       elements,
       newResults,
-      client,
+      resourceCache,
     );
   }
 
@@ -113,7 +113,7 @@ Future<ValidationResults> _objectNode(
       node: node,
       element: element,
       results: newResults,
-      client: client,
+      resourceCache: resourceCache,
     );
   }
 
@@ -131,7 +131,7 @@ Future<ValidationResults> _arrayNode(
   String replacePath,
   Map<String, ElementDefinition> elements,
   ValidationResults results,
-  Client client,
+  ResourceCache resourceCache,
 ) async {
   var newResults = results.copyWith();
 
@@ -146,7 +146,7 @@ Future<ValidationResults> _arrayNode(
       );
       if (element != null) {
         newResults =
-            await _literalNode(url, child, element, newResults, client);
+            await _literalNode(url, child, element, newResults, resourceCache);
       } else {
         // Report an error if no matching element definition is found.
         newResults.addResult(
@@ -167,7 +167,7 @@ Future<ValidationResults> _arrayNode(
         replacePath,
         elements,
         newResults,
-        client,
+        resourceCache,
       );
     }
   }
@@ -186,7 +186,7 @@ Future<ValidationResults> _propertyNode(
   String replacePath,
   Map<String, ElementDefinition> elements,
   ValidationResults results,
-  Client client,
+  ResourceCache resourceCache,
 ) async {
   var newResults = results.copyWith();
 
@@ -209,7 +209,7 @@ Future<ValidationResults> _propertyNode(
       replacePath,
       elements,
       newResults,
-      client,
+      resourceCache,
     );
 
     // Validate invariants defined for the element.
@@ -218,7 +218,7 @@ Future<ValidationResults> _propertyNode(
       node: node,
       element: element,
       results: newResults,
-      client: client,
+      resourceCache: resourceCache,
     );
   } else {
     // Add an error if no matching element is found.
@@ -244,7 +244,7 @@ Future<ValidationResults> _withElement(
   String replacePath,
   Map<String, ElementDefinition> elements,
   ValidationResults results,
-  Client client,
+  ResourceCache resourceCache,
 ) async {
   final code = findCode(element, node.path);
 
@@ -259,7 +259,7 @@ Future<ValidationResults> _withElement(
       replacePath,
       elements,
       results,
-      client,
+      resourceCache,
     );
   } else {
     // Handle cases where the element has no specific type code.
@@ -270,7 +270,7 @@ Future<ValidationResults> _withElement(
       originalPath,
       replacePath,
       results,
-      client,
+      resourceCache,
     );
   }
 }
@@ -286,27 +286,25 @@ Future<ValidationResults> _withoutCode(
   String originalPath,
   String replacePath,
   ValidationResults results,
-  Client client,
+  ResourceCache resourceCache,
 ) async {
   for (final ext in element.extension_ ?? <FhirExtension>[]) {
     final url = ext.url.toString();
-    final structureDefinition = await getResource(url, client);
+    final structureDefinition = await resourceCache.getStructureDefinition(url);
 
     // If the extension references a StructureDefinition, extract elements
     //and validate.
-    if (structureDefinition != null &&
-        structureDefinition['resourceType'] == 'StructureDefinition') {
-      final newElements =
-          extractElements(StructureDefinition.fromJson(structureDefinition));
+    if (structureDefinition != null) {
+      final newElements = extractElements(structureDefinition);
 
       return _traverseAst(
-        structureDefinition['url'] as String?,
+        structureDefinition.url?.toString(),
         node,
         originalPath,
         replacePath,
         newElements,
         results,
-        client,
+        resourceCache,
       );
     }
   }
@@ -333,7 +331,7 @@ Future<ValidationResults> _withCode(
   String replacePath,
   Map<String, ElementDefinition> elements,
   ValidationResults results,
-  Client client,
+  ResourceCache resourceCache,
 ) async {
   if (isPrimitiveType(code)) {
     return _codeIsPrimitiveType(
@@ -344,7 +342,7 @@ Future<ValidationResults> _withCode(
       replacePath,
       elements,
       results,
-      client,
+      resourceCache,
     );
   } else {
     return _codeIsComplexType(
@@ -356,7 +354,7 @@ Future<ValidationResults> _withCode(
       replacePath,
       elements,
       results,
-      client,
+      resourceCache,
     );
   }
 }
@@ -374,13 +372,9 @@ Future<ValidationResults> _codeIsComplexType(
   String replacePath,
   Map<String, ElementDefinition> elements,
   ValidationResults results,
-  Client client,
+  ResourceCache resourceCache,
 ) async {
-  final structureDefinitionMap = await getResource(code, client);
-  final structureDefinition = structureDefinitionMap != null &&
-          structureDefinitionMap['resourceType'] == 'StructureDefinition'
-      ? StructureDefinition.fromJson(structureDefinitionMap)
-      : null;
+  final structureDefinition = await resourceCache.getStructureDefinition(code);
 
   // Handle cases where the StructureDefinition is missing.
   if (structureDefinition == null) {
@@ -398,7 +392,7 @@ Future<ValidationResults> _codeIsComplexType(
         code,
         newElements,
         results,
-        client,
+        resourceCache,
       );
     } else {
       throw Exception('node is ${node.runtimeType} with null node.value');
@@ -437,7 +431,7 @@ Future<ValidationResults> _codeIsPrimitiveType(
   String replacePath,
   Map<String, ElementDefinition> elements,
   ValidationResults results,
-  Client client,
+  ResourceCache resourceCache,
 ) async {
   var newResults = results.copyWith();
 
@@ -448,7 +442,7 @@ Future<ValidationResults> _codeIsPrimitiveType(
       node.value! as LiteralNode,
       element,
       newResults,
-      client,
+      resourceCache,
     );
   } else if (node.value is ArrayNode) {
     // Handle cases where the node contains an array of values.
@@ -459,7 +453,7 @@ Future<ValidationResults> _codeIsPrimitiveType(
       replacePath,
       elements,
       newResults,
-      client,
+      resourceCache,
     );
   } else {
     throw Exception(
@@ -481,7 +475,7 @@ Future<ValidationResults> _literalNode(
   LiteralNode node,
   ElementDefinition element,
   ValidationResults results,
-  Client client,
+  ResourceCache resourceCache,
 ) async {
   final primitiveClass = findCode(element, node.path);
   final dynamic value = node.value;
@@ -497,7 +491,7 @@ Future<ValidationResults> _literalNode(
 
   // Perform additional domain-specific checks.
   var newResults =
-      await _checkEnumerations(element, value, results, node, client);
+      await _checkEnumerations(element, value, results, node, resourceCache);
   newResults = _checkStringPatterns(url, element, value, newResults, node);
   newResults = _checkRangeConstraints(
     url,
@@ -521,14 +515,14 @@ Future<ValidationResults> _checkEnumerations(
   dynamic value,
   ValidationResults results,
   Node node,
-  Client client,
+  ResourceCache resourceCache,
 ) async {
   if (element.binding != null &&
       element.binding!.strength == BindingStrength.required_ &&
       element.binding?.valueSet != null) {
     // Fetch the allowed codes from the specified ValueSet.
-    final allowedCodes =
-        await getValueSetCodes(element.binding!.valueSet.toString(), client);
+    final allowedCodes = await getValueSetCodes(
+        element.binding!.valueSet.toString(), resourceCache);
     if (!allowedCodes.contains(value)) {
       results.addResult(
         node,

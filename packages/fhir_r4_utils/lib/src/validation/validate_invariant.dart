@@ -1,5 +1,6 @@
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:http/http.dart';
+import 'package:fhir_r4_path/fhir_r4_path.dart';
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// Validates the invariants of a [Node] against the corresponding
 /// [ElementDefinition].
@@ -8,7 +9,7 @@ ValidationResults validateInvariants({
   required ElementDefinition element,
   required ValidationResults results,
   String? url,
-  required Client client,
+  required ResourceCache resourceCache,
 }) {
   if (element.constraint != null) {
     final context = _getContext(node, element, results);

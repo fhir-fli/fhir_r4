@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:http/http.dart';
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// Validates the cardinality of a [Node] against its corresponding
 /// [ElementDefinition] in the FHIR StructureDefinition.
@@ -11,7 +11,7 @@ Future<ValidationResults> validateCardinality({
   required String originalPath,
   required String replacePath,
   required ValidationResults results,
-  required Client client,
+  required ResourceCache resourceCache,
 }) async {
   var newResults = results.copyWith();
   final currentPath = cleanLocalPath(originalPath, replacePath, node.path);
@@ -47,7 +47,7 @@ Future<ValidationResults> validateCardinality({
         replacePath: replacePath,
         elements: elements,
         results: newResults,
-        client: client,
+        resourceCache: resourceCache,
       );
     }
   }
@@ -73,7 +73,7 @@ Future<ValidationResults> _validateElementCardinality({
   required String replacePath,
   required Map<String, ElementDefinition> elements,
   required ValidationResults results,
-  required Client client,
+  required ResourceCache resourceCache,
 }) async {
   var newResults = results.copyWith();
 
@@ -122,7 +122,7 @@ Future<ValidationResults> _validateElementCardinality({
         originalPath: originalPath,
         replacePath: replacePath,
         results: newResults,
-        client: client,
+        resourceCache: resourceCache,
       );
     }
   }
@@ -144,18 +144,16 @@ Future<ValidationResults> _validateNestedElements({
   required String originalPath,
   required String replacePath,
   required ValidationResults results,
-  required Client client,
+  required ResourceCache resourceCache,
 }) async {
   var newResults = results.copyWith();
 
   if (element.type != null && element.type!.isNotEmpty) {
     final typeCode = findCode(element, foundNode.path);
     if (typeCode != null && !isPrimitiveType(typeCode)) {
-      final structureDefinitionMap = await getResource(typeCode, client);
-      if (structureDefinitionMap != null &&
-          structureDefinitionMap['resourceType'] == 'StructureDefinition') {
-        final structureDefinition =
-            StructureDefinition.fromJson(structureDefinitionMap);
+      final structureDefinition =
+          await resourceCache.getStructureDefinition(typeCode);
+      if (structureDefinition != null) {
         final newElements = extractElements(structureDefinition);
 
         if (foundNode is ObjectNode) {
@@ -166,7 +164,7 @@ Future<ValidationResults> _validateNestedElements({
             originalPath: originalPath,
             replacePath: replacePath,
             results: newResults,
-            client: client,
+            resourceCache: resourceCache,
           );
         }
       }

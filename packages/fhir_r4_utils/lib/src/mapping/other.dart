@@ -2,6 +2,8 @@
 
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_path/fhir_r4_path.dart';
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// Manages the transformation context for mapping FHIR structures.
 class TransformationContext {
@@ -33,7 +35,7 @@ class DefinitionResolver {
   DefinitionResolver(this.cache, this.map);
 
   /// The database for fetching canonical FHIR resources.
-  final FhirDb cache;
+  final ResourceCache cache;
 
   /// The optional structure map for resolving definitions.
   final StructureMap? map;
@@ -45,7 +47,7 @@ class DefinitionResolver {
 
   /// Resolves a [StructureDefinition] from [structureUrl].
   Future<StructureDefinition?> resolve(String structureUrl) async {
-    return (await cache.getCanonicalResource(url: structureUrl))
+    return (await cache.getCanonicalResource(structureUrl))
         as StructureDefinition?;
   }
 
@@ -144,7 +146,7 @@ class DefinitionResolver {
 
   /// Fetches a [CanonicalResource] of type [T] from [uri].
   Future<T?> fetchResource<T extends CanonicalResource>(String uri) async {
-    final resource = await cache.getCanonicalResource(url: uri);
+    final resource = await cache.getCanonicalResource(uri);
     if (resource is T) return resource;
     print('Resource $uri is not of expected type ${T.runtimeType}');
     return null;

@@ -1,5 +1,5 @@
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:http/http.dart';
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -16,7 +16,7 @@ void main() {
         node: node,
         element: element,
         results: results,
-        client: Client(),
+        resourceCache: LocalResourceCache(),
       );
 
       expect(validationResults.results, isEmpty); // No errors expected
@@ -48,7 +48,7 @@ void main() {
         node: node,
         element: element,
         results: results,
-        client: Client(),
+        resourceCache: LocalResourceCache(),
       );
 
       expect(validationResults.results, isNotEmpty);
@@ -97,7 +97,7 @@ void main() {
         node: node,
         element: element,
         results: results,
-        client: Client(),
+        resourceCache: LocalResourceCache(),
       );
 
       expect(validationResults.results, isEmpty); // No errors expected
@@ -123,7 +123,7 @@ void main() {
         node: node,
         element: element,
         results: results,
-        client: Client(),
+        resourceCache: LocalResourceCache(),
       );
 
       expect(validationResults.results, isEmpty); // Expect no errors
@@ -149,7 +149,7 @@ void main() {
         node: node,
         element: element,
         results: results,
-        client: Client(),
+        resourceCache: LocalResourceCache(),
       );
 
       expect(validationResults.results, isNotEmpty); // Expect errors
@@ -214,7 +214,7 @@ void main() {
         node: node,
         element: element,
         results: results,
-        client: Client(),
+        resourceCache: LocalResourceCache(),
       );
 
       // Expect one error for the invalid entry

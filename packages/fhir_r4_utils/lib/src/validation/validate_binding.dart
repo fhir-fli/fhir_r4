@@ -1,5 +1,5 @@
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:http/http.dart';
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// Validates the bindings of nodes against the value sets defined in their
 /// corresponding [ElementDefinition]s.
@@ -10,7 +10,7 @@ Future<ValidationResults> validateBindings({
   required Node node,
   required Map<String, ElementDefinition> elements,
   required ValidationResults results,
-  required Client client,
+  required ResourceCache resourceCache,
 }) async {
   var newResults = results.copyWith();
 
@@ -18,7 +18,7 @@ Future<ValidationResults> validateBindings({
     // Check if the element has a binding with an associated ValueSet.
     if (element.binding != null && element.binding!.valueSet != null) {
       final valueSetUrl = element.binding!.valueSet.toString();
-      final validCodes = await getValueSetCodes(valueSetUrl, client);
+      final validCodes = await getValueSetCodes(valueSetUrl, resourceCache);
       final elementPath = element.path.value;
 
       if (elementPath != null) {

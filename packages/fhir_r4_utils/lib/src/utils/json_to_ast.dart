@@ -2,8 +2,7 @@
 
 import 'dart:math';
 
-import 'package:fhir_r4/fhir_r4.dart';
-// import 'package:grapheme_splitter/grapheme_splitter.dart' show GraphemeSplitter;
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// Custom exception class for handling JSON AST parsing errors.
 class JSONASTException implements Exception {

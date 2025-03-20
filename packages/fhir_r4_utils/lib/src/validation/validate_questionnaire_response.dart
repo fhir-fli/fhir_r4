@@ -1,12 +1,12 @@
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:http/http.dart';
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// Validates a [QuestionnaireResponse] against the corresponding
 /// [Questionnaire].
 Future<ValidationResults> validateQuestionnaireResponse({
   required QuestionnaireResponse questionnaireResponse,
-  required Client client,
+  required ResourceCache resourceCache,
 }) async {
   final results = ValidationResults();
 
@@ -22,7 +22,8 @@ Future<ValidationResults> validateQuestionnaireResponse({
   }
 
   // Retrieve the Questionnaire
-  final questionnaireDef = await getResource(questionnaireUrl, client);
+  final questionnaireDef =
+      await resourceCache.getCanonicalResource(questionnaireUrl);
   if (questionnaireDef == null) {
     return results
       ..addResult(
@@ -30,13 +31,19 @@ Future<ValidationResults> validateQuestionnaireResponse({
         'Failed to retrieve Questionnaire: $questionnaireUrl',
         Severity.error,
       );
+  } else if (questionnaireDef is! Questionnaire) {
+    return results
+      ..addResult(
+        null,
+        'Resource at $questionnaireUrl is not a Questionnaire',
+        Severity.error,
+      );
   }
-  final questionnaire = Questionnaire.fromJson(questionnaireDef);
 
   // Validate the QuestionnaireResponse against the Questionnaire
   results.combineResults(
     await _validateResponseItems(
-      questionnaire: questionnaire,
+      questionnaire: questionnaireDef,
       response: questionnaireResponse,
     ),
   );

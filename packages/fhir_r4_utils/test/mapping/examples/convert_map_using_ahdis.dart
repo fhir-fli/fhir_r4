@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:http/http.dart';
 
 Future<void> main() async {
@@ -28,7 +29,7 @@ Future<void> compare(int i) async {
       final body = jsonDecode(result.body);
       (body as Map).remove('text');
       await File(file.path.replaceAll('.map', '.json'))
-          .writeAsString(prettyJson(body));
+          .writeAsString(prettyPrintAnything(body));
     }
   }
 }
@@ -51,7 +52,7 @@ Future<void> compareDir(String directory) async {
       final body = jsonDecode(result.body);
       (body as Map).remove('text');
       await File(file.path.replaceAll('.map', '.json'))
-          .writeAsString(prettyJson(body));
+          .writeAsString(prettyPrintAnything(body));
     }
   }
 }

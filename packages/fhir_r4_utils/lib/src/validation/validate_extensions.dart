@@ -1,5 +1,5 @@
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:http/http.dart';
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// Validates the extensions of a [Node] against the corresponding
 /// [ElementDefinition].
@@ -19,7 +19,7 @@ Future<ValidationResults> validateExtensions({
   required Node node,
   required Map<String, ElementDefinition> elements,
   required ValidationResults results,
-  required Client client,
+  required ResourceCache resourceCache,
 }) async {
   var newResults = results.copyWith();
 
@@ -39,12 +39,8 @@ Future<ValidationResults> validateExtensions({
           ?.first;
 
       // Fetch the StructureDefinition for the extension.
-      final extensionDefinition =
-          await getResource(extensionUrl.toString(), client);
-      final structureDefinition = extensionDefinition != null &&
-              extensionDefinition['resourceType'] == 'StructureDefinition'
-          ? StructureDefinition.fromJson(extensionDefinition)
-          : null;
+      final structureDefinition =
+          await resourceCache.getStructureDefinition(extensionUrl.toString());
 
       if (structureDefinition != null) {
         // Extract elements from the fetched StructureDefinition.
@@ -68,7 +64,7 @@ Future<ValidationResults> validateExtensions({
               node: extensionNode,
               elements: extensionElements,
               type: 'Extension',
-              client: client,
+              resourceCache: resourceCache,
             );
           }
         }

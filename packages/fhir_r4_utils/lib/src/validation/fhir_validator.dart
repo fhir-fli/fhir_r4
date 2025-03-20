@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:http/http.dart';
 
 /// A modular FHIR Validator class
@@ -41,6 +42,7 @@ abstract class FhirValidator {
   }) async {
     final type = structureToValidate['resourceType'] as String?;
     final results = ValidationResults();
+    final resourceCache = LocalResourceCache();
 
     if (type == null) {
       return results
@@ -48,7 +50,7 @@ abstract class FhirValidator {
     }
 
     // Fetch or use provided StructureDefinition
-    structureDefinition ??= await _fetchStructureDefinition(type, client);
+    structureDefinition ??= await resourceCache.getStructureDefinition(type);
 
     if (structureDefinition == null) {
       return results
@@ -64,23 +66,8 @@ abstract class FhirValidator {
       structureToValidate: structureToValidate,
       structureDefinition: structureDefinition,
       type: type,
-      userClient: client,
+      resourceCache: resourceCache,
     );
-  }
-
-  /// Fetch the StructureDefinition for a resource type
-  static Future<StructureDefinition?> _fetchStructureDefinition(
-    String resourceType,
-    Client? client,
-  ) async {
-    if (client == null) return null;
-
-    final definitionMap = await getResource(resourceType, client);
-    if (definitionMap == null ||
-        definitionMap['resourceType'] != 'StructureDefinition') {
-      return null;
-    }
-    return StructureDefinition.fromJson(definitionMap);
   }
 
   /// Evaluate a resource against its StructureDefinition
@@ -88,9 +75,8 @@ abstract class FhirValidator {
     required Map<String, dynamic> structureToValidate,
     required StructureDefinition structureDefinition,
     required String type,
-    Client? userClient,
+    required ResourceCache resourceCache,
   }) async {
-    final client = userClient ?? Client();
     final results = ValidationResults();
     final elements = extractElements(structureDefinition);
     Node node;
@@ -122,7 +108,7 @@ abstract class FhirValidator {
           elements: elements,
           type: type,
           url: url,
-          client: client,
+          resourceCache: resourceCache,
         ),
       )
 
@@ -135,7 +121,7 @@ abstract class FhirValidator {
           originalPath: type,
           replacePath: type,
           results: results,
-          client: client,
+          resourceCache: resourceCache,
         ),
       )
 
@@ -145,7 +131,7 @@ abstract class FhirValidator {
           node: node,
           elements: elements,
           results: results,
-          client: client,
+          resourceCache: resourceCache,
         ),
       )
 
@@ -155,7 +141,7 @@ abstract class FhirValidator {
           node: node,
           elements: elements,
           results: results,
-          client: client,
+          resourceCache: resourceCache,
         ),
       );
 

@@ -5,13 +5,14 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:fhir_r4/src/extensions/structure_map.dart';
+import 'package:fhir_r4_path/fhir_r4_path.dart';
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:uuid/uuid.dart';
 
 Future<FhirBase?> fhirMappingEngine(
   FhirBase source,
   StructureMap map,
-  FhirDb cache,
+  ResourceCache cache,
   FhirBase? target,
 ) async {
   final mapEngine = FhirMapEngine(cache, map);
@@ -20,14 +21,12 @@ Future<FhirBase?> fhirMappingEngine(
 }
 
 class FhirMapEngine {
-  FhirMapEngine(this.cache, this.map)
+  FhirMapEngine(ResourceCache cache, this.map)
       : resolver = DefinitionResolver(cache, map) {
     context = TransformationContext(resolver);
     services = FHIRPathHostServices();
     fpe = FHIRPathEngine(WorkerContext(), services);
-    // transformer = Transformer(map, context, resolver);
   }
-  final FhirDb cache;
   final StructureMap map;
   final DefinitionResolver resolver;
   late final TransformationContext context;

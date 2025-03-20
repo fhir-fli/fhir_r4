@@ -1,6 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:http/http.dart';
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// Determines the appropriate FHIR type code for an element.
 /// For polymorphic elements (ending in `[x]`), the code is derived
@@ -81,17 +81,17 @@ extension GetUrl on StructureDefinition {
 /// Fetches and extracts all codes from a ValueSet or CodeSystem URL.
 /// Handles recursive includes for ValueSets and hierarchical concepts
 /// within CodeSystems.
-Future<Set<String>> getValueSetCodes(String valueSetUrl, Client client) async {
-  final resourceJson = await getResource(valueSetUrl, client);
-  if (resourceJson == null) {
+Future<Set<String>> getValueSetCodes(
+    String valueSetUrl, ResourceCache resourceCache) async {
+  final resource = await resourceCache.getCanonicalResource(valueSetUrl);
+  if (resource == null) {
     throw Exception('Resource not found at $valueSetUrl');
   }
 
-  final resourceType = resourceJson['resourceType'] as String?;
   final codes = <String>{};
 
-  if (resourceType == 'ValueSet') {
-    final valueSet = ValueSet.fromJson(resourceJson);
+  if (resource.resourceType == R4ResourceType.ValueSet) {
+    final valueSet = resource as ValueSet;
 
     // Extract codes from ValueSet.compose.include
     if (valueSet.compose != null) {
@@ -101,7 +101,7 @@ Future<Set<String>> getValueSetCodes(String valueSetUrl, Client client) async {
           for (final includedValueSetUrl in include.valueSet!) {
             final includedCodes = await _fetchIncludedValueSetCodes(
               includedValueSetUrl.toString(),
-              client,
+              resourceCache,
             );
             codes.addAll(includedCodes);
           }
@@ -109,7 +109,7 @@ Future<Set<String>> getValueSetCodes(String valueSetUrl, Client client) async {
         if (include.system != null) {
           final includedCodes = await _fetchIncludedValueSetCodes(
             include.system.toString(),
-            client,
+            resourceCache,
           );
           codes.addAll(includedCodes);
         }
@@ -130,8 +130,8 @@ Future<Set<String>> getValueSetCodes(String valueSetUrl, Client client) async {
         }
       }
     }
-  } else if (resourceType == 'CodeSystem') {
-    final codeSystem = CodeSystem.fromJson(resourceJson);
+  } else if (resource.resourceType == R4ResourceType.CodeSystem) {
+    final codeSystem = resource as CodeSystem;
 
     // Extract codes and sub-concepts recursively
     for (final concept in codeSystem.concept ?? <CodeSystemConcept>[]) {
@@ -140,7 +140,7 @@ Future<Set<String>> getValueSetCodes(String valueSetUrl, Client client) async {
         ..addAll(_extractCodesFromConcept(concept));
     }
   } else {
-    throw Exception('Unexpected resource type: $resourceType');
+    throw Exception('Unexpected resource type: ${resource.resourceType}');
   }
 
   return codes;
@@ -150,18 +150,18 @@ Future<Set<String>> getValueSetCodes(String valueSetUrl, Client client) async {
 /// CodeSystem.
 Future<Set<String>> _fetchIncludedValueSetCodes(
   String includedValueSetUrl,
-  Client client,
+  ResourceCache resourceCache,
 ) async {
-  final resourceJson = await getResource(includedValueSetUrl, client);
-  if (resourceJson == null) {
+  final resource =
+      await resourceCache.getCanonicalResource(includedValueSetUrl);
+  if (resource == null) {
     return <String>{};
   }
 
-  final resourceType = resourceJson['resourceType'] as String?;
   final includedCodes = <String>{};
 
-  if (resourceType == 'ValueSet') {
-    final includedValueSet = ValueSet.fromJson(resourceJson);
+  if (resource.resourceType == R4ResourceType.ValueSet) {
+    final includedValueSet = resource as ValueSet;
 
     // Process compose.include concepts
     if (includedValueSet.compose != null) {
@@ -181,8 +181,8 @@ Future<Set<String>> _fetchIncludedValueSetCodes(
         }
       }
     }
-  } else if (resourceType == 'CodeSystem') {
-    final includedCodeSystem = CodeSystem.fromJson(resourceJson);
+  } else if (resource.resourceType == R4ResourceType.CodeSystem) {
+    final includedCodeSystem = resource as CodeSystem;
     for (final concept in includedCodeSystem.concept ?? <CodeSystemConcept>[]) {
       includedCodes
         ..add(concept.code.toString())

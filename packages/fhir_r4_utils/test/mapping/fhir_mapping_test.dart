@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_single_quotes, always_specify_types,
 // ignore_for_file: avoid_escaping_inner_quotes
 
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:test/test.dart';
 import 'examples/step1/export.dart';
 // import 'examples/step10/export.dart';
@@ -18,10 +18,11 @@ import 'examples/step4/export.dart';
 // import 'examples/step9/export.dart';
 
 Future<void> main() async {
+  final resourceCache = LocalResourceCache();
   group('1', () {
     resourceCache
-      ..saveCanonicalResource(resource: structureDefinitionTLeft1)
-      ..saveCanonicalResource(resource: structureDefinitionTRight1);
+      ..saveCanonicalResource(structureDefinitionTLeft1)
+      ..saveCanonicalResource(structureDefinitionTRight1);
 
     test('Test Step 1', () async {
       final result = await fhirMappingEngine(
@@ -49,8 +50,8 @@ Future<void> main() async {
 
   group('2', () {
     resourceCache
-      ..saveCanonicalResource(resource: structureDefinitionTLeft2)
-      ..saveCanonicalResource(resource: structureDefinitionTRight2);
+      ..saveCanonicalResource(structureDefinitionTLeft2)
+      ..saveCanonicalResource(structureDefinitionTRight2);
 
     test('Test Step 2', () async {
       final result = await fhirMappingEngine(
@@ -68,8 +69,8 @@ Future<void> main() async {
 
   group('3', () {
     resourceCache
-      ..saveCanonicalResource(resource: structureDefinitionTLeft3)
-      ..saveCanonicalResource(resource: structureDefinitionTRight3);
+      ..saveCanonicalResource(structureDefinitionTLeft3)
+      ..saveCanonicalResource(structureDefinitionTRight3);
 
     test('Test Step 3a Source 3', () async {
       final result = await fhirMappingEngine(
@@ -151,12 +152,8 @@ Future<void> main() async {
 
   group('4', () {
     resourceCache
-      ..saveCanonicalResource(
-        resource: structureDefinitionTLeft4,
-      )
-      ..saveCanonicalResource(
-        resource: structureDefinitionTRight4,
-      );
+      ..saveCanonicalResource(structureDefinitionTLeft4)
+      ..saveCanonicalResource(structureDefinitionTRight4);
 
     test('Test Step 4a Source 4', () async {
       final result = await fhirMappingEngine(

@@ -1,5 +1,5 @@
 import 'package:fhir_r4/fhir_r4.dart';
-import 'package:http/http.dart';
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -16,13 +16,13 @@ void main() {
         type: [ElementDefinitionType(code: 'string'.toFhirUri)],
       );
       final elements = {'Patient.id': element};
-      final client = Client();
+      final resourceCache = LocalResourceCache();
 
       final results = await validateStructure(
         node: node,
         elements: elements,
         type: 'Patient',
-        client: client,
+        resourceCache: resourceCache,
       );
 
       expect(results.results, isEmpty); // No errors expected
@@ -35,13 +35,13 @@ void main() {
         type: [ElementDefinitionType(code: 'string'.toFhirUri)],
       );
       final elements = {'Patient.id': element};
-      final client = Client();
+      final resourceCache = LocalResourceCache();
 
       final results = await validateStructure(
         node: node,
         elements: elements,
         type: 'Patient',
-        client: client,
+        resourceCache: resourceCache,
       );
 
       expect(results.results, isNotEmpty);
@@ -82,13 +82,13 @@ void main() {
         'Patient.name': elementName,
         'Patient.name.given': elementGiven,
       };
-      final client = Client();
+      final resourceCache = LocalResourceCache();
 
       final results = await validateStructure(
         node: node,
         elements: elements,
         type: 'Patient',
-        client: client,
+        resourceCache: resourceCache,
       );
 
       expect(results.results, isEmpty); // No errors expected
@@ -114,13 +114,13 @@ void main() {
         ],
       );
       final elements = {'Patient.id': element};
-      final client = Client();
+      final resourceCache = LocalResourceCache();
 
       final results = await validateStructure(
         node: node,
         elements: elements,
         type: 'Patient',
-        client: client,
+        resourceCache: resourceCache,
       );
 
       expect(results.results, isNotEmpty);
