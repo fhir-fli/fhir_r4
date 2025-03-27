@@ -54,9 +54,14 @@ class ListMode extends FhirCodeEnum {
     if (value == null && element != null) {
       return ListMode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('ListMode cannot be constructed from JSON.');
+      throw ArgumentError(
+        'ListMode cannot be constructed from JSON.',
+      );
     }
-    return ListMode._(validatedValue: value, element: element);
+    return ListMode._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// working

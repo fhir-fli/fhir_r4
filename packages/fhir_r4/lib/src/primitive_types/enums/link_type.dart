@@ -55,9 +55,14 @@ class LinkType extends FhirCodeEnum {
     if (value == null && element != null) {
       return LinkType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('LinkType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'LinkType cannot be constructed from JSON.',
+      );
     }
-    return LinkType._(validatedValue: value, element: element);
+    return LinkType._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// replaced_by

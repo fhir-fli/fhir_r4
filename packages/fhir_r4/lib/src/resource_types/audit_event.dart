@@ -315,25 +315,82 @@ class AuditEvent extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('type', type);
-    addField('subtype', subtype);
-    addField('action', action);
-    addField('period', period);
-    addField('recorded', recorded);
-    addField('outcome', outcome);
-    addField('outcomeDesc', outcomeDesc);
-    addField('purposeOfEvent', purposeOfEvent);
-    addField('agent', agent);
-    addField('source', source);
-    addField('entity', entity);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'subtype',
+      subtype,
+    );
+    addField(
+      'action',
+      action,
+    );
+    addField(
+      'period',
+      period,
+    );
+    addField(
+      'recorded',
+      recorded,
+    );
+    addField(
+      'outcome',
+      outcome,
+    );
+    addField(
+      'outcomeDesc',
+      outcomeDesc,
+    );
+    addField(
+      'purposeOfEvent',
+      purposeOfEvent,
+    );
+    addField(
+      'agent',
+      agent,
+    );
+    addField(
+      'source',
+      source,
+    );
+    addField(
+      'entity',
+      entity,
+    );
     return json;
   }
 
@@ -448,58 +505,6 @@ class AuditEvent extends DomainResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'subtype':
-        if (subtype != null) {
-          return subtype!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'purposeOfEvent':
-        if (purposeOfEvent != null) {
-          return purposeOfEvent!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'agent':
-        return agent;
-      case 'entity':
-        if (entity != null) {
-          return entity!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -511,23 +516,23 @@ class AuditEvent extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -535,7 +540,7 @@ class AuditEvent extends DomainResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -543,7 +548,7 @@ class AuditEvent extends DomainResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -551,7 +556,7 @@ class AuditEvent extends DomainResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -559,31 +564,49 @@ class AuditEvent extends DomainResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -591,15 +614,21 @@ class AuditEvent extends DomainResource {
           if (child is Coding) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'subtype':
         {
           if (child is List<Coding>) {
-            return copyWith(subtype: child);
+            // Add all elements from passed list
+            final newList = [...?subtype, ...child];
+            return copyWith(subtype: newList);
+          } else if (child is Coding) {
+            // Add single element to existing list or create new list
+            final newList = [...?subtype, child];
+            return copyWith(subtype: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'action':
@@ -607,7 +636,7 @@ class AuditEvent extends DomainResource {
           if (child is AuditEventAction) {
             return copyWith(action: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
@@ -615,7 +644,7 @@ class AuditEvent extends DomainResource {
           if (child is Period) {
             return copyWith(period: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'recorded':
@@ -623,7 +652,7 @@ class AuditEvent extends DomainResource {
           if (child is FhirInstant) {
             return copyWith(recorded: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'outcome':
@@ -631,7 +660,7 @@ class AuditEvent extends DomainResource {
           if (child is AuditEventOutcome) {
             return copyWith(outcome: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'outcomeDesc':
@@ -639,23 +668,35 @@ class AuditEvent extends DomainResource {
           if (child is FhirString) {
             return copyWith(outcomeDesc: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'purposeOfEvent':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(purposeOfEvent: child);
+            // Add all elements from passed list
+            final newList = [...?purposeOfEvent, ...child];
+            return copyWith(purposeOfEvent: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?purposeOfEvent, child];
+            return copyWith(purposeOfEvent: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'agent':
         {
           if (child is List<AuditEventAgent>) {
-            return copyWith(agent: child);
+            // Add all elements from passed list
+            final newList = [...agent, ...child];
+            return copyWith(agent: newList);
+          } else if (child is AuditEventAgent) {
+            // Add single element to existing list or create new list
+            final newList = [...agent, child];
+            return copyWith(agent: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'source':
@@ -663,19 +704,25 @@ class AuditEvent extends DomainResource {
           if (child is AuditEventSource) {
             return copyWith(source: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'entity':
         {
           if (child is List<AuditEventEntity>) {
-            return copyWith(entity: child);
+            // Add all elements from passed list
+            final newList = [...?entity, ...child];
+            return copyWith(entity: newList);
+          } else if (child is AuditEventEntity) {
+            // Add single element to existing list or create new list
+            final newList = [...?entity, child];
+            return copyWith(entity: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -732,83 +779,123 @@ class AuditEvent extends DomainResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  AuditEvent createProperty(String propertyName) {
+  AuditEvent createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'type':
         {
-          return copyWith(type: Coding.empty());
+          return copyWith(
+            type: Coding.empty(),
+          );
         }
       case 'subtype':
         {
-          return copyWith(subtype: <Coding>[]);
+          return copyWith(
+            subtype: <Coding>[],
+          );
         }
       case 'action':
         {
-          return copyWith(action: AuditEventAction.empty());
+          return copyWith(
+            action: AuditEventAction.empty(),
+          );
         }
       case 'period':
         {
-          return copyWith(period: Period.empty());
+          return copyWith(
+            period: Period.empty(),
+          );
         }
       case 'recorded':
         {
-          return copyWith(recorded: FhirInstant.empty());
+          return copyWith(
+            recorded: FhirInstant.empty(),
+          );
         }
       case 'outcome':
         {
-          return copyWith(outcome: AuditEventOutcome.empty());
+          return copyWith(
+            outcome: AuditEventOutcome.empty(),
+          );
         }
       case 'outcomeDesc':
         {
-          return copyWith(outcomeDesc: FhirString.empty());
+          return copyWith(
+            outcomeDesc: FhirString.empty(),
+          );
         }
       case 'purposeOfEvent':
         {
-          return copyWith(purposeOfEvent: <CodeableConcept>[]);
+          return copyWith(
+            purposeOfEvent: <CodeableConcept>[],
+          );
         }
       case 'agent':
         {
-          return copyWith(agent: <AuditEventAgent>[]);
+          return copyWith(
+            agent: <AuditEventAgent>[],
+          );
         }
       case 'source':
         {
-          return copyWith(source: AuditEventSource.empty());
+          return copyWith(
+            source: AuditEventSource.empty(),
+          );
         }
       case 'entity':
         {
-          return copyWith(entity: <AuditEventEntity>[]);
+          return copyWith(
+            entity: <AuditEventEntity>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -995,19 +1082,34 @@ class AuditEvent extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1028,7 +1130,10 @@ class AuditEvent extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
     if (!listEquals<Coding>(
@@ -1037,19 +1142,34 @@ class AuditEvent extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(action, o.action)) {
+    if (!equalsDeepWithNull(
+      action,
+      o.action,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(period, o.period)) {
+    if (!equalsDeepWithNull(
+      period,
+      o.period,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(recorded, o.recorded)) {
+    if (!equalsDeepWithNull(
+      recorded,
+      o.recorded,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(outcome, o.outcome)) {
+    if (!equalsDeepWithNull(
+      outcome,
+      o.outcome,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(outcomeDesc, o.outcomeDesc)) {
+    if (!equalsDeepWithNull(
+      outcomeDesc,
+      o.outcomeDesc,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1064,7 +1184,10 @@ class AuditEvent extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(source, o.source)) {
+    if (!equalsDeepWithNull(
+      source,
+      o.source,
+    )) {
       return false;
     }
     if (!listEquals<AuditEventEntity>(
@@ -1346,20 +1469,62 @@ class AuditEventAgent extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('type', type);
-    addField('role', role);
-    addField('who', who);
-    addField('altId', altId);
-    addField('name', name);
-    addField('requestor', requestor);
-    addField('location', location);
-    addField('policy', policy);
-    addField('media', media);
-    addField('network', network);
-    addField('purposeOfUse', purposeOfUse);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'role',
+      role,
+    );
+    addField(
+      'who',
+      who,
+    );
+    addField(
+      'altId',
+      altId,
+    );
+    addField(
+      'name',
+      name,
+    );
+    addField(
+      'requestor',
+      requestor,
+    );
+    addField(
+      'location',
+      location,
+    );
+    addField(
+      'policy',
+      policy,
+    );
+    addField(
+      'media',
+      media,
+    );
+    addField(
+      'network',
+      network,
+    );
+    addField(
+      'purposeOfUse',
+      purposeOfUse,
+    );
     return json;
   }
 
@@ -1455,50 +1620,6 @@ class AuditEventAgent extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'role':
-        if (role != null) {
-          return role!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'policy':
-        if (policy != null) {
-          return policy!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'purposeOfUse':
-        if (purposeOfUse != null) {
-          return purposeOfUse!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1510,39 +1631,51 @@ class AuditEventAgent extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -1550,15 +1683,21 @@ class AuditEventAgent extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'role':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(role: child);
+            // Add all elements from passed list
+            final newList = [...?role, ...child];
+            return copyWith(role: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?role, child];
+            return copyWith(role: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'who':
@@ -1566,7 +1705,7 @@ class AuditEventAgent extends BackboneElement {
           if (child is Reference) {
             return copyWith(who: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'altId':
@@ -1574,7 +1713,7 @@ class AuditEventAgent extends BackboneElement {
           if (child is FhirString) {
             return copyWith(altId: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
@@ -1582,7 +1721,7 @@ class AuditEventAgent extends BackboneElement {
           if (child is FhirString) {
             return copyWith(name: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'requestor':
@@ -1590,7 +1729,7 @@ class AuditEventAgent extends BackboneElement {
           if (child is FhirBoolean) {
             return copyWith(requestor: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'location':
@@ -1598,15 +1737,21 @@ class AuditEventAgent extends BackboneElement {
           if (child is Reference) {
             return copyWith(location: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'policy':
         {
           if (child is List<FhirUri>) {
-            return copyWith(policy: child);
+            // Add all elements from passed list
+            final newList = [...?policy, ...child];
+            return copyWith(policy: newList);
+          } else if (child is FhirUri) {
+            // Add single element to existing list or create new list
+            final newList = [...?policy, child];
+            return copyWith(policy: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'media':
@@ -1614,7 +1759,7 @@ class AuditEventAgent extends BackboneElement {
           if (child is Coding) {
             return copyWith(media: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'network':
@@ -1622,19 +1767,25 @@ class AuditEventAgent extends BackboneElement {
           if (child is AuditEventNetwork) {
             return copyWith(network: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'purposeOfUse':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(purposeOfUse: child);
+            // Add all elements from passed list
+            final newList = [...?purposeOfUse, ...child];
+            return copyWith(purposeOfUse: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?purposeOfUse, child];
+            return copyWith(purposeOfUse: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1681,63 +1832,93 @@ class AuditEventAgent extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  AuditEventAgent createProperty(String propertyName) {
+  AuditEventAgent createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'type':
         {
-          return copyWith(type: CodeableConcept.empty());
+          return copyWith(
+            type: CodeableConcept.empty(),
+          );
         }
       case 'role':
         {
-          return copyWith(role: <CodeableConcept>[]);
+          return copyWith(
+            role: <CodeableConcept>[],
+          );
         }
       case 'who':
         {
-          return copyWith(who: Reference.empty());
+          return copyWith(
+            who: Reference.empty(),
+          );
         }
       case 'altId':
         {
-          return copyWith(altId: FhirString.empty());
+          return copyWith(
+            altId: FhirString.empty(),
+          );
         }
       case 'name':
         {
-          return copyWith(name: FhirString.empty());
+          return copyWith(
+            name: FhirString.empty(),
+          );
         }
       case 'requestor':
         {
-          return copyWith(requestor: FhirBoolean.empty());
+          return copyWith(
+            requestor: FhirBoolean.empty(),
+          );
         }
       case 'location':
         {
-          return copyWith(location: Reference.empty());
+          return copyWith(
+            location: Reference.empty(),
+          );
         }
       case 'policy':
         {
-          return copyWith(policy: <FhirUri>[]);
+          return copyWith(
+            policy: <FhirUri>[],
+          );
         }
       case 'media':
         {
-          return copyWith(media: Coding.empty());
+          return copyWith(
+            media: Coding.empty(),
+          );
         }
       case 'network':
         {
-          return copyWith(network: AuditEventNetwork.empty());
+          return copyWith(
+            network: AuditEventNetwork.empty(),
+          );
         }
       case 'purposeOfUse':
         {
-          return copyWith(purposeOfUse: <CodeableConcept>[]);
+          return copyWith(
+            purposeOfUse: <CodeableConcept>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1892,7 +2073,10 @@ class AuditEventAgent extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1907,7 +2091,10 @@ class AuditEventAgent extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1916,19 +2103,34 @@ class AuditEventAgent extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(who, o.who)) {
+    if (!equalsDeepWithNull(
+      who,
+      o.who,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(altId, o.altId)) {
+    if (!equalsDeepWithNull(
+      altId,
+      o.altId,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(name, o.name)) {
+    if (!equalsDeepWithNull(
+      name,
+      o.name,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(requestor, o.requestor)) {
+    if (!equalsDeepWithNull(
+      requestor,
+      o.requestor,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(location, o.location)) {
+    if (!equalsDeepWithNull(
+      location,
+      o.location,
+    )) {
       return false;
     }
     if (!listEquals<FhirUri>(
@@ -1937,10 +2139,16 @@ class AuditEventAgent extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(media, o.media)) {
+    if (!equalsDeepWithNull(
+      media,
+      o.media,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(network, o.network)) {
+    if (!equalsDeepWithNull(
+      network,
+      o.network,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -2103,11 +2311,26 @@ class AuditEventNetwork extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('address', address);
-    addField('type', type);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'address',
+      address,
+    );
+    addField(
+      'type',
+      type,
+    );
     return json;
   }
 
@@ -2160,32 +2383,6 @@ class AuditEventNetwork extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2197,39 +2394,51 @@ class AuditEventNetwork extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'address':
@@ -2237,7 +2446,7 @@ class AuditEventNetwork extends BackboneElement {
           if (child is FhirString) {
             return copyWith(address: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -2245,11 +2454,11 @@ class AuditEventNetwork extends BackboneElement {
           if (child is AuditEventAgentNetworkType) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2278,27 +2487,39 @@ class AuditEventNetwork extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  AuditEventNetwork createProperty(String propertyName) {
+  AuditEventNetwork createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'address':
         {
-          return copyWith(address: FhirString.empty());
+          return copyWith(
+            address: FhirString.empty(),
+          );
         }
       case 'type':
         {
-          return copyWith(type: AuditEventAgentNetworkType.empty());
+          return copyWith(
+            type: AuditEventAgentNetworkType.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2379,7 +2600,10 @@ class AuditEventNetwork extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2394,10 +2618,16 @@ class AuditEventNetwork extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(address, o.address)) {
+    if (!equalsDeepWithNull(
+      address,
+      o.address,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
     return true;
@@ -2570,12 +2800,30 @@ class AuditEventSource extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('site', site);
-    addField('observer', observer);
-    addField('type', type);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'site',
+      site,
+    );
+    addField(
+      'observer',
+      observer,
+    );
+    addField(
+      'type',
+      type,
+    );
     return json;
   }
 
@@ -2631,38 +2879,6 @@ class AuditEventSource extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'type':
-        if (type != null) {
-          return type!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2674,39 +2890,51 @@ class AuditEventSource extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'site':
@@ -2714,7 +2942,7 @@ class AuditEventSource extends BackboneElement {
           if (child is FhirString) {
             return copyWith(site: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'observer':
@@ -2722,19 +2950,25 @@ class AuditEventSource extends BackboneElement {
           if (child is Reference) {
             return copyWith(observer: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
           if (child is List<Coding>) {
-            return copyWith(type: child);
+            // Add all elements from passed list
+            final newList = [...?type, ...child];
+            return copyWith(type: newList);
+          } else if (child is Coding) {
+            // Add single element to existing list or create new list
+            final newList = [...?type, child];
+            return copyWith(type: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2765,31 +2999,45 @@ class AuditEventSource extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  AuditEventSource createProperty(String propertyName) {
+  AuditEventSource createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'site':
         {
-          return copyWith(site: FhirString.empty());
+          return copyWith(
+            site: FhirString.empty(),
+          );
         }
       case 'observer':
         {
-          return copyWith(observer: Reference.empty());
+          return copyWith(
+            observer: Reference.empty(),
+          );
         }
       case 'type':
         {
-          return copyWith(type: <Coding>[]);
+          return copyWith(
+            type: <Coding>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2880,7 +3128,10 @@ class AuditEventSource extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2895,10 +3146,16 @@ class AuditEventSource extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(site, o.site)) {
+    if (!equalsDeepWithNull(
+      site,
+      o.site,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(observer, o.observer)) {
+    if (!equalsDeepWithNull(
+      observer,
+      o.observer,
+    )) {
       return false;
     }
     if (!listEquals<Coding>(
@@ -3146,18 +3403,54 @@ class AuditEventEntity extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('what', what);
-    addField('type', type);
-    addField('role', role);
-    addField('lifecycle', lifecycle);
-    addField('securityLabel', securityLabel);
-    addField('name', name);
-    addField('description', description);
-    addField('query', query);
-    addField('detail', detail);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'what',
+      what,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'role',
+      role,
+    );
+    addField(
+      'lifecycle',
+      lifecycle,
+    );
+    addField(
+      'securityLabel',
+      securityLabel,
+    );
+    addField(
+      'name',
+      name,
+    );
+    addField(
+      'description',
+      description,
+    );
+    addField(
+      'query',
+      query,
+    );
+    addField(
+      'detail',
+      detail,
+    );
     return json;
   }
 
@@ -3245,44 +3538,6 @@ class AuditEventEntity extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'securityLabel':
-        if (securityLabel != null) {
-          return securityLabel!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'detail':
-        if (detail != null) {
-          return detail!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -3294,39 +3549,51 @@ class AuditEventEntity extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'what':
@@ -3334,7 +3601,7 @@ class AuditEventEntity extends BackboneElement {
           if (child is Reference) {
             return copyWith(what: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -3342,7 +3609,7 @@ class AuditEventEntity extends BackboneElement {
           if (child is Coding) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'role':
@@ -3350,7 +3617,7 @@ class AuditEventEntity extends BackboneElement {
           if (child is Coding) {
             return copyWith(role: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'lifecycle':
@@ -3358,15 +3625,21 @@ class AuditEventEntity extends BackboneElement {
           if (child is Coding) {
             return copyWith(lifecycle: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'securityLabel':
         {
           if (child is List<Coding>) {
-            return copyWith(securityLabel: child);
+            // Add all elements from passed list
+            final newList = [...?securityLabel, ...child];
+            return copyWith(securityLabel: newList);
+          } else if (child is Coding) {
+            // Add single element to existing list or create new list
+            final newList = [...?securityLabel, child];
+            return copyWith(securityLabel: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
@@ -3374,7 +3647,7 @@ class AuditEventEntity extends BackboneElement {
           if (child is FhirString) {
             return copyWith(name: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
@@ -3382,7 +3655,7 @@ class AuditEventEntity extends BackboneElement {
           if (child is FhirString) {
             return copyWith(description: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'query':
@@ -3390,19 +3663,25 @@ class AuditEventEntity extends BackboneElement {
           if (child is FhirBase64Binary) {
             return copyWith(query: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'detail':
         {
           if (child is List<AuditEventDetail>) {
-            return copyWith(detail: child);
+            // Add all elements from passed list
+            final newList = [...?detail, ...child];
+            return copyWith(detail: newList);
+          } else if (child is AuditEventDetail) {
+            // Add single element to existing list or create new list
+            final newList = [...?detail, child];
+            return copyWith(detail: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -3445,55 +3724,81 @@ class AuditEventEntity extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  AuditEventEntity createProperty(String propertyName) {
+  AuditEventEntity createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'what':
         {
-          return copyWith(what: Reference.empty());
+          return copyWith(
+            what: Reference.empty(),
+          );
         }
       case 'type':
         {
-          return copyWith(type: Coding.empty());
+          return copyWith(
+            type: Coding.empty(),
+          );
         }
       case 'role':
         {
-          return copyWith(role: Coding.empty());
+          return copyWith(
+            role: Coding.empty(),
+          );
         }
       case 'lifecycle':
         {
-          return copyWith(lifecycle: Coding.empty());
+          return copyWith(
+            lifecycle: Coding.empty(),
+          );
         }
       case 'securityLabel':
         {
-          return copyWith(securityLabel: <Coding>[]);
+          return copyWith(
+            securityLabel: <Coding>[],
+          );
         }
       case 'name':
         {
-          return copyWith(name: FhirString.empty());
+          return copyWith(
+            name: FhirString.empty(),
+          );
         }
       case 'description':
         {
-          return copyWith(description: FhirString.empty());
+          return copyWith(
+            description: FhirString.empty(),
+          );
         }
       case 'query':
         {
-          return copyWith(query: FhirBase64Binary.empty());
+          return copyWith(
+            query: FhirBase64Binary.empty(),
+          );
         }
       case 'detail':
         {
-          return copyWith(detail: <AuditEventDetail>[]);
+          return copyWith(
+            detail: <AuditEventDetail>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3631,7 +3936,10 @@ class AuditEventEntity extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3646,16 +3954,28 @@ class AuditEventEntity extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(what, o.what)) {
+    if (!equalsDeepWithNull(
+      what,
+      o.what,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(role, o.role)) {
+    if (!equalsDeepWithNull(
+      role,
+      o.role,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(lifecycle, o.lifecycle)) {
+    if (!equalsDeepWithNull(
+      lifecycle,
+      o.lifecycle,
+    )) {
       return false;
     }
     if (!listEquals<Coding>(
@@ -3664,13 +3984,22 @@ class AuditEventEntity extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(name, o.name)) {
+    if (!equalsDeepWithNull(
+      name,
+      o.name,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(description, o.description)) {
+    if (!equalsDeepWithNull(
+      description,
+      o.description,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(query, o.query)) {
+    if (!equalsDeepWithNull(
+      query,
+      o.query,
+    )) {
       return false;
     }
     if (!listEquals<AuditEventDetail>(
@@ -3842,12 +4171,27 @@ class AuditEventDetail extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('type', type);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'type',
+      type,
+    );
     final valueXFhirType = valueX.fhirType;
-    addField('value${valueXFhirType.capitalize()}', valueX);
+    addField(
+      'value${valueXFhirType.capitalize()}',
+      valueX,
+    );
 
     return json;
   }
@@ -3907,32 +4251,6 @@ class AuditEventDetail extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -3944,39 +4262,51 @@ class AuditEventDetail extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -3984,24 +4314,29 @@ class AuditEventDetail extends BackboneElement {
           if (child is FhirString) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueX':
         {
           if (child is ValueXAuditEventDetail) {
-            // child is e.g. SubjectX union
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is FhirString) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirBase64Binary) {
+              return copyWith(valueX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'valueFhirString':
         {
           if (child is FhirString) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirBase64Binary':
@@ -4009,11 +4344,11 @@ class AuditEventDetail extends BackboneElement {
           if (child is FhirBase64Binary) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -4047,33 +4382,47 @@ class AuditEventDetail extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  AuditEventDetail createProperty(String propertyName) {
+  AuditEventDetail createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'type':
         {
-          return copyWith(type: FhirString.empty());
+          return copyWith(
+            type: FhirString.empty(),
+          );
         }
       case 'value':
       case 'valueX':
       case 'valueString':
         {
-          return copyWith(valueX: FhirString.empty());
+          return copyWith(
+            valueX: FhirString.empty(),
+          );
         }
       case 'valueBase64Binary':
         {
-          return copyWith(valueX: FhirBase64Binary.empty());
+          return copyWith(
+            valueX: FhirBase64Binary.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -4152,7 +4501,10 @@ class AuditEventDetail extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4167,10 +4519,16 @@ class AuditEventDetail extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(valueX, o.valueX)) {
+    if (!equalsDeepWithNull(
+      valueX,
+      o.valueX,
+    )) {
       return false;
     }
     return true;

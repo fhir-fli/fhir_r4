@@ -56,9 +56,13 @@ class ImagingStudyStatus extends FhirCodeEnum {
       return ImagingStudyStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ImagingStudyStatus cannot be constructed from JSON.',);
+        'ImagingStudyStatus cannot be constructed from JSON.',
+      );
     }
-    return ImagingStudyStatus._(validatedValue: value, element: element);
+    return ImagingStudyStatus._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// registered

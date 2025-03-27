@@ -179,17 +179,38 @@ class Population extends BackboneType {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
     if (ageX != null) {
       final fhirType = ageX!.fhirType;
-      addField('age${fhirType.capitalize()}', ageX);
+      addField(
+        'age${fhirType.capitalize()}',
+        ageX,
+      );
     }
 
-    addField('gender', gender);
-    addField('race', race);
-    addField('physiologicalCondition', physiologicalCondition);
+    addField(
+      'gender',
+      gender,
+    );
+    addField(
+      'race',
+      race,
+    );
+    addField(
+      'physiologicalCondition',
+      physiologicalCondition,
+    );
     return json;
   }
 
@@ -260,32 +281,6 @@ class Population extends BackboneType {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -297,56 +292,73 @@ class Population extends BackboneType {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'ageX':
         {
           if (child is AgeXPopulation) {
-            // child is e.g. SubjectX union
             return copyWith(ageX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is Range) {
+              return copyWith(ageX: child);
+            }
+            if (child is CodeableConcept) {
+              return copyWith(ageX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'ageRange':
         {
           if (child is Range) {
             return copyWith(ageX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'ageCodeableConcept':
@@ -354,7 +366,7 @@ class Population extends BackboneType {
           if (child is CodeableConcept) {
             return copyWith(ageX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'gender':
@@ -362,7 +374,7 @@ class Population extends BackboneType {
           if (child is CodeableConcept) {
             return copyWith(gender: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'race':
@@ -370,7 +382,7 @@ class Population extends BackboneType {
           if (child is CodeableConcept) {
             return copyWith(race: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'physiologicalCondition':
@@ -378,11 +390,11 @@ class Population extends BackboneType {
           if (child is CodeableConcept) {
             return copyWith(physiologicalCondition: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -420,41 +432,59 @@ class Population extends BackboneType {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  Population createProperty(String propertyName) {
+  Population createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'age':
       case 'ageX':
       case 'ageRange':
         {
-          return copyWith(ageX: Range.empty());
+          return copyWith(
+            ageX: Range.empty(),
+          );
         }
       case 'ageCodeableConcept':
         {
-          return copyWith(ageX: CodeableConcept.empty());
+          return copyWith(
+            ageX: CodeableConcept.empty(),
+          );
         }
       case 'gender':
         {
-          return copyWith(gender: CodeableConcept.empty());
+          return copyWith(
+            gender: CodeableConcept.empty(),
+          );
         }
       case 'race':
         {
-          return copyWith(race: CodeableConcept.empty());
+          return copyWith(
+            race: CodeableConcept.empty(),
+          );
         }
       case 'physiologicalCondition':
         {
-          return copyWith(physiologicalCondition: CodeableConcept.empty());
+          return copyWith(
+            physiologicalCondition: CodeableConcept.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -550,7 +580,10 @@ class Population extends BackboneType {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -565,16 +598,28 @@ class Population extends BackboneType {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(ageX, o.ageX)) {
+    if (!equalsDeepWithNull(
+      ageX,
+      o.ageX,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(gender, o.gender)) {
+    if (!equalsDeepWithNull(
+      gender,
+      o.gender,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(race, o.race)) {
+    if (!equalsDeepWithNull(
+      race,
+      o.race,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(physiologicalCondition, o.physiologicalCondition)) {
+    if (!equalsDeepWithNull(
+      physiologicalCondition,
+      o.physiologicalCondition,
+    )) {
       return false;
     }
     return true;

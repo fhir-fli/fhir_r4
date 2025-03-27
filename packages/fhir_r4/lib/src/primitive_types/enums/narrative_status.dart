@@ -54,9 +54,14 @@ class NarrativeStatus extends FhirCodeEnum {
     if (value == null && element != null) {
       return NarrativeStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('NarrativeStatus cannot be constructed from JSON.');
+      throw ArgumentError(
+        'NarrativeStatus cannot be constructed from JSON.',
+      );
     }
-    return NarrativeStatus._(validatedValue: value, element: element);
+    return NarrativeStatus._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// generated

@@ -57,9 +57,13 @@ class DetectedIssueSeverity extends FhirCodeEnum {
       return DetectedIssueSeverity.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'DetectedIssueSeverity cannot be constructed from JSON.',);
+        'DetectedIssueSeverity cannot be constructed from JSON.',
+      );
     }
-    return DetectedIssueSeverity._(validatedValue: value, element: element);
+    return DetectedIssueSeverity._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// high

@@ -263,21 +263,66 @@ class Subscription extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('status', status);
-    addField('contact', contact);
-    addField('end', end);
-    addField('reason', reason);
-    addField('criteria', criteria);
-    addField('error', error);
-    addField('channel', channel);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'contact',
+      contact,
+    );
+    addField(
+      'end',
+      end,
+    );
+    addField(
+      'reason',
+      reason,
+    );
+    addField(
+      'criteria',
+      criteria,
+    );
+    addField(
+      'error',
+      error,
+    );
+    addField(
+      'channel',
+      channel,
+    );
     return json;
   }
 
@@ -372,44 +417,6 @@ class Subscription extends DomainResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'contact':
-        if (contact != null) {
-          return contact!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -421,23 +428,23 @@ class Subscription extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -445,7 +452,7 @@ class Subscription extends DomainResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -453,7 +460,7 @@ class Subscription extends DomainResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -461,7 +468,7 @@ class Subscription extends DomainResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -469,31 +476,49 @@ class Subscription extends DomainResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -501,15 +526,21 @@ class Subscription extends DomainResource {
           if (child is SubscriptionStatusCodes) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contact':
         {
           if (child is List<ContactPoint>) {
-            return copyWith(contact: child);
+            // Add all elements from passed list
+            final newList = [...?contact, ...child];
+            return copyWith(contact: newList);
+          } else if (child is ContactPoint) {
+            // Add single element to existing list or create new list
+            final newList = [...?contact, child];
+            return copyWith(contact: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'end':
@@ -517,7 +548,7 @@ class Subscription extends DomainResource {
           if (child is FhirInstant) {
             return copyWith(end: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'reason':
@@ -525,7 +556,7 @@ class Subscription extends DomainResource {
           if (child is FhirString) {
             return copyWith(reason: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'criteria':
@@ -533,7 +564,7 @@ class Subscription extends DomainResource {
           if (child is FhirString) {
             return copyWith(criteria: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'error':
@@ -541,7 +572,7 @@ class Subscription extends DomainResource {
           if (child is FhirString) {
             return copyWith(error: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'channel':
@@ -549,11 +580,11 @@ class Subscription extends DomainResource {
           if (child is SubscriptionChannel) {
             return copyWith(channel: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -602,67 +633,99 @@ class Subscription extends DomainResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  Subscription createProperty(String propertyName) {
+  Subscription createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'status':
         {
-          return copyWith(status: SubscriptionStatusCodes.empty());
+          return copyWith(
+            status: SubscriptionStatusCodes.empty(),
+          );
         }
       case 'contact':
         {
-          return copyWith(contact: <ContactPoint>[]);
+          return copyWith(
+            contact: <ContactPoint>[],
+          );
         }
       case 'end':
         {
-          return copyWith(end: FhirInstant.empty());
+          return copyWith(
+            end: FhirInstant.empty(),
+          );
         }
       case 'reason':
         {
-          return copyWith(reason: FhirString.empty());
+          return copyWith(
+            reason: FhirString.empty(),
+          );
         }
       case 'criteria':
         {
-          return copyWith(criteria: FhirString.empty());
+          return copyWith(
+            criteria: FhirString.empty(),
+          );
         }
       case 'error':
         {
-          return copyWith(error: FhirString.empty());
+          return copyWith(
+            error: FhirString.empty(),
+          );
         }
       case 'channel':
         {
-          return copyWith(channel: SubscriptionChannel.empty());
+          return copyWith(
+            channel: SubscriptionChannel.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -809,19 +872,34 @@ class Subscription extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -842,7 +920,10 @@ class Subscription extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
     if (!listEquals<ContactPoint>(
@@ -851,19 +932,34 @@ class Subscription extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(end, o.end)) {
+    if (!equalsDeepWithNull(
+      end,
+      o.end,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(reason, o.reason)) {
+    if (!equalsDeepWithNull(
+      reason,
+      o.reason,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(criteria, o.criteria)) {
+    if (!equalsDeepWithNull(
+      criteria,
+      o.criteria,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(error, o.error)) {
+    if (!equalsDeepWithNull(
+      error,
+      o.error,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(channel, o.channel)) {
+    if (!equalsDeepWithNull(
+      channel,
+      o.channel,
+    )) {
       return false;
     }
     return true;
@@ -1045,13 +1141,34 @@ class SubscriptionChannel extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('type', type);
-    addField('endpoint', endpoint);
-    addField('payload', payload);
-    addField('header', header);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'endpoint',
+      endpoint,
+    );
+    addField(
+      'payload',
+      payload,
+    );
+    addField(
+      'header',
+      header,
+    );
     return json;
   }
 
@@ -1112,38 +1229,6 @@ class SubscriptionChannel extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'header':
-        if (header != null) {
-          return header!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1155,39 +1240,51 @@ class SubscriptionChannel extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -1195,7 +1292,7 @@ class SubscriptionChannel extends BackboneElement {
           if (child is SubscriptionChannelType) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'endpoint':
@@ -1203,7 +1300,7 @@ class SubscriptionChannel extends BackboneElement {
           if (child is FhirUrl) {
             return copyWith(endpoint: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'payload':
@@ -1211,19 +1308,25 @@ class SubscriptionChannel extends BackboneElement {
           if (child is FhirCode) {
             return copyWith(payload: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'header':
         {
           if (child is List<FhirString>) {
-            return copyWith(header: child);
+            // Add all elements from passed list
+            final newList = [...?header, ...child];
+            return copyWith(header: newList);
+          } else if (child is FhirString) {
+            // Add single element to existing list or create new list
+            final newList = [...?header, child];
+            return copyWith(header: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1256,35 +1359,51 @@ class SubscriptionChannel extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  SubscriptionChannel createProperty(String propertyName) {
+  SubscriptionChannel createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'type':
         {
-          return copyWith(type: SubscriptionChannelType.empty());
+          return copyWith(
+            type: SubscriptionChannelType.empty(),
+          );
         }
       case 'endpoint':
         {
-          return copyWith(endpoint: FhirUrl.empty());
+          return copyWith(
+            endpoint: FhirUrl.empty(),
+          );
         }
       case 'payload':
         {
-          return copyWith(payload: FhirCode.empty());
+          return copyWith(
+            payload: FhirCode.empty(),
+          );
         }
       case 'header':
         {
-          return copyWith(header: <FhirString>[]);
+          return copyWith(
+            header: <FhirString>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1382,7 +1501,10 @@ class SubscriptionChannel extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1397,13 +1519,22 @@ class SubscriptionChannel extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(endpoint, o.endpoint)) {
+    if (!equalsDeepWithNull(
+      endpoint,
+      o.endpoint,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(payload, o.payload)) {
+    if (!equalsDeepWithNull(
+      payload,
+      o.payload,
+    )) {
       return false;
     }
     if (!listEquals<FhirString>(

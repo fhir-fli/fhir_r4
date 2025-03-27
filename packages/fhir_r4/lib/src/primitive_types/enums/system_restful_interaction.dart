@@ -56,9 +56,13 @@ class SystemRestfulInteraction extends FhirCodeEnum {
       return SystemRestfulInteraction.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'SystemRestfulInteraction cannot be constructed from JSON.',);
+        'SystemRestfulInteraction cannot be constructed from JSON.',
+      );
     }
-    return SystemRestfulInteraction._(validatedValue: value, element: element);
+    return SystemRestfulInteraction._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// read

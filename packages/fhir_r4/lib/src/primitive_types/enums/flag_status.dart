@@ -55,9 +55,14 @@ class FlagStatus extends FhirCodeEnum {
     if (value == null && element != null) {
       return FlagStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('FlagStatus cannot be constructed from JSON.');
+      throw ArgumentError(
+        'FlagStatus cannot be constructed from JSON.',
+      );
     }
-    return FlagStatus._(validatedValue: value, element: element);
+    return FlagStatus._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// active

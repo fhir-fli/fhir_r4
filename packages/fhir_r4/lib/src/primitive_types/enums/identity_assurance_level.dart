@@ -57,9 +57,13 @@ class IdentityAssuranceLevel extends FhirCodeEnum {
       return IdentityAssuranceLevel.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'IdentityAssuranceLevel cannot be constructed from JSON.',);
+        'IdentityAssuranceLevel cannot be constructed from JSON.',
+      );
     }
-    return IdentityAssuranceLevel._(validatedValue: value, element: element);
+    return IdentityAssuranceLevel._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// level1

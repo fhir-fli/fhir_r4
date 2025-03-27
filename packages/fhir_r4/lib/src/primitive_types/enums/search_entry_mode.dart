@@ -56,9 +56,14 @@ class SearchEntryMode extends FhirCodeEnum {
     if (value == null && element != null) {
       return SearchEntryMode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('SearchEntryMode cannot be constructed from JSON.');
+      throw ArgumentError(
+        'SearchEntryMode cannot be constructed from JSON.',
+      );
     }
-    return SearchEntryMode._(validatedValue: value, element: element);
+    return SearchEntryMode._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// match

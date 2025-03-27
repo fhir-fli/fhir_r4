@@ -372,40 +372,118 @@ class ConceptMap extends CanonicalResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('url', url);
-    addField('identifier', identifier);
-    addField('version', version);
-    addField('name', name);
-    addField('title', title);
-    addField('status', status);
-    addField('experimental', experimental);
-    addField('date', date);
-    addField('publisher', publisher);
-    addField('contact', contact);
-    addField('description', description);
-    addField('useContext', useContext);
-    addField('jurisdiction', jurisdiction);
-    addField('purpose', purpose);
-    addField('copyright', copyright);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'url',
+      url,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'version',
+      version,
+    );
+    addField(
+      'name',
+      name,
+    );
+    addField(
+      'title',
+      title,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'experimental',
+      experimental,
+    );
+    addField(
+      'date',
+      date,
+    );
+    addField(
+      'publisher',
+      publisher,
+    );
+    addField(
+      'contact',
+      contact,
+    );
+    addField(
+      'description',
+      description,
+    );
+    addField(
+      'useContext',
+      useContext,
+    );
+    addField(
+      'jurisdiction',
+      jurisdiction,
+    );
+    addField(
+      'purpose',
+      purpose,
+    );
+    addField(
+      'copyright',
+      copyright,
+    );
     if (sourceX != null) {
       final fhirType = sourceX!.fhirType;
-      addField('source${fhirType.capitalize()}', sourceX);
+      addField(
+        'source${fhirType.capitalize()}',
+        sourceX,
+      );
     }
 
     if (targetX != null) {
       final fhirType = targetX!.fhirType;
-      addField('target${fhirType.capitalize()}', targetX);
+      addField(
+        'target${fhirType.capitalize()}',
+        targetX,
+      );
     }
 
-    addField('group', group);
+    addField(
+      'group',
+      group,
+    );
     return json;
   }
 
@@ -579,62 +657,6 @@ class ConceptMap extends CanonicalResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'contact':
-        if (contact != null) {
-          return contact!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'useContext':
-        if (useContext != null) {
-          return useContext!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'jurisdiction':
-        if (jurisdiction != null) {
-          return jurisdiction!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'group':
-        if (group != null) {
-          return group!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -646,23 +668,23 @@ class ConceptMap extends CanonicalResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -670,7 +692,7 @@ class ConceptMap extends CanonicalResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -678,7 +700,7 @@ class ConceptMap extends CanonicalResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -686,7 +708,7 @@ class ConceptMap extends CanonicalResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -694,31 +716,49 @@ class ConceptMap extends CanonicalResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'url':
@@ -726,7 +766,7 @@ class ConceptMap extends CanonicalResource {
           if (child is FhirUri) {
             return copyWith(url: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
@@ -734,7 +774,7 @@ class ConceptMap extends CanonicalResource {
           if (child is Identifier) {
             return copyWith(identifier: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'version':
@@ -742,7 +782,7 @@ class ConceptMap extends CanonicalResource {
           if (child is FhirString) {
             return copyWith(version: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
@@ -750,7 +790,7 @@ class ConceptMap extends CanonicalResource {
           if (child is FhirString) {
             return copyWith(name: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'title':
@@ -758,7 +798,7 @@ class ConceptMap extends CanonicalResource {
           if (child is FhirString) {
             return copyWith(title: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -766,7 +806,7 @@ class ConceptMap extends CanonicalResource {
           if (child is PublicationStatus) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'experimental':
@@ -774,7 +814,7 @@ class ConceptMap extends CanonicalResource {
           if (child is FhirBoolean) {
             return copyWith(experimental: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
@@ -782,7 +822,7 @@ class ConceptMap extends CanonicalResource {
           if (child is FhirDateTime) {
             return copyWith(date: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'publisher':
@@ -790,15 +830,21 @@ class ConceptMap extends CanonicalResource {
           if (child is FhirString) {
             return copyWith(publisher: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contact':
         {
           if (child is List<ContactDetail>) {
-            return copyWith(contact: child);
+            // Add all elements from passed list
+            final newList = [...?contact, ...child];
+            return copyWith(contact: newList);
+          } else if (child is ContactDetail) {
+            // Add single element to existing list or create new list
+            final newList = [...?contact, child];
+            return copyWith(contact: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
@@ -806,23 +852,35 @@ class ConceptMap extends CanonicalResource {
           if (child is FhirMarkdown) {
             return copyWith(description: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'useContext':
         {
           if (child is List<UsageContext>) {
-            return copyWith(useContext: child);
+            // Add all elements from passed list
+            final newList = [...?useContext, ...child];
+            return copyWith(useContext: newList);
+          } else if (child is UsageContext) {
+            // Add single element to existing list or create new list
+            final newList = [...?useContext, child];
+            return copyWith(useContext: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'jurisdiction':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(jurisdiction: child);
+            // Add all elements from passed list
+            final newList = [...?jurisdiction, ...child];
+            return copyWith(jurisdiction: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?jurisdiction, child];
+            return copyWith(jurisdiction: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'purpose':
@@ -830,7 +888,7 @@ class ConceptMap extends CanonicalResource {
           if (child is FhirMarkdown) {
             return copyWith(purpose: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'copyright':
@@ -838,24 +896,29 @@ class ConceptMap extends CanonicalResource {
           if (child is FhirMarkdown) {
             return copyWith(copyright: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'sourceX':
         {
           if (child is SourceXConceptMap) {
-            // child is e.g. SubjectX union
             return copyWith(sourceX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is FhirUri) {
+              return copyWith(sourceX: child);
+            }
+            if (child is FhirCanonical) {
+              return copyWith(sourceX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'sourceFhirUri':
         {
           if (child is FhirUri) {
             return copyWith(sourceX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'sourceFhirCanonical':
@@ -863,24 +926,29 @@ class ConceptMap extends CanonicalResource {
           if (child is FhirCanonical) {
             return copyWith(sourceX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'targetX':
         {
           if (child is TargetXConceptMap) {
-            // child is e.g. SubjectX union
             return copyWith(targetX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is FhirUri) {
+              return copyWith(targetX: child);
+            }
+            if (child is FhirCanonical) {
+              return copyWith(targetX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'targetFhirUri':
         {
           if (child is FhirUri) {
             return copyWith(targetX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'targetFhirCanonical':
@@ -888,19 +956,25 @@ class ConceptMap extends CanonicalResource {
           if (child is FhirCanonical) {
             return copyWith(targetX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'group':
         {
           if (child is List<ConceptMapGroup>) {
-            return copyWith(group: child);
+            // Add all elements from passed list
+            final newList = [...?group, ...child];
+            return copyWith(group: newList);
+          } else if (child is ConceptMapGroup) {
+            // Add single element to existing list or create new list
+            final newList = [...?group, child];
+            return copyWith(group: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -981,123 +1055,181 @@ class ConceptMap extends CanonicalResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  ConceptMap createProperty(String propertyName) {
+  ConceptMap createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'url':
         {
-          return copyWith(url: FhirUri.empty());
+          return copyWith(
+            url: FhirUri.empty(),
+          );
         }
       case 'identifier':
         {
-          return copyWith(identifier: Identifier.empty());
+          return copyWith(
+            identifier: Identifier.empty(),
+          );
         }
       case 'version':
         {
-          return copyWith(version: FhirString.empty());
+          return copyWith(
+            version: FhirString.empty(),
+          );
         }
       case 'name':
         {
-          return copyWith(name: FhirString.empty());
+          return copyWith(
+            name: FhirString.empty(),
+          );
         }
       case 'title':
         {
-          return copyWith(title: FhirString.empty());
+          return copyWith(
+            title: FhirString.empty(),
+          );
         }
       case 'status':
         {
-          return copyWith(status: PublicationStatus.empty());
+          return copyWith(
+            status: PublicationStatus.empty(),
+          );
         }
       case 'experimental':
         {
-          return copyWith(experimental: FhirBoolean.empty());
+          return copyWith(
+            experimental: FhirBoolean.empty(),
+          );
         }
       case 'date':
         {
-          return copyWith(date: FhirDateTime.empty());
+          return copyWith(
+            date: FhirDateTime.empty(),
+          );
         }
       case 'publisher':
         {
-          return copyWith(publisher: FhirString.empty());
+          return copyWith(
+            publisher: FhirString.empty(),
+          );
         }
       case 'contact':
         {
-          return copyWith(contact: <ContactDetail>[]);
+          return copyWith(
+            contact: <ContactDetail>[],
+          );
         }
       case 'description':
         {
-          return copyWith(description: FhirMarkdown.empty());
+          return copyWith(
+            description: FhirMarkdown.empty(),
+          );
         }
       case 'useContext':
         {
-          return copyWith(useContext: <UsageContext>[]);
+          return copyWith(
+            useContext: <UsageContext>[],
+          );
         }
       case 'jurisdiction':
         {
-          return copyWith(jurisdiction: <CodeableConcept>[]);
+          return copyWith(
+            jurisdiction: <CodeableConcept>[],
+          );
         }
       case 'purpose':
         {
-          return copyWith(purpose: FhirMarkdown.empty());
+          return copyWith(
+            purpose: FhirMarkdown.empty(),
+          );
         }
       case 'copyright':
         {
-          return copyWith(copyright: FhirMarkdown.empty());
+          return copyWith(
+            copyright: FhirMarkdown.empty(),
+          );
         }
       case 'source':
       case 'sourceX':
       case 'sourceUri':
         {
-          return copyWith(sourceX: FhirUri.empty());
+          return copyWith(
+            sourceX: FhirUri.empty(),
+          );
         }
       case 'sourceCanonical':
         {
-          return copyWith(sourceX: FhirCanonical.empty());
+          return copyWith(
+            sourceX: FhirCanonical.empty(),
+          );
         }
       case 'target':
       case 'targetX':
       case 'targetUri':
         {
-          return copyWith(targetX: FhirUri.empty());
+          return copyWith(
+            targetX: FhirUri.empty(),
+          );
         }
       case 'targetCanonical':
         {
-          return copyWith(targetX: FhirCanonical.empty());
+          return copyWith(
+            targetX: FhirCanonical.empty(),
+          );
         }
       case 'group':
         {
-          return copyWith(group: <ConceptMapGroup>[]);
+          return copyWith(
+            group: <ConceptMapGroup>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1336,19 +1468,34 @@ class ConceptMap extends CanonicalResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1369,31 +1516,58 @@ class ConceptMap extends CanonicalResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(url, o.url)) {
+    if (!equalsDeepWithNull(
+      url,
+      o.url,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(identifier, o.identifier)) {
+    if (!equalsDeepWithNull(
+      identifier,
+      o.identifier,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(version, o.version)) {
+    if (!equalsDeepWithNull(
+      version,
+      o.version,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(name, o.name)) {
+    if (!equalsDeepWithNull(
+      name,
+      o.name,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(title, o.title)) {
+    if (!equalsDeepWithNull(
+      title,
+      o.title,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(experimental, o.experimental)) {
+    if (!equalsDeepWithNull(
+      experimental,
+      o.experimental,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(date, o.date)) {
+    if (!equalsDeepWithNull(
+      date,
+      o.date,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(publisher, o.publisher)) {
+    if (!equalsDeepWithNull(
+      publisher,
+      o.publisher,
+    )) {
       return false;
     }
     if (!listEquals<ContactDetail>(
@@ -1402,7 +1576,10 @@ class ConceptMap extends CanonicalResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(description, o.description)) {
+    if (!equalsDeepWithNull(
+      description,
+      o.description,
+    )) {
       return false;
     }
     if (!listEquals<UsageContext>(
@@ -1417,16 +1594,28 @@ class ConceptMap extends CanonicalResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(purpose, o.purpose)) {
+    if (!equalsDeepWithNull(
+      purpose,
+      o.purpose,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(copyright, o.copyright)) {
+    if (!equalsDeepWithNull(
+      copyright,
+      o.copyright,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(sourceX, o.sourceX)) {
+    if (!equalsDeepWithNull(
+      sourceX,
+      o.sourceX,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(targetX, o.targetX)) {
+    if (!equalsDeepWithNull(
+      targetX,
+      o.targetX,
+    )) {
       return false;
     }
     if (!listEquals<ConceptMapGroup>(
@@ -1643,15 +1832,42 @@ class ConceptMapGroup extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('source', source);
-    addField('sourceVersion', sourceVersion);
-    addField('target', target);
-    addField('targetVersion', targetVersion);
-    addField('element', element);
-    addField('unmapped', unmapped);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'source',
+      source,
+    );
+    addField(
+      'sourceVersion',
+      sourceVersion,
+    );
+    addField(
+      'target',
+      target,
+    );
+    addField(
+      'targetVersion',
+      targetVersion,
+    );
+    addField(
+      'element',
+      element,
+    );
+    addField(
+      'unmapped',
+      unmapped,
+    );
     return json;
   }
 
@@ -1722,34 +1938,6 @@ class ConceptMapGroup extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'element':
-        return element;
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1761,39 +1949,51 @@ class ConceptMapGroup extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'source':
@@ -1801,7 +2001,7 @@ class ConceptMapGroup extends BackboneElement {
           if (child is FhirUri) {
             return copyWith(source: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'sourceVersion':
@@ -1809,7 +2009,7 @@ class ConceptMapGroup extends BackboneElement {
           if (child is FhirString) {
             return copyWith(sourceVersion: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'target':
@@ -1817,7 +2017,7 @@ class ConceptMapGroup extends BackboneElement {
           if (child is FhirUri) {
             return copyWith(target: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'targetVersion':
@@ -1825,15 +2025,21 @@ class ConceptMapGroup extends BackboneElement {
           if (child is FhirString) {
             return copyWith(targetVersion: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'element':
         {
           if (child is List<ConceptMapElement>) {
-            return copyWith(element: child);
+            // Add all elements from passed list
+            final newList = [...element, ...child];
+            return copyWith(element: newList);
+          } else if (child is ConceptMapElement) {
+            // Add single element to existing list or create new list
+            final newList = [...element, child];
+            return copyWith(element: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'unmapped':
@@ -1841,11 +2047,11 @@ class ConceptMapGroup extends BackboneElement {
           if (child is ConceptMapUnmapped) {
             return copyWith(unmapped: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1882,43 +2088,63 @@ class ConceptMapGroup extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  ConceptMapGroup createProperty(String propertyName) {
+  ConceptMapGroup createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'source':
         {
-          return copyWith(source: FhirUri.empty());
+          return copyWith(
+            source: FhirUri.empty(),
+          );
         }
       case 'sourceVersion':
         {
-          return copyWith(sourceVersion: FhirString.empty());
+          return copyWith(
+            sourceVersion: FhirString.empty(),
+          );
         }
       case 'target':
         {
-          return copyWith(target: FhirUri.empty());
+          return copyWith(
+            target: FhirUri.empty(),
+          );
         }
       case 'targetVersion':
         {
-          return copyWith(targetVersion: FhirString.empty());
+          return copyWith(
+            targetVersion: FhirString.empty(),
+          );
         }
       case 'element':
         {
-          return copyWith(element: <ConceptMapElement>[]);
+          return copyWith(
+            element: <ConceptMapElement>[],
+          );
         }
       case 'unmapped':
         {
-          return copyWith(unmapped: ConceptMapUnmapped.empty());
+          return copyWith(
+            unmapped: ConceptMapUnmapped.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2030,7 +2256,10 @@ class ConceptMapGroup extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2045,16 +2274,28 @@ class ConceptMapGroup extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(source, o.source)) {
+    if (!equalsDeepWithNull(
+      source,
+      o.source,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(sourceVersion, o.sourceVersion)) {
+    if (!equalsDeepWithNull(
+      sourceVersion,
+      o.sourceVersion,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(target, o.target)) {
+    if (!equalsDeepWithNull(
+      target,
+      o.target,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(targetVersion, o.targetVersion)) {
+    if (!equalsDeepWithNull(
+      targetVersion,
+      o.targetVersion,
+    )) {
       return false;
     }
     if (!listEquals<ConceptMapElement>(
@@ -2063,7 +2304,10 @@ class ConceptMapGroup extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(unmapped, o.unmapped)) {
+    if (!equalsDeepWithNull(
+      unmapped,
+      o.unmapped,
+    )) {
       return false;
     }
     return true;
@@ -2234,12 +2478,30 @@ class ConceptMapElement extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('code', code);
-    addField('display', display);
-    addField('target', target);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'code',
+      code,
+    );
+    addField(
+      'display',
+      display,
+    );
+    addField(
+      'target',
+      target,
+    );
     return json;
   }
 
@@ -2297,38 +2559,6 @@ class ConceptMapElement extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'target':
-        if (target != null) {
-          return target!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2340,39 +2570,51 @@ class ConceptMapElement extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
@@ -2380,7 +2622,7 @@ class ConceptMapElement extends BackboneElement {
           if (child is FhirCode) {
             return copyWith(code: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'display':
@@ -2388,19 +2630,25 @@ class ConceptMapElement extends BackboneElement {
           if (child is FhirString) {
             return copyWith(display: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'target':
         {
           if (child is List<ConceptMapTarget>) {
-            return copyWith(target: child);
+            // Add all elements from passed list
+            final newList = [...?target, ...child];
+            return copyWith(target: newList);
+          } else if (child is ConceptMapTarget) {
+            // Add single element to existing list or create new list
+            final newList = [...?target, child];
+            return copyWith(target: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2431,31 +2679,45 @@ class ConceptMapElement extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  ConceptMapElement createProperty(String propertyName) {
+  ConceptMapElement createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'code':
         {
-          return copyWith(code: FhirCode.empty());
+          return copyWith(
+            code: FhirCode.empty(),
+          );
         }
       case 'display':
         {
-          return copyWith(display: FhirString.empty());
+          return copyWith(
+            display: FhirString.empty(),
+          );
         }
       case 'target':
         {
-          return copyWith(target: <ConceptMapTarget>[]);
+          return copyWith(
+            target: <ConceptMapTarget>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2547,7 +2809,10 @@ class ConceptMapElement extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2562,10 +2827,16 @@ class ConceptMapElement extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(code, o.code)) {
+    if (!equalsDeepWithNull(
+      code,
+      o.code,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(display, o.display)) {
+    if (!equalsDeepWithNull(
+      display,
+      o.display,
+    )) {
       return false;
     }
     if (!listEquals<ConceptMapTarget>(
@@ -2789,15 +3060,42 @@ class ConceptMapTarget extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('code', code);
-    addField('display', display);
-    addField('equivalence', equivalence);
-    addField('comment', comment);
-    addField('dependsOn', dependsOn);
-    addField('product', product);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'code',
+      code,
+    );
+    addField(
+      'display',
+      display,
+    );
+    addField(
+      'equivalence',
+      equivalence,
+    );
+    addField(
+      'comment',
+      comment,
+    );
+    addField(
+      'dependsOn',
+      dependsOn,
+    );
+    addField(
+      'product',
+      product,
+    );
     return json;
   }
 
@@ -2868,44 +3166,6 @@ class ConceptMapTarget extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'dependsOn':
-        if (dependsOn != null) {
-          return dependsOn!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'product':
-        if (product != null) {
-          return product!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2917,39 +3177,51 @@ class ConceptMapTarget extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
@@ -2957,7 +3229,7 @@ class ConceptMapTarget extends BackboneElement {
           if (child is FhirCode) {
             return copyWith(code: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'display':
@@ -2965,7 +3237,7 @@ class ConceptMapTarget extends BackboneElement {
           if (child is FhirString) {
             return copyWith(display: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'equivalence':
@@ -2973,7 +3245,7 @@ class ConceptMapTarget extends BackboneElement {
           if (child is ConceptMapEquivalence) {
             return copyWith(equivalence: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'comment':
@@ -2981,27 +3253,39 @@ class ConceptMapTarget extends BackboneElement {
           if (child is FhirString) {
             return copyWith(comment: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'dependsOn':
         {
           if (child is List<ConceptMapDependsOn>) {
-            return copyWith(dependsOn: child);
+            // Add all elements from passed list
+            final newList = [...?dependsOn, ...child];
+            return copyWith(dependsOn: newList);
+          } else if (child is ConceptMapDependsOn) {
+            // Add single element to existing list or create new list
+            final newList = [...?dependsOn, child];
+            return copyWith(dependsOn: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'product':
         {
           if (child is List<ConceptMapDependsOn>) {
-            return copyWith(product: child);
+            // Add all elements from passed list
+            final newList = [...?product, ...child];
+            return copyWith(product: newList);
+          } else if (child is ConceptMapDependsOn) {
+            // Add single element to existing list or create new list
+            final newList = [...?product, child];
+            return copyWith(product: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -3038,43 +3322,63 @@ class ConceptMapTarget extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  ConceptMapTarget createProperty(String propertyName) {
+  ConceptMapTarget createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'code':
         {
-          return copyWith(code: FhirCode.empty());
+          return copyWith(
+            code: FhirCode.empty(),
+          );
         }
       case 'display':
         {
-          return copyWith(display: FhirString.empty());
+          return copyWith(
+            display: FhirString.empty(),
+          );
         }
       case 'equivalence':
         {
-          return copyWith(equivalence: ConceptMapEquivalence.empty());
+          return copyWith(
+            equivalence: ConceptMapEquivalence.empty(),
+          );
         }
       case 'comment':
         {
-          return copyWith(comment: FhirString.empty());
+          return copyWith(
+            comment: FhirString.empty(),
+          );
         }
       case 'dependsOn':
         {
-          return copyWith(dependsOn: <ConceptMapDependsOn>[]);
+          return copyWith(
+            dependsOn: <ConceptMapDependsOn>[],
+          );
         }
       case 'product':
         {
-          return copyWith(product: <ConceptMapDependsOn>[]);
+          return copyWith(
+            product: <ConceptMapDependsOn>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3190,7 +3494,10 @@ class ConceptMapTarget extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3205,16 +3512,28 @@ class ConceptMapTarget extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(code, o.code)) {
+    if (!equalsDeepWithNull(
+      code,
+      o.code,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(display, o.display)) {
+    if (!equalsDeepWithNull(
+      display,
+      o.display,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(equivalence, o.equivalence)) {
+    if (!equalsDeepWithNull(
+      equivalence,
+      o.equivalence,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(comment, o.comment)) {
+    if (!equalsDeepWithNull(
+      comment,
+      o.comment,
+    )) {
       return false;
     }
     if (!listEquals<ConceptMapDependsOn>(
@@ -3413,13 +3732,34 @@ class ConceptMapDependsOn extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('property', property);
-    addField('system', system);
-    addField('value', value);
-    addField('display', display);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'property',
+      property,
+    );
+    addField(
+      'system',
+      system,
+    );
+    addField(
+      'value',
+      value,
+    );
+    addField(
+      'display',
+      display,
+    );
     return json;
   }
 
@@ -3478,32 +3818,6 @@ class ConceptMapDependsOn extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -3515,39 +3829,51 @@ class ConceptMapDependsOn extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'property':
@@ -3555,7 +3881,7 @@ class ConceptMapDependsOn extends BackboneElement {
           if (child is FhirUri) {
             return copyWith(property: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'system':
@@ -3563,7 +3889,7 @@ class ConceptMapDependsOn extends BackboneElement {
           if (child is FhirCanonical) {
             return copyWith(system: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'value':
@@ -3571,7 +3897,7 @@ class ConceptMapDependsOn extends BackboneElement {
           if (child is FhirString) {
             return copyWith(value: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'display':
@@ -3579,11 +3905,11 @@ class ConceptMapDependsOn extends BackboneElement {
           if (child is FhirString) {
             return copyWith(display: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -3616,35 +3942,51 @@ class ConceptMapDependsOn extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  ConceptMapDependsOn createProperty(String propertyName) {
+  ConceptMapDependsOn createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'property':
         {
-          return copyWith(property: FhirUri.empty());
+          return copyWith(
+            property: FhirUri.empty(),
+          );
         }
       case 'system':
         {
-          return copyWith(system: FhirCanonical.empty());
+          return copyWith(
+            system: FhirCanonical.empty(),
+          );
         }
       case 'value':
         {
-          return copyWith(value: FhirString.empty());
+          return copyWith(
+            value: FhirString.empty(),
+          );
         }
       case 'display':
         {
-          return copyWith(display: FhirString.empty());
+          return copyWith(
+            display: FhirString.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3737,7 +4079,10 @@ class ConceptMapDependsOn extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3752,16 +4097,28 @@ class ConceptMapDependsOn extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(property, o.property)) {
+    if (!equalsDeepWithNull(
+      property,
+      o.property,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(system, o.system)) {
+    if (!equalsDeepWithNull(
+      system,
+      o.system,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(value, o.value)) {
+    if (!equalsDeepWithNull(
+      value,
+      o.value,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(display, o.display)) {
+    if (!equalsDeepWithNull(
+      display,
+      o.display,
+    )) {
       return false;
     }
     return true;
@@ -3950,13 +4307,34 @@ class ConceptMapUnmapped extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('mode', mode);
-    addField('code', code);
-    addField('display', display);
-    addField('url', url);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'mode',
+      mode,
+    );
+    addField(
+      'code',
+      code,
+    );
+    addField(
+      'display',
+      display,
+    );
+    addField(
+      'url',
+      url,
+    );
     return json;
   }
 
@@ -4017,32 +4395,6 @@ class ConceptMapUnmapped extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -4054,39 +4406,51 @@ class ConceptMapUnmapped extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'mode':
@@ -4094,7 +4458,7 @@ class ConceptMapUnmapped extends BackboneElement {
           if (child is ConceptMapGroupUnmappedMode) {
             return copyWith(mode: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
@@ -4102,7 +4466,7 @@ class ConceptMapUnmapped extends BackboneElement {
           if (child is FhirCode) {
             return copyWith(code: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'display':
@@ -4110,7 +4474,7 @@ class ConceptMapUnmapped extends BackboneElement {
           if (child is FhirString) {
             return copyWith(display: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'url':
@@ -4118,11 +4482,11 @@ class ConceptMapUnmapped extends BackboneElement {
           if (child is FhirCanonical) {
             return copyWith(url: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -4155,35 +4519,51 @@ class ConceptMapUnmapped extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  ConceptMapUnmapped createProperty(String propertyName) {
+  ConceptMapUnmapped createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'mode':
         {
-          return copyWith(mode: ConceptMapGroupUnmappedMode.empty());
+          return copyWith(
+            mode: ConceptMapGroupUnmappedMode.empty(),
+          );
         }
       case 'code':
         {
-          return copyWith(code: FhirCode.empty());
+          return copyWith(
+            code: FhirCode.empty(),
+          );
         }
       case 'display':
         {
-          return copyWith(display: FhirString.empty());
+          return copyWith(
+            display: FhirString.empty(),
+          );
         }
       case 'url':
         {
-          return copyWith(url: FhirCanonical.empty());
+          return copyWith(
+            url: FhirCanonical.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -4277,7 +4657,10 @@ class ConceptMapUnmapped extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4292,16 +4675,28 @@ class ConceptMapUnmapped extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(mode, o.mode)) {
+    if (!equalsDeepWithNull(
+      mode,
+      o.mode,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(code, o.code)) {
+    if (!equalsDeepWithNull(
+      code,
+      o.code,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(display, o.display)) {
+    if (!equalsDeepWithNull(
+      display,
+      o.display,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(url, o.url)) {
+    if (!equalsDeepWithNull(
+      url,
+      o.url,
+    )) {
       return false;
     }
     return true;

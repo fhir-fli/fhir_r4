@@ -56,10 +56,13 @@ class EligibilityResponsePurpose extends FhirCodeEnum {
       return EligibilityResponsePurpose.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'EligibilityResponsePurpose cannot be constructed from JSON.',);
+        'EligibilityResponsePurpose cannot be constructed from JSON.',
+      );
     }
     return EligibilityResponsePurpose._(
-        validatedValue: value, element: element,);
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// auth_requirements

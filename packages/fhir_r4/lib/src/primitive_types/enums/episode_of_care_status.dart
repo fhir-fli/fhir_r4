@@ -56,9 +56,13 @@ class EpisodeOfCareStatus extends FhirCodeEnum {
       return EpisodeOfCareStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'EpisodeOfCareStatus cannot be constructed from JSON.',);
+        'EpisodeOfCareStatus cannot be constructed from JSON.',
+      );
     }
-    return EpisodeOfCareStatus._(validatedValue: value, element: element);
+    return EpisodeOfCareStatus._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// planned

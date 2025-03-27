@@ -55,9 +55,14 @@ class LocationMode extends FhirCodeEnum {
     if (value == null && element != null) {
       return LocationMode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('LocationMode cannot be constructed from JSON.');
+      throw ArgumentError(
+        'LocationMode cannot be constructed from JSON.',
+      );
     }
-    return LocationMode._(validatedValue: value, element: element);
+    return LocationMode._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// instance

@@ -590,46 +590,154 @@ class Procedure extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('identifier', identifier);
-    addField('instantiatesCanonical', instantiatesCanonical);
-    addField('instantiatesUri', instantiatesUri);
-    addField('basedOn', basedOn);
-    addField('partOf', partOf);
-    addField('status', status);
-    addField('statusReason', statusReason);
-    addField('category', category);
-    addField('code', code);
-    addField('subject', subject);
-    addField('encounter', encounter);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'instantiatesCanonical',
+      instantiatesCanonical,
+    );
+    addField(
+      'instantiatesUri',
+      instantiatesUri,
+    );
+    addField(
+      'basedOn',
+      basedOn,
+    );
+    addField(
+      'partOf',
+      partOf,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'statusReason',
+      statusReason,
+    );
+    addField(
+      'category',
+      category,
+    );
+    addField(
+      'code',
+      code,
+    );
+    addField(
+      'subject',
+      subject,
+    );
+    addField(
+      'encounter',
+      encounter,
+    );
     if (performedX != null) {
       final fhirType = performedX!.fhirType;
-      addField('performed${fhirType.capitalize()}', performedX);
+      addField(
+        'performed${fhirType.capitalize()}',
+        performedX,
+      );
     }
 
-    addField('recorder', recorder);
-    addField('asserter', asserter);
-    addField('performer', performer);
-    addField('location', location);
-    addField('reasonCode', reasonCode);
-    addField('reasonReference', reasonReference);
-    addField('bodySite', bodySite);
-    addField('outcome', outcome);
-    addField('report', report);
-    addField('complication', complication);
-    addField('complicationDetail', complicationDetail);
-    addField('followUp', followUp);
-    addField('note', note);
-    addField('focalDevice', focalDevice);
-    addField('usedReference', usedReference);
-    addField('usedCode', usedCode);
+    addField(
+      'recorder',
+      recorder,
+    );
+    addField(
+      'asserter',
+      asserter,
+    );
+    addField(
+      'performer',
+      performer,
+    );
+    addField(
+      'location',
+      location,
+    );
+    addField(
+      'reasonCode',
+      reasonCode,
+    );
+    addField(
+      'reasonReference',
+      reasonReference,
+    );
+    addField(
+      'bodySite',
+      bodySite,
+    );
+    addField(
+      'outcome',
+      outcome,
+    );
+    addField(
+      'report',
+      report,
+    );
+    addField(
+      'complication',
+      complication,
+    );
+    addField(
+      'complicationDetail',
+      complicationDetail,
+    );
+    addField(
+      'followUp',
+      followUp,
+    );
+    addField(
+      'note',
+      note,
+    );
+    addField(
+      'focalDevice',
+      focalDevice,
+    );
+    addField(
+      'usedReference',
+      usedReference,
+    );
+    addField(
+      'usedCode',
+      usedCode,
+    );
     return json;
   }
 
@@ -853,140 +961,6 @@ class Procedure extends DomainResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'identifier':
-        if (identifier != null) {
-          return identifier!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'instantiatesCanonical':
-        if (instantiatesCanonical != null) {
-          return instantiatesCanonical!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'instantiatesUri':
-        if (instantiatesUri != null) {
-          return instantiatesUri!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'basedOn':
-        if (basedOn != null) {
-          return basedOn!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'partOf':
-        if (partOf != null) {
-          return partOf!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'performer':
-        if (performer != null) {
-          return performer!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'reasonCode':
-        if (reasonCode != null) {
-          return reasonCode!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'reasonReference':
-        if (reasonReference != null) {
-          return reasonReference!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'bodySite':
-        if (bodySite != null) {
-          return bodySite!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'report':
-        if (report != null) {
-          return report!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'complication':
-        if (complication != null) {
-          return complication!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'complicationDetail':
-        if (complicationDetail != null) {
-          return complicationDetail!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'followUp':
-        if (followUp != null) {
-          return followUp!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'note':
-        if (note != null) {
-          return note!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'focalDevice':
-        if (focalDevice != null) {
-          return focalDevice!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'usedReference':
-        if (usedReference != null) {
-          return usedReference!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'usedCode':
-        if (usedCode != null) {
-          return usedCode!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -998,23 +972,23 @@ class Procedure extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -1022,7 +996,7 @@ class Procedure extends DomainResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -1030,7 +1004,7 @@ class Procedure extends DomainResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -1038,7 +1012,7 @@ class Procedure extends DomainResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -1046,71 +1020,119 @@ class Procedure extends DomainResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
           if (child is List<Identifier>) {
-            return copyWith(identifier: child);
+            // Add all elements from passed list
+            final newList = [...?identifier, ...child];
+            return copyWith(identifier: newList);
+          } else if (child is Identifier) {
+            // Add single element to existing list or create new list
+            final newList = [...?identifier, child];
+            return copyWith(identifier: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'instantiatesCanonical':
         {
           if (child is List<FhirCanonical>) {
-            return copyWith(instantiatesCanonical: child);
+            // Add all elements from passed list
+            final newList = [...?instantiatesCanonical, ...child];
+            return copyWith(instantiatesCanonical: newList);
+          } else if (child is FhirCanonical) {
+            // Add single element to existing list or create new list
+            final newList = [...?instantiatesCanonical, child];
+            return copyWith(instantiatesCanonical: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'instantiatesUri':
         {
           if (child is List<FhirUri>) {
-            return copyWith(instantiatesUri: child);
+            // Add all elements from passed list
+            final newList = [...?instantiatesUri, ...child];
+            return copyWith(instantiatesUri: newList);
+          } else if (child is FhirUri) {
+            // Add single element to existing list or create new list
+            final newList = [...?instantiatesUri, child];
+            return copyWith(instantiatesUri: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'basedOn':
         {
           if (child is List<Reference>) {
-            return copyWith(basedOn: child);
+            // Add all elements from passed list
+            final newList = [...?basedOn, ...child];
+            return copyWith(basedOn: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?basedOn, child];
+            return copyWith(basedOn: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'partOf':
         {
           if (child is List<Reference>) {
-            return copyWith(partOf: child);
+            // Add all elements from passed list
+            final newList = [...?partOf, ...child];
+            return copyWith(partOf: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?partOf, child];
+            return copyWith(partOf: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -1118,7 +1140,7 @@ class Procedure extends DomainResource {
           if (child is EventStatus) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'statusReason':
@@ -1126,7 +1148,7 @@ class Procedure extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(statusReason: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'category':
@@ -1134,7 +1156,7 @@ class Procedure extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(category: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
@@ -1142,7 +1164,7 @@ class Procedure extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(code: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
@@ -1150,7 +1172,7 @@ class Procedure extends DomainResource {
           if (child is Reference) {
             return copyWith(subject: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'encounter':
@@ -1158,24 +1180,38 @@ class Procedure extends DomainResource {
           if (child is Reference) {
             return copyWith(encounter: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'performedX':
         {
           if (child is PerformedXProcedure) {
-            // child is e.g. SubjectX union
             return copyWith(performedX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is FhirDateTime) {
+              return copyWith(performedX: child);
+            }
+            if (child is Period) {
+              return copyWith(performedX: child);
+            }
+            if (child is FhirString) {
+              return copyWith(performedX: child);
+            }
+            if (child is Age) {
+              return copyWith(performedX: child);
+            }
+            if (child is Range) {
+              return copyWith(performedX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'performedFhirDateTime':
         {
           if (child is FhirDateTime) {
             return copyWith(performedX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'performedPeriod':
@@ -1183,7 +1219,7 @@ class Procedure extends DomainResource {
           if (child is Period) {
             return copyWith(performedX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'performedFhirString':
@@ -1191,7 +1227,7 @@ class Procedure extends DomainResource {
           if (child is FhirString) {
             return copyWith(performedX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'performedAge':
@@ -1199,7 +1235,7 @@ class Procedure extends DomainResource {
           if (child is Age) {
             return copyWith(performedX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'performedRange':
@@ -1207,7 +1243,7 @@ class Procedure extends DomainResource {
           if (child is Range) {
             return copyWith(performedX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'recorder':
@@ -1215,7 +1251,7 @@ class Procedure extends DomainResource {
           if (child is Reference) {
             return copyWith(recorder: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'asserter':
@@ -1223,15 +1259,21 @@ class Procedure extends DomainResource {
           if (child is Reference) {
             return copyWith(asserter: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'performer':
         {
           if (child is List<ProcedurePerformer>) {
-            return copyWith(performer: child);
+            // Add all elements from passed list
+            final newList = [...?performer, ...child];
+            return copyWith(performer: newList);
+          } else if (child is ProcedurePerformer) {
+            // Add single element to existing list or create new list
+            final newList = [...?performer, child];
+            return copyWith(performer: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'location':
@@ -1239,31 +1281,49 @@ class Procedure extends DomainResource {
           if (child is Reference) {
             return copyWith(location: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonCode':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(reasonCode: child);
+            // Add all elements from passed list
+            final newList = [...?reasonCode, ...child];
+            return copyWith(reasonCode: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?reasonCode, child];
+            return copyWith(reasonCode: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonReference':
         {
           if (child is List<Reference>) {
-            return copyWith(reasonReference: child);
+            // Add all elements from passed list
+            final newList = [...?reasonReference, ...child];
+            return copyWith(reasonReference: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?reasonReference, child];
+            return copyWith(reasonReference: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'bodySite':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(bodySite: child);
+            // Add all elements from passed list
+            final newList = [...?bodySite, ...child];
+            return copyWith(bodySite: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?bodySite, child];
+            return copyWith(bodySite: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'outcome':
@@ -1271,75 +1331,123 @@ class Procedure extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(outcome: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'report':
         {
           if (child is List<Reference>) {
-            return copyWith(report: child);
+            // Add all elements from passed list
+            final newList = [...?report, ...child];
+            return copyWith(report: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?report, child];
+            return copyWith(report: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'complication':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(complication: child);
+            // Add all elements from passed list
+            final newList = [...?complication, ...child];
+            return copyWith(complication: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?complication, child];
+            return copyWith(complication: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'complicationDetail':
         {
           if (child is List<Reference>) {
-            return copyWith(complicationDetail: child);
+            // Add all elements from passed list
+            final newList = [...?complicationDetail, ...child];
+            return copyWith(complicationDetail: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?complicationDetail, child];
+            return copyWith(complicationDetail: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'followUp':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(followUp: child);
+            // Add all elements from passed list
+            final newList = [...?followUp, ...child];
+            return copyWith(followUp: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?followUp, child];
+            return copyWith(followUp: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
           if (child is List<Annotation>) {
-            return copyWith(note: child);
+            // Add all elements from passed list
+            final newList = [...?note, ...child];
+            return copyWith(note: newList);
+          } else if (child is Annotation) {
+            // Add single element to existing list or create new list
+            final newList = [...?note, child];
+            return copyWith(note: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'focalDevice':
         {
           if (child is List<ProcedureFocalDevice>) {
-            return copyWith(focalDevice: child);
+            // Add all elements from passed list
+            final newList = [...?focalDevice, ...child];
+            return copyWith(focalDevice: newList);
+          } else if (child is ProcedureFocalDevice) {
+            // Add single element to existing list or create new list
+            final newList = [...?focalDevice, child];
+            return copyWith(focalDevice: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'usedReference':
         {
           if (child is List<Reference>) {
-            return copyWith(usedReference: child);
+            // Add all elements from passed list
+            final newList = [...?usedReference, ...child];
+            return copyWith(usedReference: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?usedReference, child];
+            return copyWith(usedReference: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'usedCode':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(usedCode: child);
+            // Add all elements from passed list
+            final newList = [...?usedCode, ...child];
+            return copyWith(usedCode: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?usedCode, child];
+            return copyWith(usedCode: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1441,169 +1549,251 @@ class Procedure extends DomainResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  Procedure createProperty(String propertyName) {
+  Procedure createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'identifier':
         {
-          return copyWith(identifier: <Identifier>[]);
+          return copyWith(
+            identifier: <Identifier>[],
+          );
         }
       case 'instantiatesCanonical':
         {
-          return copyWith(instantiatesCanonical: <FhirCanonical>[]);
+          return copyWith(
+            instantiatesCanonical: <FhirCanonical>[],
+          );
         }
       case 'instantiatesUri':
         {
-          return copyWith(instantiatesUri: <FhirUri>[]);
+          return copyWith(
+            instantiatesUri: <FhirUri>[],
+          );
         }
       case 'basedOn':
         {
-          return copyWith(basedOn: <Reference>[]);
+          return copyWith(
+            basedOn: <Reference>[],
+          );
         }
       case 'partOf':
         {
-          return copyWith(partOf: <Reference>[]);
+          return copyWith(
+            partOf: <Reference>[],
+          );
         }
       case 'status':
         {
-          return copyWith(status: EventStatus.empty());
+          return copyWith(
+            status: EventStatus.empty(),
+          );
         }
       case 'statusReason':
         {
-          return copyWith(statusReason: CodeableConcept.empty());
+          return copyWith(
+            statusReason: CodeableConcept.empty(),
+          );
         }
       case 'category':
         {
-          return copyWith(category: CodeableConcept.empty());
+          return copyWith(
+            category: CodeableConcept.empty(),
+          );
         }
       case 'code':
         {
-          return copyWith(code: CodeableConcept.empty());
+          return copyWith(
+            code: CodeableConcept.empty(),
+          );
         }
       case 'subject':
         {
-          return copyWith(subject: Reference.empty());
+          return copyWith(
+            subject: Reference.empty(),
+          );
         }
       case 'encounter':
         {
-          return copyWith(encounter: Reference.empty());
+          return copyWith(
+            encounter: Reference.empty(),
+          );
         }
       case 'performed':
       case 'performedX':
       case 'performedDateTime':
         {
-          return copyWith(performedX: FhirDateTime.empty());
+          return copyWith(
+            performedX: FhirDateTime.empty(),
+          );
         }
       case 'performedPeriod':
         {
-          return copyWith(performedX: Period.empty());
+          return copyWith(
+            performedX: Period.empty(),
+          );
         }
       case 'performedString':
         {
-          return copyWith(performedX: FhirString.empty());
+          return copyWith(
+            performedX: FhirString.empty(),
+          );
         }
       case 'performedAge':
         {
-          return copyWith(performedX: Age.empty());
+          return copyWith(
+            performedX: Age.empty(),
+          );
         }
       case 'performedRange':
         {
-          return copyWith(performedX: Range.empty());
+          return copyWith(
+            performedX: Range.empty(),
+          );
         }
       case 'recorder':
         {
-          return copyWith(recorder: Reference.empty());
+          return copyWith(
+            recorder: Reference.empty(),
+          );
         }
       case 'asserter':
         {
-          return copyWith(asserter: Reference.empty());
+          return copyWith(
+            asserter: Reference.empty(),
+          );
         }
       case 'performer':
         {
-          return copyWith(performer: <ProcedurePerformer>[]);
+          return copyWith(
+            performer: <ProcedurePerformer>[],
+          );
         }
       case 'location':
         {
-          return copyWith(location: Reference.empty());
+          return copyWith(
+            location: Reference.empty(),
+          );
         }
       case 'reasonCode':
         {
-          return copyWith(reasonCode: <CodeableConcept>[]);
+          return copyWith(
+            reasonCode: <CodeableConcept>[],
+          );
         }
       case 'reasonReference':
         {
-          return copyWith(reasonReference: <Reference>[]);
+          return copyWith(
+            reasonReference: <Reference>[],
+          );
         }
       case 'bodySite':
         {
-          return copyWith(bodySite: <CodeableConcept>[]);
+          return copyWith(
+            bodySite: <CodeableConcept>[],
+          );
         }
       case 'outcome':
         {
-          return copyWith(outcome: CodeableConcept.empty());
+          return copyWith(
+            outcome: CodeableConcept.empty(),
+          );
         }
       case 'report':
         {
-          return copyWith(report: <Reference>[]);
+          return copyWith(
+            report: <Reference>[],
+          );
         }
       case 'complication':
         {
-          return copyWith(complication: <CodeableConcept>[]);
+          return copyWith(
+            complication: <CodeableConcept>[],
+          );
         }
       case 'complicationDetail':
         {
-          return copyWith(complicationDetail: <Reference>[]);
+          return copyWith(
+            complicationDetail: <Reference>[],
+          );
         }
       case 'followUp':
         {
-          return copyWith(followUp: <CodeableConcept>[]);
+          return copyWith(
+            followUp: <CodeableConcept>[],
+          );
         }
       case 'note':
         {
-          return copyWith(note: <Annotation>[]);
+          return copyWith(
+            note: <Annotation>[],
+          );
         }
       case 'focalDevice':
         {
-          return copyWith(focalDevice: <ProcedureFocalDevice>[]);
+          return copyWith(
+            focalDevice: <ProcedureFocalDevice>[],
+          );
         }
       case 'usedReference':
         {
-          return copyWith(usedReference: <Reference>[]);
+          return copyWith(
+            usedReference: <Reference>[],
+          );
         }
       case 'usedCode':
         {
-          return copyWith(usedCode: <CodeableConcept>[]);
+          return copyWith(
+            usedCode: <CodeableConcept>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1964,19 +2154,34 @@ class Procedure extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -2027,31 +2232,58 @@ class Procedure extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(statusReason, o.statusReason)) {
+    if (!equalsDeepWithNull(
+      statusReason,
+      o.statusReason,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(category, o.category)) {
+    if (!equalsDeepWithNull(
+      category,
+      o.category,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(code, o.code)) {
+    if (!equalsDeepWithNull(
+      code,
+      o.code,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(subject, o.subject)) {
+    if (!equalsDeepWithNull(
+      subject,
+      o.subject,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(encounter, o.encounter)) {
+    if (!equalsDeepWithNull(
+      encounter,
+      o.encounter,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(performedX, o.performedX)) {
+    if (!equalsDeepWithNull(
+      performedX,
+      o.performedX,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(recorder, o.recorder)) {
+    if (!equalsDeepWithNull(
+      recorder,
+      o.recorder,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(asserter, o.asserter)) {
+    if (!equalsDeepWithNull(
+      asserter,
+      o.asserter,
+    )) {
       return false;
     }
     if (!listEquals<ProcedurePerformer>(
@@ -2060,7 +2292,10 @@ class Procedure extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(location, o.location)) {
+    if (!equalsDeepWithNull(
+      location,
+      o.location,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -2081,7 +2316,10 @@ class Procedure extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(outcome, o.outcome)) {
+    if (!equalsDeepWithNull(
+      outcome,
+      o.outcome,
+    )) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -2297,12 +2535,30 @@ class ProcedurePerformer extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('function', function_);
-    addField('actor', actor);
-    addField('onBehalfOf', onBehalfOf);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'function',
+      function_,
+    );
+    addField(
+      'actor',
+      actor,
+    );
+    addField(
+      'onBehalfOf',
+      onBehalfOf,
+    );
     return json;
   }
 
@@ -2358,32 +2614,6 @@ class ProcedurePerformer extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2395,39 +2625,51 @@ class ProcedurePerformer extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'function':
@@ -2435,7 +2677,7 @@ class ProcedurePerformer extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(function_: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'actor':
@@ -2443,7 +2685,7 @@ class ProcedurePerformer extends BackboneElement {
           if (child is Reference) {
             return copyWith(actor: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'onBehalfOf':
@@ -2451,11 +2693,11 @@ class ProcedurePerformer extends BackboneElement {
           if (child is Reference) {
             return copyWith(onBehalfOf: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2486,31 +2728,45 @@ class ProcedurePerformer extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  ProcedurePerformer createProperty(String propertyName) {
+  ProcedurePerformer createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'function':
         {
-          return copyWith(function_: CodeableConcept.empty());
+          return copyWith(
+            function_: CodeableConcept.empty(),
+          );
         }
       case 'actor':
         {
-          return copyWith(actor: Reference.empty());
+          return copyWith(
+            actor: Reference.empty(),
+          );
         }
       case 'onBehalfOf':
         {
-          return copyWith(onBehalfOf: Reference.empty());
+          return copyWith(
+            onBehalfOf: Reference.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2597,7 +2853,10 @@ class ProcedurePerformer extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2612,13 +2871,22 @@ class ProcedurePerformer extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(function_, o.function_)) {
+    if (!equalsDeepWithNull(
+      function_,
+      o.function_,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(actor, o.actor)) {
+    if (!equalsDeepWithNull(
+      actor,
+      o.actor,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(onBehalfOf, o.onBehalfOf)) {
+    if (!equalsDeepWithNull(
+      onBehalfOf,
+      o.onBehalfOf,
+    )) {
       return false;
     }
     return true;
@@ -2776,11 +3044,26 @@ class ProcedureFocalDevice extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('action', action);
-    addField('manipulated', manipulated);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'action',
+      action,
+    );
+    addField(
+      'manipulated',
+      manipulated,
+    );
     return json;
   }
 
@@ -2831,32 +3114,6 @@ class ProcedureFocalDevice extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2868,39 +3125,51 @@ class ProcedureFocalDevice extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'action':
@@ -2908,7 +3177,7 @@ class ProcedureFocalDevice extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(action: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'manipulated':
@@ -2916,11 +3185,11 @@ class ProcedureFocalDevice extends BackboneElement {
           if (child is Reference) {
             return copyWith(manipulated: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2949,27 +3218,39 @@ class ProcedureFocalDevice extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  ProcedureFocalDevice createProperty(String propertyName) {
+  ProcedureFocalDevice createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'action':
         {
-          return copyWith(action: CodeableConcept.empty());
+          return copyWith(
+            action: CodeableConcept.empty(),
+          );
         }
       case 'manipulated':
         {
-          return copyWith(manipulated: Reference.empty());
+          return copyWith(
+            manipulated: Reference.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3049,7 +3330,10 @@ class ProcedureFocalDevice extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3064,10 +3348,16 @@ class ProcedureFocalDevice extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(action, o.action)) {
+    if (!equalsDeepWithNull(
+      action,
+      o.action,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(manipulated, o.manipulated)) {
+    if (!equalsDeepWithNull(
+      manipulated,
+      o.manipulated,
+    )) {
       return false;
     }
     return true;

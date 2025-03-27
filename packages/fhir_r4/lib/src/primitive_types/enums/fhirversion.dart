@@ -54,9 +54,14 @@ class FHIRVersion extends FhirCodeEnum {
     if (value == null && element != null) {
       return FHIRVersion.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('FHIRVersion cannot be constructed from JSON.');
+      throw ArgumentError(
+        'FHIRVersion cannot be constructed from JSON.',
+      );
     }
-    return FHIRVersion._(validatedValue: value, element: element);
+    return FHIRVersion._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// value0_01

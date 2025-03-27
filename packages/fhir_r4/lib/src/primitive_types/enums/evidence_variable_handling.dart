@@ -57,9 +57,13 @@ class EvidenceVariableHandling extends FhirCodeEnum {
       return EvidenceVariableHandling.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'EvidenceVariableHandling cannot be constructed from JSON.',);
+        'EvidenceVariableHandling cannot be constructed from JSON.',
+      );
     }
-    return EvidenceVariableHandling._(validatedValue: value, element: element);
+    return EvidenceVariableHandling._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// continuous

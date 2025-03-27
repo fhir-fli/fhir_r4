@@ -254,18 +254,54 @@ class Address extends DataType
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('use', use);
-    addField('type', type);
-    addField('text', text);
-    addField('line', line);
-    addField('city', city);
-    addField('district', district);
-    addField('state', state);
-    addField('postalCode', postalCode);
-    addField('country', country);
-    addField('period', period);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'use',
+      use,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'line',
+      line,
+    );
+    addField(
+      'city',
+      city,
+    );
+    addField(
+      'district',
+      district,
+    );
+    addField(
+      'state',
+      state,
+    );
+    addField(
+      'postalCode',
+      postalCode,
+    );
+    addField(
+      'country',
+      country,
+    );
+    addField(
+      'period',
+      period,
+    );
     return json;
   }
 
@@ -353,32 +389,6 @@ class Address extends DataType
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'line':
-        if (line != null) {
-          return line!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -390,31 +400,37 @@ class Address extends DataType
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'use':
@@ -422,7 +438,7 @@ class Address extends DataType
           if (child is AddressUse) {
             return copyWith(use: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -430,7 +446,7 @@ class Address extends DataType
           if (child is AddressType) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -438,15 +454,21 @@ class Address extends DataType
           if (child is FhirString) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'line':
         {
           if (child is List<FhirString>) {
-            return copyWith(line: child);
+            // Add all elements from passed list
+            final newList = [...?line, ...child];
+            return copyWith(line: newList);
+          } else if (child is FhirString) {
+            // Add single element to existing list or create new list
+            final newList = [...?line, child];
+            return copyWith(line: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'city':
@@ -454,7 +476,7 @@ class Address extends DataType
           if (child is FhirString) {
             return copyWith(city: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'district':
@@ -462,7 +484,7 @@ class Address extends DataType
           if (child is FhirString) {
             return copyWith(district: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'state':
@@ -470,7 +492,7 @@ class Address extends DataType
           if (child is FhirString) {
             return copyWith(state: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'postalCode':
@@ -478,7 +500,7 @@ class Address extends DataType
           if (child is FhirString) {
             return copyWith(postalCode: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'country':
@@ -486,7 +508,7 @@ class Address extends DataType
           if (child is FhirString) {
             return copyWith(country: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
@@ -494,11 +516,11 @@ class Address extends DataType
           if (child is Period) {
             return copyWith(period: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -541,55 +563,81 @@ class Address extends DataType
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  Address createProperty(String propertyName) {
+  Address createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'use':
         {
-          return copyWith(use: AddressUse.empty());
+          return copyWith(
+            use: AddressUse.empty(),
+          );
         }
       case 'type':
         {
-          return copyWith(type: AddressType.empty());
+          return copyWith(
+            type: AddressType.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: FhirString.empty());
+          return copyWith(
+            text: FhirString.empty(),
+          );
         }
       case 'line':
         {
-          return copyWith(line: <FhirString>[]);
+          return copyWith(
+            line: <FhirString>[],
+          );
         }
       case 'city':
         {
-          return copyWith(city: FhirString.empty());
+          return copyWith(
+            city: FhirString.empty(),
+          );
         }
       case 'district':
         {
-          return copyWith(district: FhirString.empty());
+          return copyWith(
+            district: FhirString.empty(),
+          );
         }
       case 'state':
         {
-          return copyWith(state: FhirString.empty());
+          return copyWith(
+            state: FhirString.empty(),
+          );
         }
       case 'postalCode':
         {
-          return copyWith(postalCode: FhirString.empty());
+          return copyWith(
+            postalCode: FhirString.empty(),
+          );
         }
       case 'country':
         {
-          return copyWith(country: FhirString.empty());
+          return copyWith(
+            country: FhirString.empty(),
+          );
         }
       case 'period':
         {
-          return copyWith(period: Period.empty());
+          return copyWith(
+            period: Period.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -719,7 +767,10 @@ class Address extends DataType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -728,13 +779,22 @@ class Address extends DataType
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(use, o.use)) {
+    if (!equalsDeepWithNull(
+      use,
+      o.use,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<FhirString>(
@@ -743,22 +803,40 @@ class Address extends DataType
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(city, o.city)) {
+    if (!equalsDeepWithNull(
+      city,
+      o.city,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(district, o.district)) {
+    if (!equalsDeepWithNull(
+      district,
+      o.district,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(state, o.state)) {
+    if (!equalsDeepWithNull(
+      state,
+      o.state,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(postalCode, o.postalCode)) {
+    if (!equalsDeepWithNull(
+      postalCode,
+      o.postalCode,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(country, o.country)) {
+    if (!equalsDeepWithNull(
+      country,
+      o.country,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(period, o.period)) {
+    if (!equalsDeepWithNull(
+      period,
+      o.period,
+    )) {
       return false;
     }
     return true;

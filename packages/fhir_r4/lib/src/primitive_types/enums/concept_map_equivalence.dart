@@ -56,9 +56,13 @@ class ConceptMapEquivalence extends FhirCodeEnum {
       return ConceptMapEquivalence.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ConceptMapEquivalence cannot be constructed from JSON.',);
+        'ConceptMapEquivalence cannot be constructed from JSON.',
+      );
     }
-    return ConceptMapEquivalence._(validatedValue: value, element: element);
+    return ConceptMapEquivalence._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// relatedto

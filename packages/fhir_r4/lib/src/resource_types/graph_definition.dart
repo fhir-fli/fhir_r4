@@ -318,29 +318,98 @@ class GraphDefinition extends CanonicalResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('url', url);
-    addField('version', version);
-    addField('name', name);
-    addField('status', status);
-    addField('experimental', experimental);
-    addField('date', date);
-    addField('publisher', publisher);
-    addField('contact', contact);
-    addField('description', description);
-    addField('useContext', useContext);
-    addField('jurisdiction', jurisdiction);
-    addField('purpose', purpose);
-    addField('start', start);
-    addField('profile', profile);
-    addField('link', link);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'url',
+      url,
+    );
+    addField(
+      'version',
+      version,
+    );
+    addField(
+      'name',
+      name,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'experimental',
+      experimental,
+    );
+    addField(
+      'date',
+      date,
+    );
+    addField(
+      'publisher',
+      publisher,
+    );
+    addField(
+      'contact',
+      contact,
+    );
+    addField(
+      'description',
+      description,
+    );
+    addField(
+      'useContext',
+      useContext,
+    );
+    addField(
+      'jurisdiction',
+      jurisdiction,
+    );
+    addField(
+      'purpose',
+      purpose,
+    );
+    addField(
+      'start',
+      start,
+    );
+    addField(
+      'profile',
+      profile,
+    );
+    addField(
+      'link',
+      link,
+    );
     return json;
   }
 
@@ -479,62 +548,6 @@ class GraphDefinition extends CanonicalResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'contact':
-        if (contact != null) {
-          return contact!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'useContext':
-        if (useContext != null) {
-          return useContext!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'jurisdiction':
-        if (jurisdiction != null) {
-          return jurisdiction!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'link':
-        if (link != null) {
-          return link!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -546,23 +559,23 @@ class GraphDefinition extends CanonicalResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -570,7 +583,7 @@ class GraphDefinition extends CanonicalResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -578,7 +591,7 @@ class GraphDefinition extends CanonicalResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -586,7 +599,7 @@ class GraphDefinition extends CanonicalResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -594,31 +607,49 @@ class GraphDefinition extends CanonicalResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'url':
@@ -626,7 +657,7 @@ class GraphDefinition extends CanonicalResource {
           if (child is FhirUri) {
             return copyWith(url: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'version':
@@ -634,7 +665,7 @@ class GraphDefinition extends CanonicalResource {
           if (child is FhirString) {
             return copyWith(version: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
@@ -642,7 +673,7 @@ class GraphDefinition extends CanonicalResource {
           if (child is FhirString) {
             return copyWith(name: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -650,7 +681,7 @@ class GraphDefinition extends CanonicalResource {
           if (child is PublicationStatus) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'experimental':
@@ -658,7 +689,7 @@ class GraphDefinition extends CanonicalResource {
           if (child is FhirBoolean) {
             return copyWith(experimental: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
@@ -666,7 +697,7 @@ class GraphDefinition extends CanonicalResource {
           if (child is FhirDateTime) {
             return copyWith(date: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'publisher':
@@ -674,15 +705,21 @@ class GraphDefinition extends CanonicalResource {
           if (child is FhirString) {
             return copyWith(publisher: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contact':
         {
           if (child is List<ContactDetail>) {
-            return copyWith(contact: child);
+            // Add all elements from passed list
+            final newList = [...?contact, ...child];
+            return copyWith(contact: newList);
+          } else if (child is ContactDetail) {
+            // Add single element to existing list or create new list
+            final newList = [...?contact, child];
+            return copyWith(contact: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
@@ -690,23 +727,35 @@ class GraphDefinition extends CanonicalResource {
           if (child is FhirMarkdown) {
             return copyWith(description: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'useContext':
         {
           if (child is List<UsageContext>) {
-            return copyWith(useContext: child);
+            // Add all elements from passed list
+            final newList = [...?useContext, ...child];
+            return copyWith(useContext: newList);
+          } else if (child is UsageContext) {
+            // Add single element to existing list or create new list
+            final newList = [...?useContext, child];
+            return copyWith(useContext: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'jurisdiction':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(jurisdiction: child);
+            // Add all elements from passed list
+            final newList = [...?jurisdiction, ...child];
+            return copyWith(jurisdiction: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?jurisdiction, child];
+            return copyWith(jurisdiction: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'purpose':
@@ -714,7 +763,7 @@ class GraphDefinition extends CanonicalResource {
           if (child is FhirMarkdown) {
             return copyWith(purpose: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'start':
@@ -722,7 +771,7 @@ class GraphDefinition extends CanonicalResource {
           if (child is FhirCode) {
             return copyWith(start: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'profile':
@@ -730,19 +779,25 @@ class GraphDefinition extends CanonicalResource {
           if (child is FhirCanonical) {
             return copyWith(profile: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'link':
         {
           if (child is List<GraphDefinitionLink>) {
-            return copyWith(link: child);
+            // Add all elements from passed list
+            final newList = [...?link, ...child];
+            return copyWith(link: newList);
+          } else if (child is GraphDefinitionLink) {
+            // Add single element to existing list or create new list
+            final newList = [...?link, child];
+            return copyWith(link: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -807,99 +862,147 @@ class GraphDefinition extends CanonicalResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  GraphDefinition createProperty(String propertyName) {
+  GraphDefinition createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'url':
         {
-          return copyWith(url: FhirUri.empty());
+          return copyWith(
+            url: FhirUri.empty(),
+          );
         }
       case 'version':
         {
-          return copyWith(version: FhirString.empty());
+          return copyWith(
+            version: FhirString.empty(),
+          );
         }
       case 'name':
         {
-          return copyWith(name: FhirString.empty());
+          return copyWith(
+            name: FhirString.empty(),
+          );
         }
       case 'status':
         {
-          return copyWith(status: PublicationStatus.empty());
+          return copyWith(
+            status: PublicationStatus.empty(),
+          );
         }
       case 'experimental':
         {
-          return copyWith(experimental: FhirBoolean.empty());
+          return copyWith(
+            experimental: FhirBoolean.empty(),
+          );
         }
       case 'date':
         {
-          return copyWith(date: FhirDateTime.empty());
+          return copyWith(
+            date: FhirDateTime.empty(),
+          );
         }
       case 'publisher':
         {
-          return copyWith(publisher: FhirString.empty());
+          return copyWith(
+            publisher: FhirString.empty(),
+          );
         }
       case 'contact':
         {
-          return copyWith(contact: <ContactDetail>[]);
+          return copyWith(
+            contact: <ContactDetail>[],
+          );
         }
       case 'description':
         {
-          return copyWith(description: FhirMarkdown.empty());
+          return copyWith(
+            description: FhirMarkdown.empty(),
+          );
         }
       case 'useContext':
         {
-          return copyWith(useContext: <UsageContext>[]);
+          return copyWith(
+            useContext: <UsageContext>[],
+          );
         }
       case 'jurisdiction':
         {
-          return copyWith(jurisdiction: <CodeableConcept>[]);
+          return copyWith(
+            jurisdiction: <CodeableConcept>[],
+          );
         }
       case 'purpose':
         {
-          return copyWith(purpose: FhirMarkdown.empty());
+          return copyWith(
+            purpose: FhirMarkdown.empty(),
+          );
         }
       case 'start':
         {
-          return copyWith(start: FhirCode.empty());
+          return copyWith(
+            start: FhirCode.empty(),
+          );
         }
       case 'profile':
         {
-          return copyWith(profile: FhirCanonical.empty());
+          return copyWith(
+            profile: FhirCanonical.empty(),
+          );
         }
       case 'link':
         {
-          return copyWith(link: <GraphDefinitionLink>[]);
+          return copyWith(
+            link: <GraphDefinitionLink>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1115,19 +1218,34 @@ class GraphDefinition extends CanonicalResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1148,25 +1266,46 @@ class GraphDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(url, o.url)) {
+    if (!equalsDeepWithNull(
+      url,
+      o.url,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(version, o.version)) {
+    if (!equalsDeepWithNull(
+      version,
+      o.version,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(name, o.name)) {
+    if (!equalsDeepWithNull(
+      name,
+      o.name,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(experimental, o.experimental)) {
+    if (!equalsDeepWithNull(
+      experimental,
+      o.experimental,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(date, o.date)) {
+    if (!equalsDeepWithNull(
+      date,
+      o.date,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(publisher, o.publisher)) {
+    if (!equalsDeepWithNull(
+      publisher,
+      o.publisher,
+    )) {
       return false;
     }
     if (!listEquals<ContactDetail>(
@@ -1175,7 +1314,10 @@ class GraphDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(description, o.description)) {
+    if (!equalsDeepWithNull(
+      description,
+      o.description,
+    )) {
       return false;
     }
     if (!listEquals<UsageContext>(
@@ -1190,13 +1332,22 @@ class GraphDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(purpose, o.purpose)) {
+    if (!equalsDeepWithNull(
+      purpose,
+      o.purpose,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(start, o.start)) {
+    if (!equalsDeepWithNull(
+      start,
+      o.start,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(profile, o.profile)) {
+    if (!equalsDeepWithNull(
+      profile,
+      o.profile,
+    )) {
       return false;
     }
     if (!listEquals<GraphDefinitionLink>(
@@ -1406,15 +1557,42 @@ class GraphDefinitionLink extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('path', path);
-    addField('sliceName', sliceName);
-    addField('min', min);
-    addField('max', max);
-    addField('description', description);
-    addField('target', target);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'path',
+      path,
+    );
+    addField(
+      'sliceName',
+      sliceName,
+    );
+    addField(
+      'min',
+      min,
+    );
+    addField(
+      'max',
+      max,
+    );
+    addField(
+      'description',
+      description,
+    );
+    addField(
+      'target',
+      target,
+    );
     return json;
   }
 
@@ -1487,38 +1665,6 @@ class GraphDefinitionLink extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'target':
-        if (target != null) {
-          return target!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1530,39 +1676,51 @@ class GraphDefinitionLink extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'path':
@@ -1570,7 +1728,7 @@ class GraphDefinitionLink extends BackboneElement {
           if (child is FhirString) {
             return copyWith(path: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'sliceName':
@@ -1578,7 +1736,7 @@ class GraphDefinitionLink extends BackboneElement {
           if (child is FhirString) {
             return copyWith(sliceName: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'min':
@@ -1586,7 +1744,7 @@ class GraphDefinitionLink extends BackboneElement {
           if (child is FhirInteger) {
             return copyWith(min: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'max':
@@ -1594,7 +1752,7 @@ class GraphDefinitionLink extends BackboneElement {
           if (child is FhirString) {
             return copyWith(max: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
@@ -1602,19 +1760,25 @@ class GraphDefinitionLink extends BackboneElement {
           if (child is FhirString) {
             return copyWith(description: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'target':
         {
           if (child is List<GraphDefinitionTarget>) {
-            return copyWith(target: child);
+            // Add all elements from passed list
+            final newList = [...?target, ...child];
+            return copyWith(target: newList);
+          } else if (child is GraphDefinitionTarget) {
+            // Add single element to existing list or create new list
+            final newList = [...?target, child];
+            return copyWith(target: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1651,43 +1815,63 @@ class GraphDefinitionLink extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  GraphDefinitionLink createProperty(String propertyName) {
+  GraphDefinitionLink createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'path':
         {
-          return copyWith(path: FhirString.empty());
+          return copyWith(
+            path: FhirString.empty(),
+          );
         }
       case 'sliceName':
         {
-          return copyWith(sliceName: FhirString.empty());
+          return copyWith(
+            sliceName: FhirString.empty(),
+          );
         }
       case 'min':
         {
-          return copyWith(min: FhirInteger.empty());
+          return copyWith(
+            min: FhirInteger.empty(),
+          );
         }
       case 'max':
         {
-          return copyWith(max: FhirString.empty());
+          return copyWith(
+            max: FhirString.empty(),
+          );
         }
       case 'description':
         {
-          return copyWith(description: FhirString.empty());
+          return copyWith(
+            description: FhirString.empty(),
+          );
         }
       case 'target':
         {
-          return copyWith(target: <GraphDefinitionTarget>[]);
+          return copyWith(
+            target: <GraphDefinitionTarget>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1800,7 +1984,10 @@ class GraphDefinitionLink extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1815,19 +2002,34 @@ class GraphDefinitionLink extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(path, o.path)) {
+    if (!equalsDeepWithNull(
+      path,
+      o.path,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(sliceName, o.sliceName)) {
+    if (!equalsDeepWithNull(
+      sliceName,
+      o.sliceName,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(min, o.min)) {
+    if (!equalsDeepWithNull(
+      min,
+      o.min,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(max, o.max)) {
+    if (!equalsDeepWithNull(
+      max,
+      o.max,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(description, o.description)) {
+    if (!equalsDeepWithNull(
+      description,
+      o.description,
+    )) {
       return false;
     }
     if (!listEquals<GraphDefinitionTarget>(
@@ -2030,14 +2232,38 @@ class GraphDefinitionTarget extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('type', type);
-    addField('params', params);
-    addField('profile', profile);
-    addField('compartment', compartment);
-    addField('link', link);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'params',
+      params,
+    );
+    addField(
+      'profile',
+      profile,
+    );
+    addField(
+      'compartment',
+      compartment,
+    );
+    addField(
+      'link',
+      link,
+    );
     return json;
   }
 
@@ -2103,44 +2329,6 @@ class GraphDefinitionTarget extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'compartment':
-        if (compartment != null) {
-          return compartment!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'link':
-        if (link != null) {
-          return link!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2152,39 +2340,51 @@ class GraphDefinitionTarget extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -2192,7 +2392,7 @@ class GraphDefinitionTarget extends BackboneElement {
           if (child is FhirCode) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'params':
@@ -2200,7 +2400,7 @@ class GraphDefinitionTarget extends BackboneElement {
           if (child is FhirString) {
             return copyWith(params: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'profile':
@@ -2208,27 +2408,39 @@ class GraphDefinitionTarget extends BackboneElement {
           if (child is FhirCanonical) {
             return copyWith(profile: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'compartment':
         {
           if (child is List<GraphDefinitionCompartment>) {
-            return copyWith(compartment: child);
+            // Add all elements from passed list
+            final newList = [...?compartment, ...child];
+            return copyWith(compartment: newList);
+          } else if (child is GraphDefinitionCompartment) {
+            // Add single element to existing list or create new list
+            final newList = [...?compartment, child];
+            return copyWith(compartment: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'link':
         {
           if (child is List<GraphDefinitionLink>) {
-            return copyWith(link: child);
+            // Add all elements from passed list
+            final newList = [...?link, ...child];
+            return copyWith(link: newList);
+          } else if (child is GraphDefinitionLink) {
+            // Add single element to existing list or create new list
+            final newList = [...?link, child];
+            return copyWith(link: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2263,39 +2475,57 @@ class GraphDefinitionTarget extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  GraphDefinitionTarget createProperty(String propertyName) {
+  GraphDefinitionTarget createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'type':
         {
-          return copyWith(type: FhirCode.empty());
+          return copyWith(
+            type: FhirCode.empty(),
+          );
         }
       case 'params':
         {
-          return copyWith(params: FhirString.empty());
+          return copyWith(
+            params: FhirString.empty(),
+          );
         }
       case 'profile':
         {
-          return copyWith(profile: FhirCanonical.empty());
+          return copyWith(
+            profile: FhirCanonical.empty(),
+          );
         }
       case 'compartment':
         {
-          return copyWith(compartment: <GraphDefinitionCompartment>[]);
+          return copyWith(
+            compartment: <GraphDefinitionCompartment>[],
+          );
         }
       case 'link':
         {
-          return copyWith(link: <GraphDefinitionLink>[]);
+          return copyWith(
+            link: <GraphDefinitionLink>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2404,7 +2634,10 @@ class GraphDefinitionTarget extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2419,13 +2652,22 @@ class GraphDefinitionTarget extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(params, o.params)) {
+    if (!equalsDeepWithNull(
+      params,
+      o.params,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(profile, o.profile)) {
+    if (!equalsDeepWithNull(
+      profile,
+      o.profile,
+    )) {
       return false;
     }
     if (!listEquals<GraphDefinitionCompartment>(
@@ -2630,14 +2872,38 @@ class GraphDefinitionCompartment extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('use', use);
-    addField('code', code);
-    addField('rule', rule);
-    addField('expression', expression);
-    addField('description', description);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'use',
+      use,
+    );
+    addField(
+      'code',
+      code,
+    );
+    addField(
+      'rule',
+      rule,
+    );
+    addField(
+      'expression',
+      expression,
+    );
+    addField(
+      'description',
+      description,
+    );
     return json;
   }
 
@@ -2699,32 +2965,6 @@ class GraphDefinitionCompartment extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2736,39 +2976,51 @@ class GraphDefinitionCompartment extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'use':
@@ -2776,7 +3028,7 @@ class GraphDefinitionCompartment extends BackboneElement {
           if (child is GraphCompartmentUse) {
             return copyWith(use: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
@@ -2784,7 +3036,7 @@ class GraphDefinitionCompartment extends BackboneElement {
           if (child is CompartmentType) {
             return copyWith(code: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'rule':
@@ -2792,7 +3044,7 @@ class GraphDefinitionCompartment extends BackboneElement {
           if (child is GraphCompartmentRule) {
             return copyWith(rule: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'expression':
@@ -2800,7 +3052,7 @@ class GraphDefinitionCompartment extends BackboneElement {
           if (child is FhirString) {
             return copyWith(expression: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
@@ -2808,11 +3060,11 @@ class GraphDefinitionCompartment extends BackboneElement {
           if (child is FhirString) {
             return copyWith(description: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2847,39 +3099,57 @@ class GraphDefinitionCompartment extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  GraphDefinitionCompartment createProperty(String propertyName) {
+  GraphDefinitionCompartment createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'use':
         {
-          return copyWith(use: GraphCompartmentUse.empty());
+          return copyWith(
+            use: GraphCompartmentUse.empty(),
+          );
         }
       case 'code':
         {
-          return copyWith(code: CompartmentType.empty());
+          return copyWith(
+            code: CompartmentType.empty(),
+          );
         }
       case 'rule':
         {
-          return copyWith(rule: GraphCompartmentRule.empty());
+          return copyWith(
+            rule: GraphCompartmentRule.empty(),
+          );
         }
       case 'expression':
         {
-          return copyWith(expression: FhirString.empty());
+          return copyWith(
+            expression: FhirString.empty(),
+          );
         }
       case 'description':
         {
-          return copyWith(description: FhirString.empty());
+          return copyWith(
+            description: FhirString.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2978,7 +3248,10 @@ class GraphDefinitionCompartment extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2993,19 +3266,34 @@ class GraphDefinitionCompartment extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(use, o.use)) {
+    if (!equalsDeepWithNull(
+      use,
+      o.use,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(code, o.code)) {
+    if (!equalsDeepWithNull(
+      code,
+      o.code,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(rule, o.rule)) {
+    if (!equalsDeepWithNull(
+      rule,
+      o.rule,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(expression, o.expression)) {
+    if (!equalsDeepWithNull(
+      expression,
+      o.expression,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(description, o.description)) {
+    if (!equalsDeepWithNull(
+      description,
+      o.description,
+    )) {
       return false;
     }
     return true;

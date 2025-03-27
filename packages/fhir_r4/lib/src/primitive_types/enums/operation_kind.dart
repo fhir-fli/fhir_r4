@@ -54,9 +54,14 @@ class OperationKind extends FhirCodeEnum {
     if (value == null && element != null) {
       return OperationKind.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('OperationKind cannot be constructed from JSON.');
+      throw ArgumentError(
+        'OperationKind cannot be constructed from JSON.',
+      );
     }
-    return OperationKind._(validatedValue: value, element: element);
+    return OperationKind._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// operation

@@ -56,9 +56,13 @@ class AssertionDirectionType extends FhirCodeEnum {
       return AssertionDirectionType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'AssertionDirectionType cannot be constructed from JSON.',);
+        'AssertionDirectionType cannot be constructed from JSON.',
+      );
     }
-    return AssertionDirectionType._(validatedValue: value, element: element);
+    return AssertionDirectionType._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// response

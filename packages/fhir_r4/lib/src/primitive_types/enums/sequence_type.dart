@@ -54,9 +54,14 @@ class SequenceType extends FhirCodeEnum {
     if (value == null && element != null) {
       return SequenceType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('SequenceType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'SequenceType cannot be constructed from JSON.',
+      );
     }
-    return SequenceType._(validatedValue: value, element: element);
+    return SequenceType._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// aa

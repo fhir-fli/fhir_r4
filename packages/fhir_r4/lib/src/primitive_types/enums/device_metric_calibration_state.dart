@@ -56,10 +56,13 @@ class DeviceMetricCalibrationState extends FhirCodeEnum {
       return DeviceMetricCalibrationState.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'DeviceMetricCalibrationState cannot be constructed from JSON.',);
+        'DeviceMetricCalibrationState cannot be constructed from JSON.',
+      );
     }
     return DeviceMetricCalibrationState._(
-        validatedValue: value, element: element,);
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// not_calibrated

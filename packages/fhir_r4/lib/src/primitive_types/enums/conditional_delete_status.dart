@@ -56,9 +56,13 @@ class ConditionalDeleteStatus extends FhirCodeEnum {
       return ConditionalDeleteStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ConditionalDeleteStatus cannot be constructed from JSON.',);
+        'ConditionalDeleteStatus cannot be constructed from JSON.',
+      );
     }
-    return ConditionalDeleteStatus._(validatedValue: value, element: element);
+    return ConditionalDeleteStatus._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// not_supported

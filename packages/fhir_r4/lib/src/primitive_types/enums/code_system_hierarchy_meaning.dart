@@ -56,10 +56,13 @@ class CodeSystemHierarchyMeaning extends FhirCodeEnum {
       return CodeSystemHierarchyMeaning.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'CodeSystemHierarchyMeaning cannot be constructed from JSON.',);
+        'CodeSystemHierarchyMeaning cannot be constructed from JSON.',
+      );
     }
     return CodeSystemHierarchyMeaning._(
-        validatedValue: value, element: element,);
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// grouped_by

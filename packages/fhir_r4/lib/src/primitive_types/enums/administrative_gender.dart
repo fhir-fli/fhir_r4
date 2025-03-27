@@ -56,9 +56,13 @@ class AdministrativeGender extends FhirCodeEnum {
       return AdministrativeGender.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'AdministrativeGender cannot be constructed from JSON.',);
+        'AdministrativeGender cannot be constructed from JSON.',
+      );
     }
-    return AdministrativeGender._(validatedValue: value, element: element);
+    return AdministrativeGender._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// male

@@ -55,9 +55,14 @@ class CarePlanIntent extends FhirCodeEnum {
     if (value == null && element != null) {
       return CarePlanIntent.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('CarePlanIntent cannot be constructed from JSON.');
+      throw ArgumentError(
+        'CarePlanIntent cannot be constructed from JSON.',
+      );
     }
-    return CarePlanIntent._(validatedValue: value, element: element);
+    return CarePlanIntent._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// proposal

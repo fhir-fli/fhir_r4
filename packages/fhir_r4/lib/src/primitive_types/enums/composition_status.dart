@@ -54,9 +54,14 @@ class CompositionStatus extends FhirCodeEnum {
     if (value == null && element != null) {
       return CompositionStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('CompositionStatus cannot be constructed from JSON.');
+      throw ArgumentError(
+        'CompositionStatus cannot be constructed from JSON.',
+      );
     }
-    return CompositionStatus._(validatedValue: value, element: element);
+    return CompositionStatus._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// preliminary

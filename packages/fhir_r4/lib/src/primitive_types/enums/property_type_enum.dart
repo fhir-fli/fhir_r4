@@ -54,9 +54,14 @@ class PropertyTypeEnum extends FhirCodeEnum {
     if (value == null && element != null) {
       return PropertyTypeEnum.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('PropertyTypeEnum cannot be constructed from JSON.');
+      throw ArgumentError(
+        'PropertyTypeEnum cannot be constructed from JSON.',
+      );
     }
-    return PropertyTypeEnum._(validatedValue: value, element: element);
+    return PropertyTypeEnum._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// code

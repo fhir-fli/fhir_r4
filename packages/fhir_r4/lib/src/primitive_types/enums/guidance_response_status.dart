@@ -56,9 +56,13 @@ class GuidanceResponseStatus extends FhirCodeEnum {
       return GuidanceResponseStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'GuidanceResponseStatus cannot be constructed from JSON.',);
+        'GuidanceResponseStatus cannot be constructed from JSON.',
+      );
     }
-    return GuidanceResponseStatus._(validatedValue: value, element: element);
+    return GuidanceResponseStatus._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// success

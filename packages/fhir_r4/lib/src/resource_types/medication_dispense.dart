@@ -525,44 +525,140 @@ class MedicationDispense extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('identifier', identifier);
-    addField('partOf', partOf);
-    addField('status', status);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'partOf',
+      partOf,
+    );
+    addField(
+      'status',
+      status,
+    );
     if (statusReasonX != null) {
       final fhirType = statusReasonX!.fhirType;
-      addField('statusReason${fhirType.capitalize()}', statusReasonX);
+      addField(
+        'statusReason${fhirType.capitalize()}',
+        statusReasonX,
+      );
     }
 
-    addField('category', category);
+    addField(
+      'category',
+      category,
+    );
     final medicationXFhirType = medicationX.fhirType;
-    addField('medication${medicationXFhirType.capitalize()}', medicationX);
+    addField(
+      'medication${medicationXFhirType.capitalize()}',
+      medicationX,
+    );
 
-    addField('subject', subject);
-    addField('context', context);
-    addField('supportingInformation', supportingInformation);
-    addField('performer', performer);
-    addField('location', location);
-    addField('authorizingPrescription', authorizingPrescription);
-    addField('type', type);
-    addField('quantity', quantity);
-    addField('daysSupply', daysSupply);
-    addField('whenPrepared', whenPrepared);
-    addField('whenHandedOver', whenHandedOver);
-    addField('destination', destination);
-    addField('receiver', receiver);
-    addField('note', note);
-    addField('dosageInstruction', dosageInstruction);
-    addField('substitution', substitution);
-    addField('detectedIssue', detectedIssue);
-    addField('eventHistory', eventHistory);
+    addField(
+      'subject',
+      subject,
+    );
+    addField(
+      'context',
+      context,
+    );
+    addField(
+      'supportingInformation',
+      supportingInformation,
+    );
+    addField(
+      'performer',
+      performer,
+    );
+    addField(
+      'location',
+      location,
+    );
+    addField(
+      'authorizingPrescription',
+      authorizingPrescription,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'quantity',
+      quantity,
+    );
+    addField(
+      'daysSupply',
+      daysSupply,
+    );
+    addField(
+      'whenPrepared',
+      whenPrepared,
+    );
+    addField(
+      'whenHandedOver',
+      whenHandedOver,
+    );
+    addField(
+      'destination',
+      destination,
+    );
+    addField(
+      'receiver',
+      receiver,
+    );
+    addField(
+      'note',
+      note,
+    );
+    addField(
+      'dosageInstruction',
+      dosageInstruction,
+    );
+    addField(
+      'substitution',
+      substitution,
+    );
+    addField(
+      'detectedIssue',
+      detectedIssue,
+    );
+    addField(
+      'eventHistory',
+      eventHistory,
+    );
     return json;
   }
 
@@ -764,98 +860,6 @@ class MedicationDispense extends DomainResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'identifier':
-        if (identifier != null) {
-          return identifier!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'partOf':
-        if (partOf != null) {
-          return partOf!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'supportingInformation':
-        if (supportingInformation != null) {
-          return supportingInformation!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'performer':
-        if (performer != null) {
-          return performer!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'authorizingPrescription':
-        if (authorizingPrescription != null) {
-          return authorizingPrescription!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'receiver':
-        if (receiver != null) {
-          return receiver!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'note':
-        if (note != null) {
-          return note!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'dosageInstruction':
-        if (dosageInstruction != null) {
-          return dosageInstruction!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'detectedIssue':
-        if (detectedIssue != null) {
-          return detectedIssue!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'eventHistory':
-        if (eventHistory != null) {
-          return eventHistory!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -867,23 +871,23 @@ class MedicationDispense extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -891,7 +895,7 @@ class MedicationDispense extends DomainResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -899,7 +903,7 @@ class MedicationDispense extends DomainResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -907,7 +911,7 @@ class MedicationDispense extends DomainResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -915,47 +919,77 @@ class MedicationDispense extends DomainResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
           if (child is List<Identifier>) {
-            return copyWith(identifier: child);
+            // Add all elements from passed list
+            final newList = [...?identifier, ...child];
+            return copyWith(identifier: newList);
+          } else if (child is Identifier) {
+            // Add single element to existing list or create new list
+            final newList = [...?identifier, child];
+            return copyWith(identifier: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'partOf':
         {
           if (child is List<Reference>) {
-            return copyWith(partOf: child);
+            // Add all elements from passed list
+            final newList = [...?partOf, ...child];
+            return copyWith(partOf: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?partOf, child];
+            return copyWith(partOf: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -963,24 +997,29 @@ class MedicationDispense extends DomainResource {
           if (child is MedicationDispenseStatusCodes) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'statusReasonX':
         {
           if (child is StatusReasonXMedicationDispense) {
-            // child is e.g. SubjectX union
             return copyWith(statusReasonX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is CodeableConcept) {
+              return copyWith(statusReasonX: child);
+            }
+            if (child is Reference) {
+              return copyWith(statusReasonX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'statusReasonCodeableConcept':
         {
           if (child is CodeableConcept) {
             return copyWith(statusReasonX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'statusReasonReference':
@@ -988,7 +1027,7 @@ class MedicationDispense extends DomainResource {
           if (child is Reference) {
             return copyWith(statusReasonX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'category':
@@ -996,24 +1035,29 @@ class MedicationDispense extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(category: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'medicationX':
         {
           if (child is MedicationXMedicationDispense) {
-            // child is e.g. SubjectX union
             return copyWith(medicationX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is CodeableConcept) {
+              return copyWith(medicationX: child);
+            }
+            if (child is Reference) {
+              return copyWith(medicationX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'medicationCodeableConcept':
         {
           if (child is CodeableConcept) {
             return copyWith(medicationX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'medicationReference':
@@ -1021,7 +1065,7 @@ class MedicationDispense extends DomainResource {
           if (child is Reference) {
             return copyWith(medicationX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
@@ -1029,7 +1073,7 @@ class MedicationDispense extends DomainResource {
           if (child is Reference) {
             return copyWith(subject: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'context':
@@ -1037,23 +1081,35 @@ class MedicationDispense extends DomainResource {
           if (child is Reference) {
             return copyWith(context: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'supportingInformation':
         {
           if (child is List<Reference>) {
-            return copyWith(supportingInformation: child);
+            // Add all elements from passed list
+            final newList = [...?supportingInformation, ...child];
+            return copyWith(supportingInformation: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?supportingInformation, child];
+            return copyWith(supportingInformation: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'performer':
         {
           if (child is List<MedicationDispensePerformer>) {
-            return copyWith(performer: child);
+            // Add all elements from passed list
+            final newList = [...?performer, ...child];
+            return copyWith(performer: newList);
+          } else if (child is MedicationDispensePerformer) {
+            // Add single element to existing list or create new list
+            final newList = [...?performer, child];
+            return copyWith(performer: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'location':
@@ -1061,15 +1117,21 @@ class MedicationDispense extends DomainResource {
           if (child is Reference) {
             return copyWith(location: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'authorizingPrescription':
         {
           if (child is List<Reference>) {
-            return copyWith(authorizingPrescription: child);
+            // Add all elements from passed list
+            final newList = [...?authorizingPrescription, ...child];
+            return copyWith(authorizingPrescription: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?authorizingPrescription, child];
+            return copyWith(authorizingPrescription: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -1077,7 +1139,7 @@ class MedicationDispense extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'quantity':
@@ -1085,7 +1147,7 @@ class MedicationDispense extends DomainResource {
           if (child is Quantity) {
             return copyWith(quantity: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'daysSupply':
@@ -1093,7 +1155,7 @@ class MedicationDispense extends DomainResource {
           if (child is Quantity) {
             return copyWith(daysSupply: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'whenPrepared':
@@ -1101,7 +1163,7 @@ class MedicationDispense extends DomainResource {
           if (child is FhirDateTime) {
             return copyWith(whenPrepared: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'whenHandedOver':
@@ -1109,7 +1171,7 @@ class MedicationDispense extends DomainResource {
           if (child is FhirDateTime) {
             return copyWith(whenHandedOver: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'destination':
@@ -1117,31 +1179,49 @@ class MedicationDispense extends DomainResource {
           if (child is Reference) {
             return copyWith(destination: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'receiver':
         {
           if (child is List<Reference>) {
-            return copyWith(receiver: child);
+            // Add all elements from passed list
+            final newList = [...?receiver, ...child];
+            return copyWith(receiver: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?receiver, child];
+            return copyWith(receiver: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
           if (child is List<Annotation>) {
-            return copyWith(note: child);
+            // Add all elements from passed list
+            final newList = [...?note, ...child];
+            return copyWith(note: newList);
+          } else if (child is Annotation) {
+            // Add single element to existing list or create new list
+            final newList = [...?note, child];
+            return copyWith(note: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'dosageInstruction':
         {
           if (child is List<Dosage>) {
-            return copyWith(dosageInstruction: child);
+            // Add all elements from passed list
+            final newList = [...?dosageInstruction, ...child];
+            return copyWith(dosageInstruction: newList);
+          } else if (child is Dosage) {
+            // Add single element to existing list or create new list
+            final newList = [...?dosageInstruction, child];
+            return copyWith(dosageInstruction: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'substitution':
@@ -1149,27 +1229,39 @@ class MedicationDispense extends DomainResource {
           if (child is MedicationDispenseSubstitution) {
             return copyWith(substitution: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'detectedIssue':
         {
           if (child is List<Reference>) {
-            return copyWith(detectedIssue: child);
+            // Add all elements from passed list
+            final newList = [...?detectedIssue, ...child];
+            return copyWith(detectedIssue: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?detectedIssue, child];
+            return copyWith(detectedIssue: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'eventHistory':
         {
           if (child is List<Reference>) {
-            return copyWith(eventHistory: child);
+            // Add all elements from passed list
+            final newList = [...?eventHistory, ...child];
+            return copyWith(eventHistory: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?eventHistory, child];
+            return copyWith(eventHistory: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1262,147 +1354,217 @@ class MedicationDispense extends DomainResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  MedicationDispense createProperty(String propertyName) {
+  MedicationDispense createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'identifier':
         {
-          return copyWith(identifier: <Identifier>[]);
+          return copyWith(
+            identifier: <Identifier>[],
+          );
         }
       case 'partOf':
         {
-          return copyWith(partOf: <Reference>[]);
+          return copyWith(
+            partOf: <Reference>[],
+          );
         }
       case 'status':
         {
-          return copyWith(status: MedicationDispenseStatusCodes.empty());
+          return copyWith(
+            status: MedicationDispenseStatusCodes.empty(),
+          );
         }
       case 'statusReason':
       case 'statusReasonX':
       case 'statusReasonCodeableConcept':
         {
-          return copyWith(statusReasonX: CodeableConcept.empty());
+          return copyWith(
+            statusReasonX: CodeableConcept.empty(),
+          );
         }
       case 'statusReasonReference':
         {
-          return copyWith(statusReasonX: Reference.empty());
+          return copyWith(
+            statusReasonX: Reference.empty(),
+          );
         }
       case 'category':
         {
-          return copyWith(category: CodeableConcept.empty());
+          return copyWith(
+            category: CodeableConcept.empty(),
+          );
         }
       case 'medication':
       case 'medicationX':
       case 'medicationCodeableConcept':
         {
-          return copyWith(medicationX: CodeableConcept.empty());
+          return copyWith(
+            medicationX: CodeableConcept.empty(),
+          );
         }
       case 'medicationReference':
         {
-          return copyWith(medicationX: Reference.empty());
+          return copyWith(
+            medicationX: Reference.empty(),
+          );
         }
       case 'subject':
         {
-          return copyWith(subject: Reference.empty());
+          return copyWith(
+            subject: Reference.empty(),
+          );
         }
       case 'context':
         {
-          return copyWith(context: Reference.empty());
+          return copyWith(
+            context: Reference.empty(),
+          );
         }
       case 'supportingInformation':
         {
-          return copyWith(supportingInformation: <Reference>[]);
+          return copyWith(
+            supportingInformation: <Reference>[],
+          );
         }
       case 'performer':
         {
-          return copyWith(performer: <MedicationDispensePerformer>[]);
+          return copyWith(
+            performer: <MedicationDispensePerformer>[],
+          );
         }
       case 'location':
         {
-          return copyWith(location: Reference.empty());
+          return copyWith(
+            location: Reference.empty(),
+          );
         }
       case 'authorizingPrescription':
         {
-          return copyWith(authorizingPrescription: <Reference>[]);
+          return copyWith(
+            authorizingPrescription: <Reference>[],
+          );
         }
       case 'type':
         {
-          return copyWith(type: CodeableConcept.empty());
+          return copyWith(
+            type: CodeableConcept.empty(),
+          );
         }
       case 'quantity':
         {
-          return copyWith(quantity: Quantity.empty());
+          return copyWith(
+            quantity: Quantity.empty(),
+          );
         }
       case 'daysSupply':
         {
-          return copyWith(daysSupply: Quantity.empty());
+          return copyWith(
+            daysSupply: Quantity.empty(),
+          );
         }
       case 'whenPrepared':
         {
-          return copyWith(whenPrepared: FhirDateTime.empty());
+          return copyWith(
+            whenPrepared: FhirDateTime.empty(),
+          );
         }
       case 'whenHandedOver':
         {
-          return copyWith(whenHandedOver: FhirDateTime.empty());
+          return copyWith(
+            whenHandedOver: FhirDateTime.empty(),
+          );
         }
       case 'destination':
         {
-          return copyWith(destination: Reference.empty());
+          return copyWith(
+            destination: Reference.empty(),
+          );
         }
       case 'receiver':
         {
-          return copyWith(receiver: <Reference>[]);
+          return copyWith(
+            receiver: <Reference>[],
+          );
         }
       case 'note':
         {
-          return copyWith(note: <Annotation>[]);
+          return copyWith(
+            note: <Annotation>[],
+          );
         }
       case 'dosageInstruction':
         {
-          return copyWith(dosageInstruction: <Dosage>[]);
+          return copyWith(
+            dosageInstruction: <Dosage>[],
+          );
         }
       case 'substitution':
         {
-          return copyWith(substitution: MedicationDispenseSubstitution.empty());
+          return copyWith(
+            substitution: MedicationDispenseSubstitution.empty(),
+          );
         }
       case 'detectedIssue':
         {
-          return copyWith(detectedIssue: <Reference>[]);
+          return copyWith(
+            detectedIssue: <Reference>[],
+          );
         }
       case 'eventHistory':
         {
-          return copyWith(eventHistory: <Reference>[]);
+          return copyWith(
+            eventHistory: <Reference>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1708,19 +1870,34 @@ class MedicationDispense extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1753,22 +1930,40 @@ class MedicationDispense extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(statusReasonX, o.statusReasonX)) {
+    if (!equalsDeepWithNull(
+      statusReasonX,
+      o.statusReasonX,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(category, o.category)) {
+    if (!equalsDeepWithNull(
+      category,
+      o.category,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(medicationX, o.medicationX)) {
+    if (!equalsDeepWithNull(
+      medicationX,
+      o.medicationX,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(subject, o.subject)) {
+    if (!equalsDeepWithNull(
+      subject,
+      o.subject,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(context, o.context)) {
+    if (!equalsDeepWithNull(
+      context,
+      o.context,
+    )) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1783,7 +1978,10 @@ class MedicationDispense extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(location, o.location)) {
+    if (!equalsDeepWithNull(
+      location,
+      o.location,
+    )) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1792,22 +1990,40 @@ class MedicationDispense extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(quantity, o.quantity)) {
+    if (!equalsDeepWithNull(
+      quantity,
+      o.quantity,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(daysSupply, o.daysSupply)) {
+    if (!equalsDeepWithNull(
+      daysSupply,
+      o.daysSupply,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(whenPrepared, o.whenPrepared)) {
+    if (!equalsDeepWithNull(
+      whenPrepared,
+      o.whenPrepared,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(whenHandedOver, o.whenHandedOver)) {
+    if (!equalsDeepWithNull(
+      whenHandedOver,
+      o.whenHandedOver,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(destination, o.destination)) {
+    if (!equalsDeepWithNull(
+      destination,
+      o.destination,
+    )) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1828,7 +2044,10 @@ class MedicationDispense extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(substitution, o.substitution)) {
+    if (!equalsDeepWithNull(
+      substitution,
+      o.substitution,
+    )) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1998,11 +2217,26 @@ class MedicationDispensePerformer extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('function', function_);
-    addField('actor', actor);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'function',
+      function_,
+    );
+    addField(
+      'actor',
+      actor,
+    );
     return json;
   }
 
@@ -2053,32 +2287,6 @@ class MedicationDispensePerformer extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2090,39 +2298,51 @@ class MedicationDispensePerformer extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'function':
@@ -2130,7 +2350,7 @@ class MedicationDispensePerformer extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(function_: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'actor':
@@ -2138,11 +2358,11 @@ class MedicationDispensePerformer extends BackboneElement {
           if (child is Reference) {
             return copyWith(actor: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2171,27 +2391,39 @@ class MedicationDispensePerformer extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  MedicationDispensePerformer createProperty(String propertyName) {
+  MedicationDispensePerformer createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'function':
         {
-          return copyWith(function_: CodeableConcept.empty());
+          return copyWith(
+            function_: CodeableConcept.empty(),
+          );
         }
       case 'actor':
         {
-          return copyWith(actor: Reference.empty());
+          return copyWith(
+            actor: Reference.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2271,7 +2503,10 @@ class MedicationDispensePerformer extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2286,10 +2521,16 @@ class MedicationDispensePerformer extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(function_, o.function_)) {
+    if (!equalsDeepWithNull(
+      function_,
+      o.function_,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(actor, o.actor)) {
+    if (!equalsDeepWithNull(
+      actor,
+      o.actor,
+    )) {
       return false;
     }
     return true;
@@ -2484,13 +2725,34 @@ class MedicationDispenseSubstitution extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('wasSubstituted', wasSubstituted);
-    addField('type', type);
-    addField('reason', reason);
-    addField('responsibleParty', responsibleParty);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'wasSubstituted',
+      wasSubstituted,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'reason',
+      reason,
+    );
+    addField(
+      'responsibleParty',
+      responsibleParty,
+    );
     return json;
   }
 
@@ -2551,44 +2813,6 @@ class MedicationDispenseSubstitution extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'reason':
-        if (reason != null) {
-          return reason!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'responsibleParty':
-        if (responsibleParty != null) {
-          return responsibleParty!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2600,39 +2824,51 @@ class MedicationDispenseSubstitution extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'wasSubstituted':
@@ -2640,7 +2876,7 @@ class MedicationDispenseSubstitution extends BackboneElement {
           if (child is FhirBoolean) {
             return copyWith(wasSubstituted: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -2648,27 +2884,39 @@ class MedicationDispenseSubstitution extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'reason':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(reason: child);
+            // Add all elements from passed list
+            final newList = [...?reason, ...child];
+            return copyWith(reason: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?reason, child];
+            return copyWith(reason: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'responsibleParty':
         {
           if (child is List<Reference>) {
-            return copyWith(responsibleParty: child);
+            // Add all elements from passed list
+            final newList = [...?responsibleParty, ...child];
+            return copyWith(responsibleParty: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?responsibleParty, child];
+            return copyWith(responsibleParty: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2701,35 +2949,51 @@ class MedicationDispenseSubstitution extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  MedicationDispenseSubstitution createProperty(String propertyName) {
+  MedicationDispenseSubstitution createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'wasSubstituted':
         {
-          return copyWith(wasSubstituted: FhirBoolean.empty());
+          return copyWith(
+            wasSubstituted: FhirBoolean.empty(),
+          );
         }
       case 'type':
         {
-          return copyWith(type: CodeableConcept.empty());
+          return copyWith(
+            type: CodeableConcept.empty(),
+          );
         }
       case 'reason':
         {
-          return copyWith(reason: <CodeableConcept>[]);
+          return copyWith(
+            reason: <CodeableConcept>[],
+          );
         }
       case 'responsibleParty':
         {
-          return copyWith(responsibleParty: <Reference>[]);
+          return copyWith(
+            responsibleParty: <Reference>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2831,7 +3095,10 @@ class MedicationDispenseSubstitution extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2846,10 +3113,16 @@ class MedicationDispenseSubstitution extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(wasSubstituted, o.wasSubstituted)) {
+    if (!equalsDeepWithNull(
+      wasSubstituted,
+      o.wasSubstituted,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(

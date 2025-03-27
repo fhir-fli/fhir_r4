@@ -55,9 +55,14 @@ class RequestIntent extends FhirCodeEnum {
     if (value == null && element != null) {
       return RequestIntent.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('RequestIntent cannot be constructed from JSON.');
+      throw ArgumentError(
+        'RequestIntent cannot be constructed from JSON.',
+      );
     }
-    return RequestIntent._(validatedValue: value, element: element);
+    return RequestIntent._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// proposal

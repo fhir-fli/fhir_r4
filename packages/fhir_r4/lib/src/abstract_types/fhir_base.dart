@@ -144,16 +144,9 @@ abstract class FhirBase {
   // ignore: avoid_positional_boolean_parameters
   List<FhirBase> getChildrenByName(String name, [bool checkValid = false]);
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  // ignore: avoid_positional_boolean_parameters
-  List<FhirBase>? getListChildByName(String name, [bool checkValid = false]);
-
   /// Sets a property by name.
-  FhirBase setChildByName(String name, FhirBase? child) {
-    throw Exception('Cannot set child value for $name');
+  FhirBase setChildByName(String childName, FhirBase? child) {
+    throw Exception('Cannot set child value for $childName');
   }
 
   /// Retrieves the type of the object by element name.

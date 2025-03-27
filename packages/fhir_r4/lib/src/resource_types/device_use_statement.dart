@@ -361,31 +361,94 @@ class DeviceUseStatement extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('identifier', identifier);
-    addField('basedOn', basedOn);
-    addField('status', status);
-    addField('subject', subject);
-    addField('derivedFrom', derivedFrom);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'basedOn',
+      basedOn,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'subject',
+      subject,
+    );
+    addField(
+      'derivedFrom',
+      derivedFrom,
+    );
     if (timingX != null) {
       final fhirType = timingX!.fhirType;
-      addField('timing${fhirType.capitalize()}', timingX);
+      addField(
+        'timing${fhirType.capitalize()}',
+        timingX,
+      );
     }
 
-    addField('recordedOn', recordedOn);
-    addField('source', source);
-    addField('device', device);
-    addField('reasonCode', reasonCode);
-    addField('reasonReference', reasonReference);
-    addField('bodySite', bodySite);
-    addField('note', note);
+    addField(
+      'recordedOn',
+      recordedOn,
+    );
+    addField(
+      'source',
+      source,
+    );
+    addField(
+      'device',
+      device,
+    );
+    addField(
+      'reasonCode',
+      reasonCode,
+    );
+    addField(
+      'reasonReference',
+      reasonReference,
+    );
+    addField(
+      'bodySite',
+      bodySite,
+    );
+    addField(
+      'note',
+      note,
+    );
     return json;
   }
 
@@ -524,74 +587,6 @@ class DeviceUseStatement extends DomainResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'identifier':
-        if (identifier != null) {
-          return identifier!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'basedOn':
-        if (basedOn != null) {
-          return basedOn!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'derivedFrom':
-        if (derivedFrom != null) {
-          return derivedFrom!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'reasonCode':
-        if (reasonCode != null) {
-          return reasonCode!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'reasonReference':
-        if (reasonReference != null) {
-          return reasonReference!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'note':
-        if (note != null) {
-          return note!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -603,23 +598,23 @@ class DeviceUseStatement extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -627,7 +622,7 @@ class DeviceUseStatement extends DomainResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -635,7 +630,7 @@ class DeviceUseStatement extends DomainResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -643,7 +638,7 @@ class DeviceUseStatement extends DomainResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -651,47 +646,77 @@ class DeviceUseStatement extends DomainResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
           if (child is List<Identifier>) {
-            return copyWith(identifier: child);
+            // Add all elements from passed list
+            final newList = [...?identifier, ...child];
+            return copyWith(identifier: newList);
+          } else if (child is Identifier) {
+            // Add single element to existing list or create new list
+            final newList = [...?identifier, child];
+            return copyWith(identifier: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'basedOn':
         {
           if (child is List<Reference>) {
-            return copyWith(basedOn: child);
+            // Add all elements from passed list
+            final newList = [...?basedOn, ...child];
+            return copyWith(basedOn: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?basedOn, child];
+            return copyWith(basedOn: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -699,7 +724,7 @@ class DeviceUseStatement extends DomainResource {
           if (child is DeviceUseStatementStatus) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
@@ -707,32 +732,46 @@ class DeviceUseStatement extends DomainResource {
           if (child is Reference) {
             return copyWith(subject: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'derivedFrom':
         {
           if (child is List<Reference>) {
-            return copyWith(derivedFrom: child);
+            // Add all elements from passed list
+            final newList = [...?derivedFrom, ...child];
+            return copyWith(derivedFrom: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?derivedFrom, child];
+            return copyWith(derivedFrom: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'timingX':
         {
           if (child is TimingXDeviceUseStatement) {
-            // child is e.g. SubjectX union
             return copyWith(timingX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is Timing) {
+              return copyWith(timingX: child);
+            }
+            if (child is Period) {
+              return copyWith(timingX: child);
+            }
+            if (child is FhirDateTime) {
+              return copyWith(timingX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'timingTiming':
         {
           if (child is Timing) {
             return copyWith(timingX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'timingPeriod':
@@ -740,7 +779,7 @@ class DeviceUseStatement extends DomainResource {
           if (child is Period) {
             return copyWith(timingX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'timingFhirDateTime':
@@ -748,7 +787,7 @@ class DeviceUseStatement extends DomainResource {
           if (child is FhirDateTime) {
             return copyWith(timingX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'recordedOn':
@@ -756,7 +795,7 @@ class DeviceUseStatement extends DomainResource {
           if (child is FhirDateTime) {
             return copyWith(recordedOn: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'source':
@@ -764,7 +803,7 @@ class DeviceUseStatement extends DomainResource {
           if (child is Reference) {
             return copyWith(source: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'device':
@@ -772,23 +811,35 @@ class DeviceUseStatement extends DomainResource {
           if (child is Reference) {
             return copyWith(device: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonCode':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(reasonCode: child);
+            // Add all elements from passed list
+            final newList = [...?reasonCode, ...child];
+            return copyWith(reasonCode: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?reasonCode, child];
+            return copyWith(reasonCode: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonReference':
         {
           if (child is List<Reference>) {
-            return copyWith(reasonReference: child);
+            // Add all elements from passed list
+            final newList = [...?reasonReference, ...child];
+            return copyWith(reasonReference: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?reasonReference, child];
+            return copyWith(reasonReference: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'bodySite':
@@ -796,19 +847,25 @@ class DeviceUseStatement extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(bodySite: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
           if (child is List<Annotation>) {
-            return copyWith(note: child);
+            // Add all elements from passed list
+            final newList = [...?note, ...child];
+            return copyWith(note: newList);
+          } else if (child is Annotation) {
+            // Add single element to existing list or create new list
+            final newList = [...?note, child];
+            return copyWith(note: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -876,101 +933,149 @@ class DeviceUseStatement extends DomainResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  DeviceUseStatement createProperty(String propertyName) {
+  DeviceUseStatement createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'identifier':
         {
-          return copyWith(identifier: <Identifier>[]);
+          return copyWith(
+            identifier: <Identifier>[],
+          );
         }
       case 'basedOn':
         {
-          return copyWith(basedOn: <Reference>[]);
+          return copyWith(
+            basedOn: <Reference>[],
+          );
         }
       case 'status':
         {
-          return copyWith(status: DeviceUseStatementStatus.empty());
+          return copyWith(
+            status: DeviceUseStatementStatus.empty(),
+          );
         }
       case 'subject':
         {
-          return copyWith(subject: Reference.empty());
+          return copyWith(
+            subject: Reference.empty(),
+          );
         }
       case 'derivedFrom':
         {
-          return copyWith(derivedFrom: <Reference>[]);
+          return copyWith(
+            derivedFrom: <Reference>[],
+          );
         }
       case 'timing':
       case 'timingX':
       case 'timingTiming':
         {
-          return copyWith(timingX: Timing.empty());
+          return copyWith(
+            timingX: Timing.empty(),
+          );
         }
       case 'timingPeriod':
         {
-          return copyWith(timingX: Period.empty());
+          return copyWith(
+            timingX: Period.empty(),
+          );
         }
       case 'timingDateTime':
         {
-          return copyWith(timingX: FhirDateTime.empty());
+          return copyWith(
+            timingX: FhirDateTime.empty(),
+          );
         }
       case 'recordedOn':
         {
-          return copyWith(recordedOn: FhirDateTime.empty());
+          return copyWith(
+            recordedOn: FhirDateTime.empty(),
+          );
         }
       case 'source':
         {
-          return copyWith(source: Reference.empty());
+          return copyWith(
+            source: Reference.empty(),
+          );
         }
       case 'device':
         {
-          return copyWith(device: Reference.empty());
+          return copyWith(
+            device: Reference.empty(),
+          );
         }
       case 'reasonCode':
         {
-          return copyWith(reasonCode: <CodeableConcept>[]);
+          return copyWith(
+            reasonCode: <CodeableConcept>[],
+          );
         }
       case 'reasonReference':
         {
-          return copyWith(reasonReference: <Reference>[]);
+          return copyWith(
+            reasonReference: <Reference>[],
+          );
         }
       case 'bodySite':
         {
-          return copyWith(bodySite: CodeableConcept.empty());
+          return copyWith(
+            bodySite: CodeableConcept.empty(),
+          );
         }
       case 'note':
         {
-          return copyWith(note: <Annotation>[]);
+          return copyWith(
+            note: <Annotation>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1180,19 +1285,34 @@ class DeviceUseStatement extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1225,10 +1345,16 @@ class DeviceUseStatement extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(subject, o.subject)) {
+    if (!equalsDeepWithNull(
+      subject,
+      o.subject,
+    )) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1237,16 +1363,28 @@ class DeviceUseStatement extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(timingX, o.timingX)) {
+    if (!equalsDeepWithNull(
+      timingX,
+      o.timingX,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(recordedOn, o.recordedOn)) {
+    if (!equalsDeepWithNull(
+      recordedOn,
+      o.recordedOn,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(source, o.source)) {
+    if (!equalsDeepWithNull(
+      source,
+      o.source,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(device, o.device)) {
+    if (!equalsDeepWithNull(
+      device,
+      o.device,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1261,7 +1399,10 @@ class DeviceUseStatement extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(bodySite, o.bodySite)) {
+    if (!equalsDeepWithNull(
+      bodySite,
+      o.bodySite,
+    )) {
       return false;
     }
     if (!listEquals<Annotation>(

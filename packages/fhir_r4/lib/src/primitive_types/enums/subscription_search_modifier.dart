@@ -57,10 +57,13 @@ class SubscriptionSearchModifier extends FhirCodeEnum {
       return SubscriptionSearchModifier.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'SubscriptionSearchModifier cannot be constructed from JSON.',);
+        'SubscriptionSearchModifier cannot be constructed from JSON.',
+      );
     }
     return SubscriptionSearchModifier._(
-        validatedValue: value, element: element,);
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// eq

@@ -246,20 +246,62 @@ class SpecimenDefinition extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('identifier', identifier);
-    addField('typeCollected', typeCollected);
-    addField('patientPreparation', patientPreparation);
-    addField('timeAspect', timeAspect);
-    addField('collection', collection);
-    addField('typeTested', typeTested);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'typeCollected',
+      typeCollected,
+    );
+    addField(
+      'patientPreparation',
+      patientPreparation,
+    );
+    addField(
+      'timeAspect',
+      timeAspect,
+    );
+    addField(
+      'collection',
+      collection,
+    );
+    addField(
+      'typeTested',
+      typeTested,
+    );
     return json;
   }
 
@@ -357,56 +399,6 @@ class SpecimenDefinition extends DomainResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'patientPreparation':
-        if (patientPreparation != null) {
-          return patientPreparation!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'collection':
-        if (collection != null) {
-          return collection!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'typeTested':
-        if (typeTested != null) {
-          return typeTested!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -418,23 +410,23 @@ class SpecimenDefinition extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -442,7 +434,7 @@ class SpecimenDefinition extends DomainResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -450,7 +442,7 @@ class SpecimenDefinition extends DomainResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -458,7 +450,7 @@ class SpecimenDefinition extends DomainResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -466,31 +458,49 @@ class SpecimenDefinition extends DomainResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
@@ -498,7 +508,7 @@ class SpecimenDefinition extends DomainResource {
           if (child is Identifier) {
             return copyWith(identifier: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'typeCollected':
@@ -506,15 +516,21 @@ class SpecimenDefinition extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(typeCollected: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'patientPreparation':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(patientPreparation: child);
+            // Add all elements from passed list
+            final newList = [...?patientPreparation, ...child];
+            return copyWith(patientPreparation: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?patientPreparation, child];
+            return copyWith(patientPreparation: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'timeAspect':
@@ -522,27 +538,39 @@ class SpecimenDefinition extends DomainResource {
           if (child is FhirString) {
             return copyWith(timeAspect: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'collection':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(collection: child);
+            // Add all elements from passed list
+            final newList = [...?collection, ...child];
+            return copyWith(collection: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?collection, child];
+            return copyWith(collection: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'typeTested':
         {
           if (child is List<SpecimenDefinitionTypeTested>) {
-            return copyWith(typeTested: child);
+            // Add all elements from passed list
+            final newList = [...?typeTested, ...child];
+            return copyWith(typeTested: newList);
+          } else if (child is SpecimenDefinitionTypeTested) {
+            // Add single element to existing list or create new list
+            final newList = [...?typeTested, child];
+            return copyWith(typeTested: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -589,63 +617,93 @@ class SpecimenDefinition extends DomainResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  SpecimenDefinition createProperty(String propertyName) {
+  SpecimenDefinition createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'identifier':
         {
-          return copyWith(identifier: Identifier.empty());
+          return copyWith(
+            identifier: Identifier.empty(),
+          );
         }
       case 'typeCollected':
         {
-          return copyWith(typeCollected: CodeableConcept.empty());
+          return copyWith(
+            typeCollected: CodeableConcept.empty(),
+          );
         }
       case 'patientPreparation':
         {
-          return copyWith(patientPreparation: <CodeableConcept>[]);
+          return copyWith(
+            patientPreparation: <CodeableConcept>[],
+          );
         }
       case 'timeAspect':
         {
-          return copyWith(timeAspect: FhirString.empty());
+          return copyWith(
+            timeAspect: FhirString.empty(),
+          );
         }
       case 'collection':
         {
-          return copyWith(collection: <CodeableConcept>[]);
+          return copyWith(
+            collection: <CodeableConcept>[],
+          );
         }
       case 'typeTested':
         {
-          return copyWith(typeTested: <SpecimenDefinitionTypeTested>[]);
+          return copyWith(
+            typeTested: <SpecimenDefinitionTypeTested>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -797,19 +855,34 @@ class SpecimenDefinition extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -830,10 +903,16 @@ class SpecimenDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(identifier, o.identifier)) {
+    if (!equalsDeepWithNull(
+      identifier,
+      o.identifier,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(typeCollected, o.typeCollected)) {
+    if (!equalsDeepWithNull(
+      typeCollected,
+      o.typeCollected,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -842,7 +921,10 @@ class SpecimenDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(timeAspect, o.timeAspect)) {
+    if (!equalsDeepWithNull(
+      timeAspect,
+      o.timeAspect,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1089,17 +1171,50 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('isDerived', isDerived);
-    addField('type', type);
-    addField('preference', preference);
-    addField('container', container);
-    addField('requirement', requirement);
-    addField('retentionTime', retentionTime);
-    addField('rejectionCriterion', rejectionCriterion);
-    addField('handling', handling);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'isDerived',
+      isDerived,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'preference',
+      preference,
+    );
+    addField(
+      'container',
+      container,
+    );
+    addField(
+      'requirement',
+      requirement,
+    );
+    addField(
+      'retentionTime',
+      retentionTime,
+    );
+    addField(
+      'rejectionCriterion',
+      rejectionCriterion,
+    );
+    addField(
+      'handling',
+      handling,
+    );
     return json;
   }
 
@@ -1180,44 +1295,6 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'rejectionCriterion':
-        if (rejectionCriterion != null) {
-          return rejectionCriterion!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'handling':
-        if (handling != null) {
-          return handling!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1229,39 +1306,51 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'isDerived':
@@ -1269,7 +1358,7 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
           if (child is FhirBoolean) {
             return copyWith(isDerived: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -1277,7 +1366,7 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'preference':
@@ -1285,7 +1374,7 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
           if (child is SpecimenContainedPreference) {
             return copyWith(preference: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'container':
@@ -1293,7 +1382,7 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
           if (child is SpecimenDefinitionContainer) {
             return copyWith(container: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'requirement':
@@ -1301,7 +1390,7 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
           if (child is FhirString) {
             return copyWith(requirement: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'retentionTime':
@@ -1309,27 +1398,39 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
           if (child is FhirDuration) {
             return copyWith(retentionTime: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'rejectionCriterion':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(rejectionCriterion: child);
+            // Add all elements from passed list
+            final newList = [...?rejectionCriterion, ...child];
+            return copyWith(rejectionCriterion: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?rejectionCriterion, child];
+            return copyWith(rejectionCriterion: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'handling':
         {
           if (child is List<SpecimenDefinitionHandling>) {
-            return copyWith(handling: child);
+            // Add all elements from passed list
+            final newList = [...?handling, ...child];
+            return copyWith(handling: newList);
+          } else if (child is SpecimenDefinitionHandling) {
+            // Add single element to existing list or create new list
+            final newList = [...?handling, child];
+            return copyWith(handling: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1370,51 +1471,75 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  SpecimenDefinitionTypeTested createProperty(String propertyName) {
+  SpecimenDefinitionTypeTested createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'isDerived':
         {
-          return copyWith(isDerived: FhirBoolean.empty());
+          return copyWith(
+            isDerived: FhirBoolean.empty(),
+          );
         }
       case 'type':
         {
-          return copyWith(type: CodeableConcept.empty());
+          return copyWith(
+            type: CodeableConcept.empty(),
+          );
         }
       case 'preference':
         {
-          return copyWith(preference: SpecimenContainedPreference.empty());
+          return copyWith(
+            preference: SpecimenContainedPreference.empty(),
+          );
         }
       case 'container':
         {
-          return copyWith(container: SpecimenDefinitionContainer.empty());
+          return copyWith(
+            container: SpecimenDefinitionContainer.empty(),
+          );
         }
       case 'requirement':
         {
-          return copyWith(requirement: FhirString.empty());
+          return copyWith(
+            requirement: FhirString.empty(),
+          );
         }
       case 'retentionTime':
         {
-          return copyWith(retentionTime: FhirDuration.empty());
+          return copyWith(
+            retentionTime: FhirDuration.empty(),
+          );
         }
       case 'rejectionCriterion':
         {
-          return copyWith(rejectionCriterion: <CodeableConcept>[]);
+          return copyWith(
+            rejectionCriterion: <CodeableConcept>[],
+          );
         }
       case 'handling':
         {
-          return copyWith(handling: <SpecimenDefinitionHandling>[]);
+          return copyWith(
+            handling: <SpecimenDefinitionHandling>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1544,7 +1669,10 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1559,22 +1687,40 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(isDerived, o.isDerived)) {
+    if (!equalsDeepWithNull(
+      isDerived,
+      o.isDerived,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(preference, o.preference)) {
+    if (!equalsDeepWithNull(
+      preference,
+      o.preference,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(container, o.container)) {
+    if (!equalsDeepWithNull(
+      container,
+      o.container,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(requirement, o.requirement)) {
+    if (!equalsDeepWithNull(
+      requirement,
+      o.requirement,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(retentionTime, o.retentionTime)) {
+    if (!equalsDeepWithNull(
+      retentionTime,
+      o.retentionTime,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1619,7 +1765,8 @@ class SpecimenDefinitionContainer extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory SpecimenDefinitionContainer.empty() => const SpecimenDefinitionContainer();
+  factory SpecimenDefinitionContainer.empty() =>
+      const SpecimenDefinitionContainer();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenDefinitionContainer.fromJson(
@@ -1821,21 +1968,54 @@ class SpecimenDefinitionContainer extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('material', material);
-    addField('type', type);
-    addField('cap', cap);
-    addField('description', description);
-    addField('capacity', capacity);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'material',
+      material,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'cap',
+      cap,
+    );
+    addField(
+      'description',
+      description,
+    );
+    addField(
+      'capacity',
+      capacity,
+    );
     if (minimumVolumeX != null) {
       final fhirType = minimumVolumeX!.fhirType;
-      addField('minimumVolume${fhirType.capitalize()}', minimumVolumeX);
+      addField(
+        'minimumVolume${fhirType.capitalize()}',
+        minimumVolumeX,
+      );
     }
 
-    addField('additive', additive);
-    addField('preparation', preparation);
+    addField(
+      'additive',
+      additive,
+    );
+    addField(
+      'preparation',
+      preparation,
+    );
     return json;
   }
 
@@ -1926,38 +2106,6 @@ class SpecimenDefinitionContainer extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'additive':
-        if (additive != null) {
-          return additive!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1969,39 +2117,51 @@ class SpecimenDefinitionContainer extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'material':
@@ -2009,7 +2169,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(material: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -2017,7 +2177,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'cap':
@@ -2025,7 +2185,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(cap: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
@@ -2033,7 +2193,7 @@ class SpecimenDefinitionContainer extends BackboneElement {
           if (child is FhirString) {
             return copyWith(description: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'capacity':
@@ -2041,24 +2201,29 @@ class SpecimenDefinitionContainer extends BackboneElement {
           if (child is Quantity) {
             return copyWith(capacity: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'minimumVolumeX':
         {
           if (child is MinimumVolumeXSpecimenDefinitionContainer) {
-            // child is e.g. SubjectX union
             return copyWith(minimumVolumeX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is Quantity) {
+              return copyWith(minimumVolumeX: child);
+            }
+            if (child is FhirString) {
+              return copyWith(minimumVolumeX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'minimumVolumeQuantity':
         {
           if (child is Quantity) {
             return copyWith(minimumVolumeX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'minimumVolumeFhirString':
@@ -2066,15 +2231,21 @@ class SpecimenDefinitionContainer extends BackboneElement {
           if (child is FhirString) {
             return copyWith(minimumVolumeX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'additive':
         {
           if (child is List<SpecimenDefinitionAdditive>) {
-            return copyWith(additive: child);
+            // Add all elements from passed list
+            final newList = [...?additive, ...child];
+            return copyWith(additive: newList);
+          } else if (child is SpecimenDefinitionAdditive) {
+            // Add single element to existing list or create new list
+            final newList = [...?additive, child];
+            return copyWith(additive: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'preparation':
@@ -2082,11 +2253,11 @@ class SpecimenDefinitionContainer extends BackboneElement {
           if (child is FhirString) {
             return copyWith(preparation: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2132,57 +2303,83 @@ class SpecimenDefinitionContainer extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  SpecimenDefinitionContainer createProperty(String propertyName) {
+  SpecimenDefinitionContainer createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'material':
         {
-          return copyWith(material: CodeableConcept.empty());
+          return copyWith(
+            material: CodeableConcept.empty(),
+          );
         }
       case 'type':
         {
-          return copyWith(type: CodeableConcept.empty());
+          return copyWith(
+            type: CodeableConcept.empty(),
+          );
         }
       case 'cap':
         {
-          return copyWith(cap: CodeableConcept.empty());
+          return copyWith(
+            cap: CodeableConcept.empty(),
+          );
         }
       case 'description':
         {
-          return copyWith(description: FhirString.empty());
+          return copyWith(
+            description: FhirString.empty(),
+          );
         }
       case 'capacity':
         {
-          return copyWith(capacity: Quantity.empty());
+          return copyWith(
+            capacity: Quantity.empty(),
+          );
         }
       case 'minimumVolume':
       case 'minimumVolumeX':
       case 'minimumVolumeQuantity':
         {
-          return copyWith(minimumVolumeX: Quantity.empty());
+          return copyWith(
+            minimumVolumeX: Quantity.empty(),
+          );
         }
       case 'minimumVolumeString':
         {
-          return copyWith(minimumVolumeX: FhirString.empty());
+          return copyWith(
+            minimumVolumeX: FhirString.empty(),
+          );
         }
       case 'additive':
         {
-          return copyWith(additive: <SpecimenDefinitionAdditive>[]);
+          return copyWith(
+            additive: <SpecimenDefinitionAdditive>[],
+          );
         }
       case 'preparation':
         {
-          return copyWith(preparation: FhirString.empty());
+          return copyWith(
+            preparation: FhirString.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2309,7 +2506,10 @@ class SpecimenDefinitionContainer extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2324,22 +2524,40 @@ class SpecimenDefinitionContainer extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(material, o.material)) {
+    if (!equalsDeepWithNull(
+      material,
+      o.material,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(cap, o.cap)) {
+    if (!equalsDeepWithNull(
+      cap,
+      o.cap,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(description, o.description)) {
+    if (!equalsDeepWithNull(
+      description,
+      o.description,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(capacity, o.capacity)) {
+    if (!equalsDeepWithNull(
+      capacity,
+      o.capacity,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(minimumVolumeX, o.minimumVolumeX)) {
+    if (!equalsDeepWithNull(
+      minimumVolumeX,
+      o.minimumVolumeX,
+    )) {
       return false;
     }
     if (!listEquals<SpecimenDefinitionAdditive>(
@@ -2348,7 +2566,10 @@ class SpecimenDefinitionContainer extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(preparation, o.preparation)) {
+    if (!equalsDeepWithNull(
+      preparation,
+      o.preparation,
+    )) {
       return false;
     }
     return true;
@@ -2505,11 +2726,23 @@ class SpecimenDefinitionAdditive extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
     final additiveXFhirType = additiveX.fhirType;
-    addField('additive${additiveXFhirType.capitalize()}', additiveX);
+    addField(
+      'additive${additiveXFhirType.capitalize()}',
+      additiveX,
+    );
 
     return json;
   }
@@ -2566,32 +2799,6 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2603,56 +2810,73 @@ class SpecimenDefinitionAdditive extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'additiveX':
         {
           if (child is AdditiveXSpecimenDefinitionAdditive) {
-            // child is e.g. SubjectX union
             return copyWith(additiveX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is CodeableConcept) {
+              return copyWith(additiveX: child);
+            }
+            if (child is Reference) {
+              return copyWith(additiveX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'additiveCodeableConcept':
         {
           if (child is CodeableConcept) {
             return copyWith(additiveX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'additiveReference':
@@ -2660,11 +2884,11 @@ class SpecimenDefinitionAdditive extends BackboneElement {
           if (child is Reference) {
             return copyWith(additiveX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2696,29 +2920,41 @@ class SpecimenDefinitionAdditive extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  SpecimenDefinitionAdditive createProperty(String propertyName) {
+  SpecimenDefinitionAdditive createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'additive':
       case 'additiveX':
       case 'additiveCodeableConcept':
         {
-          return copyWith(additiveX: CodeableConcept.empty());
+          return copyWith(
+            additiveX: CodeableConcept.empty(),
+          );
         }
       case 'additiveReference':
         {
-          return copyWith(additiveX: Reference.empty());
+          return copyWith(
+            additiveX: Reference.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2791,7 +3027,10 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2806,7 +3045,10 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(additiveX, o.additiveX)) {
+    if (!equalsDeepWithNull(
+      additiveX,
+      o.additiveX,
+    )) {
       return false;
     }
     return true;
@@ -2836,7 +3078,8 @@ class SpecimenDefinitionHandling extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory SpecimenDefinitionHandling.empty() => const SpecimenDefinitionHandling();
+  factory SpecimenDefinitionHandling.empty() =>
+      const SpecimenDefinitionHandling();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenDefinitionHandling.fromJson(
@@ -2987,13 +3230,34 @@ class SpecimenDefinitionHandling extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('temperatureQualifier', temperatureQualifier);
-    addField('temperatureRange', temperatureRange);
-    addField('maxDuration', maxDuration);
-    addField('instruction', instruction);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'temperatureQualifier',
+      temperatureQualifier,
+    );
+    addField(
+      'temperatureRange',
+      temperatureRange,
+    );
+    addField(
+      'maxDuration',
+      maxDuration,
+    );
+    addField(
+      'instruction',
+      instruction,
+    );
     return json;
   }
 
@@ -3056,32 +3320,6 @@ class SpecimenDefinitionHandling extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -3093,39 +3331,51 @@ class SpecimenDefinitionHandling extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'temperatureQualifier':
@@ -3133,7 +3383,7 @@ class SpecimenDefinitionHandling extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(temperatureQualifier: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'temperatureRange':
@@ -3141,7 +3391,7 @@ class SpecimenDefinitionHandling extends BackboneElement {
           if (child is Range) {
             return copyWith(temperatureRange: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'maxDuration':
@@ -3149,7 +3399,7 @@ class SpecimenDefinitionHandling extends BackboneElement {
           if (child is FhirDuration) {
             return copyWith(maxDuration: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'instruction':
@@ -3157,11 +3407,11 @@ class SpecimenDefinitionHandling extends BackboneElement {
           if (child is FhirString) {
             return copyWith(instruction: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -3194,35 +3444,51 @@ class SpecimenDefinitionHandling extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  SpecimenDefinitionHandling createProperty(String propertyName) {
+  SpecimenDefinitionHandling createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'temperatureQualifier':
         {
-          return copyWith(temperatureQualifier: CodeableConcept.empty());
+          return copyWith(
+            temperatureQualifier: CodeableConcept.empty(),
+          );
         }
       case 'temperatureRange':
         {
-          return copyWith(temperatureRange: Range.empty());
+          return copyWith(
+            temperatureRange: Range.empty(),
+          );
         }
       case 'maxDuration':
         {
-          return copyWith(maxDuration: FhirDuration.empty());
+          return copyWith(
+            maxDuration: FhirDuration.empty(),
+          );
         }
       case 'instruction':
         {
-          return copyWith(instruction: FhirString.empty());
+          return copyWith(
+            instruction: FhirString.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3318,7 +3584,10 @@ class SpecimenDefinitionHandling extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3333,16 +3602,28 @@ class SpecimenDefinitionHandling extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(temperatureQualifier, o.temperatureQualifier)) {
+    if (!equalsDeepWithNull(
+      temperatureQualifier,
+      o.temperatureQualifier,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(temperatureRange, o.temperatureRange)) {
+    if (!equalsDeepWithNull(
+      temperatureRange,
+      o.temperatureRange,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(maxDuration, o.maxDuration)) {
+    if (!equalsDeepWithNull(
+      maxDuration,
+      o.maxDuration,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(instruction, o.instruction)) {
+    if (!equalsDeepWithNull(
+      instruction,
+      o.instruction,
+    )) {
       return false;
     }
     return true;

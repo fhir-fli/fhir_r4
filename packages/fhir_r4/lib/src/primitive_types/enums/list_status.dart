@@ -54,9 +54,14 @@ class ListStatus extends FhirCodeEnum {
     if (value == null && element != null) {
       return ListStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('ListStatus cannot be constructed from JSON.');
+      throw ArgumentError(
+        'ListStatus cannot be constructed from JSON.',
+      );
     }
-    return ListStatus._(validatedValue: value, element: element);
+    return ListStatus._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// current

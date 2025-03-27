@@ -91,9 +91,4 @@ class FHIRConstant extends FhirBase {
   FHIRConstant clear() {
     return FHIRConstant(value);
   }
-
-  @override
-  List<FhirBase> getListChildByName(String name, [bool checkValid = false]) {
-    throw UnimplementedError();
-  }
 }

@@ -54,9 +54,14 @@ class Use extends FhirCodeEnum {
     if (value == null && element != null) {
       return Use.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('Use cannot be constructed from JSON.');
+      throw ArgumentError(
+        'Use cannot be constructed from JSON.',
+      );
     }
-    return Use._(validatedValue: value, element: element);
+    return Use._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// claim

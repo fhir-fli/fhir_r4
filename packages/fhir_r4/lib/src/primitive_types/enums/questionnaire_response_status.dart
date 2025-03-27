@@ -56,10 +56,13 @@ class QuestionnaireResponseStatus extends FhirCodeEnum {
       return QuestionnaireResponseStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'QuestionnaireResponseStatus cannot be constructed from JSON.',);
+        'QuestionnaireResponseStatus cannot be constructed from JSON.',
+      );
     }
     return QuestionnaireResponseStatus._(
-        validatedValue: value, element: element,);
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// in_progress

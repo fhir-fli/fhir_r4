@@ -317,25 +317,82 @@ class QuestionnaireResponse extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('identifier', identifier);
-    addField('basedOn', basedOn);
-    addField('partOf', partOf);
-    addField('questionnaire', questionnaire);
-    addField('status', status);
-    addField('subject', subject);
-    addField('encounter', encounter);
-    addField('authored', authored);
-    addField('author', author);
-    addField('source', source);
-    addField('item', item);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'basedOn',
+      basedOn,
+    );
+    addField(
+      'partOf',
+      partOf,
+    );
+    addField(
+      'questionnaire',
+      questionnaire,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'subject',
+      subject,
+    );
+    addField(
+      'encounter',
+      encounter,
+    );
+    addField(
+      'authored',
+      authored,
+    );
+    addField(
+      'author',
+      author,
+    );
+    addField(
+      'source',
+      source,
+    );
+    addField(
+      'item',
+      item,
+    );
     return json;
   }
 
@@ -456,56 +513,6 @@ class QuestionnaireResponse extends DomainResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'basedOn':
-        if (basedOn != null) {
-          return basedOn!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'partOf':
-        if (partOf != null) {
-          return partOf!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'item':
-        if (item != null) {
-          return item!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -517,23 +524,23 @@ class QuestionnaireResponse extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -541,7 +548,7 @@ class QuestionnaireResponse extends DomainResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -549,7 +556,7 @@ class QuestionnaireResponse extends DomainResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -557,7 +564,7 @@ class QuestionnaireResponse extends DomainResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -565,31 +572,49 @@ class QuestionnaireResponse extends DomainResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
@@ -597,23 +622,35 @@ class QuestionnaireResponse extends DomainResource {
           if (child is Identifier) {
             return copyWith(identifier: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'basedOn':
         {
           if (child is List<Reference>) {
-            return copyWith(basedOn: child);
+            // Add all elements from passed list
+            final newList = [...?basedOn, ...child];
+            return copyWith(basedOn: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?basedOn, child];
+            return copyWith(basedOn: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'partOf':
         {
           if (child is List<Reference>) {
-            return copyWith(partOf: child);
+            // Add all elements from passed list
+            final newList = [...?partOf, ...child];
+            return copyWith(partOf: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?partOf, child];
+            return copyWith(partOf: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'questionnaire':
@@ -621,7 +658,7 @@ class QuestionnaireResponse extends DomainResource {
           if (child is FhirCanonical) {
             return copyWith(questionnaire: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -629,7 +666,7 @@ class QuestionnaireResponse extends DomainResource {
           if (child is QuestionnaireResponseStatus) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
@@ -637,7 +674,7 @@ class QuestionnaireResponse extends DomainResource {
           if (child is Reference) {
             return copyWith(subject: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'encounter':
@@ -645,7 +682,7 @@ class QuestionnaireResponse extends DomainResource {
           if (child is Reference) {
             return copyWith(encounter: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'authored':
@@ -653,7 +690,7 @@ class QuestionnaireResponse extends DomainResource {
           if (child is FhirDateTime) {
             return copyWith(authored: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'author':
@@ -661,7 +698,7 @@ class QuestionnaireResponse extends DomainResource {
           if (child is Reference) {
             return copyWith(author: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'source':
@@ -669,19 +706,25 @@ class QuestionnaireResponse extends DomainResource {
           if (child is Reference) {
             return copyWith(source: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'item':
         {
           if (child is List<QuestionnaireResponseItem>) {
-            return copyWith(item: child);
+            // Add all elements from passed list
+            final newList = [...?item, ...child];
+            return copyWith(item: newList);
+          } else if (child is QuestionnaireResponseItem) {
+            // Add single element to existing list or create new list
+            final newList = [...?item, child];
+            return copyWith(item: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -738,83 +781,123 @@ class QuestionnaireResponse extends DomainResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  QuestionnaireResponse createProperty(String propertyName) {
+  QuestionnaireResponse createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'identifier':
         {
-          return copyWith(identifier: Identifier.empty());
+          return copyWith(
+            identifier: Identifier.empty(),
+          );
         }
       case 'basedOn':
         {
-          return copyWith(basedOn: <Reference>[]);
+          return copyWith(
+            basedOn: <Reference>[],
+          );
         }
       case 'partOf':
         {
-          return copyWith(partOf: <Reference>[]);
+          return copyWith(
+            partOf: <Reference>[],
+          );
         }
       case 'questionnaire':
         {
-          return copyWith(questionnaire: FhirCanonical.empty());
+          return copyWith(
+            questionnaire: FhirCanonical.empty(),
+          );
         }
       case 'status':
         {
-          return copyWith(status: QuestionnaireResponseStatus.empty());
+          return copyWith(
+            status: QuestionnaireResponseStatus.empty(),
+          );
         }
       case 'subject':
         {
-          return copyWith(subject: Reference.empty());
+          return copyWith(
+            subject: Reference.empty(),
+          );
         }
       case 'encounter':
         {
-          return copyWith(encounter: Reference.empty());
+          return copyWith(
+            encounter: Reference.empty(),
+          );
         }
       case 'authored':
         {
-          return copyWith(authored: FhirDateTime.empty());
+          return copyWith(
+            authored: FhirDateTime.empty(),
+          );
         }
       case 'author':
         {
-          return copyWith(author: Reference.empty());
+          return copyWith(
+            author: Reference.empty(),
+          );
         }
       case 'source':
         {
-          return copyWith(source: Reference.empty());
+          return copyWith(
+            source: Reference.empty(),
+          );
         }
       case 'item':
         {
-          return copyWith(item: <QuestionnaireResponseItem>[]);
+          return copyWith(
+            item: <QuestionnaireResponseItem>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1000,19 +1083,34 @@ class QuestionnaireResponse extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1033,7 +1131,10 @@ class QuestionnaireResponse extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(identifier, o.identifier)) {
+    if (!equalsDeepWithNull(
+      identifier,
+      o.identifier,
+    )) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1048,25 +1149,46 @@ class QuestionnaireResponse extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(questionnaire, o.questionnaire)) {
+    if (!equalsDeepWithNull(
+      questionnaire,
+      o.questionnaire,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(subject, o.subject)) {
+    if (!equalsDeepWithNull(
+      subject,
+      o.subject,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(encounter, o.encounter)) {
+    if (!equalsDeepWithNull(
+      encounter,
+      o.encounter,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(authored, o.authored)) {
+    if (!equalsDeepWithNull(
+      authored,
+      o.authored,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(author, o.author)) {
+    if (!equalsDeepWithNull(
+      author,
+      o.author,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(source, o.source)) {
+    if (!equalsDeepWithNull(
+      source,
+      o.source,
+    )) {
       return false;
     }
     if (!listEquals<QuestionnaireResponseItem>(
@@ -1273,14 +1395,38 @@ class QuestionnaireResponseItem extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('linkId', linkId);
-    addField('definition', definition);
-    addField('text', text);
-    addField('answer', answer);
-    addField('item', item);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'linkId',
+      linkId,
+    );
+    addField(
+      'definition',
+      definition,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'answer',
+      answer,
+    );
+    addField(
+      'item',
+      item,
+    );
     return json;
   }
 
@@ -1346,44 +1492,6 @@ class QuestionnaireResponseItem extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'answer':
-        if (answer != null) {
-          return answer!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'item':
-        if (item != null) {
-          return item!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1395,39 +1503,51 @@ class QuestionnaireResponseItem extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'linkId':
@@ -1435,7 +1555,7 @@ class QuestionnaireResponseItem extends BackboneElement {
           if (child is FhirString) {
             return copyWith(linkId: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'definition':
@@ -1443,7 +1563,7 @@ class QuestionnaireResponseItem extends BackboneElement {
           if (child is FhirUri) {
             return copyWith(definition: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -1451,27 +1571,39 @@ class QuestionnaireResponseItem extends BackboneElement {
           if (child is FhirString) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'answer':
         {
           if (child is List<QuestionnaireResponseAnswer>) {
-            return copyWith(answer: child);
+            // Add all elements from passed list
+            final newList = [...?answer, ...child];
+            return copyWith(answer: newList);
+          } else if (child is QuestionnaireResponseAnswer) {
+            // Add single element to existing list or create new list
+            final newList = [...?answer, child];
+            return copyWith(answer: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'item':
         {
           if (child is List<QuestionnaireResponseItem>) {
-            return copyWith(item: child);
+            // Add all elements from passed list
+            final newList = [...?item, ...child];
+            return copyWith(item: newList);
+          } else if (child is QuestionnaireResponseItem) {
+            // Add single element to existing list or create new list
+            final newList = [...?item, child];
+            return copyWith(item: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1506,39 +1638,57 @@ class QuestionnaireResponseItem extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  QuestionnaireResponseItem createProperty(String propertyName) {
+  QuestionnaireResponseItem createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'linkId':
         {
-          return copyWith(linkId: FhirString.empty());
+          return copyWith(
+            linkId: FhirString.empty(),
+          );
         }
       case 'definition':
         {
-          return copyWith(definition: FhirUri.empty());
+          return copyWith(
+            definition: FhirUri.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: FhirString.empty());
+          return copyWith(
+            text: FhirString.empty(),
+          );
         }
       case 'answer':
         {
-          return copyWith(answer: <QuestionnaireResponseAnswer>[]);
+          return copyWith(
+            answer: <QuestionnaireResponseAnswer>[],
+          );
         }
       case 'item':
         {
-          return copyWith(item: <QuestionnaireResponseItem>[]);
+          return copyWith(
+            item: <QuestionnaireResponseItem>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1647,7 +1797,10 @@ class QuestionnaireResponseItem extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1662,13 +1815,22 @@ class QuestionnaireResponseItem extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(linkId, o.linkId)) {
+    if (!equalsDeepWithNull(
+      linkId,
+      o.linkId,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(definition, o.definition)) {
+    if (!equalsDeepWithNull(
+      definition,
+      o.definition,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<QuestionnaireResponseAnswer>(
@@ -1707,7 +1869,8 @@ class QuestionnaireResponseAnswer extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory QuestionnaireResponseAnswer.empty() => const QuestionnaireResponseAnswer();
+  factory QuestionnaireResponseAnswer.empty() =>
+      const QuestionnaireResponseAnswer();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory QuestionnaireResponseAnswer.fromJson(
@@ -1887,15 +2050,30 @@ class QuestionnaireResponseAnswer extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField('value${fhirType.capitalize()}', valueX);
+      addField(
+        'value${fhirType.capitalize()}',
+        valueX,
+      );
     }
 
-    addField('item', item);
+    addField(
+      'item',
+      item,
+    );
     return json;
   }
 
@@ -1996,38 +2174,6 @@ class QuestionnaireResponseAnswer extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'item':
-        if (item != null) {
-          return item!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2039,56 +2185,103 @@ class QuestionnaireResponseAnswer extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueX':
         {
           if (child is ValueXQuestionnaireResponseAnswer) {
-            // child is e.g. SubjectX union
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is FhirBoolean) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirDecimal) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirInteger) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirDate) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirDateTime) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirTime) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirString) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirUri) {
+              return copyWith(valueX: child);
+            }
+            if (child is Attachment) {
+              return copyWith(valueX: child);
+            }
+            if (child is Coding) {
+              return copyWith(valueX: child);
+            }
+            if (child is Quantity) {
+              return copyWith(valueX: child);
+            }
+            if (child is Reference) {
+              return copyWith(valueX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'valueFhirBoolean':
         {
           if (child is FhirBoolean) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirDecimal':
@@ -2096,7 +2289,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
           if (child is FhirDecimal) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirInteger':
@@ -2104,7 +2297,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
           if (child is FhirInteger) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirDate':
@@ -2112,7 +2305,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
           if (child is FhirDate) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirDateTime':
@@ -2120,7 +2313,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
           if (child is FhirDateTime) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirTime':
@@ -2128,7 +2321,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
           if (child is FhirTime) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirString':
@@ -2136,7 +2329,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
           if (child is FhirString) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirUri':
@@ -2144,7 +2337,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
           if (child is FhirUri) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueAttachment':
@@ -2152,7 +2345,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
           if (child is Attachment) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueCoding':
@@ -2160,7 +2353,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
           if (child is Coding) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueQuantity':
@@ -2168,7 +2361,7 @@ class QuestionnaireResponseAnswer extends BackboneElement {
           if (child is Quantity) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueReference':
@@ -2176,19 +2369,25 @@ class QuestionnaireResponseAnswer extends BackboneElement {
           if (child is Reference) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'item':
         {
           if (child is List<QuestionnaireResponseItem>) {
-            return copyWith(item: child);
+            // Add all elements from passed list
+            final newList = [...?item, ...child];
+            return copyWith(item: newList);
+          } else if (child is QuestionnaireResponseItem) {
+            // Add single element to existing list or create new list
+            final newList = [...?item, child];
+            return copyWith(item: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2255,73 +2454,107 @@ class QuestionnaireResponseAnswer extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  QuestionnaireResponseAnswer createProperty(String propertyName) {
+  QuestionnaireResponseAnswer createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'value':
       case 'valueX':
       case 'valueBoolean':
         {
-          return copyWith(valueX: FhirBoolean.empty());
+          return copyWith(
+            valueX: FhirBoolean.empty(),
+          );
         }
       case 'valueDecimal':
         {
-          return copyWith(valueX: FhirDecimal.empty());
+          return copyWith(
+            valueX: FhirDecimal.empty(),
+          );
         }
       case 'valueInteger':
         {
-          return copyWith(valueX: FhirInteger.empty());
+          return copyWith(
+            valueX: FhirInteger.empty(),
+          );
         }
       case 'valueDate':
         {
-          return copyWith(valueX: FhirDate.empty());
+          return copyWith(
+            valueX: FhirDate.empty(),
+          );
         }
       case 'valueDateTime':
         {
-          return copyWith(valueX: FhirDateTime.empty());
+          return copyWith(
+            valueX: FhirDateTime.empty(),
+          );
         }
       case 'valueTime':
         {
-          return copyWith(valueX: FhirTime.empty());
+          return copyWith(
+            valueX: FhirTime.empty(),
+          );
         }
       case 'valueString':
         {
-          return copyWith(valueX: FhirString.empty());
+          return copyWith(
+            valueX: FhirString.empty(),
+          );
         }
       case 'valueUri':
         {
-          return copyWith(valueX: FhirUri.empty());
+          return copyWith(
+            valueX: FhirUri.empty(),
+          );
         }
       case 'valueAttachment':
         {
-          return copyWith(valueX: Attachment.empty());
+          return copyWith(
+            valueX: Attachment.empty(),
+          );
         }
       case 'valueCoding':
         {
-          return copyWith(valueX: Coding.empty());
+          return copyWith(
+            valueX: Coding.empty(),
+          );
         }
       case 'valueQuantity':
         {
-          return copyWith(valueX: Quantity.empty());
+          return copyWith(
+            valueX: Quantity.empty(),
+          );
         }
       case 'valueReference':
         {
-          return copyWith(valueX: Reference.empty());
+          return copyWith(
+            valueX: Reference.empty(),
+          );
         }
       case 'item':
         {
-          return copyWith(item: <QuestionnaireResponseItem>[]);
+          return copyWith(
+            item: <QuestionnaireResponseItem>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2406,7 +2639,10 @@ class QuestionnaireResponseAnswer extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2421,7 +2657,10 @@ class QuestionnaireResponseAnswer extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(valueX, o.valueX)) {
+    if (!equalsDeepWithNull(
+      valueX,
+      o.valueX,
+    )) {
       return false;
     }
     if (!listEquals<QuestionnaireResponseItem>(

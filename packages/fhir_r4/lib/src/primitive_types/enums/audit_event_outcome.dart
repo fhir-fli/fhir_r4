@@ -54,9 +54,14 @@ class AuditEventOutcome extends FhirCodeEnum {
     if (value == null && element != null) {
       return AuditEventOutcome.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('AuditEventOutcome cannot be constructed from JSON.');
+      throw ArgumentError(
+        'AuditEventOutcome cannot be constructed from JSON.',
+      );
     }
-    return AuditEventOutcome._(validatedValue: value, element: element);
+    return AuditEventOutcome._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// value0

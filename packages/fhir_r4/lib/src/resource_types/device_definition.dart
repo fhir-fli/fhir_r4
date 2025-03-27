@@ -479,40 +479,130 @@ class DeviceDefinition extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('identifier', identifier);
-    addField('udiDeviceIdentifier', udiDeviceIdentifier);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'udiDeviceIdentifier',
+      udiDeviceIdentifier,
+    );
     if (manufacturerX != null) {
       final fhirType = manufacturerX!.fhirType;
-      addField('manufacturer${fhirType.capitalize()}', manufacturerX);
+      addField(
+        'manufacturer${fhirType.capitalize()}',
+        manufacturerX,
+      );
     }
 
-    addField('deviceName', deviceName);
-    addField('modelNumber', modelNumber);
-    addField('type', type);
-    addField('specialization', specialization);
-    addField('version', version);
-    addField('safety', safety);
-    addField('shelfLifeStorage', shelfLifeStorage);
-    addField('physicalCharacteristics', physicalCharacteristics);
-    addField('languageCode', languageCode);
-    addField('capability', capability);
-    addField('property', property);
-    addField('owner', owner);
-    addField('contact', contact);
-    addField('url', url);
-    addField('onlineInformation', onlineInformation);
-    addField('note', note);
-    addField('quantity', quantity);
-    addField('parentDevice', parentDevice);
-    addField('material', material);
+    addField(
+      'deviceName',
+      deviceName,
+    );
+    addField(
+      'modelNumber',
+      modelNumber,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'specialization',
+      specialization,
+    );
+    addField(
+      'version',
+      version,
+    );
+    addField(
+      'safety',
+      safety,
+    );
+    addField(
+      'shelfLifeStorage',
+      shelfLifeStorage,
+    );
+    addField(
+      'physicalCharacteristics',
+      physicalCharacteristics,
+    );
+    addField(
+      'languageCode',
+      languageCode,
+    );
+    addField(
+      'capability',
+      capability,
+    );
+    addField(
+      'property',
+      property,
+    );
+    addField(
+      'owner',
+      owner,
+    );
+    addField(
+      'contact',
+      contact,
+    );
+    addField(
+      'url',
+      url,
+    );
+    addField(
+      'onlineInformation',
+      onlineInformation,
+    );
+    addField(
+      'note',
+      note,
+    );
+    addField(
+      'quantity',
+      quantity,
+    );
+    addField(
+      'parentDevice',
+      parentDevice,
+    );
+    addField(
+      'material',
+      material,
+    );
     return json;
   }
 
@@ -698,116 +788,6 @@ class DeviceDefinition extends DomainResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'identifier':
-        if (identifier != null) {
-          return identifier!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'udiDeviceIdentifier':
-        if (udiDeviceIdentifier != null) {
-          return udiDeviceIdentifier!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'deviceName':
-        if (deviceName != null) {
-          return deviceName!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'specialization':
-        if (specialization != null) {
-          return specialization!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'version':
-        if (version != null) {
-          return version!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'safety':
-        if (safety != null) {
-          return safety!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'shelfLifeStorage':
-        if (shelfLifeStorage != null) {
-          return shelfLifeStorage!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'languageCode':
-        if (languageCode != null) {
-          return languageCode!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'capability':
-        if (capability != null) {
-          return capability!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'property':
-        if (property != null) {
-          return property!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'contact':
-        if (contact != null) {
-          return contact!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'note':
-        if (note != null) {
-          return note!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'material':
-        if (material != null) {
-          return material!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -819,23 +799,23 @@ class DeviceDefinition extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -843,7 +823,7 @@ class DeviceDefinition extends DomainResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -851,7 +831,7 @@ class DeviceDefinition extends DomainResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -859,7 +839,7 @@ class DeviceDefinition extends DomainResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -867,64 +847,99 @@ class DeviceDefinition extends DomainResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
           if (child is List<Identifier>) {
-            return copyWith(identifier: child);
+            // Add all elements from passed list
+            final newList = [...?identifier, ...child];
+            return copyWith(identifier: newList);
+          } else if (child is Identifier) {
+            // Add single element to existing list or create new list
+            final newList = [...?identifier, child];
+            return copyWith(identifier: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'udiDeviceIdentifier':
         {
           if (child is List<DeviceDefinitionUdiDeviceIdentifier>) {
-            return copyWith(udiDeviceIdentifier: child);
+            // Add all elements from passed list
+            final newList = [...?udiDeviceIdentifier, ...child];
+            return copyWith(udiDeviceIdentifier: newList);
+          } else if (child is DeviceDefinitionUdiDeviceIdentifier) {
+            // Add single element to existing list or create new list
+            final newList = [...?udiDeviceIdentifier, child];
+            return copyWith(udiDeviceIdentifier: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'manufacturerX':
         {
           if (child is ManufacturerXDeviceDefinition) {
-            // child is e.g. SubjectX union
             return copyWith(manufacturerX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is FhirString) {
+              return copyWith(manufacturerX: child);
+            }
+            if (child is Reference) {
+              return copyWith(manufacturerX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'manufacturerFhirString':
         {
           if (child is FhirString) {
             return copyWith(manufacturerX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'manufacturerReference':
@@ -932,15 +947,21 @@ class DeviceDefinition extends DomainResource {
           if (child is Reference) {
             return copyWith(manufacturerX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'deviceName':
         {
           if (child is List<DeviceDefinitionDeviceName>) {
-            return copyWith(deviceName: child);
+            // Add all elements from passed list
+            final newList = [...?deviceName, ...child];
+            return copyWith(deviceName: newList);
+          } else if (child is DeviceDefinitionDeviceName) {
+            // Add single element to existing list or create new list
+            final newList = [...?deviceName, child];
+            return copyWith(deviceName: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modelNumber':
@@ -948,7 +969,7 @@ class DeviceDefinition extends DomainResource {
           if (child is FhirString) {
             return copyWith(modelNumber: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -956,39 +977,63 @@ class DeviceDefinition extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'specialization':
         {
           if (child is List<DeviceDefinitionSpecialization>) {
-            return copyWith(specialization: child);
+            // Add all elements from passed list
+            final newList = [...?specialization, ...child];
+            return copyWith(specialization: newList);
+          } else if (child is DeviceDefinitionSpecialization) {
+            // Add single element to existing list or create new list
+            final newList = [...?specialization, child];
+            return copyWith(specialization: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'version':
         {
           if (child is List<FhirString>) {
-            return copyWith(version: child);
+            // Add all elements from passed list
+            final newList = [...?version, ...child];
+            return copyWith(version: newList);
+          } else if (child is FhirString) {
+            // Add single element to existing list or create new list
+            final newList = [...?version, child];
+            return copyWith(version: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'safety':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(safety: child);
+            // Add all elements from passed list
+            final newList = [...?safety, ...child];
+            return copyWith(safety: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?safety, child];
+            return copyWith(safety: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'shelfLifeStorage':
         {
           if (child is List<ProductShelfLife>) {
-            return copyWith(shelfLifeStorage: child);
+            // Add all elements from passed list
+            final newList = [...?shelfLifeStorage, ...child];
+            return copyWith(shelfLifeStorage: newList);
+          } else if (child is ProductShelfLife) {
+            // Add single element to existing list or create new list
+            final newList = [...?shelfLifeStorage, child];
+            return copyWith(shelfLifeStorage: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'physicalCharacteristics':
@@ -996,31 +1041,49 @@ class DeviceDefinition extends DomainResource {
           if (child is ProdCharacteristic) {
             return copyWith(physicalCharacteristics: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'languageCode':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(languageCode: child);
+            // Add all elements from passed list
+            final newList = [...?languageCode, ...child];
+            return copyWith(languageCode: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?languageCode, child];
+            return copyWith(languageCode: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'capability':
         {
           if (child is List<DeviceDefinitionCapability>) {
-            return copyWith(capability: child);
+            // Add all elements from passed list
+            final newList = [...?capability, ...child];
+            return copyWith(capability: newList);
+          } else if (child is DeviceDefinitionCapability) {
+            // Add single element to existing list or create new list
+            final newList = [...?capability, child];
+            return copyWith(capability: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'property':
         {
           if (child is List<DeviceDefinitionProperty>) {
-            return copyWith(property: child);
+            // Add all elements from passed list
+            final newList = [...?property, ...child];
+            return copyWith(property: newList);
+          } else if (child is DeviceDefinitionProperty) {
+            // Add single element to existing list or create new list
+            final newList = [...?property, child];
+            return copyWith(property: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'owner':
@@ -1028,15 +1091,21 @@ class DeviceDefinition extends DomainResource {
           if (child is Reference) {
             return copyWith(owner: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contact':
         {
           if (child is List<ContactPoint>) {
-            return copyWith(contact: child);
+            // Add all elements from passed list
+            final newList = [...?contact, ...child];
+            return copyWith(contact: newList);
+          } else if (child is ContactPoint) {
+            // Add single element to existing list or create new list
+            final newList = [...?contact, child];
+            return copyWith(contact: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'url':
@@ -1044,7 +1113,7 @@ class DeviceDefinition extends DomainResource {
           if (child is FhirUri) {
             return copyWith(url: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'onlineInformation':
@@ -1052,15 +1121,21 @@ class DeviceDefinition extends DomainResource {
           if (child is FhirUri) {
             return copyWith(onlineInformation: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
           if (child is List<Annotation>) {
-            return copyWith(note: child);
+            // Add all elements from passed list
+            final newList = [...?note, ...child];
+            return copyWith(note: newList);
+          } else if (child is Annotation) {
+            // Add single element to existing list or create new list
+            final newList = [...?note, child];
+            return copyWith(note: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'quantity':
@@ -1068,7 +1143,7 @@ class DeviceDefinition extends DomainResource {
           if (child is Quantity) {
             return copyWith(quantity: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'parentDevice':
@@ -1076,19 +1151,25 @@ class DeviceDefinition extends DomainResource {
           if (child is Reference) {
             return copyWith(parentDevice: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'material':
         {
           if (child is List<DeviceDefinitionMaterial>) {
-            return copyWith(material: child);
+            // Add all elements from passed list
+            final newList = [...?material, ...child];
+            return copyWith(material: newList);
+          } else if (child is DeviceDefinitionMaterial) {
+            // Add single element to existing list or create new list
+            final newList = [...?material, child];
+            return copyWith(material: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1172,134 +1253,197 @@ class DeviceDefinition extends DomainResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  DeviceDefinition createProperty(String propertyName) {
+  DeviceDefinition createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'identifier':
         {
-          return copyWith(identifier: <Identifier>[]);
+          return copyWith(
+            identifier: <Identifier>[],
+          );
         }
       case 'udiDeviceIdentifier':
         {
           return copyWith(
-              udiDeviceIdentifier: <DeviceDefinitionUdiDeviceIdentifier>[],);
+            udiDeviceIdentifier: <DeviceDefinitionUdiDeviceIdentifier>[],
+          );
         }
       case 'manufacturer':
       case 'manufacturerX':
       case 'manufacturerString':
         {
-          return copyWith(manufacturerX: FhirString.empty());
+          return copyWith(
+            manufacturerX: FhirString.empty(),
+          );
         }
       case 'manufacturerReference':
         {
-          return copyWith(manufacturerX: Reference.empty());
+          return copyWith(
+            manufacturerX: Reference.empty(),
+          );
         }
       case 'deviceName':
         {
-          return copyWith(deviceName: <DeviceDefinitionDeviceName>[]);
+          return copyWith(
+            deviceName: <DeviceDefinitionDeviceName>[],
+          );
         }
       case 'modelNumber':
         {
-          return copyWith(modelNumber: FhirString.empty());
+          return copyWith(
+            modelNumber: FhirString.empty(),
+          );
         }
       case 'type':
         {
-          return copyWith(type: CodeableConcept.empty());
+          return copyWith(
+            type: CodeableConcept.empty(),
+          );
         }
       case 'specialization':
         {
-          return copyWith(specialization: <DeviceDefinitionSpecialization>[]);
+          return copyWith(
+            specialization: <DeviceDefinitionSpecialization>[],
+          );
         }
       case 'version':
         {
-          return copyWith(version: <FhirString>[]);
+          return copyWith(
+            version: <FhirString>[],
+          );
         }
       case 'safety':
         {
-          return copyWith(safety: <CodeableConcept>[]);
+          return copyWith(
+            safety: <CodeableConcept>[],
+          );
         }
       case 'shelfLifeStorage':
         {
-          return copyWith(shelfLifeStorage: <ProductShelfLife>[]);
+          return copyWith(
+            shelfLifeStorage: <ProductShelfLife>[],
+          );
         }
       case 'physicalCharacteristics':
         {
-          return copyWith(physicalCharacteristics: ProdCharacteristic.empty());
+          return copyWith(
+            physicalCharacteristics: ProdCharacteristic.empty(),
+          );
         }
       case 'languageCode':
         {
-          return copyWith(languageCode: <CodeableConcept>[]);
+          return copyWith(
+            languageCode: <CodeableConcept>[],
+          );
         }
       case 'capability':
         {
-          return copyWith(capability: <DeviceDefinitionCapability>[]);
+          return copyWith(
+            capability: <DeviceDefinitionCapability>[],
+          );
         }
       case 'property':
         {
-          return copyWith(property: <DeviceDefinitionProperty>[]);
+          return copyWith(
+            property: <DeviceDefinitionProperty>[],
+          );
         }
       case 'owner':
         {
-          return copyWith(owner: Reference.empty());
+          return copyWith(
+            owner: Reference.empty(),
+          );
         }
       case 'contact':
         {
-          return copyWith(contact: <ContactPoint>[]);
+          return copyWith(
+            contact: <ContactPoint>[],
+          );
         }
       case 'url':
         {
-          return copyWith(url: FhirUri.empty());
+          return copyWith(
+            url: FhirUri.empty(),
+          );
         }
       case 'onlineInformation':
         {
-          return copyWith(onlineInformation: FhirUri.empty());
+          return copyWith(
+            onlineInformation: FhirUri.empty(),
+          );
         }
       case 'note':
         {
-          return copyWith(note: <Annotation>[]);
+          return copyWith(
+            note: <Annotation>[],
+          );
         }
       case 'quantity':
         {
-          return copyWith(quantity: Quantity.empty());
+          return copyWith(
+            quantity: Quantity.empty(),
+          );
         }
       case 'parentDevice':
         {
-          return copyWith(parentDevice: Reference.empty());
+          return copyWith(
+            parentDevice: Reference.empty(),
+          );
         }
       case 'material':
         {
-          return copyWith(material: <DeviceDefinitionMaterial>[]);
+          return copyWith(
+            material: <DeviceDefinitionMaterial>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1605,19 +1749,34 @@ class DeviceDefinition extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1650,7 +1809,10 @@ class DeviceDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(manufacturerX, o.manufacturerX)) {
+    if (!equalsDeepWithNull(
+      manufacturerX,
+      o.manufacturerX,
+    )) {
       return false;
     }
     if (!listEquals<DeviceDefinitionDeviceName>(
@@ -1659,10 +1821,16 @@ class DeviceDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(modelNumber, o.modelNumber)) {
+    if (!equalsDeepWithNull(
+      modelNumber,
+      o.modelNumber,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
     if (!listEquals<DeviceDefinitionSpecialization>(
@@ -1690,7 +1858,9 @@ class DeviceDefinition extends DomainResource {
       return false;
     }
     if (!equalsDeepWithNull(
-        physicalCharacteristics, o.physicalCharacteristics,)) {
+      physicalCharacteristics,
+      o.physicalCharacteristics,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1711,7 +1881,10 @@ class DeviceDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(owner, o.owner)) {
+    if (!equalsDeepWithNull(
+      owner,
+      o.owner,
+    )) {
       return false;
     }
     if (!listEquals<ContactPoint>(
@@ -1720,10 +1893,16 @@ class DeviceDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(url, o.url)) {
+    if (!equalsDeepWithNull(
+      url,
+      o.url,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(onlineInformation, o.onlineInformation)) {
+    if (!equalsDeepWithNull(
+      onlineInformation,
+      o.onlineInformation,
+    )) {
       return false;
     }
     if (!listEquals<Annotation>(
@@ -1732,10 +1911,16 @@ class DeviceDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(quantity, o.quantity)) {
+    if (!equalsDeepWithNull(
+      quantity,
+      o.quantity,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(parentDevice, o.parentDevice)) {
+    if (!equalsDeepWithNull(
+      parentDevice,
+      o.parentDevice,
+    )) {
       return false;
     }
     if (!listEquals<DeviceDefinitionMaterial>(
@@ -1916,12 +2101,30 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('deviceIdentifier', deviceIdentifier);
-    addField('issuer', issuer);
-    addField('jurisdiction', jurisdiction);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'deviceIdentifier',
+      deviceIdentifier,
+    );
+    addField(
+      'issuer',
+      issuer,
+    );
+    addField(
+      'jurisdiction',
+      jurisdiction,
+    );
     return json;
   }
 
@@ -1973,32 +2176,6 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2010,39 +2187,51 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'deviceIdentifier':
@@ -2050,7 +2239,7 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
           if (child is FhirString) {
             return copyWith(deviceIdentifier: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'issuer':
@@ -2058,7 +2247,7 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
           if (child is FhirUri) {
             return copyWith(issuer: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'jurisdiction':
@@ -2066,11 +2255,11 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
           if (child is FhirUri) {
             return copyWith(jurisdiction: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2101,31 +2290,45 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  DeviceDefinitionUdiDeviceIdentifier createProperty(String propertyName) {
+  DeviceDefinitionUdiDeviceIdentifier createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'deviceIdentifier':
         {
-          return copyWith(deviceIdentifier: FhirString.empty());
+          return copyWith(
+            deviceIdentifier: FhirString.empty(),
+          );
         }
       case 'issuer':
         {
-          return copyWith(issuer: FhirUri.empty());
+          return copyWith(
+            issuer: FhirUri.empty(),
+          );
         }
       case 'jurisdiction':
         {
-          return copyWith(jurisdiction: FhirUri.empty());
+          return copyWith(
+            jurisdiction: FhirUri.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2210,7 +2413,10 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2225,13 +2431,22 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(deviceIdentifier, o.deviceIdentifier)) {
+    if (!equalsDeepWithNull(
+      deviceIdentifier,
+      o.deviceIdentifier,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(issuer, o.issuer)) {
+    if (!equalsDeepWithNull(
+      issuer,
+      o.issuer,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(jurisdiction, o.jurisdiction)) {
+    if (!equalsDeepWithNull(
+      jurisdiction,
+      o.jurisdiction,
+    )) {
       return false;
     }
     return true;
@@ -2390,11 +2605,26 @@ class DeviceDefinitionDeviceName extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('name', name);
-    addField('type', type);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'name',
+      name,
+    );
+    addField(
+      'type',
+      type,
+    );
     return json;
   }
 
@@ -2443,32 +2673,6 @@ class DeviceDefinitionDeviceName extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2480,39 +2684,51 @@ class DeviceDefinitionDeviceName extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
@@ -2520,7 +2736,7 @@ class DeviceDefinitionDeviceName extends BackboneElement {
           if (child is FhirString) {
             return copyWith(name: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -2528,11 +2744,11 @@ class DeviceDefinitionDeviceName extends BackboneElement {
           if (child is DeviceNameType) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2561,27 +2777,39 @@ class DeviceDefinitionDeviceName extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  DeviceDefinitionDeviceName createProperty(String propertyName) {
+  DeviceDefinitionDeviceName createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'name':
         {
-          return copyWith(name: FhirString.empty());
+          return copyWith(
+            name: FhirString.empty(),
+          );
         }
       case 'type':
         {
-          return copyWith(type: DeviceNameType.empty());
+          return copyWith(
+            type: DeviceNameType.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2660,7 +2888,10 @@ class DeviceDefinitionDeviceName extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2675,10 +2906,16 @@ class DeviceDefinitionDeviceName extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(name, o.name)) {
+    if (!equalsDeepWithNull(
+      name,
+      o.name,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
     return true;
@@ -2837,11 +3074,26 @@ class DeviceDefinitionSpecialization extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('systemType', systemType);
-    addField('version', version);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'systemType',
+      systemType,
+    );
+    addField(
+      'version',
+      version,
+    );
     return json;
   }
 
@@ -2892,32 +3144,6 @@ class DeviceDefinitionSpecialization extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2929,39 +3155,51 @@ class DeviceDefinitionSpecialization extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'systemType':
@@ -2969,7 +3207,7 @@ class DeviceDefinitionSpecialization extends BackboneElement {
           if (child is FhirString) {
             return copyWith(systemType: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'version':
@@ -2977,11 +3215,11 @@ class DeviceDefinitionSpecialization extends BackboneElement {
           if (child is FhirString) {
             return copyWith(version: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -3010,27 +3248,39 @@ class DeviceDefinitionSpecialization extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  DeviceDefinitionSpecialization createProperty(String propertyName) {
+  DeviceDefinitionSpecialization createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'systemType':
         {
-          return copyWith(systemType: FhirString.empty());
+          return copyWith(
+            systemType: FhirString.empty(),
+          );
         }
       case 'version':
         {
-          return copyWith(version: FhirString.empty());
+          return copyWith(
+            version: FhirString.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3110,7 +3360,10 @@ class DeviceDefinitionSpecialization extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3125,10 +3378,16 @@ class DeviceDefinitionSpecialization extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(systemType, o.systemType)) {
+    if (!equalsDeepWithNull(
+      systemType,
+      o.systemType,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(version, o.version)) {
+    if (!equalsDeepWithNull(
+      version,
+      o.version,
+    )) {
       return false;
     }
     return true;
@@ -3288,11 +3547,26 @@ class DeviceDefinitionCapability extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('type', type);
-    addField('description', description);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'description',
+      description,
+    );
     return json;
   }
 
@@ -3343,38 +3617,6 @@ class DeviceDefinitionCapability extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'description':
-        if (description != null) {
-          return description!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -3386,39 +3628,51 @@ class DeviceDefinitionCapability extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -3426,19 +3680,25 @@ class DeviceDefinitionCapability extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(description: child);
+            // Add all elements from passed list
+            final newList = [...?description, ...child];
+            return copyWith(description: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?description, child];
+            return copyWith(description: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -3467,27 +3727,39 @@ class DeviceDefinitionCapability extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  DeviceDefinitionCapability createProperty(String propertyName) {
+  DeviceDefinitionCapability createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'type':
         {
-          return copyWith(type: CodeableConcept.empty());
+          return copyWith(
+            type: CodeableConcept.empty(),
+          );
         }
       case 'description':
         {
-          return copyWith(description: <CodeableConcept>[]);
+          return copyWith(
+            description: <CodeableConcept>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3571,7 +3843,10 @@ class DeviceDefinitionCapability extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3586,7 +3861,10 @@ class DeviceDefinitionCapability extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -3769,12 +4047,30 @@ class DeviceDefinitionProperty extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('type', type);
-    addField('valueQuantity', valueQuantity);
-    addField('valueCode', valueCode);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'valueQuantity',
+      valueQuantity,
+    );
+    addField(
+      'valueCode',
+      valueCode,
+    );
     return json;
   }
 
@@ -3830,44 +4126,6 @@ class DeviceDefinitionProperty extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'valueQuantity':
-        if (valueQuantity != null) {
-          return valueQuantity!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'valueCode':
-        if (valueCode != null) {
-          return valueCode!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -3879,39 +4137,51 @@ class DeviceDefinitionProperty extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -3919,27 +4189,39 @@ class DeviceDefinitionProperty extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueQuantity':
         {
           if (child is List<Quantity>) {
-            return copyWith(valueQuantity: child);
+            // Add all elements from passed list
+            final newList = [...?valueQuantity, ...child];
+            return copyWith(valueQuantity: newList);
+          } else if (child is Quantity) {
+            // Add single element to existing list or create new list
+            final newList = [...?valueQuantity, child];
+            return copyWith(valueQuantity: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueCode':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(valueCode: child);
+            // Add all elements from passed list
+            final newList = [...?valueCode, ...child];
+            return copyWith(valueCode: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?valueCode, child];
+            return copyWith(valueCode: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -3970,31 +4252,45 @@ class DeviceDefinitionProperty extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  DeviceDefinitionProperty createProperty(String propertyName) {
+  DeviceDefinitionProperty createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'type':
         {
-          return copyWith(type: CodeableConcept.empty());
+          return copyWith(
+            type: CodeableConcept.empty(),
+          );
         }
       case 'valueQuantity':
         {
-          return copyWith(valueQuantity: <Quantity>[]);
+          return copyWith(
+            valueQuantity: <Quantity>[],
+          );
         }
       case 'valueCode':
         {
-          return copyWith(valueCode: <CodeableConcept>[]);
+          return copyWith(
+            valueCode: <CodeableConcept>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -4089,7 +4385,10 @@ class DeviceDefinitionProperty extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4104,7 +4403,10 @@ class DeviceDefinitionProperty extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
     if (!listEquals<Quantity>(
@@ -4283,12 +4585,30 @@ class DeviceDefinitionMaterial extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('substance', substance);
-    addField('alternate', alternate);
-    addField('allergenicIndicator', allergenicIndicator);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'substance',
+      substance,
+    );
+    addField(
+      'alternate',
+      alternate,
+    );
+    addField(
+      'allergenicIndicator',
+      allergenicIndicator,
+    );
     return json;
   }
 
@@ -4344,32 +4664,6 @@ class DeviceDefinitionMaterial extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -4381,39 +4675,51 @@ class DeviceDefinitionMaterial extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'substance':
@@ -4421,7 +4727,7 @@ class DeviceDefinitionMaterial extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(substance: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'alternate':
@@ -4429,7 +4735,7 @@ class DeviceDefinitionMaterial extends BackboneElement {
           if (child is FhirBoolean) {
             return copyWith(alternate: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'allergenicIndicator':
@@ -4437,11 +4743,11 @@ class DeviceDefinitionMaterial extends BackboneElement {
           if (child is FhirBoolean) {
             return copyWith(allergenicIndicator: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -4472,31 +4778,45 @@ class DeviceDefinitionMaterial extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  DeviceDefinitionMaterial createProperty(String propertyName) {
+  DeviceDefinitionMaterial createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'substance':
         {
-          return copyWith(substance: CodeableConcept.empty());
+          return copyWith(
+            substance: CodeableConcept.empty(),
+          );
         }
       case 'alternate':
         {
-          return copyWith(alternate: FhirBoolean.empty());
+          return copyWith(
+            alternate: FhirBoolean.empty(),
+          );
         }
       case 'allergenicIndicator':
         {
-          return copyWith(allergenicIndicator: FhirBoolean.empty());
+          return copyWith(
+            allergenicIndicator: FhirBoolean.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -4584,7 +4904,10 @@ class DeviceDefinitionMaterial extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4599,13 +4922,22 @@ class DeviceDefinitionMaterial extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(substance, o.substance)) {
+    if (!equalsDeepWithNull(
+      substance,
+      o.substance,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(alternate, o.alternate)) {
+    if (!equalsDeepWithNull(
+      alternate,
+      o.alternate,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(allergenicIndicator, o.allergenicIndicator)) {
+    if (!equalsDeepWithNull(
+      allergenicIndicator,
+      o.allergenicIndicator,
+    )) {
       return false;
     }
     return true;

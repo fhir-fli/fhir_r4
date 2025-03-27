@@ -56,9 +56,13 @@ class ObservationRangeCategory extends FhirCodeEnum {
       return ObservationRangeCategory.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ObservationRangeCategory cannot be constructed from JSON.',);
+        'ObservationRangeCategory cannot be constructed from JSON.',
+      );
     }
-    return ObservationRangeCategory._(validatedValue: value, element: element);
+    return ObservationRangeCategory._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// reference

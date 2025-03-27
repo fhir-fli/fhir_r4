@@ -54,9 +54,14 @@ class SpecimenStatus extends FhirCodeEnum {
     if (value == null && element != null) {
       return SpecimenStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('SpecimenStatus cannot be constructed from JSON.');
+      throw ArgumentError(
+        'SpecimenStatus cannot be constructed from JSON.',
+      );
     }
-    return SpecimenStatus._(validatedValue: value, element: element);
+    return SpecimenStatus._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// available

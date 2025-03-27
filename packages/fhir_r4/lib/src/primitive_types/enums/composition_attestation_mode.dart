@@ -56,10 +56,13 @@ class CompositionAttestationMode extends FhirCodeEnum {
       return CompositionAttestationMode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'CompositionAttestationMode cannot be constructed from JSON.',);
+        'CompositionAttestationMode cannot be constructed from JSON.',
+      );
     }
     return CompositionAttestationMode._(
-        validatedValue: value, element: element,);
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// personal

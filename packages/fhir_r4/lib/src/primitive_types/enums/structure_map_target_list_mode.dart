@@ -56,10 +56,13 @@ class StructureMapTargetListMode extends FhirCodeEnum {
       return StructureMapTargetListMode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'StructureMapTargetListMode cannot be constructed from JSON.',);
+        'StructureMapTargetListMode cannot be constructed from JSON.',
+      );
     }
     return StructureMapTargetListMode._(
-        validatedValue: value, element: element,);
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// first

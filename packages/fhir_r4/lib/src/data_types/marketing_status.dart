@@ -205,14 +205,38 @@ class MarketingStatus extends BackboneType {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('country', country);
-    addField('jurisdiction', jurisdiction);
-    addField('status', status);
-    addField('dateRange', dateRange);
-    addField('restoreDate', restoreDate);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'country',
+      country,
+    );
+    addField(
+      'jurisdiction',
+      jurisdiction,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'dateRange',
+      dateRange,
+    );
+    addField(
+      'restoreDate',
+      restoreDate,
+    );
     return json;
   }
 
@@ -278,32 +302,6 @@ class MarketingStatus extends BackboneType {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -315,39 +313,51 @@ class MarketingStatus extends BackboneType {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'country':
@@ -355,7 +365,7 @@ class MarketingStatus extends BackboneType {
           if (child is CodeableConcept) {
             return copyWith(country: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'jurisdiction':
@@ -363,7 +373,7 @@ class MarketingStatus extends BackboneType {
           if (child is CodeableConcept) {
             return copyWith(jurisdiction: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -371,7 +381,7 @@ class MarketingStatus extends BackboneType {
           if (child is CodeableConcept) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'dateRange':
@@ -379,7 +389,7 @@ class MarketingStatus extends BackboneType {
           if (child is Period) {
             return copyWith(dateRange: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'restoreDate':
@@ -387,11 +397,11 @@ class MarketingStatus extends BackboneType {
           if (child is FhirDateTime) {
             return copyWith(restoreDate: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -426,39 +436,57 @@ class MarketingStatus extends BackboneType {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  MarketingStatus createProperty(String propertyName) {
+  MarketingStatus createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'country':
         {
-          return copyWith(country: CodeableConcept.empty());
+          return copyWith(
+            country: CodeableConcept.empty(),
+          );
         }
       case 'jurisdiction':
         {
-          return copyWith(jurisdiction: CodeableConcept.empty());
+          return copyWith(
+            jurisdiction: CodeableConcept.empty(),
+          );
         }
       case 'status':
         {
-          return copyWith(status: CodeableConcept.empty());
+          return copyWith(
+            status: CodeableConcept.empty(),
+          );
         }
       case 'dateRange':
         {
-          return copyWith(dateRange: Period.empty());
+          return copyWith(
+            dateRange: Period.empty(),
+          );
         }
       case 'restoreDate':
         {
-          return copyWith(restoreDate: FhirDateTime.empty());
+          return copyWith(
+            restoreDate: FhirDateTime.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -559,7 +587,10 @@ class MarketingStatus extends BackboneType {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -574,19 +605,34 @@ class MarketingStatus extends BackboneType {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(country, o.country)) {
+    if (!equalsDeepWithNull(
+      country,
+      o.country,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(jurisdiction, o.jurisdiction)) {
+    if (!equalsDeepWithNull(
+      jurisdiction,
+      o.jurisdiction,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(dateRange, o.dateRange)) {
+    if (!equalsDeepWithNull(
+      dateRange,
+      o.dateRange,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(restoreDate, o.restoreDate)) {
+    if (!equalsDeepWithNull(
+      restoreDate,
+      o.restoreDate,
+    )) {
       return false;
     }
     return true;

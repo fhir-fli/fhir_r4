@@ -459,40 +459,142 @@ class SearchParameter extends CanonicalResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('url', url);
-    addField('version', version);
-    addField('name', name);
-    addField('derivedFrom', derivedFrom);
-    addField('status', status);
-    addField('experimental', experimental);
-    addField('date', date);
-    addField('publisher', publisher);
-    addField('contact', contact);
-    addField('description', description);
-    addField('useContext', useContext);
-    addField('jurisdiction', jurisdiction);
-    addField('purpose', purpose);
-    addField('code', code);
-    addField('base', base);
-    addField('type', type);
-    addField('expression', expression);
-    addField('xpath', xpath);
-    addField('xpathUsage', xpathUsage);
-    addField('target', target);
-    addField('multipleOr', multipleOr);
-    addField('multipleAnd', multipleAnd);
-    addField('comparator', comparator);
-    addField('modifier', modifier);
-    addField('chain', chain);
-    addField('component', component);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'url',
+      url,
+    );
+    addField(
+      'version',
+      version,
+    );
+    addField(
+      'name',
+      name,
+    );
+    addField(
+      'derivedFrom',
+      derivedFrom,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'experimental',
+      experimental,
+    );
+    addField(
+      'date',
+      date,
+    );
+    addField(
+      'publisher',
+      publisher,
+    );
+    addField(
+      'contact',
+      contact,
+    );
+    addField(
+      'description',
+      description,
+    );
+    addField(
+      'useContext',
+      useContext,
+    );
+    addField(
+      'jurisdiction',
+      jurisdiction,
+    );
+    addField(
+      'purpose',
+      purpose,
+    );
+    addField(
+      'code',
+      code,
+    );
+    addField(
+      'base',
+      base,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'expression',
+      expression,
+    );
+    addField(
+      'xpath',
+      xpath,
+    );
+    addField(
+      'xpathUsage',
+      xpathUsage,
+    );
+    addField(
+      'target',
+      target,
+    );
+    addField(
+      'multipleOr',
+      multipleOr,
+    );
+    addField(
+      'multipleAnd',
+      multipleAnd,
+    );
+    addField(
+      'comparator',
+      comparator,
+    );
+    addField(
+      'modifier',
+      modifier,
+    );
+    addField(
+      'chain',
+      chain,
+    );
+    addField(
+      'component',
+      component,
+    );
     return json;
   }
 
@@ -682,88 +784,6 @@ class SearchParameter extends CanonicalResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'contact':
-        if (contact != null) {
-          return contact!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'useContext':
-        if (useContext != null) {
-          return useContext!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'jurisdiction':
-        if (jurisdiction != null) {
-          return jurisdiction!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'base':
-        return base;
-      case 'target':
-        if (target != null) {
-          return target!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'comparator':
-        if (comparator != null) {
-          return comparator!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifier':
-        if (modifier != null) {
-          return modifier!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'chain':
-        if (chain != null) {
-          return chain!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'component':
-        if (component != null) {
-          return component!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -775,23 +795,23 @@ class SearchParameter extends CanonicalResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -799,7 +819,7 @@ class SearchParameter extends CanonicalResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -807,7 +827,7 @@ class SearchParameter extends CanonicalResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -815,7 +835,7 @@ class SearchParameter extends CanonicalResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -823,31 +843,49 @@ class SearchParameter extends CanonicalResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'url':
@@ -855,7 +893,7 @@ class SearchParameter extends CanonicalResource {
           if (child is FhirUri) {
             return copyWith(url: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'version':
@@ -863,7 +901,7 @@ class SearchParameter extends CanonicalResource {
           if (child is FhirString) {
             return copyWith(version: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
@@ -871,7 +909,7 @@ class SearchParameter extends CanonicalResource {
           if (child is FhirString) {
             return copyWith(name: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'derivedFrom':
@@ -879,7 +917,7 @@ class SearchParameter extends CanonicalResource {
           if (child is FhirCanonical) {
             return copyWith(derivedFrom: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -887,7 +925,7 @@ class SearchParameter extends CanonicalResource {
           if (child is PublicationStatus) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'experimental':
@@ -895,7 +933,7 @@ class SearchParameter extends CanonicalResource {
           if (child is FhirBoolean) {
             return copyWith(experimental: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
@@ -903,7 +941,7 @@ class SearchParameter extends CanonicalResource {
           if (child is FhirDateTime) {
             return copyWith(date: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'publisher':
@@ -911,15 +949,21 @@ class SearchParameter extends CanonicalResource {
           if (child is FhirString) {
             return copyWith(publisher: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contact':
         {
           if (child is List<ContactDetail>) {
-            return copyWith(contact: child);
+            // Add all elements from passed list
+            final newList = [...?contact, ...child];
+            return copyWith(contact: newList);
+          } else if (child is ContactDetail) {
+            // Add single element to existing list or create new list
+            final newList = [...?contact, child];
+            return copyWith(contact: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
@@ -927,23 +971,35 @@ class SearchParameter extends CanonicalResource {
           if (child is FhirMarkdown) {
             return copyWith(description: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'useContext':
         {
           if (child is List<UsageContext>) {
-            return copyWith(useContext: child);
+            // Add all elements from passed list
+            final newList = [...?useContext, ...child];
+            return copyWith(useContext: newList);
+          } else if (child is UsageContext) {
+            // Add single element to existing list or create new list
+            final newList = [...?useContext, child];
+            return copyWith(useContext: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'jurisdiction':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(jurisdiction: child);
+            // Add all elements from passed list
+            final newList = [...?jurisdiction, ...child];
+            return copyWith(jurisdiction: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?jurisdiction, child];
+            return copyWith(jurisdiction: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'purpose':
@@ -951,7 +1007,7 @@ class SearchParameter extends CanonicalResource {
           if (child is FhirMarkdown) {
             return copyWith(purpose: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
@@ -959,15 +1015,21 @@ class SearchParameter extends CanonicalResource {
           if (child is FhirCode) {
             return copyWith(code: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'base':
         {
           if (child is List<FhirCode>) {
-            return copyWith(base: child);
+            // Add all elements from passed list
+            final newList = [...base, ...child];
+            return copyWith(base: newList);
+          } else if (child is FhirCode) {
+            // Add single element to existing list or create new list
+            final newList = [...base, child];
+            return copyWith(base: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -975,7 +1037,7 @@ class SearchParameter extends CanonicalResource {
           if (child is SearchParamType) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'expression':
@@ -983,7 +1045,7 @@ class SearchParameter extends CanonicalResource {
           if (child is FhirString) {
             return copyWith(expression: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'xpath':
@@ -991,7 +1053,7 @@ class SearchParameter extends CanonicalResource {
           if (child is FhirString) {
             return copyWith(xpath: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'xpathUsage':
@@ -999,15 +1061,21 @@ class SearchParameter extends CanonicalResource {
           if (child is XPathUsageType) {
             return copyWith(xpathUsage: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'target':
         {
           if (child is List<FhirCode>) {
-            return copyWith(target: child);
+            // Add all elements from passed list
+            final newList = [...?target, ...child];
+            return copyWith(target: newList);
+          } else if (child is FhirCode) {
+            // Add single element to existing list or create new list
+            final newList = [...?target, child];
+            return copyWith(target: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'multipleOr':
@@ -1015,7 +1083,7 @@ class SearchParameter extends CanonicalResource {
           if (child is FhirBoolean) {
             return copyWith(multipleOr: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'multipleAnd':
@@ -1023,43 +1091,67 @@ class SearchParameter extends CanonicalResource {
           if (child is FhirBoolean) {
             return copyWith(multipleAnd: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'comparator':
         {
           if (child is List<SearchComparator>) {
-            return copyWith(comparator: child);
+            // Add all elements from passed list
+            final newList = [...?comparator, ...child];
+            return copyWith(comparator: newList);
+          } else if (child is SearchComparator) {
+            // Add single element to existing list or create new list
+            final newList = [...?comparator, child];
+            return copyWith(comparator: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifier':
         {
           if (child is List<SearchModifierCode>) {
-            return copyWith(modifier: child);
+            // Add all elements from passed list
+            final newList = [...?modifier, ...child];
+            return copyWith(modifier: newList);
+          } else if (child is SearchModifierCode) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifier, child];
+            return copyWith(modifier: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'chain':
         {
           if (child is List<FhirString>) {
-            return copyWith(chain: child);
+            // Add all elements from passed list
+            final newList = [...?chain, ...child];
+            return copyWith(chain: newList);
+          } else if (child is FhirString) {
+            // Add single element to existing list or create new list
+            final newList = [...?chain, child];
+            return copyWith(chain: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'component':
         {
           if (child is List<SearchParameterComponent>) {
-            return copyWith(component: child);
+            // Add all elements from passed list
+            final newList = [...?component, ...child];
+            return copyWith(component: newList);
+          } else if (child is SearchParameterComponent) {
+            // Add single element to existing list or create new list
+            final newList = [...?component, child];
+            return copyWith(component: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1146,143 +1238,213 @@ class SearchParameter extends CanonicalResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  SearchParameter createProperty(String propertyName) {
+  SearchParameter createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'url':
         {
-          return copyWith(url: FhirUri.empty());
+          return copyWith(
+            url: FhirUri.empty(),
+          );
         }
       case 'version':
         {
-          return copyWith(version: FhirString.empty());
+          return copyWith(
+            version: FhirString.empty(),
+          );
         }
       case 'name':
         {
-          return copyWith(name: FhirString.empty());
+          return copyWith(
+            name: FhirString.empty(),
+          );
         }
       case 'derivedFrom':
         {
-          return copyWith(derivedFrom: FhirCanonical.empty());
+          return copyWith(
+            derivedFrom: FhirCanonical.empty(),
+          );
         }
       case 'status':
         {
-          return copyWith(status: PublicationStatus.empty());
+          return copyWith(
+            status: PublicationStatus.empty(),
+          );
         }
       case 'experimental':
         {
-          return copyWith(experimental: FhirBoolean.empty());
+          return copyWith(
+            experimental: FhirBoolean.empty(),
+          );
         }
       case 'date':
         {
-          return copyWith(date: FhirDateTime.empty());
+          return copyWith(
+            date: FhirDateTime.empty(),
+          );
         }
       case 'publisher':
         {
-          return copyWith(publisher: FhirString.empty());
+          return copyWith(
+            publisher: FhirString.empty(),
+          );
         }
       case 'contact':
         {
-          return copyWith(contact: <ContactDetail>[]);
+          return copyWith(
+            contact: <ContactDetail>[],
+          );
         }
       case 'description':
         {
-          return copyWith(description: FhirMarkdown.empty());
+          return copyWith(
+            description: FhirMarkdown.empty(),
+          );
         }
       case 'useContext':
         {
-          return copyWith(useContext: <UsageContext>[]);
+          return copyWith(
+            useContext: <UsageContext>[],
+          );
         }
       case 'jurisdiction':
         {
-          return copyWith(jurisdiction: <CodeableConcept>[]);
+          return copyWith(
+            jurisdiction: <CodeableConcept>[],
+          );
         }
       case 'purpose':
         {
-          return copyWith(purpose: FhirMarkdown.empty());
+          return copyWith(
+            purpose: FhirMarkdown.empty(),
+          );
         }
       case 'code':
         {
-          return copyWith(code: FhirCode.empty());
+          return copyWith(
+            code: FhirCode.empty(),
+          );
         }
       case 'base':
         {
-          return copyWith(base: <FhirCode>[]);
+          return copyWith(
+            base: <FhirCode>[],
+          );
         }
       case 'type':
         {
-          return copyWith(type: SearchParamType.empty());
+          return copyWith(
+            type: SearchParamType.empty(),
+          );
         }
       case 'expression':
         {
-          return copyWith(expression: FhirString.empty());
+          return copyWith(
+            expression: FhirString.empty(),
+          );
         }
       case 'xpath':
         {
-          return copyWith(xpath: FhirString.empty());
+          return copyWith(
+            xpath: FhirString.empty(),
+          );
         }
       case 'xpathUsage':
         {
-          return copyWith(xpathUsage: XPathUsageType.empty());
+          return copyWith(
+            xpathUsage: XPathUsageType.empty(),
+          );
         }
       case 'target':
         {
-          return copyWith(target: <FhirCode>[]);
+          return copyWith(
+            target: <FhirCode>[],
+          );
         }
       case 'multipleOr':
         {
-          return copyWith(multipleOr: FhirBoolean.empty());
+          return copyWith(
+            multipleOr: FhirBoolean.empty(),
+          );
         }
       case 'multipleAnd':
         {
-          return copyWith(multipleAnd: FhirBoolean.empty());
+          return copyWith(
+            multipleAnd: FhirBoolean.empty(),
+          );
         }
       case 'comparator':
         {
-          return copyWith(comparator: <SearchComparator>[]);
+          return copyWith(
+            comparator: <SearchComparator>[],
+          );
         }
       case 'modifier':
         {
-          return copyWith(modifier: <SearchModifierCode>[]);
+          return copyWith(
+            modifier: <SearchModifierCode>[],
+          );
         }
       case 'chain':
         {
-          return copyWith(chain: <FhirString>[]);
+          return copyWith(
+            chain: <FhirString>[],
+          );
         }
       case 'component':
         {
-          return copyWith(component: <SearchParameterComponent>[]);
+          return copyWith(
+            component: <SearchParameterComponent>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1591,19 +1753,34 @@ class SearchParameter extends CanonicalResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1624,28 +1801,52 @@ class SearchParameter extends CanonicalResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(url, o.url)) {
+    if (!equalsDeepWithNull(
+      url,
+      o.url,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(version, o.version)) {
+    if (!equalsDeepWithNull(
+      version,
+      o.version,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(name, o.name)) {
+    if (!equalsDeepWithNull(
+      name,
+      o.name,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(derivedFrom, o.derivedFrom)) {
+    if (!equalsDeepWithNull(
+      derivedFrom,
+      o.derivedFrom,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(experimental, o.experimental)) {
+    if (!equalsDeepWithNull(
+      experimental,
+      o.experimental,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(date, o.date)) {
+    if (!equalsDeepWithNull(
+      date,
+      o.date,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(publisher, o.publisher)) {
+    if (!equalsDeepWithNull(
+      publisher,
+      o.publisher,
+    )) {
       return false;
     }
     if (!listEquals<ContactDetail>(
@@ -1654,7 +1855,10 @@ class SearchParameter extends CanonicalResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(description, o.description)) {
+    if (!equalsDeepWithNull(
+      description,
+      o.description,
+    )) {
       return false;
     }
     if (!listEquals<UsageContext>(
@@ -1669,10 +1873,16 @@ class SearchParameter extends CanonicalResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(purpose, o.purpose)) {
+    if (!equalsDeepWithNull(
+      purpose,
+      o.purpose,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(code, o.code)) {
+    if (!equalsDeepWithNull(
+      code,
+      o.code,
+    )) {
       return false;
     }
     if (!listEquals<FhirCode>(
@@ -1681,16 +1891,28 @@ class SearchParameter extends CanonicalResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(expression, o.expression)) {
+    if (!equalsDeepWithNull(
+      expression,
+      o.expression,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(xpath, o.xpath)) {
+    if (!equalsDeepWithNull(
+      xpath,
+      o.xpath,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(xpathUsage, o.xpathUsage)) {
+    if (!equalsDeepWithNull(
+      xpathUsage,
+      o.xpathUsage,
+    )) {
       return false;
     }
     if (!listEquals<FhirCode>(
@@ -1699,10 +1921,16 @@ class SearchParameter extends CanonicalResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(multipleOr, o.multipleOr)) {
+    if (!equalsDeepWithNull(
+      multipleOr,
+      o.multipleOr,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(multipleAnd, o.multipleAnd)) {
+    if (!equalsDeepWithNull(
+      multipleAnd,
+      o.multipleAnd,
+    )) {
       return false;
     }
     if (!listEquals<SearchComparator>(
@@ -1884,11 +2112,26 @@ class SearchParameterComponent extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('definition', definition);
-    addField('expression', expression);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'definition',
+      definition,
+    );
+    addField(
+      'expression',
+      expression,
+    );
     return json;
   }
 
@@ -1937,32 +2180,6 @@ class SearchParameterComponent extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1974,39 +2191,51 @@ class SearchParameterComponent extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'definition':
@@ -2014,7 +2243,7 @@ class SearchParameterComponent extends BackboneElement {
           if (child is FhirCanonical) {
             return copyWith(definition: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'expression':
@@ -2022,11 +2251,11 @@ class SearchParameterComponent extends BackboneElement {
           if (child is FhirString) {
             return copyWith(expression: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2055,27 +2284,39 @@ class SearchParameterComponent extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  SearchParameterComponent createProperty(String propertyName) {
+  SearchParameterComponent createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'definition':
         {
-          return copyWith(definition: FhirCanonical.empty());
+          return copyWith(
+            definition: FhirCanonical.empty(),
+          );
         }
       case 'expression':
         {
-          return copyWith(expression: FhirString.empty());
+          return copyWith(
+            expression: FhirString.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2154,7 +2395,10 @@ class SearchParameterComponent extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2169,10 +2413,16 @@ class SearchParameterComponent extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(definition, o.definition)) {
+    if (!equalsDeepWithNull(
+      definition,
+      o.definition,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(expression, o.expression)) {
+    if (!equalsDeepWithNull(
+      expression,
+      o.expression,
+    )) {
       return false;
     }
     return true;

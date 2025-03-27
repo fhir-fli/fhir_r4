@@ -54,9 +54,14 @@ class GroupMeasure extends FhirCodeEnum {
     if (value == null && element != null) {
       return GroupMeasure.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('GroupMeasure cannot be constructed from JSON.');
+      throw ArgumentError(
+        'GroupMeasure cannot be constructed from JSON.',
+      );
     }
-    return GroupMeasure._(validatedValue: value, element: element);
+    return GroupMeasure._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// mean

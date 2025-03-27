@@ -56,9 +56,13 @@ class ResearchSubjectStatus extends FhirCodeEnum {
       return ResearchSubjectStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ResearchSubjectStatus cannot be constructed from JSON.',);
+        'ResearchSubjectStatus cannot be constructed from JSON.',
+      );
     }
-    return ResearchSubjectStatus._(validatedValue: value, element: element);
+    return ResearchSubjectStatus._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// candidate

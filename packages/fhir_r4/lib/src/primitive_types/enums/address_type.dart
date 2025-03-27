@@ -54,9 +54,14 @@ class AddressType extends FhirCodeEnum {
     if (value == null && element != null) {
       return AddressType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('AddressType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'AddressType cannot be constructed from JSON.',
+      );
     }
-    return AddressType._(validatedValue: value, element: element);
+    return AddressType._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// postal

@@ -392,31 +392,106 @@ class Location extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('identifier', identifier);
-    addField('status', status);
-    addField('operationalStatus', operationalStatus);
-    addField('name', name);
-    addField('alias', alias);
-    addField('description', description);
-    addField('mode', mode);
-    addField('type', type);
-    addField('telecom', telecom);
-    addField('address', address);
-    addField('physicalType', physicalType);
-    addField('position', position);
-    addField('managingOrganization', managingOrganization);
-    addField('partOf', partOf);
-    addField('hoursOfOperation', hoursOfOperation);
-    addField('availabilityExceptions', availabilityExceptions);
-    addField('endpoint', endpoint);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'operationalStatus',
+      operationalStatus,
+    );
+    addField(
+      'name',
+      name,
+    );
+    addField(
+      'alias',
+      alias,
+    );
+    addField(
+      'description',
+      description,
+    );
+    addField(
+      'mode',
+      mode,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'telecom',
+      telecom,
+    );
+    addField(
+      'address',
+      address,
+    );
+    addField(
+      'physicalType',
+      physicalType,
+    );
+    addField(
+      'position',
+      position,
+    );
+    addField(
+      'managingOrganization',
+      managingOrganization,
+    );
+    addField(
+      'partOf',
+      partOf,
+    );
+    addField(
+      'hoursOfOperation',
+      hoursOfOperation,
+    );
+    addField(
+      'availabilityExceptions',
+      availabilityExceptions,
+    );
+    addField(
+      'endpoint',
+      endpoint,
+    );
     return json;
   }
 
@@ -569,74 +644,6 @@ class Location extends DomainResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'identifier':
-        if (identifier != null) {
-          return identifier!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'alias':
-        if (alias != null) {
-          return alias!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'type':
-        if (type != null) {
-          return type!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'telecom':
-        if (telecom != null) {
-          return telecom!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'hoursOfOperation':
-        if (hoursOfOperation != null) {
-          return hoursOfOperation!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'endpoint':
-        if (endpoint != null) {
-          return endpoint!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -648,23 +655,23 @@ class Location extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -672,7 +679,7 @@ class Location extends DomainResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -680,7 +687,7 @@ class Location extends DomainResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -688,7 +695,7 @@ class Location extends DomainResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -696,39 +703,63 @@ class Location extends DomainResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
           if (child is List<Identifier>) {
-            return copyWith(identifier: child);
+            // Add all elements from passed list
+            final newList = [...?identifier, ...child];
+            return copyWith(identifier: newList);
+          } else if (child is Identifier) {
+            // Add single element to existing list or create new list
+            final newList = [...?identifier, child];
+            return copyWith(identifier: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -736,7 +767,7 @@ class Location extends DomainResource {
           if (child is LocationStatus) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'operationalStatus':
@@ -744,7 +775,7 @@ class Location extends DomainResource {
           if (child is Coding) {
             return copyWith(operationalStatus: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
@@ -752,15 +783,21 @@ class Location extends DomainResource {
           if (child is FhirString) {
             return copyWith(name: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'alias':
         {
           if (child is List<FhirString>) {
-            return copyWith(alias: child);
+            // Add all elements from passed list
+            final newList = [...?alias, ...child];
+            return copyWith(alias: newList);
+          } else if (child is FhirString) {
+            // Add single element to existing list or create new list
+            final newList = [...?alias, child];
+            return copyWith(alias: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
@@ -768,7 +805,7 @@ class Location extends DomainResource {
           if (child is FhirString) {
             return copyWith(description: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'mode':
@@ -776,23 +813,35 @@ class Location extends DomainResource {
           if (child is LocationMode) {
             return copyWith(mode: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(type: child);
+            // Add all elements from passed list
+            final newList = [...?type, ...child];
+            return copyWith(type: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?type, child];
+            return copyWith(type: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'telecom':
         {
           if (child is List<ContactPoint>) {
-            return copyWith(telecom: child);
+            // Add all elements from passed list
+            final newList = [...?telecom, ...child];
+            return copyWith(telecom: newList);
+          } else if (child is ContactPoint) {
+            // Add single element to existing list or create new list
+            final newList = [...?telecom, child];
+            return copyWith(telecom: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'address':
@@ -800,7 +849,7 @@ class Location extends DomainResource {
           if (child is Address) {
             return copyWith(address: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'physicalType':
@@ -808,7 +857,7 @@ class Location extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(physicalType: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'position':
@@ -816,7 +865,7 @@ class Location extends DomainResource {
           if (child is LocationPosition) {
             return copyWith(position: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'managingOrganization':
@@ -824,7 +873,7 @@ class Location extends DomainResource {
           if (child is Reference) {
             return copyWith(managingOrganization: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'partOf':
@@ -832,15 +881,21 @@ class Location extends DomainResource {
           if (child is Reference) {
             return copyWith(partOf: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'hoursOfOperation':
         {
           if (child is List<LocationHoursOfOperation>) {
-            return copyWith(hoursOfOperation: child);
+            // Add all elements from passed list
+            final newList = [...?hoursOfOperation, ...child];
+            return copyWith(hoursOfOperation: newList);
+          } else if (child is LocationHoursOfOperation) {
+            // Add single element to existing list or create new list
+            final newList = [...?hoursOfOperation, child];
+            return copyWith(hoursOfOperation: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'availabilityExceptions':
@@ -848,19 +903,25 @@ class Location extends DomainResource {
           if (child is FhirString) {
             return copyWith(availabilityExceptions: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'endpoint':
         {
           if (child is List<Reference>) {
-            return copyWith(endpoint: child);
+            // Add all elements from passed list
+            final newList = [...?endpoint, ...child];
+            return copyWith(endpoint: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?endpoint, child];
+            return copyWith(endpoint: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -929,107 +990,159 @@ class Location extends DomainResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  Location createProperty(String propertyName) {
+  Location createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'identifier':
         {
-          return copyWith(identifier: <Identifier>[]);
+          return copyWith(
+            identifier: <Identifier>[],
+          );
         }
       case 'status':
         {
-          return copyWith(status: LocationStatus.empty());
+          return copyWith(
+            status: LocationStatus.empty(),
+          );
         }
       case 'operationalStatus':
         {
-          return copyWith(operationalStatus: Coding.empty());
+          return copyWith(
+            operationalStatus: Coding.empty(),
+          );
         }
       case 'name':
         {
-          return copyWith(name: FhirString.empty());
+          return copyWith(
+            name: FhirString.empty(),
+          );
         }
       case 'alias':
         {
-          return copyWith(alias: <FhirString>[]);
+          return copyWith(
+            alias: <FhirString>[],
+          );
         }
       case 'description':
         {
-          return copyWith(description: FhirString.empty());
+          return copyWith(
+            description: FhirString.empty(),
+          );
         }
       case 'mode':
         {
-          return copyWith(mode: LocationMode.empty());
+          return copyWith(
+            mode: LocationMode.empty(),
+          );
         }
       case 'type':
         {
-          return copyWith(type: <CodeableConcept>[]);
+          return copyWith(
+            type: <CodeableConcept>[],
+          );
         }
       case 'telecom':
         {
-          return copyWith(telecom: <ContactPoint>[]);
+          return copyWith(
+            telecom: <ContactPoint>[],
+          );
         }
       case 'address':
         {
-          return copyWith(address: Address.empty());
+          return copyWith(
+            address: Address.empty(),
+          );
         }
       case 'physicalType':
         {
-          return copyWith(physicalType: CodeableConcept.empty());
+          return copyWith(
+            physicalType: CodeableConcept.empty(),
+          );
         }
       case 'position':
         {
-          return copyWith(position: LocationPosition.empty());
+          return copyWith(
+            position: LocationPosition.empty(),
+          );
         }
       case 'managingOrganization':
         {
-          return copyWith(managingOrganization: Reference.empty());
+          return copyWith(
+            managingOrganization: Reference.empty(),
+          );
         }
       case 'partOf':
         {
-          return copyWith(partOf: Reference.empty());
+          return copyWith(
+            partOf: Reference.empty(),
+          );
         }
       case 'hoursOfOperation':
         {
-          return copyWith(hoursOfOperation: <LocationHoursOfOperation>[]);
+          return copyWith(
+            hoursOfOperation: <LocationHoursOfOperation>[],
+          );
         }
       case 'availabilityExceptions':
         {
-          return copyWith(availabilityExceptions: FhirString.empty());
+          return copyWith(
+            availabilityExceptions: FhirString.empty(),
+          );
         }
       case 'endpoint':
         {
-          return copyWith(endpoint: <Reference>[]);
+          return copyWith(
+            endpoint: <Reference>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1272,19 +1385,34 @@ class Location extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1311,13 +1439,22 @@ class Location extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(operationalStatus, o.operationalStatus)) {
+    if (!equalsDeepWithNull(
+      operationalStatus,
+      o.operationalStatus,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(name, o.name)) {
+    if (!equalsDeepWithNull(
+      name,
+      o.name,
+    )) {
       return false;
     }
     if (!listEquals<FhirString>(
@@ -1326,10 +1463,16 @@ class Location extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(description, o.description)) {
+    if (!equalsDeepWithNull(
+      description,
+      o.description,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(mode, o.mode)) {
+    if (!equalsDeepWithNull(
+      mode,
+      o.mode,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1344,19 +1487,34 @@ class Location extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(address, o.address)) {
+    if (!equalsDeepWithNull(
+      address,
+      o.address,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(physicalType, o.physicalType)) {
+    if (!equalsDeepWithNull(
+      physicalType,
+      o.physicalType,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(position, o.position)) {
+    if (!equalsDeepWithNull(
+      position,
+      o.position,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(managingOrganization, o.managingOrganization)) {
+    if (!equalsDeepWithNull(
+      managingOrganization,
+      o.managingOrganization,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(partOf, o.partOf)) {
+    if (!equalsDeepWithNull(
+      partOf,
+      o.partOf,
+    )) {
       return false;
     }
     if (!listEquals<LocationHoursOfOperation>(
@@ -1365,7 +1523,10 @@ class Location extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(availabilityExceptions, o.availabilityExceptions)) {
+    if (!equalsDeepWithNull(
+      availabilityExceptions,
+      o.availabilityExceptions,
+    )) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1543,12 +1704,30 @@ class LocationPosition extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('longitude', longitude);
-    addField('latitude', latitude);
-    addField('altitude', altitude);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'longitude',
+      longitude,
+    );
+    addField(
+      'latitude',
+      latitude,
+    );
+    addField(
+      'altitude',
+      altitude,
+    );
     return json;
   }
 
@@ -1602,32 +1781,6 @@ class LocationPosition extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1639,39 +1792,51 @@ class LocationPosition extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'longitude':
@@ -1679,7 +1844,7 @@ class LocationPosition extends BackboneElement {
           if (child is FhirDecimal) {
             return copyWith(longitude: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'latitude':
@@ -1687,7 +1852,7 @@ class LocationPosition extends BackboneElement {
           if (child is FhirDecimal) {
             return copyWith(latitude: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'altitude':
@@ -1695,11 +1860,11 @@ class LocationPosition extends BackboneElement {
           if (child is FhirDecimal) {
             return copyWith(altitude: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1730,31 +1895,45 @@ class LocationPosition extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  LocationPosition createProperty(String propertyName) {
+  LocationPosition createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'longitude':
         {
-          return copyWith(longitude: FhirDecimal.empty());
+          return copyWith(
+            longitude: FhirDecimal.empty(),
+          );
         }
       case 'latitude':
         {
-          return copyWith(latitude: FhirDecimal.empty());
+          return copyWith(
+            latitude: FhirDecimal.empty(),
+          );
         }
       case 'altitude':
         {
-          return copyWith(altitude: FhirDecimal.empty());
+          return copyWith(
+            altitude: FhirDecimal.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1840,7 +2019,10 @@ class LocationPosition extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1855,13 +2037,22 @@ class LocationPosition extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(longitude, o.longitude)) {
+    if (!equalsDeepWithNull(
+      longitude,
+      o.longitude,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(latitude, o.latitude)) {
+    if (!equalsDeepWithNull(
+      latitude,
+      o.latitude,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(altitude, o.altitude)) {
+    if (!equalsDeepWithNull(
+      altitude,
+      o.altitude,
+    )) {
       return false;
     }
     return true;
@@ -2038,13 +2229,34 @@ class LocationHoursOfOperation extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('daysOfWeek', daysOfWeek);
-    addField('allDay', allDay);
-    addField('openingTime', openingTime);
-    addField('closingTime', closingTime);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'daysOfWeek',
+      daysOfWeek,
+    );
+    addField(
+      'allDay',
+      allDay,
+    );
+    addField(
+      'openingTime',
+      openingTime,
+    );
+    addField(
+      'closingTime',
+      closingTime,
+    );
     return json;
   }
 
@@ -2107,38 +2319,6 @@ class LocationHoursOfOperation extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'daysOfWeek':
-        if (daysOfWeek != null) {
-          return daysOfWeek!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2150,47 +2330,65 @@ class LocationHoursOfOperation extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'daysOfWeek':
         {
           if (child is List<DaysOfWeek>) {
-            return copyWith(daysOfWeek: child);
+            // Add all elements from passed list
+            final newList = [...?daysOfWeek, ...child];
+            return copyWith(daysOfWeek: newList);
+          } else if (child is DaysOfWeek) {
+            // Add single element to existing list or create new list
+            final newList = [...?daysOfWeek, child];
+            return copyWith(daysOfWeek: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'allDay':
@@ -2198,7 +2396,7 @@ class LocationHoursOfOperation extends BackboneElement {
           if (child is FhirBoolean) {
             return copyWith(allDay: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'openingTime':
@@ -2206,7 +2404,7 @@ class LocationHoursOfOperation extends BackboneElement {
           if (child is FhirTime) {
             return copyWith(openingTime: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'closingTime':
@@ -2214,11 +2412,11 @@ class LocationHoursOfOperation extends BackboneElement {
           if (child is FhirTime) {
             return copyWith(closingTime: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2251,35 +2449,51 @@ class LocationHoursOfOperation extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  LocationHoursOfOperation createProperty(String propertyName) {
+  LocationHoursOfOperation createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'daysOfWeek':
         {
-          return copyWith(daysOfWeek: <DaysOfWeek>[]);
+          return copyWith(
+            daysOfWeek: <DaysOfWeek>[],
+          );
         }
       case 'allDay':
         {
-          return copyWith(allDay: FhirBoolean.empty());
+          return copyWith(
+            allDay: FhirBoolean.empty(),
+          );
         }
       case 'openingTime':
         {
-          return copyWith(openingTime: FhirTime.empty());
+          return copyWith(
+            openingTime: FhirTime.empty(),
+          );
         }
       case 'closingTime':
         {
-          return copyWith(closingTime: FhirTime.empty());
+          return copyWith(
+            closingTime: FhirTime.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2378,7 +2592,10 @@ class LocationHoursOfOperation extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2399,13 +2616,22 @@ class LocationHoursOfOperation extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(allDay, o.allDay)) {
+    if (!equalsDeepWithNull(
+      allDay,
+      o.allDay,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(openingTime, o.openingTime)) {
+    if (!equalsDeepWithNull(
+      openingTime,
+      o.openingTime,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(closingTime, o.closingTime)) {
+    if (!equalsDeepWithNull(
+      closingTime,
+      o.closingTime,
+    )) {
       return false;
     }
     return true;

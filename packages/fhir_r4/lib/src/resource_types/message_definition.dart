@@ -446,40 +446,136 @@ class MessageDefinition extends CanonicalResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('url', url);
-    addField('identifier', identifier);
-    addField('version', version);
-    addField('name', name);
-    addField('title', title);
-    addField('replaces', replaces);
-    addField('status', status);
-    addField('experimental', experimental);
-    addField('date', date);
-    addField('publisher', publisher);
-    addField('contact', contact);
-    addField('description', description);
-    addField('useContext', useContext);
-    addField('jurisdiction', jurisdiction);
-    addField('purpose', purpose);
-    addField('copyright', copyright);
-    addField('base', base);
-    addField('parent', parent);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'url',
+      url,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'version',
+      version,
+    );
+    addField(
+      'name',
+      name,
+    );
+    addField(
+      'title',
+      title,
+    );
+    addField(
+      'replaces',
+      replaces,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'experimental',
+      experimental,
+    );
+    addField(
+      'date',
+      date,
+    );
+    addField(
+      'publisher',
+      publisher,
+    );
+    addField(
+      'contact',
+      contact,
+    );
+    addField(
+      'description',
+      description,
+    );
+    addField(
+      'useContext',
+      useContext,
+    );
+    addField(
+      'jurisdiction',
+      jurisdiction,
+    );
+    addField(
+      'purpose',
+      purpose,
+    );
+    addField(
+      'copyright',
+      copyright,
+    );
+    addField(
+      'base',
+      base,
+    );
+    addField(
+      'parent',
+      parent,
+    );
     final eventXFhirType = eventX.fhirType;
-    addField('event${eventXFhirType.capitalize()}', eventX);
+    addField(
+      'event${eventXFhirType.capitalize()}',
+      eventX,
+    );
 
-    addField('category', category);
-    addField('focus', focus);
-    addField('responseRequired', responseRequired);
-    addField('allowedResponse', allowedResponse);
-    addField('graph', graph);
+    addField(
+      'category',
+      category,
+    );
+    addField(
+      'focus',
+      focus,
+    );
+    addField(
+      'responseRequired',
+      responseRequired,
+    );
+    addField(
+      'allowedResponse',
+      allowedResponse,
+    );
+    addField(
+      'graph',
+      graph,
+    );
     return json;
   }
 
@@ -675,92 +771,6 @@ class MessageDefinition extends CanonicalResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'identifier':
-        if (identifier != null) {
-          return identifier!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'replaces':
-        if (replaces != null) {
-          return replaces!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'contact':
-        if (contact != null) {
-          return contact!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'useContext':
-        if (useContext != null) {
-          return useContext!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'jurisdiction':
-        if (jurisdiction != null) {
-          return jurisdiction!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'parent':
-        if (parent != null) {
-          return parent!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'focus':
-        if (focus != null) {
-          return focus!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'allowedResponse':
-        if (allowedResponse != null) {
-          return allowedResponse!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'graph':
-        if (graph != null) {
-          return graph!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -772,23 +782,23 @@ class MessageDefinition extends CanonicalResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -796,7 +806,7 @@ class MessageDefinition extends CanonicalResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -804,7 +814,7 @@ class MessageDefinition extends CanonicalResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -812,7 +822,7 @@ class MessageDefinition extends CanonicalResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -820,31 +830,49 @@ class MessageDefinition extends CanonicalResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'url':
@@ -852,15 +880,21 @@ class MessageDefinition extends CanonicalResource {
           if (child is FhirUri) {
             return copyWith(url: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
           if (child is List<Identifier>) {
-            return copyWith(identifier: child);
+            // Add all elements from passed list
+            final newList = [...?identifier, ...child];
+            return copyWith(identifier: newList);
+          } else if (child is Identifier) {
+            // Add single element to existing list or create new list
+            final newList = [...?identifier, child];
+            return copyWith(identifier: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'version':
@@ -868,7 +902,7 @@ class MessageDefinition extends CanonicalResource {
           if (child is FhirString) {
             return copyWith(version: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
@@ -876,7 +910,7 @@ class MessageDefinition extends CanonicalResource {
           if (child is FhirString) {
             return copyWith(name: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'title':
@@ -884,15 +918,21 @@ class MessageDefinition extends CanonicalResource {
           if (child is FhirString) {
             return copyWith(title: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'replaces':
         {
           if (child is List<FhirCanonical>) {
-            return copyWith(replaces: child);
+            // Add all elements from passed list
+            final newList = [...?replaces, ...child];
+            return copyWith(replaces: newList);
+          } else if (child is FhirCanonical) {
+            // Add single element to existing list or create new list
+            final newList = [...?replaces, child];
+            return copyWith(replaces: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -900,7 +940,7 @@ class MessageDefinition extends CanonicalResource {
           if (child is PublicationStatus) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'experimental':
@@ -908,7 +948,7 @@ class MessageDefinition extends CanonicalResource {
           if (child is FhirBoolean) {
             return copyWith(experimental: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
@@ -916,7 +956,7 @@ class MessageDefinition extends CanonicalResource {
           if (child is FhirDateTime) {
             return copyWith(date: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'publisher':
@@ -924,15 +964,21 @@ class MessageDefinition extends CanonicalResource {
           if (child is FhirString) {
             return copyWith(publisher: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contact':
         {
           if (child is List<ContactDetail>) {
-            return copyWith(contact: child);
+            // Add all elements from passed list
+            final newList = [...?contact, ...child];
+            return copyWith(contact: newList);
+          } else if (child is ContactDetail) {
+            // Add single element to existing list or create new list
+            final newList = [...?contact, child];
+            return copyWith(contact: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
@@ -940,23 +986,35 @@ class MessageDefinition extends CanonicalResource {
           if (child is FhirMarkdown) {
             return copyWith(description: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'useContext':
         {
           if (child is List<UsageContext>) {
-            return copyWith(useContext: child);
+            // Add all elements from passed list
+            final newList = [...?useContext, ...child];
+            return copyWith(useContext: newList);
+          } else if (child is UsageContext) {
+            // Add single element to existing list or create new list
+            final newList = [...?useContext, child];
+            return copyWith(useContext: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'jurisdiction':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(jurisdiction: child);
+            // Add all elements from passed list
+            final newList = [...?jurisdiction, ...child];
+            return copyWith(jurisdiction: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?jurisdiction, child];
+            return copyWith(jurisdiction: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'purpose':
@@ -964,7 +1022,7 @@ class MessageDefinition extends CanonicalResource {
           if (child is FhirMarkdown) {
             return copyWith(purpose: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'copyright':
@@ -972,7 +1030,7 @@ class MessageDefinition extends CanonicalResource {
           if (child is FhirMarkdown) {
             return copyWith(copyright: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'base':
@@ -980,32 +1038,43 @@ class MessageDefinition extends CanonicalResource {
           if (child is FhirCanonical) {
             return copyWith(base: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'parent':
         {
           if (child is List<FhirCanonical>) {
-            return copyWith(parent: child);
+            // Add all elements from passed list
+            final newList = [...?parent, ...child];
+            return copyWith(parent: newList);
+          } else if (child is FhirCanonical) {
+            // Add single element to existing list or create new list
+            final newList = [...?parent, child];
+            return copyWith(parent: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'eventX':
         {
           if (child is EventXMessageDefinition) {
-            // child is e.g. SubjectX union
             return copyWith(eventX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is Coding) {
+              return copyWith(eventX: child);
+            }
+            if (child is FhirUri) {
+              return copyWith(eventX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'eventCoding':
         {
           if (child is Coding) {
             return copyWith(eventX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'eventFhirUri':
@@ -1013,7 +1082,7 @@ class MessageDefinition extends CanonicalResource {
           if (child is FhirUri) {
             return copyWith(eventX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'category':
@@ -1021,15 +1090,21 @@ class MessageDefinition extends CanonicalResource {
           if (child is MessageSignificanceCategory) {
             return copyWith(category: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'focus':
         {
           if (child is List<MessageDefinitionFocus>) {
-            return copyWith(focus: child);
+            // Add all elements from passed list
+            final newList = [...?focus, ...child];
+            return copyWith(focus: newList);
+          } else if (child is MessageDefinitionFocus) {
+            // Add single element to existing list or create new list
+            final newList = [...?focus, child];
+            return copyWith(focus: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'responseRequired':
@@ -1037,27 +1112,39 @@ class MessageDefinition extends CanonicalResource {
           if (child is MessageheaderResponseRequest) {
             return copyWith(responseRequired: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'allowedResponse':
         {
           if (child is List<MessageDefinitionAllowedResponse>) {
-            return copyWith(allowedResponse: child);
+            // Add all elements from passed list
+            final newList = [...?allowedResponse, ...child];
+            return copyWith(allowedResponse: newList);
+          } else if (child is MessageDefinitionAllowedResponse) {
+            // Add single element to existing list or create new list
+            final newList = [...?allowedResponse, child];
+            return copyWith(allowedResponse: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'graph':
         {
           if (child is List<FhirCanonical>) {
-            return copyWith(graph: child);
+            // Add all elements from passed list
+            final newList = [...?graph, ...child];
+            return copyWith(graph: newList);
+          } else if (child is FhirCanonical) {
+            // Add single element to existing list or create new list
+            final newList = [...?graph, child];
+            return copyWith(graph: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1145,143 +1232,209 @@ class MessageDefinition extends CanonicalResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  MessageDefinition createProperty(String propertyName) {
+  MessageDefinition createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'url':
         {
-          return copyWith(url: FhirUri.empty());
+          return copyWith(
+            url: FhirUri.empty(),
+          );
         }
       case 'identifier':
         {
-          return copyWith(identifier: <Identifier>[]);
+          return copyWith(
+            identifier: <Identifier>[],
+          );
         }
       case 'version':
         {
-          return copyWith(version: FhirString.empty());
+          return copyWith(
+            version: FhirString.empty(),
+          );
         }
       case 'name':
         {
-          return copyWith(name: FhirString.empty());
+          return copyWith(
+            name: FhirString.empty(),
+          );
         }
       case 'title':
         {
-          return copyWith(title: FhirString.empty());
+          return copyWith(
+            title: FhirString.empty(),
+          );
         }
       case 'replaces':
         {
-          return copyWith(replaces: <FhirCanonical>[]);
+          return copyWith(
+            replaces: <FhirCanonical>[],
+          );
         }
       case 'status':
         {
-          return copyWith(status: PublicationStatus.empty());
+          return copyWith(
+            status: PublicationStatus.empty(),
+          );
         }
       case 'experimental':
         {
-          return copyWith(experimental: FhirBoolean.empty());
+          return copyWith(
+            experimental: FhirBoolean.empty(),
+          );
         }
       case 'date':
         {
-          return copyWith(date: FhirDateTime.empty());
+          return copyWith(
+            date: FhirDateTime.empty(),
+          );
         }
       case 'publisher':
         {
-          return copyWith(publisher: FhirString.empty());
+          return copyWith(
+            publisher: FhirString.empty(),
+          );
         }
       case 'contact':
         {
-          return copyWith(contact: <ContactDetail>[]);
+          return copyWith(
+            contact: <ContactDetail>[],
+          );
         }
       case 'description':
         {
-          return copyWith(description: FhirMarkdown.empty());
+          return copyWith(
+            description: FhirMarkdown.empty(),
+          );
         }
       case 'useContext':
         {
-          return copyWith(useContext: <UsageContext>[]);
+          return copyWith(
+            useContext: <UsageContext>[],
+          );
         }
       case 'jurisdiction':
         {
-          return copyWith(jurisdiction: <CodeableConcept>[]);
+          return copyWith(
+            jurisdiction: <CodeableConcept>[],
+          );
         }
       case 'purpose':
         {
-          return copyWith(purpose: FhirMarkdown.empty());
+          return copyWith(
+            purpose: FhirMarkdown.empty(),
+          );
         }
       case 'copyright':
         {
-          return copyWith(copyright: FhirMarkdown.empty());
+          return copyWith(
+            copyright: FhirMarkdown.empty(),
+          );
         }
       case 'base':
         {
-          return copyWith(base: FhirCanonical.empty());
+          return copyWith(
+            base: FhirCanonical.empty(),
+          );
         }
       case 'parent':
         {
-          return copyWith(parent: <FhirCanonical>[]);
+          return copyWith(
+            parent: <FhirCanonical>[],
+          );
         }
       case 'event':
       case 'eventX':
       case 'eventCoding':
         {
-          return copyWith(eventX: Coding.empty());
+          return copyWith(
+            eventX: Coding.empty(),
+          );
         }
       case 'eventUri':
         {
-          return copyWith(eventX: FhirUri.empty());
+          return copyWith(
+            eventX: FhirUri.empty(),
+          );
         }
       case 'category':
         {
-          return copyWith(category: MessageSignificanceCategory.empty());
+          return copyWith(
+            category: MessageSignificanceCategory.empty(),
+          );
         }
       case 'focus':
         {
-          return copyWith(focus: <MessageDefinitionFocus>[]);
+          return copyWith(
+            focus: <MessageDefinitionFocus>[],
+          );
         }
       case 'responseRequired':
         {
           return copyWith(
-              responseRequired: MessageheaderResponseRequest.empty(),);
+            responseRequired: MessageheaderResponseRequest.empty(),
+          );
         }
       case 'allowedResponse':
         {
           return copyWith(
-              allowedResponse: <MessageDefinitionAllowedResponse>[],);
+            allowedResponse: <MessageDefinitionAllowedResponse>[],
+          );
         }
       case 'graph':
         {
-          return copyWith(graph: <FhirCanonical>[]);
+          return copyWith(
+            graph: <FhirCanonical>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1580,19 +1733,34 @@ class MessageDefinition extends CanonicalResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1613,7 +1781,10 @@ class MessageDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(url, o.url)) {
+    if (!equalsDeepWithNull(
+      url,
+      o.url,
+    )) {
       return false;
     }
     if (!listEquals<Identifier>(
@@ -1622,13 +1793,22 @@ class MessageDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(version, o.version)) {
+    if (!equalsDeepWithNull(
+      version,
+      o.version,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(name, o.name)) {
+    if (!equalsDeepWithNull(
+      name,
+      o.name,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(title, o.title)) {
+    if (!equalsDeepWithNull(
+      title,
+      o.title,
+    )) {
       return false;
     }
     if (!listEquals<FhirCanonical>(
@@ -1637,16 +1817,28 @@ class MessageDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(experimental, o.experimental)) {
+    if (!equalsDeepWithNull(
+      experimental,
+      o.experimental,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(date, o.date)) {
+    if (!equalsDeepWithNull(
+      date,
+      o.date,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(publisher, o.publisher)) {
+    if (!equalsDeepWithNull(
+      publisher,
+      o.publisher,
+    )) {
       return false;
     }
     if (!listEquals<ContactDetail>(
@@ -1655,7 +1847,10 @@ class MessageDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(description, o.description)) {
+    if (!equalsDeepWithNull(
+      description,
+      o.description,
+    )) {
       return false;
     }
     if (!listEquals<UsageContext>(
@@ -1670,13 +1865,22 @@ class MessageDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(purpose, o.purpose)) {
+    if (!equalsDeepWithNull(
+      purpose,
+      o.purpose,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(copyright, o.copyright)) {
+    if (!equalsDeepWithNull(
+      copyright,
+      o.copyright,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(base, o.base)) {
+    if (!equalsDeepWithNull(
+      base,
+      o.base,
+    )) {
       return false;
     }
     if (!listEquals<FhirCanonical>(
@@ -1685,10 +1889,16 @@ class MessageDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(eventX, o.eventX)) {
+    if (!equalsDeepWithNull(
+      eventX,
+      o.eventX,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(category, o.category)) {
+    if (!equalsDeepWithNull(
+      category,
+      o.category,
+    )) {
       return false;
     }
     if (!listEquals<MessageDefinitionFocus>(
@@ -1697,7 +1907,10 @@ class MessageDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(responseRequired, o.responseRequired)) {
+    if (!equalsDeepWithNull(
+      responseRequired,
+      o.responseRequired,
+    )) {
       return false;
     }
     if (!listEquals<MessageDefinitionAllowedResponse>(
@@ -1895,13 +2108,34 @@ class MessageDefinitionFocus extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('code', code);
-    addField('profile', profile);
-    addField('min', min);
-    addField('max', max);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'code',
+      code,
+    );
+    addField(
+      'profile',
+      profile,
+    );
+    addField(
+      'min',
+      min,
+    );
+    addField(
+      'max',
+      max,
+    );
     return json;
   }
 
@@ -1960,32 +2194,6 @@ class MessageDefinitionFocus extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1997,39 +2205,51 @@ class MessageDefinitionFocus extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
@@ -2037,7 +2257,7 @@ class MessageDefinitionFocus extends BackboneElement {
           if (child is FhirCode) {
             return copyWith(code: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'profile':
@@ -2045,7 +2265,7 @@ class MessageDefinitionFocus extends BackboneElement {
           if (child is FhirCanonical) {
             return copyWith(profile: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'min':
@@ -2053,7 +2273,7 @@ class MessageDefinitionFocus extends BackboneElement {
           if (child is FhirUnsignedInt) {
             return copyWith(min: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'max':
@@ -2061,11 +2281,11 @@ class MessageDefinitionFocus extends BackboneElement {
           if (child is FhirString) {
             return copyWith(max: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2098,35 +2318,51 @@ class MessageDefinitionFocus extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  MessageDefinitionFocus createProperty(String propertyName) {
+  MessageDefinitionFocus createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'code':
         {
-          return copyWith(code: FhirCode.empty());
+          return copyWith(
+            code: FhirCode.empty(),
+          );
         }
       case 'profile':
         {
-          return copyWith(profile: FhirCanonical.empty());
+          return copyWith(
+            profile: FhirCanonical.empty(),
+          );
         }
       case 'min':
         {
-          return copyWith(min: FhirUnsignedInt.empty());
+          return copyWith(
+            min: FhirUnsignedInt.empty(),
+          );
         }
       case 'max':
         {
-          return copyWith(max: FhirString.empty());
+          return copyWith(
+            max: FhirString.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2219,7 +2455,10 @@ class MessageDefinitionFocus extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2234,16 +2473,28 @@ class MessageDefinitionFocus extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(code, o.code)) {
+    if (!equalsDeepWithNull(
+      code,
+      o.code,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(profile, o.profile)) {
+    if (!equalsDeepWithNull(
+      profile,
+      o.profile,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(min, o.min)) {
+    if (!equalsDeepWithNull(
+      min,
+      o.min,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(max, o.max)) {
+    if (!equalsDeepWithNull(
+      max,
+      o.max,
+    )) {
       return false;
     }
     return true;
@@ -2403,11 +2654,26 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('message', message);
-    addField('situation', situation);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'message',
+      message,
+    );
+    addField(
+      'situation',
+      situation,
+    );
     return json;
   }
 
@@ -2458,32 +2724,6 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2495,39 +2735,51 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'message':
@@ -2535,7 +2787,7 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
           if (child is FhirCanonical) {
             return copyWith(message: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'situation':
@@ -2543,11 +2795,11 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
           if (child is FhirMarkdown) {
             return copyWith(situation: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2576,27 +2828,39 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  MessageDefinitionAllowedResponse createProperty(String propertyName) {
+  MessageDefinitionAllowedResponse createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'message':
         {
-          return copyWith(message: FhirCanonical.empty());
+          return copyWith(
+            message: FhirCanonical.empty(),
+          );
         }
       case 'situation':
         {
-          return copyWith(situation: FhirMarkdown.empty());
+          return copyWith(
+            situation: FhirMarkdown.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2676,7 +2940,10 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2691,10 +2958,16 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(message, o.message)) {
+    if (!equalsDeepWithNull(
+      message,
+      o.message,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(situation, o.situation)) {
+    if (!equalsDeepWithNull(
+      situation,
+      o.situation,
+    )) {
       return false;
     }
     return true;

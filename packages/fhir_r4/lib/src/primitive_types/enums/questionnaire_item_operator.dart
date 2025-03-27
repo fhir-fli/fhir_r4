@@ -56,9 +56,13 @@ class QuestionnaireItemOperator extends FhirCodeEnum {
       return QuestionnaireItemOperator.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'QuestionnaireItemOperator cannot be constructed from JSON.',);
+        'QuestionnaireItemOperator cannot be constructed from JSON.',
+      );
     }
-    return QuestionnaireItemOperator._(validatedValue: value, element: element);
+    return QuestionnaireItemOperator._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// exists

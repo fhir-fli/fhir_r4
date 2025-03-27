@@ -55,9 +55,14 @@ class XPathUsageType extends FhirCodeEnum {
     if (value == null && element != null) {
       return XPathUsageType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('XPathUsageType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'XPathUsageType cannot be constructed from JSON.',
+      );
     }
-    return XPathUsageType._(validatedValue: value, element: element);
+    return XPathUsageType._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// normal

@@ -56,9 +56,13 @@ class SupplyDeliveryStatus extends FhirCodeEnum {
       return SupplyDeliveryStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'SupplyDeliveryStatus cannot be constructed from JSON.',);
+        'SupplyDeliveryStatus cannot be constructed from JSON.',
+      );
     }
-    return SupplyDeliveryStatus._(validatedValue: value, element: element);
+    return SupplyDeliveryStatus._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// in_progress

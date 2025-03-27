@@ -303,26 +303,74 @@ class Dosage extends BackboneType
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('sequence', sequence);
-    addField('text', text);
-    addField('additionalInstruction', additionalInstruction);
-    addField('patientInstruction', patientInstruction);
-    addField('timing', timing);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'sequence',
+      sequence,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'additionalInstruction',
+      additionalInstruction,
+    );
+    addField(
+      'patientInstruction',
+      patientInstruction,
+    );
+    addField(
+      'timing',
+      timing,
+    );
     if (asNeededX != null) {
       final fhirType = asNeededX!.fhirType;
-      addField('asNeeded${fhirType.capitalize()}', asNeededX);
+      addField(
+        'asNeeded${fhirType.capitalize()}',
+        asNeededX,
+      );
     }
 
-    addField('site', site);
-    addField('route', route);
-    addField('method', method);
-    addField('doseAndRate', doseAndRate);
-    addField('maxDosePerPeriod', maxDosePerPeriod);
-    addField('maxDosePerAdministration', maxDosePerAdministration);
-    addField('maxDosePerLifetime', maxDosePerLifetime);
+    addField(
+      'site',
+      site,
+    );
+    addField(
+      'route',
+      route,
+    );
+    addField(
+      'method',
+      method,
+    );
+    addField(
+      'doseAndRate',
+      doseAndRate,
+    );
+    addField(
+      'maxDosePerPeriod',
+      maxDosePerPeriod,
+    );
+    addField(
+      'maxDosePerAdministration',
+      maxDosePerAdministration,
+    );
+    addField(
+      'maxDosePerLifetime',
+      maxDosePerLifetime,
+    );
     return json;
   }
 
@@ -438,44 +486,6 @@ class Dosage extends BackboneType
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'additionalInstruction':
-        if (additionalInstruction != null) {
-          return additionalInstruction!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'doseAndRate':
-        if (doseAndRate != null) {
-          return doseAndRate!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -487,39 +497,51 @@ class Dosage extends BackboneType
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'sequence':
@@ -527,7 +549,7 @@ class Dosage extends BackboneType
           if (child is FhirInteger) {
             return copyWith(sequence: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -535,15 +557,21 @@ class Dosage extends BackboneType
           if (child is FhirString) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'additionalInstruction':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(additionalInstruction: child);
+            // Add all elements from passed list
+            final newList = [...?additionalInstruction, ...child];
+            return copyWith(additionalInstruction: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?additionalInstruction, child];
+            return copyWith(additionalInstruction: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'patientInstruction':
@@ -551,7 +579,7 @@ class Dosage extends BackboneType
           if (child is FhirString) {
             return copyWith(patientInstruction: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'timing':
@@ -559,24 +587,29 @@ class Dosage extends BackboneType
           if (child is Timing) {
             return copyWith(timing: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'asNeededX':
         {
           if (child is AsNeededXDosage) {
-            // child is e.g. SubjectX union
             return copyWith(asNeededX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is FhirBoolean) {
+              return copyWith(asNeededX: child);
+            }
+            if (child is CodeableConcept) {
+              return copyWith(asNeededX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'asNeededFhirBoolean':
         {
           if (child is FhirBoolean) {
             return copyWith(asNeededX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'asNeededCodeableConcept':
@@ -584,7 +617,7 @@ class Dosage extends BackboneType
           if (child is CodeableConcept) {
             return copyWith(asNeededX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'site':
@@ -592,7 +625,7 @@ class Dosage extends BackboneType
           if (child is CodeableConcept) {
             return copyWith(site: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'route':
@@ -600,7 +633,7 @@ class Dosage extends BackboneType
           if (child is CodeableConcept) {
             return copyWith(route: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'method':
@@ -608,15 +641,21 @@ class Dosage extends BackboneType
           if (child is CodeableConcept) {
             return copyWith(method: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'doseAndRate':
         {
           if (child is List<DosageDoseAndRate>) {
-            return copyWith(doseAndRate: child);
+            // Add all elements from passed list
+            final newList = [...?doseAndRate, ...child];
+            return copyWith(doseAndRate: newList);
+          } else if (child is DosageDoseAndRate) {
+            // Add single element to existing list or create new list
+            final newList = [...?doseAndRate, child];
+            return copyWith(doseAndRate: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'maxDosePerPeriod':
@@ -624,7 +663,7 @@ class Dosage extends BackboneType
           if (child is Ratio) {
             return copyWith(maxDosePerPeriod: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'maxDosePerAdministration':
@@ -632,7 +671,7 @@ class Dosage extends BackboneType
           if (child is Quantity) {
             return copyWith(maxDosePerAdministration: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'maxDosePerLifetime':
@@ -640,11 +679,11 @@ class Dosage extends BackboneType
           if (child is Quantity) {
             return copyWith(maxDosePerLifetime: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -700,77 +739,113 @@ class Dosage extends BackboneType
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  Dosage createProperty(String propertyName) {
+  Dosage createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'sequence':
         {
-          return copyWith(sequence: FhirInteger.empty());
+          return copyWith(
+            sequence: FhirInteger.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: FhirString.empty());
+          return copyWith(
+            text: FhirString.empty(),
+          );
         }
       case 'additionalInstruction':
         {
-          return copyWith(additionalInstruction: <CodeableConcept>[]);
+          return copyWith(
+            additionalInstruction: <CodeableConcept>[],
+          );
         }
       case 'patientInstruction':
         {
-          return copyWith(patientInstruction: FhirString.empty());
+          return copyWith(
+            patientInstruction: FhirString.empty(),
+          );
         }
       case 'timing':
         {
-          return copyWith(timing: Timing.empty());
+          return copyWith(
+            timing: Timing.empty(),
+          );
         }
       case 'asNeeded':
       case 'asNeededX':
       case 'asNeededBoolean':
         {
-          return copyWith(asNeededX: FhirBoolean.empty());
+          return copyWith(
+            asNeededX: FhirBoolean.empty(),
+          );
         }
       case 'asNeededCodeableConcept':
         {
-          return copyWith(asNeededX: CodeableConcept.empty());
+          return copyWith(
+            asNeededX: CodeableConcept.empty(),
+          );
         }
       case 'site':
         {
-          return copyWith(site: CodeableConcept.empty());
+          return copyWith(
+            site: CodeableConcept.empty(),
+          );
         }
       case 'route':
         {
-          return copyWith(route: CodeableConcept.empty());
+          return copyWith(
+            route: CodeableConcept.empty(),
+          );
         }
       case 'method':
         {
-          return copyWith(method: CodeableConcept.empty());
+          return copyWith(
+            method: CodeableConcept.empty(),
+          );
         }
       case 'doseAndRate':
         {
-          return copyWith(doseAndRate: <DosageDoseAndRate>[]);
+          return copyWith(
+            doseAndRate: <DosageDoseAndRate>[],
+          );
         }
       case 'maxDosePerPeriod':
         {
-          return copyWith(maxDosePerPeriod: Ratio.empty());
+          return copyWith(
+            maxDosePerPeriod: Ratio.empty(),
+          );
         }
       case 'maxDosePerAdministration':
         {
-          return copyWith(maxDosePerAdministration: Quantity.empty());
+          return copyWith(
+            maxDosePerAdministration: Quantity.empty(),
+          );
         }
       case 'maxDosePerLifetime':
         {
-          return copyWith(maxDosePerLifetime: Quantity.empty());
+          return copyWith(
+            maxDosePerLifetime: Quantity.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -938,7 +1013,10 @@ class Dosage extends BackboneType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -953,10 +1031,16 @@ class Dosage extends BackboneType
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(sequence, o.sequence)) {
+    if (!equalsDeepWithNull(
+      sequence,
+      o.sequence,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -965,22 +1049,40 @@ class Dosage extends BackboneType
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(patientInstruction, o.patientInstruction)) {
+    if (!equalsDeepWithNull(
+      patientInstruction,
+      o.patientInstruction,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(timing, o.timing)) {
+    if (!equalsDeepWithNull(
+      timing,
+      o.timing,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(asNeededX, o.asNeededX)) {
+    if (!equalsDeepWithNull(
+      asNeededX,
+      o.asNeededX,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(site, o.site)) {
+    if (!equalsDeepWithNull(
+      site,
+      o.site,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(route, o.route)) {
+    if (!equalsDeepWithNull(
+      route,
+      o.route,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(method, o.method)) {
+    if (!equalsDeepWithNull(
+      method,
+      o.method,
+    )) {
       return false;
     }
     if (!listEquals<DosageDoseAndRate>(
@@ -989,14 +1091,22 @@ class Dosage extends BackboneType
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(maxDosePerPeriod, o.maxDosePerPeriod)) {
+    if (!equalsDeepWithNull(
+      maxDosePerPeriod,
+      o.maxDosePerPeriod,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(
-        maxDosePerAdministration, o.maxDosePerAdministration,)) {
+      maxDosePerAdministration,
+      o.maxDosePerAdministration,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(maxDosePerLifetime, o.maxDosePerLifetime)) {
+    if (!equalsDeepWithNull(
+      maxDosePerLifetime,
+      o.maxDosePerLifetime,
+    )) {
       return false;
     }
     return true;
@@ -1169,17 +1279,32 @@ class DosageDoseAndRate extends Element {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('type', type);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'type',
+      type,
+    );
     if (doseX != null) {
       final fhirType = doseX!.fhirType;
-      addField('dose${fhirType.capitalize()}', doseX);
+      addField(
+        'dose${fhirType.capitalize()}',
+        doseX,
+      );
     }
 
     if (rateX != null) {
       final fhirType = rateX!.fhirType;
-      addField('rate${fhirType.capitalize()}', rateX);
+      addField(
+        'rate${fhirType.capitalize()}',
+        rateX,
+      );
     }
 
     return json;
@@ -1254,26 +1379,6 @@ class DosageDoseAndRate extends Element {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1285,31 +1390,37 @@ class DosageDoseAndRate extends Element {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -1317,24 +1428,29 @@ class DosageDoseAndRate extends Element {
           if (child is CodeableConcept) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'doseX':
         {
           if (child is DoseXDosageDoseAndRate) {
-            // child is e.g. SubjectX union
             return copyWith(doseX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is Range) {
+              return copyWith(doseX: child);
+            }
+            if (child is Quantity) {
+              return copyWith(doseX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'doseRange':
         {
           if (child is Range) {
             return copyWith(doseX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'doseQuantity':
@@ -1342,24 +1458,32 @@ class DosageDoseAndRate extends Element {
           if (child is Quantity) {
             return copyWith(doseX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'rateX':
         {
           if (child is RateXDosageDoseAndRate) {
-            // child is e.g. SubjectX union
             return copyWith(rateX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is Ratio) {
+              return copyWith(rateX: child);
+            }
+            if (child is Range) {
+              return copyWith(rateX: child);
+            }
+            if (child is Quantity) {
+              return copyWith(rateX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'rateRatio':
         {
           if (child is Ratio) {
             return copyWith(rateX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'rateRange':
@@ -1367,7 +1491,7 @@ class DosageDoseAndRate extends Element {
           if (child is Range) {
             return copyWith(rateX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'rateQuantity':
@@ -1375,11 +1499,11 @@ class DosageDoseAndRate extends Element {
           if (child is Quantity) {
             return copyWith(rateX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1420,43 +1544,61 @@ class DosageDoseAndRate extends Element {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  DosageDoseAndRate createProperty(String propertyName) {
+  DosageDoseAndRate createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'type':
         {
-          return copyWith(type: CodeableConcept.empty());
+          return copyWith(
+            type: CodeableConcept.empty(),
+          );
         }
       case 'dose':
       case 'doseX':
       case 'doseRange':
         {
-          return copyWith(doseX: Range.empty());
+          return copyWith(
+            doseX: Range.empty(),
+          );
         }
       case 'doseQuantity':
         {
-          return copyWith(doseX: Quantity.empty());
+          return copyWith(
+            doseX: Quantity.empty(),
+          );
         }
       case 'rate':
       case 'rateX':
       case 'rateRatio':
         {
-          return copyWith(rateX: Ratio.empty());
+          return copyWith(
+            rateX: Ratio.empty(),
+          );
         }
       case 'rateRange':
         {
-          return copyWith(rateX: Range.empty());
+          return copyWith(
+            rateX: Range.empty(),
+          );
         }
       case 'rateQuantity':
         {
-          return copyWith(rateX: Quantity.empty());
+          return copyWith(
+            rateX: Quantity.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1533,7 +1675,10 @@ class DosageDoseAndRate extends Element {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1542,13 +1687,22 @@ class DosageDoseAndRate extends Element {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(doseX, o.doseX)) {
+    if (!equalsDeepWithNull(
+      doseX,
+      o.doseX,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(rateX, o.rateX)) {
+    if (!equalsDeepWithNull(
+      rateX,
+      o.rateX,
+    )) {
       return false;
     }
     return true;

@@ -54,9 +54,14 @@ class TestReportStatus extends FhirCodeEnum {
     if (value == null && element != null) {
       return TestReportStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('TestReportStatus cannot be constructed from JSON.');
+      throw ArgumentError(
+        'TestReportStatus cannot be constructed from JSON.',
+      );
     }
-    return TestReportStatus._(validatedValue: value, element: element);
+    return TestReportStatus._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// completed

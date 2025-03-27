@@ -57,9 +57,13 @@ class ActionRequiredBehavior extends FhirCodeEnum {
       return ActionRequiredBehavior.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ActionRequiredBehavior cannot be constructed from JSON.',);
+        'ActionRequiredBehavior cannot be constructed from JSON.',
+      );
     }
-    return ActionRequiredBehavior._(validatedValue: value, element: element);
+    return ActionRequiredBehavior._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// must

@@ -263,21 +263,66 @@ class SubscriptionStatus extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('status', status);
-    addField('type', type);
-    addField('eventsSinceSubscriptionStart', eventsSinceSubscriptionStart);
-    addField('notificationEvent', notificationEvent);
-    addField('subscription', subscription);
-    addField('topic', topic);
-    addField('error', error);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'eventsSinceSubscriptionStart',
+      eventsSinceSubscriptionStart,
+    );
+    addField(
+      'notificationEvent',
+      notificationEvent,
+    );
+    addField(
+      'subscription',
+      subscription,
+    );
+    addField(
+      'topic',
+      topic,
+    );
+    addField(
+      'error',
+      error,
+    );
     return json;
   }
 
@@ -376,50 +421,6 @@ class SubscriptionStatus extends DomainResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'notificationEvent':
-        if (notificationEvent != null) {
-          return notificationEvent!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'error':
-        if (error != null) {
-          return error!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -431,23 +432,23 @@ class SubscriptionStatus extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -455,7 +456,7 @@ class SubscriptionStatus extends DomainResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -463,7 +464,7 @@ class SubscriptionStatus extends DomainResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -471,7 +472,7 @@ class SubscriptionStatus extends DomainResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -479,31 +480,49 @@ class SubscriptionStatus extends DomainResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -511,7 +530,7 @@ class SubscriptionStatus extends DomainResource {
           if (child is SubscriptionStatusCodes) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -519,7 +538,7 @@ class SubscriptionStatus extends DomainResource {
           if (child is SubscriptionNotificationType) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'eventsSinceSubscriptionStart':
@@ -527,15 +546,21 @@ class SubscriptionStatus extends DomainResource {
           if (child is FhirString) {
             return copyWith(eventsSinceSubscriptionStart: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'notificationEvent':
         {
           if (child is List<SubscriptionStatusNotificationEvent>) {
-            return copyWith(notificationEvent: child);
+            // Add all elements from passed list
+            final newList = [...?notificationEvent, ...child];
+            return copyWith(notificationEvent: newList);
+          } else if (child is SubscriptionStatusNotificationEvent) {
+            // Add single element to existing list or create new list
+            final newList = [...?notificationEvent, child];
+            return copyWith(notificationEvent: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'subscription':
@@ -543,7 +568,7 @@ class SubscriptionStatus extends DomainResource {
           if (child is Reference) {
             return copyWith(subscription: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'topic':
@@ -551,19 +576,25 @@ class SubscriptionStatus extends DomainResource {
           if (child is FhirCanonical) {
             return copyWith(topic: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'error':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(error: child);
+            // Add all elements from passed list
+            final newList = [...?error, ...child];
+            return copyWith(error: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?error, child];
+            return copyWith(error: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -612,68 +643,99 @@ class SubscriptionStatus extends DomainResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  SubscriptionStatus createProperty(String propertyName) {
+  SubscriptionStatus createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'status':
         {
-          return copyWith(status: SubscriptionStatusCodes.empty());
+          return copyWith(
+            status: SubscriptionStatusCodes.empty(),
+          );
         }
       case 'type':
         {
-          return copyWith(type: SubscriptionNotificationType.empty());
+          return copyWith(
+            type: SubscriptionNotificationType.empty(),
+          );
         }
       case 'eventsSinceSubscriptionStart':
         {
-          return copyWith(eventsSinceSubscriptionStart: FhirString.empty());
+          return copyWith(
+            eventsSinceSubscriptionStart: FhirString.empty(),
+          );
         }
       case 'notificationEvent':
         {
           return copyWith(
-              notificationEvent: <SubscriptionStatusNotificationEvent>[],);
+            notificationEvent: <SubscriptionStatusNotificationEvent>[],
+          );
         }
       case 'subscription':
         {
-          return copyWith(subscription: Reference.empty());
+          return copyWith(
+            subscription: Reference.empty(),
+          );
         }
       case 'topic':
         {
-          return copyWith(topic: FhirCanonical.empty());
+          return copyWith(
+            topic: FhirCanonical.empty(),
+          );
         }
       case 'error':
         {
-          return copyWith(error: <CodeableConcept>[]);
+          return copyWith(
+            error: <CodeableConcept>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -828,19 +890,34 @@ class SubscriptionStatus extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -861,14 +938,22 @@ class SubscriptionStatus extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
-      return false;
-    }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(
-        eventsSinceSubscriptionStart, o.eventsSinceSubscriptionStart,)) {
+      type,
+      o.type,
+    )) {
+      return false;
+    }
+    if (!equalsDeepWithNull(
+      eventsSinceSubscriptionStart,
+      o.eventsSinceSubscriptionStart,
+    )) {
       return false;
     }
     if (!listEquals<SubscriptionStatusNotificationEvent>(
@@ -877,10 +962,16 @@ class SubscriptionStatus extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(subscription, o.subscription)) {
+    if (!equalsDeepWithNull(
+      subscription,
+      o.subscription,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(topic, o.topic)) {
+    if (!equalsDeepWithNull(
+      topic,
+      o.topic,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1076,13 +1167,34 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('eventNumber', eventNumber);
-    addField('timestamp', timestamp);
-    addField('focus', focus);
-    addField('additionalContext', additionalContext);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'eventNumber',
+      eventNumber,
+    );
+    addField(
+      'timestamp',
+      timestamp,
+    );
+    addField(
+      'focus',
+      focus,
+    );
+    addField(
+      'additionalContext',
+      additionalContext,
+    );
     return json;
   }
 
@@ -1143,38 +1255,6 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'additionalContext':
-        if (additionalContext != null) {
-          return additionalContext!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1186,39 +1266,51 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'eventNumber':
@@ -1226,7 +1318,7 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
           if (child is FhirString) {
             return copyWith(eventNumber: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'timestamp':
@@ -1234,7 +1326,7 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
           if (child is FhirInstant) {
             return copyWith(timestamp: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'focus':
@@ -1242,19 +1334,25 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
           if (child is Reference) {
             return copyWith(focus: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'additionalContext':
         {
           if (child is List<Reference>) {
-            return copyWith(additionalContext: child);
+            // Add all elements from passed list
+            final newList = [...?additionalContext, ...child];
+            return copyWith(additionalContext: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?additionalContext, child];
+            return copyWith(additionalContext: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1287,35 +1385,51 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  SubscriptionStatusNotificationEvent createProperty(String propertyName) {
+  SubscriptionStatusNotificationEvent createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'eventNumber':
         {
-          return copyWith(eventNumber: FhirString.empty());
+          return copyWith(
+            eventNumber: FhirString.empty(),
+          );
         }
       case 'timestamp':
         {
-          return copyWith(timestamp: FhirInstant.empty());
+          return copyWith(
+            timestamp: FhirInstant.empty(),
+          );
         }
       case 'focus':
         {
-          return copyWith(focus: Reference.empty());
+          return copyWith(
+            focus: Reference.empty(),
+          );
         }
       case 'additionalContext':
         {
-          return copyWith(additionalContext: <Reference>[]);
+          return copyWith(
+            additionalContext: <Reference>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1413,7 +1527,10 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1428,13 +1545,22 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(eventNumber, o.eventNumber)) {
+    if (!equalsDeepWithNull(
+      eventNumber,
+      o.eventNumber,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(timestamp, o.timestamp)) {
+    if (!equalsDeepWithNull(
+      timestamp,
+      o.timestamp,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(focus, o.focus)) {
+    if (!equalsDeepWithNull(
+      focus,
+      o.focus,
+    )) {
       return false;
     }
     if (!listEquals<Reference>(

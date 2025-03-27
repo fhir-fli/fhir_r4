@@ -56,9 +56,13 @@ class StructureMapModelMode extends FhirCodeEnum {
       return StructureMapModelMode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'StructureMapModelMode cannot be constructed from JSON.',);
+        'StructureMapModelMode cannot be constructed from JSON.',
+      );
     }
-    return StructureMapModelMode._(validatedValue: value, element: element);
+    return StructureMapModelMode._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// source

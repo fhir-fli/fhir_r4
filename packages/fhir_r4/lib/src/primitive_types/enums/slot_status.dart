@@ -54,9 +54,14 @@ class SlotStatus extends FhirCodeEnum {
     if (value == null && element != null) {
       return SlotStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('SlotStatus cannot be constructed from JSON.');
+      throw ArgumentError(
+        'SlotStatus cannot be constructed from JSON.',
+      );
     }
-    return SlotStatus._(validatedValue: value, element: element);
+    return SlotStatus._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// busy

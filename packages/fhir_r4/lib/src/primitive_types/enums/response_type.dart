@@ -54,9 +54,14 @@ class ResponseType extends FhirCodeEnum {
     if (value == null && element != null) {
       return ResponseType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('ResponseType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'ResponseType cannot be constructed from JSON.',
+      );
     }
-    return ResponseType._(validatedValue: value, element: element);
+    return ResponseType._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// ok

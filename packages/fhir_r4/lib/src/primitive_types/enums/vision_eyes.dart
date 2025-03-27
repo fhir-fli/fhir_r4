@@ -54,9 +54,14 @@ class VisionEyes extends FhirCodeEnum {
     if (value == null && element != null) {
       return VisionEyes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('VisionEyes cannot be constructed from JSON.');
+      throw ArgumentError(
+        'VisionEyes cannot be constructed from JSON.',
+      );
     }
-    return VisionEyes._(validatedValue: value, element: element);
+    return VisionEyes._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// right

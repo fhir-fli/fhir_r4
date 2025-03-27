@@ -57,9 +57,13 @@ class ResearchElementType extends FhirCodeEnum {
       return ResearchElementType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ResearchElementType cannot be constructed from JSON.',);
+        'ResearchElementType cannot be constructed from JSON.',
+      );
     }
-    return ResearchElementType._(validatedValue: value, element: element);
+    return ResearchElementType._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// population

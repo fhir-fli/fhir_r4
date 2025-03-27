@@ -54,9 +54,14 @@ class GroupType extends FhirCodeEnum {
     if (value == null && element != null) {
       return GroupType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('GroupType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'GroupType cannot be constructed from JSON.',
+      );
     }
-    return GroupType._(validatedValue: value, element: element);
+    return GroupType._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// person

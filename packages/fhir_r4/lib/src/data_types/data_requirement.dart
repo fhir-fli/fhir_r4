@@ -259,20 +259,50 @@ class DataRequirement extends DataType
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('type', type);
-    addField('profile', profile);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'profile',
+      profile,
+    );
     if (subjectX != null) {
       final fhirType = subjectX!.fhirType;
-      addField('subject${fhirType.capitalize()}', subjectX);
+      addField(
+        'subject${fhirType.capitalize()}',
+        subjectX,
+      );
     }
 
-    addField('mustSupport', mustSupport);
-    addField('codeFilter', codeFilter);
-    addField('dateFilter', dateFilter);
-    addField('limit', limit);
-    addField('sort', sort);
+    addField(
+      'mustSupport',
+      mustSupport,
+    );
+    addField(
+      'codeFilter',
+      codeFilter,
+    );
+    addField(
+      'dateFilter',
+      dateFilter,
+    );
+    addField(
+      'limit',
+      limit,
+    );
+    addField(
+      'sort',
+      sort,
+    );
     return json;
   }
 
@@ -356,56 +386,6 @@ class DataRequirement extends DataType
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'profile':
-        if (profile != null) {
-          return profile!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'mustSupport':
-        if (mustSupport != null) {
-          return mustSupport!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'codeFilter':
-        if (codeFilter != null) {
-          return codeFilter!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'dateFilter':
-        if (dateFilter != null) {
-          return dateFilter!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'sort':
-        if (sort != null) {
-          return sort!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -417,31 +397,37 @@ class DataRequirement extends DataType
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -449,32 +435,43 @@ class DataRequirement extends DataType
           if (child is FHIRAllTypes) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'profile':
         {
           if (child is List<FhirCanonical>) {
-            return copyWith(profile: child);
+            // Add all elements from passed list
+            final newList = [...?profile, ...child];
+            return copyWith(profile: newList);
+          } else if (child is FhirCanonical) {
+            // Add single element to existing list or create new list
+            final newList = [...?profile, child];
+            return copyWith(profile: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'subjectX':
         {
           if (child is SubjectXDataRequirement) {
-            // child is e.g. SubjectX union
             return copyWith(subjectX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is CodeableConcept) {
+              return copyWith(subjectX: child);
+            }
+            if (child is Reference) {
+              return copyWith(subjectX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'subjectCodeableConcept':
         {
           if (child is CodeableConcept) {
             return copyWith(subjectX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'subjectReference':
@@ -482,31 +479,49 @@ class DataRequirement extends DataType
           if (child is Reference) {
             return copyWith(subjectX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'mustSupport':
         {
           if (child is List<FhirString>) {
-            return copyWith(mustSupport: child);
+            // Add all elements from passed list
+            final newList = [...?mustSupport, ...child];
+            return copyWith(mustSupport: newList);
+          } else if (child is FhirString) {
+            // Add single element to existing list or create new list
+            final newList = [...?mustSupport, child];
+            return copyWith(mustSupport: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'codeFilter':
         {
           if (child is List<DataRequirementCodeFilter>) {
-            return copyWith(codeFilter: child);
+            // Add all elements from passed list
+            final newList = [...?codeFilter, ...child];
+            return copyWith(codeFilter: newList);
+          } else if (child is DataRequirementCodeFilter) {
+            // Add single element to existing list or create new list
+            final newList = [...?codeFilter, child];
+            return copyWith(codeFilter: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'dateFilter':
         {
           if (child is List<DataRequirementDateFilter>) {
-            return copyWith(dateFilter: child);
+            // Add all elements from passed list
+            final newList = [...?dateFilter, ...child];
+            return copyWith(dateFilter: newList);
+          } else if (child is DataRequirementDateFilter) {
+            // Add single element to existing list or create new list
+            final newList = [...?dateFilter, child];
+            return copyWith(dateFilter: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'limit':
@@ -514,19 +529,25 @@ class DataRequirement extends DataType
           if (child is FhirPositiveInt) {
             return copyWith(limit: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'sort':
         {
           if (child is List<DataRequirementSort>) {
-            return copyWith(sort: child);
+            // Add all elements from passed list
+            final newList = [...?sort, ...child];
+            return copyWith(sort: newList);
+          } else if (child is DataRequirementSort) {
+            // Add single element to existing list or create new list
+            final newList = [...?sort, child];
+            return copyWith(sort: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -570,53 +591,77 @@ class DataRequirement extends DataType
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  DataRequirement createProperty(String propertyName) {
+  DataRequirement createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'type':
         {
-          return copyWith(type: FHIRAllTypes.empty());
+          return copyWith(
+            type: FHIRAllTypes.empty(),
+          );
         }
       case 'profile':
         {
-          return copyWith(profile: <FhirCanonical>[]);
+          return copyWith(
+            profile: <FhirCanonical>[],
+          );
         }
       case 'subject':
       case 'subjectX':
       case 'subjectCodeableConcept':
         {
-          return copyWith(subjectX: CodeableConcept.empty());
+          return copyWith(
+            subjectX: CodeableConcept.empty(),
+          );
         }
       case 'subjectReference':
         {
-          return copyWith(subjectX: Reference.empty());
+          return copyWith(
+            subjectX: Reference.empty(),
+          );
         }
       case 'mustSupport':
         {
-          return copyWith(mustSupport: <FhirString>[]);
+          return copyWith(
+            mustSupport: <FhirString>[],
+          );
         }
       case 'codeFilter':
         {
-          return copyWith(codeFilter: <DataRequirementCodeFilter>[]);
+          return copyWith(
+            codeFilter: <DataRequirementCodeFilter>[],
+          );
         }
       case 'dateFilter':
         {
-          return copyWith(dateFilter: <DataRequirementDateFilter>[]);
+          return copyWith(
+            dateFilter: <DataRequirementDateFilter>[],
+          );
         }
       case 'limit':
         {
-          return copyWith(limit: FhirPositiveInt.empty());
+          return copyWith(
+            limit: FhirPositiveInt.empty(),
+          );
         }
       case 'sort':
         {
-          return copyWith(sort: <DataRequirementSort>[]);
+          return copyWith(
+            sort: <DataRequirementSort>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -747,7 +792,10 @@ class DataRequirement extends DataType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -756,7 +804,10 @@ class DataRequirement extends DataType
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
     if (!listEquals<FhirCanonical>(
@@ -765,7 +816,10 @@ class DataRequirement extends DataType
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(subjectX, o.subjectX)) {
+    if (!equalsDeepWithNull(
+      subjectX,
+      o.subjectX,
+    )) {
       return false;
     }
     if (!listEquals<FhirString>(
@@ -786,7 +840,10 @@ class DataRequirement extends DataType
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(limit, o.limit)) {
+    if (!equalsDeepWithNull(
+      limit,
+      o.limit,
+    )) {
       return false;
     }
     if (!listEquals<DataRequirementSort>(
@@ -822,7 +879,8 @@ class DataRequirementCodeFilter extends Element {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory DataRequirementCodeFilter.empty() => const DataRequirementCodeFilter();
+  factory DataRequirementCodeFilter.empty() =>
+      const DataRequirementCodeFilter();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DataRequirementCodeFilter.fromJson(
@@ -980,12 +1038,30 @@ class DataRequirementCodeFilter extends Element {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('path', path);
-    addField('searchParam', searchParam);
-    addField('valueSet', valueSet);
-    addField('code', code);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'path',
+      path,
+    );
+    addField(
+      'searchParam',
+      searchParam,
+    );
+    addField(
+      'valueSet',
+      valueSet,
+    );
+    addField(
+      'code',
+      code,
+    );
     return json;
   }
 
@@ -1043,32 +1119,6 @@ class DataRequirementCodeFilter extends Element {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'code':
-        if (code != null) {
-          return code!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1080,31 +1130,37 @@ class DataRequirementCodeFilter extends Element {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'path':
@@ -1112,7 +1168,7 @@ class DataRequirementCodeFilter extends Element {
           if (child is FhirString) {
             return copyWith(path: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'searchParam':
@@ -1120,7 +1176,7 @@ class DataRequirementCodeFilter extends Element {
           if (child is FhirString) {
             return copyWith(searchParam: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueSet':
@@ -1128,19 +1184,25 @@ class DataRequirementCodeFilter extends Element {
           if (child is FhirCanonical) {
             return copyWith(valueSet: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
           if (child is List<Coding>) {
-            return copyWith(code: child);
+            // Add all elements from passed list
+            final newList = [...?code, ...child];
+            return copyWith(code: newList);
+          } else if (child is Coding) {
+            // Add single element to existing list or create new list
+            final newList = [...?code, child];
+            return copyWith(code: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1171,31 +1233,45 @@ class DataRequirementCodeFilter extends Element {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  DataRequirementCodeFilter createProperty(String propertyName) {
+  DataRequirementCodeFilter createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'path':
         {
-          return copyWith(path: FhirString.empty());
+          return copyWith(
+            path: FhirString.empty(),
+          );
         }
       case 'searchParam':
         {
-          return copyWith(searchParam: FhirString.empty());
+          return copyWith(
+            searchParam: FhirString.empty(),
+          );
         }
       case 'valueSet':
         {
-          return copyWith(valueSet: FhirCanonical.empty());
+          return copyWith(
+            valueSet: FhirCanonical.empty(),
+          );
         }
       case 'code':
         {
-          return copyWith(code: <Coding>[]);
+          return copyWith(
+            code: <Coding>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1283,7 +1359,10 @@ class DataRequirementCodeFilter extends Element {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1292,13 +1371,22 @@ class DataRequirementCodeFilter extends Element {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(path, o.path)) {
+    if (!equalsDeepWithNull(
+      path,
+      o.path,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(searchParam, o.searchParam)) {
+    if (!equalsDeepWithNull(
+      searchParam,
+      o.searchParam,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(valueSet, o.valueSet)) {
+    if (!equalsDeepWithNull(
+      valueSet,
+      o.valueSet,
+    )) {
       return false;
     }
     if (!listEquals<Coding>(
@@ -1333,7 +1421,8 @@ class DataRequirementDateFilter extends Element {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory DataRequirementDateFilter.empty() => const DataRequirementDateFilter();
+  factory DataRequirementDateFilter.empty() =>
+      const DataRequirementDateFilter();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DataRequirementDateFilter.fromJson(
@@ -1488,13 +1577,28 @@ class DataRequirementDateFilter extends Element {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('path', path);
-    addField('searchParam', searchParam);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'path',
+      path,
+    );
+    addField(
+      'searchParam',
+      searchParam,
+    );
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField('value${fhirType.capitalize()}', valueX);
+      addField(
+        'value${fhirType.capitalize()}',
+        valueX,
+      );
     }
 
     return json;
@@ -1561,26 +1665,6 @@ class DataRequirementDateFilter extends Element {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1592,31 +1676,37 @@ class DataRequirementDateFilter extends Element {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'path':
@@ -1624,7 +1714,7 @@ class DataRequirementDateFilter extends Element {
           if (child is FhirString) {
             return copyWith(path: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'searchParam':
@@ -1632,24 +1722,32 @@ class DataRequirementDateFilter extends Element {
           if (child is FhirString) {
             return copyWith(searchParam: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueX':
         {
           if (child is ValueXDataRequirementDateFilter) {
-            // child is e.g. SubjectX union
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is FhirDateTime) {
+              return copyWith(valueX: child);
+            }
+            if (child is Period) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirDuration) {
+              return copyWith(valueX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'valueFhirDateTime':
         {
           if (child is FhirDateTime) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valuePeriod':
@@ -1657,7 +1755,7 @@ class DataRequirementDateFilter extends Element {
           if (child is Period) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirDuration':
@@ -1665,11 +1763,11 @@ class DataRequirementDateFilter extends Element {
           if (child is FhirDuration) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1705,37 +1803,53 @@ class DataRequirementDateFilter extends Element {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  DataRequirementDateFilter createProperty(String propertyName) {
+  DataRequirementDateFilter createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'path':
         {
-          return copyWith(path: FhirString.empty());
+          return copyWith(
+            path: FhirString.empty(),
+          );
         }
       case 'searchParam':
         {
-          return copyWith(searchParam: FhirString.empty());
+          return copyWith(
+            searchParam: FhirString.empty(),
+          );
         }
       case 'value':
       case 'valueX':
       case 'valueDateTime':
         {
-          return copyWith(valueX: FhirDateTime.empty());
+          return copyWith(
+            valueX: FhirDateTime.empty(),
+          );
         }
       case 'valuePeriod':
         {
-          return copyWith(valueX: Period.empty());
+          return copyWith(
+            valueX: Period.empty(),
+          );
         }
       case 'valueDuration':
         {
-          return copyWith(valueX: FhirDuration.empty());
+          return copyWith(
+            valueX: FhirDuration.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1812,7 +1926,10 @@ class DataRequirementDateFilter extends Element {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1821,13 +1938,22 @@ class DataRequirementDateFilter extends Element {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(path, o.path)) {
+    if (!equalsDeepWithNull(
+      path,
+      o.path,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(searchParam, o.searchParam)) {
+    if (!equalsDeepWithNull(
+      searchParam,
+      o.searchParam,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(valueX, o.valueX)) {
+    if (!equalsDeepWithNull(
+      valueX,
+      o.valueX,
+    )) {
       return false;
     }
     return true;
@@ -1976,10 +2102,22 @@ class DataRequirementSort extends Element {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('path', path);
-    addField('direction', direction);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'path',
+      path,
+    );
+    addField(
+      'direction',
+      direction,
+    );
     return json;
   }
 
@@ -2023,26 +2161,6 @@ class DataRequirementSort extends Element {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2054,31 +2172,37 @@ class DataRequirementSort extends Element {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'path':
@@ -2086,7 +2210,7 @@ class DataRequirementSort extends Element {
           if (child is FhirString) {
             return copyWith(path: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'direction':
@@ -2094,11 +2218,11 @@ class DataRequirementSort extends Element {
           if (child is SortDirection) {
             return copyWith(direction: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2125,23 +2249,33 @@ class DataRequirementSort extends Element {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  DataRequirementSort createProperty(String propertyName) {
+  DataRequirementSort createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'path':
         {
-          return copyWith(path: FhirString.empty());
+          return copyWith(
+            path: FhirString.empty(),
+          );
         }
       case 'direction':
         {
-          return copyWith(direction: SortDirection.empty());
+          return copyWith(
+            direction: SortDirection.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2209,7 +2343,10 @@ class DataRequirementSort extends Element {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2218,10 +2355,16 @@ class DataRequirementSort extends Element {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(path, o.path)) {
+    if (!equalsDeepWithNull(
+      path,
+      o.path,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(direction, o.direction)) {
+    if (!equalsDeepWithNull(
+      direction,
+      o.direction,
+    )) {
       return false;
     }
     return true;

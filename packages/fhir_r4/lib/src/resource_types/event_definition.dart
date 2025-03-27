@@ -516,46 +516,154 @@ class EventDefinition extends CanonicalResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('url', url);
-    addField('identifier', identifier);
-    addField('version', version);
-    addField('name', name);
-    addField('title', title);
-    addField('subtitle', subtitle);
-    addField('status', status);
-    addField('experimental', experimental);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'url',
+      url,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'version',
+      version,
+    );
+    addField(
+      'name',
+      name,
+    );
+    addField(
+      'title',
+      title,
+    );
+    addField(
+      'subtitle',
+      subtitle,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'experimental',
+      experimental,
+    );
     if (subjectX != null) {
       final fhirType = subjectX!.fhirType;
-      addField('subject${fhirType.capitalize()}', subjectX);
+      addField(
+        'subject${fhirType.capitalize()}',
+        subjectX,
+      );
     }
 
-    addField('date', date);
-    addField('publisher', publisher);
-    addField('contact', contact);
-    addField('description', description);
-    addField('useContext', useContext);
-    addField('jurisdiction', jurisdiction);
-    addField('purpose', purpose);
-    addField('usage', usage);
-    addField('copyright', copyright);
-    addField('approvalDate', approvalDate);
-    addField('lastReviewDate', lastReviewDate);
-    addField('effectivePeriod', effectivePeriod);
-    addField('topic', topic);
-    addField('author', author);
-    addField('editor', editor);
-    addField('reviewer', reviewer);
-    addField('endorser', endorser);
-    addField('relatedArtifact', relatedArtifact);
-    addField('trigger', trigger);
+    addField(
+      'date',
+      date,
+    );
+    addField(
+      'publisher',
+      publisher,
+    );
+    addField(
+      'contact',
+      contact,
+    );
+    addField(
+      'description',
+      description,
+    );
+    addField(
+      'useContext',
+      useContext,
+    );
+    addField(
+      'jurisdiction',
+      jurisdiction,
+    );
+    addField(
+      'purpose',
+      purpose,
+    );
+    addField(
+      'usage',
+      usage,
+    );
+    addField(
+      'copyright',
+      copyright,
+    );
+    addField(
+      'approvalDate',
+      approvalDate,
+    );
+    addField(
+      'lastReviewDate',
+      lastReviewDate,
+    );
+    addField(
+      'effectivePeriod',
+      effectivePeriod,
+    );
+    addField(
+      'topic',
+      topic,
+    );
+    addField(
+      'author',
+      author,
+    );
+    addField(
+      'editor',
+      editor,
+    );
+    addField(
+      'reviewer',
+      reviewer,
+    );
+    addField(
+      'endorser',
+      endorser,
+    );
+    addField(
+      'relatedArtifact',
+      relatedArtifact,
+    );
+    addField(
+      'trigger',
+      trigger,
+    );
     return json;
   }
 
@@ -769,100 +877,6 @@ class EventDefinition extends CanonicalResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'identifier':
-        if (identifier != null) {
-          return identifier!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'contact':
-        if (contact != null) {
-          return contact!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'useContext':
-        if (useContext != null) {
-          return useContext!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'jurisdiction':
-        if (jurisdiction != null) {
-          return jurisdiction!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'topic':
-        if (topic != null) {
-          return topic!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'author':
-        if (author != null) {
-          return author!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'editor':
-        if (editor != null) {
-          return editor!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'reviewer':
-        if (reviewer != null) {
-          return reviewer!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'endorser':
-        if (endorser != null) {
-          return endorser!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'relatedArtifact':
-        if (relatedArtifact != null) {
-          return relatedArtifact!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'trigger':
-        return trigger;
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -874,23 +888,23 @@ class EventDefinition extends CanonicalResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -898,7 +912,7 @@ class EventDefinition extends CanonicalResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -906,7 +920,7 @@ class EventDefinition extends CanonicalResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -914,7 +928,7 @@ class EventDefinition extends CanonicalResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -922,31 +936,49 @@ class EventDefinition extends CanonicalResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'url':
@@ -954,15 +986,21 @@ class EventDefinition extends CanonicalResource {
           if (child is FhirUri) {
             return copyWith(url: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
           if (child is List<Identifier>) {
-            return copyWith(identifier: child);
+            // Add all elements from passed list
+            final newList = [...?identifier, ...child];
+            return copyWith(identifier: newList);
+          } else if (child is Identifier) {
+            // Add single element to existing list or create new list
+            final newList = [...?identifier, child];
+            return copyWith(identifier: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'version':
@@ -970,7 +1008,7 @@ class EventDefinition extends CanonicalResource {
           if (child is FhirString) {
             return copyWith(version: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
@@ -978,7 +1016,7 @@ class EventDefinition extends CanonicalResource {
           if (child is FhirString) {
             return copyWith(name: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'title':
@@ -986,7 +1024,7 @@ class EventDefinition extends CanonicalResource {
           if (child is FhirString) {
             return copyWith(title: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'subtitle':
@@ -994,7 +1032,7 @@ class EventDefinition extends CanonicalResource {
           if (child is FhirString) {
             return copyWith(subtitle: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -1002,7 +1040,7 @@ class EventDefinition extends CanonicalResource {
           if (child is PublicationStatus) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'experimental':
@@ -1010,24 +1048,29 @@ class EventDefinition extends CanonicalResource {
           if (child is FhirBoolean) {
             return copyWith(experimental: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'subjectX':
         {
           if (child is SubjectXEventDefinition) {
-            // child is e.g. SubjectX union
             return copyWith(subjectX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is CodeableConcept) {
+              return copyWith(subjectX: child);
+            }
+            if (child is Reference) {
+              return copyWith(subjectX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'subjectCodeableConcept':
         {
           if (child is CodeableConcept) {
             return copyWith(subjectX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'subjectReference':
@@ -1035,7 +1078,7 @@ class EventDefinition extends CanonicalResource {
           if (child is Reference) {
             return copyWith(subjectX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
@@ -1043,7 +1086,7 @@ class EventDefinition extends CanonicalResource {
           if (child is FhirDateTime) {
             return copyWith(date: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'publisher':
@@ -1051,15 +1094,21 @@ class EventDefinition extends CanonicalResource {
           if (child is FhirString) {
             return copyWith(publisher: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contact':
         {
           if (child is List<ContactDetail>) {
-            return copyWith(contact: child);
+            // Add all elements from passed list
+            final newList = [...?contact, ...child];
+            return copyWith(contact: newList);
+          } else if (child is ContactDetail) {
+            // Add single element to existing list or create new list
+            final newList = [...?contact, child];
+            return copyWith(contact: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
@@ -1067,23 +1116,35 @@ class EventDefinition extends CanonicalResource {
           if (child is FhirMarkdown) {
             return copyWith(description: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'useContext':
         {
           if (child is List<UsageContext>) {
-            return copyWith(useContext: child);
+            // Add all elements from passed list
+            final newList = [...?useContext, ...child];
+            return copyWith(useContext: newList);
+          } else if (child is UsageContext) {
+            // Add single element to existing list or create new list
+            final newList = [...?useContext, child];
+            return copyWith(useContext: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'jurisdiction':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(jurisdiction: child);
+            // Add all elements from passed list
+            final newList = [...?jurisdiction, ...child];
+            return copyWith(jurisdiction: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?jurisdiction, child];
+            return copyWith(jurisdiction: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'purpose':
@@ -1091,7 +1152,7 @@ class EventDefinition extends CanonicalResource {
           if (child is FhirMarkdown) {
             return copyWith(purpose: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'usage':
@@ -1099,7 +1160,7 @@ class EventDefinition extends CanonicalResource {
           if (child is FhirString) {
             return copyWith(usage: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'copyright':
@@ -1107,7 +1168,7 @@ class EventDefinition extends CanonicalResource {
           if (child is FhirMarkdown) {
             return copyWith(copyright: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'approvalDate':
@@ -1115,7 +1176,7 @@ class EventDefinition extends CanonicalResource {
           if (child is FhirDate) {
             return copyWith(approvalDate: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'lastReviewDate':
@@ -1123,7 +1184,7 @@ class EventDefinition extends CanonicalResource {
           if (child is FhirDate) {
             return copyWith(lastReviewDate: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'effectivePeriod':
@@ -1131,67 +1192,109 @@ class EventDefinition extends CanonicalResource {
           if (child is Period) {
             return copyWith(effectivePeriod: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'topic':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(topic: child);
+            // Add all elements from passed list
+            final newList = [...?topic, ...child];
+            return copyWith(topic: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?topic, child];
+            return copyWith(topic: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'author':
         {
           if (child is List<ContactDetail>) {
-            return copyWith(author: child);
+            // Add all elements from passed list
+            final newList = [...?author, ...child];
+            return copyWith(author: newList);
+          } else if (child is ContactDetail) {
+            // Add single element to existing list or create new list
+            final newList = [...?author, child];
+            return copyWith(author: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'editor':
         {
           if (child is List<ContactDetail>) {
-            return copyWith(editor: child);
+            // Add all elements from passed list
+            final newList = [...?editor, ...child];
+            return copyWith(editor: newList);
+          } else if (child is ContactDetail) {
+            // Add single element to existing list or create new list
+            final newList = [...?editor, child];
+            return copyWith(editor: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'reviewer':
         {
           if (child is List<ContactDetail>) {
-            return copyWith(reviewer: child);
+            // Add all elements from passed list
+            final newList = [...?reviewer, ...child];
+            return copyWith(reviewer: newList);
+          } else if (child is ContactDetail) {
+            // Add single element to existing list or create new list
+            final newList = [...?reviewer, child];
+            return copyWith(reviewer: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'endorser':
         {
           if (child is List<ContactDetail>) {
-            return copyWith(endorser: child);
+            // Add all elements from passed list
+            final newList = [...?endorser, ...child];
+            return copyWith(endorser: newList);
+          } else if (child is ContactDetail) {
+            // Add single element to existing list or create new list
+            final newList = [...?endorser, child];
+            return copyWith(endorser: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'relatedArtifact':
         {
           if (child is List<RelatedArtifact>) {
-            return copyWith(relatedArtifact: child);
+            // Add all elements from passed list
+            final newList = [...?relatedArtifact, ...child];
+            return copyWith(relatedArtifact: newList);
+          } else if (child is RelatedArtifact) {
+            // Add single element to existing list or create new list
+            final newList = [...?relatedArtifact, child];
+            return copyWith(relatedArtifact: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'trigger':
         {
           if (child is List<TriggerDefinition>) {
-            return copyWith(trigger: child);
+            // Add all elements from passed list
+            final newList = [...trigger, ...child];
+            return copyWith(trigger: newList);
+          } else if (child is TriggerDefinition) {
+            // Add single element to existing list or create new list
+            final newList = [...trigger, child];
+            return copyWith(trigger: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1287,157 +1390,233 @@ class EventDefinition extends CanonicalResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  EventDefinition createProperty(String propertyName) {
+  EventDefinition createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'url':
         {
-          return copyWith(url: FhirUri.empty());
+          return copyWith(
+            url: FhirUri.empty(),
+          );
         }
       case 'identifier':
         {
-          return copyWith(identifier: <Identifier>[]);
+          return copyWith(
+            identifier: <Identifier>[],
+          );
         }
       case 'version':
         {
-          return copyWith(version: FhirString.empty());
+          return copyWith(
+            version: FhirString.empty(),
+          );
         }
       case 'name':
         {
-          return copyWith(name: FhirString.empty());
+          return copyWith(
+            name: FhirString.empty(),
+          );
         }
       case 'title':
         {
-          return copyWith(title: FhirString.empty());
+          return copyWith(
+            title: FhirString.empty(),
+          );
         }
       case 'subtitle':
         {
-          return copyWith(subtitle: FhirString.empty());
+          return copyWith(
+            subtitle: FhirString.empty(),
+          );
         }
       case 'status':
         {
-          return copyWith(status: PublicationStatus.empty());
+          return copyWith(
+            status: PublicationStatus.empty(),
+          );
         }
       case 'experimental':
         {
-          return copyWith(experimental: FhirBoolean.empty());
+          return copyWith(
+            experimental: FhirBoolean.empty(),
+          );
         }
       case 'subject':
       case 'subjectX':
       case 'subjectCodeableConcept':
         {
-          return copyWith(subjectX: CodeableConcept.empty());
+          return copyWith(
+            subjectX: CodeableConcept.empty(),
+          );
         }
       case 'subjectReference':
         {
-          return copyWith(subjectX: Reference.empty());
+          return copyWith(
+            subjectX: Reference.empty(),
+          );
         }
       case 'date':
         {
-          return copyWith(date: FhirDateTime.empty());
+          return copyWith(
+            date: FhirDateTime.empty(),
+          );
         }
       case 'publisher':
         {
-          return copyWith(publisher: FhirString.empty());
+          return copyWith(
+            publisher: FhirString.empty(),
+          );
         }
       case 'contact':
         {
-          return copyWith(contact: <ContactDetail>[]);
+          return copyWith(
+            contact: <ContactDetail>[],
+          );
         }
       case 'description':
         {
-          return copyWith(description: FhirMarkdown.empty());
+          return copyWith(
+            description: FhirMarkdown.empty(),
+          );
         }
       case 'useContext':
         {
-          return copyWith(useContext: <UsageContext>[]);
+          return copyWith(
+            useContext: <UsageContext>[],
+          );
         }
       case 'jurisdiction':
         {
-          return copyWith(jurisdiction: <CodeableConcept>[]);
+          return copyWith(
+            jurisdiction: <CodeableConcept>[],
+          );
         }
       case 'purpose':
         {
-          return copyWith(purpose: FhirMarkdown.empty());
+          return copyWith(
+            purpose: FhirMarkdown.empty(),
+          );
         }
       case 'usage':
         {
-          return copyWith(usage: FhirString.empty());
+          return copyWith(
+            usage: FhirString.empty(),
+          );
         }
       case 'copyright':
         {
-          return copyWith(copyright: FhirMarkdown.empty());
+          return copyWith(
+            copyright: FhirMarkdown.empty(),
+          );
         }
       case 'approvalDate':
         {
-          return copyWith(approvalDate: FhirDate.empty());
+          return copyWith(
+            approvalDate: FhirDate.empty(),
+          );
         }
       case 'lastReviewDate':
         {
-          return copyWith(lastReviewDate: FhirDate.empty());
+          return copyWith(
+            lastReviewDate: FhirDate.empty(),
+          );
         }
       case 'effectivePeriod':
         {
-          return copyWith(effectivePeriod: Period.empty());
+          return copyWith(
+            effectivePeriod: Period.empty(),
+          );
         }
       case 'topic':
         {
-          return copyWith(topic: <CodeableConcept>[]);
+          return copyWith(
+            topic: <CodeableConcept>[],
+          );
         }
       case 'author':
         {
-          return copyWith(author: <ContactDetail>[]);
+          return copyWith(
+            author: <ContactDetail>[],
+          );
         }
       case 'editor':
         {
-          return copyWith(editor: <ContactDetail>[]);
+          return copyWith(
+            editor: <ContactDetail>[],
+          );
         }
       case 'reviewer':
         {
-          return copyWith(reviewer: <ContactDetail>[]);
+          return copyWith(
+            reviewer: <ContactDetail>[],
+          );
         }
       case 'endorser':
         {
-          return copyWith(endorser: <ContactDetail>[]);
+          return copyWith(
+            endorser: <ContactDetail>[],
+          );
         }
       case 'relatedArtifact':
         {
-          return copyWith(relatedArtifact: <RelatedArtifact>[]);
+          return copyWith(
+            relatedArtifact: <RelatedArtifact>[],
+          );
         }
       case 'trigger':
         {
-          return copyWith(trigger: <TriggerDefinition>[]);
+          return copyWith(
+            trigger: <TriggerDefinition>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1773,19 +1952,34 @@ class EventDefinition extends CanonicalResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1806,7 +2000,10 @@ class EventDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(url, o.url)) {
+    if (!equalsDeepWithNull(
+      url,
+      o.url,
+    )) {
       return false;
     }
     if (!listEquals<Identifier>(
@@ -1815,31 +2012,58 @@ class EventDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(version, o.version)) {
+    if (!equalsDeepWithNull(
+      version,
+      o.version,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(name, o.name)) {
+    if (!equalsDeepWithNull(
+      name,
+      o.name,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(title, o.title)) {
+    if (!equalsDeepWithNull(
+      title,
+      o.title,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(subtitle, o.subtitle)) {
+    if (!equalsDeepWithNull(
+      subtitle,
+      o.subtitle,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(experimental, o.experimental)) {
+    if (!equalsDeepWithNull(
+      experimental,
+      o.experimental,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(subjectX, o.subjectX)) {
+    if (!equalsDeepWithNull(
+      subjectX,
+      o.subjectX,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(date, o.date)) {
+    if (!equalsDeepWithNull(
+      date,
+      o.date,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(publisher, o.publisher)) {
+    if (!equalsDeepWithNull(
+      publisher,
+      o.publisher,
+    )) {
       return false;
     }
     if (!listEquals<ContactDetail>(
@@ -1848,7 +2072,10 @@ class EventDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(description, o.description)) {
+    if (!equalsDeepWithNull(
+      description,
+      o.description,
+    )) {
       return false;
     }
     if (!listEquals<UsageContext>(
@@ -1863,22 +2090,40 @@ class EventDefinition extends CanonicalResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(purpose, o.purpose)) {
+    if (!equalsDeepWithNull(
+      purpose,
+      o.purpose,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(usage, o.usage)) {
+    if (!equalsDeepWithNull(
+      usage,
+      o.usage,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(copyright, o.copyright)) {
+    if (!equalsDeepWithNull(
+      copyright,
+      o.copyright,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(approvalDate, o.approvalDate)) {
+    if (!equalsDeepWithNull(
+      approvalDate,
+      o.approvalDate,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(lastReviewDate, o.lastReviewDate)) {
+    if (!equalsDeepWithNull(
+      lastReviewDate,
+      o.lastReviewDate,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(effectivePeriod, o.effectivePeriod)) {
+    if (!equalsDeepWithNull(
+      effectivePeriod,
+      o.effectivePeriod,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(

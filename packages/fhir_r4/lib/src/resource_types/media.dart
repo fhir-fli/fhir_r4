@@ -457,40 +457,130 @@ class Media extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('identifier', identifier);
-    addField('basedOn', basedOn);
-    addField('partOf', partOf);
-    addField('status', status);
-    addField('type', type);
-    addField('modality', modality);
-    addField('view', view);
-    addField('subject', subject);
-    addField('encounter', encounter);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'basedOn',
+      basedOn,
+    );
+    addField(
+      'partOf',
+      partOf,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'modality',
+      modality,
+    );
+    addField(
+      'view',
+      view,
+    );
+    addField(
+      'subject',
+      subject,
+    );
+    addField(
+      'encounter',
+      encounter,
+    );
     if (createdX != null) {
       final fhirType = createdX!.fhirType;
-      addField('created${fhirType.capitalize()}', createdX);
+      addField(
+        'created${fhirType.capitalize()}',
+        createdX,
+      );
     }
 
-    addField('issued', issued);
-    addField('operator', operator_);
-    addField('reasonCode', reasonCode);
-    addField('bodySite', bodySite);
-    addField('deviceName', deviceName);
-    addField('device', device);
-    addField('height', height);
-    addField('width', width);
-    addField('frames', frames);
-    addField('duration', duration);
-    addField('content', content);
-    addField('note', note);
+    addField(
+      'issued',
+      issued,
+    );
+    addField(
+      'operator',
+      operator_,
+    );
+    addField(
+      'reasonCode',
+      reasonCode,
+    );
+    addField(
+      'bodySite',
+      bodySite,
+    );
+    addField(
+      'deviceName',
+      deviceName,
+    );
+    addField(
+      'device',
+      device,
+    );
+    addField(
+      'height',
+      height,
+    );
+    addField(
+      'width',
+      width,
+    );
+    addField(
+      'frames',
+      frames,
+    );
+    addField(
+      'duration',
+      duration,
+    );
+    addField(
+      'content',
+      content,
+    );
+    addField(
+      'note',
+      note,
+    );
     return json;
   }
 
@@ -672,68 +762,6 @@ class Media extends DomainResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'identifier':
-        if (identifier != null) {
-          return identifier!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'basedOn':
-        if (basedOn != null) {
-          return basedOn!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'partOf':
-        if (partOf != null) {
-          return partOf!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'reasonCode':
-        if (reasonCode != null) {
-          return reasonCode!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'note':
-        if (note != null) {
-          return note!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -745,23 +773,23 @@ class Media extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -769,7 +797,7 @@ class Media extends DomainResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -777,7 +805,7 @@ class Media extends DomainResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -785,7 +813,7 @@ class Media extends DomainResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -793,55 +821,91 @@ class Media extends DomainResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
           if (child is List<Identifier>) {
-            return copyWith(identifier: child);
+            // Add all elements from passed list
+            final newList = [...?identifier, ...child];
+            return copyWith(identifier: newList);
+          } else if (child is Identifier) {
+            // Add single element to existing list or create new list
+            final newList = [...?identifier, child];
+            return copyWith(identifier: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'basedOn':
         {
           if (child is List<Reference>) {
-            return copyWith(basedOn: child);
+            // Add all elements from passed list
+            final newList = [...?basedOn, ...child];
+            return copyWith(basedOn: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?basedOn, child];
+            return copyWith(basedOn: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'partOf':
         {
           if (child is List<Reference>) {
-            return copyWith(partOf: child);
+            // Add all elements from passed list
+            final newList = [...?partOf, ...child];
+            return copyWith(partOf: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?partOf, child];
+            return copyWith(partOf: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -849,7 +913,7 @@ class Media extends DomainResource {
           if (child is EventStatus) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -857,7 +921,7 @@ class Media extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modality':
@@ -865,7 +929,7 @@ class Media extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(modality: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'view':
@@ -873,7 +937,7 @@ class Media extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(view: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
@@ -881,7 +945,7 @@ class Media extends DomainResource {
           if (child is Reference) {
             return copyWith(subject: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'encounter':
@@ -889,24 +953,29 @@ class Media extends DomainResource {
           if (child is Reference) {
             return copyWith(encounter: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'createdX':
         {
           if (child is CreatedXMedia) {
-            // child is e.g. SubjectX union
             return copyWith(createdX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is FhirDateTime) {
+              return copyWith(createdX: child);
+            }
+            if (child is Period) {
+              return copyWith(createdX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'createdFhirDateTime':
         {
           if (child is FhirDateTime) {
             return copyWith(createdX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'createdPeriod':
@@ -914,7 +983,7 @@ class Media extends DomainResource {
           if (child is Period) {
             return copyWith(createdX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'issued':
@@ -922,7 +991,7 @@ class Media extends DomainResource {
           if (child is FhirInstant) {
             return copyWith(issued: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'operator':
@@ -930,15 +999,21 @@ class Media extends DomainResource {
           if (child is Reference) {
             return copyWith(operator_: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonCode':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(reasonCode: child);
+            // Add all elements from passed list
+            final newList = [...?reasonCode, ...child];
+            return copyWith(reasonCode: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?reasonCode, child];
+            return copyWith(reasonCode: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'bodySite':
@@ -946,7 +1021,7 @@ class Media extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(bodySite: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'deviceName':
@@ -954,7 +1029,7 @@ class Media extends DomainResource {
           if (child is FhirString) {
             return copyWith(deviceName: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'device':
@@ -962,7 +1037,7 @@ class Media extends DomainResource {
           if (child is Reference) {
             return copyWith(device: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'height':
@@ -970,7 +1045,7 @@ class Media extends DomainResource {
           if (child is FhirPositiveInt) {
             return copyWith(height: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'width':
@@ -978,7 +1053,7 @@ class Media extends DomainResource {
           if (child is FhirPositiveInt) {
             return copyWith(width: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'frames':
@@ -986,7 +1061,7 @@ class Media extends DomainResource {
           if (child is FhirPositiveInt) {
             return copyWith(frames: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'duration':
@@ -994,7 +1069,7 @@ class Media extends DomainResource {
           if (child is FhirDecimal) {
             return copyWith(duration: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'content':
@@ -1002,19 +1077,25 @@ class Media extends DomainResource {
           if (child is Attachment) {
             return copyWith(content: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
           if (child is List<Annotation>) {
-            return copyWith(note: child);
+            // Add all elements from passed list
+            final newList = [...?note, ...child];
+            return copyWith(note: newList);
+          } else if (child is Annotation) {
+            // Add single element to existing list or create new list
+            final newList = [...?note, child];
+            return copyWith(note: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1098,133 +1179,197 @@ class Media extends DomainResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  Media createProperty(String propertyName) {
+  Media createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'identifier':
         {
-          return copyWith(identifier: <Identifier>[]);
+          return copyWith(
+            identifier: <Identifier>[],
+          );
         }
       case 'basedOn':
         {
-          return copyWith(basedOn: <Reference>[]);
+          return copyWith(
+            basedOn: <Reference>[],
+          );
         }
       case 'partOf':
         {
-          return copyWith(partOf: <Reference>[]);
+          return copyWith(
+            partOf: <Reference>[],
+          );
         }
       case 'status':
         {
-          return copyWith(status: EventStatus.empty());
+          return copyWith(
+            status: EventStatus.empty(),
+          );
         }
       case 'type':
         {
-          return copyWith(type: CodeableConcept.empty());
+          return copyWith(
+            type: CodeableConcept.empty(),
+          );
         }
       case 'modality':
         {
-          return copyWith(modality: CodeableConcept.empty());
+          return copyWith(
+            modality: CodeableConcept.empty(),
+          );
         }
       case 'view':
         {
-          return copyWith(view: CodeableConcept.empty());
+          return copyWith(
+            view: CodeableConcept.empty(),
+          );
         }
       case 'subject':
         {
-          return copyWith(subject: Reference.empty());
+          return copyWith(
+            subject: Reference.empty(),
+          );
         }
       case 'encounter':
         {
-          return copyWith(encounter: Reference.empty());
+          return copyWith(
+            encounter: Reference.empty(),
+          );
         }
       case 'created':
       case 'createdX':
       case 'createdDateTime':
         {
-          return copyWith(createdX: FhirDateTime.empty());
+          return copyWith(
+            createdX: FhirDateTime.empty(),
+          );
         }
       case 'createdPeriod':
         {
-          return copyWith(createdX: Period.empty());
+          return copyWith(
+            createdX: Period.empty(),
+          );
         }
       case 'issued':
         {
-          return copyWith(issued: FhirInstant.empty());
+          return copyWith(
+            issued: FhirInstant.empty(),
+          );
         }
       case 'operator':
         {
-          return copyWith(operator_: Reference.empty());
+          return copyWith(
+            operator_: Reference.empty(),
+          );
         }
       case 'reasonCode':
         {
-          return copyWith(reasonCode: <CodeableConcept>[]);
+          return copyWith(
+            reasonCode: <CodeableConcept>[],
+          );
         }
       case 'bodySite':
         {
-          return copyWith(bodySite: CodeableConcept.empty());
+          return copyWith(
+            bodySite: CodeableConcept.empty(),
+          );
         }
       case 'deviceName':
         {
-          return copyWith(deviceName: FhirString.empty());
+          return copyWith(
+            deviceName: FhirString.empty(),
+          );
         }
       case 'device':
         {
-          return copyWith(device: Reference.empty());
+          return copyWith(
+            device: Reference.empty(),
+          );
         }
       case 'height':
         {
-          return copyWith(height: FhirPositiveInt.empty());
+          return copyWith(
+            height: FhirPositiveInt.empty(),
+          );
         }
       case 'width':
         {
-          return copyWith(width: FhirPositiveInt.empty());
+          return copyWith(
+            width: FhirPositiveInt.empty(),
+          );
         }
       case 'frames':
         {
-          return copyWith(frames: FhirPositiveInt.empty());
+          return copyWith(
+            frames: FhirPositiveInt.empty(),
+          );
         }
       case 'duration':
         {
-          return copyWith(duration: FhirDecimal.empty());
+          return copyWith(
+            duration: FhirDecimal.empty(),
+          );
         }
       case 'content':
         {
-          return copyWith(content: Attachment.empty());
+          return copyWith(
+            content: Attachment.empty(),
+          );
         }
       case 'note':
         {
-          return copyWith(note: <Annotation>[]);
+          return copyWith(
+            note: <Annotation>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1494,19 +1639,34 @@ class Media extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1545,31 +1705,58 @@ class Media extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(modality, o.modality)) {
+    if (!equalsDeepWithNull(
+      modality,
+      o.modality,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(view, o.view)) {
+    if (!equalsDeepWithNull(
+      view,
+      o.view,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(subject, o.subject)) {
+    if (!equalsDeepWithNull(
+      subject,
+      o.subject,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(encounter, o.encounter)) {
+    if (!equalsDeepWithNull(
+      encounter,
+      o.encounter,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(createdX, o.createdX)) {
+    if (!equalsDeepWithNull(
+      createdX,
+      o.createdX,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(issued, o.issued)) {
+    if (!equalsDeepWithNull(
+      issued,
+      o.issued,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(operator_, o.operator_)) {
+    if (!equalsDeepWithNull(
+      operator_,
+      o.operator_,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1578,28 +1765,52 @@ class Media extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(bodySite, o.bodySite)) {
+    if (!equalsDeepWithNull(
+      bodySite,
+      o.bodySite,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(deviceName, o.deviceName)) {
+    if (!equalsDeepWithNull(
+      deviceName,
+      o.deviceName,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(device, o.device)) {
+    if (!equalsDeepWithNull(
+      device,
+      o.device,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(height, o.height)) {
+    if (!equalsDeepWithNull(
+      height,
+      o.height,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(width, o.width)) {
+    if (!equalsDeepWithNull(
+      width,
+      o.width,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(frames, o.frames)) {
+    if (!equalsDeepWithNull(
+      frames,
+      o.frames,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(duration, o.duration)) {
+    if (!equalsDeepWithNull(
+      duration,
+      o.duration,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(content, o.content)) {
+    if (!equalsDeepWithNull(
+      content,
+      o.content,
+    )) {
       return false;
     }
     if (!listEquals<Annotation>(

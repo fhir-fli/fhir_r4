@@ -54,9 +54,14 @@ class DeviceNameType extends FhirCodeEnum {
     if (value == null && element != null) {
       return DeviceNameType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('DeviceNameType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'DeviceNameType cannot be constructed from JSON.',
+      );
     }
-    return DeviceNameType._(validatedValue: value, element: element);
+    return DeviceNameType._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// udi_label_name

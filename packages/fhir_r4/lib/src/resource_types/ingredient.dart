@@ -285,22 +285,70 @@ class Ingredient extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('identifier', identifier);
-    addField('status', status);
-    addField('for', for_);
-    addField('role', role);
-    addField('function', function_);
-    addField('allergenicIndicator', allergenicIndicator);
-    addField('manufacturer', manufacturer);
-    addField('substance', substance);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'for',
+      for_,
+    );
+    addField(
+      'role',
+      role,
+    );
+    addField(
+      'function',
+      function_,
+    );
+    addField(
+      'allergenicIndicator',
+      allergenicIndicator,
+    );
+    addField(
+      'manufacturer',
+      manufacturer,
+    );
+    addField(
+      'substance',
+      substance,
+    );
     return json;
   }
 
@@ -402,56 +450,6 @@ class Ingredient extends DomainResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'for':
-        if (for_ != null) {
-          return for_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'function':
-        if (function_ != null) {
-          return function_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'manufacturer':
-        if (manufacturer != null) {
-          return manufacturer!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -463,23 +461,23 @@ class Ingredient extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -487,7 +485,7 @@ class Ingredient extends DomainResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -495,7 +493,7 @@ class Ingredient extends DomainResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -503,7 +501,7 @@ class Ingredient extends DomainResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -511,31 +509,49 @@ class Ingredient extends DomainResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
@@ -543,7 +559,7 @@ class Ingredient extends DomainResource {
           if (child is Identifier) {
             return copyWith(identifier: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -551,15 +567,21 @@ class Ingredient extends DomainResource {
           if (child is PublicationStatus) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'for':
         {
           if (child is List<Reference>) {
-            return copyWith(for_: child);
+            // Add all elements from passed list
+            final newList = [...?for_, ...child];
+            return copyWith(for_: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?for_, child];
+            return copyWith(for_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'role':
@@ -567,15 +589,21 @@ class Ingredient extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(role: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'function':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(function_: child);
+            // Add all elements from passed list
+            final newList = [...?function_, ...child];
+            return copyWith(function_: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?function_, child];
+            return copyWith(function_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'allergenicIndicator':
@@ -583,15 +611,21 @@ class Ingredient extends DomainResource {
           if (child is FhirBoolean) {
             return copyWith(allergenicIndicator: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'manufacturer':
         {
           if (child is List<IngredientManufacturer>) {
-            return copyWith(manufacturer: child);
+            // Add all elements from passed list
+            final newList = [...?manufacturer, ...child];
+            return copyWith(manufacturer: newList);
+          } else if (child is IngredientManufacturer) {
+            // Add single element to existing list or create new list
+            final newList = [...?manufacturer, child];
+            return copyWith(manufacturer: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'substance':
@@ -599,11 +633,11 @@ class Ingredient extends DomainResource {
           if (child is IngredientSubstance) {
             return copyWith(substance: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -654,71 +688,105 @@ class Ingredient extends DomainResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  Ingredient createProperty(String propertyName) {
+  Ingredient createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'identifier':
         {
-          return copyWith(identifier: Identifier.empty());
+          return copyWith(
+            identifier: Identifier.empty(),
+          );
         }
       case 'status':
         {
-          return copyWith(status: PublicationStatus.empty());
+          return copyWith(
+            status: PublicationStatus.empty(),
+          );
         }
       case 'for':
         {
-          return copyWith(for_: <Reference>[]);
+          return copyWith(
+            for_: <Reference>[],
+          );
         }
       case 'role':
         {
-          return copyWith(role: CodeableConcept.empty());
+          return copyWith(
+            role: CodeableConcept.empty(),
+          );
         }
       case 'function':
         {
-          return copyWith(function_: <CodeableConcept>[]);
+          return copyWith(
+            function_: <CodeableConcept>[],
+          );
         }
       case 'allergenicIndicator':
         {
-          return copyWith(allergenicIndicator: FhirBoolean.empty());
+          return copyWith(
+            allergenicIndicator: FhirBoolean.empty(),
+          );
         }
       case 'manufacturer':
         {
-          return copyWith(manufacturer: <IngredientManufacturer>[]);
+          return copyWith(
+            manufacturer: <IngredientManufacturer>[],
+          );
         }
       case 'substance':
         {
-          return copyWith(substance: IngredientSubstance.empty());
+          return copyWith(
+            substance: IngredientSubstance.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -882,19 +950,34 @@ class Ingredient extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -915,10 +998,16 @@ class Ingredient extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(identifier, o.identifier)) {
+    if (!equalsDeepWithNull(
+      identifier,
+      o.identifier,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -927,7 +1016,10 @@ class Ingredient extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(role, o.role)) {
+    if (!equalsDeepWithNull(
+      role,
+      o.role,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -936,7 +1028,10 @@ class Ingredient extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(allergenicIndicator, o.allergenicIndicator)) {
+    if (!equalsDeepWithNull(
+      allergenicIndicator,
+      o.allergenicIndicator,
+    )) {
       return false;
     }
     if (!listEquals<IngredientManufacturer>(
@@ -945,7 +1040,10 @@ class Ingredient extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(substance, o.substance)) {
+    if (!equalsDeepWithNull(
+      substance,
+      o.substance,
+    )) {
       return false;
     }
     return true;
@@ -1109,11 +1207,26 @@ class IngredientManufacturer extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('role', role);
-    addField('manufacturer', manufacturer);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'role',
+      role,
+    );
+    addField(
+      'manufacturer',
+      manufacturer,
+    );
     return json;
   }
 
@@ -1164,32 +1277,6 @@ class IngredientManufacturer extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1201,39 +1288,51 @@ class IngredientManufacturer extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'role':
@@ -1241,7 +1340,7 @@ class IngredientManufacturer extends BackboneElement {
           if (child is IngredientManufacturerRole) {
             return copyWith(role: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'manufacturer':
@@ -1249,11 +1348,11 @@ class IngredientManufacturer extends BackboneElement {
           if (child is Reference) {
             return copyWith(manufacturer: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1282,27 +1381,39 @@ class IngredientManufacturer extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  IngredientManufacturer createProperty(String propertyName) {
+  IngredientManufacturer createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'role':
         {
-          return copyWith(role: IngredientManufacturerRole.empty());
+          return copyWith(
+            role: IngredientManufacturerRole.empty(),
+          );
         }
       case 'manufacturer':
         {
-          return copyWith(manufacturer: Reference.empty());
+          return copyWith(
+            manufacturer: Reference.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1382,7 +1493,10 @@ class IngredientManufacturer extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1397,10 +1511,16 @@ class IngredientManufacturer extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(role, o.role)) {
+    if (!equalsDeepWithNull(
+      role,
+      o.role,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(manufacturer, o.manufacturer)) {
+    if (!equalsDeepWithNull(
+      manufacturer,
+      o.manufacturer,
+    )) {
       return false;
     }
     return true;
@@ -1564,11 +1684,26 @@ class IngredientSubstance extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('code', code);
-    addField('strength', strength);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'code',
+      code,
+    );
+    addField(
+      'strength',
+      strength,
+    );
     return json;
   }
 
@@ -1619,38 +1754,6 @@ class IngredientSubstance extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'strength':
-        if (strength != null) {
-          return strength!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1662,39 +1765,51 @@ class IngredientSubstance extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
@@ -1702,19 +1817,25 @@ class IngredientSubstance extends BackboneElement {
           if (child is CodeableReference) {
             return copyWith(code: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'strength':
         {
           if (child is List<IngredientStrength>) {
-            return copyWith(strength: child);
+            // Add all elements from passed list
+            final newList = [...?strength, ...child];
+            return copyWith(strength: newList);
+          } else if (child is IngredientStrength) {
+            // Add single element to existing list or create new list
+            final newList = [...?strength, child];
+            return copyWith(strength: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1743,27 +1864,39 @@ class IngredientSubstance extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  IngredientSubstance createProperty(String propertyName) {
+  IngredientSubstance createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'code':
         {
-          return copyWith(code: CodeableReference.empty());
+          return copyWith(
+            code: CodeableReference.empty(),
+          );
         }
       case 'strength':
         {
-          return copyWith(strength: <IngredientStrength>[]);
+          return copyWith(
+            strength: <IngredientStrength>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1847,7 +1980,10 @@ class IngredientSubstance extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1862,7 +1998,10 @@ class IngredientSubstance extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(code, o.code)) {
+    if (!equalsDeepWithNull(
+      code,
+      o.code,
+    )) {
       return false;
     }
     if (!listEquals<IngredientStrength>(
@@ -2125,24 +2264,54 @@ class IngredientStrength extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
     if (presentationX != null) {
       final fhirType = presentationX!.fhirType;
-      addField('presentation${fhirType.capitalize()}', presentationX);
+      addField(
+        'presentation${fhirType.capitalize()}',
+        presentationX,
+      );
     }
 
-    addField('textPresentation', textPresentation);
+    addField(
+      'textPresentation',
+      textPresentation,
+    );
     if (concentrationX != null) {
       final fhirType = concentrationX!.fhirType;
-      addField('concentration${fhirType.capitalize()}', concentrationX);
+      addField(
+        'concentration${fhirType.capitalize()}',
+        concentrationX,
+      );
     }
 
-    addField('textConcentration', textConcentration);
-    addField('measurementPoint', measurementPoint);
-    addField('country', country);
-    addField('referenceStrength', referenceStrength);
+    addField(
+      'textConcentration',
+      textConcentration,
+    );
+    addField(
+      'measurementPoint',
+      measurementPoint,
+    );
+    addField(
+      'country',
+      country,
+    );
+    addField(
+      'referenceStrength',
+      referenceStrength,
+    );
     return json;
   }
 
@@ -2236,44 +2405,6 @@ class IngredientStrength extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'country':
-        if (country != null) {
-          return country!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'referenceStrength':
-        if (referenceStrength != null) {
-          return referenceStrength!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2285,56 +2416,73 @@ class IngredientStrength extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'presentationX':
         {
           if (child is PresentationXIngredientStrength) {
-            // child is e.g. SubjectX union
             return copyWith(presentationX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is Ratio) {
+              return copyWith(presentationX: child);
+            }
+            if (child is RatioRange) {
+              return copyWith(presentationX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'presentationRatio':
         {
           if (child is Ratio) {
             return copyWith(presentationX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'presentationRatioRange':
@@ -2342,7 +2490,7 @@ class IngredientStrength extends BackboneElement {
           if (child is RatioRange) {
             return copyWith(presentationX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'textPresentation':
@@ -2350,24 +2498,29 @@ class IngredientStrength extends BackboneElement {
           if (child is FhirString) {
             return copyWith(textPresentation: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'concentrationX':
         {
           if (child is ConcentrationXIngredientStrength) {
-            // child is e.g. SubjectX union
             return copyWith(concentrationX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is Ratio) {
+              return copyWith(concentrationX: child);
+            }
+            if (child is RatioRange) {
+              return copyWith(concentrationX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'concentrationRatio':
         {
           if (child is Ratio) {
             return copyWith(concentrationX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'concentrationRatioRange':
@@ -2375,7 +2528,7 @@ class IngredientStrength extends BackboneElement {
           if (child is RatioRange) {
             return copyWith(concentrationX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'textConcentration':
@@ -2383,7 +2536,7 @@ class IngredientStrength extends BackboneElement {
           if (child is FhirString) {
             return copyWith(textConcentration: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'measurementPoint':
@@ -2391,27 +2544,39 @@ class IngredientStrength extends BackboneElement {
           if (child is FhirString) {
             return copyWith(measurementPoint: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'country':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(country: child);
+            // Add all elements from passed list
+            final newList = [...?country, ...child];
+            return copyWith(country: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?country, child];
+            return copyWith(country: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'referenceStrength':
         {
           if (child is List<IngredientReferenceStrength>) {
-            return copyWith(referenceStrength: child);
+            // Add all elements from passed list
+            final newList = [...?referenceStrength, ...child];
+            return copyWith(referenceStrength: newList);
+          } else if (child is IngredientReferenceStrength) {
+            // Add single element to existing list or create new list
+            final newList = [...?referenceStrength, child];
+            return copyWith(referenceStrength: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2460,59 +2625,85 @@ class IngredientStrength extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  IngredientStrength createProperty(String propertyName) {
+  IngredientStrength createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'presentation':
       case 'presentationX':
       case 'presentationRatio':
         {
-          return copyWith(presentationX: Ratio.empty());
+          return copyWith(
+            presentationX: Ratio.empty(),
+          );
         }
       case 'presentationRatioRange':
         {
-          return copyWith(presentationX: RatioRange.empty());
+          return copyWith(
+            presentationX: RatioRange.empty(),
+          );
         }
       case 'textPresentation':
         {
-          return copyWith(textPresentation: FhirString.empty());
+          return copyWith(
+            textPresentation: FhirString.empty(),
+          );
         }
       case 'concentration':
       case 'concentrationX':
       case 'concentrationRatio':
         {
-          return copyWith(concentrationX: Ratio.empty());
+          return copyWith(
+            concentrationX: Ratio.empty(),
+          );
         }
       case 'concentrationRatioRange':
         {
-          return copyWith(concentrationX: RatioRange.empty());
+          return copyWith(
+            concentrationX: RatioRange.empty(),
+          );
         }
       case 'textConcentration':
         {
-          return copyWith(textConcentration: FhirString.empty());
+          return copyWith(
+            textConcentration: FhirString.empty(),
+          );
         }
       case 'measurementPoint':
         {
-          return copyWith(measurementPoint: FhirString.empty());
+          return copyWith(
+            measurementPoint: FhirString.empty(),
+          );
         }
       case 'country':
         {
-          return copyWith(country: <CodeableConcept>[]);
+          return copyWith(
+            country: <CodeableConcept>[],
+          );
         }
       case 'referenceStrength':
         {
-          return copyWith(referenceStrength: <IngredientReferenceStrength>[]);
+          return copyWith(
+            referenceStrength: <IngredientReferenceStrength>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2636,7 +2827,10 @@ class IngredientStrength extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2651,19 +2845,34 @@ class IngredientStrength extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(presentationX, o.presentationX)) {
+    if (!equalsDeepWithNull(
+      presentationX,
+      o.presentationX,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(textPresentation, o.textPresentation)) {
+    if (!equalsDeepWithNull(
+      textPresentation,
+      o.textPresentation,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(concentrationX, o.concentrationX)) {
+    if (!equalsDeepWithNull(
+      concentrationX,
+      o.concentrationX,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(textConcentration, o.textConcentration)) {
+    if (!equalsDeepWithNull(
+      textConcentration,
+      o.textConcentration,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(measurementPoint, o.measurementPoint)) {
+    if (!equalsDeepWithNull(
+      measurementPoint,
+      o.measurementPoint,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -2872,15 +3081,36 @@ class IngredientReferenceStrength extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('substance', substance);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'substance',
+      substance,
+    );
     final strengthXFhirType = strengthX.fhirType;
-    addField('strength${strengthXFhirType.capitalize()}', strengthX);
+    addField(
+      'strength${strengthXFhirType.capitalize()}',
+      strengthX,
+    );
 
-    addField('measurementPoint', measurementPoint);
-    addField('country', country);
+    addField(
+      'measurementPoint',
+      measurementPoint,
+    );
+    addField(
+      'country',
+      country,
+    );
     return json;
   }
 
@@ -2951,38 +3181,6 @@ class IngredientReferenceStrength extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'country':
-        if (country != null) {
-          return country!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2994,39 +3192,51 @@ class IngredientReferenceStrength extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'substance':
@@ -3034,24 +3244,29 @@ class IngredientReferenceStrength extends BackboneElement {
           if (child is CodeableReference) {
             return copyWith(substance: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'strengthX':
         {
           if (child is StrengthXIngredientReferenceStrength) {
-            // child is e.g. SubjectX union
             return copyWith(strengthX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is Ratio) {
+              return copyWith(strengthX: child);
+            }
+            if (child is RatioRange) {
+              return copyWith(strengthX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'strengthRatio':
         {
           if (child is Ratio) {
             return copyWith(strengthX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'strengthRatioRange':
@@ -3059,7 +3274,7 @@ class IngredientReferenceStrength extends BackboneElement {
           if (child is RatioRange) {
             return copyWith(strengthX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'measurementPoint':
@@ -3067,19 +3282,25 @@ class IngredientReferenceStrength extends BackboneElement {
           if (child is FhirString) {
             return copyWith(measurementPoint: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'country':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(country: child);
+            // Add all elements from passed list
+            final newList = [...?country, ...child];
+            return copyWith(country: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?country, child];
+            return copyWith(country: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -3117,41 +3338,59 @@ class IngredientReferenceStrength extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  IngredientReferenceStrength createProperty(String propertyName) {
+  IngredientReferenceStrength createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'substance':
         {
-          return copyWith(substance: CodeableReference.empty());
+          return copyWith(
+            substance: CodeableReference.empty(),
+          );
         }
       case 'strength':
       case 'strengthX':
       case 'strengthRatio':
         {
-          return copyWith(strengthX: Ratio.empty());
+          return copyWith(
+            strengthX: Ratio.empty(),
+          );
         }
       case 'strengthRatioRange':
         {
-          return copyWith(strengthX: RatioRange.empty());
+          return copyWith(
+            strengthX: RatioRange.empty(),
+          );
         }
       case 'measurementPoint':
         {
-          return copyWith(measurementPoint: FhirString.empty());
+          return copyWith(
+            measurementPoint: FhirString.empty(),
+          );
         }
       case 'country':
         {
-          return copyWith(country: <CodeableConcept>[]);
+          return copyWith(
+            country: <CodeableConcept>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3249,7 +3488,10 @@ class IngredientReferenceStrength extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3264,13 +3506,22 @@ class IngredientReferenceStrength extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(substance, o.substance)) {
+    if (!equalsDeepWithNull(
+      substance,
+      o.substance,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(strengthX, o.strengthX)) {
+    if (!equalsDeepWithNull(
+      strengthX,
+      o.strengthX,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(measurementPoint, o.measurementPoint)) {
+    if (!equalsDeepWithNull(
+      measurementPoint,
+      o.measurementPoint,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(

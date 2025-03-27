@@ -56,9 +56,13 @@ class TestReportParticipantType extends FhirCodeEnum {
       return TestReportParticipantType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'TestReportParticipantType cannot be constructed from JSON.',);
+        'TestReportParticipantType cannot be constructed from JSON.',
+      );
     }
-    return TestReportParticipantType._(validatedValue: value, element: element);
+    return TestReportParticipantType._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// test_engine

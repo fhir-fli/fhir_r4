@@ -57,9 +57,13 @@ class StructureMapGroupTypeMode extends FhirCodeEnum {
       return StructureMapGroupTypeMode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'StructureMapGroupTypeMode cannot be constructed from JSON.',);
+        'StructureMapGroupTypeMode cannot be constructed from JSON.',
+      );
     }
-    return StructureMapGroupTypeMode._(validatedValue: value, element: element);
+    return StructureMapGroupTypeMode._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// none

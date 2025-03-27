@@ -54,9 +54,14 @@ class SlicingRules extends FhirCodeEnum {
     if (value == null && element != null) {
       return SlicingRules.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('SlicingRules cannot be constructed from JSON.');
+      throw ArgumentError(
+        'SlicingRules cannot be constructed from JSON.',
+      );
     }
-    return SlicingRules._(validatedValue: value, element: element);
+    return SlicingRules._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// closed

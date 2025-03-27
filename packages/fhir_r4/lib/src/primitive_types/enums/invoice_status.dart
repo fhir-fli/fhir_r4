@@ -54,9 +54,14 @@ class InvoiceStatus extends FhirCodeEnum {
     if (value == null && element != null) {
       return InvoiceStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('InvoiceStatus cannot be constructed from JSON.');
+      throw ArgumentError(
+        'InvoiceStatus cannot be constructed from JSON.',
+      );
     }
-    return InvoiceStatus._(validatedValue: value, element: element);
+    return InvoiceStatus._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// draft

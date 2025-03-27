@@ -195,12 +195,30 @@ class Timing extends BackboneType
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('event', event);
-    addField('repeat', repeat);
-    addField('code', code);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'event',
+      event,
+    );
+    addField(
+      'repeat',
+      repeat,
+    );
+    addField(
+      'code',
+      code,
+    );
     return json;
   }
 
@@ -258,38 +276,6 @@ class Timing extends BackboneType
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'event':
-        if (event != null) {
-          return event!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -301,47 +287,65 @@ class Timing extends BackboneType
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'event':
         {
           if (child is List<FhirDateTime>) {
-            return copyWith(event: child);
+            // Add all elements from passed list
+            final newList = [...?event, ...child];
+            return copyWith(event: newList);
+          } else if (child is FhirDateTime) {
+            // Add single element to existing list or create new list
+            final newList = [...?event, child];
+            return copyWith(event: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'repeat':
@@ -349,7 +353,7 @@ class Timing extends BackboneType
           if (child is TimingRepeat) {
             return copyWith(repeat: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
@@ -357,11 +361,11 @@ class Timing extends BackboneType
           if (child is CodeableConcept) {
             return copyWith(code: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -392,31 +396,45 @@ class Timing extends BackboneType
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  Timing createProperty(String propertyName) {
+  Timing createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'event':
         {
-          return copyWith(event: <FhirDateTime>[]);
+          return copyWith(
+            event: <FhirDateTime>[],
+          );
         }
       case 'repeat':
         {
-          return copyWith(repeat: TimingRepeat.empty());
+          return copyWith(
+            repeat: TimingRepeat.empty(),
+          );
         }
       case 'code':
         {
-          return copyWith(code: CodeableConcept.empty());
+          return copyWith(
+            code: CodeableConcept.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -508,7 +526,10 @@ class Timing extends BackboneType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -529,10 +550,16 @@ class Timing extends BackboneType
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(repeat, o.repeat)) {
+    if (!equalsDeepWithNull(
+      repeat,
+      o.repeat,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(code, o.code)) {
+    if (!equalsDeepWithNull(
+      code,
+      o.code,
+    )) {
       return false;
     }
     return true;
@@ -850,27 +877,78 @@ class TimingRepeat extends Element {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
     if (boundsX != null) {
       final fhirType = boundsX!.fhirType;
-      addField('bounds${fhirType.capitalize()}', boundsX);
+      addField(
+        'bounds${fhirType.capitalize()}',
+        boundsX,
+      );
     }
 
-    addField('count', count);
-    addField('countMax', countMax);
-    addField('duration', duration);
-    addField('durationMax', durationMax);
-    addField('durationUnit', durationUnit);
-    addField('frequency', frequency);
-    addField('frequencyMax', frequencyMax);
-    addField('period', period);
-    addField('periodMax', periodMax);
-    addField('periodUnit', periodUnit);
-    addField('dayOfWeek', dayOfWeek);
-    addField('timeOfDay', timeOfDay);
-    addField('when', when);
-    addField('offset', offset);
+    addField(
+      'count',
+      count,
+    );
+    addField(
+      'countMax',
+      countMax,
+    );
+    addField(
+      'duration',
+      duration,
+    );
+    addField(
+      'durationMax',
+      durationMax,
+    );
+    addField(
+      'durationUnit',
+      durationUnit,
+    );
+    addField(
+      'frequency',
+      frequency,
+    );
+    addField(
+      'frequencyMax',
+      frequencyMax,
+    );
+    addField(
+      'period',
+      period,
+    );
+    addField(
+      'periodMax',
+      periodMax,
+    );
+    addField(
+      'periodUnit',
+      periodUnit,
+    );
+    addField(
+      'dayOfWeek',
+      dayOfWeek,
+    );
+    addField(
+      'timeOfDay',
+      timeOfDay,
+    );
+    addField(
+      'when',
+      when,
+    );
+    addField(
+      'offset',
+      offset,
+    );
     return json;
   }
 
@@ -995,44 +1073,6 @@ class TimingRepeat extends Element {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'dayOfWeek':
-        if (dayOfWeek != null) {
-          return dayOfWeek!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'timeOfDay':
-        if (timeOfDay != null) {
-          return timeOfDay!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'when':
-        if (when != null) {
-          return when!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1044,48 +1084,62 @@ class TimingRepeat extends Element {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'boundsX':
         {
           if (child is BoundsXTimingRepeat) {
-            // child is e.g. SubjectX union
             return copyWith(boundsX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is FhirDuration) {
+              return copyWith(boundsX: child);
+            }
+            if (child is Range) {
+              return copyWith(boundsX: child);
+            }
+            if (child is Period) {
+              return copyWith(boundsX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'boundsFhirDuration':
         {
           if (child is FhirDuration) {
             return copyWith(boundsX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'boundsRange':
@@ -1093,7 +1147,7 @@ class TimingRepeat extends Element {
           if (child is Range) {
             return copyWith(boundsX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'boundsPeriod':
@@ -1101,7 +1155,7 @@ class TimingRepeat extends Element {
           if (child is Period) {
             return copyWith(boundsX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'count':
@@ -1109,7 +1163,7 @@ class TimingRepeat extends Element {
           if (child is FhirPositiveInt) {
             return copyWith(count: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'countMax':
@@ -1117,7 +1171,7 @@ class TimingRepeat extends Element {
           if (child is FhirPositiveInt) {
             return copyWith(countMax: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'duration':
@@ -1125,7 +1179,7 @@ class TimingRepeat extends Element {
           if (child is FhirDecimal) {
             return copyWith(duration: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'durationMax':
@@ -1133,7 +1187,7 @@ class TimingRepeat extends Element {
           if (child is FhirDecimal) {
             return copyWith(durationMax: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'durationUnit':
@@ -1141,7 +1195,7 @@ class TimingRepeat extends Element {
           if (child is UnitsOfTime) {
             return copyWith(durationUnit: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'frequency':
@@ -1149,7 +1203,7 @@ class TimingRepeat extends Element {
           if (child is FhirPositiveInt) {
             return copyWith(frequency: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'frequencyMax':
@@ -1157,7 +1211,7 @@ class TimingRepeat extends Element {
           if (child is FhirPositiveInt) {
             return copyWith(frequencyMax: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
@@ -1165,7 +1219,7 @@ class TimingRepeat extends Element {
           if (child is FhirDecimal) {
             return copyWith(period: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'periodMax':
@@ -1173,7 +1227,7 @@ class TimingRepeat extends Element {
           if (child is FhirDecimal) {
             return copyWith(periodMax: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'periodUnit':
@@ -1181,31 +1235,49 @@ class TimingRepeat extends Element {
           if (child is UnitsOfTime) {
             return copyWith(periodUnit: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'dayOfWeek':
         {
           if (child is List<DaysOfWeek>) {
-            return copyWith(dayOfWeek: child);
+            // Add all elements from passed list
+            final newList = [...?dayOfWeek, ...child];
+            return copyWith(dayOfWeek: newList);
+          } else if (child is DaysOfWeek) {
+            // Add single element to existing list or create new list
+            final newList = [...?dayOfWeek, child];
+            return copyWith(dayOfWeek: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'timeOfDay':
         {
           if (child is List<FhirTime>) {
-            return copyWith(timeOfDay: child);
+            // Add all elements from passed list
+            final newList = [...?timeOfDay, ...child];
+            return copyWith(timeOfDay: newList);
+          } else if (child is FhirTime) {
+            // Add single element to existing list or create new list
+            final newList = [...?timeOfDay, child];
+            return copyWith(timeOfDay: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'when':
         {
           if (child is List<EventTiming>) {
-            return copyWith(when: child);
+            // Add all elements from passed list
+            final newList = [...?when, ...child];
+            return copyWith(when: newList);
+          } else if (child is EventTiming) {
+            // Add single element to existing list or create new list
+            final newList = [...?when, child];
+            return copyWith(when: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'offset':
@@ -1213,11 +1285,11 @@ class TimingRepeat extends Element {
           if (child is FhirUnsignedInt) {
             return copyWith(offset: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1277,85 +1349,125 @@ class TimingRepeat extends Element {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  TimingRepeat createProperty(String propertyName) {
+  TimingRepeat createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'bounds':
       case 'boundsX':
       case 'boundsDuration':
         {
-          return copyWith(boundsX: FhirDuration.empty());
+          return copyWith(
+            boundsX: FhirDuration.empty(),
+          );
         }
       case 'boundsRange':
         {
-          return copyWith(boundsX: Range.empty());
+          return copyWith(
+            boundsX: Range.empty(),
+          );
         }
       case 'boundsPeriod':
         {
-          return copyWith(boundsX: Period.empty());
+          return copyWith(
+            boundsX: Period.empty(),
+          );
         }
       case 'count':
         {
-          return copyWith(count: FhirPositiveInt.empty());
+          return copyWith(
+            count: FhirPositiveInt.empty(),
+          );
         }
       case 'countMax':
         {
-          return copyWith(countMax: FhirPositiveInt.empty());
+          return copyWith(
+            countMax: FhirPositiveInt.empty(),
+          );
         }
       case 'duration':
         {
-          return copyWith(duration: FhirDecimal.empty());
+          return copyWith(
+            duration: FhirDecimal.empty(),
+          );
         }
       case 'durationMax':
         {
-          return copyWith(durationMax: FhirDecimal.empty());
+          return copyWith(
+            durationMax: FhirDecimal.empty(),
+          );
         }
       case 'durationUnit':
         {
-          return copyWith(durationUnit: UnitsOfTime.empty());
+          return copyWith(
+            durationUnit: UnitsOfTime.empty(),
+          );
         }
       case 'frequency':
         {
-          return copyWith(frequency: FhirPositiveInt.empty());
+          return copyWith(
+            frequency: FhirPositiveInt.empty(),
+          );
         }
       case 'frequencyMax':
         {
-          return copyWith(frequencyMax: FhirPositiveInt.empty());
+          return copyWith(
+            frequencyMax: FhirPositiveInt.empty(),
+          );
         }
       case 'period':
         {
-          return copyWith(period: FhirDecimal.empty());
+          return copyWith(
+            period: FhirDecimal.empty(),
+          );
         }
       case 'periodMax':
         {
-          return copyWith(periodMax: FhirDecimal.empty());
+          return copyWith(
+            periodMax: FhirDecimal.empty(),
+          );
         }
       case 'periodUnit':
         {
-          return copyWith(periodUnit: UnitsOfTime.empty());
+          return copyWith(
+            periodUnit: UnitsOfTime.empty(),
+          );
         }
       case 'dayOfWeek':
         {
-          return copyWith(dayOfWeek: <DaysOfWeek>[]);
+          return copyWith(
+            dayOfWeek: <DaysOfWeek>[],
+          );
         }
       case 'timeOfDay':
         {
-          return copyWith(timeOfDay: <FhirTime>[]);
+          return copyWith(
+            timeOfDay: <FhirTime>[],
+          );
         }
       case 'when':
         {
-          return copyWith(when: <EventTiming>[]);
+          return copyWith(
+            when: <EventTiming>[],
+          );
         }
       case 'offset':
         {
-          return copyWith(offset: FhirUnsignedInt.empty());
+          return copyWith(
+            offset: FhirUnsignedInt.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1528,7 +1640,10 @@ class TimingRepeat extends Element {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1537,37 +1652,70 @@ class TimingRepeat extends Element {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(boundsX, o.boundsX)) {
+    if (!equalsDeepWithNull(
+      boundsX,
+      o.boundsX,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(count, o.count)) {
+    if (!equalsDeepWithNull(
+      count,
+      o.count,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(countMax, o.countMax)) {
+    if (!equalsDeepWithNull(
+      countMax,
+      o.countMax,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(duration, o.duration)) {
+    if (!equalsDeepWithNull(
+      duration,
+      o.duration,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(durationMax, o.durationMax)) {
+    if (!equalsDeepWithNull(
+      durationMax,
+      o.durationMax,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(durationUnit, o.durationUnit)) {
+    if (!equalsDeepWithNull(
+      durationUnit,
+      o.durationUnit,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(frequency, o.frequency)) {
+    if (!equalsDeepWithNull(
+      frequency,
+      o.frequency,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(frequencyMax, o.frequencyMax)) {
+    if (!equalsDeepWithNull(
+      frequencyMax,
+      o.frequencyMax,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(period, o.period)) {
+    if (!equalsDeepWithNull(
+      period,
+      o.period,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(periodMax, o.periodMax)) {
+    if (!equalsDeepWithNull(
+      periodMax,
+      o.periodMax,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(periodUnit, o.periodUnit)) {
+    if (!equalsDeepWithNull(
+      periodUnit,
+      o.periodUnit,
+    )) {
       return false;
     }
     if (!listEquals<DaysOfWeek>(
@@ -1588,7 +1736,10 @@ class TimingRepeat extends Element {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(offset, o.offset)) {
+    if (!equalsDeepWithNull(
+      offset,
+      o.offset,
+    )) {
       return false;
     }
     return true;

@@ -206,17 +206,4 @@ class TLeft7Aa extends BackboneElement {
   TLeft7Aa clear({bool extension_ = false, bool id = false}) {
     throw UnimplementedError();
   }
-
-  @override
-  List<FhirBase> getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        return extension_ ?? <FhirExtension>[];
-      default:
-        return <FhirBase>[];
-    }
-  }
 }

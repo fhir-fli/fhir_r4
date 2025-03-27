@@ -54,9 +54,14 @@ class CompartmentType extends FhirCodeEnum {
     if (value == null && element != null) {
       return CompartmentType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('CompartmentType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'CompartmentType cannot be constructed from JSON.',
+      );
     }
-    return CompartmentType._(validatedValue: value, element: element);
+    return CompartmentType._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// Patient

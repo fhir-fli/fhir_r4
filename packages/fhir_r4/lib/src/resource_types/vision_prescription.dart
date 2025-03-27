@@ -276,22 +276,70 @@ class VisionPrescription extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('identifier', identifier);
-    addField('status', status);
-    addField('created', created);
-    addField('patient', patient);
-    addField('encounter', encounter);
-    addField('dateWritten', dateWritten);
-    addField('prescriber', prescriber);
-    addField('lensSpecification', lensSpecification);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'created',
+      created,
+    );
+    addField(
+      'patient',
+      patient,
+    );
+    addField(
+      'encounter',
+      encounter,
+    );
+    addField(
+      'dateWritten',
+      dateWritten,
+    );
+    addField(
+      'prescriber',
+      prescriber,
+    );
+    addField(
+      'lensSpecification',
+      lensSpecification,
+    );
     return json;
   }
 
@@ -387,46 +435,6 @@ class VisionPrescription extends DomainResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'identifier':
-        if (identifier != null) {
-          return identifier!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'lensSpecification':
-        return lensSpecification;
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -438,23 +446,23 @@ class VisionPrescription extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -462,7 +470,7 @@ class VisionPrescription extends DomainResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -470,7 +478,7 @@ class VisionPrescription extends DomainResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -478,7 +486,7 @@ class VisionPrescription extends DomainResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -486,39 +494,63 @@ class VisionPrescription extends DomainResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
           if (child is List<Identifier>) {
-            return copyWith(identifier: child);
+            // Add all elements from passed list
+            final newList = [...?identifier, ...child];
+            return copyWith(identifier: newList);
+          } else if (child is Identifier) {
+            // Add single element to existing list or create new list
+            final newList = [...?identifier, child];
+            return copyWith(identifier: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -526,7 +558,7 @@ class VisionPrescription extends DomainResource {
           if (child is FinancialResourceStatusCodes) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'created':
@@ -534,7 +566,7 @@ class VisionPrescription extends DomainResource {
           if (child is FhirDateTime) {
             return copyWith(created: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'patient':
@@ -542,7 +574,7 @@ class VisionPrescription extends DomainResource {
           if (child is Reference) {
             return copyWith(patient: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'encounter':
@@ -550,7 +582,7 @@ class VisionPrescription extends DomainResource {
           if (child is Reference) {
             return copyWith(encounter: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'dateWritten':
@@ -558,7 +590,7 @@ class VisionPrescription extends DomainResource {
           if (child is FhirDateTime) {
             return copyWith(dateWritten: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'prescriber':
@@ -566,19 +598,25 @@ class VisionPrescription extends DomainResource {
           if (child is Reference) {
             return copyWith(prescriber: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'lensSpecification':
         {
           if (child is List<VisionPrescriptionLensSpecification>) {
-            return copyWith(lensSpecification: child);
+            // Add all elements from passed list
+            final newList = [...lensSpecification, ...child];
+            return copyWith(lensSpecification: newList);
+          } else if (child is VisionPrescriptionLensSpecification) {
+            // Add single element to existing list or create new list
+            final newList = [...lensSpecification, child];
+            return copyWith(lensSpecification: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -629,72 +667,105 @@ class VisionPrescription extends DomainResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  VisionPrescription createProperty(String propertyName) {
+  VisionPrescription createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'identifier':
         {
-          return copyWith(identifier: <Identifier>[]);
+          return copyWith(
+            identifier: <Identifier>[],
+          );
         }
       case 'status':
         {
-          return copyWith(status: FinancialResourceStatusCodes.empty());
+          return copyWith(
+            status: FinancialResourceStatusCodes.empty(),
+          );
         }
       case 'created':
         {
-          return copyWith(created: FhirDateTime.empty());
+          return copyWith(
+            created: FhirDateTime.empty(),
+          );
         }
       case 'patient':
         {
-          return copyWith(patient: Reference.empty());
+          return copyWith(
+            patient: Reference.empty(),
+          );
         }
       case 'encounter':
         {
-          return copyWith(encounter: Reference.empty());
+          return copyWith(
+            encounter: Reference.empty(),
+          );
         }
       case 'dateWritten':
         {
-          return copyWith(dateWritten: FhirDateTime.empty());
+          return copyWith(
+            dateWritten: FhirDateTime.empty(),
+          );
         }
       case 'prescriber':
         {
-          return copyWith(prescriber: Reference.empty());
+          return copyWith(
+            prescriber: Reference.empty(),
+          );
         }
       case 'lensSpecification':
         {
           return copyWith(
-              lensSpecification: <VisionPrescriptionLensSpecification>[],);
+            lensSpecification: <VisionPrescriptionLensSpecification>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -850,19 +921,34 @@ class VisionPrescription extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -889,22 +975,40 @@ class VisionPrescription extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(created, o.created)) {
+    if (!equalsDeepWithNull(
+      created,
+      o.created,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(patient, o.patient)) {
+    if (!equalsDeepWithNull(
+      patient,
+      o.patient,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(encounter, o.encounter)) {
+    if (!equalsDeepWithNull(
+      encounter,
+      o.encounter,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(dateWritten, o.dateWritten)) {
+    if (!equalsDeepWithNull(
+      dateWritten,
+      o.dateWritten,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(prescriber, o.prescriber)) {
+    if (!equalsDeepWithNull(
+      prescriber,
+      o.prescriber,
+    )) {
       return false;
     }
     if (!listEquals<VisionPrescriptionLensSpecification>(
@@ -1211,23 +1315,74 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('product', product);
-    addField('eye', eye);
-    addField('sphere', sphere);
-    addField('cylinder', cylinder);
-    addField('axis', axis);
-    addField('prism', prism);
-    addField('add', add);
-    addField('power', power);
-    addField('backCurve', backCurve);
-    addField('diameter', diameter);
-    addField('duration', duration);
-    addField('color', color);
-    addField('brand', brand);
-    addField('note', note);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'product',
+      product,
+    );
+    addField(
+      'eye',
+      eye,
+    );
+    addField(
+      'sphere',
+      sphere,
+    );
+    addField(
+      'cylinder',
+      cylinder,
+    );
+    addField(
+      'axis',
+      axis,
+    );
+    addField(
+      'prism',
+      prism,
+    );
+    addField(
+      'add',
+      add,
+    );
+    addField(
+      'power',
+      power,
+    );
+    addField(
+      'backCurve',
+      backCurve,
+    );
+    addField(
+      'diameter',
+      diameter,
+    );
+    addField(
+      'duration',
+      duration,
+    );
+    addField(
+      'color',
+      color,
+    );
+    addField(
+      'brand',
+      brand,
+    );
+    addField(
+      'note',
+      note,
+    );
     return json;
   }
 
@@ -1336,44 +1491,6 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'prism':
-        if (prism != null) {
-          return prism!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'note':
-        if (note != null) {
-          return note!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1385,39 +1502,51 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'product':
@@ -1425,7 +1554,7 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(product: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'eye':
@@ -1433,7 +1562,7 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
           if (child is VisionEyes) {
             return copyWith(eye: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'sphere':
@@ -1441,7 +1570,7 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
           if (child is FhirDecimal) {
             return copyWith(sphere: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'cylinder':
@@ -1449,7 +1578,7 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
           if (child is FhirDecimal) {
             return copyWith(cylinder: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'axis':
@@ -1457,15 +1586,21 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
           if (child is FhirInteger) {
             return copyWith(axis: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'prism':
         {
           if (child is List<VisionPrescriptionPrism>) {
-            return copyWith(prism: child);
+            // Add all elements from passed list
+            final newList = [...?prism, ...child];
+            return copyWith(prism: newList);
+          } else if (child is VisionPrescriptionPrism) {
+            // Add single element to existing list or create new list
+            final newList = [...?prism, child];
+            return copyWith(prism: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'add':
@@ -1473,7 +1608,7 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
           if (child is FhirDecimal) {
             return copyWith(add: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'power':
@@ -1481,7 +1616,7 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
           if (child is FhirDecimal) {
             return copyWith(power: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'backCurve':
@@ -1489,7 +1624,7 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
           if (child is FhirDecimal) {
             return copyWith(backCurve: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'diameter':
@@ -1497,7 +1632,7 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
           if (child is FhirDecimal) {
             return copyWith(diameter: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'duration':
@@ -1505,7 +1640,7 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
           if (child is Quantity) {
             return copyWith(duration: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'color':
@@ -1513,7 +1648,7 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
           if (child is FhirString) {
             return copyWith(color: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'brand':
@@ -1521,19 +1656,25 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
           if (child is FhirString) {
             return copyWith(brand: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
           if (child is List<Annotation>) {
-            return copyWith(note: child);
+            // Add all elements from passed list
+            final newList = [...?note, ...child];
+            return copyWith(note: newList);
+          } else if (child is Annotation) {
+            // Add single element to existing list or create new list
+            final newList = [...?note, child];
+            return copyWith(note: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1586,75 +1727,111 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  VisionPrescriptionLensSpecification createProperty(String propertyName) {
+  VisionPrescriptionLensSpecification createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'product':
         {
-          return copyWith(product: CodeableConcept.empty());
+          return copyWith(
+            product: CodeableConcept.empty(),
+          );
         }
       case 'eye':
         {
-          return copyWith(eye: VisionEyes.empty());
+          return copyWith(
+            eye: VisionEyes.empty(),
+          );
         }
       case 'sphere':
         {
-          return copyWith(sphere: FhirDecimal.empty());
+          return copyWith(
+            sphere: FhirDecimal.empty(),
+          );
         }
       case 'cylinder':
         {
-          return copyWith(cylinder: FhirDecimal.empty());
+          return copyWith(
+            cylinder: FhirDecimal.empty(),
+          );
         }
       case 'axis':
         {
-          return copyWith(axis: FhirInteger.empty());
+          return copyWith(
+            axis: FhirInteger.empty(),
+          );
         }
       case 'prism':
         {
-          return copyWith(prism: <VisionPrescriptionPrism>[]);
+          return copyWith(
+            prism: <VisionPrescriptionPrism>[],
+          );
         }
       case 'add':
         {
-          return copyWith(add: FhirDecimal.empty());
+          return copyWith(
+            add: FhirDecimal.empty(),
+          );
         }
       case 'power':
         {
-          return copyWith(power: FhirDecimal.empty());
+          return copyWith(
+            power: FhirDecimal.empty(),
+          );
         }
       case 'backCurve':
         {
-          return copyWith(backCurve: FhirDecimal.empty());
+          return copyWith(
+            backCurve: FhirDecimal.empty(),
+          );
         }
       case 'diameter':
         {
-          return copyWith(diameter: FhirDecimal.empty());
+          return copyWith(
+            diameter: FhirDecimal.empty(),
+          );
         }
       case 'duration':
         {
-          return copyWith(duration: Quantity.empty());
+          return copyWith(
+            duration: Quantity.empty(),
+          );
         }
       case 'color':
         {
-          return copyWith(color: FhirString.empty());
+          return copyWith(
+            color: FhirString.empty(),
+          );
         }
       case 'brand':
         {
-          return copyWith(brand: FhirString.empty());
+          return copyWith(
+            brand: FhirString.empty(),
+          );
         }
       case 'note':
         {
-          return copyWith(note: <Annotation>[]);
+          return copyWith(
+            note: <Annotation>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1825,7 +2002,10 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1840,19 +2020,34 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(product, o.product)) {
+    if (!equalsDeepWithNull(
+      product,
+      o.product,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(eye, o.eye)) {
+    if (!equalsDeepWithNull(
+      eye,
+      o.eye,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(sphere, o.sphere)) {
+    if (!equalsDeepWithNull(
+      sphere,
+      o.sphere,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(cylinder, o.cylinder)) {
+    if (!equalsDeepWithNull(
+      cylinder,
+      o.cylinder,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(axis, o.axis)) {
+    if (!equalsDeepWithNull(
+      axis,
+      o.axis,
+    )) {
       return false;
     }
     if (!listEquals<VisionPrescriptionPrism>(
@@ -1861,25 +2056,46 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(add, o.add)) {
+    if (!equalsDeepWithNull(
+      add,
+      o.add,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(power, o.power)) {
+    if (!equalsDeepWithNull(
+      power,
+      o.power,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(backCurve, o.backCurve)) {
+    if (!equalsDeepWithNull(
+      backCurve,
+      o.backCurve,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(diameter, o.diameter)) {
+    if (!equalsDeepWithNull(
+      diameter,
+      o.diameter,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(duration, o.duration)) {
+    if (!equalsDeepWithNull(
+      duration,
+      o.duration,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(color, o.color)) {
+    if (!equalsDeepWithNull(
+      color,
+      o.color,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(brand, o.brand)) {
+    if (!equalsDeepWithNull(
+      brand,
+      o.brand,
+    )) {
       return false;
     }
     if (!listEquals<Annotation>(
@@ -2042,11 +2258,26 @@ class VisionPrescriptionPrism extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('amount', amount);
-    addField('base', base);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'amount',
+      amount,
+    );
+    addField(
+      'base',
+      base,
+    );
     return json;
   }
 
@@ -2095,32 +2326,6 @@ class VisionPrescriptionPrism extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2132,39 +2337,51 @@ class VisionPrescriptionPrism extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'amount':
@@ -2172,7 +2389,7 @@ class VisionPrescriptionPrism extends BackboneElement {
           if (child is FhirDecimal) {
             return copyWith(amount: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'base':
@@ -2180,11 +2397,11 @@ class VisionPrescriptionPrism extends BackboneElement {
           if (child is VisionBase) {
             return copyWith(base: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2213,27 +2430,39 @@ class VisionPrescriptionPrism extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  VisionPrescriptionPrism createProperty(String propertyName) {
+  VisionPrescriptionPrism createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'amount':
         {
-          return copyWith(amount: FhirDecimal.empty());
+          return copyWith(
+            amount: FhirDecimal.empty(),
+          );
         }
       case 'base':
         {
-          return copyWith(base: VisionBase.empty());
+          return copyWith(
+            base: VisionBase.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2312,7 +2541,10 @@ class VisionPrescriptionPrism extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2327,10 +2559,16 @@ class VisionPrescriptionPrism extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(amount, o.amount)) {
+    if (!equalsDeepWithNull(
+      amount,
+      o.amount,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(base, o.base)) {
+    if (!equalsDeepWithNull(
+      base,
+      o.base,
+    )) {
       return false;
     }
     return true;

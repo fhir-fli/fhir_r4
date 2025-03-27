@@ -54,9 +54,14 @@ class QualityType extends FhirCodeEnum {
     if (value == null && element != null) {
       return QualityType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('QualityType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'QualityType cannot be constructed from JSON.',
+      );
     }
-    return QualityType._(validatedValue: value, element: element);
+    return QualityType._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// indel

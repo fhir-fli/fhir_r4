@@ -57,9 +57,13 @@ class ConsentProvisionType extends FhirCodeEnum {
       return ConsentProvisionType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ConsentProvisionType cannot be constructed from JSON.',);
+        'ConsentProvisionType cannot be constructed from JSON.',
+      );
     }
-    return ConsentProvisionType._(validatedValue: value, element: element);
+    return ConsentProvisionType._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// deny

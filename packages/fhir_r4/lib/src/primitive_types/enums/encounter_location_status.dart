@@ -56,9 +56,13 @@ class EncounterLocationStatus extends FhirCodeEnum {
       return EncounterLocationStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'EncounterLocationStatus cannot be constructed from JSON.',);
+        'EncounterLocationStatus cannot be constructed from JSON.',
+      );
     }
-    return EncounterLocationStatus._(validatedValue: value, element: element);
+    return EncounterLocationStatus._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// planned

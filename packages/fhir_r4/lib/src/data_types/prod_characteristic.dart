@@ -278,20 +278,62 @@ class ProdCharacteristic extends BackboneType {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('height', height);
-    addField('width', width);
-    addField('depth', depth);
-    addField('weight', weight);
-    addField('nominalVolume', nominalVolume);
-    addField('externalDiameter', externalDiameter);
-    addField('shape', shape);
-    addField('color', color);
-    addField('imprint', imprint);
-    addField('image', image);
-    addField('scoring', scoring);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'height',
+      height,
+    );
+    addField(
+      'width',
+      width,
+    );
+    addField(
+      'depth',
+      depth,
+    );
+    addField(
+      'weight',
+      weight,
+    );
+    addField(
+      'nominalVolume',
+      nominalVolume,
+    );
+    addField(
+      'externalDiameter',
+      externalDiameter,
+    );
+    addField(
+      'shape',
+      shape,
+    );
+    addField(
+      'color',
+      color,
+    );
+    addField(
+      'imprint',
+      imprint,
+    );
+    addField(
+      'image',
+      image,
+    );
+    addField(
+      'scoring',
+      scoring,
+    );
     return json;
   }
 
@@ -389,50 +431,6 @@ class ProdCharacteristic extends BackboneType {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'color':
-        if (color != null) {
-          return color!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'imprint':
-        if (imprint != null) {
-          return imprint!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'image':
-        if (image != null) {
-          return image!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -444,39 +442,51 @@ class ProdCharacteristic extends BackboneType {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'height':
@@ -484,7 +494,7 @@ class ProdCharacteristic extends BackboneType {
           if (child is Quantity) {
             return copyWith(height: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'width':
@@ -492,7 +502,7 @@ class ProdCharacteristic extends BackboneType {
           if (child is Quantity) {
             return copyWith(width: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'depth':
@@ -500,7 +510,7 @@ class ProdCharacteristic extends BackboneType {
           if (child is Quantity) {
             return copyWith(depth: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'weight':
@@ -508,7 +518,7 @@ class ProdCharacteristic extends BackboneType {
           if (child is Quantity) {
             return copyWith(weight: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'nominalVolume':
@@ -516,7 +526,7 @@ class ProdCharacteristic extends BackboneType {
           if (child is Quantity) {
             return copyWith(nominalVolume: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'externalDiameter':
@@ -524,7 +534,7 @@ class ProdCharacteristic extends BackboneType {
           if (child is Quantity) {
             return copyWith(externalDiameter: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'shape':
@@ -532,31 +542,49 @@ class ProdCharacteristic extends BackboneType {
           if (child is FhirString) {
             return copyWith(shape: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'color':
         {
           if (child is List<FhirString>) {
-            return copyWith(color: child);
+            // Add all elements from passed list
+            final newList = [...?color, ...child];
+            return copyWith(color: newList);
+          } else if (child is FhirString) {
+            // Add single element to existing list or create new list
+            final newList = [...?color, child];
+            return copyWith(color: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'imprint':
         {
           if (child is List<FhirString>) {
-            return copyWith(imprint: child);
+            // Add all elements from passed list
+            final newList = [...?imprint, ...child];
+            return copyWith(imprint: newList);
+          } else if (child is FhirString) {
+            // Add single element to existing list or create new list
+            final newList = [...?imprint, child];
+            return copyWith(imprint: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'image':
         {
           if (child is List<Attachment>) {
-            return copyWith(image: child);
+            // Add all elements from passed list
+            final newList = [...?image, ...child];
+            return copyWith(image: newList);
+          } else if (child is Attachment) {
+            // Add single element to existing list or create new list
+            final newList = [...?image, child];
+            return copyWith(image: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'scoring':
@@ -564,11 +592,11 @@ class ProdCharacteristic extends BackboneType {
           if (child is CodeableConcept) {
             return copyWith(scoring: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -615,63 +643,93 @@ class ProdCharacteristic extends BackboneType {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  ProdCharacteristic createProperty(String propertyName) {
+  ProdCharacteristic createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'height':
         {
-          return copyWith(height: Quantity.empty());
+          return copyWith(
+            height: Quantity.empty(),
+          );
         }
       case 'width':
         {
-          return copyWith(width: Quantity.empty());
+          return copyWith(
+            width: Quantity.empty(),
+          );
         }
       case 'depth':
         {
-          return copyWith(depth: Quantity.empty());
+          return copyWith(
+            depth: Quantity.empty(),
+          );
         }
       case 'weight':
         {
-          return copyWith(weight: Quantity.empty());
+          return copyWith(
+            weight: Quantity.empty(),
+          );
         }
       case 'nominalVolume':
         {
-          return copyWith(nominalVolume: Quantity.empty());
+          return copyWith(
+            nominalVolume: Quantity.empty(),
+          );
         }
       case 'externalDiameter':
         {
-          return copyWith(externalDiameter: Quantity.empty());
+          return copyWith(
+            externalDiameter: Quantity.empty(),
+          );
         }
       case 'shape':
         {
-          return copyWith(shape: FhirString.empty());
+          return copyWith(
+            shape: FhirString.empty(),
+          );
         }
       case 'color':
         {
-          return copyWith(color: <FhirString>[]);
+          return copyWith(
+            color: <FhirString>[],
+          );
         }
       case 'imprint':
         {
-          return copyWith(imprint: <FhirString>[]);
+          return copyWith(
+            imprint: <FhirString>[],
+          );
         }
       case 'image':
         {
-          return copyWith(image: <Attachment>[]);
+          return copyWith(
+            image: <Attachment>[],
+          );
         }
       case 'scoring':
         {
-          return copyWith(scoring: CodeableConcept.empty());
+          return copyWith(
+            scoring: CodeableConcept.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -827,7 +885,10 @@ class ProdCharacteristic extends BackboneType {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -842,25 +903,46 @@ class ProdCharacteristic extends BackboneType {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(height, o.height)) {
+    if (!equalsDeepWithNull(
+      height,
+      o.height,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(width, o.width)) {
+    if (!equalsDeepWithNull(
+      width,
+      o.width,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(depth, o.depth)) {
+    if (!equalsDeepWithNull(
+      depth,
+      o.depth,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(weight, o.weight)) {
+    if (!equalsDeepWithNull(
+      weight,
+      o.weight,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(nominalVolume, o.nominalVolume)) {
+    if (!equalsDeepWithNull(
+      nominalVolume,
+      o.nominalVolume,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(externalDiameter, o.externalDiameter)) {
+    if (!equalsDeepWithNull(
+      externalDiameter,
+      o.externalDiameter,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(shape, o.shape)) {
+    if (!equalsDeepWithNull(
+      shape,
+      o.shape,
+    )) {
       return false;
     }
     if (!listEquals<FhirString>(
@@ -881,7 +963,10 @@ class ProdCharacteristic extends BackboneType {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(scoring, o.scoring)) {
+    if (!equalsDeepWithNull(
+      scoring,
+      o.scoring,
+    )) {
       return false;
     }
     return true;

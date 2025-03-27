@@ -144,11 +144,26 @@ class Parameters extends Resource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('parameter', parameter);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'parameter',
+      parameter,
+    );
     return json;
   }
 
@@ -201,26 +216,6 @@ class Parameters extends Resource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'parameter':
-        if (parameter != null) {
-          return parameter!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -232,23 +227,23 @@ class Parameters extends Resource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -256,7 +251,7 @@ class Parameters extends Resource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -264,7 +259,7 @@ class Parameters extends Resource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -272,19 +267,25 @@ class Parameters extends Resource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'parameter':
         {
           if (child is List<ParametersParameter>) {
-            return copyWith(parameter: child);
+            // Add all elements from passed list
+            final newList = [...?parameter, ...child];
+            return copyWith(parameter: newList);
+          } else if (child is ParametersParameter) {
+            // Add single element to existing list or create new list
+            final newList = [...?parameter, child];
+            return copyWith(parameter: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -313,27 +314,39 @@ class Parameters extends Resource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  Parameters createProperty(String propertyName) {
+  Parameters createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'parameter':
         {
-          return copyWith(parameter: <ParametersParameter>[]);
+          return copyWith(
+            parameter: <ParametersParameter>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -409,16 +422,28 @@ class Parameters extends Resource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
     if (!listEquals<ParametersParameter>(
@@ -808,17 +833,38 @@ class ParametersParameter extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('name', name);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'name',
+      name,
+    );
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField('value${fhirType.capitalize()}', valueX);
+      addField(
+        'value${fhirType.capitalize()}',
+        valueX,
+      );
     }
 
-    addField('resource', resource);
-    addField('part', part_);
+    addField(
+      'resource',
+      resource,
+    );
+    addField(
+      'part',
+      part_,
+    );
     return json;
   }
 
@@ -1079,38 +1125,6 @@ class ParametersParameter extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'part':
-        if (part_ != null) {
-          return part_!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1122,39 +1136,51 @@ class ParametersParameter extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
@@ -1162,24 +1188,173 @@ class ParametersParameter extends BackboneElement {
           if (child is FhirString) {
             return copyWith(name: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueX':
         {
           if (child is ValueXParametersParameter) {
-            // child is e.g. SubjectX union
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is FhirBase64Binary) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirBoolean) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirCanonical) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirCode) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirDate) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirDateTime) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirDecimal) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirId) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirInstant) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirInteger) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirMarkdown) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirOid) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirPositiveInt) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirString) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirTime) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirUnsignedInt) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirUri) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirUrl) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirUuid) {
+              return copyWith(valueX: child);
+            }
+            if (child is Address) {
+              return copyWith(valueX: child);
+            }
+            if (child is Age) {
+              return copyWith(valueX: child);
+            }
+            if (child is Annotation) {
+              return copyWith(valueX: child);
+            }
+            if (child is Attachment) {
+              return copyWith(valueX: child);
+            }
+            if (child is CodeableConcept) {
+              return copyWith(valueX: child);
+            }
+            if (child is Coding) {
+              return copyWith(valueX: child);
+            }
+            if (child is ContactPoint) {
+              return copyWith(valueX: child);
+            }
+            if (child is Count) {
+              return copyWith(valueX: child);
+            }
+            if (child is Distance) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirDuration) {
+              return copyWith(valueX: child);
+            }
+            if (child is HumanName) {
+              return copyWith(valueX: child);
+            }
+            if (child is Identifier) {
+              return copyWith(valueX: child);
+            }
+            if (child is Money) {
+              return copyWith(valueX: child);
+            }
+            if (child is Period) {
+              return copyWith(valueX: child);
+            }
+            if (child is Quantity) {
+              return copyWith(valueX: child);
+            }
+            if (child is Range) {
+              return copyWith(valueX: child);
+            }
+            if (child is Ratio) {
+              return copyWith(valueX: child);
+            }
+            if (child is Reference) {
+              return copyWith(valueX: child);
+            }
+            if (child is SampledData) {
+              return copyWith(valueX: child);
+            }
+            if (child is Signature) {
+              return copyWith(valueX: child);
+            }
+            if (child is Timing) {
+              return copyWith(valueX: child);
+            }
+            if (child is ContactDetail) {
+              return copyWith(valueX: child);
+            }
+            if (child is Contributor) {
+              return copyWith(valueX: child);
+            }
+            if (child is DataRequirement) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirExpression) {
+              return copyWith(valueX: child);
+            }
+            if (child is ParameterDefinition) {
+              return copyWith(valueX: child);
+            }
+            if (child is RelatedArtifact) {
+              return copyWith(valueX: child);
+            }
+            if (child is TriggerDefinition) {
+              return copyWith(valueX: child);
+            }
+            if (child is UsageContext) {
+              return copyWith(valueX: child);
+            }
+            if (child is Dosage) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirMeta) {
+              return copyWith(valueX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'valueFhirBase64Binary':
         {
           if (child is FhirBase64Binary) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirBoolean':
@@ -1187,7 +1362,7 @@ class ParametersParameter extends BackboneElement {
           if (child is FhirBoolean) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirCanonical':
@@ -1195,7 +1370,7 @@ class ParametersParameter extends BackboneElement {
           if (child is FhirCanonical) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirCode':
@@ -1203,7 +1378,7 @@ class ParametersParameter extends BackboneElement {
           if (child is FhirCode) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirDate':
@@ -1211,7 +1386,7 @@ class ParametersParameter extends BackboneElement {
           if (child is FhirDate) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirDateTime':
@@ -1219,7 +1394,7 @@ class ParametersParameter extends BackboneElement {
           if (child is FhirDateTime) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirDecimal':
@@ -1227,7 +1402,7 @@ class ParametersParameter extends BackboneElement {
           if (child is FhirDecimal) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirId':
@@ -1235,7 +1410,7 @@ class ParametersParameter extends BackboneElement {
           if (child is FhirId) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirInstant':
@@ -1243,7 +1418,7 @@ class ParametersParameter extends BackboneElement {
           if (child is FhirInstant) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirInteger':
@@ -1251,7 +1426,7 @@ class ParametersParameter extends BackboneElement {
           if (child is FhirInteger) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirMarkdown':
@@ -1259,7 +1434,7 @@ class ParametersParameter extends BackboneElement {
           if (child is FhirMarkdown) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirOid':
@@ -1267,7 +1442,7 @@ class ParametersParameter extends BackboneElement {
           if (child is FhirOid) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirPositiveInt':
@@ -1275,7 +1450,7 @@ class ParametersParameter extends BackboneElement {
           if (child is FhirPositiveInt) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirString':
@@ -1283,7 +1458,7 @@ class ParametersParameter extends BackboneElement {
           if (child is FhirString) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirTime':
@@ -1291,7 +1466,7 @@ class ParametersParameter extends BackboneElement {
           if (child is FhirTime) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirUnsignedInt':
@@ -1299,7 +1474,7 @@ class ParametersParameter extends BackboneElement {
           if (child is FhirUnsignedInt) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirUri':
@@ -1307,7 +1482,7 @@ class ParametersParameter extends BackboneElement {
           if (child is FhirUri) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirUrl':
@@ -1315,7 +1490,7 @@ class ParametersParameter extends BackboneElement {
           if (child is FhirUrl) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirUuid':
@@ -1323,7 +1498,7 @@ class ParametersParameter extends BackboneElement {
           if (child is FhirUuid) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueAddress':
@@ -1331,7 +1506,7 @@ class ParametersParameter extends BackboneElement {
           if (child is Address) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueAge':
@@ -1339,7 +1514,7 @@ class ParametersParameter extends BackboneElement {
           if (child is Age) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueAnnotation':
@@ -1347,7 +1522,7 @@ class ParametersParameter extends BackboneElement {
           if (child is Annotation) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueAttachment':
@@ -1355,7 +1530,7 @@ class ParametersParameter extends BackboneElement {
           if (child is Attachment) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueCodeableConcept':
@@ -1363,7 +1538,7 @@ class ParametersParameter extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueCoding':
@@ -1371,7 +1546,7 @@ class ParametersParameter extends BackboneElement {
           if (child is Coding) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueContactPoint':
@@ -1379,7 +1554,7 @@ class ParametersParameter extends BackboneElement {
           if (child is ContactPoint) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueCount':
@@ -1387,7 +1562,7 @@ class ParametersParameter extends BackboneElement {
           if (child is Count) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueDistance':
@@ -1395,7 +1570,7 @@ class ParametersParameter extends BackboneElement {
           if (child is Distance) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirDuration':
@@ -1403,7 +1578,7 @@ class ParametersParameter extends BackboneElement {
           if (child is FhirDuration) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueHumanName':
@@ -1411,7 +1586,7 @@ class ParametersParameter extends BackboneElement {
           if (child is HumanName) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueIdentifier':
@@ -1419,7 +1594,7 @@ class ParametersParameter extends BackboneElement {
           if (child is Identifier) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueMoney':
@@ -1427,7 +1602,7 @@ class ParametersParameter extends BackboneElement {
           if (child is Money) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valuePeriod':
@@ -1435,7 +1610,7 @@ class ParametersParameter extends BackboneElement {
           if (child is Period) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueQuantity':
@@ -1443,7 +1618,7 @@ class ParametersParameter extends BackboneElement {
           if (child is Quantity) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueRange':
@@ -1451,7 +1626,7 @@ class ParametersParameter extends BackboneElement {
           if (child is Range) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueRatio':
@@ -1459,7 +1634,7 @@ class ParametersParameter extends BackboneElement {
           if (child is Ratio) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueReference':
@@ -1467,7 +1642,7 @@ class ParametersParameter extends BackboneElement {
           if (child is Reference) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueSampledData':
@@ -1475,7 +1650,7 @@ class ParametersParameter extends BackboneElement {
           if (child is SampledData) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueSignature':
@@ -1483,7 +1658,7 @@ class ParametersParameter extends BackboneElement {
           if (child is Signature) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueTiming':
@@ -1491,7 +1666,7 @@ class ParametersParameter extends BackboneElement {
           if (child is Timing) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueContactDetail':
@@ -1499,7 +1674,7 @@ class ParametersParameter extends BackboneElement {
           if (child is ContactDetail) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueContributor':
@@ -1507,7 +1682,7 @@ class ParametersParameter extends BackboneElement {
           if (child is Contributor) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueDataRequirement':
@@ -1515,7 +1690,7 @@ class ParametersParameter extends BackboneElement {
           if (child is DataRequirement) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirExpression':
@@ -1523,7 +1698,7 @@ class ParametersParameter extends BackboneElement {
           if (child is FhirExpression) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueParameterDefinition':
@@ -1531,7 +1706,7 @@ class ParametersParameter extends BackboneElement {
           if (child is ParameterDefinition) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueRelatedArtifact':
@@ -1539,7 +1714,7 @@ class ParametersParameter extends BackboneElement {
           if (child is RelatedArtifact) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueTriggerDefinition':
@@ -1547,7 +1722,7 @@ class ParametersParameter extends BackboneElement {
           if (child is TriggerDefinition) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueUsageContext':
@@ -1555,7 +1730,7 @@ class ParametersParameter extends BackboneElement {
           if (child is UsageContext) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueDosage':
@@ -1563,7 +1738,7 @@ class ParametersParameter extends BackboneElement {
           if (child is Dosage) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirMeta':
@@ -1571,7 +1746,7 @@ class ParametersParameter extends BackboneElement {
           if (child is FhirMeta) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'resource':
@@ -1579,19 +1754,25 @@ class ParametersParameter extends BackboneElement {
           if (child is Resource) {
             return copyWith(resource: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'part':
         {
           if (child is List<ParametersParameter>) {
-            return copyWith(part_: child);
+            // Add all elements from passed list
+            final newList = [...?part_, ...child];
+            return copyWith(part_: newList);
+          } else if (child is ParametersParameter) {
+            // Add single element to existing list or create new list
+            final newList = [...?part_, child];
+            return copyWith(part_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1776,233 +1957,347 @@ class ParametersParameter extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  ParametersParameter createProperty(String propertyName) {
+  ParametersParameter createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'name':
         {
-          return copyWith(name: FhirString.empty());
+          return copyWith(
+            name: FhirString.empty(),
+          );
         }
       case 'value':
       case 'valueX':
       case 'valueBase64Binary':
         {
-          return copyWith(valueX: FhirBase64Binary.empty());
+          return copyWith(
+            valueX: FhirBase64Binary.empty(),
+          );
         }
       case 'valueBoolean':
         {
-          return copyWith(valueX: FhirBoolean.empty());
+          return copyWith(
+            valueX: FhirBoolean.empty(),
+          );
         }
       case 'valueCanonical':
         {
-          return copyWith(valueX: FhirCanonical.empty());
+          return copyWith(
+            valueX: FhirCanonical.empty(),
+          );
         }
       case 'valueCode':
         {
-          return copyWith(valueX: FhirCode.empty());
+          return copyWith(
+            valueX: FhirCode.empty(),
+          );
         }
       case 'valueDate':
         {
-          return copyWith(valueX: FhirDate.empty());
+          return copyWith(
+            valueX: FhirDate.empty(),
+          );
         }
       case 'valueDateTime':
         {
-          return copyWith(valueX: FhirDateTime.empty());
+          return copyWith(
+            valueX: FhirDateTime.empty(),
+          );
         }
       case 'valueDecimal':
         {
-          return copyWith(valueX: FhirDecimal.empty());
+          return copyWith(
+            valueX: FhirDecimal.empty(),
+          );
         }
       case 'valueId':
         {
-          return copyWith(valueX: FhirId.empty());
+          return copyWith(
+            valueX: FhirId.empty(),
+          );
         }
       case 'valueInstant':
         {
-          return copyWith(valueX: FhirInstant.empty());
+          return copyWith(
+            valueX: FhirInstant.empty(),
+          );
         }
       case 'valueInteger':
         {
-          return copyWith(valueX: FhirInteger.empty());
+          return copyWith(
+            valueX: FhirInteger.empty(),
+          );
         }
       case 'valueMarkdown':
         {
-          return copyWith(valueX: FhirMarkdown.empty());
+          return copyWith(
+            valueX: FhirMarkdown.empty(),
+          );
         }
       case 'valueOid':
         {
-          return copyWith(valueX: FhirOid.empty());
+          return copyWith(
+            valueX: FhirOid.empty(),
+          );
         }
       case 'valuePositiveInt':
         {
-          return copyWith(valueX: FhirPositiveInt.empty());
+          return copyWith(
+            valueX: FhirPositiveInt.empty(),
+          );
         }
       case 'valueString':
         {
-          return copyWith(valueX: FhirString.empty());
+          return copyWith(
+            valueX: FhirString.empty(),
+          );
         }
       case 'valueTime':
         {
-          return copyWith(valueX: FhirTime.empty());
+          return copyWith(
+            valueX: FhirTime.empty(),
+          );
         }
       case 'valueUnsignedInt':
         {
-          return copyWith(valueX: FhirUnsignedInt.empty());
+          return copyWith(
+            valueX: FhirUnsignedInt.empty(),
+          );
         }
       case 'valueUri':
         {
-          return copyWith(valueX: FhirUri.empty());
+          return copyWith(
+            valueX: FhirUri.empty(),
+          );
         }
       case 'valueUrl':
         {
-          return copyWith(valueX: FhirUrl.empty());
+          return copyWith(
+            valueX: FhirUrl.empty(),
+          );
         }
       case 'valueUuid':
         {
-          return copyWith(valueX: FhirUuid.empty());
+          return copyWith(
+            valueX: FhirUuid.empty(),
+          );
         }
       case 'valueAddress':
         {
-          return copyWith(valueX: Address.empty());
+          return copyWith(
+            valueX: Address.empty(),
+          );
         }
       case 'valueAge':
         {
-          return copyWith(valueX: Age.empty());
+          return copyWith(
+            valueX: Age.empty(),
+          );
         }
       case 'valueAnnotation':
         {
-          return copyWith(valueX: Annotation.empty());
+          return copyWith(
+            valueX: Annotation.empty(),
+          );
         }
       case 'valueAttachment':
         {
-          return copyWith(valueX: Attachment.empty());
+          return copyWith(
+            valueX: Attachment.empty(),
+          );
         }
       case 'valueCodeableConcept':
         {
-          return copyWith(valueX: CodeableConcept.empty());
+          return copyWith(
+            valueX: CodeableConcept.empty(),
+          );
         }
       case 'valueCoding':
         {
-          return copyWith(valueX: Coding.empty());
+          return copyWith(
+            valueX: Coding.empty(),
+          );
         }
       case 'valueContactPoint':
         {
-          return copyWith(valueX: ContactPoint.empty());
+          return copyWith(
+            valueX: ContactPoint.empty(),
+          );
         }
       case 'valueCount':
         {
-          return copyWith(valueX: Count.empty());
+          return copyWith(
+            valueX: Count.empty(),
+          );
         }
       case 'valueDistance':
         {
-          return copyWith(valueX: Distance.empty());
+          return copyWith(
+            valueX: Distance.empty(),
+          );
         }
       case 'valueDuration':
         {
-          return copyWith(valueX: FhirDuration.empty());
+          return copyWith(
+            valueX: FhirDuration.empty(),
+          );
         }
       case 'valueHumanName':
         {
-          return copyWith(valueX: HumanName.empty());
+          return copyWith(
+            valueX: HumanName.empty(),
+          );
         }
       case 'valueIdentifier':
         {
-          return copyWith(valueX: Identifier.empty());
+          return copyWith(
+            valueX: Identifier.empty(),
+          );
         }
       case 'valueMoney':
         {
-          return copyWith(valueX: Money.empty());
+          return copyWith(
+            valueX: Money.empty(),
+          );
         }
       case 'valuePeriod':
         {
-          return copyWith(valueX: Period.empty());
+          return copyWith(
+            valueX: Period.empty(),
+          );
         }
       case 'valueQuantity':
         {
-          return copyWith(valueX: Quantity.empty());
+          return copyWith(
+            valueX: Quantity.empty(),
+          );
         }
       case 'valueRange':
         {
-          return copyWith(valueX: Range.empty());
+          return copyWith(
+            valueX: Range.empty(),
+          );
         }
       case 'valueRatio':
         {
-          return copyWith(valueX: Ratio.empty());
+          return copyWith(
+            valueX: Ratio.empty(),
+          );
         }
       case 'valueReference':
         {
-          return copyWith(valueX: Reference.empty());
+          return copyWith(
+            valueX: Reference.empty(),
+          );
         }
       case 'valueSampledData':
         {
-          return copyWith(valueX: SampledData.empty());
+          return copyWith(
+            valueX: SampledData.empty(),
+          );
         }
       case 'valueSignature':
         {
-          return copyWith(valueX: Signature.empty());
+          return copyWith(
+            valueX: Signature.empty(),
+          );
         }
       case 'valueTiming':
         {
-          return copyWith(valueX: Timing.empty());
+          return copyWith(
+            valueX: Timing.empty(),
+          );
         }
       case 'valueContactDetail':
         {
-          return copyWith(valueX: ContactDetail.empty());
+          return copyWith(
+            valueX: ContactDetail.empty(),
+          );
         }
       case 'valueContributor':
         {
-          return copyWith(valueX: Contributor.empty());
+          return copyWith(
+            valueX: Contributor.empty(),
+          );
         }
       case 'valueDataRequirement':
         {
-          return copyWith(valueX: DataRequirement.empty());
+          return copyWith(
+            valueX: DataRequirement.empty(),
+          );
         }
       case 'valueExpression':
         {
-          return copyWith(valueX: FhirExpression.empty());
+          return copyWith(
+            valueX: FhirExpression.empty(),
+          );
         }
       case 'valueParameterDefinition':
         {
-          return copyWith(valueX: ParameterDefinition.empty());
+          return copyWith(
+            valueX: ParameterDefinition.empty(),
+          );
         }
       case 'valueRelatedArtifact':
         {
-          return copyWith(valueX: RelatedArtifact.empty());
+          return copyWith(
+            valueX: RelatedArtifact.empty(),
+          );
         }
       case 'valueTriggerDefinition':
         {
-          return copyWith(valueX: TriggerDefinition.empty());
+          return copyWith(
+            valueX: TriggerDefinition.empty(),
+          );
         }
       case 'valueUsageContext':
         {
-          return copyWith(valueX: UsageContext.empty());
+          return copyWith(
+            valueX: UsageContext.empty(),
+          );
         }
       case 'valueDosage':
         {
-          return copyWith(valueX: Dosage.empty());
+          return copyWith(
+            valueX: Dosage.empty(),
+          );
         }
       case 'valueMeta':
         {
-          return copyWith(valueX: FhirMeta.empty());
+          return copyWith(
+            valueX: FhirMeta.empty(),
+          );
         }
       case 'resource':
         {
-          return copyWith(resource: Resource.empty());
+          return copyWith(
+            resource: Resource.empty(),
+          );
         }
       case 'part':
         {
-          return copyWith(part_: <ParametersParameter>[]);
+          return copyWith(
+            part_: <ParametersParameter>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2097,7 +2392,10 @@ class ParametersParameter extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2112,13 +2410,22 @@ class ParametersParameter extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(name, o.name)) {
+    if (!equalsDeepWithNull(
+      name,
+      o.name,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(valueX, o.valueX)) {
+    if (!equalsDeepWithNull(
+      valueX,
+      o.valueX,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(resource, o.resource)) {
+    if (!equalsDeepWithNull(
+      resource,
+      o.resource,
+    )) {
       return false;
     }
     if (!listEquals<ParametersParameter>(

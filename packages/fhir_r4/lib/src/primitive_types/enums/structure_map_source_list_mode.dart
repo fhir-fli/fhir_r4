@@ -56,10 +56,13 @@ class StructureMapSourceListMode extends FhirCodeEnum {
       return StructureMapSourceListMode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'StructureMapSourceListMode cannot be constructed from JSON.',);
+        'StructureMapSourceListMode cannot be constructed from JSON.',
+      );
     }
     return StructureMapSourceListMode._(
-        validatedValue: value, element: element,);
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// first

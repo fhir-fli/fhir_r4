@@ -54,9 +54,14 @@ class DiscriminatorType extends FhirCodeEnum {
     if (value == null && element != null) {
       return DiscriminatorType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('DiscriminatorType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'DiscriminatorType cannot be constructed from JSON.',
+      );
     }
-    return DiscriminatorType._(validatedValue: value, element: element);
+    return DiscriminatorType._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// value

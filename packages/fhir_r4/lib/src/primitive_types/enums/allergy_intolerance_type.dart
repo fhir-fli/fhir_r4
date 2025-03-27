@@ -57,9 +57,13 @@ class AllergyIntoleranceType extends FhirCodeEnum {
       return AllergyIntoleranceType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'AllergyIntoleranceType cannot be constructed from JSON.',);
+        'AllergyIntoleranceType cannot be constructed from JSON.',
+      );
     }
-    return AllergyIntoleranceType._(validatedValue: value, element: element);
+    return AllergyIntoleranceType._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// allergy

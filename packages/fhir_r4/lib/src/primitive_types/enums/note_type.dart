@@ -54,9 +54,14 @@ class NoteType extends FhirCodeEnum {
     if (value == null && element != null) {
       return NoteType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('NoteType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'NoteType cannot be constructed from JSON.',
+      );
     }
-    return NoteType._(validatedValue: value, element: element);
+    return NoteType._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// display_

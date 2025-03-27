@@ -56,10 +56,13 @@ class AuditEventAgentNetworkType extends FhirCodeEnum {
       return AuditEventAgentNetworkType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'AuditEventAgentNetworkType cannot be constructed from JSON.',);
+        'AuditEventAgentNetworkType cannot be constructed from JSON.',
+      );
     }
     return AuditEventAgentNetworkType._(
-        validatedValue: value, element: element,);
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// value1

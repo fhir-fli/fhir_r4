@@ -169,15 +169,30 @@ class Annotation extends DataType
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
     if (authorX != null) {
       final fhirType = authorX!.fhirType;
-      addField('author${fhirType.capitalize()}', authorX);
+      addField(
+        'author${fhirType.capitalize()}',
+        authorX,
+      );
     }
 
-    addField('time', time);
-    addField('text', text);
+    addField(
+      'time',
+      time,
+    );
+    addField(
+      'text',
+      text,
+    );
     return json;
   }
 
@@ -236,26 +251,6 @@ class Annotation extends DataType
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -267,48 +262,59 @@ class Annotation extends DataType
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'authorX':
         {
           if (child is AuthorXAnnotation) {
-            // child is e.g. SubjectX union
             return copyWith(authorX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is Reference) {
+              return copyWith(authorX: child);
+            }
+            if (child is FhirString) {
+              return copyWith(authorX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'authorReference':
         {
           if (child is Reference) {
             return copyWith(authorX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'authorFhirString':
@@ -316,7 +322,7 @@ class Annotation extends DataType
           if (child is FhirString) {
             return copyWith(authorX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'time':
@@ -324,7 +330,7 @@ class Annotation extends DataType
           if (child is FhirDateTime) {
             return copyWith(time: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -332,11 +338,11 @@ class Annotation extends DataType
           if (child is FhirMarkdown) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -370,33 +376,47 @@ class Annotation extends DataType
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  Annotation createProperty(String propertyName) {
+  Annotation createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'author':
       case 'authorX':
       case 'authorReference':
         {
-          return copyWith(authorX: Reference.empty());
+          return copyWith(
+            authorX: Reference.empty(),
+          );
         }
       case 'authorString':
         {
-          return copyWith(authorX: FhirString.empty());
+          return copyWith(
+            authorX: FhirString.empty(),
+          );
         }
       case 'time':
         {
-          return copyWith(time: FhirDateTime.empty());
+          return copyWith(
+            time: FhirDateTime.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: FhirMarkdown.empty());
+          return copyWith(
+            text: FhirMarkdown.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -472,7 +492,10 @@ class Annotation extends DataType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -481,13 +504,22 @@ class Annotation extends DataType
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(authorX, o.authorX)) {
+    if (!equalsDeepWithNull(
+      authorX,
+      o.authorX,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(time, o.time)) {
+    if (!equalsDeepWithNull(
+      time,
+      o.time,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     return true;

@@ -56,9 +56,13 @@ class ActionRelationshipType extends FhirCodeEnum {
       return ActionRelationshipType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ActionRelationshipType cannot be constructed from JSON.',);
+        'ActionRelationshipType cannot be constructed from JSON.',
+      );
     }
-    return ActionRelationshipType._(validatedValue: value, element: element);
+    return ActionRelationshipType._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// before_start

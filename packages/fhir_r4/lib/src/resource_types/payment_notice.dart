@@ -312,26 +312,86 @@ class PaymentNotice extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('identifier', identifier);
-    addField('status', status);
-    addField('request', request);
-    addField('response', response);
-    addField('created', created);
-    addField('provider', provider);
-    addField('payment', payment);
-    addField('paymentDate', paymentDate);
-    addField('payee', payee);
-    addField('recipient', recipient);
-    addField('amount', amount);
-    addField('paymentStatus', paymentStatus);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'request',
+      request,
+    );
+    addField(
+      'response',
+      response,
+    );
+    addField(
+      'created',
+      created,
+    );
+    addField(
+      'provider',
+      provider,
+    );
+    addField(
+      'payment',
+      payment,
+    );
+    addField(
+      'paymentDate',
+      paymentDate,
+    );
+    addField(
+      'payee',
+      payee,
+    );
+    addField(
+      'recipient',
+      recipient,
+    );
+    addField(
+      'amount',
+      amount,
+    );
+    addField(
+      'paymentStatus',
+      paymentStatus,
+    );
     return json;
   }
 
@@ -449,44 +509,6 @@ class PaymentNotice extends DomainResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'identifier':
-        if (identifier != null) {
-          return identifier!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -498,23 +520,23 @@ class PaymentNotice extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -522,7 +544,7 @@ class PaymentNotice extends DomainResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -530,7 +552,7 @@ class PaymentNotice extends DomainResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -538,7 +560,7 @@ class PaymentNotice extends DomainResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -546,39 +568,63 @@ class PaymentNotice extends DomainResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
           if (child is List<Identifier>) {
-            return copyWith(identifier: child);
+            // Add all elements from passed list
+            final newList = [...?identifier, ...child];
+            return copyWith(identifier: newList);
+          } else if (child is Identifier) {
+            // Add single element to existing list or create new list
+            final newList = [...?identifier, child];
+            return copyWith(identifier: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -586,7 +632,7 @@ class PaymentNotice extends DomainResource {
           if (child is FinancialResourceStatusCodes) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'request':
@@ -594,7 +640,7 @@ class PaymentNotice extends DomainResource {
           if (child is Reference) {
             return copyWith(request: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'response':
@@ -602,7 +648,7 @@ class PaymentNotice extends DomainResource {
           if (child is Reference) {
             return copyWith(response: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'created':
@@ -610,7 +656,7 @@ class PaymentNotice extends DomainResource {
           if (child is FhirDateTime) {
             return copyWith(created: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'provider':
@@ -618,7 +664,7 @@ class PaymentNotice extends DomainResource {
           if (child is Reference) {
             return copyWith(provider: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'payment':
@@ -626,7 +672,7 @@ class PaymentNotice extends DomainResource {
           if (child is Reference) {
             return copyWith(payment: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'paymentDate':
@@ -634,7 +680,7 @@ class PaymentNotice extends DomainResource {
           if (child is FhirDate) {
             return copyWith(paymentDate: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'payee':
@@ -642,7 +688,7 @@ class PaymentNotice extends DomainResource {
           if (child is Reference) {
             return copyWith(payee: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'recipient':
@@ -650,7 +696,7 @@ class PaymentNotice extends DomainResource {
           if (child is Reference) {
             return copyWith(recipient: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'amount':
@@ -658,7 +704,7 @@ class PaymentNotice extends DomainResource {
           if (child is Money) {
             return copyWith(amount: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'paymentStatus':
@@ -666,11 +712,11 @@ class PaymentNotice extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(paymentStatus: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -729,87 +775,129 @@ class PaymentNotice extends DomainResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  PaymentNotice createProperty(String propertyName) {
+  PaymentNotice createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'identifier':
         {
-          return copyWith(identifier: <Identifier>[]);
+          return copyWith(
+            identifier: <Identifier>[],
+          );
         }
       case 'status':
         {
-          return copyWith(status: FinancialResourceStatusCodes.empty());
+          return copyWith(
+            status: FinancialResourceStatusCodes.empty(),
+          );
         }
       case 'request':
         {
-          return copyWith(request: Reference.empty());
+          return copyWith(
+            request: Reference.empty(),
+          );
         }
       case 'response':
         {
-          return copyWith(response: Reference.empty());
+          return copyWith(
+            response: Reference.empty(),
+          );
         }
       case 'created':
         {
-          return copyWith(created: FhirDateTime.empty());
+          return copyWith(
+            created: FhirDateTime.empty(),
+          );
         }
       case 'provider':
         {
-          return copyWith(provider: Reference.empty());
+          return copyWith(
+            provider: Reference.empty(),
+          );
         }
       case 'payment':
         {
-          return copyWith(payment: Reference.empty());
+          return copyWith(
+            payment: Reference.empty(),
+          );
         }
       case 'paymentDate':
         {
-          return copyWith(paymentDate: FhirDate.empty());
+          return copyWith(
+            paymentDate: FhirDate.empty(),
+          );
         }
       case 'payee':
         {
-          return copyWith(payee: Reference.empty());
+          return copyWith(
+            payee: Reference.empty(),
+          );
         }
       case 'recipient':
         {
-          return copyWith(recipient: Reference.empty());
+          return copyWith(
+            recipient: Reference.empty(),
+          );
         }
       case 'amount':
         {
-          return copyWith(amount: Money.empty());
+          return copyWith(
+            amount: Money.empty(),
+          );
         }
       case 'paymentStatus':
         {
-          return copyWith(paymentStatus: CodeableConcept.empty());
+          return copyWith(
+            paymentStatus: CodeableConcept.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -990,19 +1078,34 @@ class PaymentNotice extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1029,37 +1132,70 @@ class PaymentNotice extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(request, o.request)) {
+    if (!equalsDeepWithNull(
+      request,
+      o.request,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(response, o.response)) {
+    if (!equalsDeepWithNull(
+      response,
+      o.response,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(created, o.created)) {
+    if (!equalsDeepWithNull(
+      created,
+      o.created,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(provider, o.provider)) {
+    if (!equalsDeepWithNull(
+      provider,
+      o.provider,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(payment, o.payment)) {
+    if (!equalsDeepWithNull(
+      payment,
+      o.payment,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(paymentDate, o.paymentDate)) {
+    if (!equalsDeepWithNull(
+      paymentDate,
+      o.paymentDate,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(payee, o.payee)) {
+    if (!equalsDeepWithNull(
+      payee,
+      o.payee,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(recipient, o.recipient)) {
+    if (!equalsDeepWithNull(
+      recipient,
+      o.recipient,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(amount, o.amount)) {
+    if (!equalsDeepWithNull(
+      amount,
+      o.amount,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(paymentStatus, o.paymentStatus)) {
+    if (!equalsDeepWithNull(
+      paymentStatus,
+      o.paymentStatus,
+    )) {
       return false;
     }
     return true;

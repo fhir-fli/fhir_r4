@@ -530,48 +530,150 @@ class ChargeItem extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('identifier', identifier);
-    addField('definitionUri', definitionUri);
-    addField('definitionCanonical', definitionCanonical);
-    addField('status', status);
-    addField('partOf', partOf);
-    addField('code', code);
-    addField('subject', subject);
-    addField('context', context);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'definitionUri',
+      definitionUri,
+    );
+    addField(
+      'definitionCanonical',
+      definitionCanonical,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'partOf',
+      partOf,
+    );
+    addField(
+      'code',
+      code,
+    );
+    addField(
+      'subject',
+      subject,
+    );
+    addField(
+      'context',
+      context,
+    );
     if (occurrenceX != null) {
       final fhirType = occurrenceX!.fhirType;
-      addField('occurrence${fhirType.capitalize()}', occurrenceX);
+      addField(
+        'occurrence${fhirType.capitalize()}',
+        occurrenceX,
+      );
     }
 
-    addField('performer', performer);
-    addField('performingOrganization', performingOrganization);
-    addField('requestingOrganization', requestingOrganization);
-    addField('costCenter', costCenter);
-    addField('quantity', quantity);
-    addField('bodysite', bodysite);
-    addField('factorOverride', factorOverride);
-    addField('priceOverride', priceOverride);
-    addField('overrideReason', overrideReason);
-    addField('enterer', enterer);
-    addField('enteredDate', enteredDate);
-    addField('reason', reason);
-    addField('service', service);
+    addField(
+      'performer',
+      performer,
+    );
+    addField(
+      'performingOrganization',
+      performingOrganization,
+    );
+    addField(
+      'requestingOrganization',
+      requestingOrganization,
+    );
+    addField(
+      'costCenter',
+      costCenter,
+    );
+    addField(
+      'quantity',
+      quantity,
+    );
+    addField(
+      'bodysite',
+      bodysite,
+    );
+    addField(
+      'factorOverride',
+      factorOverride,
+    );
+    addField(
+      'priceOverride',
+      priceOverride,
+    );
+    addField(
+      'overrideReason',
+      overrideReason,
+    );
+    addField(
+      'enterer',
+      enterer,
+    );
+    addField(
+      'enteredDate',
+      enteredDate,
+    );
+    addField(
+      'reason',
+      reason,
+    );
+    addField(
+      'service',
+      service,
+    );
     if (productX != null) {
       final fhirType = productX!.fhirType;
-      addField('product${fhirType.capitalize()}', productX);
+      addField(
+        'product${fhirType.capitalize()}',
+        productX,
+      );
     }
 
-    addField('account', account);
-    addField('note', note);
-    addField('supportingInformation', supportingInformation);
+    addField(
+      'account',
+      account,
+    );
+    addField(
+      'note',
+      note,
+    );
+    addField(
+      'supportingInformation',
+      supportingInformation,
+    );
     return json;
   }
 
@@ -783,104 +885,6 @@ class ChargeItem extends DomainResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'identifier':
-        if (identifier != null) {
-          return identifier!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'definitionUri':
-        if (definitionUri != null) {
-          return definitionUri!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'definitionCanonical':
-        if (definitionCanonical != null) {
-          return definitionCanonical!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'partOf':
-        if (partOf != null) {
-          return partOf!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'performer':
-        if (performer != null) {
-          return performer!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'bodysite':
-        if (bodysite != null) {
-          return bodysite!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'reason':
-        if (reason != null) {
-          return reason!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'service':
-        if (service != null) {
-          return service!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'account':
-        if (account != null) {
-          return account!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'note':
-        if (note != null) {
-          return note!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'supportingInformation':
-        if (supportingInformation != null) {
-          return supportingInformation!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -892,23 +896,23 @@ class ChargeItem extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -916,7 +920,7 @@ class ChargeItem extends DomainResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -924,7 +928,7 @@ class ChargeItem extends DomainResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -932,7 +936,7 @@ class ChargeItem extends DomainResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -940,55 +944,91 @@ class ChargeItem extends DomainResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
           if (child is List<Identifier>) {
-            return copyWith(identifier: child);
+            // Add all elements from passed list
+            final newList = [...?identifier, ...child];
+            return copyWith(identifier: newList);
+          } else if (child is Identifier) {
+            // Add single element to existing list or create new list
+            final newList = [...?identifier, child];
+            return copyWith(identifier: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'definitionUri':
         {
           if (child is List<FhirUri>) {
-            return copyWith(definitionUri: child);
+            // Add all elements from passed list
+            final newList = [...?definitionUri, ...child];
+            return copyWith(definitionUri: newList);
+          } else if (child is FhirUri) {
+            // Add single element to existing list or create new list
+            final newList = [...?definitionUri, child];
+            return copyWith(definitionUri: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'definitionCanonical':
         {
           if (child is List<FhirCanonical>) {
-            return copyWith(definitionCanonical: child);
+            // Add all elements from passed list
+            final newList = [...?definitionCanonical, ...child];
+            return copyWith(definitionCanonical: newList);
+          } else if (child is FhirCanonical) {
+            // Add single element to existing list or create new list
+            final newList = [...?definitionCanonical, child];
+            return copyWith(definitionCanonical: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -996,15 +1036,21 @@ class ChargeItem extends DomainResource {
           if (child is ChargeItemStatus) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'partOf':
         {
           if (child is List<Reference>) {
-            return copyWith(partOf: child);
+            // Add all elements from passed list
+            final newList = [...?partOf, ...child];
+            return copyWith(partOf: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?partOf, child];
+            return copyWith(partOf: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
@@ -1012,7 +1058,7 @@ class ChargeItem extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(code: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
@@ -1020,7 +1066,7 @@ class ChargeItem extends DomainResource {
           if (child is Reference) {
             return copyWith(subject: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'context':
@@ -1028,24 +1074,32 @@ class ChargeItem extends DomainResource {
           if (child is Reference) {
             return copyWith(context: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'occurrenceX':
         {
           if (child is OccurrenceXChargeItem) {
-            // child is e.g. SubjectX union
             return copyWith(occurrenceX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is FhirDateTime) {
+              return copyWith(occurrenceX: child);
+            }
+            if (child is Period) {
+              return copyWith(occurrenceX: child);
+            }
+            if (child is Timing) {
+              return copyWith(occurrenceX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'occurrenceFhirDateTime':
         {
           if (child is FhirDateTime) {
             return copyWith(occurrenceX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'occurrencePeriod':
@@ -1053,7 +1107,7 @@ class ChargeItem extends DomainResource {
           if (child is Period) {
             return copyWith(occurrenceX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'occurrenceTiming':
@@ -1061,15 +1115,21 @@ class ChargeItem extends DomainResource {
           if (child is Timing) {
             return copyWith(occurrenceX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'performer':
         {
           if (child is List<ChargeItemPerformer>) {
-            return copyWith(performer: child);
+            // Add all elements from passed list
+            final newList = [...?performer, ...child];
+            return copyWith(performer: newList);
+          } else if (child is ChargeItemPerformer) {
+            // Add single element to existing list or create new list
+            final newList = [...?performer, child];
+            return copyWith(performer: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'performingOrganization':
@@ -1077,7 +1137,7 @@ class ChargeItem extends DomainResource {
           if (child is Reference) {
             return copyWith(performingOrganization: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'requestingOrganization':
@@ -1085,7 +1145,7 @@ class ChargeItem extends DomainResource {
           if (child is Reference) {
             return copyWith(requestingOrganization: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'costCenter':
@@ -1093,7 +1153,7 @@ class ChargeItem extends DomainResource {
           if (child is Reference) {
             return copyWith(costCenter: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'quantity':
@@ -1101,15 +1161,21 @@ class ChargeItem extends DomainResource {
           if (child is Quantity) {
             return copyWith(quantity: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'bodysite':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(bodysite: child);
+            // Add all elements from passed list
+            final newList = [...?bodysite, ...child];
+            return copyWith(bodysite: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?bodysite, child];
+            return copyWith(bodysite: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'factorOverride':
@@ -1117,7 +1183,7 @@ class ChargeItem extends DomainResource {
           if (child is FhirDecimal) {
             return copyWith(factorOverride: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'priceOverride':
@@ -1125,7 +1191,7 @@ class ChargeItem extends DomainResource {
           if (child is Money) {
             return copyWith(priceOverride: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'overrideReason':
@@ -1133,7 +1199,7 @@ class ChargeItem extends DomainResource {
           if (child is FhirString) {
             return copyWith(overrideReason: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'enterer':
@@ -1141,7 +1207,7 @@ class ChargeItem extends DomainResource {
           if (child is Reference) {
             return copyWith(enterer: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'enteredDate':
@@ -1149,40 +1215,57 @@ class ChargeItem extends DomainResource {
           if (child is FhirDateTime) {
             return copyWith(enteredDate: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'reason':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(reason: child);
+            // Add all elements from passed list
+            final newList = [...?reason, ...child];
+            return copyWith(reason: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?reason, child];
+            return copyWith(reason: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'service':
         {
           if (child is List<Reference>) {
-            return copyWith(service: child);
+            // Add all elements from passed list
+            final newList = [...?service, ...child];
+            return copyWith(service: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?service, child];
+            return copyWith(service: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'productX':
         {
           if (child is ProductXChargeItem) {
-            // child is e.g. SubjectX union
             return copyWith(productX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is Reference) {
+              return copyWith(productX: child);
+            }
+            if (child is CodeableConcept) {
+              return copyWith(productX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'productReference':
         {
           if (child is Reference) {
             return copyWith(productX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'productCodeableConcept':
@@ -1190,35 +1273,53 @@ class ChargeItem extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(productX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'account':
         {
           if (child is List<Reference>) {
-            return copyWith(account: child);
+            // Add all elements from passed list
+            final newList = [...?account, ...child];
+            return copyWith(account: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?account, child];
+            return copyWith(account: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
           if (child is List<Annotation>) {
-            return copyWith(note: child);
+            // Add all elements from passed list
+            final newList = [...?note, ...child];
+            return copyWith(note: newList);
+          } else if (child is Annotation) {
+            // Add single element to existing list or create new list
+            final newList = [...?note, child];
+            return copyWith(note: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'supportingInformation':
         {
           if (child is List<Reference>) {
-            return copyWith(supportingInformation: child);
+            // Add all elements from passed list
+            final newList = [...?supportingInformation, ...child];
+            return copyWith(supportingInformation: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?supportingInformation, child];
+            return copyWith(supportingInformation: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1317,159 +1418,235 @@ class ChargeItem extends DomainResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  ChargeItem createProperty(String propertyName) {
+  ChargeItem createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'identifier':
         {
-          return copyWith(identifier: <Identifier>[]);
+          return copyWith(
+            identifier: <Identifier>[],
+          );
         }
       case 'definitionUri':
         {
-          return copyWith(definitionUri: <FhirUri>[]);
+          return copyWith(
+            definitionUri: <FhirUri>[],
+          );
         }
       case 'definitionCanonical':
         {
-          return copyWith(definitionCanonical: <FhirCanonical>[]);
+          return copyWith(
+            definitionCanonical: <FhirCanonical>[],
+          );
         }
       case 'status':
         {
-          return copyWith(status: ChargeItemStatus.empty());
+          return copyWith(
+            status: ChargeItemStatus.empty(),
+          );
         }
       case 'partOf':
         {
-          return copyWith(partOf: <Reference>[]);
+          return copyWith(
+            partOf: <Reference>[],
+          );
         }
       case 'code':
         {
-          return copyWith(code: CodeableConcept.empty());
+          return copyWith(
+            code: CodeableConcept.empty(),
+          );
         }
       case 'subject':
         {
-          return copyWith(subject: Reference.empty());
+          return copyWith(
+            subject: Reference.empty(),
+          );
         }
       case 'context':
         {
-          return copyWith(context: Reference.empty());
+          return copyWith(
+            context: Reference.empty(),
+          );
         }
       case 'occurrence':
       case 'occurrenceX':
       case 'occurrenceDateTime':
         {
-          return copyWith(occurrenceX: FhirDateTime.empty());
+          return copyWith(
+            occurrenceX: FhirDateTime.empty(),
+          );
         }
       case 'occurrencePeriod':
         {
-          return copyWith(occurrenceX: Period.empty());
+          return copyWith(
+            occurrenceX: Period.empty(),
+          );
         }
       case 'occurrenceTiming':
         {
-          return copyWith(occurrenceX: Timing.empty());
+          return copyWith(
+            occurrenceX: Timing.empty(),
+          );
         }
       case 'performer':
         {
-          return copyWith(performer: <ChargeItemPerformer>[]);
+          return copyWith(
+            performer: <ChargeItemPerformer>[],
+          );
         }
       case 'performingOrganization':
         {
-          return copyWith(performingOrganization: Reference.empty());
+          return copyWith(
+            performingOrganization: Reference.empty(),
+          );
         }
       case 'requestingOrganization':
         {
-          return copyWith(requestingOrganization: Reference.empty());
+          return copyWith(
+            requestingOrganization: Reference.empty(),
+          );
         }
       case 'costCenter':
         {
-          return copyWith(costCenter: Reference.empty());
+          return copyWith(
+            costCenter: Reference.empty(),
+          );
         }
       case 'quantity':
         {
-          return copyWith(quantity: Quantity.empty());
+          return copyWith(
+            quantity: Quantity.empty(),
+          );
         }
       case 'bodysite':
         {
-          return copyWith(bodysite: <CodeableConcept>[]);
+          return copyWith(
+            bodysite: <CodeableConcept>[],
+          );
         }
       case 'factorOverride':
         {
-          return copyWith(factorOverride: FhirDecimal.empty());
+          return copyWith(
+            factorOverride: FhirDecimal.empty(),
+          );
         }
       case 'priceOverride':
         {
-          return copyWith(priceOverride: Money.empty());
+          return copyWith(
+            priceOverride: Money.empty(),
+          );
         }
       case 'overrideReason':
         {
-          return copyWith(overrideReason: FhirString.empty());
+          return copyWith(
+            overrideReason: FhirString.empty(),
+          );
         }
       case 'enterer':
         {
-          return copyWith(enterer: Reference.empty());
+          return copyWith(
+            enterer: Reference.empty(),
+          );
         }
       case 'enteredDate':
         {
-          return copyWith(enteredDate: FhirDateTime.empty());
+          return copyWith(
+            enteredDate: FhirDateTime.empty(),
+          );
         }
       case 'reason':
         {
-          return copyWith(reason: <CodeableConcept>[]);
+          return copyWith(
+            reason: <CodeableConcept>[],
+          );
         }
       case 'service':
         {
-          return copyWith(service: <Reference>[]);
+          return copyWith(
+            service: <Reference>[],
+          );
         }
       case 'product':
       case 'productX':
       case 'productReference':
         {
-          return copyWith(productX: Reference.empty());
+          return copyWith(
+            productX: Reference.empty(),
+          );
         }
       case 'productCodeableConcept':
         {
-          return copyWith(productX: CodeableConcept.empty());
+          return copyWith(
+            productX: CodeableConcept.empty(),
+          );
         }
       case 'account':
         {
-          return copyWith(account: <Reference>[]);
+          return copyWith(
+            account: <Reference>[],
+          );
         }
       case 'note':
         {
-          return copyWith(note: <Annotation>[]);
+          return copyWith(
+            note: <Annotation>[],
+          );
         }
       case 'supportingInformation':
         {
-          return copyWith(supportingInformation: <Reference>[]);
+          return copyWith(
+            supportingInformation: <Reference>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1794,19 +1971,34 @@ class ChargeItem extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1845,7 +2037,10 @@ class ChargeItem extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1854,16 +2049,28 @@ class ChargeItem extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(code, o.code)) {
+    if (!equalsDeepWithNull(
+      code,
+      o.code,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(subject, o.subject)) {
+    if (!equalsDeepWithNull(
+      subject,
+      o.subject,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(context, o.context)) {
+    if (!equalsDeepWithNull(
+      context,
+      o.context,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(occurrenceX, o.occurrenceX)) {
+    if (!equalsDeepWithNull(
+      occurrenceX,
+      o.occurrenceX,
+    )) {
       return false;
     }
     if (!listEquals<ChargeItemPerformer>(
@@ -1872,16 +2079,28 @@ class ChargeItem extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(performingOrganization, o.performingOrganization)) {
+    if (!equalsDeepWithNull(
+      performingOrganization,
+      o.performingOrganization,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(requestingOrganization, o.requestingOrganization)) {
+    if (!equalsDeepWithNull(
+      requestingOrganization,
+      o.requestingOrganization,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(costCenter, o.costCenter)) {
+    if (!equalsDeepWithNull(
+      costCenter,
+      o.costCenter,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(quantity, o.quantity)) {
+    if (!equalsDeepWithNull(
+      quantity,
+      o.quantity,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1890,19 +2109,34 @@ class ChargeItem extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(factorOverride, o.factorOverride)) {
+    if (!equalsDeepWithNull(
+      factorOverride,
+      o.factorOverride,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(priceOverride, o.priceOverride)) {
+    if (!equalsDeepWithNull(
+      priceOverride,
+      o.priceOverride,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(overrideReason, o.overrideReason)) {
+    if (!equalsDeepWithNull(
+      overrideReason,
+      o.overrideReason,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(enterer, o.enterer)) {
+    if (!equalsDeepWithNull(
+      enterer,
+      o.enterer,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(enteredDate, o.enteredDate)) {
+    if (!equalsDeepWithNull(
+      enteredDate,
+      o.enteredDate,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1917,7 +2151,10 @@ class ChargeItem extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(productX, o.productX)) {
+    if (!equalsDeepWithNull(
+      productX,
+      o.productX,
+    )) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -2093,11 +2330,26 @@ class ChargeItemPerformer extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('function', function_);
-    addField('actor', actor);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'function',
+      function_,
+    );
+    addField(
+      'actor',
+      actor,
+    );
     return json;
   }
 
@@ -2148,32 +2400,6 @@ class ChargeItemPerformer extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2185,39 +2411,51 @@ class ChargeItemPerformer extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'function':
@@ -2225,7 +2463,7 @@ class ChargeItemPerformer extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(function_: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'actor':
@@ -2233,11 +2471,11 @@ class ChargeItemPerformer extends BackboneElement {
           if (child is Reference) {
             return copyWith(actor: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2266,27 +2504,39 @@ class ChargeItemPerformer extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  ChargeItemPerformer createProperty(String propertyName) {
+  ChargeItemPerformer createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'function':
         {
-          return copyWith(function_: CodeableConcept.empty());
+          return copyWith(
+            function_: CodeableConcept.empty(),
+          );
         }
       case 'actor':
         {
-          return copyWith(actor: Reference.empty());
+          return copyWith(
+            actor: Reference.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2366,7 +2616,10 @@ class ChargeItemPerformer extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2381,10 +2634,16 @@ class ChargeItemPerformer extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(function_, o.function_)) {
+    if (!equalsDeepWithNull(
+      function_,
+      o.function_,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(actor, o.actor)) {
+    if (!equalsDeepWithNull(
+      actor,
+      o.actor,
+    )) {
       return false;
     }
     return true;

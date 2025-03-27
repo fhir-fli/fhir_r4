@@ -56,10 +56,13 @@ class MedicationStatementStatusCodes extends FhirCodeEnum {
       return MedicationStatementStatusCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'MedicationStatementStatusCodes cannot be constructed from JSON.',);
+        'MedicationStatementStatusCodes cannot be constructed from JSON.',
+      );
     }
     return MedicationStatementStatusCodes._(
-        validatedValue: value, element: element,);
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// active

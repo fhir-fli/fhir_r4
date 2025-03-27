@@ -57,10 +57,13 @@ class MessageheaderResponseRequest extends FhirCodeEnum {
       return MessageheaderResponseRequest.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'MessageheaderResponseRequest cannot be constructed from JSON.',);
+        'MessageheaderResponseRequest cannot be constructed from JSON.',
+      );
     }
     return MessageheaderResponseRequest._(
-        validatedValue: value, element: element,);
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// always

@@ -55,9 +55,14 @@ class AuditEventAction extends FhirCodeEnum {
     if (value == null && element != null) {
       return AuditEventAction.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('AuditEventAction cannot be constructed from JSON.');
+      throw ArgumentError(
+        'AuditEventAction cannot be constructed from JSON.',
+      );
     }
-    return AuditEventAction._(validatedValue: value, element: element);
+    return AuditEventAction._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// C

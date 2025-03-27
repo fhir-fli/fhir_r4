@@ -56,9 +56,13 @@ class InvoicePriceComponentType extends FhirCodeEnum {
       return InvoicePriceComponentType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'InvoicePriceComponentType cannot be constructed from JSON.',);
+        'InvoicePriceComponentType cannot be constructed from JSON.',
+      );
     }
-    return InvoicePriceComponentType._(validatedValue: value, element: element);
+    return InvoicePriceComponentType._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// base

@@ -56,9 +56,13 @@ class CapabilityStatementKind extends FhirCodeEnum {
       return CapabilityStatementKind.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'CapabilityStatementKind cannot be constructed from JSON.',);
+        'CapabilityStatementKind cannot be constructed from JSON.',
+      );
     }
-    return CapabilityStatementKind._(validatedValue: value, element: element);
+    return CapabilityStatementKind._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// instance

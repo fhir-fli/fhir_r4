@@ -55,9 +55,14 @@ class BindingStrength extends FhirCodeEnum {
     if (value == null && element != null) {
       return BindingStrength.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('BindingStrength cannot be constructed from JSON.');
+      throw ArgumentError(
+        'BindingStrength cannot be constructed from JSON.',
+      );
     }
-    return BindingStrength._(validatedValue: value, element: element);
+    return BindingStrength._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// required_

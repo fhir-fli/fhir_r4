@@ -58,10 +58,13 @@ class BiologicallyDerivedProductCategory extends FhirCodeEnum {
           .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'BiologicallyDerivedProductCategory cannot be constructed from JSON.',);
+        'BiologicallyDerivedProductCategory cannot be constructed from JSON.',
+      );
     }
     return BiologicallyDerivedProductCategory._(
-        validatedValue: value, element: element,);
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// organ

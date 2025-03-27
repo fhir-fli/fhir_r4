@@ -438,33 +438,114 @@ class SubstanceDefinition extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('identifier', identifier);
-    addField('version', version);
-    addField('status', status);
-    addField('classification', classification);
-    addField('domain', domain);
-    addField('grade', grade);
-    addField('description', description);
-    addField('informationSource', informationSource);
-    addField('note', note);
-    addField('manufacturer', manufacturer);
-    addField('supplier', supplier);
-    addField('moiety', moiety);
-    addField('property', property);
-    addField('molecularWeight', molecularWeight);
-    addField('structure', structure);
-    addField('code', code);
-    addField('name', name);
-    addField('relationship', relationship);
-    addField('sourceMaterial', sourceMaterial);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'version',
+      version,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'classification',
+      classification,
+    );
+    addField(
+      'domain',
+      domain,
+    );
+    addField(
+      'grade',
+      grade,
+    );
+    addField(
+      'description',
+      description,
+    );
+    addField(
+      'informationSource',
+      informationSource,
+    );
+    addField(
+      'note',
+      note,
+    );
+    addField(
+      'manufacturer',
+      manufacturer,
+    );
+    addField(
+      'supplier',
+      supplier,
+    );
+    addField(
+      'moiety',
+      moiety,
+    );
+    addField(
+      'property',
+      property,
+    );
+    addField(
+      'molecularWeight',
+      molecularWeight,
+    );
+    addField(
+      'structure',
+      structure,
+    );
+    addField(
+      'code',
+      code,
+    );
+    addField(
+      'name',
+      name,
+    );
+    addField(
+      'relationship',
+      relationship,
+    );
+    addField(
+      'sourceMaterial',
+      sourceMaterial,
+    );
     return json;
   }
 
@@ -627,116 +708,6 @@ class SubstanceDefinition extends DomainResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'identifier':
-        if (identifier != null) {
-          return identifier!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'classification':
-        if (classification != null) {
-          return classification!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'grade':
-        if (grade != null) {
-          return grade!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'informationSource':
-        if (informationSource != null) {
-          return informationSource!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'note':
-        if (note != null) {
-          return note!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'manufacturer':
-        if (manufacturer != null) {
-          return manufacturer!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'supplier':
-        if (supplier != null) {
-          return supplier!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'moiety':
-        if (moiety != null) {
-          return moiety!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'property':
-        if (property != null) {
-          return property!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'molecularWeight':
-        if (molecularWeight != null) {
-          return molecularWeight!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'code':
-        if (code != null) {
-          return code!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'name':
-        if (name != null) {
-          return name!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'relationship':
-        if (relationship != null) {
-          return relationship!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -748,23 +719,23 @@ class SubstanceDefinition extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -772,7 +743,7 @@ class SubstanceDefinition extends DomainResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -780,7 +751,7 @@ class SubstanceDefinition extends DomainResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -788,7 +759,7 @@ class SubstanceDefinition extends DomainResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -796,39 +767,63 @@ class SubstanceDefinition extends DomainResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
           if (child is List<Identifier>) {
-            return copyWith(identifier: child);
+            // Add all elements from passed list
+            final newList = [...?identifier, ...child];
+            return copyWith(identifier: newList);
+          } else if (child is Identifier) {
+            // Add single element to existing list or create new list
+            final newList = [...?identifier, child];
+            return copyWith(identifier: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'version':
@@ -836,7 +831,7 @@ class SubstanceDefinition extends DomainResource {
           if (child is FhirString) {
             return copyWith(version: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -844,15 +839,21 @@ class SubstanceDefinition extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'classification':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(classification: child);
+            // Add all elements from passed list
+            final newList = [...?classification, ...child];
+            return copyWith(classification: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?classification, child];
+            return copyWith(classification: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'domain':
@@ -860,15 +861,21 @@ class SubstanceDefinition extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(domain: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'grade':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(grade: child);
+            // Add all elements from passed list
+            final newList = [...?grade, ...child];
+            return copyWith(grade: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?grade, child];
+            return copyWith(grade: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
@@ -876,63 +883,105 @@ class SubstanceDefinition extends DomainResource {
           if (child is FhirMarkdown) {
             return copyWith(description: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'informationSource':
         {
           if (child is List<Reference>) {
-            return copyWith(informationSource: child);
+            // Add all elements from passed list
+            final newList = [...?informationSource, ...child];
+            return copyWith(informationSource: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?informationSource, child];
+            return copyWith(informationSource: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
           if (child is List<Annotation>) {
-            return copyWith(note: child);
+            // Add all elements from passed list
+            final newList = [...?note, ...child];
+            return copyWith(note: newList);
+          } else if (child is Annotation) {
+            // Add single element to existing list or create new list
+            final newList = [...?note, child];
+            return copyWith(note: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'manufacturer':
         {
           if (child is List<Reference>) {
-            return copyWith(manufacturer: child);
+            // Add all elements from passed list
+            final newList = [...?manufacturer, ...child];
+            return copyWith(manufacturer: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?manufacturer, child];
+            return copyWith(manufacturer: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'supplier':
         {
           if (child is List<Reference>) {
-            return copyWith(supplier: child);
+            // Add all elements from passed list
+            final newList = [...?supplier, ...child];
+            return copyWith(supplier: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?supplier, child];
+            return copyWith(supplier: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'moiety':
         {
           if (child is List<SubstanceDefinitionMoiety>) {
-            return copyWith(moiety: child);
+            // Add all elements from passed list
+            final newList = [...?moiety, ...child];
+            return copyWith(moiety: newList);
+          } else if (child is SubstanceDefinitionMoiety) {
+            // Add single element to existing list or create new list
+            final newList = [...?moiety, child];
+            return copyWith(moiety: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'property':
         {
           if (child is List<SubstanceDefinitionProperty>) {
-            return copyWith(property: child);
+            // Add all elements from passed list
+            final newList = [...?property, ...child];
+            return copyWith(property: newList);
+          } else if (child is SubstanceDefinitionProperty) {
+            // Add single element to existing list or create new list
+            final newList = [...?property, child];
+            return copyWith(property: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'molecularWeight':
         {
           if (child is List<SubstanceDefinitionMolecularWeight>) {
-            return copyWith(molecularWeight: child);
+            // Add all elements from passed list
+            final newList = [...?molecularWeight, ...child];
+            return copyWith(molecularWeight: newList);
+          } else if (child is SubstanceDefinitionMolecularWeight) {
+            // Add single element to existing list or create new list
+            final newList = [...?molecularWeight, child];
+            return copyWith(molecularWeight: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'structure':
@@ -940,31 +989,49 @@ class SubstanceDefinition extends DomainResource {
           if (child is SubstanceDefinitionStructure) {
             return copyWith(structure: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
           if (child is List<SubstanceDefinitionCode>) {
-            return copyWith(code: child);
+            // Add all elements from passed list
+            final newList = [...?code, ...child];
+            return copyWith(code: newList);
+          } else if (child is SubstanceDefinitionCode) {
+            // Add single element to existing list or create new list
+            final newList = [...?code, child];
+            return copyWith(code: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
         {
           if (child is List<SubstanceDefinitionName>) {
-            return copyWith(name: child);
+            // Add all elements from passed list
+            final newList = [...?name, ...child];
+            return copyWith(name: newList);
+          } else if (child is SubstanceDefinitionName) {
+            // Add single element to existing list or create new list
+            final newList = [...?name, child];
+            return copyWith(name: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'relationship':
         {
           if (child is List<SubstanceDefinitionRelationship>) {
-            return copyWith(relationship: child);
+            // Add all elements from passed list
+            final newList = [...?relationship, ...child];
+            return copyWith(relationship: newList);
+          } else if (child is SubstanceDefinitionRelationship) {
+            // Add single element to existing list or create new list
+            final newList = [...?relationship, child];
+            return copyWith(relationship: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'sourceMaterial':
@@ -972,11 +1039,11 @@ class SubstanceDefinition extends DomainResource {
           if (child is SubstanceDefinitionSourceMaterial) {
             return copyWith(sourceMaterial: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1049,117 +1116,171 @@ class SubstanceDefinition extends DomainResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  SubstanceDefinition createProperty(String propertyName) {
+  SubstanceDefinition createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'identifier':
         {
-          return copyWith(identifier: <Identifier>[]);
+          return copyWith(
+            identifier: <Identifier>[],
+          );
         }
       case 'version':
         {
-          return copyWith(version: FhirString.empty());
+          return copyWith(
+            version: FhirString.empty(),
+          );
         }
       case 'status':
         {
-          return copyWith(status: CodeableConcept.empty());
+          return copyWith(
+            status: CodeableConcept.empty(),
+          );
         }
       case 'classification':
         {
-          return copyWith(classification: <CodeableConcept>[]);
+          return copyWith(
+            classification: <CodeableConcept>[],
+          );
         }
       case 'domain':
         {
-          return copyWith(domain: CodeableConcept.empty());
+          return copyWith(
+            domain: CodeableConcept.empty(),
+          );
         }
       case 'grade':
         {
-          return copyWith(grade: <CodeableConcept>[]);
+          return copyWith(
+            grade: <CodeableConcept>[],
+          );
         }
       case 'description':
         {
-          return copyWith(description: FhirMarkdown.empty());
+          return copyWith(
+            description: FhirMarkdown.empty(),
+          );
         }
       case 'informationSource':
         {
-          return copyWith(informationSource: <Reference>[]);
+          return copyWith(
+            informationSource: <Reference>[],
+          );
         }
       case 'note':
         {
-          return copyWith(note: <Annotation>[]);
+          return copyWith(
+            note: <Annotation>[],
+          );
         }
       case 'manufacturer':
         {
-          return copyWith(manufacturer: <Reference>[]);
+          return copyWith(
+            manufacturer: <Reference>[],
+          );
         }
       case 'supplier':
         {
-          return copyWith(supplier: <Reference>[]);
+          return copyWith(
+            supplier: <Reference>[],
+          );
         }
       case 'moiety':
         {
-          return copyWith(moiety: <SubstanceDefinitionMoiety>[]);
+          return copyWith(
+            moiety: <SubstanceDefinitionMoiety>[],
+          );
         }
       case 'property':
         {
-          return copyWith(property: <SubstanceDefinitionProperty>[]);
+          return copyWith(
+            property: <SubstanceDefinitionProperty>[],
+          );
         }
       case 'molecularWeight':
         {
           return copyWith(
-              molecularWeight: <SubstanceDefinitionMolecularWeight>[],);
+            molecularWeight: <SubstanceDefinitionMolecularWeight>[],
+          );
         }
       case 'structure':
         {
-          return copyWith(structure: SubstanceDefinitionStructure.empty());
+          return copyWith(
+            structure: SubstanceDefinitionStructure.empty(),
+          );
         }
       case 'code':
         {
-          return copyWith(code: <SubstanceDefinitionCode>[]);
+          return copyWith(
+            code: <SubstanceDefinitionCode>[],
+          );
         }
       case 'name':
         {
-          return copyWith(name: <SubstanceDefinitionName>[]);
+          return copyWith(
+            name: <SubstanceDefinitionName>[],
+          );
         }
       case 'relationship':
         {
-          return copyWith(relationship: <SubstanceDefinitionRelationship>[]);
+          return copyWith(
+            relationship: <SubstanceDefinitionRelationship>[],
+          );
         }
       case 'sourceMaterial':
         {
           return copyWith(
-              sourceMaterial: SubstanceDefinitionSourceMaterial.empty(),);
+            sourceMaterial: SubstanceDefinitionSourceMaterial.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1442,19 +1563,34 @@ class SubstanceDefinition extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1481,10 +1617,16 @@ class SubstanceDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(version, o.version)) {
+    if (!equalsDeepWithNull(
+      version,
+      o.version,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1493,7 +1635,10 @@ class SubstanceDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(domain, o.domain)) {
+    if (!equalsDeepWithNull(
+      domain,
+      o.domain,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1502,7 +1647,10 @@ class SubstanceDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(description, o.description)) {
+    if (!equalsDeepWithNull(
+      description,
+      o.description,
+    )) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1547,7 +1695,10 @@ class SubstanceDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(structure, o.structure)) {
+    if (!equalsDeepWithNull(
+      structure,
+      o.structure,
+    )) {
       return false;
     }
     if (!listEquals<SubstanceDefinitionCode>(
@@ -1568,7 +1719,10 @@ class SubstanceDefinition extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(sourceMaterial, o.sourceMaterial)) {
+    if (!equalsDeepWithNull(
+      sourceMaterial,
+      o.sourceMaterial,
+    )) {
       return false;
     }
     return true;
@@ -1601,7 +1755,8 @@ class SubstanceDefinitionMoiety extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory SubstanceDefinitionMoiety.empty() => const SubstanceDefinitionMoiety();
+  factory SubstanceDefinitionMoiety.empty() =>
+      const SubstanceDefinitionMoiety();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionMoiety.fromJson(
@@ -1800,21 +1955,54 @@ class SubstanceDefinitionMoiety extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('role', role);
-    addField('identifier', identifier);
-    addField('name', name);
-    addField('stereochemistry', stereochemistry);
-    addField('opticalActivity', opticalActivity);
-    addField('molecularFormula', molecularFormula);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'role',
+      role,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'name',
+      name,
+    );
+    addField(
+      'stereochemistry',
+      stereochemistry,
+    );
+    addField(
+      'opticalActivity',
+      opticalActivity,
+    );
+    addField(
+      'molecularFormula',
+      molecularFormula,
+    );
     if (amountX != null) {
       final fhirType = amountX!.fhirType;
-      addField('amount${fhirType.capitalize()}', amountX);
+      addField(
+        'amount${fhirType.capitalize()}',
+        amountX,
+      );
     }
 
-    addField('measurementType', measurementType);
+    addField(
+      'measurementType',
+      measurementType,
+    );
     return json;
   }
 
@@ -1905,32 +2093,6 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1942,39 +2104,51 @@ class SubstanceDefinitionMoiety extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'role':
@@ -1982,7 +2156,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(role: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
@@ -1990,7 +2164,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
           if (child is Identifier) {
             return copyWith(identifier: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
@@ -1998,7 +2172,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
           if (child is FhirString) {
             return copyWith(name: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'stereochemistry':
@@ -2006,7 +2180,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(stereochemistry: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'opticalActivity':
@@ -2014,7 +2188,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(opticalActivity: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'molecularFormula':
@@ -2022,24 +2196,29 @@ class SubstanceDefinitionMoiety extends BackboneElement {
           if (child is FhirString) {
             return copyWith(molecularFormula: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'amountX':
         {
           if (child is AmountXSubstanceDefinitionMoiety) {
-            // child is e.g. SubjectX union
             return copyWith(amountX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is Quantity) {
+              return copyWith(amountX: child);
+            }
+            if (child is FhirString) {
+              return copyWith(amountX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'amountQuantity':
         {
           if (child is Quantity) {
             return copyWith(amountX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'amountFhirString':
@@ -2047,7 +2226,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
           if (child is FhirString) {
             return copyWith(amountX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'measurementType':
@@ -2055,11 +2234,11 @@ class SubstanceDefinitionMoiety extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(measurementType: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2105,57 +2284,83 @@ class SubstanceDefinitionMoiety extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  SubstanceDefinitionMoiety createProperty(String propertyName) {
+  SubstanceDefinitionMoiety createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'role':
         {
-          return copyWith(role: CodeableConcept.empty());
+          return copyWith(
+            role: CodeableConcept.empty(),
+          );
         }
       case 'identifier':
         {
-          return copyWith(identifier: Identifier.empty());
+          return copyWith(
+            identifier: Identifier.empty(),
+          );
         }
       case 'name':
         {
-          return copyWith(name: FhirString.empty());
+          return copyWith(
+            name: FhirString.empty(),
+          );
         }
       case 'stereochemistry':
         {
-          return copyWith(stereochemistry: CodeableConcept.empty());
+          return copyWith(
+            stereochemistry: CodeableConcept.empty(),
+          );
         }
       case 'opticalActivity':
         {
-          return copyWith(opticalActivity: CodeableConcept.empty());
+          return copyWith(
+            opticalActivity: CodeableConcept.empty(),
+          );
         }
       case 'molecularFormula':
         {
-          return copyWith(molecularFormula: FhirString.empty());
+          return copyWith(
+            molecularFormula: FhirString.empty(),
+          );
         }
       case 'amount':
       case 'amountX':
       case 'amountQuantity':
         {
-          return copyWith(amountX: Quantity.empty());
+          return copyWith(
+            amountX: Quantity.empty(),
+          );
         }
       case 'amountString':
         {
-          return copyWith(amountX: FhirString.empty());
+          return copyWith(
+            amountX: FhirString.empty(),
+          );
         }
       case 'measurementType':
         {
-          return copyWith(measurementType: CodeableConcept.empty());
+          return copyWith(
+            measurementType: CodeableConcept.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2278,7 +2483,10 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2293,28 +2501,52 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(role, o.role)) {
+    if (!equalsDeepWithNull(
+      role,
+      o.role,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(identifier, o.identifier)) {
+    if (!equalsDeepWithNull(
+      identifier,
+      o.identifier,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(name, o.name)) {
+    if (!equalsDeepWithNull(
+      name,
+      o.name,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(stereochemistry, o.stereochemistry)) {
+    if (!equalsDeepWithNull(
+      stereochemistry,
+      o.stereochemistry,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(opticalActivity, o.opticalActivity)) {
+    if (!equalsDeepWithNull(
+      opticalActivity,
+      o.opticalActivity,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(molecularFormula, o.molecularFormula)) {
+    if (!equalsDeepWithNull(
+      molecularFormula,
+      o.molecularFormula,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(amountX, o.amountX)) {
+    if (!equalsDeepWithNull(
+      amountX,
+      o.amountX,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(measurementType, o.measurementType)) {
+    if (!equalsDeepWithNull(
+      measurementType,
+      o.measurementType,
+    )) {
       return false;
     }
     return true;
@@ -2490,13 +2722,28 @@ class SubstanceDefinitionProperty extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('type', type);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'type',
+      type,
+    );
     if (valueX != null) {
       final fhirType = valueX!.fhirType;
-      addField('value${fhirType.capitalize()}', valueX);
+      addField(
+        'value${fhirType.capitalize()}',
+        valueX,
+      );
     }
 
     return json;
@@ -2569,32 +2816,6 @@ class SubstanceDefinitionProperty extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2606,39 +2827,51 @@ class SubstanceDefinitionProperty extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -2646,24 +2879,38 @@ class SubstanceDefinitionProperty extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueX':
         {
           if (child is ValueXSubstanceDefinitionProperty) {
-            // child is e.g. SubjectX union
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is CodeableConcept) {
+              return copyWith(valueX: child);
+            }
+            if (child is Quantity) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirDate) {
+              return copyWith(valueX: child);
+            }
+            if (child is FhirBoolean) {
+              return copyWith(valueX: child);
+            }
+            if (child is Attachment) {
+              return copyWith(valueX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'valueCodeableConcept':
         {
           if (child is CodeableConcept) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueQuantity':
@@ -2671,7 +2918,7 @@ class SubstanceDefinitionProperty extends BackboneElement {
           if (child is Quantity) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirDate':
@@ -2679,7 +2926,7 @@ class SubstanceDefinitionProperty extends BackboneElement {
           if (child is FhirDate) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueFhirBoolean':
@@ -2687,7 +2934,7 @@ class SubstanceDefinitionProperty extends BackboneElement {
           if (child is FhirBoolean) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'valueAttachment':
@@ -2695,11 +2942,11 @@ class SubstanceDefinitionProperty extends BackboneElement {
           if (child is Attachment) {
             return copyWith(valueX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2745,45 +2992,65 @@ class SubstanceDefinitionProperty extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  SubstanceDefinitionProperty createProperty(String propertyName) {
+  SubstanceDefinitionProperty createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'type':
         {
-          return copyWith(type: CodeableConcept.empty());
+          return copyWith(
+            type: CodeableConcept.empty(),
+          );
         }
       case 'value':
       case 'valueX':
       case 'valueCodeableConcept':
         {
-          return copyWith(valueX: CodeableConcept.empty());
+          return copyWith(
+            valueX: CodeableConcept.empty(),
+          );
         }
       case 'valueQuantity':
         {
-          return copyWith(valueX: Quantity.empty());
+          return copyWith(
+            valueX: Quantity.empty(),
+          );
         }
       case 'valueDate':
         {
-          return copyWith(valueX: FhirDate.empty());
+          return copyWith(
+            valueX: FhirDate.empty(),
+          );
         }
       case 'valueBoolean':
         {
-          return copyWith(valueX: FhirBoolean.empty());
+          return copyWith(
+            valueX: FhirBoolean.empty(),
+          );
         }
       case 'valueAttachment':
         {
-          return copyWith(valueX: Attachment.empty());
+          return copyWith(
+            valueX: Attachment.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2863,7 +3130,10 @@ class SubstanceDefinitionProperty extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2878,10 +3148,16 @@ class SubstanceDefinitionProperty extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(valueX, o.valueX)) {
+    if (!equalsDeepWithNull(
+      valueX,
+      o.valueX,
+    )) {
       return false;
     }
     return true;
@@ -3054,12 +3330,30 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('method', method);
-    addField('type', type);
-    addField('amount', amount);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'method',
+      method,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'amount',
+      amount,
+    );
     return json;
   }
 
@@ -3115,32 +3409,6 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -3152,39 +3420,51 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'method':
@@ -3192,7 +3472,7 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(method: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -3200,7 +3480,7 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'amount':
@@ -3208,11 +3488,11 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
           if (child is Quantity) {
             return copyWith(amount: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -3243,31 +3523,45 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  SubstanceDefinitionMolecularWeight createProperty(String propertyName) {
+  SubstanceDefinitionMolecularWeight createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'method':
         {
-          return copyWith(method: CodeableConcept.empty());
+          return copyWith(
+            method: CodeableConcept.empty(),
+          );
         }
       case 'type':
         {
-          return copyWith(type: CodeableConcept.empty());
+          return copyWith(
+            type: CodeableConcept.empty(),
+          );
         }
       case 'amount':
         {
-          return copyWith(amount: Quantity.empty());
+          return copyWith(
+            amount: Quantity.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3354,7 +3648,10 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3369,13 +3666,22 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(method, o.method)) {
+    if (!equalsDeepWithNull(
+      method,
+      o.method,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(amount, o.amount)) {
+    if (!equalsDeepWithNull(
+      amount,
+      o.amount,
+    )) {
       return false;
     }
     return true;
@@ -3613,17 +3919,50 @@ class SubstanceDefinitionStructure extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('stereochemistry', stereochemistry);
-    addField('opticalActivity', opticalActivity);
-    addField('molecularFormula', molecularFormula);
-    addField('molecularFormulaByMoiety', molecularFormulaByMoiety);
-    addField('molecularWeight', molecularWeight);
-    addField('technique', technique);
-    addField('sourceDocument', sourceDocument);
-    addField('representation', representation);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'stereochemistry',
+      stereochemistry,
+    );
+    addField(
+      'opticalActivity',
+      opticalActivity,
+    );
+    addField(
+      'molecularFormula',
+      molecularFormula,
+    );
+    addField(
+      'molecularFormulaByMoiety',
+      molecularFormulaByMoiety,
+    );
+    addField(
+      'molecularWeight',
+      molecularWeight,
+    );
+    addField(
+      'technique',
+      technique,
+    );
+    addField(
+      'sourceDocument',
+      sourceDocument,
+    );
+    addField(
+      'representation',
+      representation,
+    );
     return json;
   }
 
@@ -3706,50 +4045,6 @@ class SubstanceDefinitionStructure extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'technique':
-        if (technique != null) {
-          return technique!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'sourceDocument':
-        if (sourceDocument != null) {
-          return sourceDocument!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'representation':
-        if (representation != null) {
-          return representation!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -3761,39 +4056,51 @@ class SubstanceDefinitionStructure extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'stereochemistry':
@@ -3801,7 +4108,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(stereochemistry: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'opticalActivity':
@@ -3809,7 +4116,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(opticalActivity: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'molecularFormula':
@@ -3817,7 +4124,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
           if (child is FhirString) {
             return copyWith(molecularFormula: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'molecularFormulaByMoiety':
@@ -3825,7 +4132,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
           if (child is FhirString) {
             return copyWith(molecularFormulaByMoiety: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'molecularWeight':
@@ -3833,35 +4140,53 @@ class SubstanceDefinitionStructure extends BackboneElement {
           if (child is SubstanceDefinitionMolecularWeight) {
             return copyWith(molecularWeight: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'technique':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(technique: child);
+            // Add all elements from passed list
+            final newList = [...?technique, ...child];
+            return copyWith(technique: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?technique, child];
+            return copyWith(technique: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'sourceDocument':
         {
           if (child is List<Reference>) {
-            return copyWith(sourceDocument: child);
+            // Add all elements from passed list
+            final newList = [...?sourceDocument, ...child];
+            return copyWith(sourceDocument: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?sourceDocument, child];
+            return copyWith(sourceDocument: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'representation':
         {
           if (child is List<SubstanceDefinitionRepresentation>) {
-            return copyWith(representation: child);
+            // Add all elements from passed list
+            final newList = [...?representation, ...child];
+            return copyWith(representation: newList);
+          } else if (child is SubstanceDefinitionRepresentation) {
+            // Add single element to existing list or create new list
+            final newList = [...?representation, child];
+            return copyWith(representation: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -3902,53 +4227,75 @@ class SubstanceDefinitionStructure extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  SubstanceDefinitionStructure createProperty(String propertyName) {
+  SubstanceDefinitionStructure createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'stereochemistry':
         {
-          return copyWith(stereochemistry: CodeableConcept.empty());
+          return copyWith(
+            stereochemistry: CodeableConcept.empty(),
+          );
         }
       case 'opticalActivity':
         {
-          return copyWith(opticalActivity: CodeableConcept.empty());
+          return copyWith(
+            opticalActivity: CodeableConcept.empty(),
+          );
         }
       case 'molecularFormula':
         {
-          return copyWith(molecularFormula: FhirString.empty());
+          return copyWith(
+            molecularFormula: FhirString.empty(),
+          );
         }
       case 'molecularFormulaByMoiety':
         {
-          return copyWith(molecularFormulaByMoiety: FhirString.empty());
+          return copyWith(
+            molecularFormulaByMoiety: FhirString.empty(),
+          );
         }
       case 'molecularWeight':
         {
           return copyWith(
-              molecularWeight: SubstanceDefinitionMolecularWeight.empty(),);
+            molecularWeight: SubstanceDefinitionMolecularWeight.empty(),
+          );
         }
       case 'technique':
         {
-          return copyWith(technique: <CodeableConcept>[]);
+          return copyWith(
+            technique: <CodeableConcept>[],
+          );
         }
       case 'sourceDocument':
         {
-          return copyWith(sourceDocument: <Reference>[]);
+          return copyWith(
+            sourceDocument: <Reference>[],
+          );
         }
       case 'representation':
         {
           return copyWith(
-              representation: <SubstanceDefinitionRepresentation>[],);
+            representation: <SubstanceDefinitionRepresentation>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -4084,7 +4431,10 @@ class SubstanceDefinitionStructure extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4099,20 +4449,34 @@ class SubstanceDefinitionStructure extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(stereochemistry, o.stereochemistry)) {
-      return false;
-    }
-    if (!equalsDeepWithNull(opticalActivity, o.opticalActivity)) {
-      return false;
-    }
-    if (!equalsDeepWithNull(molecularFormula, o.molecularFormula)) {
+    if (!equalsDeepWithNull(
+      stereochemistry,
+      o.stereochemistry,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(
-        molecularFormulaByMoiety, o.molecularFormulaByMoiety,)) {
+      opticalActivity,
+      o.opticalActivity,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(molecularWeight, o.molecularWeight)) {
+    if (!equalsDeepWithNull(
+      molecularFormula,
+      o.molecularFormula,
+    )) {
+      return false;
+    }
+    if (!equalsDeepWithNull(
+      molecularFormulaByMoiety,
+      o.molecularFormulaByMoiety,
+    )) {
+      return false;
+    }
+    if (!equalsDeepWithNull(
+      molecularWeight,
+      o.molecularWeight,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -4312,13 +4676,34 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('type', type);
-    addField('representation', representation);
-    addField('format', format);
-    addField('document', document);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'representation',
+      representation,
+    );
+    addField(
+      'format',
+      format,
+    );
+    addField(
+      'document',
+      document,
+    );
     return json;
   }
 
@@ -4381,32 +4766,6 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -4418,39 +4777,51 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -4458,7 +4829,7 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'representation':
@@ -4466,7 +4837,7 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
           if (child is FhirString) {
             return copyWith(representation: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'format':
@@ -4474,7 +4845,7 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(format: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'document':
@@ -4482,11 +4853,11 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
           if (child is Reference) {
             return copyWith(document: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -4519,35 +4890,51 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  SubstanceDefinitionRepresentation createProperty(String propertyName) {
+  SubstanceDefinitionRepresentation createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'type':
         {
-          return copyWith(type: CodeableConcept.empty());
+          return copyWith(
+            type: CodeableConcept.empty(),
+          );
         }
       case 'representation':
         {
-          return copyWith(representation: FhirString.empty());
+          return copyWith(
+            representation: FhirString.empty(),
+          );
         }
       case 'format':
         {
-          return copyWith(format: CodeableConcept.empty());
+          return copyWith(
+            format: CodeableConcept.empty(),
+          );
         }
       case 'document':
         {
-          return copyWith(document: Reference.empty());
+          return copyWith(
+            document: Reference.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -4642,7 +5029,10 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4657,16 +5047,28 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(representation, o.representation)) {
+    if (!equalsDeepWithNull(
+      representation,
+      o.representation,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(format, o.format)) {
+    if (!equalsDeepWithNull(
+      format,
+      o.format,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(document, o.document)) {
+    if (!equalsDeepWithNull(
+      document,
+      o.document,
+    )) {
       return false;
     }
     return true;
@@ -4862,14 +5264,38 @@ class SubstanceDefinitionCode extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('code', code);
-    addField('status', status);
-    addField('statusDate', statusDate);
-    addField('note', note);
-    addField('source', source);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'code',
+      code,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'statusDate',
+      statusDate,
+    );
+    addField(
+      'note',
+      note,
+    );
+    addField(
+      'source',
+      source,
+    );
     return json;
   }
 
@@ -4937,44 +5363,6 @@ class SubstanceDefinitionCode extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'note':
-        if (note != null) {
-          return note!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'source':
-        if (source != null) {
-          return source!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -4986,39 +5374,51 @@ class SubstanceDefinitionCode extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
@@ -5026,7 +5426,7 @@ class SubstanceDefinitionCode extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(code: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -5034,7 +5434,7 @@ class SubstanceDefinitionCode extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'statusDate':
@@ -5042,27 +5442,39 @@ class SubstanceDefinitionCode extends BackboneElement {
           if (child is FhirDateTime) {
             return copyWith(statusDate: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
           if (child is List<Annotation>) {
-            return copyWith(note: child);
+            // Add all elements from passed list
+            final newList = [...?note, ...child];
+            return copyWith(note: newList);
+          } else if (child is Annotation) {
+            // Add single element to existing list or create new list
+            final newList = [...?note, child];
+            return copyWith(note: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'source':
         {
           if (child is List<Reference>) {
-            return copyWith(source: child);
+            // Add all elements from passed list
+            final newList = [...?source, ...child];
+            return copyWith(source: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?source, child];
+            return copyWith(source: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -5097,39 +5509,57 @@ class SubstanceDefinitionCode extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  SubstanceDefinitionCode createProperty(String propertyName) {
+  SubstanceDefinitionCode createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'code':
         {
-          return copyWith(code: CodeableConcept.empty());
+          return copyWith(
+            code: CodeableConcept.empty(),
+          );
         }
       case 'status':
         {
-          return copyWith(status: CodeableConcept.empty());
+          return copyWith(
+            status: CodeableConcept.empty(),
+          );
         }
       case 'statusDate':
         {
-          return copyWith(statusDate: FhirDateTime.empty());
+          return copyWith(
+            statusDate: FhirDateTime.empty(),
+          );
         }
       case 'note':
         {
-          return copyWith(note: <Annotation>[]);
+          return copyWith(
+            note: <Annotation>[],
+          );
         }
       case 'source':
         {
-          return copyWith(source: <Reference>[]);
+          return copyWith(
+            source: <Reference>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -5239,7 +5669,10 @@ class SubstanceDefinitionCode extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -5254,13 +5687,22 @@ class SubstanceDefinitionCode extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(code, o.code)) {
+    if (!equalsDeepWithNull(
+      code,
+      o.code,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(statusDate, o.statusDate)) {
+    if (!equalsDeepWithNull(
+      statusDate,
+      o.statusDate,
+    )) {
       return false;
     }
     if (!listEquals<Annotation>(
@@ -5557,20 +5999,62 @@ class SubstanceDefinitionName extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('name', name);
-    addField('type', type);
-    addField('status', status);
-    addField('preferred', preferred);
-    addField('language', language);
-    addField('domain', domain);
-    addField('jurisdiction', jurisdiction);
-    addField('synonym', synonym);
-    addField('translation', translation);
-    addField('official', official);
-    addField('source', source);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'name',
+      name,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'preferred',
+      preferred,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'domain',
+      domain,
+    );
+    addField(
+      'jurisdiction',
+      jurisdiction,
+    );
+    addField(
+      'synonym',
+      synonym,
+    );
+    addField(
+      'translation',
+      translation,
+    );
+    addField(
+      'official',
+      official,
+    );
+    addField(
+      'source',
+      source,
+    );
     return json;
   }
 
@@ -5666,74 +6150,6 @@ class SubstanceDefinitionName extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'language':
-        if (language != null) {
-          return language!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'domain':
-        if (domain != null) {
-          return domain!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'jurisdiction':
-        if (jurisdiction != null) {
-          return jurisdiction!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'synonym':
-        if (synonym != null) {
-          return synonym!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'translation':
-        if (translation != null) {
-          return translation!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'official':
-        if (official != null) {
-          return official!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'source':
-        if (source != null) {
-          return source!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -5745,39 +6161,51 @@ class SubstanceDefinitionName extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
@@ -5785,7 +6213,7 @@ class SubstanceDefinitionName extends BackboneElement {
           if (child is FhirString) {
             return copyWith(name: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -5793,7 +6221,7 @@ class SubstanceDefinitionName extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -5801,7 +6229,7 @@ class SubstanceDefinitionName extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'preferred':
@@ -5809,67 +6237,109 @@ class SubstanceDefinitionName extends BackboneElement {
           if (child is FhirBoolean) {
             return copyWith(preferred: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(language: child);
+            // Add all elements from passed list
+            final newList = [...?language, ...child];
+            return copyWith(language: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?language, child];
+            return copyWith(language: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'domain':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(domain: child);
+            // Add all elements from passed list
+            final newList = [...?domain, ...child];
+            return copyWith(domain: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?domain, child];
+            return copyWith(domain: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'jurisdiction':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(jurisdiction: child);
+            // Add all elements from passed list
+            final newList = [...?jurisdiction, ...child];
+            return copyWith(jurisdiction: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?jurisdiction, child];
+            return copyWith(jurisdiction: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'synonym':
         {
           if (child is List<SubstanceDefinitionName>) {
-            return copyWith(synonym: child);
+            // Add all elements from passed list
+            final newList = [...?synonym, ...child];
+            return copyWith(synonym: newList);
+          } else if (child is SubstanceDefinitionName) {
+            // Add single element to existing list or create new list
+            final newList = [...?synonym, child];
+            return copyWith(synonym: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'translation':
         {
           if (child is List<SubstanceDefinitionName>) {
-            return copyWith(translation: child);
+            // Add all elements from passed list
+            final newList = [...?translation, ...child];
+            return copyWith(translation: newList);
+          } else if (child is SubstanceDefinitionName) {
+            // Add single element to existing list or create new list
+            final newList = [...?translation, child];
+            return copyWith(translation: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'official':
         {
           if (child is List<SubstanceDefinitionOfficial>) {
-            return copyWith(official: child);
+            // Add all elements from passed list
+            final newList = [...?official, ...child];
+            return copyWith(official: newList);
+          } else if (child is SubstanceDefinitionOfficial) {
+            // Add single element to existing list or create new list
+            final newList = [...?official, child];
+            return copyWith(official: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'source':
         {
           if (child is List<Reference>) {
-            return copyWith(source: child);
+            // Add all elements from passed list
+            final newList = [...?source, ...child];
+            return copyWith(source: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?source, child];
+            return copyWith(source: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -5916,63 +6386,93 @@ class SubstanceDefinitionName extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  SubstanceDefinitionName createProperty(String propertyName) {
+  SubstanceDefinitionName createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'name':
         {
-          return copyWith(name: FhirString.empty());
+          return copyWith(
+            name: FhirString.empty(),
+          );
         }
       case 'type':
         {
-          return copyWith(type: CodeableConcept.empty());
+          return copyWith(
+            type: CodeableConcept.empty(),
+          );
         }
       case 'status':
         {
-          return copyWith(status: CodeableConcept.empty());
+          return copyWith(
+            status: CodeableConcept.empty(),
+          );
         }
       case 'preferred':
         {
-          return copyWith(preferred: FhirBoolean.empty());
+          return copyWith(
+            preferred: FhirBoolean.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: <CodeableConcept>[]);
+          return copyWith(
+            language: <CodeableConcept>[],
+          );
         }
       case 'domain':
         {
-          return copyWith(domain: <CodeableConcept>[]);
+          return copyWith(
+            domain: <CodeableConcept>[],
+          );
         }
       case 'jurisdiction':
         {
-          return copyWith(jurisdiction: <CodeableConcept>[]);
+          return copyWith(
+            jurisdiction: <CodeableConcept>[],
+          );
         }
       case 'synonym':
         {
-          return copyWith(synonym: <SubstanceDefinitionName>[]);
+          return copyWith(
+            synonym: <SubstanceDefinitionName>[],
+          );
         }
       case 'translation':
         {
-          return copyWith(translation: <SubstanceDefinitionName>[]);
+          return copyWith(
+            translation: <SubstanceDefinitionName>[],
+          );
         }
       case 'official':
         {
-          return copyWith(official: <SubstanceDefinitionOfficial>[]);
+          return copyWith(
+            official: <SubstanceDefinitionOfficial>[],
+          );
         }
       case 'source':
         {
-          return copyWith(source: <Reference>[]);
+          return copyWith(
+            source: <Reference>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -6143,7 +6643,10 @@ class SubstanceDefinitionName extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -6158,16 +6661,28 @@ class SubstanceDefinitionName extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(name, o.name)) {
+    if (!equalsDeepWithNull(
+      name,
+      o.name,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(preferred, o.preferred)) {
+    if (!equalsDeepWithNull(
+      preferred,
+      o.preferred,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -6237,7 +6752,8 @@ class SubstanceDefinitionOfficial extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory SubstanceDefinitionOfficial.empty() => const SubstanceDefinitionOfficial();
+  factory SubstanceDefinitionOfficial.empty() =>
+      const SubstanceDefinitionOfficial();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionOfficial.fromJson(
@@ -6375,12 +6891,30 @@ class SubstanceDefinitionOfficial extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('authority', authority);
-    addField('status', status);
-    addField('date', date);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'authority',
+      authority,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'date',
+      date,
+    );
     return json;
   }
 
@@ -6438,32 +6972,6 @@ class SubstanceDefinitionOfficial extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -6475,39 +6983,51 @@ class SubstanceDefinitionOfficial extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'authority':
@@ -6515,7 +7035,7 @@ class SubstanceDefinitionOfficial extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(authority: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -6523,7 +7043,7 @@ class SubstanceDefinitionOfficial extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
@@ -6531,11 +7051,11 @@ class SubstanceDefinitionOfficial extends BackboneElement {
           if (child is FhirDateTime) {
             return copyWith(date: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -6566,31 +7086,45 @@ class SubstanceDefinitionOfficial extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  SubstanceDefinitionOfficial createProperty(String propertyName) {
+  SubstanceDefinitionOfficial createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'authority':
         {
-          return copyWith(authority: CodeableConcept.empty());
+          return copyWith(
+            authority: CodeableConcept.empty(),
+          );
         }
       case 'status':
         {
-          return copyWith(status: CodeableConcept.empty());
+          return copyWith(
+            status: CodeableConcept.empty(),
+          );
         }
       case 'date':
         {
-          return copyWith(date: FhirDateTime.empty());
+          return copyWith(
+            date: FhirDateTime.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -6678,7 +7212,10 @@ class SubstanceDefinitionOfficial extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -6693,13 +7230,22 @@ class SubstanceDefinitionOfficial extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(authority, o.authority)) {
+    if (!equalsDeepWithNull(
+      authority,
+      o.authority,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(date, o.date)) {
+    if (!equalsDeepWithNull(
+      date,
+      o.date,
+    )) {
       return false;
     }
     return true;
@@ -6948,25 +7494,54 @@ class SubstanceDefinitionRelationship extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
     if (substanceDefinitionX != null) {
       final fhirType = substanceDefinitionX!.fhirType;
       addField(
-          'substanceDefinition${fhirType.capitalize()}', substanceDefinitionX,);
+        'substanceDefinition${fhirType.capitalize()}',
+        substanceDefinitionX,
+      );
     }
 
-    addField('type', type);
-    addField('isDefining', isDefining);
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'isDefining',
+      isDefining,
+    );
     if (amountX != null) {
       final fhirType = amountX!.fhirType;
-      addField('amount${fhirType.capitalize()}', amountX);
+      addField(
+        'amount${fhirType.capitalize()}',
+        amountX,
+      );
     }
 
-    addField('ratioHighLimitAmount', ratioHighLimitAmount);
-    addField('comparator', comparator);
-    addField('source', source);
+    addField(
+      'ratioHighLimitAmount',
+      ratioHighLimitAmount,
+    );
+    addField(
+      'comparator',
+      comparator,
+    );
+    addField(
+      'source',
+      source,
+    );
     return json;
   }
 
@@ -7062,38 +7637,6 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'source':
-        if (source != null) {
-          return source!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -7105,56 +7648,73 @@ class SubstanceDefinitionRelationship extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'substanceDefinitionX':
         {
           if (child is SubstanceDefinitionXSubstanceDefinitionRelationship) {
-            // child is e.g. SubjectX union
             return copyWith(substanceDefinitionX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is Reference) {
+              return copyWith(substanceDefinitionX: child);
+            }
+            if (child is CodeableConcept) {
+              return copyWith(substanceDefinitionX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'substanceDefinitionReference':
         {
           if (child is Reference) {
             return copyWith(substanceDefinitionX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'substanceDefinitionCodeableConcept':
@@ -7162,7 +7722,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(substanceDefinitionX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -7170,7 +7730,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'isDefining':
@@ -7178,24 +7738,32 @@ class SubstanceDefinitionRelationship extends BackboneElement {
           if (child is FhirBoolean) {
             return copyWith(isDefining: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'amountX':
         {
           if (child is AmountXSubstanceDefinitionRelationship) {
-            // child is e.g. SubjectX union
             return copyWith(amountX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is Quantity) {
+              return copyWith(amountX: child);
+            }
+            if (child is Ratio) {
+              return copyWith(amountX: child);
+            }
+            if (child is FhirString) {
+              return copyWith(amountX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'amountQuantity':
         {
           if (child is Quantity) {
             return copyWith(amountX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'amountRatio':
@@ -7203,7 +7771,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
           if (child is Ratio) {
             return copyWith(amountX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'amountFhirString':
@@ -7211,7 +7779,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
           if (child is FhirString) {
             return copyWith(amountX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'ratioHighLimitAmount':
@@ -7219,7 +7787,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
           if (child is Ratio) {
             return copyWith(ratioHighLimitAmount: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'comparator':
@@ -7227,19 +7795,25 @@ class SubstanceDefinitionRelationship extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(comparator: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'source':
         {
           if (child is List<Reference>) {
-            return copyWith(source: child);
+            // Add all elements from passed list
+            final newList = [...?source, ...child];
+            return copyWith(source: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?source, child];
+            return copyWith(source: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -7290,63 +7864,91 @@ class SubstanceDefinitionRelationship extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  SubstanceDefinitionRelationship createProperty(String propertyName) {
+  SubstanceDefinitionRelationship createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'substanceDefinition':
       case 'substanceDefinitionX':
       case 'substanceDefinitionReference':
         {
-          return copyWith(substanceDefinitionX: Reference.empty());
+          return copyWith(
+            substanceDefinitionX: Reference.empty(),
+          );
         }
       case 'substanceDefinitionCodeableConcept':
         {
-          return copyWith(substanceDefinitionX: CodeableConcept.empty());
+          return copyWith(
+            substanceDefinitionX: CodeableConcept.empty(),
+          );
         }
       case 'type':
         {
-          return copyWith(type: CodeableConcept.empty());
+          return copyWith(
+            type: CodeableConcept.empty(),
+          );
         }
       case 'isDefining':
         {
-          return copyWith(isDefining: FhirBoolean.empty());
+          return copyWith(
+            isDefining: FhirBoolean.empty(),
+          );
         }
       case 'amount':
       case 'amountX':
       case 'amountQuantity':
         {
-          return copyWith(amountX: Quantity.empty());
+          return copyWith(
+            amountX: Quantity.empty(),
+          );
         }
       case 'amountRatio':
         {
-          return copyWith(amountX: Ratio.empty());
+          return copyWith(
+            amountX: Ratio.empty(),
+          );
         }
       case 'amountString':
         {
-          return copyWith(amountX: FhirString.empty());
+          return copyWith(
+            amountX: FhirString.empty(),
+          );
         }
       case 'ratioHighLimitAmount':
         {
-          return copyWith(ratioHighLimitAmount: Ratio.empty());
+          return copyWith(
+            ratioHighLimitAmount: Ratio.empty(),
+          );
         }
       case 'comparator':
         {
-          return copyWith(comparator: CodeableConcept.empty());
+          return copyWith(
+            comparator: CodeableConcept.empty(),
+          );
         }
       case 'source':
         {
-          return copyWith(source: <Reference>[]);
+          return copyWith(
+            source: <Reference>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -7370,8 +7972,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
       id: id ? null : this.id,
       extension_: extension_ ? null : this.extension_,
       modifierExtension: modifierExtension ? null : this.modifierExtension,
-      substanceDefinitionX:
-          substanceDefinition ? null : substanceDefinitionX,
+      substanceDefinitionX: substanceDefinition ? null : substanceDefinitionX,
       type: type,
       isDefining: isDefining ? null : this.isDefining,
       amountX: amount ? null : amountX,
@@ -7467,7 +8068,10 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -7482,22 +8086,40 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(substanceDefinitionX, o.substanceDefinitionX)) {
+    if (!equalsDeepWithNull(
+      substanceDefinitionX,
+      o.substanceDefinitionX,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(isDefining, o.isDefining)) {
+    if (!equalsDeepWithNull(
+      isDefining,
+      o.isDefining,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(amountX, o.amountX)) {
+    if (!equalsDeepWithNull(
+      amountX,
+      o.amountX,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(ratioHighLimitAmount, o.ratioHighLimitAmount)) {
+    if (!equalsDeepWithNull(
+      ratioHighLimitAmount,
+      o.ratioHighLimitAmount,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(comparator, o.comparator)) {
+    if (!equalsDeepWithNull(
+      comparator,
+      o.comparator,
+    )) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -7698,14 +8320,38 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('type', type);
-    addField('genus', genus);
-    addField('species', species);
-    addField('part', part_);
-    addField('countryOfOrigin', countryOfOrigin);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'genus',
+      genus,
+    );
+    addField(
+      'species',
+      species,
+    );
+    addField(
+      'part',
+      part_,
+    );
+    addField(
+      'countryOfOrigin',
+      countryOfOrigin,
+    );
     return json;
   }
 
@@ -7773,38 +8419,6 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'countryOfOrigin':
-        if (countryOfOrigin != null) {
-          return countryOfOrigin!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -7816,39 +8430,51 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -7856,7 +8482,7 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'genus':
@@ -7864,7 +8490,7 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(genus: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'species':
@@ -7872,7 +8498,7 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(species: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'part':
@@ -7880,19 +8506,25 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(part_: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'countryOfOrigin':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(countryOfOrigin: child);
+            // Add all elements from passed list
+            final newList = [...?countryOfOrigin, ...child];
+            return copyWith(countryOfOrigin: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?countryOfOrigin, child];
+            return copyWith(countryOfOrigin: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -7927,39 +8559,57 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  SubstanceDefinitionSourceMaterial createProperty(String propertyName) {
+  SubstanceDefinitionSourceMaterial createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'type':
         {
-          return copyWith(type: CodeableConcept.empty());
+          return copyWith(
+            type: CodeableConcept.empty(),
+          );
         }
       case 'genus':
         {
-          return copyWith(genus: CodeableConcept.empty());
+          return copyWith(
+            genus: CodeableConcept.empty(),
+          );
         }
       case 'species':
         {
-          return copyWith(species: CodeableConcept.empty());
+          return copyWith(
+            species: CodeableConcept.empty(),
+          );
         }
       case 'part':
         {
-          return copyWith(part_: CodeableConcept.empty());
+          return copyWith(
+            part_: CodeableConcept.empty(),
+          );
         }
       case 'countryOfOrigin':
         {
-          return copyWith(countryOfOrigin: <CodeableConcept>[]);
+          return copyWith(
+            countryOfOrigin: <CodeableConcept>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -8065,7 +8715,10 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -8080,16 +8733,28 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(genus, o.genus)) {
+    if (!equalsDeepWithNull(
+      genus,
+      o.genus,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(species, o.species)) {
+    if (!equalsDeepWithNull(
+      species,
+      o.species,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(part_, o.part_)) {
+    if (!equalsDeepWithNull(
+      part_,
+      o.part_,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(

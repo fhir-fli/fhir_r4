@@ -54,9 +54,14 @@ class EventTiming extends FhirCodeEnum {
     if (value == null && element != null) {
       return EventTiming.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('EventTiming cannot be constructed from JSON.');
+      throw ArgumentError(
+        'EventTiming cannot be constructed from JSON.',
+      );
     }
-    return EventTiming._(validatedValue: value, element: element);
+    return EventTiming._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// MORN

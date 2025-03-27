@@ -54,9 +54,14 @@ class ContributorType extends FhirCodeEnum {
     if (value == null && element != null) {
       return ContributorType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('ContributorType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'ContributorType cannot be constructed from JSON.',
+      );
     }
-    return ContributorType._(validatedValue: value, element: element);
+    return ContributorType._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// author

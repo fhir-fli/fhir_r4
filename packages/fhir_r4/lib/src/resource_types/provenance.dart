@@ -327,28 +327,82 @@ class Provenance extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('target', target);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'target',
+      target,
+    );
     if (occurredX != null) {
       final fhirType = occurredX!.fhirType;
-      addField('occurred${fhirType.capitalize()}', occurredX);
+      addField(
+        'occurred${fhirType.capitalize()}',
+        occurredX,
+      );
     }
 
-    addField('recorded', recorded);
-    addField('policy', policy);
-    addField('location', location);
-    addField('reason', reason);
-    addField('activity', activity);
-    addField('agent', agent);
-    addField('entity', entity);
-    addField('signature', signature);
+    addField(
+      'recorded',
+      recorded,
+    );
+    addField(
+      'policy',
+      policy,
+    );
+    addField(
+      'location',
+      location,
+    );
+    addField(
+      'reason',
+      reason,
+    );
+    addField(
+      'activity',
+      activity,
+    );
+    addField(
+      'agent',
+      agent,
+    );
+    addField(
+      'entity',
+      entity,
+    );
+    addField(
+      'signature',
+      signature,
+    );
     return json;
   }
 
@@ -468,66 +522,6 @@ class Provenance extends DomainResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'target':
-        return target;
-      case 'policy':
-        if (policy != null) {
-          return policy!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'reason':
-        if (reason != null) {
-          return reason!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'agent':
-        return agent;
-      case 'entity':
-        if (entity != null) {
-          return entity!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'signature':
-        if (signature != null) {
-          return signature!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -539,23 +533,23 @@ class Provenance extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -563,7 +557,7 @@ class Provenance extends DomainResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -571,7 +565,7 @@ class Provenance extends DomainResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -579,7 +573,7 @@ class Provenance extends DomainResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -587,56 +581,85 @@ class Provenance extends DomainResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'target':
         {
           if (child is List<Reference>) {
-            return copyWith(target: child);
+            // Add all elements from passed list
+            final newList = [...target, ...child];
+            return copyWith(target: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...target, child];
+            return copyWith(target: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'occurredX':
         {
           if (child is OccurredXProvenance) {
-            // child is e.g. SubjectX union
             return copyWith(occurredX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is Period) {
+              return copyWith(occurredX: child);
+            }
+            if (child is FhirDateTime) {
+              return copyWith(occurredX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'occurredPeriod':
         {
           if (child is Period) {
             return copyWith(occurredX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'occurredFhirDateTime':
@@ -644,7 +667,7 @@ class Provenance extends DomainResource {
           if (child is FhirDateTime) {
             return copyWith(occurredX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'recorded':
@@ -652,15 +675,21 @@ class Provenance extends DomainResource {
           if (child is FhirInstant) {
             return copyWith(recorded: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'policy':
         {
           if (child is List<FhirUri>) {
-            return copyWith(policy: child);
+            // Add all elements from passed list
+            final newList = [...?policy, ...child];
+            return copyWith(policy: newList);
+          } else if (child is FhirUri) {
+            // Add single element to existing list or create new list
+            final newList = [...?policy, child];
+            return copyWith(policy: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'location':
@@ -668,15 +697,21 @@ class Provenance extends DomainResource {
           if (child is Reference) {
             return copyWith(location: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'reason':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(reason: child);
+            // Add all elements from passed list
+            final newList = [...?reason, ...child];
+            return copyWith(reason: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?reason, child];
+            return copyWith(reason: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'activity':
@@ -684,35 +719,53 @@ class Provenance extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(activity: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'agent':
         {
           if (child is List<ProvenanceAgent>) {
-            return copyWith(agent: child);
+            // Add all elements from passed list
+            final newList = [...agent, ...child];
+            return copyWith(agent: newList);
+          } else if (child is ProvenanceAgent) {
+            // Add single element to existing list or create new list
+            final newList = [...agent, child];
+            return copyWith(agent: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'entity':
         {
           if (child is List<ProvenanceEntity>) {
-            return copyWith(entity: child);
+            // Add all elements from passed list
+            final newList = [...?entity, ...child];
+            return copyWith(entity: newList);
+          } else if (child is ProvenanceEntity) {
+            // Add single element to existing list or create new list
+            final newList = [...?entity, child];
+            return copyWith(entity: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'signature':
         {
           if (child is List<Signature>) {
-            return copyWith(signature: child);
+            // Add all elements from passed list
+            final newList = [...?signature, ...child];
+            return copyWith(signature: newList);
+          } else if (child is Signature) {
+            // Add single element to existing list or create new list
+            final newList = [...?signature, child];
+            return copyWith(signature: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -772,85 +825,125 @@ class Provenance extends DomainResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  Provenance createProperty(String propertyName) {
+  Provenance createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'target':
         {
-          return copyWith(target: <Reference>[]);
+          return copyWith(
+            target: <Reference>[],
+          );
         }
       case 'occurred':
       case 'occurredX':
       case 'occurredPeriod':
         {
-          return copyWith(occurredX: Period.empty());
+          return copyWith(
+            occurredX: Period.empty(),
+          );
         }
       case 'occurredDateTime':
         {
-          return copyWith(occurredX: FhirDateTime.empty());
+          return copyWith(
+            occurredX: FhirDateTime.empty(),
+          );
         }
       case 'recorded':
         {
-          return copyWith(recorded: FhirInstant.empty());
+          return copyWith(
+            recorded: FhirInstant.empty(),
+          );
         }
       case 'policy':
         {
-          return copyWith(policy: <FhirUri>[]);
+          return copyWith(
+            policy: <FhirUri>[],
+          );
         }
       case 'location':
         {
-          return copyWith(location: Reference.empty());
+          return copyWith(
+            location: Reference.empty(),
+          );
         }
       case 'reason':
         {
-          return copyWith(reason: <CodeableConcept>[]);
+          return copyWith(
+            reason: <CodeableConcept>[],
+          );
         }
       case 'activity':
         {
-          return copyWith(activity: CodeableConcept.empty());
+          return copyWith(
+            activity: CodeableConcept.empty(),
+          );
         }
       case 'agent':
         {
-          return copyWith(agent: <ProvenanceAgent>[]);
+          return copyWith(
+            agent: <ProvenanceAgent>[],
+          );
         }
       case 'entity':
         {
-          return copyWith(entity: <ProvenanceEntity>[]);
+          return copyWith(
+            entity: <ProvenanceEntity>[],
+          );
         }
       case 'signature':
         {
-          return copyWith(signature: <Signature>[]);
+          return copyWith(
+            signature: <Signature>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1039,19 +1132,34 @@ class Provenance extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1078,10 +1186,16 @@ class Provenance extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(occurredX, o.occurredX)) {
+    if (!equalsDeepWithNull(
+      occurredX,
+      o.occurredX,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(recorded, o.recorded)) {
+    if (!equalsDeepWithNull(
+      recorded,
+      o.recorded,
+    )) {
       return false;
     }
     if (!listEquals<FhirUri>(
@@ -1090,7 +1204,10 @@ class Provenance extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(location, o.location)) {
+    if (!equalsDeepWithNull(
+      location,
+      o.location,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1099,7 +1216,10 @@ class Provenance extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(activity, o.activity)) {
+    if (!equalsDeepWithNull(
+      activity,
+      o.activity,
+    )) {
       return false;
     }
     if (!listEquals<ProvenanceAgent>(
@@ -1301,13 +1421,34 @@ class ProvenanceAgent extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('type', type);
-    addField('role', role);
-    addField('who', who);
-    addField('onBehalfOf', onBehalfOf);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'role',
+      role,
+    );
+    addField(
+      'who',
+      who,
+    );
+    addField(
+      'onBehalfOf',
+      onBehalfOf,
+    );
     return json;
   }
 
@@ -1368,38 +1509,6 @@ class ProvenanceAgent extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'role':
-        if (role != null) {
-          return role!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1411,39 +1520,51 @@ class ProvenanceAgent extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -1451,15 +1572,21 @@ class ProvenanceAgent extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'role':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(role: child);
+            // Add all elements from passed list
+            final newList = [...?role, ...child];
+            return copyWith(role: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?role, child];
+            return copyWith(role: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'who':
@@ -1467,7 +1594,7 @@ class ProvenanceAgent extends BackboneElement {
           if (child is Reference) {
             return copyWith(who: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'onBehalfOf':
@@ -1475,11 +1602,11 @@ class ProvenanceAgent extends BackboneElement {
           if (child is Reference) {
             return copyWith(onBehalfOf: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1512,35 +1639,51 @@ class ProvenanceAgent extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  ProvenanceAgent createProperty(String propertyName) {
+  ProvenanceAgent createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'type':
         {
-          return copyWith(type: CodeableConcept.empty());
+          return copyWith(
+            type: CodeableConcept.empty(),
+          );
         }
       case 'role':
         {
-          return copyWith(role: <CodeableConcept>[]);
+          return copyWith(
+            role: <CodeableConcept>[],
+          );
         }
       case 'who':
         {
-          return copyWith(who: Reference.empty());
+          return copyWith(
+            who: Reference.empty(),
+          );
         }
       case 'onBehalfOf':
         {
-          return copyWith(onBehalfOf: Reference.empty());
+          return copyWith(
+            onBehalfOf: Reference.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1638,7 +1781,10 @@ class ProvenanceAgent extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1653,7 +1799,10 @@ class ProvenanceAgent extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1662,10 +1811,16 @@ class ProvenanceAgent extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(who, o.who)) {
+    if (!equalsDeepWithNull(
+      who,
+      o.who,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(onBehalfOf, o.onBehalfOf)) {
+    if (!equalsDeepWithNull(
+      onBehalfOf,
+      o.onBehalfOf,
+    )) {
       return false;
     }
     return true;
@@ -1841,12 +1996,30 @@ class ProvenanceEntity extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('role', role);
-    addField('what', what);
-    addField('agent', agent);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'role',
+      role,
+    );
+    addField(
+      'what',
+      what,
+    );
+    addField(
+      'agent',
+      agent,
+    );
     return json;
   }
 
@@ -1900,38 +2073,6 @@ class ProvenanceEntity extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'agent':
-        if (agent != null) {
-          return agent!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1943,39 +2084,51 @@ class ProvenanceEntity extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'role':
@@ -1983,7 +2136,7 @@ class ProvenanceEntity extends BackboneElement {
           if (child is ProvenanceEntityRole) {
             return copyWith(role: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'what':
@@ -1991,19 +2144,25 @@ class ProvenanceEntity extends BackboneElement {
           if (child is Reference) {
             return copyWith(what: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'agent':
         {
           if (child is List<ProvenanceAgent>) {
-            return copyWith(agent: child);
+            // Add all elements from passed list
+            final newList = [...?agent, ...child];
+            return copyWith(agent: newList);
+          } else if (child is ProvenanceAgent) {
+            // Add single element to existing list or create new list
+            final newList = [...?agent, child];
+            return copyWith(agent: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2034,31 +2193,45 @@ class ProvenanceEntity extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  ProvenanceEntity createProperty(String propertyName) {
+  ProvenanceEntity createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'role':
         {
-          return copyWith(role: ProvenanceEntityRole.empty());
+          return copyWith(
+            role: ProvenanceEntityRole.empty(),
+          );
         }
       case 'what':
         {
-          return copyWith(what: Reference.empty());
+          return copyWith(
+            what: Reference.empty(),
+          );
         }
       case 'agent':
         {
-          return copyWith(agent: <ProvenanceAgent>[]);
+          return copyWith(
+            agent: <ProvenanceAgent>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2148,7 +2321,10 @@ class ProvenanceEntity extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2163,10 +2339,16 @@ class ProvenanceEntity extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(role, o.role)) {
+    if (!equalsDeepWithNull(
+      role,
+      o.role,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(what, o.what)) {
+    if (!equalsDeepWithNull(
+      what,
+      o.what,
+    )) {
       return false;
     }
     if (!listEquals<ProvenanceAgent>(

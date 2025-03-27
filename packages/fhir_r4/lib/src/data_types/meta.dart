@@ -209,14 +209,38 @@ class FhirMeta extends DataType
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('versionId', versionId);
-    addField('lastUpdated', lastUpdated);
-    addField('source', source);
-    addField('profile', profile);
-    addField('security', security);
-    addField('tag', tag);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'versionId',
+      versionId,
+    );
+    addField(
+      'lastUpdated',
+      lastUpdated,
+    );
+    addField(
+      'source',
+      source,
+    );
+    addField(
+      'profile',
+      profile,
+    );
+    addField(
+      'security',
+      security,
+    );
+    addField(
+      'tag',
+      tag,
+    );
     return json;
   }
 
@@ -284,44 +308,6 @@ class FhirMeta extends DataType
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'profile':
-        if (profile != null) {
-          return profile!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'security':
-        if (security != null) {
-          return security!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'tag':
-        if (tag != null) {
-          return tag!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -333,31 +319,37 @@ class FhirMeta extends DataType
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'versionId':
@@ -365,7 +357,7 @@ class FhirMeta extends DataType
           if (child is FhirId) {
             return copyWith(versionId: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'lastUpdated':
@@ -373,7 +365,7 @@ class FhirMeta extends DataType
           if (child is FhirInstant) {
             return copyWith(lastUpdated: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'source':
@@ -381,35 +373,53 @@ class FhirMeta extends DataType
           if (child is FhirUri) {
             return copyWith(source: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'profile':
         {
           if (child is List<FhirCanonical>) {
-            return copyWith(profile: child);
+            // Add all elements from passed list
+            final newList = [...?profile, ...child];
+            return copyWith(profile: newList);
+          } else if (child is FhirCanonical) {
+            // Add single element to existing list or create new list
+            final newList = [...?profile, child];
+            return copyWith(profile: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'security':
         {
           if (child is List<Coding>) {
-            return copyWith(security: child);
+            // Add all elements from passed list
+            final newList = [...?security, ...child];
+            return copyWith(security: newList);
+          } else if (child is Coding) {
+            // Add single element to existing list or create new list
+            final newList = [...?security, child];
+            return copyWith(security: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'tag':
         {
           if (child is List<Coding>) {
-            return copyWith(tag: child);
+            // Add all elements from passed list
+            final newList = [...?tag, ...child];
+            return copyWith(tag: newList);
+          } else if (child is Coding) {
+            // Add single element to existing list or create new list
+            final newList = [...?tag, child];
+            return copyWith(tag: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -444,39 +454,57 @@ class FhirMeta extends DataType
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  FhirMeta createProperty(String propertyName) {
+  FhirMeta createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'versionId':
         {
-          return copyWith(versionId: FhirId.empty());
+          return copyWith(
+            versionId: FhirId.empty(),
+          );
         }
       case 'lastUpdated':
         {
-          return copyWith(lastUpdated: FhirInstant.empty());
+          return copyWith(
+            lastUpdated: FhirInstant.empty(),
+          );
         }
       case 'source':
         {
-          return copyWith(source: FhirUri.empty());
+          return copyWith(
+            source: FhirUri.empty(),
+          );
         }
       case 'profile':
         {
-          return copyWith(profile: <FhirCanonical>[]);
+          return copyWith(
+            profile: <FhirCanonical>[],
+          );
         }
       case 'security':
         {
-          return copyWith(security: <Coding>[]);
+          return copyWith(
+            security: <Coding>[],
+          );
         }
       case 'tag':
         {
-          return copyWith(tag: <Coding>[]);
+          return copyWith(
+            tag: <Coding>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -586,7 +614,10 @@ class FhirMeta extends DataType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -595,13 +626,22 @@ class FhirMeta extends DataType
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(versionId, o.versionId)) {
+    if (!equalsDeepWithNull(
+      versionId,
+      o.versionId,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(lastUpdated, o.lastUpdated)) {
+    if (!equalsDeepWithNull(
+      lastUpdated,
+      o.lastUpdated,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(source, o.source)) {
+    if (!equalsDeepWithNull(
+      source,
+      o.source,
+    )) {
       return false;
     }
     if (!listEquals<FhirCanonical>(

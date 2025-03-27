@@ -395,35 +395,110 @@ class RiskAssessment extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('identifier', identifier);
-    addField('basedOn', basedOn);
-    addField('parent', parent);
-    addField('status', status);
-    addField('method', method);
-    addField('code', code);
-    addField('subject', subject);
-    addField('encounter', encounter);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'basedOn',
+      basedOn,
+    );
+    addField(
+      'parent',
+      parent,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'method',
+      method,
+    );
+    addField(
+      'code',
+      code,
+    );
+    addField(
+      'subject',
+      subject,
+    );
+    addField(
+      'encounter',
+      encounter,
+    );
     if (occurrenceX != null) {
       final fhirType = occurrenceX!.fhirType;
-      addField('occurrence${fhirType.capitalize()}', occurrenceX);
+      addField(
+        'occurrence${fhirType.capitalize()}',
+        occurrenceX,
+      );
     }
 
-    addField('condition', condition);
-    addField('performer', performer);
-    addField('reasonCode', reasonCode);
-    addField('reasonReference', reasonReference);
-    addField('basis', basis);
-    addField('prediction', prediction);
-    addField('mitigation', mitigation);
-    addField('note', note);
+    addField(
+      'condition',
+      condition,
+    );
+    addField(
+      'performer',
+      performer,
+    );
+    addField(
+      'reasonCode',
+      reasonCode,
+    );
+    addField(
+      'reasonReference',
+      reasonReference,
+    );
+    addField(
+      'basis',
+      basis,
+    );
+    addField(
+      'prediction',
+      prediction,
+    );
+    addField(
+      'mitigation',
+      mitigation,
+    );
+    addField(
+      'note',
+      note,
+    );
     return json;
   }
 
@@ -580,74 +655,6 @@ class RiskAssessment extends DomainResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'identifier':
-        if (identifier != null) {
-          return identifier!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'reasonCode':
-        if (reasonCode != null) {
-          return reasonCode!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'reasonReference':
-        if (reasonReference != null) {
-          return reasonReference!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'basis':
-        if (basis != null) {
-          return basis!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'prediction':
-        if (prediction != null) {
-          return prediction!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'note':
-        if (note != null) {
-          return note!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -659,23 +666,23 @@ class RiskAssessment extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -683,7 +690,7 @@ class RiskAssessment extends DomainResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -691,7 +698,7 @@ class RiskAssessment extends DomainResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -699,7 +706,7 @@ class RiskAssessment extends DomainResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -707,39 +714,63 @@ class RiskAssessment extends DomainResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
           if (child is List<Identifier>) {
-            return copyWith(identifier: child);
+            // Add all elements from passed list
+            final newList = [...?identifier, ...child];
+            return copyWith(identifier: newList);
+          } else if (child is Identifier) {
+            // Add single element to existing list or create new list
+            final newList = [...?identifier, child];
+            return copyWith(identifier: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'basedOn':
@@ -747,7 +778,7 @@ class RiskAssessment extends DomainResource {
           if (child is Reference) {
             return copyWith(basedOn: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'parent':
@@ -755,7 +786,7 @@ class RiskAssessment extends DomainResource {
           if (child is Reference) {
             return copyWith(parent: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -763,7 +794,7 @@ class RiskAssessment extends DomainResource {
           if (child is ObservationStatus) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'method':
@@ -771,7 +802,7 @@ class RiskAssessment extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(method: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
@@ -779,7 +810,7 @@ class RiskAssessment extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(code: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
@@ -787,7 +818,7 @@ class RiskAssessment extends DomainResource {
           if (child is Reference) {
             return copyWith(subject: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'encounter':
@@ -795,24 +826,29 @@ class RiskAssessment extends DomainResource {
           if (child is Reference) {
             return copyWith(encounter: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'occurrenceX':
         {
           if (child is OccurrenceXRiskAssessment) {
-            // child is e.g. SubjectX union
             return copyWith(occurrenceX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is FhirDateTime) {
+              return copyWith(occurrenceX: child);
+            }
+            if (child is Period) {
+              return copyWith(occurrenceX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'occurrenceFhirDateTime':
         {
           if (child is FhirDateTime) {
             return copyWith(occurrenceX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'occurrencePeriod':
@@ -820,7 +856,7 @@ class RiskAssessment extends DomainResource {
           if (child is Period) {
             return copyWith(occurrenceX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'condition':
@@ -828,7 +864,7 @@ class RiskAssessment extends DomainResource {
           if (child is Reference) {
             return copyWith(condition: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'performer':
@@ -836,39 +872,63 @@ class RiskAssessment extends DomainResource {
           if (child is Reference) {
             return copyWith(performer: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonCode':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(reasonCode: child);
+            // Add all elements from passed list
+            final newList = [...?reasonCode, ...child];
+            return copyWith(reasonCode: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?reasonCode, child];
+            return copyWith(reasonCode: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'reasonReference':
         {
           if (child is List<Reference>) {
-            return copyWith(reasonReference: child);
+            // Add all elements from passed list
+            final newList = [...?reasonReference, ...child];
+            return copyWith(reasonReference: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?reasonReference, child];
+            return copyWith(reasonReference: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'basis':
         {
           if (child is List<Reference>) {
-            return copyWith(basis: child);
+            // Add all elements from passed list
+            final newList = [...?basis, ...child];
+            return copyWith(basis: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?basis, child];
+            return copyWith(basis: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'prediction':
         {
           if (child is List<RiskAssessmentPrediction>) {
-            return copyWith(prediction: child);
+            // Add all elements from passed list
+            final newList = [...?prediction, ...child];
+            return copyWith(prediction: newList);
+          } else if (child is RiskAssessmentPrediction) {
+            // Add single element to existing list or create new list
+            final newList = [...?prediction, child];
+            return copyWith(prediction: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'mitigation':
@@ -876,19 +936,25 @@ class RiskAssessment extends DomainResource {
           if (child is FhirString) {
             return copyWith(mitigation: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
           if (child is List<Annotation>) {
-            return copyWith(note: child);
+            // Add all elements from passed list
+            final newList = [...?note, ...child];
+            return copyWith(note: newList);
+          } else if (child is Annotation) {
+            // Add single element to existing list or create new list
+            final newList = [...?note, child];
+            return copyWith(note: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -962,113 +1028,167 @@ class RiskAssessment extends DomainResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  RiskAssessment createProperty(String propertyName) {
+  RiskAssessment createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'identifier':
         {
-          return copyWith(identifier: <Identifier>[]);
+          return copyWith(
+            identifier: <Identifier>[],
+          );
         }
       case 'basedOn':
         {
-          return copyWith(basedOn: Reference.empty());
+          return copyWith(
+            basedOn: Reference.empty(),
+          );
         }
       case 'parent':
         {
-          return copyWith(parent: Reference.empty());
+          return copyWith(
+            parent: Reference.empty(),
+          );
         }
       case 'status':
         {
-          return copyWith(status: ObservationStatus.empty());
+          return copyWith(
+            status: ObservationStatus.empty(),
+          );
         }
       case 'method':
         {
-          return copyWith(method: CodeableConcept.empty());
+          return copyWith(
+            method: CodeableConcept.empty(),
+          );
         }
       case 'code':
         {
-          return copyWith(code: CodeableConcept.empty());
+          return copyWith(
+            code: CodeableConcept.empty(),
+          );
         }
       case 'subject':
         {
-          return copyWith(subject: Reference.empty());
+          return copyWith(
+            subject: Reference.empty(),
+          );
         }
       case 'encounter':
         {
-          return copyWith(encounter: Reference.empty());
+          return copyWith(
+            encounter: Reference.empty(),
+          );
         }
       case 'occurrence':
       case 'occurrenceX':
       case 'occurrenceDateTime':
         {
-          return copyWith(occurrenceX: FhirDateTime.empty());
+          return copyWith(
+            occurrenceX: FhirDateTime.empty(),
+          );
         }
       case 'occurrencePeriod':
         {
-          return copyWith(occurrenceX: Period.empty());
+          return copyWith(
+            occurrenceX: Period.empty(),
+          );
         }
       case 'condition':
         {
-          return copyWith(condition: Reference.empty());
+          return copyWith(
+            condition: Reference.empty(),
+          );
         }
       case 'performer':
         {
-          return copyWith(performer: Reference.empty());
+          return copyWith(
+            performer: Reference.empty(),
+          );
         }
       case 'reasonCode':
         {
-          return copyWith(reasonCode: <CodeableConcept>[]);
+          return copyWith(
+            reasonCode: <CodeableConcept>[],
+          );
         }
       case 'reasonReference':
         {
-          return copyWith(reasonReference: <Reference>[]);
+          return copyWith(
+            reasonReference: <Reference>[],
+          );
         }
       case 'basis':
         {
-          return copyWith(basis: <Reference>[]);
+          return copyWith(
+            basis: <Reference>[],
+          );
         }
       case 'prediction':
         {
-          return copyWith(prediction: <RiskAssessmentPrediction>[]);
+          return copyWith(
+            prediction: <RiskAssessmentPrediction>[],
+          );
         }
       case 'mitigation':
         {
-          return copyWith(mitigation: FhirString.empty());
+          return copyWith(
+            mitigation: FhirString.empty(),
+          );
         }
       case 'note':
         {
-          return copyWith(note: <Annotation>[]);
+          return copyWith(
+            note: <Annotation>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1307,19 +1427,34 @@ class RiskAssessment extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1346,34 +1481,64 @@ class RiskAssessment extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(basedOn, o.basedOn)) {
+    if (!equalsDeepWithNull(
+      basedOn,
+      o.basedOn,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(parent, o.parent)) {
+    if (!equalsDeepWithNull(
+      parent,
+      o.parent,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(method, o.method)) {
+    if (!equalsDeepWithNull(
+      method,
+      o.method,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(code, o.code)) {
+    if (!equalsDeepWithNull(
+      code,
+      o.code,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(subject, o.subject)) {
+    if (!equalsDeepWithNull(
+      subject,
+      o.subject,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(encounter, o.encounter)) {
+    if (!equalsDeepWithNull(
+      encounter,
+      o.encounter,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(occurrenceX, o.occurrenceX)) {
+    if (!equalsDeepWithNull(
+      occurrenceX,
+      o.occurrenceX,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(condition, o.condition)) {
+    if (!equalsDeepWithNull(
+      condition,
+      o.condition,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(performer, o.performer)) {
+    if (!equalsDeepWithNull(
+      performer,
+      o.performer,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1400,7 +1565,10 @@ class RiskAssessment extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(mitigation, o.mitigation)) {
+    if (!equalsDeepWithNull(
+      mitigation,
+      o.mitigation,
+    )) {
       return false;
     }
     if (!listEquals<Annotation>(
@@ -1627,23 +1795,50 @@ class RiskAssessmentPrediction extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('outcome', outcome);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'outcome',
+      outcome,
+    );
     if (probabilityX != null) {
       final fhirType = probabilityX!.fhirType;
-      addField('probability${fhirType.capitalize()}', probabilityX);
+      addField(
+        'probability${fhirType.capitalize()}',
+        probabilityX,
+      );
     }
 
-    addField('qualitativeRisk', qualitativeRisk);
-    addField('relativeRisk', relativeRisk);
+    addField(
+      'qualitativeRisk',
+      qualitativeRisk,
+    );
+    addField(
+      'relativeRisk',
+      relativeRisk,
+    );
     if (whenX != null) {
       final fhirType = whenX!.fhirType;
-      addField('when${fhirType.capitalize()}', whenX);
+      addField(
+        'when${fhirType.capitalize()}',
+        whenX,
+      );
     }
 
-    addField('rationale', rationale);
+    addField(
+      'rationale',
+      rationale,
+    );
     return json;
   }
 
@@ -1732,32 +1927,6 @@ class RiskAssessmentPrediction extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1769,39 +1938,51 @@ class RiskAssessmentPrediction extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'outcome':
@@ -1809,24 +1990,29 @@ class RiskAssessmentPrediction extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(outcome: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'probabilityX':
         {
           if (child is ProbabilityXRiskAssessmentPrediction) {
-            // child is e.g. SubjectX union
             return copyWith(probabilityX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is FhirDecimal) {
+              return copyWith(probabilityX: child);
+            }
+            if (child is Range) {
+              return copyWith(probabilityX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'probabilityFhirDecimal':
         {
           if (child is FhirDecimal) {
             return copyWith(probabilityX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'probabilityRange':
@@ -1834,7 +2020,7 @@ class RiskAssessmentPrediction extends BackboneElement {
           if (child is Range) {
             return copyWith(probabilityX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'qualitativeRisk':
@@ -1842,7 +2028,7 @@ class RiskAssessmentPrediction extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(qualitativeRisk: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'relativeRisk':
@@ -1850,24 +2036,29 @@ class RiskAssessmentPrediction extends BackboneElement {
           if (child is FhirDecimal) {
             return copyWith(relativeRisk: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'whenX':
         {
           if (child is WhenXRiskAssessmentPrediction) {
-            // child is e.g. SubjectX union
             return copyWith(whenX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is Period) {
+              return copyWith(whenX: child);
+            }
+            if (child is Range) {
+              return copyWith(whenX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'whenPeriod':
         {
           if (child is Period) {
             return copyWith(whenX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'whenRange':
@@ -1875,7 +2066,7 @@ class RiskAssessmentPrediction extends BackboneElement {
           if (child is Range) {
             return copyWith(whenX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'rationale':
@@ -1883,11 +2074,11 @@ class RiskAssessmentPrediction extends BackboneElement {
           if (child is FhirString) {
             return copyWith(rationale: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1934,55 +2125,79 @@ class RiskAssessmentPrediction extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  RiskAssessmentPrediction createProperty(String propertyName) {
+  RiskAssessmentPrediction createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'outcome':
         {
-          return copyWith(outcome: CodeableConcept.empty());
+          return copyWith(
+            outcome: CodeableConcept.empty(),
+          );
         }
       case 'probability':
       case 'probabilityX':
       case 'probabilityDecimal':
         {
-          return copyWith(probabilityX: FhirDecimal.empty());
+          return copyWith(
+            probabilityX: FhirDecimal.empty(),
+          );
         }
       case 'probabilityRange':
         {
-          return copyWith(probabilityX: Range.empty());
+          return copyWith(
+            probabilityX: Range.empty(),
+          );
         }
       case 'qualitativeRisk':
         {
-          return copyWith(qualitativeRisk: CodeableConcept.empty());
+          return copyWith(
+            qualitativeRisk: CodeableConcept.empty(),
+          );
         }
       case 'relativeRisk':
         {
-          return copyWith(relativeRisk: FhirDecimal.empty());
+          return copyWith(
+            relativeRisk: FhirDecimal.empty(),
+          );
         }
       case 'when':
       case 'whenX':
       case 'whenPeriod':
         {
-          return copyWith(whenX: Period.empty());
+          return copyWith(
+            whenX: Period.empty(),
+          );
         }
       case 'whenRange':
         {
-          return copyWith(whenX: Range.empty());
+          return copyWith(
+            whenX: Range.empty(),
+          );
         }
       case 'rationale':
         {
-          return copyWith(rationale: FhirString.empty());
+          return copyWith(
+            rationale: FhirString.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2091,7 +2306,10 @@ class RiskAssessmentPrediction extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2106,22 +2324,40 @@ class RiskAssessmentPrediction extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(outcome, o.outcome)) {
+    if (!equalsDeepWithNull(
+      outcome,
+      o.outcome,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(probabilityX, o.probabilityX)) {
+    if (!equalsDeepWithNull(
+      probabilityX,
+      o.probabilityX,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(qualitativeRisk, o.qualitativeRisk)) {
+    if (!equalsDeepWithNull(
+      qualitativeRisk,
+      o.qualitativeRisk,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(relativeRisk, o.relativeRisk)) {
+    if (!equalsDeepWithNull(
+      relativeRisk,
+      o.relativeRisk,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(whenX, o.whenX)) {
+    if (!equalsDeepWithNull(
+      whenX,
+      o.whenX,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(rationale, o.rationale)) {
+    if (!equalsDeepWithNull(
+      rationale,
+      o.rationale,
+    )) {
       return false;
     }
     return true;

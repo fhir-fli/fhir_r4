@@ -210,15 +210,42 @@ class HumanName extends DataType
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('use', use);
-    addField('text', text);
-    addField('family', family);
-    addField('given', given);
-    addField('prefix', prefix);
-    addField('suffix', suffix);
-    addField('period', period);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'use',
+      use,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'family',
+      family,
+    );
+    addField(
+      'given',
+      given,
+    );
+    addField(
+      'prefix',
+      prefix,
+    );
+    addField(
+      'suffix',
+      suffix,
+    );
+    addField(
+      'period',
+      period,
+    );
     return json;
   }
 
@@ -291,44 +318,6 @@ class HumanName extends DataType
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'given':
-        if (given != null) {
-          return given!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'prefix':
-        if (prefix != null) {
-          return prefix!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'suffix':
-        if (suffix != null) {
-          return suffix!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -340,31 +329,37 @@ class HumanName extends DataType
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'use':
@@ -372,7 +367,7 @@ class HumanName extends DataType
           if (child is NameUse) {
             return copyWith(use: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -380,7 +375,7 @@ class HumanName extends DataType
           if (child is FhirString) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'family':
@@ -388,31 +383,49 @@ class HumanName extends DataType
           if (child is FhirString) {
             return copyWith(family: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'given':
         {
           if (child is List<FhirString>) {
-            return copyWith(given: child);
+            // Add all elements from passed list
+            final newList = [...?given, ...child];
+            return copyWith(given: newList);
+          } else if (child is FhirString) {
+            // Add single element to existing list or create new list
+            final newList = [...?given, child];
+            return copyWith(given: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'prefix':
         {
           if (child is List<FhirString>) {
-            return copyWith(prefix: child);
+            // Add all elements from passed list
+            final newList = [...?prefix, ...child];
+            return copyWith(prefix: newList);
+          } else if (child is FhirString) {
+            // Add single element to existing list or create new list
+            final newList = [...?prefix, child];
+            return copyWith(prefix: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'suffix':
         {
           if (child is List<FhirString>) {
-            return copyWith(suffix: child);
+            // Add all elements from passed list
+            final newList = [...?suffix, ...child];
+            return copyWith(suffix: newList);
+          } else if (child is FhirString) {
+            // Add single element to existing list or create new list
+            final newList = [...?suffix, child];
+            return copyWith(suffix: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
@@ -420,11 +433,11 @@ class HumanName extends DataType
           if (child is Period) {
             return copyWith(period: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -461,43 +474,63 @@ class HumanName extends DataType
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  HumanName createProperty(String propertyName) {
+  HumanName createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'use':
         {
-          return copyWith(use: NameUse.empty());
+          return copyWith(
+            use: NameUse.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: FhirString.empty());
+          return copyWith(
+            text: FhirString.empty(),
+          );
         }
       case 'family':
         {
-          return copyWith(family: FhirString.empty());
+          return copyWith(
+            family: FhirString.empty(),
+          );
         }
       case 'given':
         {
-          return copyWith(given: <FhirString>[]);
+          return copyWith(
+            given: <FhirString>[],
+          );
         }
       case 'prefix':
         {
-          return copyWith(prefix: <FhirString>[]);
+          return copyWith(
+            prefix: <FhirString>[],
+          );
         }
       case 'suffix':
         {
-          return copyWith(suffix: <FhirString>[]);
+          return copyWith(
+            suffix: <FhirString>[],
+          );
         }
       case 'period':
         {
-          return copyWith(period: Period.empty());
+          return copyWith(
+            period: Period.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -614,7 +647,10 @@ class HumanName extends DataType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -623,13 +659,22 @@ class HumanName extends DataType
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(use, o.use)) {
+    if (!equalsDeepWithNull(
+      use,
+      o.use,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(family, o.family)) {
+    if (!equalsDeepWithNull(
+      family,
+      o.family,
+    )) {
       return false;
     }
     if (!listEquals<FhirString>(
@@ -650,7 +695,10 @@ class HumanName extends DataType
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(period, o.period)) {
+    if (!equalsDeepWithNull(
+      period,
+      o.period,
+    )) {
       return false;
     }
     return true;

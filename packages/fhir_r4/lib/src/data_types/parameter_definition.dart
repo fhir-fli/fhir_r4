@@ -213,15 +213,42 @@ class ParameterDefinition extends DataType
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('name', name);
-    addField('use', use);
-    addField('min', min);
-    addField('max', max);
-    addField('documentation', documentation);
-    addField('type', type);
-    addField('profile', profile);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'name',
+      name,
+    );
+    addField(
+      'use',
+      use,
+    );
+    addField(
+      'min',
+      min,
+    );
+    addField(
+      'max',
+      max,
+    );
+    addField(
+      'documentation',
+      documentation,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'profile',
+      profile,
+    );
     return json;
   }
 
@@ -290,26 +317,6 @@ class ParameterDefinition extends DataType
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -321,31 +328,37 @@ class ParameterDefinition extends DataType
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
@@ -353,7 +366,7 @@ class ParameterDefinition extends DataType
           if (child is FhirCode) {
             return copyWith(name: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'use':
@@ -361,7 +374,7 @@ class ParameterDefinition extends DataType
           if (child is OperationParameterUse) {
             return copyWith(use: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'min':
@@ -369,7 +382,7 @@ class ParameterDefinition extends DataType
           if (child is FhirInteger) {
             return copyWith(min: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'max':
@@ -377,7 +390,7 @@ class ParameterDefinition extends DataType
           if (child is FhirString) {
             return copyWith(max: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'documentation':
@@ -385,7 +398,7 @@ class ParameterDefinition extends DataType
           if (child is FhirString) {
             return copyWith(documentation: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -393,7 +406,7 @@ class ParameterDefinition extends DataType
           if (child is FHIRAllTypes) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'profile':
@@ -401,11 +414,11 @@ class ParameterDefinition extends DataType
           if (child is FhirCanonical) {
             return copyWith(profile: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -442,43 +455,63 @@ class ParameterDefinition extends DataType
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  ParameterDefinition createProperty(String propertyName) {
+  ParameterDefinition createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'name':
         {
-          return copyWith(name: FhirCode.empty());
+          return copyWith(
+            name: FhirCode.empty(),
+          );
         }
       case 'use':
         {
-          return copyWith(use: OperationParameterUse.empty());
+          return copyWith(
+            use: OperationParameterUse.empty(),
+          );
         }
       case 'min':
         {
-          return copyWith(min: FhirInteger.empty());
+          return copyWith(
+            min: FhirInteger.empty(),
+          );
         }
       case 'max':
         {
-          return copyWith(max: FhirString.empty());
+          return copyWith(
+            max: FhirString.empty(),
+          );
         }
       case 'documentation':
         {
-          return copyWith(documentation: FhirString.empty());
+          return copyWith(
+            documentation: FhirString.empty(),
+          );
         }
       case 'type':
         {
-          return copyWith(type: FHIRAllTypes.empty());
+          return copyWith(
+            type: FHIRAllTypes.empty(),
+          );
         }
       case 'profile':
         {
-          return copyWith(profile: FhirCanonical.empty());
+          return copyWith(
+            profile: FhirCanonical.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -581,7 +614,10 @@ class ParameterDefinition extends DataType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -590,25 +626,46 @@ class ParameterDefinition extends DataType
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(name, o.name)) {
+    if (!equalsDeepWithNull(
+      name,
+      o.name,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(use, o.use)) {
+    if (!equalsDeepWithNull(
+      use,
+      o.use,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(min, o.min)) {
+    if (!equalsDeepWithNull(
+      min,
+      o.min,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(max, o.max)) {
+    if (!equalsDeepWithNull(
+      max,
+      o.max,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(documentation, o.documentation)) {
+    if (!equalsDeepWithNull(
+      documentation,
+      o.documentation,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(profile, o.profile)) {
+    if (!equalsDeepWithNull(
+      profile,
+      o.profile,
+    )) {
       return false;
     }
     return true;

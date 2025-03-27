@@ -56,9 +56,13 @@ class GraphCompartmentRule extends FhirCodeEnum {
       return GraphCompartmentRule.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'GraphCompartmentRule cannot be constructed from JSON.',);
+        'GraphCompartmentRule cannot be constructed from JSON.',
+      );
     }
-    return GraphCompartmentRule._(validatedValue: value, element: element);
+    return GraphCompartmentRule._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// identical

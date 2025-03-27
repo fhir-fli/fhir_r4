@@ -54,9 +54,14 @@ class NamingSystemType extends FhirCodeEnum {
     if (value == null && element != null) {
       return NamingSystemType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('NamingSystemType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'NamingSystemType cannot be constructed from JSON.',
+      );
     }
-    return NamingSystemType._(validatedValue: value, element: element);
+    return NamingSystemType._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// codesystem

@@ -54,9 +54,14 @@ class EncounterStatus extends FhirCodeEnum {
     if (value == null && element != null) {
       return EncounterStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('EncounterStatus cannot be constructed from JSON.');
+      throw ArgumentError(
+        'EncounterStatus cannot be constructed from JSON.',
+      );
     }
-    return EncounterStatus._(validatedValue: value, element: element);
+    return EncounterStatus._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// planned

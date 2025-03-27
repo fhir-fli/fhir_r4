@@ -54,9 +54,14 @@ class TaskStatus extends FhirCodeEnum {
     if (value == null && element != null) {
       return TaskStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('TaskStatus cannot be constructed from JSON.');
+      throw ArgumentError(
+        'TaskStatus cannot be constructed from JSON.',
+      );
     }
-    return TaskStatus._(validatedValue: value, element: element);
+    return TaskStatus._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// draft

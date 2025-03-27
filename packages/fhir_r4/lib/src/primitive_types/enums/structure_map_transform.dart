@@ -56,9 +56,13 @@ class StructureMapTransform extends FhirCodeEnum {
       return StructureMapTransform.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'StructureMapTransform cannot be constructed from JSON.',);
+        'StructureMapTransform cannot be constructed from JSON.',
+      );
     }
-    return StructureMapTransform._(validatedValue: value, element: element);
+    return StructureMapTransform._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// create

@@ -57,10 +57,13 @@ class AllergyIntoleranceCategory extends FhirCodeEnum {
       return AllergyIntoleranceCategory.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'AllergyIntoleranceCategory cannot be constructed from JSON.',);
+        'AllergyIntoleranceCategory cannot be constructed from JSON.',
+      );
     }
     return AllergyIntoleranceCategory._(
-        validatedValue: value, element: element,);
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// food

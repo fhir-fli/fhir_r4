@@ -171,13 +171,34 @@ class Age extends Quantity
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('value', value);
-    addField('comparator', comparator);
-    addField('unit', unit);
-    addField('system', system);
-    addField('code', code);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'value',
+      value,
+    );
+    addField(
+      'comparator',
+      comparator,
+    );
+    addField(
+      'unit',
+      unit,
+    );
+    addField(
+      'system',
+      system,
+    );
+    addField(
+      'code',
+      code,
+    );
     return json;
   }
 
@@ -240,26 +261,6 @@ class Age extends Quantity
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -271,31 +272,37 @@ class Age extends Quantity
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'value':
@@ -303,7 +310,7 @@ class Age extends Quantity
           if (child is FhirDecimal) {
             return copyWith(value: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'comparator':
@@ -311,7 +318,7 @@ class Age extends Quantity
           if (child is QuantityComparator) {
             return copyWith(comparator: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'unit':
@@ -319,7 +326,7 @@ class Age extends Quantity
           if (child is FhirString) {
             return copyWith(unit: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'system':
@@ -327,7 +334,7 @@ class Age extends Quantity
           if (child is FhirUri) {
             return copyWith(system: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
@@ -335,11 +342,11 @@ class Age extends Quantity
           if (child is FhirCode) {
             return copyWith(code: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -372,35 +379,51 @@ class Age extends Quantity
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  Age createProperty(String propertyName) {
+  Age createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'value':
         {
-          return copyWith(value: FhirDecimal.empty());
+          return copyWith(
+            value: FhirDecimal.empty(),
+          );
         }
       case 'comparator':
         {
-          return copyWith(comparator: QuantityComparator.empty());
+          return copyWith(
+            comparator: QuantityComparator.empty(),
+          );
         }
       case 'unit':
         {
-          return copyWith(unit: FhirString.empty());
+          return copyWith(
+            unit: FhirString.empty(),
+          );
         }
       case 'system':
         {
-          return copyWith(system: FhirUri.empty());
+          return copyWith(
+            system: FhirUri.empty(),
+          );
         }
       case 'code':
         {
-          return copyWith(code: FhirCode.empty());
+          return copyWith(
+            code: FhirCode.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -491,7 +514,10 @@ class Age extends Quantity
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -500,19 +526,34 @@ class Age extends Quantity
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(value, o.value)) {
+    if (!equalsDeepWithNull(
+      value,
+      o.value,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(comparator, o.comparator)) {
+    if (!equalsDeepWithNull(
+      comparator,
+      o.comparator,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(unit, o.unit)) {
+    if (!equalsDeepWithNull(
+      unit,
+      o.unit,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(system, o.system)) {
+    if (!equalsDeepWithNull(
+      system,
+      o.system,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(code, o.code)) {
+    if (!equalsDeepWithNull(
+      code,
+      o.code,
+    )) {
       return false;
     }
     return true;

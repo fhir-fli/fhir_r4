@@ -54,9 +54,14 @@ class IssueSeverity extends FhirCodeEnum {
     if (value == null && element != null) {
       return IssueSeverity.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('IssueSeverity cannot be constructed from JSON.');
+      throw ArgumentError(
+        'IssueSeverity cannot be constructed from JSON.',
+      );
     }
-    return IssueSeverity._(validatedValue: value, element: element);
+    return IssueSeverity._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// fatal

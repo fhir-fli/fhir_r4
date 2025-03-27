@@ -54,9 +54,14 @@ class SearchComparator extends FhirCodeEnum {
     if (value == null && element != null) {
       return SearchComparator.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('SearchComparator cannot be constructed from JSON.');
+      throw ArgumentError(
+        'SearchComparator cannot be constructed from JSON.',
+      );
     }
-    return SearchComparator._(validatedValue: value, element: element);
+    return SearchComparator._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// eq

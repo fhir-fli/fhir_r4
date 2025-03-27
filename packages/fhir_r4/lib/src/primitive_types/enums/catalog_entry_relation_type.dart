@@ -56,9 +56,13 @@ class CatalogEntryRelationType extends FhirCodeEnum {
       return CatalogEntryRelationType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'CatalogEntryRelationType cannot be constructed from JSON.',);
+        'CatalogEntryRelationType cannot be constructed from JSON.',
+      );
     }
-    return CatalogEntryRelationType._(validatedValue: value, element: element);
+    return CatalogEntryRelationType._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// triggers

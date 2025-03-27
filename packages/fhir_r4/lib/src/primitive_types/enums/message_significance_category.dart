@@ -56,10 +56,13 @@ class MessageSignificanceCategory extends FhirCodeEnum {
       return MessageSignificanceCategory.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'MessageSignificanceCategory cannot be constructed from JSON.',);
+        'MessageSignificanceCategory cannot be constructed from JSON.',
+      );
     }
     return MessageSignificanceCategory._(
-        validatedValue: value, element: element,);
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// consequence

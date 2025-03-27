@@ -58,10 +58,13 @@ class BiologicallyDerivedProductStorageScale extends FhirCodeEnum {
           .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'BiologicallyDerivedProductStorageScale cannot be constructed from JSON.',);
+        'BiologicallyDerivedProductStorageScale cannot be constructed from JSON.',
+      );
     }
     return BiologicallyDerivedProductStorageScale._(
-        validatedValue: value, element: element,);
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// farenheit

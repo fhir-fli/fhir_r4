@@ -56,9 +56,13 @@ class DeviceMetricCategory extends FhirCodeEnum {
       return DeviceMetricCategory.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'DeviceMetricCategory cannot be constructed from JSON.',);
+        'DeviceMetricCategory cannot be constructed from JSON.',
+      );
     }
-    return DeviceMetricCategory._(validatedValue: value, element: element);
+    return DeviceMetricCategory._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// measurement

@@ -351,33 +351,96 @@ class ImmunizationEvaluation extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('identifier', identifier);
-    addField('status', status);
-    addField('patient', patient);
-    addField('date', date);
-    addField('authority', authority);
-    addField('targetDisease', targetDisease);
-    addField('immunizationEvent', immunizationEvent);
-    addField('doseStatus', doseStatus);
-    addField('doseStatusReason', doseStatusReason);
-    addField('description', description);
-    addField('series', series);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'patient',
+      patient,
+    );
+    addField(
+      'date',
+      date,
+    );
+    addField(
+      'authority',
+      authority,
+    );
+    addField(
+      'targetDisease',
+      targetDisease,
+    );
+    addField(
+      'immunizationEvent',
+      immunizationEvent,
+    );
+    addField(
+      'doseStatus',
+      doseStatus,
+    );
+    addField(
+      'doseStatusReason',
+      doseStatusReason,
+    );
+    addField(
+      'description',
+      description,
+    );
+    addField(
+      'series',
+      series,
+    );
     if (doseNumberX != null) {
       final fhirType = doseNumberX!.fhirType;
-      addField('doseNumber${fhirType.capitalize()}', doseNumberX);
+      addField(
+        'doseNumber${fhirType.capitalize()}',
+        doseNumberX,
+      );
     }
 
     if (seriesDosesX != null) {
       final fhirType = seriesDosesX!.fhirType;
-      addField('seriesDoses${fhirType.capitalize()}', seriesDosesX);
+      addField(
+        'seriesDoses${fhirType.capitalize()}',
+        seriesDosesX,
+      );
     }
 
     return json;
@@ -518,50 +581,6 @@ class ImmunizationEvaluation extends DomainResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'identifier':
-        if (identifier != null) {
-          return identifier!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'doseStatusReason':
-        if (doseStatusReason != null) {
-          return doseStatusReason!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -573,23 +592,23 @@ class ImmunizationEvaluation extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -597,7 +616,7 @@ class ImmunizationEvaluation extends DomainResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -605,7 +624,7 @@ class ImmunizationEvaluation extends DomainResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -613,7 +632,7 @@ class ImmunizationEvaluation extends DomainResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -621,39 +640,63 @@ class ImmunizationEvaluation extends DomainResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
           if (child is List<Identifier>) {
-            return copyWith(identifier: child);
+            // Add all elements from passed list
+            final newList = [...?identifier, ...child];
+            return copyWith(identifier: newList);
+          } else if (child is Identifier) {
+            // Add single element to existing list or create new list
+            final newList = [...?identifier, child];
+            return copyWith(identifier: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -661,7 +704,7 @@ class ImmunizationEvaluation extends DomainResource {
           if (child is ImmunizationEvaluationStatusCodes) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'patient':
@@ -669,7 +712,7 @@ class ImmunizationEvaluation extends DomainResource {
           if (child is Reference) {
             return copyWith(patient: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
@@ -677,7 +720,7 @@ class ImmunizationEvaluation extends DomainResource {
           if (child is FhirDateTime) {
             return copyWith(date: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'authority':
@@ -685,7 +728,7 @@ class ImmunizationEvaluation extends DomainResource {
           if (child is Reference) {
             return copyWith(authority: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'targetDisease':
@@ -693,7 +736,7 @@ class ImmunizationEvaluation extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(targetDisease: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'immunizationEvent':
@@ -701,7 +744,7 @@ class ImmunizationEvaluation extends DomainResource {
           if (child is Reference) {
             return copyWith(immunizationEvent: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'doseStatus':
@@ -709,15 +752,21 @@ class ImmunizationEvaluation extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(doseStatus: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'doseStatusReason':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(doseStatusReason: child);
+            // Add all elements from passed list
+            final newList = [...?doseStatusReason, ...child];
+            return copyWith(doseStatusReason: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?doseStatusReason, child];
+            return copyWith(doseStatusReason: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
@@ -725,7 +774,7 @@ class ImmunizationEvaluation extends DomainResource {
           if (child is FhirString) {
             return copyWith(description: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'series':
@@ -733,24 +782,29 @@ class ImmunizationEvaluation extends DomainResource {
           if (child is FhirString) {
             return copyWith(series: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'doseNumberX':
         {
           if (child is DoseNumberXImmunizationEvaluation) {
-            // child is e.g. SubjectX union
             return copyWith(doseNumberX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is FhirPositiveInt) {
+              return copyWith(doseNumberX: child);
+            }
+            if (child is FhirString) {
+              return copyWith(doseNumberX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'doseNumberFhirPositiveInt':
         {
           if (child is FhirPositiveInt) {
             return copyWith(doseNumberX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'doseNumberFhirString':
@@ -758,24 +812,29 @@ class ImmunizationEvaluation extends DomainResource {
           if (child is FhirString) {
             return copyWith(doseNumberX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'seriesDosesX':
         {
           if (child is SeriesDosesXImmunizationEvaluation) {
-            // child is e.g. SubjectX union
             return copyWith(seriesDosesX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is FhirPositiveInt) {
+              return copyWith(seriesDosesX: child);
+            }
+            if (child is FhirString) {
+              return copyWith(seriesDosesX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'seriesDosesFhirPositiveInt':
         {
           if (child is FhirPositiveInt) {
             return copyWith(seriesDosesX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'seriesDosesFhirString':
@@ -783,11 +842,11 @@ class ImmunizationEvaluation extends DomainResource {
           if (child is FhirString) {
             return copyWith(seriesDosesX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -858,103 +917,151 @@ class ImmunizationEvaluation extends DomainResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  ImmunizationEvaluation createProperty(String propertyName) {
+  ImmunizationEvaluation createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'identifier':
         {
-          return copyWith(identifier: <Identifier>[]);
+          return copyWith(
+            identifier: <Identifier>[],
+          );
         }
       case 'status':
         {
-          return copyWith(status: ImmunizationEvaluationStatusCodes.empty());
+          return copyWith(
+            status: ImmunizationEvaluationStatusCodes.empty(),
+          );
         }
       case 'patient':
         {
-          return copyWith(patient: Reference.empty());
+          return copyWith(
+            patient: Reference.empty(),
+          );
         }
       case 'date':
         {
-          return copyWith(date: FhirDateTime.empty());
+          return copyWith(
+            date: FhirDateTime.empty(),
+          );
         }
       case 'authority':
         {
-          return copyWith(authority: Reference.empty());
+          return copyWith(
+            authority: Reference.empty(),
+          );
         }
       case 'targetDisease':
         {
-          return copyWith(targetDisease: CodeableConcept.empty());
+          return copyWith(
+            targetDisease: CodeableConcept.empty(),
+          );
         }
       case 'immunizationEvent':
         {
-          return copyWith(immunizationEvent: Reference.empty());
+          return copyWith(
+            immunizationEvent: Reference.empty(),
+          );
         }
       case 'doseStatus':
         {
-          return copyWith(doseStatus: CodeableConcept.empty());
+          return copyWith(
+            doseStatus: CodeableConcept.empty(),
+          );
         }
       case 'doseStatusReason':
         {
-          return copyWith(doseStatusReason: <CodeableConcept>[]);
+          return copyWith(
+            doseStatusReason: <CodeableConcept>[],
+          );
         }
       case 'description':
         {
-          return copyWith(description: FhirString.empty());
+          return copyWith(
+            description: FhirString.empty(),
+          );
         }
       case 'series':
         {
-          return copyWith(series: FhirString.empty());
+          return copyWith(
+            series: FhirString.empty(),
+          );
         }
       case 'doseNumber':
       case 'doseNumberX':
       case 'doseNumberPositiveInt':
         {
-          return copyWith(doseNumberX: FhirPositiveInt.empty());
+          return copyWith(
+            doseNumberX: FhirPositiveInt.empty(),
+          );
         }
       case 'doseNumberString':
         {
-          return copyWith(doseNumberX: FhirString.empty());
+          return copyWith(
+            doseNumberX: FhirString.empty(),
+          );
         }
       case 'seriesDoses':
       case 'seriesDosesX':
       case 'seriesDosesPositiveInt':
         {
-          return copyWith(seriesDosesX: FhirPositiveInt.empty());
+          return copyWith(
+            seriesDosesX: FhirPositiveInt.empty(),
+          );
         }
       case 'seriesDosesString':
         {
-          return copyWith(seriesDosesX: FhirString.empty());
+          return copyWith(
+            seriesDosesX: FhirString.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1146,19 +1253,34 @@ class ImmunizationEvaluation extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1185,25 +1307,46 @@ class ImmunizationEvaluation extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(patient, o.patient)) {
+    if (!equalsDeepWithNull(
+      patient,
+      o.patient,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(date, o.date)) {
+    if (!equalsDeepWithNull(
+      date,
+      o.date,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(authority, o.authority)) {
+    if (!equalsDeepWithNull(
+      authority,
+      o.authority,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(targetDisease, o.targetDisease)) {
+    if (!equalsDeepWithNull(
+      targetDisease,
+      o.targetDisease,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(immunizationEvent, o.immunizationEvent)) {
+    if (!equalsDeepWithNull(
+      immunizationEvent,
+      o.immunizationEvent,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(doseStatus, o.doseStatus)) {
+    if (!equalsDeepWithNull(
+      doseStatus,
+      o.doseStatus,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1212,16 +1355,28 @@ class ImmunizationEvaluation extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(description, o.description)) {
+    if (!equalsDeepWithNull(
+      description,
+      o.description,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(series, o.series)) {
+    if (!equalsDeepWithNull(
+      series,
+      o.series,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(doseNumberX, o.doseNumberX)) {
+    if (!equalsDeepWithNull(
+      doseNumberX,
+      o.doseNumberX,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(seriesDosesX, o.seriesDosesX)) {
+    if (!equalsDeepWithNull(
+      seriesDosesX,
+      o.seriesDosesX,
+    )) {
       return false;
     }
     return true;

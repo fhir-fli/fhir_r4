@@ -56,9 +56,13 @@ class ExtensionContextType extends FhirCodeEnum {
       return ExtensionContextType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ExtensionContextType cannot be constructed from JSON.',);
+        'ExtensionContextType cannot be constructed from JSON.',
+      );
     }
-    return ExtensionContextType._(validatedValue: value, element: element);
+    return ExtensionContextType._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// fhirpath

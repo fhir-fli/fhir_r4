@@ -439,34 +439,118 @@ class AdverseEvent extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('identifier', identifier);
-    addField('actuality', actuality);
-    addField('category', category);
-    addField('event', event);
-    addField('subject', subject);
-    addField('encounter', encounter);
-    addField('date', date);
-    addField('detected', detected);
-    addField('recordedDate', recordedDate);
-    addField('resultingCondition', resultingCondition);
-    addField('location', location);
-    addField('seriousness', seriousness);
-    addField('severity', severity);
-    addField('outcome', outcome);
-    addField('recorder', recorder);
-    addField('contributor', contributor);
-    addField('suspectEntity', suspectEntity);
-    addField('subjectMedicalHistory', subjectMedicalHistory);
-    addField('referenceDocument', referenceDocument);
-    addField('study', study);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'actuality',
+      actuality,
+    );
+    addField(
+      'category',
+      category,
+    );
+    addField(
+      'event',
+      event,
+    );
+    addField(
+      'subject',
+      subject,
+    );
+    addField(
+      'encounter',
+      encounter,
+    );
+    addField(
+      'date',
+      date,
+    );
+    addField(
+      'detected',
+      detected,
+    );
+    addField(
+      'recordedDate',
+      recordedDate,
+    );
+    addField(
+      'resultingCondition',
+      resultingCondition,
+    );
+    addField(
+      'location',
+      location,
+    );
+    addField(
+      'seriousness',
+      seriousness,
+    );
+    addField(
+      'severity',
+      severity,
+    );
+    addField(
+      'outcome',
+      outcome,
+    );
+    addField(
+      'recorder',
+      recorder,
+    );
+    addField(
+      'contributor',
+      contributor,
+    );
+    addField(
+      'suspectEntity',
+      suspectEntity,
+    );
+    addField(
+      'subjectMedicalHistory',
+      subjectMedicalHistory,
+    );
+    addField(
+      'referenceDocument',
+      referenceDocument,
+    );
+    addField(
+      'study',
+      study,
+    );
     return json;
   }
 
@@ -630,80 +714,6 @@ class AdverseEvent extends DomainResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'category':
-        if (category != null) {
-          return category!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'resultingCondition':
-        if (resultingCondition != null) {
-          return resultingCondition!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'contributor':
-        if (contributor != null) {
-          return contributor!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'suspectEntity':
-        if (suspectEntity != null) {
-          return suspectEntity!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'subjectMedicalHistory':
-        if (subjectMedicalHistory != null) {
-          return subjectMedicalHistory!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'referenceDocument':
-        if (referenceDocument != null) {
-          return referenceDocument!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'study':
-        if (study != null) {
-          return study!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -715,23 +725,23 @@ class AdverseEvent extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -739,7 +749,7 @@ class AdverseEvent extends DomainResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -747,7 +757,7 @@ class AdverseEvent extends DomainResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -755,7 +765,7 @@ class AdverseEvent extends DomainResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -763,31 +773,49 @@ class AdverseEvent extends DomainResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
@@ -795,7 +823,7 @@ class AdverseEvent extends DomainResource {
           if (child is Identifier) {
             return copyWith(identifier: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'actuality':
@@ -803,15 +831,21 @@ class AdverseEvent extends DomainResource {
           if (child is AdverseEventActuality) {
             return copyWith(actuality: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'category':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(category: child);
+            // Add all elements from passed list
+            final newList = [...?category, ...child];
+            return copyWith(category: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?category, child];
+            return copyWith(category: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'event':
@@ -819,7 +853,7 @@ class AdverseEvent extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(event: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
@@ -827,7 +861,7 @@ class AdverseEvent extends DomainResource {
           if (child is Reference) {
             return copyWith(subject: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'encounter':
@@ -835,7 +869,7 @@ class AdverseEvent extends DomainResource {
           if (child is Reference) {
             return copyWith(encounter: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
@@ -843,7 +877,7 @@ class AdverseEvent extends DomainResource {
           if (child is FhirDateTime) {
             return copyWith(date: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'detected':
@@ -851,7 +885,7 @@ class AdverseEvent extends DomainResource {
           if (child is FhirDateTime) {
             return copyWith(detected: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'recordedDate':
@@ -859,15 +893,21 @@ class AdverseEvent extends DomainResource {
           if (child is FhirDateTime) {
             return copyWith(recordedDate: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'resultingCondition':
         {
           if (child is List<Reference>) {
-            return copyWith(resultingCondition: child);
+            // Add all elements from passed list
+            final newList = [...?resultingCondition, ...child];
+            return copyWith(resultingCondition: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?resultingCondition, child];
+            return copyWith(resultingCondition: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'location':
@@ -875,7 +915,7 @@ class AdverseEvent extends DomainResource {
           if (child is Reference) {
             return copyWith(location: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'seriousness':
@@ -883,7 +923,7 @@ class AdverseEvent extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(seriousness: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'severity':
@@ -891,7 +931,7 @@ class AdverseEvent extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(severity: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'outcome':
@@ -899,7 +939,7 @@ class AdverseEvent extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(outcome: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'recorder':
@@ -907,51 +947,81 @@ class AdverseEvent extends DomainResource {
           if (child is Reference) {
             return copyWith(recorder: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contributor':
         {
           if (child is List<Reference>) {
-            return copyWith(contributor: child);
+            // Add all elements from passed list
+            final newList = [...?contributor, ...child];
+            return copyWith(contributor: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?contributor, child];
+            return copyWith(contributor: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'suspectEntity':
         {
           if (child is List<AdverseEventSuspectEntity>) {
-            return copyWith(suspectEntity: child);
+            // Add all elements from passed list
+            final newList = [...?suspectEntity, ...child];
+            return copyWith(suspectEntity: newList);
+          } else if (child is AdverseEventSuspectEntity) {
+            // Add single element to existing list or create new list
+            final newList = [...?suspectEntity, child];
+            return copyWith(suspectEntity: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'subjectMedicalHistory':
         {
           if (child is List<Reference>) {
-            return copyWith(subjectMedicalHistory: child);
+            // Add all elements from passed list
+            final newList = [...?subjectMedicalHistory, ...child];
+            return copyWith(subjectMedicalHistory: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?subjectMedicalHistory, child];
+            return copyWith(subjectMedicalHistory: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'referenceDocument':
         {
           if (child is List<Reference>) {
-            return copyWith(referenceDocument: child);
+            // Add all elements from passed list
+            final newList = [...?referenceDocument, ...child];
+            return copyWith(referenceDocument: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?referenceDocument, child];
+            return copyWith(referenceDocument: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'study':
         {
           if (child is List<Reference>) {
-            return copyWith(study: child);
+            // Add all elements from passed list
+            final newList = [...?study, ...child];
+            return copyWith(study: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?study, child];
+            return copyWith(study: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1026,119 +1096,177 @@ class AdverseEvent extends DomainResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  AdverseEvent createProperty(String propertyName) {
+  AdverseEvent createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'identifier':
         {
-          return copyWith(identifier: Identifier.empty());
+          return copyWith(
+            identifier: Identifier.empty(),
+          );
         }
       case 'actuality':
         {
-          return copyWith(actuality: AdverseEventActuality.empty());
+          return copyWith(
+            actuality: AdverseEventActuality.empty(),
+          );
         }
       case 'category':
         {
-          return copyWith(category: <CodeableConcept>[]);
+          return copyWith(
+            category: <CodeableConcept>[],
+          );
         }
       case 'event':
         {
-          return copyWith(event: CodeableConcept.empty());
+          return copyWith(
+            event: CodeableConcept.empty(),
+          );
         }
       case 'subject':
         {
-          return copyWith(subject: Reference.empty());
+          return copyWith(
+            subject: Reference.empty(),
+          );
         }
       case 'encounter':
         {
-          return copyWith(encounter: Reference.empty());
+          return copyWith(
+            encounter: Reference.empty(),
+          );
         }
       case 'date':
         {
-          return copyWith(date: FhirDateTime.empty());
+          return copyWith(
+            date: FhirDateTime.empty(),
+          );
         }
       case 'detected':
         {
-          return copyWith(detected: FhirDateTime.empty());
+          return copyWith(
+            detected: FhirDateTime.empty(),
+          );
         }
       case 'recordedDate':
         {
-          return copyWith(recordedDate: FhirDateTime.empty());
+          return copyWith(
+            recordedDate: FhirDateTime.empty(),
+          );
         }
       case 'resultingCondition':
         {
-          return copyWith(resultingCondition: <Reference>[]);
+          return copyWith(
+            resultingCondition: <Reference>[],
+          );
         }
       case 'location':
         {
-          return copyWith(location: Reference.empty());
+          return copyWith(
+            location: Reference.empty(),
+          );
         }
       case 'seriousness':
         {
-          return copyWith(seriousness: CodeableConcept.empty());
+          return copyWith(
+            seriousness: CodeableConcept.empty(),
+          );
         }
       case 'severity':
         {
-          return copyWith(severity: CodeableConcept.empty());
+          return copyWith(
+            severity: CodeableConcept.empty(),
+          );
         }
       case 'outcome':
         {
-          return copyWith(outcome: CodeableConcept.empty());
+          return copyWith(
+            outcome: CodeableConcept.empty(),
+          );
         }
       case 'recorder':
         {
-          return copyWith(recorder: Reference.empty());
+          return copyWith(
+            recorder: Reference.empty(),
+          );
         }
       case 'contributor':
         {
-          return copyWith(contributor: <Reference>[]);
+          return copyWith(
+            contributor: <Reference>[],
+          );
         }
       case 'suspectEntity':
         {
-          return copyWith(suspectEntity: <AdverseEventSuspectEntity>[]);
+          return copyWith(
+            suspectEntity: <AdverseEventSuspectEntity>[],
+          );
         }
       case 'subjectMedicalHistory':
         {
-          return copyWith(subjectMedicalHistory: <Reference>[]);
+          return copyWith(
+            subjectMedicalHistory: <Reference>[],
+          );
         }
       case 'referenceDocument':
         {
-          return copyWith(referenceDocument: <Reference>[]);
+          return copyWith(
+            referenceDocument: <Reference>[],
+          );
         }
       case 'study':
         {
-          return copyWith(study: <Reference>[]);
+          return copyWith(
+            study: <Reference>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1403,19 +1531,34 @@ class AdverseEvent extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1436,10 +1579,16 @@ class AdverseEvent extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(identifier, o.identifier)) {
+    if (!equalsDeepWithNull(
+      identifier,
+      o.identifier,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(actuality, o.actuality)) {
+    if (!equalsDeepWithNull(
+      actuality,
+      o.actuality,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1448,22 +1597,40 @@ class AdverseEvent extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(event, o.event)) {
+    if (!equalsDeepWithNull(
+      event,
+      o.event,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(subject, o.subject)) {
+    if (!equalsDeepWithNull(
+      subject,
+      o.subject,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(encounter, o.encounter)) {
+    if (!equalsDeepWithNull(
+      encounter,
+      o.encounter,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(date, o.date)) {
+    if (!equalsDeepWithNull(
+      date,
+      o.date,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(detected, o.detected)) {
+    if (!equalsDeepWithNull(
+      detected,
+      o.detected,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(recordedDate, o.recordedDate)) {
+    if (!equalsDeepWithNull(
+      recordedDate,
+      o.recordedDate,
+    )) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1472,19 +1639,34 @@ class AdverseEvent extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(location, o.location)) {
+    if (!equalsDeepWithNull(
+      location,
+      o.location,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(seriousness, o.seriousness)) {
+    if (!equalsDeepWithNull(
+      seriousness,
+      o.seriousness,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(severity, o.severity)) {
+    if (!equalsDeepWithNull(
+      severity,
+      o.severity,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(outcome, o.outcome)) {
+    if (!equalsDeepWithNull(
+      outcome,
+      o.outcome,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(recorder, o.recorder)) {
+    if (!equalsDeepWithNull(
+      recorder,
+      o.recorder,
+    )) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1677,11 +1859,26 @@ class AdverseEventSuspectEntity extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('instance', instance);
-    addField('causality', causality);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'instance',
+      instance,
+    );
+    addField(
+      'causality',
+      causality,
+    );
     return json;
   }
 
@@ -1732,38 +1929,6 @@ class AdverseEventSuspectEntity extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'causality':
-        if (causality != null) {
-          return causality!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1775,39 +1940,51 @@ class AdverseEventSuspectEntity extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'instance':
@@ -1815,19 +1992,25 @@ class AdverseEventSuspectEntity extends BackboneElement {
           if (child is Reference) {
             return copyWith(instance: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'causality':
         {
           if (child is List<AdverseEventCausality>) {
-            return copyWith(causality: child);
+            // Add all elements from passed list
+            final newList = [...?causality, ...child];
+            return copyWith(causality: newList);
+          } else if (child is AdverseEventCausality) {
+            // Add single element to existing list or create new list
+            final newList = [...?causality, child];
+            return copyWith(causality: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1856,27 +2039,39 @@ class AdverseEventSuspectEntity extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  AdverseEventSuspectEntity createProperty(String propertyName) {
+  AdverseEventSuspectEntity createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'instance':
         {
-          return copyWith(instance: Reference.empty());
+          return copyWith(
+            instance: Reference.empty(),
+          );
         }
       case 'causality':
         {
-          return copyWith(causality: <AdverseEventCausality>[]);
+          return copyWith(
+            causality: <AdverseEventCausality>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1960,7 +2155,10 @@ class AdverseEventSuspectEntity extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1975,7 +2173,10 @@ class AdverseEventSuspectEntity extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(instance, o.instance)) {
+    if (!equalsDeepWithNull(
+      instance,
+      o.instance,
+    )) {
       return false;
     }
     if (!listEquals<AdverseEventCausality>(
@@ -2157,13 +2358,34 @@ class AdverseEventCausality extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('assessment', assessment);
-    addField('productRelatedness', productRelatedness);
-    addField('author', author);
-    addField('method', method);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'assessment',
+      assessment,
+    );
+    addField(
+      'productRelatedness',
+      productRelatedness,
+    );
+    addField(
+      'author',
+      author,
+    );
+    addField(
+      'method',
+      method,
+    );
     return json;
   }
 
@@ -2226,32 +2448,6 @@ class AdverseEventCausality extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2263,39 +2459,51 @@ class AdverseEventCausality extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'assessment':
@@ -2303,7 +2511,7 @@ class AdverseEventCausality extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(assessment: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'productRelatedness':
@@ -2311,7 +2519,7 @@ class AdverseEventCausality extends BackboneElement {
           if (child is FhirString) {
             return copyWith(productRelatedness: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'author':
@@ -2319,7 +2527,7 @@ class AdverseEventCausality extends BackboneElement {
           if (child is Reference) {
             return copyWith(author: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'method':
@@ -2327,11 +2535,11 @@ class AdverseEventCausality extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(method: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2364,35 +2572,51 @@ class AdverseEventCausality extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  AdverseEventCausality createProperty(String propertyName) {
+  AdverseEventCausality createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'assessment':
         {
-          return copyWith(assessment: CodeableConcept.empty());
+          return copyWith(
+            assessment: CodeableConcept.empty(),
+          );
         }
       case 'productRelatedness':
         {
-          return copyWith(productRelatedness: FhirString.empty());
+          return copyWith(
+            productRelatedness: FhirString.empty(),
+          );
         }
       case 'author':
         {
-          return copyWith(author: Reference.empty());
+          return copyWith(
+            author: Reference.empty(),
+          );
         }
       case 'method':
         {
-          return copyWith(method: CodeableConcept.empty());
+          return copyWith(
+            method: CodeableConcept.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2487,7 +2711,10 @@ class AdverseEventCausality extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2502,16 +2729,28 @@ class AdverseEventCausality extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(assessment, o.assessment)) {
+    if (!equalsDeepWithNull(
+      assessment,
+      o.assessment,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(productRelatedness, o.productRelatedness)) {
+    if (!equalsDeepWithNull(
+      productRelatedness,
+      o.productRelatedness,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(author, o.author)) {
+    if (!equalsDeepWithNull(
+      author,
+      o.author,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(method, o.method)) {
+    if (!equalsDeepWithNull(
+      method,
+      o.method,
+    )) {
       return false;
     }
     return true;

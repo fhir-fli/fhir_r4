@@ -56,9 +56,13 @@ class SupplyRequestStatus extends FhirCodeEnum {
       return SupplyRequestStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'SupplyRequestStatus cannot be constructed from JSON.',);
+        'SupplyRequestStatus cannot be constructed from JSON.',
+      );
     }
-    return SupplyRequestStatus._(validatedValue: value, element: element);
+    return SupplyRequestStatus._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// draft

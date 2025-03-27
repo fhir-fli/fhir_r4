@@ -57,10 +57,13 @@ class AllergyIntoleranceCriticality extends FhirCodeEnum {
       return AllergyIntoleranceCriticality.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'AllergyIntoleranceCriticality cannot be constructed from JSON.',);
+        'AllergyIntoleranceCriticality cannot be constructed from JSON.',
+      );
     }
     return AllergyIntoleranceCriticality._(
-        validatedValue: value, element: element,);
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// low

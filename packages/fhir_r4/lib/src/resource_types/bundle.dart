@@ -220,17 +220,50 @@ class Bundle extends Resource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('identifier', identifier);
-    addField('type', type);
-    addField('timestamp', timestamp);
-    addField('total', total);
-    addField('link', link);
-    addField('entry', entry);
-    addField('signature', signature);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'timestamp',
+      timestamp,
+    );
+    addField(
+      'total',
+      total,
+    );
+    addField(
+      'link',
+      link,
+    );
+    addField(
+      'entry',
+      entry,
+    );
+    addField(
+      'signature',
+      signature,
+    );
     return json;
   }
 
@@ -311,32 +344,6 @@ class Bundle extends Resource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'link':
-        if (link != null) {
-          return link!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'entry':
-        if (entry != null) {
-          return entry!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -348,23 +355,23 @@ class Bundle extends Resource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -372,7 +379,7 @@ class Bundle extends Resource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -380,7 +387,7 @@ class Bundle extends Resource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -388,7 +395,7 @@ class Bundle extends Resource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
@@ -396,7 +403,7 @@ class Bundle extends Resource {
           if (child is Identifier) {
             return copyWith(identifier: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -404,7 +411,7 @@ class Bundle extends Resource {
           if (child is BundleType) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'timestamp':
@@ -412,7 +419,7 @@ class Bundle extends Resource {
           if (child is FhirInstant) {
             return copyWith(timestamp: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'total':
@@ -420,23 +427,35 @@ class Bundle extends Resource {
           if (child is FhirUnsignedInt) {
             return copyWith(total: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'link':
         {
           if (child is List<BundleLink>) {
-            return copyWith(link: child);
+            // Add all elements from passed list
+            final newList = [...?link, ...child];
+            return copyWith(link: newList);
+          } else if (child is BundleLink) {
+            // Add single element to existing list or create new list
+            final newList = [...?link, child];
+            return copyWith(link: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'entry':
         {
           if (child is List<BundleEntry>) {
-            return copyWith(entry: child);
+            // Add all elements from passed list
+            final newList = [...?entry, ...child];
+            return copyWith(entry: newList);
+          } else if (child is BundleEntry) {
+            // Add single element to existing list or create new list
+            final newList = [...?entry, child];
+            return copyWith(entry: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'signature':
@@ -444,11 +463,11 @@ class Bundle extends Resource {
           if (child is Signature) {
             return copyWith(signature: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -489,51 +508,75 @@ class Bundle extends Resource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  Bundle createProperty(String propertyName) {
+  Bundle createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'identifier':
         {
-          return copyWith(identifier: Identifier.empty());
+          return copyWith(
+            identifier: Identifier.empty(),
+          );
         }
       case 'type':
         {
-          return copyWith(type: BundleType.empty());
+          return copyWith(
+            type: BundleType.empty(),
+          );
         }
       case 'timestamp':
         {
-          return copyWith(timestamp: FhirInstant.empty());
+          return copyWith(
+            timestamp: FhirInstant.empty(),
+          );
         }
       case 'total':
         {
-          return copyWith(total: FhirUnsignedInt.empty());
+          return copyWith(
+            total: FhirUnsignedInt.empty(),
+          );
         }
       case 'link':
         {
-          return copyWith(link: <BundleLink>[]);
+          return copyWith(
+            link: <BundleLink>[],
+          );
         }
       case 'entry':
         {
-          return copyWith(entry: <BundleEntry>[]);
+          return copyWith(
+            entry: <BundleEntry>[],
+          );
         }
       case 'signature':
         {
-          return copyWith(signature: Signature.empty());
+          return copyWith(
+            signature: Signature.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -654,28 +697,52 @@ class Bundle extends Resource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(identifier, o.identifier)) {
+    if (!equalsDeepWithNull(
+      identifier,
+      o.identifier,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(timestamp, o.timestamp)) {
+    if (!equalsDeepWithNull(
+      timestamp,
+      o.timestamp,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(total, o.total)) {
+    if (!equalsDeepWithNull(
+      total,
+      o.total,
+    )) {
       return false;
     }
     if (!listEquals<BundleLink>(
@@ -690,7 +757,10 @@ class Bundle extends Resource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(signature, o.signature)) {
+    if (!equalsDeepWithNull(
+      signature,
+      o.signature,
+    )) {
       return false;
     }
     return true;
@@ -848,11 +918,26 @@ class BundleLink extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('relation', relation);
-    addField('url', url);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'relation',
+      relation,
+    );
+    addField(
+      'url',
+      url,
+    );
     return json;
   }
 
@@ -901,32 +986,6 @@ class BundleLink extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -938,39 +997,51 @@ class BundleLink extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'relation':
@@ -978,7 +1049,7 @@ class BundleLink extends BackboneElement {
           if (child is FhirString) {
             return copyWith(relation: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'url':
@@ -986,11 +1057,11 @@ class BundleLink extends BackboneElement {
           if (child is FhirUri) {
             return copyWith(url: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1019,27 +1090,39 @@ class BundleLink extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  BundleLink createProperty(String propertyName) {
+  BundleLink createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'relation':
         {
-          return copyWith(relation: FhirString.empty());
+          return copyWith(
+            relation: FhirString.empty(),
+          );
         }
       case 'url':
         {
-          return copyWith(url: FhirUri.empty());
+          return copyWith(
+            url: FhirUri.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1118,7 +1201,10 @@ class BundleLink extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1133,10 +1219,16 @@ class BundleLink extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(relation, o.relation)) {
+    if (!equalsDeepWithNull(
+      relation,
+      o.relation,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(url, o.url)) {
+    if (!equalsDeepWithNull(
+      url,
+      o.url,
+    )) {
       return false;
     }
     return true;
@@ -1353,15 +1445,42 @@ class BundleEntry extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('link', link);
-    addField('fullUrl', fullUrl);
-    addField('resource', resource);
-    addField('search', search);
-    addField('request', request);
-    addField('response', response);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'link',
+      link,
+    );
+    addField(
+      'fullUrl',
+      fullUrl,
+    );
+    addField(
+      'resource',
+      resource,
+    );
+    addField(
+      'search',
+      search,
+    );
+    addField(
+      'request',
+      request,
+    );
+    addField(
+      'response',
+      response,
+    );
     return json;
   }
 
@@ -1434,38 +1553,6 @@ class BundleEntry extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'link':
-        if (link != null) {
-          return link!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1477,47 +1564,65 @@ class BundleEntry extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'link':
         {
           if (child is List<BundleLink>) {
-            return copyWith(link: child);
+            // Add all elements from passed list
+            final newList = [...?link, ...child];
+            return copyWith(link: newList);
+          } else if (child is BundleLink) {
+            // Add single element to existing list or create new list
+            final newList = [...?link, child];
+            return copyWith(link: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'fullUrl':
@@ -1525,7 +1630,7 @@ class BundleEntry extends BackboneElement {
           if (child is FhirUri) {
             return copyWith(fullUrl: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'resource':
@@ -1533,7 +1638,7 @@ class BundleEntry extends BackboneElement {
           if (child is Resource) {
             return copyWith(resource: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'search':
@@ -1541,7 +1646,7 @@ class BundleEntry extends BackboneElement {
           if (child is BundleSearch) {
             return copyWith(search: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'request':
@@ -1549,7 +1654,7 @@ class BundleEntry extends BackboneElement {
           if (child is BundleRequest) {
             return copyWith(request: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'response':
@@ -1557,11 +1662,11 @@ class BundleEntry extends BackboneElement {
           if (child is BundleResponse) {
             return copyWith(response: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1598,43 +1703,63 @@ class BundleEntry extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  BundleEntry createProperty(String propertyName) {
+  BundleEntry createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'link':
         {
-          return copyWith(link: <BundleLink>[]);
+          return copyWith(
+            link: <BundleLink>[],
+          );
         }
       case 'fullUrl':
         {
-          return copyWith(fullUrl: FhirUri.empty());
+          return copyWith(
+            fullUrl: FhirUri.empty(),
+          );
         }
       case 'resource':
         {
-          return copyWith(resource: Resource.empty());
+          return copyWith(
+            resource: Resource.empty(),
+          );
         }
       case 'search':
         {
-          return copyWith(search: BundleSearch.empty());
+          return copyWith(
+            search: BundleSearch.empty(),
+          );
         }
       case 'request':
         {
-          return copyWith(request: BundleRequest.empty());
+          return copyWith(
+            request: BundleRequest.empty(),
+          );
         }
       case 'response':
         {
-          return copyWith(response: BundleResponse.empty());
+          return copyWith(
+            response: BundleResponse.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1744,7 +1869,10 @@ class BundleEntry extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1765,19 +1893,34 @@ class BundleEntry extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(fullUrl, o.fullUrl)) {
+    if (!equalsDeepWithNull(
+      fullUrl,
+      o.fullUrl,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(resource, o.resource)) {
+    if (!equalsDeepWithNull(
+      resource,
+      o.resource,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(search, o.search)) {
+    if (!equalsDeepWithNull(
+      search,
+      o.search,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(request, o.request)) {
+    if (!equalsDeepWithNull(
+      request,
+      o.request,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(response, o.response)) {
+    if (!equalsDeepWithNull(
+      response,
+      o.response,
+    )) {
       return false;
     }
     return true;
@@ -1934,11 +2077,26 @@ class BundleSearch extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('mode', mode);
-    addField('score', score);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'mode',
+      mode,
+    );
+    addField(
+      'score',
+      score,
+    );
     return json;
   }
 
@@ -1991,32 +2149,6 @@ class BundleSearch extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2028,39 +2160,51 @@ class BundleSearch extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'mode':
@@ -2068,7 +2212,7 @@ class BundleSearch extends BackboneElement {
           if (child is SearchEntryMode) {
             return copyWith(mode: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'score':
@@ -2076,11 +2220,11 @@ class BundleSearch extends BackboneElement {
           if (child is FhirDecimal) {
             return copyWith(score: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2109,27 +2253,39 @@ class BundleSearch extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  BundleSearch createProperty(String propertyName) {
+  BundleSearch createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'mode':
         {
-          return copyWith(mode: SearchEntryMode.empty());
+          return copyWith(
+            mode: SearchEntryMode.empty(),
+          );
         }
       case 'score':
         {
-          return copyWith(score: FhirDecimal.empty());
+          return copyWith(
+            score: FhirDecimal.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2210,7 +2366,10 @@ class BundleSearch extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2225,10 +2384,16 @@ class BundleSearch extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(mode, o.mode)) {
+    if (!equalsDeepWithNull(
+      mode,
+      o.mode,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(score, o.score)) {
+    if (!equalsDeepWithNull(
+      score,
+      o.score,
+    )) {
       return false;
     }
     return true;
@@ -2441,15 +2606,42 @@ class BundleRequest extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('method', method);
-    addField('url', url);
-    addField('ifNoneMatch', ifNoneMatch);
-    addField('ifModifiedSince', ifModifiedSince);
-    addField('ifMatch', ifMatch);
-    addField('ifNoneExist', ifNoneExist);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'method',
+      method,
+    );
+    addField(
+      'url',
+      url,
+    );
+    addField(
+      'ifNoneMatch',
+      ifNoneMatch,
+    );
+    addField(
+      'ifModifiedSince',
+      ifModifiedSince,
+    );
+    addField(
+      'ifMatch',
+      ifMatch,
+    );
+    addField(
+      'ifNoneExist',
+      ifNoneExist,
+    );
     return json;
   }
 
@@ -2518,32 +2710,6 @@ class BundleRequest extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2555,39 +2721,51 @@ class BundleRequest extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'method':
@@ -2595,7 +2773,7 @@ class BundleRequest extends BackboneElement {
           if (child is HTTPVerb) {
             return copyWith(method: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'url':
@@ -2603,7 +2781,7 @@ class BundleRequest extends BackboneElement {
           if (child is FhirUri) {
             return copyWith(url: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'ifNoneMatch':
@@ -2611,7 +2789,7 @@ class BundleRequest extends BackboneElement {
           if (child is FhirString) {
             return copyWith(ifNoneMatch: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'ifModifiedSince':
@@ -2619,7 +2797,7 @@ class BundleRequest extends BackboneElement {
           if (child is FhirInstant) {
             return copyWith(ifModifiedSince: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'ifMatch':
@@ -2627,7 +2805,7 @@ class BundleRequest extends BackboneElement {
           if (child is FhirString) {
             return copyWith(ifMatch: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'ifNoneExist':
@@ -2635,11 +2813,11 @@ class BundleRequest extends BackboneElement {
           if (child is FhirString) {
             return copyWith(ifNoneExist: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2676,43 +2854,63 @@ class BundleRequest extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  BundleRequest createProperty(String propertyName) {
+  BundleRequest createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'method':
         {
-          return copyWith(method: HTTPVerb.empty());
+          return copyWith(
+            method: HTTPVerb.empty(),
+          );
         }
       case 'url':
         {
-          return copyWith(url: FhirUri.empty());
+          return copyWith(
+            url: FhirUri.empty(),
+          );
         }
       case 'ifNoneMatch':
         {
-          return copyWith(ifNoneMatch: FhirString.empty());
+          return copyWith(
+            ifNoneMatch: FhirString.empty(),
+          );
         }
       case 'ifModifiedSince':
         {
-          return copyWith(ifModifiedSince: FhirInstant.empty());
+          return copyWith(
+            ifModifiedSince: FhirInstant.empty(),
+          );
         }
       case 'ifMatch':
         {
-          return copyWith(ifMatch: FhirString.empty());
+          return copyWith(
+            ifMatch: FhirString.empty(),
+          );
         }
       case 'ifNoneExist':
         {
-          return copyWith(ifNoneExist: FhirString.empty());
+          return copyWith(
+            ifNoneExist: FhirString.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2819,7 +3017,10 @@ class BundleRequest extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2834,22 +3035,40 @@ class BundleRequest extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(method, o.method)) {
+    if (!equalsDeepWithNull(
+      method,
+      o.method,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(url, o.url)) {
+    if (!equalsDeepWithNull(
+      url,
+      o.url,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(ifNoneMatch, o.ifNoneMatch)) {
+    if (!equalsDeepWithNull(
+      ifNoneMatch,
+      o.ifNoneMatch,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(ifModifiedSince, o.ifModifiedSince)) {
+    if (!equalsDeepWithNull(
+      ifModifiedSince,
+      o.ifModifiedSince,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(ifMatch, o.ifMatch)) {
+    if (!equalsDeepWithNull(
+      ifMatch,
+      o.ifMatch,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(ifNoneExist, o.ifNoneExist)) {
+    if (!equalsDeepWithNull(
+      ifNoneExist,
+      o.ifNoneExist,
+    )) {
       return false;
     }
     return true;
@@ -3047,14 +3266,38 @@ class BundleResponse extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('status', status);
-    addField('location', location);
-    addField('etag', etag);
-    addField('lastModified', lastModified);
-    addField('outcome', outcome);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'location',
+      location,
+    );
+    addField(
+      'etag',
+      etag,
+    );
+    addField(
+      'lastModified',
+      lastModified,
+    );
+    addField(
+      'outcome',
+      outcome,
+    );
     return json;
   }
 
@@ -3120,32 +3363,6 @@ class BundleResponse extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -3157,39 +3374,51 @@ class BundleResponse extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -3197,7 +3426,7 @@ class BundleResponse extends BackboneElement {
           if (child is FhirString) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'location':
@@ -3205,7 +3434,7 @@ class BundleResponse extends BackboneElement {
           if (child is FhirUri) {
             return copyWith(location: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'etag':
@@ -3213,7 +3442,7 @@ class BundleResponse extends BackboneElement {
           if (child is FhirString) {
             return copyWith(etag: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'lastModified':
@@ -3221,7 +3450,7 @@ class BundleResponse extends BackboneElement {
           if (child is FhirInstant) {
             return copyWith(lastModified: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'outcome':
@@ -3229,11 +3458,11 @@ class BundleResponse extends BackboneElement {
           if (child is Resource) {
             return copyWith(outcome: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -3268,39 +3497,57 @@ class BundleResponse extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  BundleResponse createProperty(String propertyName) {
+  BundleResponse createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'status':
         {
-          return copyWith(status: FhirString.empty());
+          return copyWith(
+            status: FhirString.empty(),
+          );
         }
       case 'location':
         {
-          return copyWith(location: FhirUri.empty());
+          return copyWith(
+            location: FhirUri.empty(),
+          );
         }
       case 'etag':
         {
-          return copyWith(etag: FhirString.empty());
+          return copyWith(
+            etag: FhirString.empty(),
+          );
         }
       case 'lastModified':
         {
-          return copyWith(lastModified: FhirInstant.empty());
+          return copyWith(
+            lastModified: FhirInstant.empty(),
+          );
         }
       case 'outcome':
         {
-          return copyWith(outcome: Resource.empty());
+          return copyWith(
+            outcome: Resource.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3398,7 +3645,10 @@ class BundleResponse extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3413,19 +3663,34 @@ class BundleResponse extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(location, o.location)) {
+    if (!equalsDeepWithNull(
+      location,
+      o.location,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(etag, o.etag)) {
+    if (!equalsDeepWithNull(
+      etag,
+      o.etag,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(lastModified, o.lastModified)) {
+    if (!equalsDeepWithNull(
+      lastModified,
+      o.lastModified,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(outcome, o.outcome)) {
+    if (!equalsDeepWithNull(
+      outcome,
+      o.outcome,
+    )) {
       return false;
     }
     return true;

@@ -55,9 +55,14 @@ class FHIRAllTypes extends FhirCodeEnum {
     if (value == null && element != null) {
       return FHIRAllTypes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('FHIRAllTypes cannot be constructed from JSON.');
+      throw ArgumentError(
+        'FHIRAllTypes cannot be constructed from JSON.',
+      );
     }
-    return FHIRAllTypes._(validatedValue: value, element: element);
+    return FHIRAllTypes._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// Address

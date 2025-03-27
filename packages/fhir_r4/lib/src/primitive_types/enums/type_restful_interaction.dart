@@ -56,9 +56,13 @@ class TypeRestfulInteraction extends FhirCodeEnum {
       return TypeRestfulInteraction.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'TypeRestfulInteraction cannot be constructed from JSON.',);
+        'TypeRestfulInteraction cannot be constructed from JSON.',
+      );
     }
-    return TypeRestfulInteraction._(validatedValue: value, element: element);
+    return TypeRestfulInteraction._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// read

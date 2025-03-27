@@ -54,9 +54,14 @@ class EndpointStatus extends FhirCodeEnum {
     if (value == null && element != null) {
       return EndpointStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('EndpointStatus cannot be constructed from JSON.');
+      throw ArgumentError(
+        'EndpointStatus cannot be constructed from JSON.',
+      );
     }
-    return EndpointStatus._(validatedValue: value, element: element);
+    return EndpointStatus._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// active

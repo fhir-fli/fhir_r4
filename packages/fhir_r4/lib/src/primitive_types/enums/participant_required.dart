@@ -56,9 +56,13 @@ class ParticipantRequired extends FhirCodeEnum {
       return ParticipantRequired.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ParticipantRequired cannot be constructed from JSON.',);
+        'ParticipantRequired cannot be constructed from JSON.',
+      );
     }
-    return ParticipantRequired._(validatedValue: value, element: element);
+    return ParticipantRequired._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// required_

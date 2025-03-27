@@ -56,9 +56,13 @@ class GuideParameterCode extends FhirCodeEnum {
       return GuideParameterCode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'GuideParameterCode cannot be constructed from JSON.',);
+        'GuideParameterCode cannot be constructed from JSON.',
+      );
     }
-    return GuideParameterCode._(validatedValue: value, element: element);
+    return GuideParameterCode._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// apply

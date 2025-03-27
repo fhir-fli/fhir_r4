@@ -57,9 +57,13 @@ class CodeSystemContentMode extends FhirCodeEnum {
       return CodeSystemContentMode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'CodeSystemContentMode cannot be constructed from JSON.',);
+        'CodeSystemContentMode cannot be constructed from JSON.',
+      );
     }
-    return CodeSystemContentMode._(validatedValue: value, element: element);
+    return CodeSystemContentMode._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// not_present

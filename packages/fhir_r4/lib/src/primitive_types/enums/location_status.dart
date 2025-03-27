@@ -54,9 +54,14 @@ class LocationStatus extends FhirCodeEnum {
     if (value == null && element != null) {
       return LocationStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('LocationStatus cannot be constructed from JSON.');
+      throw ArgumentError(
+        'LocationStatus cannot be constructed from JSON.',
+      );
     }
-    return LocationStatus._(validatedValue: value, element: element);
+    return LocationStatus._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// active

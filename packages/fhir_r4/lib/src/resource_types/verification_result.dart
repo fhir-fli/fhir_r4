@@ -345,28 +345,94 @@ class VerificationResult extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('target', target);
-    addField('targetLocation', targetLocation);
-    addField('need', need);
-    addField('status', status);
-    addField('statusDate', statusDate);
-    addField('validationType', validationType);
-    addField('validationProcess', validationProcess);
-    addField('frequency', frequency);
-    addField('lastPerformed', lastPerformed);
-    addField('nextScheduled', nextScheduled);
-    addField('failureAction', failureAction);
-    addField('primarySource', primarySource);
-    addField('attestation', attestation);
-    addField('validator', validator);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'target',
+      target,
+    );
+    addField(
+      'targetLocation',
+      targetLocation,
+    );
+    addField(
+      'need',
+      need,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'statusDate',
+      statusDate,
+    );
+    addField(
+      'validationType',
+      validationType,
+    );
+    addField(
+      'validationProcess',
+      validationProcess,
+    );
+    addField(
+      'frequency',
+      frequency,
+    );
+    addField(
+      'lastPerformed',
+      lastPerformed,
+    );
+    addField(
+      'nextScheduled',
+      nextScheduled,
+    );
+    addField(
+      'failureAction',
+      failureAction,
+    );
+    addField(
+      'primarySource',
+      primarySource,
+    );
+    addField(
+      'attestation',
+      attestation,
+    );
+    addField(
+      'validator',
+      validator,
+    );
     return json;
   }
 
@@ -502,68 +568,6 @@ class VerificationResult extends DomainResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'target':
-        if (target != null) {
-          return target!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'targetLocation':
-        if (targetLocation != null) {
-          return targetLocation!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'validationProcess':
-        if (validationProcess != null) {
-          return validationProcess!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'primarySource':
-        if (primarySource != null) {
-          return primarySource!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'validator':
-        if (validator != null) {
-          return validator!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -575,23 +579,23 @@ class VerificationResult extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -599,7 +603,7 @@ class VerificationResult extends DomainResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -607,7 +611,7 @@ class VerificationResult extends DomainResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -615,7 +619,7 @@ class VerificationResult extends DomainResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -623,47 +627,77 @@ class VerificationResult extends DomainResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'target':
         {
           if (child is List<Reference>) {
-            return copyWith(target: child);
+            // Add all elements from passed list
+            final newList = [...?target, ...child];
+            return copyWith(target: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?target, child];
+            return copyWith(target: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'targetLocation':
         {
           if (child is List<FhirString>) {
-            return copyWith(targetLocation: child);
+            // Add all elements from passed list
+            final newList = [...?targetLocation, ...child];
+            return copyWith(targetLocation: newList);
+          } else if (child is FhirString) {
+            // Add single element to existing list or create new list
+            final newList = [...?targetLocation, child];
+            return copyWith(targetLocation: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'need':
@@ -671,7 +705,7 @@ class VerificationResult extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(need: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -679,7 +713,7 @@ class VerificationResult extends DomainResource {
           if (child is Status) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'statusDate':
@@ -687,7 +721,7 @@ class VerificationResult extends DomainResource {
           if (child is FhirDateTime) {
             return copyWith(statusDate: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'validationType':
@@ -695,15 +729,21 @@ class VerificationResult extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(validationType: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'validationProcess':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(validationProcess: child);
+            // Add all elements from passed list
+            final newList = [...?validationProcess, ...child];
+            return copyWith(validationProcess: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?validationProcess, child];
+            return copyWith(validationProcess: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'frequency':
@@ -711,7 +751,7 @@ class VerificationResult extends DomainResource {
           if (child is Timing) {
             return copyWith(frequency: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'lastPerformed':
@@ -719,7 +759,7 @@ class VerificationResult extends DomainResource {
           if (child is FhirDateTime) {
             return copyWith(lastPerformed: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'nextScheduled':
@@ -727,7 +767,7 @@ class VerificationResult extends DomainResource {
           if (child is FhirDate) {
             return copyWith(nextScheduled: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'failureAction':
@@ -735,15 +775,21 @@ class VerificationResult extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(failureAction: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'primarySource':
         {
           if (child is List<VerificationResultPrimarySource>) {
-            return copyWith(primarySource: child);
+            // Add all elements from passed list
+            final newList = [...?primarySource, ...child];
+            return copyWith(primarySource: newList);
+          } else if (child is VerificationResultPrimarySource) {
+            // Add single element to existing list or create new list
+            final newList = [...?primarySource, child];
+            return copyWith(primarySource: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'attestation':
@@ -751,19 +797,25 @@ class VerificationResult extends DomainResource {
           if (child is VerificationResultAttestation) {
             return copyWith(attestation: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'validator':
         {
           if (child is List<VerificationResultValidator>) {
-            return copyWith(validator: child);
+            // Add all elements from passed list
+            final newList = [...?validator, ...child];
+            return copyWith(validator: newList);
+          } else if (child is VerificationResultValidator) {
+            // Add single element to existing list or create new list
+            final newList = [...?validator, child];
+            return copyWith(validator: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -826,95 +878,141 @@ class VerificationResult extends DomainResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  VerificationResult createProperty(String propertyName) {
+  VerificationResult createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'target':
         {
-          return copyWith(target: <Reference>[]);
+          return copyWith(
+            target: <Reference>[],
+          );
         }
       case 'targetLocation':
         {
-          return copyWith(targetLocation: <FhirString>[]);
+          return copyWith(
+            targetLocation: <FhirString>[],
+          );
         }
       case 'need':
         {
-          return copyWith(need: CodeableConcept.empty());
+          return copyWith(
+            need: CodeableConcept.empty(),
+          );
         }
       case 'status':
         {
-          return copyWith(status: Status.empty());
+          return copyWith(
+            status: Status.empty(),
+          );
         }
       case 'statusDate':
         {
-          return copyWith(statusDate: FhirDateTime.empty());
+          return copyWith(
+            statusDate: FhirDateTime.empty(),
+          );
         }
       case 'validationType':
         {
-          return copyWith(validationType: CodeableConcept.empty());
+          return copyWith(
+            validationType: CodeableConcept.empty(),
+          );
         }
       case 'validationProcess':
         {
-          return copyWith(validationProcess: <CodeableConcept>[]);
+          return copyWith(
+            validationProcess: <CodeableConcept>[],
+          );
         }
       case 'frequency':
         {
-          return copyWith(frequency: Timing.empty());
+          return copyWith(
+            frequency: Timing.empty(),
+          );
         }
       case 'lastPerformed':
         {
-          return copyWith(lastPerformed: FhirDateTime.empty());
+          return copyWith(
+            lastPerformed: FhirDateTime.empty(),
+          );
         }
       case 'nextScheduled':
         {
-          return copyWith(nextScheduled: FhirDate.empty());
+          return copyWith(
+            nextScheduled: FhirDate.empty(),
+          );
         }
       case 'failureAction':
         {
-          return copyWith(failureAction: CodeableConcept.empty());
+          return copyWith(
+            failureAction: CodeableConcept.empty(),
+          );
         }
       case 'primarySource':
         {
-          return copyWith(primarySource: <VerificationResultPrimarySource>[]);
+          return copyWith(
+            primarySource: <VerificationResultPrimarySource>[],
+          );
         }
       case 'attestation':
         {
-          return copyWith(attestation: VerificationResultAttestation.empty());
+          return copyWith(
+            attestation: VerificationResultAttestation.empty(),
+          );
         }
       case 'validator':
         {
-          return copyWith(validator: <VerificationResultValidator>[]);
+          return copyWith(
+            validator: <VerificationResultValidator>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1129,19 +1227,34 @@ class VerificationResult extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1174,16 +1287,28 @@ class VerificationResult extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(need, o.need)) {
+    if (!equalsDeepWithNull(
+      need,
+      o.need,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(statusDate, o.statusDate)) {
+    if (!equalsDeepWithNull(
+      statusDate,
+      o.statusDate,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(validationType, o.validationType)) {
+    if (!equalsDeepWithNull(
+      validationType,
+      o.validationType,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1192,16 +1317,28 @@ class VerificationResult extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(frequency, o.frequency)) {
+    if (!equalsDeepWithNull(
+      frequency,
+      o.frequency,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(lastPerformed, o.lastPerformed)) {
+    if (!equalsDeepWithNull(
+      lastPerformed,
+      o.lastPerformed,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(nextScheduled, o.nextScheduled)) {
+    if (!equalsDeepWithNull(
+      nextScheduled,
+      o.nextScheduled,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(failureAction, o.failureAction)) {
+    if (!equalsDeepWithNull(
+      failureAction,
+      o.failureAction,
+    )) {
       return false;
     }
     if (!listEquals<VerificationResultPrimarySource>(
@@ -1210,7 +1347,10 @@ class VerificationResult extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(attestation, o.attestation)) {
+    if (!equalsDeepWithNull(
+      attestation,
+      o.attestation,
+    )) {
       return false;
     }
     if (!listEquals<VerificationResultValidator>(
@@ -1443,16 +1583,46 @@ class VerificationResultPrimarySource extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('who', who);
-    addField('type', type);
-    addField('communicationMethod', communicationMethod);
-    addField('validationStatus', validationStatus);
-    addField('validationDate', validationDate);
-    addField('canPushUpdates', canPushUpdates);
-    addField('pushTypeAvailable', pushTypeAvailable);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'who',
+      who,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'communicationMethod',
+      communicationMethod,
+    );
+    addField(
+      'validationStatus',
+      validationStatus,
+    );
+    addField(
+      'validationDate',
+      validationDate,
+    );
+    addField(
+      'canPushUpdates',
+      canPushUpdates,
+    );
+    addField(
+      'pushTypeAvailable',
+      pushTypeAvailable,
+    );
     return json;
   }
 
@@ -1530,50 +1700,6 @@ class VerificationResultPrimarySource extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'type':
-        if (type != null) {
-          return type!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'communicationMethod':
-        if (communicationMethod != null) {
-          return communicationMethod!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'pushTypeAvailable':
-        if (pushTypeAvailable != null) {
-          return pushTypeAvailable!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1585,39 +1711,51 @@ class VerificationResultPrimarySource extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'who':
@@ -1625,23 +1763,35 @@ class VerificationResultPrimarySource extends BackboneElement {
           if (child is Reference) {
             return copyWith(who: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(type: child);
+            // Add all elements from passed list
+            final newList = [...?type, ...child];
+            return copyWith(type: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?type, child];
+            return copyWith(type: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'communicationMethod':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(communicationMethod: child);
+            // Add all elements from passed list
+            final newList = [...?communicationMethod, ...child];
+            return copyWith(communicationMethod: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?communicationMethod, child];
+            return copyWith(communicationMethod: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'validationStatus':
@@ -1649,7 +1799,7 @@ class VerificationResultPrimarySource extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(validationStatus: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'validationDate':
@@ -1657,7 +1807,7 @@ class VerificationResultPrimarySource extends BackboneElement {
           if (child is FhirDateTime) {
             return copyWith(validationDate: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'canPushUpdates':
@@ -1665,19 +1815,25 @@ class VerificationResultPrimarySource extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(canPushUpdates: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'pushTypeAvailable':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(pushTypeAvailable: child);
+            // Add all elements from passed list
+            final newList = [...?pushTypeAvailable, ...child];
+            return copyWith(pushTypeAvailable: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?pushTypeAvailable, child];
+            return copyWith(pushTypeAvailable: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1716,47 +1872,69 @@ class VerificationResultPrimarySource extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  VerificationResultPrimarySource createProperty(String propertyName) {
+  VerificationResultPrimarySource createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'who':
         {
-          return copyWith(who: Reference.empty());
+          return copyWith(
+            who: Reference.empty(),
+          );
         }
       case 'type':
         {
-          return copyWith(type: <CodeableConcept>[]);
+          return copyWith(
+            type: <CodeableConcept>[],
+          );
         }
       case 'communicationMethod':
         {
-          return copyWith(communicationMethod: <CodeableConcept>[]);
+          return copyWith(
+            communicationMethod: <CodeableConcept>[],
+          );
         }
       case 'validationStatus':
         {
-          return copyWith(validationStatus: CodeableConcept.empty());
+          return copyWith(
+            validationStatus: CodeableConcept.empty(),
+          );
         }
       case 'validationDate':
         {
-          return copyWith(validationDate: FhirDateTime.empty());
+          return copyWith(
+            validationDate: FhirDateTime.empty(),
+          );
         }
       case 'canPushUpdates':
         {
-          return copyWith(canPushUpdates: CodeableConcept.empty());
+          return copyWith(
+            canPushUpdates: CodeableConcept.empty(),
+          );
         }
       case 'pushTypeAvailable':
         {
-          return copyWith(pushTypeAvailable: <CodeableConcept>[]);
+          return copyWith(
+            pushTypeAvailable: <CodeableConcept>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1885,7 +2063,10 @@ class VerificationResultPrimarySource extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1900,7 +2081,10 @@ class VerificationResultPrimarySource extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(who, o.who)) {
+    if (!equalsDeepWithNull(
+      who,
+      o.who,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1915,13 +2099,22 @@ class VerificationResultPrimarySource extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(validationStatus, o.validationStatus)) {
+    if (!equalsDeepWithNull(
+      validationStatus,
+      o.validationStatus,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(validationDate, o.validationDate)) {
+    if (!equalsDeepWithNull(
+      validationDate,
+      o.validationDate,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(canPushUpdates, o.canPushUpdates)) {
+    if (!equalsDeepWithNull(
+      canPushUpdates,
+      o.canPushUpdates,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -2154,17 +2347,50 @@ class VerificationResultAttestation extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('who', who);
-    addField('onBehalfOf', onBehalfOf);
-    addField('communicationMethod', communicationMethod);
-    addField('date', date);
-    addField('sourceIdentityCertificate', sourceIdentityCertificate);
-    addField('proxyIdentityCertificate', proxyIdentityCertificate);
-    addField('proxySignature', proxySignature);
-    addField('sourceSignature', sourceSignature);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'who',
+      who,
+    );
+    addField(
+      'onBehalfOf',
+      onBehalfOf,
+    );
+    addField(
+      'communicationMethod',
+      communicationMethod,
+    );
+    addField(
+      'date',
+      date,
+    );
+    addField(
+      'sourceIdentityCertificate',
+      sourceIdentityCertificate,
+    );
+    addField(
+      'proxyIdentityCertificate',
+      proxyIdentityCertificate,
+    );
+    addField(
+      'proxySignature',
+      proxySignature,
+    );
+    addField(
+      'sourceSignature',
+      sourceSignature,
+    );
     return json;
   }
 
@@ -2247,32 +2473,6 @@ class VerificationResultAttestation extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2284,39 +2484,51 @@ class VerificationResultAttestation extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'who':
@@ -2324,7 +2536,7 @@ class VerificationResultAttestation extends BackboneElement {
           if (child is Reference) {
             return copyWith(who: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'onBehalfOf':
@@ -2332,7 +2544,7 @@ class VerificationResultAttestation extends BackboneElement {
           if (child is Reference) {
             return copyWith(onBehalfOf: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'communicationMethod':
@@ -2340,7 +2552,7 @@ class VerificationResultAttestation extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(communicationMethod: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
@@ -2348,7 +2560,7 @@ class VerificationResultAttestation extends BackboneElement {
           if (child is FhirDate) {
             return copyWith(date: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'sourceIdentityCertificate':
@@ -2356,7 +2568,7 @@ class VerificationResultAttestation extends BackboneElement {
           if (child is FhirString) {
             return copyWith(sourceIdentityCertificate: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'proxyIdentityCertificate':
@@ -2364,7 +2576,7 @@ class VerificationResultAttestation extends BackboneElement {
           if (child is FhirString) {
             return copyWith(proxyIdentityCertificate: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'proxySignature':
@@ -2372,7 +2584,7 @@ class VerificationResultAttestation extends BackboneElement {
           if (child is Signature) {
             return copyWith(proxySignature: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'sourceSignature':
@@ -2380,11 +2592,11 @@ class VerificationResultAttestation extends BackboneElement {
           if (child is Signature) {
             return copyWith(sourceSignature: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2425,51 +2637,75 @@ class VerificationResultAttestation extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  VerificationResultAttestation createProperty(String propertyName) {
+  VerificationResultAttestation createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'who':
         {
-          return copyWith(who: Reference.empty());
+          return copyWith(
+            who: Reference.empty(),
+          );
         }
       case 'onBehalfOf':
         {
-          return copyWith(onBehalfOf: Reference.empty());
+          return copyWith(
+            onBehalfOf: Reference.empty(),
+          );
         }
       case 'communicationMethod':
         {
-          return copyWith(communicationMethod: CodeableConcept.empty());
+          return copyWith(
+            communicationMethod: CodeableConcept.empty(),
+          );
         }
       case 'date':
         {
-          return copyWith(date: FhirDate.empty());
+          return copyWith(
+            date: FhirDate.empty(),
+          );
         }
       case 'sourceIdentityCertificate':
         {
-          return copyWith(sourceIdentityCertificate: FhirString.empty());
+          return copyWith(
+            sourceIdentityCertificate: FhirString.empty(),
+          );
         }
       case 'proxyIdentityCertificate':
         {
-          return copyWith(proxyIdentityCertificate: FhirString.empty());
+          return copyWith(
+            proxyIdentityCertificate: FhirString.empty(),
+          );
         }
       case 'proxySignature':
         {
-          return copyWith(proxySignature: Signature.empty());
+          return copyWith(
+            proxySignature: Signature.empty(),
+          );
         }
       case 'sourceSignature':
         {
-          return copyWith(sourceSignature: Signature.empty());
+          return copyWith(
+            sourceSignature: Signature.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2595,7 +2831,10 @@ class VerificationResultAttestation extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2610,30 +2849,52 @@ class VerificationResultAttestation extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(who, o.who)) {
-      return false;
-    }
-    if (!equalsDeepWithNull(onBehalfOf, o.onBehalfOf)) {
-      return false;
-    }
-    if (!equalsDeepWithNull(communicationMethod, o.communicationMethod)) {
-      return false;
-    }
-    if (!equalsDeepWithNull(date, o.date)) {
+    if (!equalsDeepWithNull(
+      who,
+      o.who,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(
-        sourceIdentityCertificate, o.sourceIdentityCertificate,)) {
+      onBehalfOf,
+      o.onBehalfOf,
+    )) {
       return false;
     }
     if (!equalsDeepWithNull(
-        proxyIdentityCertificate, o.proxyIdentityCertificate,)) {
+      communicationMethod,
+      o.communicationMethod,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(proxySignature, o.proxySignature)) {
+    if (!equalsDeepWithNull(
+      date,
+      o.date,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(sourceSignature, o.sourceSignature)) {
+    if (!equalsDeepWithNull(
+      sourceIdentityCertificate,
+      o.sourceIdentityCertificate,
+    )) {
+      return false;
+    }
+    if (!equalsDeepWithNull(
+      proxyIdentityCertificate,
+      o.proxyIdentityCertificate,
+    )) {
+      return false;
+    }
+    if (!equalsDeepWithNull(
+      proxySignature,
+      o.proxySignature,
+    )) {
+      return false;
+    }
+    if (!equalsDeepWithNull(
+      sourceSignature,
+      o.sourceSignature,
+    )) {
       return false;
     }
     return true;
@@ -2801,12 +3062,30 @@ class VerificationResultValidator extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('organization', organization);
-    addField('identityCertificate', identityCertificate);
-    addField('attestationSignature', attestationSignature);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'organization',
+      organization,
+    );
+    addField(
+      'identityCertificate',
+      identityCertificate,
+    );
+    addField(
+      'attestationSignature',
+      attestationSignature,
+    );
     return json;
   }
 
@@ -2862,32 +3141,6 @@ class VerificationResultValidator extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2899,39 +3152,51 @@ class VerificationResultValidator extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'organization':
@@ -2939,7 +3204,7 @@ class VerificationResultValidator extends BackboneElement {
           if (child is Reference) {
             return copyWith(organization: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'identityCertificate':
@@ -2947,7 +3212,7 @@ class VerificationResultValidator extends BackboneElement {
           if (child is FhirString) {
             return copyWith(identityCertificate: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'attestationSignature':
@@ -2955,11 +3220,11 @@ class VerificationResultValidator extends BackboneElement {
           if (child is Signature) {
             return copyWith(attestationSignature: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2990,31 +3255,45 @@ class VerificationResultValidator extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  VerificationResultValidator createProperty(String propertyName) {
+  VerificationResultValidator createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'organization':
         {
-          return copyWith(organization: Reference.empty());
+          return copyWith(
+            organization: Reference.empty(),
+          );
         }
       case 'identityCertificate':
         {
-          return copyWith(identityCertificate: FhirString.empty());
+          return copyWith(
+            identityCertificate: FhirString.empty(),
+          );
         }
       case 'attestationSignature':
         {
-          return copyWith(attestationSignature: Signature.empty());
+          return copyWith(
+            attestationSignature: Signature.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3103,7 +3382,10 @@ class VerificationResultValidator extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3118,13 +3400,22 @@ class VerificationResultValidator extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(organization, o.organization)) {
+    if (!equalsDeepWithNull(
+      organization,
+      o.organization,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(identityCertificate, o.identityCertificate)) {
+    if (!equalsDeepWithNull(
+      identityCertificate,
+      o.identityCertificate,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(attestationSignature, o.attestationSignature)) {
+    if (!equalsDeepWithNull(
+      attestationSignature,
+      o.attestationSignature,
+    )) {
       return false;
     }
     return true;

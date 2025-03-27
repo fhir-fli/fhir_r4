@@ -54,9 +54,14 @@ class IdentifierUse extends FhirCodeEnum {
     if (value == null && element != null) {
       return IdentifierUse.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('IdentifierUse cannot be constructed from JSON.');
+      throw ArgumentError(
+        'IdentifierUse cannot be constructed from JSON.',
+      );
     }
-    return IdentifierUse._(validatedValue: value, element: element);
+    return IdentifierUse._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// usual

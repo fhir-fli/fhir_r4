@@ -56,9 +56,13 @@ class OperationParameterUse extends FhirCodeEnum {
       return OperationParameterUse.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'OperationParameterUse cannot be constructed from JSON.',);
+        'OperationParameterUse cannot be constructed from JSON.',
+      );
     }
-    return OperationParameterUse._(validatedValue: value, element: element);
+    return OperationParameterUse._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// in_

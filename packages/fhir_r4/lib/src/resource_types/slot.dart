@@ -319,25 +319,82 @@ class Slot extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('identifier', identifier);
-    addField('serviceCategory', serviceCategory);
-    addField('serviceType', serviceType);
-    addField('specialty', specialty);
-    addField('appointmentType', appointmentType);
-    addField('schedule', schedule);
-    addField('status', status);
-    addField('start', start);
-    addField('end', end);
-    addField('overbooked', overbooked);
-    addField('comment', comment);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'serviceCategory',
+      serviceCategory,
+    );
+    addField(
+      'serviceType',
+      serviceType,
+    );
+    addField(
+      'specialty',
+      specialty,
+    );
+    addField(
+      'appointmentType',
+      appointmentType,
+    );
+    addField(
+      'schedule',
+      schedule,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'start',
+      start,
+    );
+    addField(
+      'end',
+      end,
+    );
+    addField(
+      'overbooked',
+      overbooked,
+    );
+    addField(
+      'comment',
+      comment,
+    );
     return json;
   }
 
@@ -452,62 +509,6 @@ class Slot extends DomainResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'identifier':
-        if (identifier != null) {
-          return identifier!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'serviceCategory':
-        if (serviceCategory != null) {
-          return serviceCategory!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'serviceType':
-        if (serviceType != null) {
-          return serviceType!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'specialty':
-        if (specialty != null) {
-          return specialty!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -519,23 +520,23 @@ class Slot extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -543,7 +544,7 @@ class Slot extends DomainResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -551,7 +552,7 @@ class Slot extends DomainResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -559,7 +560,7 @@ class Slot extends DomainResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -567,63 +568,105 @@ class Slot extends DomainResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
           if (child is List<Identifier>) {
-            return copyWith(identifier: child);
+            // Add all elements from passed list
+            final newList = [...?identifier, ...child];
+            return copyWith(identifier: newList);
+          } else if (child is Identifier) {
+            // Add single element to existing list or create new list
+            final newList = [...?identifier, child];
+            return copyWith(identifier: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'serviceCategory':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(serviceCategory: child);
+            // Add all elements from passed list
+            final newList = [...?serviceCategory, ...child];
+            return copyWith(serviceCategory: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?serviceCategory, child];
+            return copyWith(serviceCategory: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'serviceType':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(serviceType: child);
+            // Add all elements from passed list
+            final newList = [...?serviceType, ...child];
+            return copyWith(serviceType: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?serviceType, child];
+            return copyWith(serviceType: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'specialty':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(specialty: child);
+            // Add all elements from passed list
+            final newList = [...?specialty, ...child];
+            return copyWith(specialty: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?specialty, child];
+            return copyWith(specialty: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'appointmentType':
@@ -631,7 +674,7 @@ class Slot extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(appointmentType: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'schedule':
@@ -639,7 +682,7 @@ class Slot extends DomainResource {
           if (child is Reference) {
             return copyWith(schedule: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -647,7 +690,7 @@ class Slot extends DomainResource {
           if (child is SlotStatus) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'start':
@@ -655,7 +698,7 @@ class Slot extends DomainResource {
           if (child is FhirInstant) {
             return copyWith(start: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'end':
@@ -663,7 +706,7 @@ class Slot extends DomainResource {
           if (child is FhirInstant) {
             return copyWith(end: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'overbooked':
@@ -671,7 +714,7 @@ class Slot extends DomainResource {
           if (child is FhirBoolean) {
             return copyWith(overbooked: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'comment':
@@ -679,11 +722,11 @@ class Slot extends DomainResource {
           if (child is FhirString) {
             return copyWith(comment: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -740,83 +783,123 @@ class Slot extends DomainResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  Slot createProperty(String propertyName) {
+  Slot createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'identifier':
         {
-          return copyWith(identifier: <Identifier>[]);
+          return copyWith(
+            identifier: <Identifier>[],
+          );
         }
       case 'serviceCategory':
         {
-          return copyWith(serviceCategory: <CodeableConcept>[]);
+          return copyWith(
+            serviceCategory: <CodeableConcept>[],
+          );
         }
       case 'serviceType':
         {
-          return copyWith(serviceType: <CodeableConcept>[]);
+          return copyWith(
+            serviceType: <CodeableConcept>[],
+          );
         }
       case 'specialty':
         {
-          return copyWith(specialty: <CodeableConcept>[]);
+          return copyWith(
+            specialty: <CodeableConcept>[],
+          );
         }
       case 'appointmentType':
         {
-          return copyWith(appointmentType: CodeableConcept.empty());
+          return copyWith(
+            appointmentType: CodeableConcept.empty(),
+          );
         }
       case 'schedule':
         {
-          return copyWith(schedule: Reference.empty());
+          return copyWith(
+            schedule: Reference.empty(),
+          );
         }
       case 'status':
         {
-          return copyWith(status: SlotStatus.empty());
+          return copyWith(
+            status: SlotStatus.empty(),
+          );
         }
       case 'start':
         {
-          return copyWith(start: FhirInstant.empty());
+          return copyWith(
+            start: FhirInstant.empty(),
+          );
         }
       case 'end':
         {
-          return copyWith(end: FhirInstant.empty());
+          return copyWith(
+            end: FhirInstant.empty(),
+          );
         }
       case 'overbooked':
         {
-          return copyWith(overbooked: FhirBoolean.empty());
+          return copyWith(
+            overbooked: FhirBoolean.empty(),
+          );
         }
       case 'comment':
         {
-          return copyWith(comment: FhirString.empty());
+          return copyWith(
+            comment: FhirString.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1003,19 +1086,34 @@ class Slot extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1060,25 +1158,46 @@ class Slot extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(appointmentType, o.appointmentType)) {
+    if (!equalsDeepWithNull(
+      appointmentType,
+      o.appointmentType,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(schedule, o.schedule)) {
+    if (!equalsDeepWithNull(
+      schedule,
+      o.schedule,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(start, o.start)) {
+    if (!equalsDeepWithNull(
+      start,
+      o.start,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(end, o.end)) {
+    if (!equalsDeepWithNull(
+      end,
+      o.end,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(overbooked, o.overbooked)) {
+    if (!equalsDeepWithNull(
+      overbooked,
+      o.overbooked,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(comment, o.comment)) {
+    if (!equalsDeepWithNull(
+      comment,
+      o.comment,
+    )) {
       return false;
     }
     return true;

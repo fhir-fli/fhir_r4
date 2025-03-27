@@ -57,9 +57,13 @@ class CarePlanActivityStatus extends FhirCodeEnum {
       return CarePlanActivityStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'CarePlanActivityStatus cannot be constructed from JSON.',);
+        'CarePlanActivityStatus cannot be constructed from JSON.',
+      );
     }
-    return CarePlanActivityStatus._(validatedValue: value, element: element);
+    return CarePlanActivityStatus._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// not_started

@@ -56,9 +56,13 @@ class ProvenanceEntityRole extends FhirCodeEnum {
       return ProvenanceEntityRole.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ProvenanceEntityRole cannot be constructed from JSON.',);
+        'ProvenanceEntityRole cannot be constructed from JSON.',
+      );
     }
-    return ProvenanceEntityRole._(validatedValue: value, element: element);
+    return ProvenanceEntityRole._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// derivation

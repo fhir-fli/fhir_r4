@@ -56,9 +56,13 @@ class ActionGroupingBehavior extends FhirCodeEnum {
       return ActionGroupingBehavior.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ActionGroupingBehavior cannot be constructed from JSON.',);
+        'ActionGroupingBehavior cannot be constructed from JSON.',
+      );
     }
-    return ActionGroupingBehavior._(validatedValue: value, element: element);
+    return ActionGroupingBehavior._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// visual_group

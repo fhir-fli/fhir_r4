@@ -54,9 +54,14 @@ class TestReportResult extends FhirCodeEnum {
     if (value == null && element != null) {
       return TestReportResult.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('TestReportResult cannot be constructed from JSON.');
+      throw ArgumentError(
+        'TestReportResult cannot be constructed from JSON.',
+      );
     }
-    return TestReportResult._(validatedValue: value, element: element);
+    return TestReportResult._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// pass

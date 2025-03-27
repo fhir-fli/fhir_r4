@@ -54,9 +54,14 @@ class StrandType extends FhirCodeEnum {
     if (value == null && element != null) {
       return StrandType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('StrandType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'StrandType cannot be constructed from JSON.',
+      );
     }
-    return StrandType._(validatedValue: value, element: element);
+    return StrandType._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// watson

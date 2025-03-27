@@ -55,9 +55,14 @@ class LinkageType extends FhirCodeEnum {
     if (value == null && element != null) {
       return LinkageType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('LinkageType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'LinkageType cannot be constructed from JSON.',
+      );
     }
-    return LinkageType._(validatedValue: value, element: element);
+    return LinkageType._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// source

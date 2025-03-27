@@ -219,15 +219,42 @@ class SampledData extends DataType
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('origin', origin);
-    addField('period', period);
-    addField('factor', factor);
-    addField('lowerLimit', lowerLimit);
-    addField('upperLimit', upperLimit);
-    addField('dimensions', dimensions);
-    addField('data', data);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'origin',
+      origin,
+    );
+    addField(
+      'period',
+      period,
+    );
+    addField(
+      'factor',
+      factor,
+    );
+    addField(
+      'lowerLimit',
+      lowerLimit,
+    );
+    addField(
+      'upperLimit',
+      upperLimit,
+    );
+    addField(
+      'dimensions',
+      dimensions,
+    );
+    addField(
+      'data',
+      data,
+    );
     return json;
   }
 
@@ -294,26 +321,6 @@ class SampledData extends DataType
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -325,31 +332,37 @@ class SampledData extends DataType
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'origin':
@@ -357,7 +370,7 @@ class SampledData extends DataType
           if (child is Quantity) {
             return copyWith(origin: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
@@ -365,7 +378,7 @@ class SampledData extends DataType
           if (child is FhirDecimal) {
             return copyWith(period: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'factor':
@@ -373,7 +386,7 @@ class SampledData extends DataType
           if (child is FhirDecimal) {
             return copyWith(factor: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'lowerLimit':
@@ -381,7 +394,7 @@ class SampledData extends DataType
           if (child is FhirDecimal) {
             return copyWith(lowerLimit: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'upperLimit':
@@ -389,7 +402,7 @@ class SampledData extends DataType
           if (child is FhirDecimal) {
             return copyWith(upperLimit: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'dimensions':
@@ -397,7 +410,7 @@ class SampledData extends DataType
           if (child is FhirPositiveInt) {
             return copyWith(dimensions: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'data':
@@ -405,11 +418,11 @@ class SampledData extends DataType
           if (child is FhirString) {
             return copyWith(data: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -446,43 +459,63 @@ class SampledData extends DataType
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  SampledData createProperty(String propertyName) {
+  SampledData createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'origin':
         {
-          return copyWith(origin: Quantity.empty());
+          return copyWith(
+            origin: Quantity.empty(),
+          );
         }
       case 'period':
         {
-          return copyWith(period: FhirDecimal.empty());
+          return copyWith(
+            period: FhirDecimal.empty(),
+          );
         }
       case 'factor':
         {
-          return copyWith(factor: FhirDecimal.empty());
+          return copyWith(
+            factor: FhirDecimal.empty(),
+          );
         }
       case 'lowerLimit':
         {
-          return copyWith(lowerLimit: FhirDecimal.empty());
+          return copyWith(
+            lowerLimit: FhirDecimal.empty(),
+          );
         }
       case 'upperLimit':
         {
-          return copyWith(upperLimit: FhirDecimal.empty());
+          return copyWith(
+            upperLimit: FhirDecimal.empty(),
+          );
         }
       case 'dimensions':
         {
-          return copyWith(dimensions: FhirPositiveInt.empty());
+          return copyWith(
+            dimensions: FhirPositiveInt.empty(),
+          );
         }
       case 'data':
         {
-          return copyWith(data: FhirString.empty());
+          return copyWith(
+            data: FhirString.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -584,7 +617,10 @@ class SampledData extends DataType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -593,25 +629,46 @@ class SampledData extends DataType
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(origin, o.origin)) {
+    if (!equalsDeepWithNull(
+      origin,
+      o.origin,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(period, o.period)) {
+    if (!equalsDeepWithNull(
+      period,
+      o.period,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(factor, o.factor)) {
+    if (!equalsDeepWithNull(
+      factor,
+      o.factor,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(lowerLimit, o.lowerLimit)) {
+    if (!equalsDeepWithNull(
+      lowerLimit,
+      o.lowerLimit,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(upperLimit, o.upperLimit)) {
+    if (!equalsDeepWithNull(
+      upperLimit,
+      o.upperLimit,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(dimensions, o.dimensions)) {
+    if (!equalsDeepWithNull(
+      dimensions,
+      o.dimensions,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(data, o.data)) {
+    if (!equalsDeepWithNull(
+      data,
+      o.data,
+    )) {
       return false;
     }
     return true;

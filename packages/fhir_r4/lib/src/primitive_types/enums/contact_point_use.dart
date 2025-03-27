@@ -54,9 +54,14 @@ class ContactPointUse extends FhirCodeEnum {
     if (value == null && element != null) {
       return ContactPointUse.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('ContactPointUse cannot be constructed from JSON.');
+      throw ArgumentError(
+        'ContactPointUse cannot be constructed from JSON.',
+      );
     }
-    return ContactPointUse._(validatedValue: value, element: element);
+    return ContactPointUse._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// home

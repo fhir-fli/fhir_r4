@@ -56,9 +56,13 @@ class DocumentReferenceStatus extends FhirCodeEnum {
       return DocumentReferenceStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'DocumentReferenceStatus cannot be constructed from JSON.',);
+        'DocumentReferenceStatus cannot be constructed from JSON.',
+      );
     }
-    return DocumentReferenceStatus._(validatedValue: value, element: element);
+    return DocumentReferenceStatus._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// current

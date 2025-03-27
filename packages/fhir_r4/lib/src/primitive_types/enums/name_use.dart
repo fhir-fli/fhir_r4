@@ -54,9 +54,14 @@ class NameUse extends FhirCodeEnum {
     if (value == null && element != null) {
       return NameUse.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('NameUse cannot be constructed from JSON.');
+      throw ArgumentError(
+        'NameUse cannot be constructed from JSON.',
+      );
     }
-    return NameUse._(validatedValue: value, element: element);
+    return NameUse._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// usual

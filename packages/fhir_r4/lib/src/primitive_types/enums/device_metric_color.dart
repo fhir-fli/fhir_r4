@@ -54,9 +54,14 @@ class DeviceMetricColor extends FhirCodeEnum {
     if (value == null && element != null) {
       return DeviceMetricColor.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('DeviceMetricColor cannot be constructed from JSON.');
+      throw ArgumentError(
+        'DeviceMetricColor cannot be constructed from JSON.',
+      );
     }
-    return DeviceMetricColor._(validatedValue: value, element: element);
+    return DeviceMetricColor._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// black

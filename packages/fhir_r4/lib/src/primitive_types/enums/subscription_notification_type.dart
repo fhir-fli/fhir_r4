@@ -56,10 +56,13 @@ class SubscriptionNotificationType extends FhirCodeEnum {
       return SubscriptionNotificationType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'SubscriptionNotificationType cannot be constructed from JSON.',);
+        'SubscriptionNotificationType cannot be constructed from JSON.',
+      );
     }
     return SubscriptionNotificationType._(
-        validatedValue: value, element: element,);
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// handshake

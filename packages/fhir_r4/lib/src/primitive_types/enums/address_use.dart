@@ -54,9 +54,14 @@ class AddressUse extends FhirCodeEnum {
     if (value == null && element != null) {
       return AddressUse.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('AddressUse cannot be constructed from JSON.');
+      throw ArgumentError(
+        'AddressUse cannot be constructed from JSON.',
+      );
     }
-    return AddressUse._(validatedValue: value, element: element);
+    return AddressUse._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// home

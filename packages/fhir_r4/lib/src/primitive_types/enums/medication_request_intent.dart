@@ -56,9 +56,13 @@ class MedicationRequestIntent extends FhirCodeEnum {
       return MedicationRequestIntent.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'MedicationRequestIntent cannot be constructed from JSON.',);
+        'MedicationRequestIntent cannot be constructed from JSON.',
+      );
     }
-    return MedicationRequestIntent._(validatedValue: value, element: element);
+    return MedicationRequestIntent._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// proposal

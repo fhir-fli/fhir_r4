@@ -55,9 +55,14 @@ class CodeSearchSupport extends FhirCodeEnum {
     if (value == null && element != null) {
       return CodeSearchSupport.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('CodeSearchSupport cannot be constructed from JSON.');
+      throw ArgumentError(
+        'CodeSearchSupport cannot be constructed from JSON.',
+      );
     }
-    return CodeSearchSupport._(validatedValue: value, element: element);
+    return CodeSearchSupport._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// explicit

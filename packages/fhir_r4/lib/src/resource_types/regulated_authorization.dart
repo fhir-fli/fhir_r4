@@ -357,28 +357,94 @@ class RegulatedAuthorization extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('identifier', identifier);
-    addField('subject', subject);
-    addField('type', type);
-    addField('description', description);
-    addField('region', region);
-    addField('status', status);
-    addField('statusDate', statusDate);
-    addField('validityPeriod', validityPeriod);
-    addField('indication', indication);
-    addField('intendedUse', intendedUse);
-    addField('basis', basis);
-    addField('holder', holder);
-    addField('regulator', regulator);
-    addField('case', case_);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'subject',
+      subject,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'description',
+      description,
+    );
+    addField(
+      'region',
+      region,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'statusDate',
+      statusDate,
+    );
+    addField(
+      'validityPeriod',
+      validityPeriod,
+    );
+    addField(
+      'indication',
+      indication,
+    );
+    addField(
+      'intendedUse',
+      intendedUse,
+    );
+    addField(
+      'basis',
+      basis,
+    );
+    addField(
+      'holder',
+      holder,
+    );
+    addField(
+      'regulator',
+      regulator,
+    );
+    addField(
+      'case',
+      case_,
+    );
     return json;
   }
 
@@ -516,62 +582,6 @@ class RegulatedAuthorization extends DomainResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'identifier':
-        if (identifier != null) {
-          return identifier!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'subject':
-        if (subject != null) {
-          return subject!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'region':
-        if (region != null) {
-          return region!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'basis':
-        if (basis != null) {
-          return basis!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -583,23 +593,23 @@ class RegulatedAuthorization extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -607,7 +617,7 @@ class RegulatedAuthorization extends DomainResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -615,7 +625,7 @@ class RegulatedAuthorization extends DomainResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -623,7 +633,7 @@ class RegulatedAuthorization extends DomainResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -631,47 +641,77 @@ class RegulatedAuthorization extends DomainResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
           if (child is List<Identifier>) {
-            return copyWith(identifier: child);
+            // Add all elements from passed list
+            final newList = [...?identifier, ...child];
+            return copyWith(identifier: newList);
+          } else if (child is Identifier) {
+            // Add single element to existing list or create new list
+            final newList = [...?identifier, child];
+            return copyWith(identifier: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'subject':
         {
           if (child is List<Reference>) {
-            return copyWith(subject: child);
+            // Add all elements from passed list
+            final newList = [...?subject, ...child];
+            return copyWith(subject: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?subject, child];
+            return copyWith(subject: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -679,7 +719,7 @@ class RegulatedAuthorization extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
@@ -687,15 +727,21 @@ class RegulatedAuthorization extends DomainResource {
           if (child is FhirMarkdown) {
             return copyWith(description: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'region':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(region: child);
+            // Add all elements from passed list
+            final newList = [...?region, ...child];
+            return copyWith(region: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?region, child];
+            return copyWith(region: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -703,7 +749,7 @@ class RegulatedAuthorization extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'statusDate':
@@ -711,7 +757,7 @@ class RegulatedAuthorization extends DomainResource {
           if (child is FhirDateTime) {
             return copyWith(statusDate: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'validityPeriod':
@@ -719,7 +765,7 @@ class RegulatedAuthorization extends DomainResource {
           if (child is Period) {
             return copyWith(validityPeriod: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'indication':
@@ -727,7 +773,7 @@ class RegulatedAuthorization extends DomainResource {
           if (child is CodeableReference) {
             return copyWith(indication: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'intendedUse':
@@ -735,15 +781,21 @@ class RegulatedAuthorization extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(intendedUse: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'basis':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(basis: child);
+            // Add all elements from passed list
+            final newList = [...?basis, ...child];
+            return copyWith(basis: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?basis, child];
+            return copyWith(basis: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'holder':
@@ -751,7 +803,7 @@ class RegulatedAuthorization extends DomainResource {
           if (child is Reference) {
             return copyWith(holder: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'regulator':
@@ -759,7 +811,7 @@ class RegulatedAuthorization extends DomainResource {
           if (child is Reference) {
             return copyWith(regulator: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'case':
@@ -767,11 +819,11 @@ class RegulatedAuthorization extends DomainResource {
           if (child is RegulatedAuthorizationCase) {
             return copyWith(case_: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -834,95 +886,141 @@ class RegulatedAuthorization extends DomainResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  RegulatedAuthorization createProperty(String propertyName) {
+  RegulatedAuthorization createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'identifier':
         {
-          return copyWith(identifier: <Identifier>[]);
+          return copyWith(
+            identifier: <Identifier>[],
+          );
         }
       case 'subject':
         {
-          return copyWith(subject: <Reference>[]);
+          return copyWith(
+            subject: <Reference>[],
+          );
         }
       case 'type':
         {
-          return copyWith(type: CodeableConcept.empty());
+          return copyWith(
+            type: CodeableConcept.empty(),
+          );
         }
       case 'description':
         {
-          return copyWith(description: FhirMarkdown.empty());
+          return copyWith(
+            description: FhirMarkdown.empty(),
+          );
         }
       case 'region':
         {
-          return copyWith(region: <CodeableConcept>[]);
+          return copyWith(
+            region: <CodeableConcept>[],
+          );
         }
       case 'status':
         {
-          return copyWith(status: CodeableConcept.empty());
+          return copyWith(
+            status: CodeableConcept.empty(),
+          );
         }
       case 'statusDate':
         {
-          return copyWith(statusDate: FhirDateTime.empty());
+          return copyWith(
+            statusDate: FhirDateTime.empty(),
+          );
         }
       case 'validityPeriod':
         {
-          return copyWith(validityPeriod: Period.empty());
+          return copyWith(
+            validityPeriod: Period.empty(),
+          );
         }
       case 'indication':
         {
-          return copyWith(indication: CodeableReference.empty());
+          return copyWith(
+            indication: CodeableReference.empty(),
+          );
         }
       case 'intendedUse':
         {
-          return copyWith(intendedUse: CodeableConcept.empty());
+          return copyWith(
+            intendedUse: CodeableConcept.empty(),
+          );
         }
       case 'basis':
         {
-          return copyWith(basis: <CodeableConcept>[]);
+          return copyWith(
+            basis: <CodeableConcept>[],
+          );
         }
       case 'holder':
         {
-          return copyWith(holder: Reference.empty());
+          return copyWith(
+            holder: Reference.empty(),
+          );
         }
       case 'regulator':
         {
-          return copyWith(regulator: Reference.empty());
+          return copyWith(
+            regulator: Reference.empty(),
+          );
         }
       case 'case':
         {
-          return copyWith(case_: RegulatedAuthorizationCase.empty());
+          return copyWith(
+            case_: RegulatedAuthorizationCase.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1134,19 +1232,34 @@ class RegulatedAuthorization extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1179,10 +1292,16 @@ class RegulatedAuthorization extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(description, o.description)) {
+    if (!equalsDeepWithNull(
+      description,
+      o.description,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1191,19 +1310,34 @@ class RegulatedAuthorization extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(statusDate, o.statusDate)) {
+    if (!equalsDeepWithNull(
+      statusDate,
+      o.statusDate,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(validityPeriod, o.validityPeriod)) {
+    if (!equalsDeepWithNull(
+      validityPeriod,
+      o.validityPeriod,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(indication, o.indication)) {
+    if (!equalsDeepWithNull(
+      indication,
+      o.indication,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(intendedUse, o.intendedUse)) {
+    if (!equalsDeepWithNull(
+      intendedUse,
+      o.intendedUse,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1212,13 +1346,22 @@ class RegulatedAuthorization extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(holder, o.holder)) {
+    if (!equalsDeepWithNull(
+      holder,
+      o.holder,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(regulator, o.regulator)) {
+    if (!equalsDeepWithNull(
+      regulator,
+      o.regulator,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(case_, o.case_)) {
+    if (!equalsDeepWithNull(
+      case_,
+      o.case_,
+    )) {
       return false;
     }
     return true;
@@ -1254,7 +1397,8 @@ class RegulatedAuthorizationCase extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory RegulatedAuthorizationCase.empty() => const RegulatedAuthorizationCase();
+  factory RegulatedAuthorizationCase.empty() =>
+      const RegulatedAuthorizationCase();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RegulatedAuthorizationCase.fromJson(
@@ -1427,18 +1571,42 @@ class RegulatedAuthorizationCase extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('identifier', identifier);
-    addField('type', type);
-    addField('status', status);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'status',
+      status,
+    );
     if (dateX != null) {
       final fhirType = dateX!.fhirType;
-      addField('date${fhirType.capitalize()}', dateX);
+      addField(
+        'date${fhirType.capitalize()}',
+        dateX,
+      );
     }
 
-    addField('application', application);
+    addField(
+      'application',
+      application,
+    );
     return json;
   }
 
@@ -1514,38 +1682,6 @@ class RegulatedAuthorizationCase extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'application':
-        if (application != null) {
-          return application!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1557,39 +1693,51 @@ class RegulatedAuthorizationCase extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
@@ -1597,7 +1745,7 @@ class RegulatedAuthorizationCase extends BackboneElement {
           if (child is Identifier) {
             return copyWith(identifier: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -1605,7 +1753,7 @@ class RegulatedAuthorizationCase extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -1613,24 +1761,29 @@ class RegulatedAuthorizationCase extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'dateX':
         {
           if (child is DateXRegulatedAuthorizationCase) {
-            // child is e.g. SubjectX union
             return copyWith(dateX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is Period) {
+              return copyWith(dateX: child);
+            }
+            if (child is FhirDateTime) {
+              return copyWith(dateX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'datePeriod':
         {
           if (child is Period) {
             return copyWith(dateX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'dateFhirDateTime':
@@ -1638,19 +1791,25 @@ class RegulatedAuthorizationCase extends BackboneElement {
           if (child is FhirDateTime) {
             return copyWith(dateX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'application':
         {
           if (child is List<RegulatedAuthorizationCase>) {
-            return copyWith(application: child);
+            // Add all elements from passed list
+            final newList = [...?application, ...child];
+            return copyWith(application: newList);
+          } else if (child is RegulatedAuthorizationCase) {
+            // Add single element to existing list or create new list
+            final newList = [...?application, child];
+            return copyWith(application: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1690,45 +1849,65 @@ class RegulatedAuthorizationCase extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  RegulatedAuthorizationCase createProperty(String propertyName) {
+  RegulatedAuthorizationCase createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'identifier':
         {
-          return copyWith(identifier: Identifier.empty());
+          return copyWith(
+            identifier: Identifier.empty(),
+          );
         }
       case 'type':
         {
-          return copyWith(type: CodeableConcept.empty());
+          return copyWith(
+            type: CodeableConcept.empty(),
+          );
         }
       case 'status':
         {
-          return copyWith(status: CodeableConcept.empty());
+          return copyWith(
+            status: CodeableConcept.empty(),
+          );
         }
       case 'date':
       case 'dateX':
       case 'datePeriod':
         {
-          return copyWith(dateX: Period.empty());
+          return copyWith(
+            dateX: Period.empty(),
+          );
         }
       case 'dateDateTime':
         {
-          return copyWith(dateX: FhirDateTime.empty());
+          return copyWith(
+            dateX: FhirDateTime.empty(),
+          );
         }
       case 'application':
         {
-          return copyWith(application: <RegulatedAuthorizationCase>[]);
+          return copyWith(
+            application: <RegulatedAuthorizationCase>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1834,7 +2013,10 @@ class RegulatedAuthorizationCase extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1849,16 +2031,28 @@ class RegulatedAuthorizationCase extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(identifier, o.identifier)) {
+    if (!equalsDeepWithNull(
+      identifier,
+      o.identifier,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(dateX, o.dateX)) {
+    if (!equalsDeepWithNull(
+      dateX,
+      o.dateX,
+    )) {
       return false;
     }
     if (!listEquals<RegulatedAuthorizationCase>(

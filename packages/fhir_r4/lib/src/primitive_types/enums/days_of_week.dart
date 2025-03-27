@@ -54,9 +54,14 @@ class DaysOfWeek extends FhirCodeEnum {
     if (value == null && element != null) {
       return DaysOfWeek.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('DaysOfWeek cannot be constructed from JSON.');
+      throw ArgumentError(
+        'DaysOfWeek cannot be constructed from JSON.',
+      );
     }
-    return DaysOfWeek._(validatedValue: value, element: element);
+    return DaysOfWeek._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// mon

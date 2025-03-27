@@ -56,9 +56,13 @@ class RelatedArtifactType extends FhirCodeEnum {
       return RelatedArtifactType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'RelatedArtifactType cannot be constructed from JSON.',);
+        'RelatedArtifactType cannot be constructed from JSON.',
+      );
     }
-    return RelatedArtifactType._(validatedValue: value, element: element);
+    return RelatedArtifactType._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// documentation

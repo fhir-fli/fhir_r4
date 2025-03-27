@@ -364,31 +364,94 @@ class Consent extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('identifier', identifier);
-    addField('status', status);
-    addField('scope', scope);
-    addField('category', category);
-    addField('patient', patient);
-    addField('dateTime', dateTime);
-    addField('performer', performer);
-    addField('organization', organization);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'scope',
+      scope,
+    );
+    addField(
+      'category',
+      category,
+    );
+    addField(
+      'patient',
+      patient,
+    );
+    addField(
+      'dateTime',
+      dateTime,
+    );
+    addField(
+      'performer',
+      performer,
+    );
+    addField(
+      'organization',
+      organization,
+    );
     if (sourceX != null) {
       final fhirType = sourceX!.fhirType;
-      addField('source${fhirType.capitalize()}', sourceX);
+      addField(
+        'source${fhirType.capitalize()}',
+        sourceX,
+      );
     }
 
-    addField('policy', policy);
-    addField('policyRule', policyRule);
-    addField('verification', verification);
-    addField('provision', provision);
+    addField(
+      'policy',
+      policy,
+    );
+    addField(
+      'policyRule',
+      policyRule,
+    );
+    addField(
+      'verification',
+      verification,
+    );
+    addField(
+      'provision',
+      provision,
+    );
     return json;
   }
 
@@ -523,70 +586,6 @@ class Consent extends DomainResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'identifier':
-        if (identifier != null) {
-          return identifier!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'category':
-        return category;
-      case 'performer':
-        if (performer != null) {
-          return performer!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'organization':
-        if (organization != null) {
-          return organization!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'policy':
-        if (policy != null) {
-          return policy!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'verification':
-        if (verification != null) {
-          return verification!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -598,23 +597,23 @@ class Consent extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -622,7 +621,7 @@ class Consent extends DomainResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -630,7 +629,7 @@ class Consent extends DomainResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -638,7 +637,7 @@ class Consent extends DomainResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -646,39 +645,63 @@ class Consent extends DomainResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
           if (child is List<Identifier>) {
-            return copyWith(identifier: child);
+            // Add all elements from passed list
+            final newList = [...?identifier, ...child];
+            return copyWith(identifier: newList);
+          } else if (child is Identifier) {
+            // Add single element to existing list or create new list
+            final newList = [...?identifier, child];
+            return copyWith(identifier: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -686,7 +709,7 @@ class Consent extends DomainResource {
           if (child is ConsentState) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'scope':
@@ -694,15 +717,21 @@ class Consent extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(scope: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'category':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(category: child);
+            // Add all elements from passed list
+            final newList = [...category, ...child];
+            return copyWith(category: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...category, child];
+            return copyWith(category: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'patient':
@@ -710,7 +739,7 @@ class Consent extends DomainResource {
           if (child is Reference) {
             return copyWith(patient: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'dateTime':
@@ -718,40 +747,57 @@ class Consent extends DomainResource {
           if (child is FhirDateTime) {
             return copyWith(dateTime: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'performer':
         {
           if (child is List<Reference>) {
-            return copyWith(performer: child);
+            // Add all elements from passed list
+            final newList = [...?performer, ...child];
+            return copyWith(performer: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?performer, child];
+            return copyWith(performer: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'organization':
         {
           if (child is List<Reference>) {
-            return copyWith(organization: child);
+            // Add all elements from passed list
+            final newList = [...?organization, ...child];
+            return copyWith(organization: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?organization, child];
+            return copyWith(organization: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'sourceX':
         {
           if (child is SourceXConsent) {
-            // child is e.g. SubjectX union
             return copyWith(sourceX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is Attachment) {
+              return copyWith(sourceX: child);
+            }
+            if (child is Reference) {
+              return copyWith(sourceX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'sourceAttachment':
         {
           if (child is Attachment) {
             return copyWith(sourceX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'sourceReference':
@@ -759,15 +805,21 @@ class Consent extends DomainResource {
           if (child is Reference) {
             return copyWith(sourceX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'policy':
         {
           if (child is List<ConsentPolicy>) {
-            return copyWith(policy: child);
+            // Add all elements from passed list
+            final newList = [...?policy, ...child];
+            return copyWith(policy: newList);
+          } else if (child is ConsentPolicy) {
+            // Add single element to existing list or create new list
+            final newList = [...?policy, child];
+            return copyWith(policy: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'policyRule':
@@ -775,15 +827,21 @@ class Consent extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(policyRule: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'verification':
         {
           if (child is List<ConsentVerification>) {
-            return copyWith(verification: child);
+            // Add all elements from passed list
+            final newList = [...?verification, ...child];
+            return copyWith(verification: newList);
+          } else if (child is ConsentVerification) {
+            // Add single element to existing list or create new list
+            final newList = [...?verification, child];
+            return copyWith(verification: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'provision':
@@ -791,11 +849,11 @@ class Consent extends DomainResource {
           if (child is ConsentProvision) {
             return copyWith(provision: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -861,97 +919,143 @@ class Consent extends DomainResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  Consent createProperty(String propertyName) {
+  Consent createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'identifier':
         {
-          return copyWith(identifier: <Identifier>[]);
+          return copyWith(
+            identifier: <Identifier>[],
+          );
         }
       case 'status':
         {
-          return copyWith(status: ConsentState.empty());
+          return copyWith(
+            status: ConsentState.empty(),
+          );
         }
       case 'scope':
         {
-          return copyWith(scope: CodeableConcept.empty());
+          return copyWith(
+            scope: CodeableConcept.empty(),
+          );
         }
       case 'category':
         {
-          return copyWith(category: <CodeableConcept>[]);
+          return copyWith(
+            category: <CodeableConcept>[],
+          );
         }
       case 'patient':
         {
-          return copyWith(patient: Reference.empty());
+          return copyWith(
+            patient: Reference.empty(),
+          );
         }
       case 'dateTime':
         {
-          return copyWith(dateTime: FhirDateTime.empty());
+          return copyWith(
+            dateTime: FhirDateTime.empty(),
+          );
         }
       case 'performer':
         {
-          return copyWith(performer: <Reference>[]);
+          return copyWith(
+            performer: <Reference>[],
+          );
         }
       case 'organization':
         {
-          return copyWith(organization: <Reference>[]);
+          return copyWith(
+            organization: <Reference>[],
+          );
         }
       case 'source':
       case 'sourceX':
       case 'sourceAttachment':
         {
-          return copyWith(sourceX: Attachment.empty());
+          return copyWith(
+            sourceX: Attachment.empty(),
+          );
         }
       case 'sourceReference':
         {
-          return copyWith(sourceX: Reference.empty());
+          return copyWith(
+            sourceX: Reference.empty(),
+          );
         }
       case 'policy':
         {
-          return copyWith(policy: <ConsentPolicy>[]);
+          return copyWith(
+            policy: <ConsentPolicy>[],
+          );
         }
       case 'policyRule':
         {
-          return copyWith(policyRule: CodeableConcept.empty());
+          return copyWith(
+            policyRule: CodeableConcept.empty(),
+          );
         }
       case 'verification':
         {
-          return copyWith(verification: <ConsentVerification>[]);
+          return copyWith(
+            verification: <ConsentVerification>[],
+          );
         }
       case 'provision':
         {
-          return copyWith(provision: ConsentProvision.empty());
+          return copyWith(
+            provision: ConsentProvision.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1161,19 +1265,34 @@ class Consent extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1200,10 +1319,16 @@ class Consent extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(scope, o.scope)) {
+    if (!equalsDeepWithNull(
+      scope,
+      o.scope,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -1212,10 +1337,16 @@ class Consent extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(patient, o.patient)) {
+    if (!equalsDeepWithNull(
+      patient,
+      o.patient,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(dateTime, o.dateTime)) {
+    if (!equalsDeepWithNull(
+      dateTime,
+      o.dateTime,
+    )) {
       return false;
     }
     if (!listEquals<Reference>(
@@ -1230,7 +1361,10 @@ class Consent extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(sourceX, o.sourceX)) {
+    if (!equalsDeepWithNull(
+      sourceX,
+      o.sourceX,
+    )) {
       return false;
     }
     if (!listEquals<ConsentPolicy>(
@@ -1239,7 +1373,10 @@ class Consent extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(policyRule, o.policyRule)) {
+    if (!equalsDeepWithNull(
+      policyRule,
+      o.policyRule,
+    )) {
       return false;
     }
     if (!listEquals<ConsentVerification>(
@@ -1248,7 +1385,10 @@ class Consent extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(provision, o.provision)) {
+    if (!equalsDeepWithNull(
+      provision,
+      o.provision,
+    )) {
       return false;
     }
     return true;
@@ -1407,11 +1547,26 @@ class ConsentPolicy extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('authority', authority);
-    addField('uri', uri);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'authority',
+      authority,
+    );
+    addField(
+      'uri',
+      uri,
+    );
     return json;
   }
 
@@ -1464,32 +1619,6 @@ class ConsentPolicy extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1501,39 +1630,51 @@ class ConsentPolicy extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'authority':
@@ -1541,7 +1682,7 @@ class ConsentPolicy extends BackboneElement {
           if (child is FhirUri) {
             return copyWith(authority: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'uri':
@@ -1549,11 +1690,11 @@ class ConsentPolicy extends BackboneElement {
           if (child is FhirUri) {
             return copyWith(uri: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1582,27 +1723,39 @@ class ConsentPolicy extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  ConsentPolicy createProperty(String propertyName) {
+  ConsentPolicy createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'authority':
         {
-          return copyWith(authority: FhirUri.empty());
+          return copyWith(
+            authority: FhirUri.empty(),
+          );
         }
       case 'uri':
         {
-          return copyWith(uri: FhirUri.empty());
+          return copyWith(
+            uri: FhirUri.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1683,7 +1836,10 @@ class ConsentPolicy extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -1698,10 +1854,16 @@ class ConsentPolicy extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(authority, o.authority)) {
+    if (!equalsDeepWithNull(
+      authority,
+      o.authority,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(uri, o.uri)) {
+    if (!equalsDeepWithNull(
+      uri,
+      o.uri,
+    )) {
       return false;
     }
     return true;
@@ -1871,12 +2033,30 @@ class ConsentVerification extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('verified', verified);
-    addField('verifiedWith', verifiedWith);
-    addField('verificationDate', verificationDate);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'verified',
+      verified,
+    );
+    addField(
+      'verifiedWith',
+      verifiedWith,
+    );
+    addField(
+      'verificationDate',
+      verificationDate,
+    );
     return json;
   }
 
@@ -1932,32 +2112,6 @@ class ConsentVerification extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1969,39 +2123,51 @@ class ConsentVerification extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'verified':
@@ -2009,7 +2175,7 @@ class ConsentVerification extends BackboneElement {
           if (child is FhirBoolean) {
             return copyWith(verified: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'verifiedWith':
@@ -2017,7 +2183,7 @@ class ConsentVerification extends BackboneElement {
           if (child is Reference) {
             return copyWith(verifiedWith: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'verificationDate':
@@ -2025,11 +2191,11 @@ class ConsentVerification extends BackboneElement {
           if (child is FhirDateTime) {
             return copyWith(verificationDate: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2060,31 +2226,45 @@ class ConsentVerification extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  ConsentVerification createProperty(String propertyName) {
+  ConsentVerification createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'verified':
         {
-          return copyWith(verified: FhirBoolean.empty());
+          return copyWith(
+            verified: FhirBoolean.empty(),
+          );
         }
       case 'verifiedWith':
         {
-          return copyWith(verifiedWith: Reference.empty());
+          return copyWith(
+            verifiedWith: Reference.empty(),
+          );
         }
       case 'verificationDate':
         {
-          return copyWith(verificationDate: FhirDateTime.empty());
+          return copyWith(
+            verificationDate: FhirDateTime.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2171,7 +2351,10 @@ class ConsentVerification extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2186,13 +2369,22 @@ class ConsentVerification extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(verified, o.verified)) {
+    if (!equalsDeepWithNull(
+      verified,
+      o.verified,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(verifiedWith, o.verifiedWith)) {
+    if (!equalsDeepWithNull(
+      verifiedWith,
+      o.verifiedWith,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(verificationDate, o.verificationDate)) {
+    if (!equalsDeepWithNull(
+      verificationDate,
+      o.verificationDate,
+    )) {
       return false;
     }
     return true;
@@ -2486,20 +2678,62 @@ class ConsentProvision extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('type', type);
-    addField('period', period);
-    addField('actor', actor);
-    addField('action', action);
-    addField('securityLabel', securityLabel);
-    addField('purpose', purpose);
-    addField('class', class_);
-    addField('code', code);
-    addField('dataPeriod', dataPeriod);
-    addField('data', data);
-    addField('provision', provision);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'period',
+      period,
+    );
+    addField(
+      'actor',
+      actor,
+    );
+    addField(
+      'action',
+      action,
+    );
+    addField(
+      'securityLabel',
+      securityLabel,
+    );
+    addField(
+      'purpose',
+      purpose,
+    );
+    addField(
+      'class',
+      class_,
+    );
+    addField(
+      'code',
+      code,
+    );
+    addField(
+      'dataPeriod',
+      dataPeriod,
+    );
+    addField(
+      'data',
+      data,
+    );
+    addField(
+      'provision',
+      provision,
+    );
     return json;
   }
 
@@ -2597,80 +2831,6 @@ class ConsentProvision extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'actor':
-        if (actor != null) {
-          return actor!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'action':
-        if (action != null) {
-          return action!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'securityLabel':
-        if (securityLabel != null) {
-          return securityLabel!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'purpose':
-        if (purpose != null) {
-          return purpose!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'class':
-        if (class_ != null) {
-          return class_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'code':
-        if (code != null) {
-          return code!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'data':
-        if (data != null) {
-          return data!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'provision':
-        if (provision != null) {
-          return provision!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2682,39 +2842,51 @@ class ConsentProvision extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -2722,7 +2894,7 @@ class ConsentProvision extends BackboneElement {
           if (child is ConsentProvisionType) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'period':
@@ -2730,55 +2902,91 @@ class ConsentProvision extends BackboneElement {
           if (child is Period) {
             return copyWith(period: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'actor':
         {
           if (child is List<ConsentActor>) {
-            return copyWith(actor: child);
+            // Add all elements from passed list
+            final newList = [...?actor, ...child];
+            return copyWith(actor: newList);
+          } else if (child is ConsentActor) {
+            // Add single element to existing list or create new list
+            final newList = [...?actor, child];
+            return copyWith(actor: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'action':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(action: child);
+            // Add all elements from passed list
+            final newList = [...?action, ...child];
+            return copyWith(action: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?action, child];
+            return copyWith(action: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'securityLabel':
         {
           if (child is List<Coding>) {
-            return copyWith(securityLabel: child);
+            // Add all elements from passed list
+            final newList = [...?securityLabel, ...child];
+            return copyWith(securityLabel: newList);
+          } else if (child is Coding) {
+            // Add single element to existing list or create new list
+            final newList = [...?securityLabel, child];
+            return copyWith(securityLabel: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'purpose':
         {
           if (child is List<Coding>) {
-            return copyWith(purpose: child);
+            // Add all elements from passed list
+            final newList = [...?purpose, ...child];
+            return copyWith(purpose: newList);
+          } else if (child is Coding) {
+            // Add single element to existing list or create new list
+            final newList = [...?purpose, child];
+            return copyWith(purpose: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'class':
         {
           if (child is List<Coding>) {
-            return copyWith(class_: child);
+            // Add all elements from passed list
+            final newList = [...?class_, ...child];
+            return copyWith(class_: newList);
+          } else if (child is Coding) {
+            // Add single element to existing list or create new list
+            final newList = [...?class_, child];
+            return copyWith(class_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(code: child);
+            // Add all elements from passed list
+            final newList = [...?code, ...child];
+            return copyWith(code: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?code, child];
+            return copyWith(code: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'dataPeriod':
@@ -2786,27 +2994,39 @@ class ConsentProvision extends BackboneElement {
           if (child is Period) {
             return copyWith(dataPeriod: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'data':
         {
           if (child is List<ConsentData>) {
-            return copyWith(data: child);
+            // Add all elements from passed list
+            final newList = [...?data, ...child];
+            return copyWith(data: newList);
+          } else if (child is ConsentData) {
+            // Add single element to existing list or create new list
+            final newList = [...?data, child];
+            return copyWith(data: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'provision':
         {
           if (child is List<ConsentProvision>) {
-            return copyWith(provision: child);
+            // Add all elements from passed list
+            final newList = [...?provision, ...child];
+            return copyWith(provision: newList);
+          } else if (child is ConsentProvision) {
+            // Add single element to existing list or create new list
+            final newList = [...?provision, child];
+            return copyWith(provision: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2853,63 +3073,93 @@ class ConsentProvision extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  ConsentProvision createProperty(String propertyName) {
+  ConsentProvision createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'type':
         {
-          return copyWith(type: ConsentProvisionType.empty());
+          return copyWith(
+            type: ConsentProvisionType.empty(),
+          );
         }
       case 'period':
         {
-          return copyWith(period: Period.empty());
+          return copyWith(
+            period: Period.empty(),
+          );
         }
       case 'actor':
         {
-          return copyWith(actor: <ConsentActor>[]);
+          return copyWith(
+            actor: <ConsentActor>[],
+          );
         }
       case 'action':
         {
-          return copyWith(action: <CodeableConcept>[]);
+          return copyWith(
+            action: <CodeableConcept>[],
+          );
         }
       case 'securityLabel':
         {
-          return copyWith(securityLabel: <Coding>[]);
+          return copyWith(
+            securityLabel: <Coding>[],
+          );
         }
       case 'purpose':
         {
-          return copyWith(purpose: <Coding>[]);
+          return copyWith(
+            purpose: <Coding>[],
+          );
         }
       case 'class':
         {
-          return copyWith(class_: <Coding>[]);
+          return copyWith(
+            class_: <Coding>[],
+          );
         }
       case 'code':
         {
-          return copyWith(code: <CodeableConcept>[]);
+          return copyWith(
+            code: <CodeableConcept>[],
+          );
         }
       case 'dataPeriod':
         {
-          return copyWith(dataPeriod: Period.empty());
+          return copyWith(
+            dataPeriod: Period.empty(),
+          );
         }
       case 'data':
         {
-          return copyWith(data: <ConsentData>[]);
+          return copyWith(
+            data: <ConsentData>[],
+          );
         }
       case 'provision':
         {
-          return copyWith(provision: <ConsentProvision>[]);
+          return copyWith(
+            provision: <ConsentProvision>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3085,7 +3335,10 @@ class ConsentProvision extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3100,10 +3353,16 @@ class ConsentProvision extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(period, o.period)) {
+    if (!equalsDeepWithNull(
+      period,
+      o.period,
+    )) {
       return false;
     }
     if (!listEquals<ConsentActor>(
@@ -3142,7 +3401,10 @@ class ConsentProvision extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(dataPeriod, o.dataPeriod)) {
+    if (!equalsDeepWithNull(
+      dataPeriod,
+      o.dataPeriod,
+    )) {
       return false;
     }
     if (!listEquals<ConsentData>(
@@ -3315,11 +3577,26 @@ class ConsentActor extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('role', role);
-    addField('reference', reference);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'role',
+      role,
+    );
+    addField(
+      'reference',
+      reference,
+    );
     return json;
   }
 
@@ -3368,32 +3645,6 @@ class ConsentActor extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -3405,39 +3656,51 @@ class ConsentActor extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'role':
@@ -3445,7 +3708,7 @@ class ConsentActor extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(role: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'reference':
@@ -3453,11 +3716,11 @@ class ConsentActor extends BackboneElement {
           if (child is Reference) {
             return copyWith(reference: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -3486,27 +3749,39 @@ class ConsentActor extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  ConsentActor createProperty(String propertyName) {
+  ConsentActor createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'role':
         {
-          return copyWith(role: CodeableConcept.empty());
+          return copyWith(
+            role: CodeableConcept.empty(),
+          );
         }
       case 'reference':
         {
-          return copyWith(reference: Reference.empty());
+          return copyWith(
+            reference: Reference.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3585,7 +3860,10 @@ class ConsentActor extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3600,10 +3878,16 @@ class ConsentActor extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(role, o.role)) {
+    if (!equalsDeepWithNull(
+      role,
+      o.role,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(reference, o.reference)) {
+    if (!equalsDeepWithNull(
+      reference,
+      o.reference,
+    )) {
       return false;
     }
     return true;
@@ -3763,11 +4047,26 @@ class ConsentData extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('meaning', meaning);
-    addField('reference', reference);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'meaning',
+      meaning,
+    );
+    addField(
+      'reference',
+      reference,
+    );
     return json;
   }
 
@@ -3816,32 +4115,6 @@ class ConsentData extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -3853,39 +4126,51 @@ class ConsentData extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meaning':
@@ -3893,7 +4178,7 @@ class ConsentData extends BackboneElement {
           if (child is ConsentDataMeaning) {
             return copyWith(meaning: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'reference':
@@ -3901,11 +4186,11 @@ class ConsentData extends BackboneElement {
           if (child is Reference) {
             return copyWith(reference: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -3934,27 +4219,39 @@ class ConsentData extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  ConsentData createProperty(String propertyName) {
+  ConsentData createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'meaning':
         {
-          return copyWith(meaning: ConsentDataMeaning.empty());
+          return copyWith(
+            meaning: ConsentDataMeaning.empty(),
+          );
         }
       case 'reference':
         {
-          return copyWith(reference: Reference.empty());
+          return copyWith(
+            reference: Reference.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -4033,7 +4330,10 @@ class ConsentData extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4048,10 +4348,16 @@ class ConsentData extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(meaning, o.meaning)) {
+    if (!equalsDeepWithNull(
+      meaning,
+      o.meaning,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(reference, o.reference)) {
+    if (!equalsDeepWithNull(
+      reference,
+      o.reference,
+    )) {
       return false;
     }
     return true;

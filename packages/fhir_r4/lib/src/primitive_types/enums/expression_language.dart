@@ -56,9 +56,13 @@ class ExpressionLanguage extends FhirCodeEnum {
       return ExpressionLanguage.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ExpressionLanguage cannot be constructed from JSON.',);
+        'ExpressionLanguage cannot be constructed from JSON.',
+      );
     }
-    return ExpressionLanguage._(validatedValue: value, element: element);
+    return ExpressionLanguage._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// text_cql

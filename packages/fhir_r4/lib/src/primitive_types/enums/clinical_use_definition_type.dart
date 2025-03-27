@@ -56,9 +56,13 @@ class ClinicalUseDefinitionType extends FhirCodeEnum {
       return ClinicalUseDefinitionType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ClinicalUseDefinitionType cannot be constructed from JSON.',);
+        'ClinicalUseDefinitionType cannot be constructed from JSON.',
+      );
     }
-    return ClinicalUseDefinitionType._(validatedValue: value, element: element);
+    return ClinicalUseDefinitionType._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// indication

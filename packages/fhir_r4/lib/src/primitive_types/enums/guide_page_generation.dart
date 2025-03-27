@@ -56,9 +56,13 @@ class GuidePageGeneration extends FhirCodeEnum {
       return GuidePageGeneration.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'GuidePageGeneration cannot be constructed from JSON.',);
+        'GuidePageGeneration cannot be constructed from JSON.',
+      );
     }
-    return GuidePageGeneration._(validatedValue: value, element: element);
+    return GuidePageGeneration._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// html

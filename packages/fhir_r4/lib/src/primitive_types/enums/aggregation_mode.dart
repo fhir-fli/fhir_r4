@@ -54,9 +54,14 @@ class AggregationMode extends FhirCodeEnum {
     if (value == null && element != null) {
       return AggregationMode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('AggregationMode cannot be constructed from JSON.');
+      throw ArgumentError(
+        'AggregationMode cannot be constructed from JSON.',
+      );
     }
-    return AggregationMode._(validatedValue: value, element: element);
+    return AggregationMode._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// contained

@@ -211,15 +211,42 @@ class RelatedArtifact extends DataType
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('type', type);
-    addField('label', label);
-    addField('display', display);
-    addField('citation', citation);
-    addField('url', url);
-    addField('document', document);
-    addField('resource', resource);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'label',
+      label,
+    );
+    addField(
+      'display',
+      display,
+    );
+    addField(
+      'citation',
+      citation,
+    );
+    addField(
+      'url',
+      url,
+    );
+    addField(
+      'document',
+      document,
+    );
+    addField(
+      'resource',
+      resource,
+    );
     return json;
   }
 
@@ -290,26 +317,6 @@ class RelatedArtifact extends DataType
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -321,31 +328,37 @@ class RelatedArtifact extends DataType
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -353,7 +366,7 @@ class RelatedArtifact extends DataType
           if (child is RelatedArtifactType) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'label':
@@ -361,7 +374,7 @@ class RelatedArtifact extends DataType
           if (child is FhirString) {
             return copyWith(label: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'display':
@@ -369,7 +382,7 @@ class RelatedArtifact extends DataType
           if (child is FhirString) {
             return copyWith(display: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'citation':
@@ -377,7 +390,7 @@ class RelatedArtifact extends DataType
           if (child is FhirMarkdown) {
             return copyWith(citation: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'url':
@@ -385,7 +398,7 @@ class RelatedArtifact extends DataType
           if (child is FhirUrl) {
             return copyWith(url: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'document':
@@ -393,7 +406,7 @@ class RelatedArtifact extends DataType
           if (child is Attachment) {
             return copyWith(document: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'resource':
@@ -401,11 +414,11 @@ class RelatedArtifact extends DataType
           if (child is FhirCanonical) {
             return copyWith(resource: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -442,43 +455,63 @@ class RelatedArtifact extends DataType
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  RelatedArtifact createProperty(String propertyName) {
+  RelatedArtifact createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'type':
         {
-          return copyWith(type: RelatedArtifactType.empty());
+          return copyWith(
+            type: RelatedArtifactType.empty(),
+          );
         }
       case 'label':
         {
-          return copyWith(label: FhirString.empty());
+          return copyWith(
+            label: FhirString.empty(),
+          );
         }
       case 'display':
         {
-          return copyWith(display: FhirString.empty());
+          return copyWith(
+            display: FhirString.empty(),
+          );
         }
       case 'citation':
         {
-          return copyWith(citation: FhirMarkdown.empty());
+          return copyWith(
+            citation: FhirMarkdown.empty(),
+          );
         }
       case 'url':
         {
-          return copyWith(url: FhirUrl.empty());
+          return copyWith(
+            url: FhirUrl.empty(),
+          );
         }
       case 'document':
         {
-          return copyWith(document: Attachment.empty());
+          return copyWith(
+            document: Attachment.empty(),
+          );
         }
       case 'resource':
         {
-          return copyWith(resource: FhirCanonical.empty());
+          return copyWith(
+            resource: FhirCanonical.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -582,7 +615,10 @@ class RelatedArtifact extends DataType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -591,25 +627,46 @@ class RelatedArtifact extends DataType
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(label, o.label)) {
+    if (!equalsDeepWithNull(
+      label,
+      o.label,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(display, o.display)) {
+    if (!equalsDeepWithNull(
+      display,
+      o.display,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(citation, o.citation)) {
+    if (!equalsDeepWithNull(
+      citation,
+      o.citation,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(url, o.url)) {
+    if (!equalsDeepWithNull(
+      url,
+      o.url,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(document, o.document)) {
+    if (!equalsDeepWithNull(
+      document,
+      o.document,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(resource, o.resource)) {
+    if (!equalsDeepWithNull(
+      resource,
+      o.resource,
+    )) {
       return false;
     }
     return true;

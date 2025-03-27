@@ -238,16 +238,46 @@ class Attachment extends DataType
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('contentType', contentType);
-    addField('language', language);
-    addField('data', data);
-    addField('url', url);
-    addField('size', size);
-    addField('hash', hash);
-    addField('title', title);
-    addField('creation', creation);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'contentType',
+      contentType,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'data',
+      data,
+    );
+    addField(
+      'url',
+      url,
+    );
+    addField(
+      'size',
+      size,
+    );
+    addField(
+      'hash',
+      hash,
+    );
+    addField(
+      'title',
+      title,
+    );
+    addField(
+      'creation',
+      creation,
+    );
     return json;
   }
 
@@ -325,26 +355,6 @@ class Attachment extends DataType
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -356,31 +366,37 @@ class Attachment extends DataType
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contentType':
@@ -388,7 +404,7 @@ class Attachment extends DataType
           if (child is FhirCode) {
             return copyWith(contentType: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -396,7 +412,7 @@ class Attachment extends DataType
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'data':
@@ -404,7 +420,7 @@ class Attachment extends DataType
           if (child is FhirBase64Binary) {
             return copyWith(data: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'url':
@@ -412,7 +428,7 @@ class Attachment extends DataType
           if (child is FhirUrl) {
             return copyWith(url: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'size':
@@ -420,7 +436,7 @@ class Attachment extends DataType
           if (child is FhirUnsignedInt) {
             return copyWith(size: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'hash':
@@ -428,7 +444,7 @@ class Attachment extends DataType
           if (child is FhirBase64Binary) {
             return copyWith(hash: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'title':
@@ -436,7 +452,7 @@ class Attachment extends DataType
           if (child is FhirString) {
             return copyWith(title: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'creation':
@@ -444,11 +460,11 @@ class Attachment extends DataType
           if (child is FhirDateTime) {
             return copyWith(creation: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -487,47 +503,69 @@ class Attachment extends DataType
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  Attachment createProperty(String propertyName) {
+  Attachment createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'contentType':
         {
-          return copyWith(contentType: FhirCode.empty());
+          return copyWith(
+            contentType: FhirCode.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'data':
         {
-          return copyWith(data: FhirBase64Binary.empty());
+          return copyWith(
+            data: FhirBase64Binary.empty(),
+          );
         }
       case 'url':
         {
-          return copyWith(url: FhirUrl.empty());
+          return copyWith(
+            url: FhirUrl.empty(),
+          );
         }
       case 'size':
         {
-          return copyWith(size: FhirUnsignedInt.empty());
+          return copyWith(
+            size: FhirUnsignedInt.empty(),
+          );
         }
       case 'hash':
         {
-          return copyWith(hash: FhirBase64Binary.empty());
+          return copyWith(
+            hash: FhirBase64Binary.empty(),
+          );
         }
       case 'title':
         {
-          return copyWith(title: FhirString.empty());
+          return copyWith(
+            title: FhirString.empty(),
+          );
         }
       case 'creation':
         {
-          return copyWith(creation: FhirDateTime.empty());
+          return copyWith(
+            creation: FhirDateTime.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -639,7 +677,10 @@ class Attachment extends DataType
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -648,28 +689,52 @@ class Attachment extends DataType
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(contentType, o.contentType)) {
+    if (!equalsDeepWithNull(
+      contentType,
+      o.contentType,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(data, o.data)) {
+    if (!equalsDeepWithNull(
+      data,
+      o.data,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(url, o.url)) {
+    if (!equalsDeepWithNull(
+      url,
+      o.url,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(size, o.size)) {
+    if (!equalsDeepWithNull(
+      size,
+      o.size,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(hash, o.hash)) {
+    if (!equalsDeepWithNull(
+      hash,
+      o.hash,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(title, o.title)) {
+    if (!equalsDeepWithNull(
+      title,
+      o.title,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(creation, o.creation)) {
+    if (!equalsDeepWithNull(
+      creation,
+      o.creation,
+    )) {
       return false;
     }
     return true;

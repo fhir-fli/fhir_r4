@@ -60,10 +60,13 @@ class ImmunizationEvaluationStatusCodes extends FhirCodeEnum {
       return ImmunizationEvaluationStatusCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ImmunizationEvaluationStatusCodes cannot be constructed from JSON.',);
+        'ImmunizationEvaluationStatusCodes cannot be constructed from JSON.',
+      );
     }
     return ImmunizationEvaluationStatusCodes._(
-        validatedValue: value, element: element,);
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// in_progress

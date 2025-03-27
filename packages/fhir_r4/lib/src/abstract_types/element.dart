@@ -246,34 +246,25 @@ class Element extends FhirBase {
   }
 
   @override
-  List<FhirBase>? getListChildByName(String name, [bool checkValid = false]) {
-    if (name == 'extension') {
-      return extension_ ?? <FhirExtension>[];
-    } else {
-      return null;
-    }
-  }
-
-  @override
 
   /// Sets a property by name.
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
-    switch (name) {
+    switch (childName) {
       case 'id':
         if (child is FhirString) {
           return copyWith(id: child);
         }
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
       case 'extension':
         if (child is List<FhirExtension>) {
           return copyWith(extension_: child);
         }
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
-    throw Exception('Cannot set child value for $name');
+    throw Exception('Cannot set child value for $childName');
   }
 
   /// Retrieves the type of the object by element name.

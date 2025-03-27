@@ -406,34 +406,106 @@ class AllergyIntolerance extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('identifier', identifier);
-    addField('clinicalStatus', clinicalStatus);
-    addField('verificationStatus', verificationStatus);
-    addField('type', type);
-    addField('category', category);
-    addField('criticality', criticality);
-    addField('code', code);
-    addField('patient', patient);
-    addField('encounter', encounter);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'clinicalStatus',
+      clinicalStatus,
+    );
+    addField(
+      'verificationStatus',
+      verificationStatus,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'category',
+      category,
+    );
+    addField(
+      'criticality',
+      criticality,
+    );
+    addField(
+      'code',
+      code,
+    );
+    addField(
+      'patient',
+      patient,
+    );
+    addField(
+      'encounter',
+      encounter,
+    );
     if (onsetX != null) {
       final fhirType = onsetX!.fhirType;
-      addField('onset${fhirType.capitalize()}', onsetX);
+      addField(
+        'onset${fhirType.capitalize()}',
+        onsetX,
+      );
     }
 
-    addField('recordedDate', recordedDate);
-    addField('recorder', recorder);
-    addField('asserter', asserter);
-    addField('lastOccurrence', lastOccurrence);
-    addField('note', note);
-    addField('reaction', reaction);
+    addField(
+      'recordedDate',
+      recordedDate,
+    );
+    addField(
+      'recorder',
+      recorder,
+    );
+    addField(
+      'asserter',
+      asserter,
+    );
+    addField(
+      'lastOccurrence',
+      lastOccurrence,
+    );
+    addField(
+      'note',
+      note,
+    );
+    addField(
+      'reaction',
+      reaction,
+    );
     return json;
   }
 
@@ -599,62 +671,6 @@ class AllergyIntolerance extends DomainResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'identifier':
-        if (identifier != null) {
-          return identifier!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'category':
-        if (category != null) {
-          return category!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'note':
-        if (note != null) {
-          return note!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'reaction':
-        if (reaction != null) {
-          return reaction!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -666,23 +682,23 @@ class AllergyIntolerance extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -690,7 +706,7 @@ class AllergyIntolerance extends DomainResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -698,7 +714,7 @@ class AllergyIntolerance extends DomainResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -706,7 +722,7 @@ class AllergyIntolerance extends DomainResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -714,39 +730,63 @@ class AllergyIntolerance extends DomainResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
           if (child is List<Identifier>) {
-            return copyWith(identifier: child);
+            // Add all elements from passed list
+            final newList = [...?identifier, ...child];
+            return copyWith(identifier: newList);
+          } else if (child is Identifier) {
+            // Add single element to existing list or create new list
+            final newList = [...?identifier, child];
+            return copyWith(identifier: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'clinicalStatus':
@@ -754,7 +794,7 @@ class AllergyIntolerance extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(clinicalStatus: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'verificationStatus':
@@ -762,7 +802,7 @@ class AllergyIntolerance extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(verificationStatus: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -770,15 +810,21 @@ class AllergyIntolerance extends DomainResource {
           if (child is AllergyIntoleranceType) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'category':
         {
           if (child is List<AllergyIntoleranceCategory>) {
-            return copyWith(category: child);
+            // Add all elements from passed list
+            final newList = [...?category, ...child];
+            return copyWith(category: newList);
+          } else if (child is AllergyIntoleranceCategory) {
+            // Add single element to existing list or create new list
+            final newList = [...?category, child];
+            return copyWith(category: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'criticality':
@@ -786,7 +832,7 @@ class AllergyIntolerance extends DomainResource {
           if (child is AllergyIntoleranceCriticality) {
             return copyWith(criticality: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
@@ -794,7 +840,7 @@ class AllergyIntolerance extends DomainResource {
           if (child is CodeableConcept) {
             return copyWith(code: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'patient':
@@ -802,7 +848,7 @@ class AllergyIntolerance extends DomainResource {
           if (child is Reference) {
             return copyWith(patient: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'encounter':
@@ -810,24 +856,38 @@ class AllergyIntolerance extends DomainResource {
           if (child is Reference) {
             return copyWith(encounter: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'onsetX':
         {
           if (child is OnsetXAllergyIntolerance) {
-            // child is e.g. SubjectX union
             return copyWith(onsetX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            if (child is FhirDateTime) {
+              return copyWith(onsetX: child);
+            }
+            if (child is Age) {
+              return copyWith(onsetX: child);
+            }
+            if (child is Period) {
+              return copyWith(onsetX: child);
+            }
+            if (child is Range) {
+              return copyWith(onsetX: child);
+            }
+            if (child is FhirString) {
+              return copyWith(onsetX: child);
+            }
           }
+          throw Exception('Invalid child type for $childName');
         }
       case 'onsetFhirDateTime':
         {
           if (child is FhirDateTime) {
             return copyWith(onsetX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'onsetAge':
@@ -835,7 +895,7 @@ class AllergyIntolerance extends DomainResource {
           if (child is Age) {
             return copyWith(onsetX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'onsetPeriod':
@@ -843,7 +903,7 @@ class AllergyIntolerance extends DomainResource {
           if (child is Period) {
             return copyWith(onsetX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'onsetRange':
@@ -851,7 +911,7 @@ class AllergyIntolerance extends DomainResource {
           if (child is Range) {
             return copyWith(onsetX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'onsetFhirString':
@@ -859,7 +919,7 @@ class AllergyIntolerance extends DomainResource {
           if (child is FhirString) {
             return copyWith(onsetX: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'recordedDate':
@@ -867,7 +927,7 @@ class AllergyIntolerance extends DomainResource {
           if (child is FhirDateTime) {
             return copyWith(recordedDate: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'recorder':
@@ -875,7 +935,7 @@ class AllergyIntolerance extends DomainResource {
           if (child is Reference) {
             return copyWith(recorder: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'asserter':
@@ -883,7 +943,7 @@ class AllergyIntolerance extends DomainResource {
           if (child is Reference) {
             return copyWith(asserter: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'lastOccurrence':
@@ -891,27 +951,39 @@ class AllergyIntolerance extends DomainResource {
           if (child is FhirDateTime) {
             return copyWith(lastOccurrence: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
           if (child is List<Annotation>) {
-            return copyWith(note: child);
+            // Add all elements from passed list
+            final newList = [...?note, ...child];
+            return copyWith(note: newList);
+          } else if (child is Annotation) {
+            // Add single element to existing list or create new list
+            final newList = [...?note, child];
+            return copyWith(note: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'reaction':
         {
           if (child is List<AllergyIntoleranceReaction>) {
-            return copyWith(reaction: child);
+            // Add all elements from passed list
+            final newList = [...?reaction, ...child];
+            return copyWith(reaction: newList);
+          } else if (child is AllergyIntoleranceReaction) {
+            // Add single element to existing list or create new list
+            final newList = [...?reaction, child];
+            return copyWith(reaction: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -989,121 +1061,179 @@ class AllergyIntolerance extends DomainResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  AllergyIntolerance createProperty(String propertyName) {
+  AllergyIntolerance createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'identifier':
         {
-          return copyWith(identifier: <Identifier>[]);
+          return copyWith(
+            identifier: <Identifier>[],
+          );
         }
       case 'clinicalStatus':
         {
-          return copyWith(clinicalStatus: CodeableConcept.empty());
+          return copyWith(
+            clinicalStatus: CodeableConcept.empty(),
+          );
         }
       case 'verificationStatus':
         {
-          return copyWith(verificationStatus: CodeableConcept.empty());
+          return copyWith(
+            verificationStatus: CodeableConcept.empty(),
+          );
         }
       case 'type':
         {
-          return copyWith(type: AllergyIntoleranceType.empty());
+          return copyWith(
+            type: AllergyIntoleranceType.empty(),
+          );
         }
       case 'category':
         {
-          return copyWith(category: <AllergyIntoleranceCategory>[]);
+          return copyWith(
+            category: <AllergyIntoleranceCategory>[],
+          );
         }
       case 'criticality':
         {
-          return copyWith(criticality: AllergyIntoleranceCriticality.empty());
+          return copyWith(
+            criticality: AllergyIntoleranceCriticality.empty(),
+          );
         }
       case 'code':
         {
-          return copyWith(code: CodeableConcept.empty());
+          return copyWith(
+            code: CodeableConcept.empty(),
+          );
         }
       case 'patient':
         {
-          return copyWith(patient: Reference.empty());
+          return copyWith(
+            patient: Reference.empty(),
+          );
         }
       case 'encounter':
         {
-          return copyWith(encounter: Reference.empty());
+          return copyWith(
+            encounter: Reference.empty(),
+          );
         }
       case 'onset':
       case 'onsetX':
       case 'onsetDateTime':
         {
-          return copyWith(onsetX: FhirDateTime.empty());
+          return copyWith(
+            onsetX: FhirDateTime.empty(),
+          );
         }
       case 'onsetAge':
         {
-          return copyWith(onsetX: Age.empty());
+          return copyWith(
+            onsetX: Age.empty(),
+          );
         }
       case 'onsetPeriod':
         {
-          return copyWith(onsetX: Period.empty());
+          return copyWith(
+            onsetX: Period.empty(),
+          );
         }
       case 'onsetRange':
         {
-          return copyWith(onsetX: Range.empty());
+          return copyWith(
+            onsetX: Range.empty(),
+          );
         }
       case 'onsetString':
         {
-          return copyWith(onsetX: FhirString.empty());
+          return copyWith(
+            onsetX: FhirString.empty(),
+          );
         }
       case 'recordedDate':
         {
-          return copyWith(recordedDate: FhirDateTime.empty());
+          return copyWith(
+            recordedDate: FhirDateTime.empty(),
+          );
         }
       case 'recorder':
         {
-          return copyWith(recorder: Reference.empty());
+          return copyWith(
+            recorder: Reference.empty(),
+          );
         }
       case 'asserter':
         {
-          return copyWith(asserter: Reference.empty());
+          return copyWith(
+            asserter: Reference.empty(),
+          );
         }
       case 'lastOccurrence':
         {
-          return copyWith(lastOccurrence: FhirDateTime.empty());
+          return copyWith(
+            lastOccurrence: FhirDateTime.empty(),
+          );
         }
       case 'note':
         {
-          return copyWith(note: <Annotation>[]);
+          return copyWith(
+            note: <Annotation>[],
+          );
         }
       case 'reaction':
         {
-          return copyWith(reaction: <AllergyIntoleranceReaction>[]);
+          return copyWith(
+            reaction: <AllergyIntoleranceReaction>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1328,19 +1458,34 @@ class AllergyIntolerance extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1367,13 +1512,22 @@ class AllergyIntolerance extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(clinicalStatus, o.clinicalStatus)) {
+    if (!equalsDeepWithNull(
+      clinicalStatus,
+      o.clinicalStatus,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(verificationStatus, o.verificationStatus)) {
+    if (!equalsDeepWithNull(
+      verificationStatus,
+      o.verificationStatus,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
     if (!listEquals<AllergyIntoleranceCategory>(
@@ -1382,31 +1536,58 @@ class AllergyIntolerance extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(criticality, o.criticality)) {
+    if (!equalsDeepWithNull(
+      criticality,
+      o.criticality,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(code, o.code)) {
+    if (!equalsDeepWithNull(
+      code,
+      o.code,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(patient, o.patient)) {
+    if (!equalsDeepWithNull(
+      patient,
+      o.patient,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(encounter, o.encounter)) {
+    if (!equalsDeepWithNull(
+      encounter,
+      o.encounter,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(onsetX, o.onsetX)) {
+    if (!equalsDeepWithNull(
+      onsetX,
+      o.onsetX,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(recordedDate, o.recordedDate)) {
+    if (!equalsDeepWithNull(
+      recordedDate,
+      o.recordedDate,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(recorder, o.recorder)) {
+    if (!equalsDeepWithNull(
+      recorder,
+      o.recorder,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(asserter, o.asserter)) {
+    if (!equalsDeepWithNull(
+      asserter,
+      o.asserter,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(lastOccurrence, o.lastOccurrence)) {
+    if (!equalsDeepWithNull(
+      lastOccurrence,
+      o.lastOccurrence,
+    )) {
       return false;
     }
     if (!listEquals<Annotation>(
@@ -1653,16 +1834,46 @@ class AllergyIntoleranceReaction extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('substance', substance);
-    addField('manifestation', manifestation);
-    addField('description', description);
-    addField('onset', onset);
-    addField('severity', severity);
-    addField('exposureRoute', exposureRoute);
-    addField('note', note);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'substance',
+      substance,
+    );
+    addField(
+      'manifestation',
+      manifestation,
+    );
+    addField(
+      'description',
+      description,
+    );
+    addField(
+      'onset',
+      onset,
+    );
+    addField(
+      'severity',
+      severity,
+    );
+    addField(
+      'exposureRoute',
+      exposureRoute,
+    );
+    addField(
+      'note',
+      note,
+    );
     return json;
   }
 
@@ -1738,40 +1949,6 @@ class AllergyIntoleranceReaction extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'manifestation':
-        return manifestation;
-      case 'note':
-        if (note != null) {
-          return note!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1783,39 +1960,51 @@ class AllergyIntoleranceReaction extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'substance':
@@ -1823,15 +2012,21 @@ class AllergyIntoleranceReaction extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(substance: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'manifestation':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(manifestation: child);
+            // Add all elements from passed list
+            final newList = [...manifestation, ...child];
+            return copyWith(manifestation: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...manifestation, child];
+            return copyWith(manifestation: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
@@ -1839,7 +2034,7 @@ class AllergyIntoleranceReaction extends BackboneElement {
           if (child is FhirString) {
             return copyWith(description: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'onset':
@@ -1847,7 +2042,7 @@ class AllergyIntoleranceReaction extends BackboneElement {
           if (child is FhirDateTime) {
             return copyWith(onset: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'severity':
@@ -1855,7 +2050,7 @@ class AllergyIntoleranceReaction extends BackboneElement {
           if (child is AllergyIntoleranceSeverity) {
             return copyWith(severity: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'exposureRoute':
@@ -1863,19 +2058,25 @@ class AllergyIntoleranceReaction extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(exposureRoute: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'note':
         {
           if (child is List<Annotation>) {
-            return copyWith(note: child);
+            // Add all elements from passed list
+            final newList = [...?note, ...child];
+            return copyWith(note: newList);
+          } else if (child is Annotation) {
+            // Add single element to existing list or create new list
+            final newList = [...?note, child];
+            return copyWith(note: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1914,47 +2115,69 @@ class AllergyIntoleranceReaction extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  AllergyIntoleranceReaction createProperty(String propertyName) {
+  AllergyIntoleranceReaction createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'substance':
         {
-          return copyWith(substance: CodeableConcept.empty());
+          return copyWith(
+            substance: CodeableConcept.empty(),
+          );
         }
       case 'manifestation':
         {
-          return copyWith(manifestation: <CodeableConcept>[]);
+          return copyWith(
+            manifestation: <CodeableConcept>[],
+          );
         }
       case 'description':
         {
-          return copyWith(description: FhirString.empty());
+          return copyWith(
+            description: FhirString.empty(),
+          );
         }
       case 'onset':
         {
-          return copyWith(onset: FhirDateTime.empty());
+          return copyWith(
+            onset: FhirDateTime.empty(),
+          );
         }
       case 'severity':
         {
-          return copyWith(severity: AllergyIntoleranceSeverity.empty());
+          return copyWith(
+            severity: AllergyIntoleranceSeverity.empty(),
+          );
         }
       case 'exposureRoute':
         {
-          return copyWith(exposureRoute: CodeableConcept.empty());
+          return copyWith(
+            exposureRoute: CodeableConcept.empty(),
+          );
         }
       case 'note':
         {
-          return copyWith(note: <Annotation>[]);
+          return copyWith(
+            note: <Annotation>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2077,7 +2300,10 @@ class AllergyIntoleranceReaction extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2092,7 +2318,10 @@ class AllergyIntoleranceReaction extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(substance, o.substance)) {
+    if (!equalsDeepWithNull(
+      substance,
+      o.substance,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -2101,16 +2330,28 @@ class AllergyIntoleranceReaction extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(description, o.description)) {
+    if (!equalsDeepWithNull(
+      description,
+      o.description,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(onset, o.onset)) {
+    if (!equalsDeepWithNull(
+      onset,
+      o.onset,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(severity, o.severity)) {
+    if (!equalsDeepWithNull(
+      severity,
+      o.severity,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(exposureRoute, o.exposureRoute)) {
+    if (!equalsDeepWithNull(
+      exposureRoute,
+      o.exposureRoute,
+    )) {
       return false;
     }
     if (!listEquals<Annotation>(

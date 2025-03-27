@@ -54,9 +54,14 @@ class FHIRDeviceStatus extends FhirCodeEnum {
     if (value == null && element != null) {
       return FHIRDeviceStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('FHIRDeviceStatus cannot be constructed from JSON.');
+      throw ArgumentError(
+        'FHIRDeviceStatus cannot be constructed from JSON.',
+      );
     }
-    return FHIRDeviceStatus._(validatedValue: value, element: element);
+    return FHIRDeviceStatus._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// active

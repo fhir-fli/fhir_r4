@@ -54,9 +54,14 @@ class ChargeItemStatus extends FhirCodeEnum {
     if (value == null && element != null) {
       return ChargeItemStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('ChargeItemStatus cannot be constructed from JSON.');
+      throw ArgumentError(
+        'ChargeItemStatus cannot be constructed from JSON.',
+      );
     }
-    return ChargeItemStatus._(validatedValue: value, element: element);
+    return ChargeItemStatus._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// planned

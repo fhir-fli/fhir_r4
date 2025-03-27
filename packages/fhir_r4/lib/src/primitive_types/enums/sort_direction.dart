@@ -54,9 +54,14 @@ class SortDirection extends FhirCodeEnum {
     if (value == null && element != null) {
       return SortDirection.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('SortDirection cannot be constructed from JSON.');
+      throw ArgumentError(
+        'SortDirection cannot be constructed from JSON.',
+      );
     }
-    return SortDirection._(validatedValue: value, element: element);
+    return SortDirection._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// ascending

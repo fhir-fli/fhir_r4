@@ -56,10 +56,13 @@ class SpecimenContainedPreference extends FhirCodeEnum {
       return SpecimenContainedPreference.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'SpecimenContainedPreference cannot be constructed from JSON.',);
+        'SpecimenContainedPreference cannot be constructed from JSON.',
+      );
     }
     return SpecimenContainedPreference._(
-        validatedValue: value, element: element,);
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// preferred

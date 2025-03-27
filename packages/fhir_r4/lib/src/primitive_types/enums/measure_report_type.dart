@@ -54,9 +54,14 @@ class MeasureReportType extends FhirCodeEnum {
     if (value == null && element != null) {
       return MeasureReportType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('MeasureReportType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'MeasureReportType cannot be constructed from JSON.',
+      );
     }
-    return MeasureReportType._(validatedValue: value, element: element);
+    return MeasureReportType._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// individual

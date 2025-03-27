@@ -472,40 +472,142 @@ class CapabilityStatement extends CanonicalResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('url', url);
-    addField('version', version);
-    addField('name', name);
-    addField('title', title);
-    addField('status', status);
-    addField('experimental', experimental);
-    addField('date', date);
-    addField('publisher', publisher);
-    addField('contact', contact);
-    addField('description', description);
-    addField('useContext', useContext);
-    addField('jurisdiction', jurisdiction);
-    addField('purpose', purpose);
-    addField('copyright', copyright);
-    addField('kind', kind);
-    addField('instantiates', instantiates);
-    addField('imports', imports);
-    addField('software', software);
-    addField('implementation', implementation);
-    addField('fhirVersion', fhirVersion);
-    addField('format', format);
-    addField('patchFormat', patchFormat);
-    addField('implementationGuide', implementationGuide);
-    addField('rest', rest);
-    addField('messaging', messaging);
-    addField('document', document);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'url',
+      url,
+    );
+    addField(
+      'version',
+      version,
+    );
+    addField(
+      'name',
+      name,
+    );
+    addField(
+      'title',
+      title,
+    );
+    addField(
+      'status',
+      status,
+    );
+    addField(
+      'experimental',
+      experimental,
+    );
+    addField(
+      'date',
+      date,
+    );
+    addField(
+      'publisher',
+      publisher,
+    );
+    addField(
+      'contact',
+      contact,
+    );
+    addField(
+      'description',
+      description,
+    );
+    addField(
+      'useContext',
+      useContext,
+    );
+    addField(
+      'jurisdiction',
+      jurisdiction,
+    );
+    addField(
+      'purpose',
+      purpose,
+    );
+    addField(
+      'copyright',
+      copyright,
+    );
+    addField(
+      'kind',
+      kind,
+    );
+    addField(
+      'instantiates',
+      instantiates,
+    );
+    addField(
+      'imports',
+      imports,
+    );
+    addField(
+      'software',
+      software,
+    );
+    addField(
+      'implementation',
+      implementation,
+    );
+    addField(
+      'fhirVersion',
+      fhirVersion,
+    );
+    addField(
+      'format',
+      format,
+    );
+    addField(
+      'patchFormat',
+      patchFormat,
+    );
+    addField(
+      'implementationGuide',
+      implementationGuide,
+    );
+    addField(
+      'rest',
+      rest,
+    );
+    addField(
+      'messaging',
+      messaging,
+    );
+    addField(
+      'document',
+      document,
+    );
     return json;
   }
 
@@ -697,100 +799,6 @@ class CapabilityStatement extends CanonicalResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'contact':
-        if (contact != null) {
-          return contact!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'useContext':
-        if (useContext != null) {
-          return useContext!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'jurisdiction':
-        if (jurisdiction != null) {
-          return jurisdiction!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'instantiates':
-        if (instantiates != null) {
-          return instantiates!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'imports':
-        if (imports != null) {
-          return imports!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'format':
-        return format;
-      case 'patchFormat':
-        if (patchFormat != null) {
-          return patchFormat!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'implementationGuide':
-        if (implementationGuide != null) {
-          return implementationGuide!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'rest':
-        if (rest != null) {
-          return rest!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'messaging':
-        if (messaging != null) {
-          return messaging!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'document':
-        if (document != null) {
-          return document!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -802,23 +810,23 @@ class CapabilityStatement extends CanonicalResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -826,7 +834,7 @@ class CapabilityStatement extends CanonicalResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -834,7 +842,7 @@ class CapabilityStatement extends CanonicalResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -842,7 +850,7 @@ class CapabilityStatement extends CanonicalResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -850,31 +858,49 @@ class CapabilityStatement extends CanonicalResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'url':
@@ -882,7 +908,7 @@ class CapabilityStatement extends CanonicalResource {
           if (child is FhirUri) {
             return copyWith(url: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'version':
@@ -890,7 +916,7 @@ class CapabilityStatement extends CanonicalResource {
           if (child is FhirString) {
             return copyWith(version: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
@@ -898,7 +924,7 @@ class CapabilityStatement extends CanonicalResource {
           if (child is FhirString) {
             return copyWith(name: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'title':
@@ -906,7 +932,7 @@ class CapabilityStatement extends CanonicalResource {
           if (child is FhirString) {
             return copyWith(title: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'status':
@@ -914,7 +940,7 @@ class CapabilityStatement extends CanonicalResource {
           if (child is PublicationStatus) {
             return copyWith(status: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'experimental':
@@ -922,7 +948,7 @@ class CapabilityStatement extends CanonicalResource {
           if (child is FhirBoolean) {
             return copyWith(experimental: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'date':
@@ -930,7 +956,7 @@ class CapabilityStatement extends CanonicalResource {
           if (child is FhirDateTime) {
             return copyWith(date: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'publisher':
@@ -938,15 +964,21 @@ class CapabilityStatement extends CanonicalResource {
           if (child is FhirString) {
             return copyWith(publisher: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contact':
         {
           if (child is List<ContactDetail>) {
-            return copyWith(contact: child);
+            // Add all elements from passed list
+            final newList = [...?contact, ...child];
+            return copyWith(contact: newList);
+          } else if (child is ContactDetail) {
+            // Add single element to existing list or create new list
+            final newList = [...?contact, child];
+            return copyWith(contact: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
@@ -954,23 +986,35 @@ class CapabilityStatement extends CanonicalResource {
           if (child is FhirMarkdown) {
             return copyWith(description: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'useContext':
         {
           if (child is List<UsageContext>) {
-            return copyWith(useContext: child);
+            // Add all elements from passed list
+            final newList = [...?useContext, ...child];
+            return copyWith(useContext: newList);
+          } else if (child is UsageContext) {
+            // Add single element to existing list or create new list
+            final newList = [...?useContext, child];
+            return copyWith(useContext: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'jurisdiction':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(jurisdiction: child);
+            // Add all elements from passed list
+            final newList = [...?jurisdiction, ...child];
+            return copyWith(jurisdiction: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?jurisdiction, child];
+            return copyWith(jurisdiction: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'purpose':
@@ -978,7 +1022,7 @@ class CapabilityStatement extends CanonicalResource {
           if (child is FhirMarkdown) {
             return copyWith(purpose: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'copyright':
@@ -986,7 +1030,7 @@ class CapabilityStatement extends CanonicalResource {
           if (child is FhirMarkdown) {
             return copyWith(copyright: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'kind':
@@ -994,23 +1038,35 @@ class CapabilityStatement extends CanonicalResource {
           if (child is CapabilityStatementKind) {
             return copyWith(kind: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'instantiates':
         {
           if (child is List<FhirCanonical>) {
-            return copyWith(instantiates: child);
+            // Add all elements from passed list
+            final newList = [...?instantiates, ...child];
+            return copyWith(instantiates: newList);
+          } else if (child is FhirCanonical) {
+            // Add single element to existing list or create new list
+            final newList = [...?instantiates, child];
+            return copyWith(instantiates: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'imports':
         {
           if (child is List<FhirCanonical>) {
-            return copyWith(imports: child);
+            // Add all elements from passed list
+            final newList = [...?imports, ...child];
+            return copyWith(imports: newList);
+          } else if (child is FhirCanonical) {
+            // Add single element to existing list or create new list
+            final newList = [...?imports, child];
+            return copyWith(imports: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'software':
@@ -1018,7 +1074,7 @@ class CapabilityStatement extends CanonicalResource {
           if (child is CapabilityStatementSoftware) {
             return copyWith(software: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implementation':
@@ -1026,7 +1082,7 @@ class CapabilityStatement extends CanonicalResource {
           if (child is CapabilityStatementImplementation) {
             return copyWith(implementation: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'fhirVersion':
@@ -1034,59 +1090,95 @@ class CapabilityStatement extends CanonicalResource {
           if (child is FHIRVersion) {
             return copyWith(fhirVersion: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'format':
         {
           if (child is List<FhirCode>) {
-            return copyWith(format: child);
+            // Add all elements from passed list
+            final newList = [...format, ...child];
+            return copyWith(format: newList);
+          } else if (child is FhirCode) {
+            // Add single element to existing list or create new list
+            final newList = [...format, child];
+            return copyWith(format: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'patchFormat':
         {
           if (child is List<FhirCode>) {
-            return copyWith(patchFormat: child);
+            // Add all elements from passed list
+            final newList = [...?patchFormat, ...child];
+            return copyWith(patchFormat: newList);
+          } else if (child is FhirCode) {
+            // Add single element to existing list or create new list
+            final newList = [...?patchFormat, child];
+            return copyWith(patchFormat: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implementationGuide':
         {
           if (child is List<FhirCanonical>) {
-            return copyWith(implementationGuide: child);
+            // Add all elements from passed list
+            final newList = [...?implementationGuide, ...child];
+            return copyWith(implementationGuide: newList);
+          } else if (child is FhirCanonical) {
+            // Add single element to existing list or create new list
+            final newList = [...?implementationGuide, child];
+            return copyWith(implementationGuide: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'rest':
         {
           if (child is List<CapabilityStatementRest>) {
-            return copyWith(rest: child);
+            // Add all elements from passed list
+            final newList = [...?rest, ...child];
+            return copyWith(rest: newList);
+          } else if (child is CapabilityStatementRest) {
+            // Add single element to existing list or create new list
+            final newList = [...?rest, child];
+            return copyWith(rest: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'messaging':
         {
           if (child is List<CapabilityStatementMessaging>) {
-            return copyWith(messaging: child);
+            // Add all elements from passed list
+            final newList = [...?messaging, ...child];
+            return copyWith(messaging: newList);
+          } else if (child is CapabilityStatementMessaging) {
+            // Add single element to existing list or create new list
+            final newList = [...?messaging, child];
+            return copyWith(messaging: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'document':
         {
           if (child is List<CapabilityStatementDocument>) {
-            return copyWith(document: child);
+            // Add all elements from passed list
+            final newList = [...?document, ...child];
+            return copyWith(document: newList);
+          } else if (child is CapabilityStatementDocument) {
+            // Add single element to existing list or create new list
+            final newList = [...?document, child];
+            return copyWith(document: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1173,144 +1265,213 @@ class CapabilityStatement extends CanonicalResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  CapabilityStatement createProperty(String propertyName) {
+  CapabilityStatement createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'url':
         {
-          return copyWith(url: FhirUri.empty());
+          return copyWith(
+            url: FhirUri.empty(),
+          );
         }
       case 'version':
         {
-          return copyWith(version: FhirString.empty());
+          return copyWith(
+            version: FhirString.empty(),
+          );
         }
       case 'name':
         {
-          return copyWith(name: FhirString.empty());
+          return copyWith(
+            name: FhirString.empty(),
+          );
         }
       case 'title':
         {
-          return copyWith(title: FhirString.empty());
+          return copyWith(
+            title: FhirString.empty(),
+          );
         }
       case 'status':
         {
-          return copyWith(status: PublicationStatus.empty());
+          return copyWith(
+            status: PublicationStatus.empty(),
+          );
         }
       case 'experimental':
         {
-          return copyWith(experimental: FhirBoolean.empty());
+          return copyWith(
+            experimental: FhirBoolean.empty(),
+          );
         }
       case 'date':
         {
-          return copyWith(date: FhirDateTime.empty());
+          return copyWith(
+            date: FhirDateTime.empty(),
+          );
         }
       case 'publisher':
         {
-          return copyWith(publisher: FhirString.empty());
+          return copyWith(
+            publisher: FhirString.empty(),
+          );
         }
       case 'contact':
         {
-          return copyWith(contact: <ContactDetail>[]);
+          return copyWith(
+            contact: <ContactDetail>[],
+          );
         }
       case 'description':
         {
-          return copyWith(description: FhirMarkdown.empty());
+          return copyWith(
+            description: FhirMarkdown.empty(),
+          );
         }
       case 'useContext':
         {
-          return copyWith(useContext: <UsageContext>[]);
+          return copyWith(
+            useContext: <UsageContext>[],
+          );
         }
       case 'jurisdiction':
         {
-          return copyWith(jurisdiction: <CodeableConcept>[]);
+          return copyWith(
+            jurisdiction: <CodeableConcept>[],
+          );
         }
       case 'purpose':
         {
-          return copyWith(purpose: FhirMarkdown.empty());
+          return copyWith(
+            purpose: FhirMarkdown.empty(),
+          );
         }
       case 'copyright':
         {
-          return copyWith(copyright: FhirMarkdown.empty());
+          return copyWith(
+            copyright: FhirMarkdown.empty(),
+          );
         }
       case 'kind':
         {
-          return copyWith(kind: CapabilityStatementKind.empty());
+          return copyWith(
+            kind: CapabilityStatementKind.empty(),
+          );
         }
       case 'instantiates':
         {
-          return copyWith(instantiates: <FhirCanonical>[]);
+          return copyWith(
+            instantiates: <FhirCanonical>[],
+          );
         }
       case 'imports':
         {
-          return copyWith(imports: <FhirCanonical>[]);
+          return copyWith(
+            imports: <FhirCanonical>[],
+          );
         }
       case 'software':
         {
-          return copyWith(software: CapabilityStatementSoftware.empty());
+          return copyWith(
+            software: CapabilityStatementSoftware.empty(),
+          );
         }
       case 'implementation':
         {
           return copyWith(
-              implementation: CapabilityStatementImplementation.empty(),);
+            implementation: CapabilityStatementImplementation.empty(),
+          );
         }
       case 'fhirVersion':
         {
-          return copyWith(fhirVersion: FHIRVersion.empty());
+          return copyWith(
+            fhirVersion: FHIRVersion.empty(),
+          );
         }
       case 'format':
         {
-          return copyWith(format: <FhirCode>[]);
+          return copyWith(
+            format: <FhirCode>[],
+          );
         }
       case 'patchFormat':
         {
-          return copyWith(patchFormat: <FhirCode>[]);
+          return copyWith(
+            patchFormat: <FhirCode>[],
+          );
         }
       case 'implementationGuide':
         {
-          return copyWith(implementationGuide: <FhirCanonical>[]);
+          return copyWith(
+            implementationGuide: <FhirCanonical>[],
+          );
         }
       case 'rest':
         {
-          return copyWith(rest: <CapabilityStatementRest>[]);
+          return copyWith(
+            rest: <CapabilityStatementRest>[],
+          );
         }
       case 'messaging':
         {
-          return copyWith(messaging: <CapabilityStatementMessaging>[]);
+          return copyWith(
+            messaging: <CapabilityStatementMessaging>[],
+          );
         }
       case 'document':
         {
-          return copyWith(document: <CapabilityStatementDocument>[]);
+          return copyWith(
+            document: <CapabilityStatementDocument>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1630,19 +1791,34 @@ class CapabilityStatement extends CanonicalResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1663,28 +1839,52 @@ class CapabilityStatement extends CanonicalResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(url, o.url)) {
+    if (!equalsDeepWithNull(
+      url,
+      o.url,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(version, o.version)) {
+    if (!equalsDeepWithNull(
+      version,
+      o.version,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(name, o.name)) {
+    if (!equalsDeepWithNull(
+      name,
+      o.name,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(title, o.title)) {
+    if (!equalsDeepWithNull(
+      title,
+      o.title,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(status, o.status)) {
+    if (!equalsDeepWithNull(
+      status,
+      o.status,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(experimental, o.experimental)) {
+    if (!equalsDeepWithNull(
+      experimental,
+      o.experimental,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(date, o.date)) {
+    if (!equalsDeepWithNull(
+      date,
+      o.date,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(publisher, o.publisher)) {
+    if (!equalsDeepWithNull(
+      publisher,
+      o.publisher,
+    )) {
       return false;
     }
     if (!listEquals<ContactDetail>(
@@ -1693,7 +1893,10 @@ class CapabilityStatement extends CanonicalResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(description, o.description)) {
+    if (!equalsDeepWithNull(
+      description,
+      o.description,
+    )) {
       return false;
     }
     if (!listEquals<UsageContext>(
@@ -1708,13 +1911,22 @@ class CapabilityStatement extends CanonicalResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(purpose, o.purpose)) {
+    if (!equalsDeepWithNull(
+      purpose,
+      o.purpose,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(copyright, o.copyright)) {
+    if (!equalsDeepWithNull(
+      copyright,
+      o.copyright,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(kind, o.kind)) {
+    if (!equalsDeepWithNull(
+      kind,
+      o.kind,
+    )) {
       return false;
     }
     if (!listEquals<FhirCanonical>(
@@ -1729,13 +1941,22 @@ class CapabilityStatement extends CanonicalResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(software, o.software)) {
+    if (!equalsDeepWithNull(
+      software,
+      o.software,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implementation, o.implementation)) {
+    if (!equalsDeepWithNull(
+      implementation,
+      o.implementation,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(fhirVersion, o.fhirVersion)) {
+    if (!equalsDeepWithNull(
+      fhirVersion,
+      o.fhirVersion,
+    )) {
       return false;
     }
     if (!listEquals<FhirCode>(
@@ -1940,12 +2161,30 @@ class CapabilityStatementSoftware extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('name', name);
-    addField('version', version);
-    addField('releaseDate', releaseDate);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'name',
+      name,
+    );
+    addField(
+      'version',
+      version,
+    );
+    addField(
+      'releaseDate',
+      releaseDate,
+    );
     return json;
   }
 
@@ -2001,32 +2240,6 @@ class CapabilityStatementSoftware extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2038,39 +2251,51 @@ class CapabilityStatementSoftware extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
@@ -2078,7 +2303,7 @@ class CapabilityStatementSoftware extends BackboneElement {
           if (child is FhirString) {
             return copyWith(name: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'version':
@@ -2086,7 +2311,7 @@ class CapabilityStatementSoftware extends BackboneElement {
           if (child is FhirString) {
             return copyWith(version: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'releaseDate':
@@ -2094,11 +2319,11 @@ class CapabilityStatementSoftware extends BackboneElement {
           if (child is FhirDateTime) {
             return copyWith(releaseDate: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2129,31 +2354,45 @@ class CapabilityStatementSoftware extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  CapabilityStatementSoftware createProperty(String propertyName) {
+  CapabilityStatementSoftware createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'name':
         {
-          return copyWith(name: FhirString.empty());
+          return copyWith(
+            name: FhirString.empty(),
+          );
         }
       case 'version':
         {
-          return copyWith(version: FhirString.empty());
+          return copyWith(
+            version: FhirString.empty(),
+          );
         }
       case 'releaseDate':
         {
-          return copyWith(releaseDate: FhirDateTime.empty());
+          return copyWith(
+            releaseDate: FhirDateTime.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2240,7 +2479,10 @@ class CapabilityStatementSoftware extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2255,13 +2497,22 @@ class CapabilityStatementSoftware extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(name, o.name)) {
+    if (!equalsDeepWithNull(
+      name,
+      o.name,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(version, o.version)) {
+    if (!equalsDeepWithNull(
+      version,
+      o.version,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(releaseDate, o.releaseDate)) {
+    if (!equalsDeepWithNull(
+      releaseDate,
+      o.releaseDate,
+    )) {
       return false;
     }
     return true;
@@ -2434,12 +2685,30 @@ class CapabilityStatementImplementation extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('description', description);
-    addField('url', url);
-    addField('custodian', custodian);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'description',
+      description,
+    );
+    addField(
+      'url',
+      url,
+    );
+    addField(
+      'custodian',
+      custodian,
+    );
     return json;
   }
 
@@ -2495,32 +2764,6 @@ class CapabilityStatementImplementation extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2532,39 +2775,51 @@ class CapabilityStatementImplementation extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
@@ -2572,7 +2827,7 @@ class CapabilityStatementImplementation extends BackboneElement {
           if (child is FhirString) {
             return copyWith(description: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'url':
@@ -2580,7 +2835,7 @@ class CapabilityStatementImplementation extends BackboneElement {
           if (child is FhirUrl) {
             return copyWith(url: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'custodian':
@@ -2588,11 +2843,11 @@ class CapabilityStatementImplementation extends BackboneElement {
           if (child is Reference) {
             return copyWith(custodian: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2623,31 +2878,45 @@ class CapabilityStatementImplementation extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  CapabilityStatementImplementation createProperty(String propertyName) {
+  CapabilityStatementImplementation createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'description':
         {
-          return copyWith(description: FhirString.empty());
+          return copyWith(
+            description: FhirString.empty(),
+          );
         }
       case 'url':
         {
-          return copyWith(url: FhirUrl.empty());
+          return copyWith(
+            url: FhirUrl.empty(),
+          );
         }
       case 'custodian':
         {
-          return copyWith(custodian: Reference.empty());
+          return copyWith(
+            custodian: Reference.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2734,7 +3003,10 @@ class CapabilityStatementImplementation extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2749,13 +3021,22 @@ class CapabilityStatementImplementation extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(description, o.description)) {
+    if (!equalsDeepWithNull(
+      description,
+      o.description,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(url, o.url)) {
+    if (!equalsDeepWithNull(
+      url,
+      o.url,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(custodian, o.custodian)) {
+    if (!equalsDeepWithNull(
+      custodian,
+      o.custodian,
+    )) {
       return false;
     }
     return true;
@@ -3003,17 +3284,50 @@ class CapabilityStatementRest extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('mode', mode);
-    addField('documentation', documentation);
-    addField('security', security);
-    addField('resource', resource);
-    addField('interaction', interaction);
-    addField('searchParam', searchParam);
-    addField('operation', operation);
-    addField('compartment', compartment);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'mode',
+      mode,
+    );
+    addField(
+      'documentation',
+      documentation,
+    );
+    addField(
+      'security',
+      security,
+    );
+    addField(
+      'resource',
+      resource,
+    );
+    addField(
+      'interaction',
+      interaction,
+    );
+    addField(
+      'searchParam',
+      searchParam,
+    );
+    addField(
+      'operation',
+      operation,
+    );
+    addField(
+      'compartment',
+      compartment,
+    );
     return json;
   }
 
@@ -3094,62 +3408,6 @@ class CapabilityStatementRest extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'resource':
-        if (resource != null) {
-          return resource!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'interaction':
-        if (interaction != null) {
-          return interaction!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'searchParam':
-        if (searchParam != null) {
-          return searchParam!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'operation':
-        if (operation != null) {
-          return operation!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'compartment':
-        if (compartment != null) {
-          return compartment!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -3161,39 +3419,51 @@ class CapabilityStatementRest extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'mode':
@@ -3201,7 +3471,7 @@ class CapabilityStatementRest extends BackboneElement {
           if (child is RestfulCapabilityMode) {
             return copyWith(mode: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'documentation':
@@ -3209,7 +3479,7 @@ class CapabilityStatementRest extends BackboneElement {
           if (child is FhirMarkdown) {
             return copyWith(documentation: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'security':
@@ -3217,51 +3487,81 @@ class CapabilityStatementRest extends BackboneElement {
           if (child is CapabilityStatementSecurity) {
             return copyWith(security: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'resource':
         {
           if (child is List<CapabilityStatementResource>) {
-            return copyWith(resource: child);
+            // Add all elements from passed list
+            final newList = [...?resource, ...child];
+            return copyWith(resource: newList);
+          } else if (child is CapabilityStatementResource) {
+            // Add single element to existing list or create new list
+            final newList = [...?resource, child];
+            return copyWith(resource: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'interaction':
         {
           if (child is List<CapabilityStatementInteraction>) {
-            return copyWith(interaction: child);
+            // Add all elements from passed list
+            final newList = [...?interaction, ...child];
+            return copyWith(interaction: newList);
+          } else if (child is CapabilityStatementInteraction) {
+            // Add single element to existing list or create new list
+            final newList = [...?interaction, child];
+            return copyWith(interaction: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'searchParam':
         {
           if (child is List<CapabilityStatementSearchParam>) {
-            return copyWith(searchParam: child);
+            // Add all elements from passed list
+            final newList = [...?searchParam, ...child];
+            return copyWith(searchParam: newList);
+          } else if (child is CapabilityStatementSearchParam) {
+            // Add single element to existing list or create new list
+            final newList = [...?searchParam, child];
+            return copyWith(searchParam: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'operation':
         {
           if (child is List<CapabilityStatementOperation>) {
-            return copyWith(operation: child);
+            // Add all elements from passed list
+            final newList = [...?operation, ...child];
+            return copyWith(operation: newList);
+          } else if (child is CapabilityStatementOperation) {
+            // Add single element to existing list or create new list
+            final newList = [...?operation, child];
+            return copyWith(operation: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'compartment':
         {
           if (child is List<FhirCanonical>) {
-            return copyWith(compartment: child);
+            // Add all elements from passed list
+            final newList = [...?compartment, ...child];
+            return copyWith(compartment: newList);
+          } else if (child is FhirCanonical) {
+            // Add single element to existing list or create new list
+            final newList = [...?compartment, child];
+            return copyWith(compartment: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -3302,51 +3602,75 @@ class CapabilityStatementRest extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  CapabilityStatementRest createProperty(String propertyName) {
+  CapabilityStatementRest createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'mode':
         {
-          return copyWith(mode: RestfulCapabilityMode.empty());
+          return copyWith(
+            mode: RestfulCapabilityMode.empty(),
+          );
         }
       case 'documentation':
         {
-          return copyWith(documentation: FhirMarkdown.empty());
+          return copyWith(
+            documentation: FhirMarkdown.empty(),
+          );
         }
       case 'security':
         {
-          return copyWith(security: CapabilityStatementSecurity.empty());
+          return copyWith(
+            security: CapabilityStatementSecurity.empty(),
+          );
         }
       case 'resource':
         {
-          return copyWith(resource: <CapabilityStatementResource>[]);
+          return copyWith(
+            resource: <CapabilityStatementResource>[],
+          );
         }
       case 'interaction':
         {
-          return copyWith(interaction: <CapabilityStatementInteraction>[]);
+          return copyWith(
+            interaction: <CapabilityStatementInteraction>[],
+          );
         }
       case 'searchParam':
         {
-          return copyWith(searchParam: <CapabilityStatementSearchParam>[]);
+          return copyWith(
+            searchParam: <CapabilityStatementSearchParam>[],
+          );
         }
       case 'operation':
         {
-          return copyWith(operation: <CapabilityStatementOperation>[]);
+          return copyWith(
+            operation: <CapabilityStatementOperation>[],
+          );
         }
       case 'compartment':
         {
-          return copyWith(compartment: <FhirCanonical>[]);
+          return copyWith(
+            compartment: <FhirCanonical>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3488,7 +3812,10 @@ class CapabilityStatementRest extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3503,13 +3830,22 @@ class CapabilityStatementRest extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(mode, o.mode)) {
+    if (!equalsDeepWithNull(
+      mode,
+      o.mode,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(documentation, o.documentation)) {
+    if (!equalsDeepWithNull(
+      documentation,
+      o.documentation,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(security, o.security)) {
+    if (!equalsDeepWithNull(
+      security,
+      o.security,
+    )) {
       return false;
     }
     if (!listEquals<CapabilityStatementResource>(
@@ -3568,7 +3904,8 @@ class CapabilityStatementSecurity extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory CapabilityStatementSecurity.empty() => const CapabilityStatementSecurity();
+  factory CapabilityStatementSecurity.empty() =>
+      const CapabilityStatementSecurity();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementSecurity.fromJson(
@@ -3710,12 +4047,30 @@ class CapabilityStatementSecurity extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('cors', cors);
-    addField('service', service);
-    addField('description', description);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'cors',
+      cors,
+    );
+    addField(
+      'service',
+      service,
+    );
+    addField(
+      'description',
+      description,
+    );
     return json;
   }
 
@@ -3773,38 +4128,6 @@ class CapabilityStatementSecurity extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'service':
-        if (service != null) {
-          return service!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -3816,39 +4139,51 @@ class CapabilityStatementSecurity extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'cors':
@@ -3856,15 +4191,21 @@ class CapabilityStatementSecurity extends BackboneElement {
           if (child is FhirBoolean) {
             return copyWith(cors: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'service':
         {
           if (child is List<CodeableConcept>) {
-            return copyWith(service: child);
+            // Add all elements from passed list
+            final newList = [...?service, ...child];
+            return copyWith(service: newList);
+          } else if (child is CodeableConcept) {
+            // Add single element to existing list or create new list
+            final newList = [...?service, child];
+            return copyWith(service: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'description':
@@ -3872,11 +4213,11 @@ class CapabilityStatementSecurity extends BackboneElement {
           if (child is FhirMarkdown) {
             return copyWith(description: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -3907,31 +4248,45 @@ class CapabilityStatementSecurity extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  CapabilityStatementSecurity createProperty(String propertyName) {
+  CapabilityStatementSecurity createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'cors':
         {
-          return copyWith(cors: FhirBoolean.empty());
+          return copyWith(
+            cors: FhirBoolean.empty(),
+          );
         }
       case 'service':
         {
-          return copyWith(service: <CodeableConcept>[]);
+          return copyWith(
+            service: <CodeableConcept>[],
+          );
         }
       case 'description':
         {
-          return copyWith(description: FhirMarkdown.empty());
+          return copyWith(
+            description: FhirMarkdown.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -4023,7 +4378,10 @@ class CapabilityStatementSecurity extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4038,7 +4396,10 @@ class CapabilityStatementSecurity extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(cors, o.cors)) {
+    if (!equalsDeepWithNull(
+      cors,
+      o.cors,
+    )) {
       return false;
     }
     if (!listEquals<CodeableConcept>(
@@ -4047,7 +4408,10 @@ class CapabilityStatementSecurity extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(description, o.description)) {
+    if (!equalsDeepWithNull(
+      description,
+      o.description,
+    )) {
       return false;
     }
     return true;
@@ -4406,26 +4770,86 @@ class CapabilityStatementResource extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('type', type);
-    addField('profile', profile);
-    addField('supportedProfile', supportedProfile);
-    addField('documentation', documentation);
-    addField('interaction', interaction);
-    addField('versioning', versioning);
-    addField('readHistory', readHistory);
-    addField('updateCreate', updateCreate);
-    addField('conditionalCreate', conditionalCreate);
-    addField('conditionalRead', conditionalRead);
-    addField('conditionalUpdate', conditionalUpdate);
-    addField('conditionalDelete', conditionalDelete);
-    addField('referencePolicy', referencePolicy);
-    addField('searchInclude', searchInclude);
-    addField('searchRevInclude', searchRevInclude);
-    addField('searchParam', searchParam);
-    addField('operation', operation);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'profile',
+      profile,
+    );
+    addField(
+      'supportedProfile',
+      supportedProfile,
+    );
+    addField(
+      'documentation',
+      documentation,
+    );
+    addField(
+      'interaction',
+      interaction,
+    );
+    addField(
+      'versioning',
+      versioning,
+    );
+    addField(
+      'readHistory',
+      readHistory,
+    );
+    addField(
+      'updateCreate',
+      updateCreate,
+    );
+    addField(
+      'conditionalCreate',
+      conditionalCreate,
+    );
+    addField(
+      'conditionalRead',
+      conditionalRead,
+    );
+    addField(
+      'conditionalUpdate',
+      conditionalUpdate,
+    );
+    addField(
+      'conditionalDelete',
+      conditionalDelete,
+    );
+    addField(
+      'referencePolicy',
+      referencePolicy,
+    );
+    addField(
+      'searchInclude',
+      searchInclude,
+    );
+    addField(
+      'searchRevInclude',
+      searchRevInclude,
+    );
+    addField(
+      'searchParam',
+      searchParam,
+    );
+    addField(
+      'operation',
+      operation,
+    );
     return json;
   }
 
@@ -4551,74 +4975,6 @@ class CapabilityStatementResource extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'supportedProfile':
-        if (supportedProfile != null) {
-          return supportedProfile!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'interaction':
-        if (interaction != null) {
-          return interaction!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'referencePolicy':
-        if (referencePolicy != null) {
-          return referencePolicy!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'searchInclude':
-        if (searchInclude != null) {
-          return searchInclude!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'searchRevInclude':
-        if (searchRevInclude != null) {
-          return searchRevInclude!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'searchParam':
-        if (searchParam != null) {
-          return searchParam!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'operation':
-        if (operation != null) {
-          return operation!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -4630,39 +4986,51 @@ class CapabilityStatementResource extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -4670,7 +5038,7 @@ class CapabilityStatementResource extends BackboneElement {
           if (child is FhirCode) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'profile':
@@ -4678,15 +5046,21 @@ class CapabilityStatementResource extends BackboneElement {
           if (child is FhirCanonical) {
             return copyWith(profile: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'supportedProfile':
         {
           if (child is List<FhirCanonical>) {
-            return copyWith(supportedProfile: child);
+            // Add all elements from passed list
+            final newList = [...?supportedProfile, ...child];
+            return copyWith(supportedProfile: newList);
+          } else if (child is FhirCanonical) {
+            // Add single element to existing list or create new list
+            final newList = [...?supportedProfile, child];
+            return copyWith(supportedProfile: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'documentation':
@@ -4694,15 +5068,21 @@ class CapabilityStatementResource extends BackboneElement {
           if (child is FhirMarkdown) {
             return copyWith(documentation: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'interaction':
         {
           if (child is List<CapabilityStatementInteraction>) {
-            return copyWith(interaction: child);
+            // Add all elements from passed list
+            final newList = [...?interaction, ...child];
+            return copyWith(interaction: newList);
+          } else if (child is CapabilityStatementInteraction) {
+            // Add single element to existing list or create new list
+            final newList = [...?interaction, child];
+            return copyWith(interaction: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'versioning':
@@ -4710,7 +5090,7 @@ class CapabilityStatementResource extends BackboneElement {
           if (child is ResourceVersionPolicy) {
             return copyWith(versioning: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'readHistory':
@@ -4718,7 +5098,7 @@ class CapabilityStatementResource extends BackboneElement {
           if (child is FhirBoolean) {
             return copyWith(readHistory: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'updateCreate':
@@ -4726,7 +5106,7 @@ class CapabilityStatementResource extends BackboneElement {
           if (child is FhirBoolean) {
             return copyWith(updateCreate: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'conditionalCreate':
@@ -4734,7 +5114,7 @@ class CapabilityStatementResource extends BackboneElement {
           if (child is FhirBoolean) {
             return copyWith(conditionalCreate: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'conditionalRead':
@@ -4742,7 +5122,7 @@ class CapabilityStatementResource extends BackboneElement {
           if (child is ConditionalReadStatus) {
             return copyWith(conditionalRead: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'conditionalUpdate':
@@ -4750,7 +5130,7 @@ class CapabilityStatementResource extends BackboneElement {
           if (child is FhirBoolean) {
             return copyWith(conditionalUpdate: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'conditionalDelete':
@@ -4758,51 +5138,81 @@ class CapabilityStatementResource extends BackboneElement {
           if (child is ConditionalDeleteStatus) {
             return copyWith(conditionalDelete: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'referencePolicy':
         {
           if (child is List<ReferenceHandlingPolicy>) {
-            return copyWith(referencePolicy: child);
+            // Add all elements from passed list
+            final newList = [...?referencePolicy, ...child];
+            return copyWith(referencePolicy: newList);
+          } else if (child is ReferenceHandlingPolicy) {
+            // Add single element to existing list or create new list
+            final newList = [...?referencePolicy, child];
+            return copyWith(referencePolicy: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'searchInclude':
         {
           if (child is List<FhirString>) {
-            return copyWith(searchInclude: child);
+            // Add all elements from passed list
+            final newList = [...?searchInclude, ...child];
+            return copyWith(searchInclude: newList);
+          } else if (child is FhirString) {
+            // Add single element to existing list or create new list
+            final newList = [...?searchInclude, child];
+            return copyWith(searchInclude: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'searchRevInclude':
         {
           if (child is List<FhirString>) {
-            return copyWith(searchRevInclude: child);
+            // Add all elements from passed list
+            final newList = [...?searchRevInclude, ...child];
+            return copyWith(searchRevInclude: newList);
+          } else if (child is FhirString) {
+            // Add single element to existing list or create new list
+            final newList = [...?searchRevInclude, child];
+            return copyWith(searchRevInclude: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'searchParam':
         {
           if (child is List<CapabilityStatementSearchParam>) {
-            return copyWith(searchParam: child);
+            // Add all elements from passed list
+            final newList = [...?searchParam, ...child];
+            return copyWith(searchParam: newList);
+          } else if (child is CapabilityStatementSearchParam) {
+            // Add single element to existing list or create new list
+            final newList = [...?searchParam, child];
+            return copyWith(searchParam: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'operation':
         {
           if (child is List<CapabilityStatementOperation>) {
-            return copyWith(operation: child);
+            // Add all elements from passed list
+            final newList = [...?operation, ...child];
+            return copyWith(operation: newList);
+          } else if (child is CapabilityStatementOperation) {
+            // Add single element to existing list or create new list
+            final newList = [...?operation, child];
+            return copyWith(operation: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -4861,87 +5271,129 @@ class CapabilityStatementResource extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  CapabilityStatementResource createProperty(String propertyName) {
+  CapabilityStatementResource createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'type':
         {
-          return copyWith(type: FhirCode.empty());
+          return copyWith(
+            type: FhirCode.empty(),
+          );
         }
       case 'profile':
         {
-          return copyWith(profile: FhirCanonical.empty());
+          return copyWith(
+            profile: FhirCanonical.empty(),
+          );
         }
       case 'supportedProfile':
         {
-          return copyWith(supportedProfile: <FhirCanonical>[]);
+          return copyWith(
+            supportedProfile: <FhirCanonical>[],
+          );
         }
       case 'documentation':
         {
-          return copyWith(documentation: FhirMarkdown.empty());
+          return copyWith(
+            documentation: FhirMarkdown.empty(),
+          );
         }
       case 'interaction':
         {
-          return copyWith(interaction: <CapabilityStatementInteraction>[]);
+          return copyWith(
+            interaction: <CapabilityStatementInteraction>[],
+          );
         }
       case 'versioning':
         {
-          return copyWith(versioning: ResourceVersionPolicy.empty());
+          return copyWith(
+            versioning: ResourceVersionPolicy.empty(),
+          );
         }
       case 'readHistory':
         {
-          return copyWith(readHistory: FhirBoolean.empty());
+          return copyWith(
+            readHistory: FhirBoolean.empty(),
+          );
         }
       case 'updateCreate':
         {
-          return copyWith(updateCreate: FhirBoolean.empty());
+          return copyWith(
+            updateCreate: FhirBoolean.empty(),
+          );
         }
       case 'conditionalCreate':
         {
-          return copyWith(conditionalCreate: FhirBoolean.empty());
+          return copyWith(
+            conditionalCreate: FhirBoolean.empty(),
+          );
         }
       case 'conditionalRead':
         {
-          return copyWith(conditionalRead: ConditionalReadStatus.empty());
+          return copyWith(
+            conditionalRead: ConditionalReadStatus.empty(),
+          );
         }
       case 'conditionalUpdate':
         {
-          return copyWith(conditionalUpdate: FhirBoolean.empty());
+          return copyWith(
+            conditionalUpdate: FhirBoolean.empty(),
+          );
         }
       case 'conditionalDelete':
         {
-          return copyWith(conditionalDelete: ConditionalDeleteStatus.empty());
+          return copyWith(
+            conditionalDelete: ConditionalDeleteStatus.empty(),
+          );
         }
       case 'referencePolicy':
         {
-          return copyWith(referencePolicy: <ReferenceHandlingPolicy>[]);
+          return copyWith(
+            referencePolicy: <ReferenceHandlingPolicy>[],
+          );
         }
       case 'searchInclude':
         {
-          return copyWith(searchInclude: <FhirString>[]);
+          return copyWith(
+            searchInclude: <FhirString>[],
+          );
         }
       case 'searchRevInclude':
         {
-          return copyWith(searchRevInclude: <FhirString>[]);
+          return copyWith(
+            searchRevInclude: <FhirString>[],
+          );
         }
       case 'searchParam':
         {
-          return copyWith(searchParam: <CapabilityStatementSearchParam>[]);
+          return copyWith(
+            searchParam: <CapabilityStatementSearchParam>[],
+          );
         }
       case 'operation':
         {
-          return copyWith(operation: <CapabilityStatementOperation>[]);
+          return copyWith(
+            operation: <CapabilityStatementOperation>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -5154,7 +5606,10 @@ class CapabilityStatementResource extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -5169,10 +5624,16 @@ class CapabilityStatementResource extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(profile, o.profile)) {
+    if (!equalsDeepWithNull(
+      profile,
+      o.profile,
+    )) {
       return false;
     }
     if (!listEquals<FhirCanonical>(
@@ -5181,7 +5642,10 @@ class CapabilityStatementResource extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(documentation, o.documentation)) {
+    if (!equalsDeepWithNull(
+      documentation,
+      o.documentation,
+    )) {
       return false;
     }
     if (!listEquals<CapabilityStatementInteraction>(
@@ -5190,25 +5654,46 @@ class CapabilityStatementResource extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(versioning, o.versioning)) {
+    if (!equalsDeepWithNull(
+      versioning,
+      o.versioning,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(readHistory, o.readHistory)) {
+    if (!equalsDeepWithNull(
+      readHistory,
+      o.readHistory,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(updateCreate, o.updateCreate)) {
+    if (!equalsDeepWithNull(
+      updateCreate,
+      o.updateCreate,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(conditionalCreate, o.conditionalCreate)) {
+    if (!equalsDeepWithNull(
+      conditionalCreate,
+      o.conditionalCreate,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(conditionalRead, o.conditionalRead)) {
+    if (!equalsDeepWithNull(
+      conditionalRead,
+      o.conditionalRead,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(conditionalUpdate, o.conditionalUpdate)) {
+    if (!equalsDeepWithNull(
+      conditionalUpdate,
+      o.conditionalUpdate,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(conditionalDelete, o.conditionalDelete)) {
+    if (!equalsDeepWithNull(
+      conditionalDelete,
+      o.conditionalDelete,
+    )) {
       return false;
     }
     if (!listEquals<ReferenceHandlingPolicy>(
@@ -5397,11 +5882,26 @@ class CapabilityStatementInteraction extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('code', code);
-    addField('documentation', documentation);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'code',
+      code,
+    );
+    addField(
+      'documentation',
+      documentation,
+    );
     return json;
   }
 
@@ -5452,32 +5952,6 @@ class CapabilityStatementInteraction extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -5489,39 +5963,51 @@ class CapabilityStatementInteraction extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
@@ -5529,7 +6015,7 @@ class CapabilityStatementInteraction extends BackboneElement {
           if (child is TypeRestfulInteraction) {
             return copyWith(code: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'documentation':
@@ -5537,11 +6023,11 @@ class CapabilityStatementInteraction extends BackboneElement {
           if (child is FhirMarkdown) {
             return copyWith(documentation: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -5570,27 +6056,39 @@ class CapabilityStatementInteraction extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  CapabilityStatementInteraction createProperty(String propertyName) {
+  CapabilityStatementInteraction createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'code':
         {
-          return copyWith(code: TypeRestfulInteraction.empty());
+          return copyWith(
+            code: TypeRestfulInteraction.empty(),
+          );
         }
       case 'documentation':
         {
-          return copyWith(documentation: FhirMarkdown.empty());
+          return copyWith(
+            documentation: FhirMarkdown.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -5670,7 +6168,10 @@ class CapabilityStatementInteraction extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -5685,10 +6186,16 @@ class CapabilityStatementInteraction extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(code, o.code)) {
+    if (!equalsDeepWithNull(
+      code,
+      o.code,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(documentation, o.documentation)) {
+    if (!equalsDeepWithNull(
+      documentation,
+      o.documentation,
+    )) {
       return false;
     }
     return true;
@@ -5878,13 +6385,34 @@ class CapabilityStatementSearchParam extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('name', name);
-    addField('definition', definition);
-    addField('type', type);
-    addField('documentation', documentation);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'name',
+      name,
+    );
+    addField(
+      'definition',
+      definition,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'documentation',
+      documentation,
+    );
     return json;
   }
 
@@ -5943,32 +6471,6 @@ class CapabilityStatementSearchParam extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -5980,39 +6482,51 @@ class CapabilityStatementSearchParam extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
@@ -6020,7 +6534,7 @@ class CapabilityStatementSearchParam extends BackboneElement {
           if (child is FhirString) {
             return copyWith(name: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'definition':
@@ -6028,7 +6542,7 @@ class CapabilityStatementSearchParam extends BackboneElement {
           if (child is FhirCanonical) {
             return copyWith(definition: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -6036,7 +6550,7 @@ class CapabilityStatementSearchParam extends BackboneElement {
           if (child is SearchParamType) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'documentation':
@@ -6044,11 +6558,11 @@ class CapabilityStatementSearchParam extends BackboneElement {
           if (child is FhirMarkdown) {
             return copyWith(documentation: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -6081,35 +6595,51 @@ class CapabilityStatementSearchParam extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  CapabilityStatementSearchParam createProperty(String propertyName) {
+  CapabilityStatementSearchParam createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'name':
         {
-          return copyWith(name: FhirString.empty());
+          return copyWith(
+            name: FhirString.empty(),
+          );
         }
       case 'definition':
         {
-          return copyWith(definition: FhirCanonical.empty());
+          return copyWith(
+            definition: FhirCanonical.empty(),
+          );
         }
       case 'type':
         {
-          return copyWith(type: SearchParamType.empty());
+          return copyWith(
+            type: SearchParamType.empty(),
+          );
         }
       case 'documentation':
         {
-          return copyWith(documentation: FhirMarkdown.empty());
+          return copyWith(
+            documentation: FhirMarkdown.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -6202,7 +6732,10 @@ class CapabilityStatementSearchParam extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -6217,16 +6750,28 @@ class CapabilityStatementSearchParam extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(name, o.name)) {
+    if (!equalsDeepWithNull(
+      name,
+      o.name,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(definition, o.definition)) {
+    if (!equalsDeepWithNull(
+      definition,
+      o.definition,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(documentation, o.documentation)) {
+    if (!equalsDeepWithNull(
+      documentation,
+      o.documentation,
+    )) {
       return false;
     }
     return true;
@@ -6409,12 +6954,30 @@ class CapabilityStatementOperation extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('name', name);
-    addField('definition', definition);
-    addField('documentation', documentation);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'name',
+      name,
+    );
+    addField(
+      'definition',
+      definition,
+    );
+    addField(
+      'documentation',
+      documentation,
+    );
     return json;
   }
 
@@ -6468,32 +7031,6 @@ class CapabilityStatementOperation extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -6505,39 +7042,51 @@ class CapabilityStatementOperation extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
@@ -6545,7 +7094,7 @@ class CapabilityStatementOperation extends BackboneElement {
           if (child is FhirString) {
             return copyWith(name: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'definition':
@@ -6553,7 +7102,7 @@ class CapabilityStatementOperation extends BackboneElement {
           if (child is FhirCanonical) {
             return copyWith(definition: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'documentation':
@@ -6561,11 +7110,11 @@ class CapabilityStatementOperation extends BackboneElement {
           if (child is FhirMarkdown) {
             return copyWith(documentation: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -6596,31 +7145,45 @@ class CapabilityStatementOperation extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  CapabilityStatementOperation createProperty(String propertyName) {
+  CapabilityStatementOperation createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'name':
         {
-          return copyWith(name: FhirString.empty());
+          return copyWith(
+            name: FhirString.empty(),
+          );
         }
       case 'definition':
         {
-          return copyWith(definition: FhirCanonical.empty());
+          return copyWith(
+            definition: FhirCanonical.empty(),
+          );
         }
       case 'documentation':
         {
-          return copyWith(documentation: FhirMarkdown.empty());
+          return copyWith(
+            documentation: FhirMarkdown.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -6706,7 +7269,10 @@ class CapabilityStatementOperation extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -6721,13 +7287,22 @@ class CapabilityStatementOperation extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(name, o.name)) {
+    if (!equalsDeepWithNull(
+      name,
+      o.name,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(definition, o.definition)) {
+    if (!equalsDeepWithNull(
+      definition,
+      o.definition,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(documentation, o.documentation)) {
+    if (!equalsDeepWithNull(
+      documentation,
+      o.documentation,
+    )) {
       return false;
     }
     return true;
@@ -6886,11 +7461,26 @@ class CapabilityStatementInteraction1 extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('code', code);
-    addField('documentation', documentation);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'code',
+      code,
+    );
+    addField(
+      'documentation',
+      documentation,
+    );
     return json;
   }
 
@@ -6941,32 +7531,6 @@ class CapabilityStatementInteraction1 extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -6978,39 +7542,51 @@ class CapabilityStatementInteraction1 extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'code':
@@ -7018,7 +7594,7 @@ class CapabilityStatementInteraction1 extends BackboneElement {
           if (child is SystemRestfulInteraction) {
             return copyWith(code: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'documentation':
@@ -7026,11 +7602,11 @@ class CapabilityStatementInteraction1 extends BackboneElement {
           if (child is FhirMarkdown) {
             return copyWith(documentation: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -7059,27 +7635,39 @@ class CapabilityStatementInteraction1 extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  CapabilityStatementInteraction1 createProperty(String propertyName) {
+  CapabilityStatementInteraction1 createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'code':
         {
-          return copyWith(code: SystemRestfulInteraction.empty());
+          return copyWith(
+            code: SystemRestfulInteraction.empty(),
+          );
         }
       case 'documentation':
         {
-          return copyWith(documentation: FhirMarkdown.empty());
+          return copyWith(
+            documentation: FhirMarkdown.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -7159,7 +7747,10 @@ class CapabilityStatementInteraction1 extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -7174,10 +7765,16 @@ class CapabilityStatementInteraction1 extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(code, o.code)) {
+    if (!equalsDeepWithNull(
+      code,
+      o.code,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(documentation, o.documentation)) {
+    if (!equalsDeepWithNull(
+      documentation,
+      o.documentation,
+    )) {
       return false;
     }
     return true;
@@ -7369,13 +7966,34 @@ class CapabilityStatementMessaging extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('endpoint', endpoint);
-    addField('reliableCache', reliableCache);
-    addField('documentation', documentation);
-    addField('supportedMessage', supportedMessage);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'endpoint',
+      endpoint,
+    );
+    addField(
+      'reliableCache',
+      reliableCache,
+    );
+    addField(
+      'documentation',
+      documentation,
+    );
+    addField(
+      'supportedMessage',
+      supportedMessage,
+    );
     return json;
   }
 
@@ -7438,44 +8056,6 @@ class CapabilityStatementMessaging extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'endpoint':
-        if (endpoint != null) {
-          return endpoint!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'supportedMessage':
-        if (supportedMessage != null) {
-          return supportedMessage!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -7487,47 +8067,65 @@ class CapabilityStatementMessaging extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'endpoint':
         {
           if (child is List<CapabilityStatementEndpoint>) {
-            return copyWith(endpoint: child);
+            // Add all elements from passed list
+            final newList = [...?endpoint, ...child];
+            return copyWith(endpoint: newList);
+          } else if (child is CapabilityStatementEndpoint) {
+            // Add single element to existing list or create new list
+            final newList = [...?endpoint, child];
+            return copyWith(endpoint: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'reliableCache':
@@ -7535,7 +8133,7 @@ class CapabilityStatementMessaging extends BackboneElement {
           if (child is FhirUnsignedInt) {
             return copyWith(reliableCache: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'documentation':
@@ -7543,19 +8141,25 @@ class CapabilityStatementMessaging extends BackboneElement {
           if (child is FhirMarkdown) {
             return copyWith(documentation: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'supportedMessage':
         {
           if (child is List<CapabilityStatementSupportedMessage>) {
-            return copyWith(supportedMessage: child);
+            // Add all elements from passed list
+            final newList = [...?supportedMessage, ...child];
+            return copyWith(supportedMessage: newList);
+          } else if (child is CapabilityStatementSupportedMessage) {
+            // Add single element to existing list or create new list
+            final newList = [...?supportedMessage, child];
+            return copyWith(supportedMessage: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -7588,36 +8192,51 @@ class CapabilityStatementMessaging extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  CapabilityStatementMessaging createProperty(String propertyName) {
+  CapabilityStatementMessaging createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'endpoint':
         {
-          return copyWith(endpoint: <CapabilityStatementEndpoint>[]);
+          return copyWith(
+            endpoint: <CapabilityStatementEndpoint>[],
+          );
         }
       case 'reliableCache':
         {
-          return copyWith(reliableCache: FhirUnsignedInt.empty());
+          return copyWith(
+            reliableCache: FhirUnsignedInt.empty(),
+          );
         }
       case 'documentation':
         {
-          return copyWith(documentation: FhirMarkdown.empty());
+          return copyWith(
+            documentation: FhirMarkdown.empty(),
+          );
         }
       case 'supportedMessage':
         {
           return copyWith(
-              supportedMessage: <CapabilityStatementSupportedMessage>[],);
+            supportedMessage: <CapabilityStatementSupportedMessage>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -7720,7 +8339,10 @@ class CapabilityStatementMessaging extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -7741,10 +8363,16 @@ class CapabilityStatementMessaging extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(reliableCache, o.reliableCache)) {
+    if (!equalsDeepWithNull(
+      reliableCache,
+      o.reliableCache,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(documentation, o.documentation)) {
+    if (!equalsDeepWithNull(
+      documentation,
+      o.documentation,
+    )) {
       return false;
     }
     if (!listEquals<CapabilityStatementSupportedMessage>(
@@ -7910,11 +8538,26 @@ class CapabilityStatementEndpoint extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('protocol', protocol);
-    addField('address', address);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'protocol',
+      protocol,
+    );
+    addField(
+      'address',
+      address,
+    );
     return json;
   }
 
@@ -7963,32 +8606,6 @@ class CapabilityStatementEndpoint extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -8000,39 +8617,51 @@ class CapabilityStatementEndpoint extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'protocol':
@@ -8040,7 +8669,7 @@ class CapabilityStatementEndpoint extends BackboneElement {
           if (child is Coding) {
             return copyWith(protocol: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'address':
@@ -8048,11 +8677,11 @@ class CapabilityStatementEndpoint extends BackboneElement {
           if (child is FhirUrl) {
             return copyWith(address: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -8081,27 +8710,39 @@ class CapabilityStatementEndpoint extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  CapabilityStatementEndpoint createProperty(String propertyName) {
+  CapabilityStatementEndpoint createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'protocol':
         {
-          return copyWith(protocol: Coding.empty());
+          return copyWith(
+            protocol: Coding.empty(),
+          );
         }
       case 'address':
         {
-          return copyWith(address: FhirUrl.empty());
+          return copyWith(
+            address: FhirUrl.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -8180,7 +8821,10 @@ class CapabilityStatementEndpoint extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -8195,10 +8839,16 @@ class CapabilityStatementEndpoint extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(protocol, o.protocol)) {
+    if (!equalsDeepWithNull(
+      protocol,
+      o.protocol,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(address, o.address)) {
+    if (!equalsDeepWithNull(
+      address,
+      o.address,
+    )) {
       return false;
     }
     return true;
@@ -8359,11 +9009,26 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('mode', mode);
-    addField('definition', definition);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'mode',
+      mode,
+    );
+    addField(
+      'definition',
+      definition,
+    );
     return json;
   }
 
@@ -8412,32 +9077,6 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -8449,39 +9088,51 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'mode':
@@ -8489,7 +9140,7 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
           if (child is EventCapabilityMode) {
             return copyWith(mode: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'definition':
@@ -8497,11 +9148,11 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
           if (child is FhirCanonical) {
             return copyWith(definition: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -8530,27 +9181,39 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  CapabilityStatementSupportedMessage createProperty(String propertyName) {
+  CapabilityStatementSupportedMessage createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'mode':
         {
-          return copyWith(mode: EventCapabilityMode.empty());
+          return copyWith(
+            mode: EventCapabilityMode.empty(),
+          );
         }
       case 'definition':
         {
-          return copyWith(definition: FhirCanonical.empty());
+          return copyWith(
+            definition: FhirCanonical.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -8629,7 +9292,10 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -8644,10 +9310,16 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(mode, o.mode)) {
+    if (!equalsDeepWithNull(
+      mode,
+      o.mode,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(definition, o.definition)) {
+    if (!equalsDeepWithNull(
+      definition,
+      o.definition,
+    )) {
       return false;
     }
     return true;
@@ -8819,12 +9491,30 @@ class CapabilityStatementDocument extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('mode', mode);
-    addField('documentation', documentation);
-    addField('profile', profile);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'mode',
+      mode,
+    );
+    addField(
+      'documentation',
+      documentation,
+    );
+    addField(
+      'profile',
+      profile,
+    );
     return json;
   }
 
@@ -8878,32 +9568,6 @@ class CapabilityStatementDocument extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -8915,39 +9579,51 @@ class CapabilityStatementDocument extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'mode':
@@ -8955,7 +9631,7 @@ class CapabilityStatementDocument extends BackboneElement {
           if (child is DocumentMode) {
             return copyWith(mode: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'documentation':
@@ -8963,7 +9639,7 @@ class CapabilityStatementDocument extends BackboneElement {
           if (child is FhirMarkdown) {
             return copyWith(documentation: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'profile':
@@ -8971,11 +9647,11 @@ class CapabilityStatementDocument extends BackboneElement {
           if (child is FhirCanonical) {
             return copyWith(profile: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -9006,31 +9682,45 @@ class CapabilityStatementDocument extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  CapabilityStatementDocument createProperty(String propertyName) {
+  CapabilityStatementDocument createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'mode':
         {
-          return copyWith(mode: DocumentMode.empty());
+          return copyWith(
+            mode: DocumentMode.empty(),
+          );
         }
       case 'documentation':
         {
-          return copyWith(documentation: FhirMarkdown.empty());
+          return copyWith(
+            documentation: FhirMarkdown.empty(),
+          );
         }
       case 'profile':
         {
-          return copyWith(profile: FhirCanonical.empty());
+          return copyWith(
+            profile: FhirCanonical.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -9116,7 +9806,10 @@ class CapabilityStatementDocument extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -9131,13 +9824,22 @@ class CapabilityStatementDocument extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(mode, o.mode)) {
+    if (!equalsDeepWithNull(
+      mode,
+      o.mode,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(documentation, o.documentation)) {
+    if (!equalsDeepWithNull(
+      documentation,
+      o.documentation,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(profile, o.profile)) {
+    if (!equalsDeepWithNull(
+      profile,
+      o.profile,
+    )) {
       return false;
     }
     return true;

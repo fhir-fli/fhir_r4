@@ -56,10 +56,13 @@ class ContractResourceStatusCodes extends FhirCodeEnum {
       return ContractResourceStatusCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ContractResourceStatusCodes cannot be constructed from JSON.',);
+        'ContractResourceStatusCodes cannot be constructed from JSON.',
+      );
     }
     return ContractResourceStatusCodes._(
-        validatedValue: value, element: element,);
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// amended

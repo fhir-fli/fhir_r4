@@ -56,9 +56,13 @@ class ConstraintSeverity extends FhirCodeEnum {
       return ConstraintSeverity.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ConstraintSeverity cannot be constructed from JSON.',);
+        'ConstraintSeverity cannot be constructed from JSON.',
+      );
     }
-    return ConstraintSeverity._(validatedValue: value, element: element);
+    return ConstraintSeverity._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// error

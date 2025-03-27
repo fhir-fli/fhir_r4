@@ -56,9 +56,13 @@ class ActionSelectionBehavior extends FhirCodeEnum {
       return ActionSelectionBehavior.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-          'ActionSelectionBehavior cannot be constructed from JSON.',);
+        'ActionSelectionBehavior cannot be constructed from JSON.',
+      );
     }
-    return ActionSelectionBehavior._(validatedValue: value, element: element);
+    return ActionSelectionBehavior._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// any

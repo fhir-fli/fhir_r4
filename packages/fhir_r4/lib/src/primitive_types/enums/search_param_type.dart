@@ -54,9 +54,14 @@ class SearchParamType extends FhirCodeEnum {
     if (value == null && element != null) {
       return SearchParamType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('SearchParamType cannot be constructed from JSON.');
+      throw ArgumentError(
+        'SearchParamType cannot be constructed from JSON.',
+      );
     }
-    return SearchParamType._(validatedValue: value, element: element);
+    return SearchParamType._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// number

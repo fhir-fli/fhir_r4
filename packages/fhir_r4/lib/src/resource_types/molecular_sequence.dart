@@ -383,30 +383,102 @@ class MolecularSequence extends DomainResource {
     }
 
     json['resourceType'] = resourceType.toJson();
-    addField('id', id);
-    addField('meta', meta);
-    addField('implicitRules', implicitRules);
-    addField('language', language);
-    addField('text', text);
-    addField('contained', contained);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('identifier', identifier);
-    addField('type', type);
-    addField('coordinateSystem', coordinateSystem);
-    addField('patient', patient);
-    addField('specimen', specimen);
-    addField('device', device);
-    addField('performer', performer);
-    addField('quantity', quantity);
-    addField('referenceSeq', referenceSeq);
-    addField('variant', variant);
-    addField('observedSeq', observedSeq);
-    addField('quality', quality);
-    addField('readCoverage', readCoverage);
-    addField('repository', repository);
-    addField('pointer', pointer);
-    addField('structureVariant', structureVariant);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'meta',
+      meta,
+    );
+    addField(
+      'implicitRules',
+      implicitRules,
+    );
+    addField(
+      'language',
+      language,
+    );
+    addField(
+      'text',
+      text,
+    );
+    addField(
+      'contained',
+      contained,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'identifier',
+      identifier,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'coordinateSystem',
+      coordinateSystem,
+    );
+    addField(
+      'patient',
+      patient,
+    );
+    addField(
+      'specimen',
+      specimen,
+    );
+    addField(
+      'device',
+      device,
+    );
+    addField(
+      'performer',
+      performer,
+    );
+    addField(
+      'quantity',
+      quantity,
+    );
+    addField(
+      'referenceSeq',
+      referenceSeq,
+    );
+    addField(
+      'variant',
+      variant,
+    );
+    addField(
+      'observedSeq',
+      observedSeq,
+    );
+    addField(
+      'quality',
+      quality,
+    );
+    addField(
+      'readCoverage',
+      readCoverage,
+    );
+    addField(
+      'repository',
+      repository,
+    );
+    addField(
+      'pointer',
+      pointer,
+    );
+    addField(
+      'structureVariant',
+      structureVariant,
+    );
     return json;
   }
 
@@ -552,74 +624,6 @@ class MolecularSequence extends DomainResource {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'contained':
-        if (contained != null) {
-          return contained!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'identifier':
-        if (identifier != null) {
-          return identifier!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'variant':
-        if (variant != null) {
-          return variant!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'quality':
-        if (quality != null) {
-          return quality!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'repository':
-        if (repository != null) {
-          return repository!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'pointer':
-        if (pointer != null) {
-          return pointer!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'structureVariant':
-        if (structureVariant != null) {
-          return structureVariant!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -631,23 +635,23 @@ class MolecularSequence extends DomainResource {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'meta':
@@ -655,7 +659,7 @@ class MolecularSequence extends DomainResource {
           if (child is FhirMeta) {
             return copyWith(meta: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'implicitRules':
@@ -663,7 +667,7 @@ class MolecularSequence extends DomainResource {
           if (child is FhirUri) {
             return copyWith(implicitRules: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'language':
@@ -671,7 +675,7 @@ class MolecularSequence extends DomainResource {
           if (child is CommonLanguages) {
             return copyWith(language: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'text':
@@ -679,39 +683,63 @@ class MolecularSequence extends DomainResource {
           if (child is Narrative) {
             return copyWith(text: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'contained':
         {
           if (child is List<Resource>) {
-            return copyWith(contained: child);
+            // Add all elements from passed list
+            final newList = [...?contained, ...child];
+            return copyWith(contained: newList);
+          } else if (child is Resource) {
+            // Add single element to existing list or create new list
+            final newList = [...?contained, child];
+            return copyWith(contained: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'identifier':
         {
           if (child is List<Identifier>) {
-            return copyWith(identifier: child);
+            // Add all elements from passed list
+            final newList = [...?identifier, ...child];
+            return copyWith(identifier: newList);
+          } else if (child is Identifier) {
+            // Add single element to existing list or create new list
+            final newList = [...?identifier, child];
+            return copyWith(identifier: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -719,7 +747,7 @@ class MolecularSequence extends DomainResource {
           if (child is SequenceType) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'coordinateSystem':
@@ -727,7 +755,7 @@ class MolecularSequence extends DomainResource {
           if (child is FhirInteger) {
             return copyWith(coordinateSystem: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'patient':
@@ -735,7 +763,7 @@ class MolecularSequence extends DomainResource {
           if (child is Reference) {
             return copyWith(patient: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'specimen':
@@ -743,7 +771,7 @@ class MolecularSequence extends DomainResource {
           if (child is Reference) {
             return copyWith(specimen: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'device':
@@ -751,7 +779,7 @@ class MolecularSequence extends DomainResource {
           if (child is Reference) {
             return copyWith(device: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'performer':
@@ -759,7 +787,7 @@ class MolecularSequence extends DomainResource {
           if (child is Reference) {
             return copyWith(performer: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'quantity':
@@ -767,7 +795,7 @@ class MolecularSequence extends DomainResource {
           if (child is Quantity) {
             return copyWith(quantity: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'referenceSeq':
@@ -775,15 +803,21 @@ class MolecularSequence extends DomainResource {
           if (child is MolecularSequenceReferenceSeq) {
             return copyWith(referenceSeq: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'variant':
         {
           if (child is List<MolecularSequenceVariant>) {
-            return copyWith(variant: child);
+            // Add all elements from passed list
+            final newList = [...?variant, ...child];
+            return copyWith(variant: newList);
+          } else if (child is MolecularSequenceVariant) {
+            // Add single element to existing list or create new list
+            final newList = [...?variant, child];
+            return copyWith(variant: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'observedSeq':
@@ -791,15 +825,21 @@ class MolecularSequence extends DomainResource {
           if (child is FhirString) {
             return copyWith(observedSeq: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'quality':
         {
           if (child is List<MolecularSequenceQuality>) {
-            return copyWith(quality: child);
+            // Add all elements from passed list
+            final newList = [...?quality, ...child];
+            return copyWith(quality: newList);
+          } else if (child is MolecularSequenceQuality) {
+            // Add single element to existing list or create new list
+            final newList = [...?quality, child];
+            return copyWith(quality: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'readCoverage':
@@ -807,35 +847,53 @@ class MolecularSequence extends DomainResource {
           if (child is FhirInteger) {
             return copyWith(readCoverage: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'repository':
         {
           if (child is List<MolecularSequenceRepository>) {
-            return copyWith(repository: child);
+            // Add all elements from passed list
+            final newList = [...?repository, ...child];
+            return copyWith(repository: newList);
+          } else if (child is MolecularSequenceRepository) {
+            // Add single element to existing list or create new list
+            final newList = [...?repository, child];
+            return copyWith(repository: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'pointer':
         {
           if (child is List<Reference>) {
-            return copyWith(pointer: child);
+            // Add all elements from passed list
+            final newList = [...?pointer, ...child];
+            return copyWith(pointer: newList);
+          } else if (child is Reference) {
+            // Add single element to existing list or create new list
+            final newList = [...?pointer, child];
+            return copyWith(pointer: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'structureVariant':
         {
           if (child is List<MolecularSequenceStructureVariant>) {
-            return copyWith(structureVariant: child);
+            // Add all elements from passed list
+            final newList = [...?structureVariant, ...child];
+            return copyWith(structureVariant: newList);
+          } else if (child is MolecularSequenceStructureVariant) {
+            // Add single element to existing list or create new list
+            final newList = [...?structureVariant, child];
+            return copyWith(structureVariant: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -902,104 +960,153 @@ class MolecularSequence extends DomainResource {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  MolecularSequence createProperty(String propertyName) {
+  MolecularSequence createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'meta':
         {
-          return copyWith(meta: FhirMeta.empty());
+          return copyWith(
+            meta: FhirMeta.empty(),
+          );
         }
       case 'implicitRules':
         {
-          return copyWith(implicitRules: FhirUri.empty());
+          return copyWith(
+            implicitRules: FhirUri.empty(),
+          );
         }
       case 'language':
         {
-          return copyWith(language: CommonLanguages.empty());
+          return copyWith(
+            language: CommonLanguages.empty(),
+          );
         }
       case 'text':
         {
-          return copyWith(text: Narrative.empty());
+          return copyWith(
+            text: Narrative.empty(),
+          );
         }
       case 'contained':
         {
-          return copyWith(contained: <Resource>[]);
+          return copyWith(
+            contained: <Resource>[],
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'identifier':
         {
-          return copyWith(identifier: <Identifier>[]);
+          return copyWith(
+            identifier: <Identifier>[],
+          );
         }
       case 'type':
         {
-          return copyWith(type: SequenceType.empty());
+          return copyWith(
+            type: SequenceType.empty(),
+          );
         }
       case 'coordinateSystem':
         {
-          return copyWith(coordinateSystem: FhirInteger.empty());
+          return copyWith(
+            coordinateSystem: FhirInteger.empty(),
+          );
         }
       case 'patient':
         {
-          return copyWith(patient: Reference.empty());
+          return copyWith(
+            patient: Reference.empty(),
+          );
         }
       case 'specimen':
         {
-          return copyWith(specimen: Reference.empty());
+          return copyWith(
+            specimen: Reference.empty(),
+          );
         }
       case 'device':
         {
-          return copyWith(device: Reference.empty());
+          return copyWith(
+            device: Reference.empty(),
+          );
         }
       case 'performer':
         {
-          return copyWith(performer: Reference.empty());
+          return copyWith(
+            performer: Reference.empty(),
+          );
         }
       case 'quantity':
         {
-          return copyWith(quantity: Quantity.empty());
+          return copyWith(
+            quantity: Quantity.empty(),
+          );
         }
       case 'referenceSeq':
         {
-          return copyWith(referenceSeq: MolecularSequenceReferenceSeq.empty());
+          return copyWith(
+            referenceSeq: MolecularSequenceReferenceSeq.empty(),
+          );
         }
       case 'variant':
         {
-          return copyWith(variant: <MolecularSequenceVariant>[]);
+          return copyWith(
+            variant: <MolecularSequenceVariant>[],
+          );
         }
       case 'observedSeq':
         {
-          return copyWith(observedSeq: FhirString.empty());
+          return copyWith(
+            observedSeq: FhirString.empty(),
+          );
         }
       case 'quality':
         {
-          return copyWith(quality: <MolecularSequenceQuality>[]);
+          return copyWith(
+            quality: <MolecularSequenceQuality>[],
+          );
         }
       case 'readCoverage':
         {
-          return copyWith(readCoverage: FhirInteger.empty());
+          return copyWith(
+            readCoverage: FhirInteger.empty(),
+          );
         }
       case 'repository':
         {
-          return copyWith(repository: <MolecularSequenceRepository>[]);
+          return copyWith(
+            repository: <MolecularSequenceRepository>[],
+          );
         }
       case 'pointer':
         {
-          return copyWith(pointer: <Reference>[]);
+          return copyWith(
+            pointer: <Reference>[],
+          );
         }
       case 'structureVariant':
         {
           return copyWith(
-              structureVariant: <MolecularSequenceStructureVariant>[],);
+            structureVariant: <MolecularSequenceStructureVariant>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1232,19 +1339,34 @@ class MolecularSequence extends DomainResource {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(meta, o.meta)) {
+    if (!equalsDeepWithNull(
+      meta,
+      o.meta,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(implicitRules, o.implicitRules)) {
+    if (!equalsDeepWithNull(
+      implicitRules,
+      o.implicitRules,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(language, o.language)) {
+    if (!equalsDeepWithNull(
+      language,
+      o.language,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(text, o.text)) {
+    if (!equalsDeepWithNull(
+      text,
+      o.text,
+    )) {
       return false;
     }
     if (!listEquals<Resource>(
@@ -1271,28 +1393,52 @@ class MolecularSequence extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(coordinateSystem, o.coordinateSystem)) {
+    if (!equalsDeepWithNull(
+      coordinateSystem,
+      o.coordinateSystem,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(patient, o.patient)) {
+    if (!equalsDeepWithNull(
+      patient,
+      o.patient,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(specimen, o.specimen)) {
+    if (!equalsDeepWithNull(
+      specimen,
+      o.specimen,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(device, o.device)) {
+    if (!equalsDeepWithNull(
+      device,
+      o.device,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(performer, o.performer)) {
+    if (!equalsDeepWithNull(
+      performer,
+      o.performer,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(quantity, o.quantity)) {
+    if (!equalsDeepWithNull(
+      quantity,
+      o.quantity,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(referenceSeq, o.referenceSeq)) {
+    if (!equalsDeepWithNull(
+      referenceSeq,
+      o.referenceSeq,
+    )) {
       return false;
     }
     if (!listEquals<MolecularSequenceVariant>(
@@ -1301,7 +1447,10 @@ class MolecularSequence extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(observedSeq, o.observedSeq)) {
+    if (!equalsDeepWithNull(
+      observedSeq,
+      o.observedSeq,
+    )) {
       return false;
     }
     if (!listEquals<MolecularSequenceQuality>(
@@ -1310,7 +1459,10 @@ class MolecularSequence extends DomainResource {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(readCoverage, o.readCoverage)) {
+    if (!equalsDeepWithNull(
+      readCoverage,
+      o.readCoverage,
+    )) {
       return false;
     }
     if (!listEquals<MolecularSequenceRepository>(
@@ -1579,18 +1731,54 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('chromosome', chromosome);
-    addField('genomeBuild', genomeBuild);
-    addField('orientation', orientation);
-    addField('referenceSeqId', referenceSeqId);
-    addField('referenceSeqPointer', referenceSeqPointer);
-    addField('referenceSeqString', referenceSeqString);
-    addField('strand', strand);
-    addField('windowStart', windowStart);
-    addField('windowEnd', windowEnd);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'chromosome',
+      chromosome,
+    );
+    addField(
+      'genomeBuild',
+      genomeBuild,
+    );
+    addField(
+      'orientation',
+      orientation,
+    );
+    addField(
+      'referenceSeqId',
+      referenceSeqId,
+    );
+    addField(
+      'referenceSeqPointer',
+      referenceSeqPointer,
+    );
+    addField(
+      'referenceSeqString',
+      referenceSeqString,
+    );
+    addField(
+      'strand',
+      strand,
+    );
+    addField(
+      'windowStart',
+      windowStart,
+    );
+    addField(
+      'windowEnd',
+      windowEnd,
+    );
     return json;
   }
 
@@ -1678,32 +1866,6 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1715,39 +1877,51 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'chromosome':
@@ -1755,7 +1929,7 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(chromosome: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'genomeBuild':
@@ -1763,7 +1937,7 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
           if (child is FhirString) {
             return copyWith(genomeBuild: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'orientation':
@@ -1771,7 +1945,7 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
           if (child is OrientationType) {
             return copyWith(orientation: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'referenceSeqId':
@@ -1779,7 +1953,7 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(referenceSeqId: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'referenceSeqPointer':
@@ -1787,7 +1961,7 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
           if (child is Reference) {
             return copyWith(referenceSeqPointer: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'referenceSeqString':
@@ -1795,7 +1969,7 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
           if (child is FhirString) {
             return copyWith(referenceSeqString: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'strand':
@@ -1803,7 +1977,7 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
           if (child is StrandType) {
             return copyWith(strand: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'windowStart':
@@ -1811,7 +1985,7 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
           if (child is FhirInteger) {
             return copyWith(windowStart: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'windowEnd':
@@ -1819,11 +1993,11 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
           if (child is FhirInteger) {
             return copyWith(windowEnd: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -1866,55 +2040,81 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  MolecularSequenceReferenceSeq createProperty(String propertyName) {
+  MolecularSequenceReferenceSeq createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'chromosome':
         {
-          return copyWith(chromosome: CodeableConcept.empty());
+          return copyWith(
+            chromosome: CodeableConcept.empty(),
+          );
         }
       case 'genomeBuild':
         {
-          return copyWith(genomeBuild: FhirString.empty());
+          return copyWith(
+            genomeBuild: FhirString.empty(),
+          );
         }
       case 'orientation':
         {
-          return copyWith(orientation: OrientationType.empty());
+          return copyWith(
+            orientation: OrientationType.empty(),
+          );
         }
       case 'referenceSeqId':
         {
-          return copyWith(referenceSeqId: CodeableConcept.empty());
+          return copyWith(
+            referenceSeqId: CodeableConcept.empty(),
+          );
         }
       case 'referenceSeqPointer':
         {
-          return copyWith(referenceSeqPointer: Reference.empty());
+          return copyWith(
+            referenceSeqPointer: Reference.empty(),
+          );
         }
       case 'referenceSeqString':
         {
-          return copyWith(referenceSeqString: FhirString.empty());
+          return copyWith(
+            referenceSeqString: FhirString.empty(),
+          );
         }
       case 'strand':
         {
-          return copyWith(strand: StrandType.empty());
+          return copyWith(
+            strand: StrandType.empty(),
+          );
         }
       case 'windowStart':
         {
-          return copyWith(windowStart: FhirInteger.empty());
+          return copyWith(
+            windowStart: FhirInteger.empty(),
+          );
         }
       case 'windowEnd':
         {
-          return copyWith(windowEnd: FhirInteger.empty());
+          return copyWith(
+            windowEnd: FhirInteger.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2045,7 +2245,10 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2060,31 +2263,58 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(chromosome, o.chromosome)) {
+    if (!equalsDeepWithNull(
+      chromosome,
+      o.chromosome,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(genomeBuild, o.genomeBuild)) {
+    if (!equalsDeepWithNull(
+      genomeBuild,
+      o.genomeBuild,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(orientation, o.orientation)) {
+    if (!equalsDeepWithNull(
+      orientation,
+      o.orientation,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(referenceSeqId, o.referenceSeqId)) {
+    if (!equalsDeepWithNull(
+      referenceSeqId,
+      o.referenceSeqId,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(referenceSeqPointer, o.referenceSeqPointer)) {
+    if (!equalsDeepWithNull(
+      referenceSeqPointer,
+      o.referenceSeqPointer,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(referenceSeqString, o.referenceSeqString)) {
+    if (!equalsDeepWithNull(
+      referenceSeqString,
+      o.referenceSeqString,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(strand, o.strand)) {
+    if (!equalsDeepWithNull(
+      strand,
+      o.strand,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(windowStart, o.windowStart)) {
+    if (!equalsDeepWithNull(
+      windowStart,
+      o.windowStart,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(windowEnd, o.windowEnd)) {
+    if (!equalsDeepWithNull(
+      windowEnd,
+      o.windowEnd,
+    )) {
       return false;
     }
     return true;
@@ -2305,15 +2535,42 @@ class MolecularSequenceVariant extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('start', start);
-    addField('end', end);
-    addField('observedAllele', observedAllele);
-    addField('referenceAllele', referenceAllele);
-    addField('cigar', cigar);
-    addField('variantPointer', variantPointer);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'start',
+      start,
+    );
+    addField(
+      'end',
+      end,
+    );
+    addField(
+      'observedAllele',
+      observedAllele,
+    );
+    addField(
+      'referenceAllele',
+      referenceAllele,
+    );
+    addField(
+      'cigar',
+      cigar,
+    );
+    addField(
+      'variantPointer',
+      variantPointer,
+    );
     return json;
   }
 
@@ -2386,32 +2643,6 @@ class MolecularSequenceVariant extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2423,39 +2654,51 @@ class MolecularSequenceVariant extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'start':
@@ -2463,7 +2706,7 @@ class MolecularSequenceVariant extends BackboneElement {
           if (child is FhirInteger) {
             return copyWith(start: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'end':
@@ -2471,7 +2714,7 @@ class MolecularSequenceVariant extends BackboneElement {
           if (child is FhirInteger) {
             return copyWith(end: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'observedAllele':
@@ -2479,7 +2722,7 @@ class MolecularSequenceVariant extends BackboneElement {
           if (child is FhirString) {
             return copyWith(observedAllele: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'referenceAllele':
@@ -2487,7 +2730,7 @@ class MolecularSequenceVariant extends BackboneElement {
           if (child is FhirString) {
             return copyWith(referenceAllele: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'cigar':
@@ -2495,7 +2738,7 @@ class MolecularSequenceVariant extends BackboneElement {
           if (child is FhirString) {
             return copyWith(cigar: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'variantPointer':
@@ -2503,11 +2746,11 @@ class MolecularSequenceVariant extends BackboneElement {
           if (child is Reference) {
             return copyWith(variantPointer: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -2544,43 +2787,63 @@ class MolecularSequenceVariant extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  MolecularSequenceVariant createProperty(String propertyName) {
+  MolecularSequenceVariant createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'start':
         {
-          return copyWith(start: FhirInteger.empty());
+          return copyWith(
+            start: FhirInteger.empty(),
+          );
         }
       case 'end':
         {
-          return copyWith(end: FhirInteger.empty());
+          return copyWith(
+            end: FhirInteger.empty(),
+          );
         }
       case 'observedAllele':
         {
-          return copyWith(observedAllele: FhirString.empty());
+          return copyWith(
+            observedAllele: FhirString.empty(),
+          );
         }
       case 'referenceAllele':
         {
-          return copyWith(referenceAllele: FhirString.empty());
+          return copyWith(
+            referenceAllele: FhirString.empty(),
+          );
         }
       case 'cigar':
         {
-          return copyWith(cigar: FhirString.empty());
+          return copyWith(
+            cigar: FhirString.empty(),
+          );
         }
       case 'variantPointer':
         {
-          return copyWith(variantPointer: Reference.empty());
+          return copyWith(
+            variantPointer: Reference.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2689,7 +2952,10 @@ class MolecularSequenceVariant extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -2704,22 +2970,40 @@ class MolecularSequenceVariant extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(start, o.start)) {
+    if (!equalsDeepWithNull(
+      start,
+      o.start,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(end, o.end)) {
+    if (!equalsDeepWithNull(
+      end,
+      o.end,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(observedAllele, o.observedAllele)) {
+    if (!equalsDeepWithNull(
+      observedAllele,
+      o.observedAllele,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(referenceAllele, o.referenceAllele)) {
+    if (!equalsDeepWithNull(
+      referenceAllele,
+      o.referenceAllele,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(cigar, o.cigar)) {
+    if (!equalsDeepWithNull(
+      cigar,
+      o.cigar,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(variantPointer, o.variantPointer)) {
+    if (!equalsDeepWithNull(
+      variantPointer,
+      o.variantPointer,
+    )) {
       return false;
     }
     return true;
@@ -3042,24 +3326,78 @@ class MolecularSequenceQuality extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('type', type);
-    addField('standardSequence', standardSequence);
-    addField('start', start);
-    addField('end', end);
-    addField('score', score);
-    addField('method', method);
-    addField('truthTP', truthTP);
-    addField('queryTP', queryTP);
-    addField('truthFN', truthFN);
-    addField('queryFP', queryFP);
-    addField('gtFP', gtFP);
-    addField('precision', precision);
-    addField('recall', recall);
-    addField('fScore', fScore);
-    addField('roc', roc);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'standardSequence',
+      standardSequence,
+    );
+    addField(
+      'start',
+      start,
+    );
+    addField(
+      'end',
+      end,
+    );
+    addField(
+      'score',
+      score,
+    );
+    addField(
+      'method',
+      method,
+    );
+    addField(
+      'truthTP',
+      truthTP,
+    );
+    addField(
+      'queryTP',
+      queryTP,
+    );
+    addField(
+      'truthFN',
+      truthFN,
+    );
+    addField(
+      'queryFP',
+      queryFP,
+    );
+    addField(
+      'gtFP',
+      gtFP,
+    );
+    addField(
+      'precision',
+      precision,
+    );
+    addField(
+      'recall',
+      recall,
+    );
+    addField(
+      'fScore',
+      fScore,
+    );
+    addField(
+      'roc',
+      roc,
+    );
     return json;
   }
 
@@ -3175,32 +3513,6 @@ class MolecularSequenceQuality extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -3212,39 +3524,51 @@ class MolecularSequenceQuality extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -3252,7 +3576,7 @@ class MolecularSequenceQuality extends BackboneElement {
           if (child is QualityType) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'standardSequence':
@@ -3260,7 +3584,7 @@ class MolecularSequenceQuality extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(standardSequence: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'start':
@@ -3268,7 +3592,7 @@ class MolecularSequenceQuality extends BackboneElement {
           if (child is FhirInteger) {
             return copyWith(start: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'end':
@@ -3276,7 +3600,7 @@ class MolecularSequenceQuality extends BackboneElement {
           if (child is FhirInteger) {
             return copyWith(end: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'score':
@@ -3284,7 +3608,7 @@ class MolecularSequenceQuality extends BackboneElement {
           if (child is Quantity) {
             return copyWith(score: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'method':
@@ -3292,7 +3616,7 @@ class MolecularSequenceQuality extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(method: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'truthTP':
@@ -3300,7 +3624,7 @@ class MolecularSequenceQuality extends BackboneElement {
           if (child is FhirDecimal) {
             return copyWith(truthTP: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'queryTP':
@@ -3308,7 +3632,7 @@ class MolecularSequenceQuality extends BackboneElement {
           if (child is FhirDecimal) {
             return copyWith(queryTP: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'truthFN':
@@ -3316,7 +3640,7 @@ class MolecularSequenceQuality extends BackboneElement {
           if (child is FhirDecimal) {
             return copyWith(truthFN: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'queryFP':
@@ -3324,7 +3648,7 @@ class MolecularSequenceQuality extends BackboneElement {
           if (child is FhirDecimal) {
             return copyWith(queryFP: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'gtFP':
@@ -3332,7 +3656,7 @@ class MolecularSequenceQuality extends BackboneElement {
           if (child is FhirDecimal) {
             return copyWith(gtFP: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'precision':
@@ -3340,7 +3664,7 @@ class MolecularSequenceQuality extends BackboneElement {
           if (child is FhirDecimal) {
             return copyWith(precision: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'recall':
@@ -3348,7 +3672,7 @@ class MolecularSequenceQuality extends BackboneElement {
           if (child is FhirDecimal) {
             return copyWith(recall: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'fScore':
@@ -3356,7 +3680,7 @@ class MolecularSequenceQuality extends BackboneElement {
           if (child is FhirDecimal) {
             return copyWith(fScore: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'roc':
@@ -3364,11 +3688,11 @@ class MolecularSequenceQuality extends BackboneElement {
           if (child is MolecularSequenceRoc) {
             return copyWith(roc: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -3423,79 +3747,117 @@ class MolecularSequenceQuality extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  MolecularSequenceQuality createProperty(String propertyName) {
+  MolecularSequenceQuality createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'type':
         {
-          return copyWith(type: QualityType.empty());
+          return copyWith(
+            type: QualityType.empty(),
+          );
         }
       case 'standardSequence':
         {
-          return copyWith(standardSequence: CodeableConcept.empty());
+          return copyWith(
+            standardSequence: CodeableConcept.empty(),
+          );
         }
       case 'start':
         {
-          return copyWith(start: FhirInteger.empty());
+          return copyWith(
+            start: FhirInteger.empty(),
+          );
         }
       case 'end':
         {
-          return copyWith(end: FhirInteger.empty());
+          return copyWith(
+            end: FhirInteger.empty(),
+          );
         }
       case 'score':
         {
-          return copyWith(score: Quantity.empty());
+          return copyWith(
+            score: Quantity.empty(),
+          );
         }
       case 'method':
         {
-          return copyWith(method: CodeableConcept.empty());
+          return copyWith(
+            method: CodeableConcept.empty(),
+          );
         }
       case 'truthTP':
         {
-          return copyWith(truthTP: FhirDecimal.empty());
+          return copyWith(
+            truthTP: FhirDecimal.empty(),
+          );
         }
       case 'queryTP':
         {
-          return copyWith(queryTP: FhirDecimal.empty());
+          return copyWith(
+            queryTP: FhirDecimal.empty(),
+          );
         }
       case 'truthFN':
         {
-          return copyWith(truthFN: FhirDecimal.empty());
+          return copyWith(
+            truthFN: FhirDecimal.empty(),
+          );
         }
       case 'queryFP':
         {
-          return copyWith(queryFP: FhirDecimal.empty());
+          return copyWith(
+            queryFP: FhirDecimal.empty(),
+          );
         }
       case 'gtFP':
         {
-          return copyWith(gtFP: FhirDecimal.empty());
+          return copyWith(
+            gtFP: FhirDecimal.empty(),
+          );
         }
       case 'precision':
         {
-          return copyWith(precision: FhirDecimal.empty());
+          return copyWith(
+            precision: FhirDecimal.empty(),
+          );
         }
       case 'recall':
         {
-          return copyWith(recall: FhirDecimal.empty());
+          return copyWith(
+            recall: FhirDecimal.empty(),
+          );
         }
       case 'fScore':
         {
-          return copyWith(fScore: FhirDecimal.empty());
+          return copyWith(
+            fScore: FhirDecimal.empty(),
+          );
         }
       case 'roc':
         {
-          return copyWith(roc: MolecularSequenceRoc.empty());
+          return copyWith(
+            roc: MolecularSequenceRoc.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3666,7 +4028,10 @@ class MolecularSequenceQuality extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -3681,49 +4046,94 @@ class MolecularSequenceQuality extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(standardSequence, o.standardSequence)) {
+    if (!equalsDeepWithNull(
+      standardSequence,
+      o.standardSequence,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(start, o.start)) {
+    if (!equalsDeepWithNull(
+      start,
+      o.start,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(end, o.end)) {
+    if (!equalsDeepWithNull(
+      end,
+      o.end,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(score, o.score)) {
+    if (!equalsDeepWithNull(
+      score,
+      o.score,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(method, o.method)) {
+    if (!equalsDeepWithNull(
+      method,
+      o.method,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(truthTP, o.truthTP)) {
+    if (!equalsDeepWithNull(
+      truthTP,
+      o.truthTP,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(queryTP, o.queryTP)) {
+    if (!equalsDeepWithNull(
+      queryTP,
+      o.queryTP,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(truthFN, o.truthFN)) {
+    if (!equalsDeepWithNull(
+      truthFN,
+      o.truthFN,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(queryFP, o.queryFP)) {
+    if (!equalsDeepWithNull(
+      queryFP,
+      o.queryFP,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(gtFP, o.gtFP)) {
+    if (!equalsDeepWithNull(
+      gtFP,
+      o.gtFP,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(precision, o.precision)) {
+    if (!equalsDeepWithNull(
+      precision,
+      o.precision,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(recall, o.recall)) {
+    if (!equalsDeepWithNull(
+      recall,
+      o.recall,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(fScore, o.fScore)) {
+    if (!equalsDeepWithNull(
+      fScore,
+      o.fScore,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(roc, o.roc)) {
+    if (!equalsDeepWithNull(
+      roc,
+      o.roc,
+    )) {
       return false;
     }
     return true;
@@ -3940,16 +4350,46 @@ class MolecularSequenceRoc extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('score', score);
-    addField('numTP', numTP);
-    addField('numFP', numFP);
-    addField('numFN', numFN);
-    addField('precision', precision);
-    addField('sensitivity', sensitivity);
-    addField('fMeasure', fMeasure);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'score',
+      score,
+    );
+    addField(
+      'numTP',
+      numTP,
+    );
+    addField(
+      'numFP',
+      numFP,
+    );
+    addField(
+      'numFN',
+      numFN,
+    );
+    addField(
+      'precision',
+      precision,
+    );
+    addField(
+      'sensitivity',
+      sensitivity,
+    );
+    addField(
+      'fMeasure',
+      fMeasure,
+    );
     return json;
   }
 
@@ -4027,74 +4467,6 @@ class MolecularSequenceRoc extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'score':
-        if (score != null) {
-          return score!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'numTP':
-        if (numTP != null) {
-          return numTP!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'numFP':
-        if (numFP != null) {
-          return numFP!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'numFN':
-        if (numFN != null) {
-          return numFN!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'precision':
-        if (precision != null) {
-          return precision!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'sensitivity':
-        if (sensitivity != null) {
-          return sensitivity!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'fMeasure':
-        if (fMeasure != null) {
-          return fMeasure!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -4106,99 +4478,153 @@ class MolecularSequenceRoc extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'score':
         {
           if (child is List<FhirInteger>) {
-            return copyWith(score: child);
+            // Add all elements from passed list
+            final newList = [...?score, ...child];
+            return copyWith(score: newList);
+          } else if (child is FhirInteger) {
+            // Add single element to existing list or create new list
+            final newList = [...?score, child];
+            return copyWith(score: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'numTP':
         {
           if (child is List<FhirInteger>) {
-            return copyWith(numTP: child);
+            // Add all elements from passed list
+            final newList = [...?numTP, ...child];
+            return copyWith(numTP: newList);
+          } else if (child is FhirInteger) {
+            // Add single element to existing list or create new list
+            final newList = [...?numTP, child];
+            return copyWith(numTP: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'numFP':
         {
           if (child is List<FhirInteger>) {
-            return copyWith(numFP: child);
+            // Add all elements from passed list
+            final newList = [...?numFP, ...child];
+            return copyWith(numFP: newList);
+          } else if (child is FhirInteger) {
+            // Add single element to existing list or create new list
+            final newList = [...?numFP, child];
+            return copyWith(numFP: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'numFN':
         {
           if (child is List<FhirInteger>) {
-            return copyWith(numFN: child);
+            // Add all elements from passed list
+            final newList = [...?numFN, ...child];
+            return copyWith(numFN: newList);
+          } else if (child is FhirInteger) {
+            // Add single element to existing list or create new list
+            final newList = [...?numFN, child];
+            return copyWith(numFN: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'precision':
         {
           if (child is List<FhirDecimal>) {
-            return copyWith(precision: child);
+            // Add all elements from passed list
+            final newList = [...?precision, ...child];
+            return copyWith(precision: newList);
+          } else if (child is FhirDecimal) {
+            // Add single element to existing list or create new list
+            final newList = [...?precision, child];
+            return copyWith(precision: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'sensitivity':
         {
           if (child is List<FhirDecimal>) {
-            return copyWith(sensitivity: child);
+            // Add all elements from passed list
+            final newList = [...?sensitivity, ...child];
+            return copyWith(sensitivity: newList);
+          } else if (child is FhirDecimal) {
+            // Add single element to existing list or create new list
+            final newList = [...?sensitivity, child];
+            return copyWith(sensitivity: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'fMeasure':
         {
           if (child is List<FhirDecimal>) {
-            return copyWith(fMeasure: child);
+            // Add all elements from passed list
+            final newList = [...?fMeasure, ...child];
+            return copyWith(fMeasure: newList);
+          } else if (child is FhirDecimal) {
+            // Add single element to existing list or create new list
+            final newList = [...?fMeasure, child];
+            return copyWith(fMeasure: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -4237,47 +4663,69 @@ class MolecularSequenceRoc extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  MolecularSequenceRoc createProperty(String propertyName) {
+  MolecularSequenceRoc createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'score':
         {
-          return copyWith(score: <FhirInteger>[]);
+          return copyWith(
+            score: <FhirInteger>[],
+          );
         }
       case 'numTP':
         {
-          return copyWith(numTP: <FhirInteger>[]);
+          return copyWith(
+            numTP: <FhirInteger>[],
+          );
         }
       case 'numFP':
         {
-          return copyWith(numFP: <FhirInteger>[]);
+          return copyWith(
+            numFP: <FhirInteger>[],
+          );
         }
       case 'numFN':
         {
-          return copyWith(numFN: <FhirInteger>[]);
+          return copyWith(
+            numFN: <FhirInteger>[],
+          );
         }
       case 'precision':
         {
-          return copyWith(precision: <FhirDecimal>[]);
+          return copyWith(
+            precision: <FhirDecimal>[],
+          );
         }
       case 'sensitivity':
         {
-          return copyWith(sensitivity: <FhirDecimal>[]);
+          return copyWith(
+            sensitivity: <FhirDecimal>[],
+          );
         }
       case 'fMeasure':
         {
-          return copyWith(fMeasure: <FhirDecimal>[]);
+          return copyWith(
+            fMeasure: <FhirDecimal>[],
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -4421,7 +4869,10 @@ class MolecularSequenceRoc extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -4683,15 +5134,42 @@ class MolecularSequenceRepository extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('type', type);
-    addField('url', url);
-    addField('name', name);
-    addField('datasetId', datasetId);
-    addField('variantsetId', variantsetId);
-    addField('readsetId', readsetId);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'type',
+      type,
+    );
+    addField(
+      'url',
+      url,
+    );
+    addField(
+      'name',
+      name,
+    );
+    addField(
+      'datasetId',
+      datasetId,
+    );
+    addField(
+      'variantsetId',
+      variantsetId,
+    );
+    addField(
+      'readsetId',
+      readsetId,
+    );
     return json;
   }
 
@@ -4762,32 +5240,6 @@ class MolecularSequenceRepository extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -4799,39 +5251,51 @@ class MolecularSequenceRepository extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'type':
@@ -4839,7 +5303,7 @@ class MolecularSequenceRepository extends BackboneElement {
           if (child is RepositoryType) {
             return copyWith(type: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'url':
@@ -4847,7 +5311,7 @@ class MolecularSequenceRepository extends BackboneElement {
           if (child is FhirUri) {
             return copyWith(url: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'name':
@@ -4855,7 +5319,7 @@ class MolecularSequenceRepository extends BackboneElement {
           if (child is FhirString) {
             return copyWith(name: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'datasetId':
@@ -4863,7 +5327,7 @@ class MolecularSequenceRepository extends BackboneElement {
           if (child is FhirString) {
             return copyWith(datasetId: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'variantsetId':
@@ -4871,7 +5335,7 @@ class MolecularSequenceRepository extends BackboneElement {
           if (child is FhirString) {
             return copyWith(variantsetId: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'readsetId':
@@ -4879,11 +5343,11 @@ class MolecularSequenceRepository extends BackboneElement {
           if (child is FhirString) {
             return copyWith(readsetId: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -4920,43 +5384,63 @@ class MolecularSequenceRepository extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  MolecularSequenceRepository createProperty(String propertyName) {
+  MolecularSequenceRepository createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'type':
         {
-          return copyWith(type: RepositoryType.empty());
+          return copyWith(
+            type: RepositoryType.empty(),
+          );
         }
       case 'url':
         {
-          return copyWith(url: FhirUri.empty());
+          return copyWith(
+            url: FhirUri.empty(),
+          );
         }
       case 'name':
         {
-          return copyWith(name: FhirString.empty());
+          return copyWith(
+            name: FhirString.empty(),
+          );
         }
       case 'datasetId':
         {
-          return copyWith(datasetId: FhirString.empty());
+          return copyWith(
+            datasetId: FhirString.empty(),
+          );
         }
       case 'variantsetId':
         {
-          return copyWith(variantsetId: FhirString.empty());
+          return copyWith(
+            variantsetId: FhirString.empty(),
+          );
         }
       case 'readsetId':
         {
-          return copyWith(readsetId: FhirString.empty());
+          return copyWith(
+            readsetId: FhirString.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -5064,7 +5548,10 @@ class MolecularSequenceRepository extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -5079,22 +5566,40 @@ class MolecularSequenceRepository extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(type, o.type)) {
+    if (!equalsDeepWithNull(
+      type,
+      o.type,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(url, o.url)) {
+    if (!equalsDeepWithNull(
+      url,
+      o.url,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(name, o.name)) {
+    if (!equalsDeepWithNull(
+      name,
+      o.name,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(datasetId, o.datasetId)) {
+    if (!equalsDeepWithNull(
+      datasetId,
+      o.datasetId,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(variantsetId, o.variantsetId)) {
+    if (!equalsDeepWithNull(
+      variantsetId,
+      o.variantsetId,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(readsetId, o.readsetId)) {
+    if (!equalsDeepWithNull(
+      readsetId,
+      o.readsetId,
+    )) {
       return false;
     }
     return true;
@@ -5283,14 +5788,38 @@ class MolecularSequenceStructureVariant extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('variantType', variantType);
-    addField('exact', exact);
-    addField('length', length);
-    addField('outer', outer);
-    addField('inner', inner);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'variantType',
+      variantType,
+    );
+    addField(
+      'exact',
+      exact,
+    );
+    addField(
+      'length',
+      length,
+    );
+    addField(
+      'outer',
+      outer,
+    );
+    addField(
+      'inner',
+      inner,
+    );
     return json;
   }
 
@@ -5358,32 +5887,6 @@ class MolecularSequenceStructureVariant extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -5395,39 +5898,51 @@ class MolecularSequenceStructureVariant extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'variantType':
@@ -5435,7 +5950,7 @@ class MolecularSequenceStructureVariant extends BackboneElement {
           if (child is CodeableConcept) {
             return copyWith(variantType: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'exact':
@@ -5443,7 +5958,7 @@ class MolecularSequenceStructureVariant extends BackboneElement {
           if (child is FhirBoolean) {
             return copyWith(exact: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'length':
@@ -5451,7 +5966,7 @@ class MolecularSequenceStructureVariant extends BackboneElement {
           if (child is FhirInteger) {
             return copyWith(length: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'outer':
@@ -5459,7 +5974,7 @@ class MolecularSequenceStructureVariant extends BackboneElement {
           if (child is MolecularSequenceOuter) {
             return copyWith(outer: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'inner':
@@ -5467,11 +5982,11 @@ class MolecularSequenceStructureVariant extends BackboneElement {
           if (child is MolecularSequenceInner) {
             return copyWith(inner: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -5506,39 +6021,57 @@ class MolecularSequenceStructureVariant extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  MolecularSequenceStructureVariant createProperty(String propertyName) {
+  MolecularSequenceStructureVariant createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'variantType':
         {
-          return copyWith(variantType: CodeableConcept.empty());
+          return copyWith(
+            variantType: CodeableConcept.empty(),
+          );
         }
       case 'exact':
         {
-          return copyWith(exact: FhirBoolean.empty());
+          return copyWith(
+            exact: FhirBoolean.empty(),
+          );
         }
       case 'length':
         {
-          return copyWith(length: FhirInteger.empty());
+          return copyWith(
+            length: FhirInteger.empty(),
+          );
         }
       case 'outer':
         {
-          return copyWith(outer: MolecularSequenceOuter.empty());
+          return copyWith(
+            outer: MolecularSequenceOuter.empty(),
+          );
         }
       case 'inner':
         {
-          return copyWith(inner: MolecularSequenceInner.empty());
+          return copyWith(
+            inner: MolecularSequenceInner.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -5640,7 +6173,10 @@ class MolecularSequenceStructureVariant extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -5655,19 +6191,34 @@ class MolecularSequenceStructureVariant extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(variantType, o.variantType)) {
+    if (!equalsDeepWithNull(
+      variantType,
+      o.variantType,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(exact, o.exact)) {
+    if (!equalsDeepWithNull(
+      exact,
+      o.exact,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(length, o.length)) {
+    if (!equalsDeepWithNull(
+      length,
+      o.length,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(outer, o.outer)) {
+    if (!equalsDeepWithNull(
+      outer,
+      o.outer,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(inner, o.inner)) {
+    if (!equalsDeepWithNull(
+      inner,
+      o.inner,
+    )) {
       return false;
     }
     return true;
@@ -5825,11 +6376,26 @@ class MolecularSequenceOuter extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('start', start);
-    addField('end', end);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'start',
+      start,
+    );
+    addField(
+      'end',
+      end,
+    );
     return json;
   }
 
@@ -5882,32 +6448,6 @@ class MolecularSequenceOuter extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -5919,39 +6459,51 @@ class MolecularSequenceOuter extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'start':
@@ -5959,7 +6511,7 @@ class MolecularSequenceOuter extends BackboneElement {
           if (child is FhirInteger) {
             return copyWith(start: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'end':
@@ -5967,11 +6519,11 @@ class MolecularSequenceOuter extends BackboneElement {
           if (child is FhirInteger) {
             return copyWith(end: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -6000,27 +6552,39 @@ class MolecularSequenceOuter extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  MolecularSequenceOuter createProperty(String propertyName) {
+  MolecularSequenceOuter createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'start':
         {
-          return copyWith(start: FhirInteger.empty());
+          return copyWith(
+            start: FhirInteger.empty(),
+          );
         }
       case 'end':
         {
-          return copyWith(end: FhirInteger.empty());
+          return copyWith(
+            end: FhirInteger.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -6101,7 +6665,10 @@ class MolecularSequenceOuter extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -6116,10 +6683,16 @@ class MolecularSequenceOuter extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(start, o.start)) {
+    if (!equalsDeepWithNull(
+      start,
+      o.start,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(end, o.end)) {
+    if (!equalsDeepWithNull(
+      end,
+      o.end,
+    )) {
       return false;
     }
     return true;
@@ -6277,11 +6850,26 @@ class MolecularSequenceInner extends BackboneElement {
       }
     }
 
-    addField('id', id);
-    addField('extension', extension_);
-    addField('modifierExtension', modifierExtension);
-    addField('start', start);
-    addField('end', end);
+    addField(
+      'id',
+      id,
+    );
+    addField(
+      'extension',
+      extension_,
+    );
+    addField(
+      'modifierExtension',
+      modifierExtension,
+    );
+    addField(
+      'start',
+      start,
+    );
+    addField(
+      'end',
+      end,
+    );
     return json;
   }
 
@@ -6334,32 +6922,6 @@ class MolecularSequenceInner extends BackboneElement {
     return fields;
   }
 
-  /// Retrieves a property by name, but only if that propery is a list. If it
-  /// is not a list, it returns null. If it is a list, but the list is null or
-  /// if the list is empty (which really shouldn't happen in FHIR), it returns
-  /// an empty list.
-  @override
-  List<FhirBase>? getListChildByName(
-    String fieldName, [
-    bool checkValid = false,
-  ]) {
-    switch (fieldName) {
-      case 'extension':
-        if (extension_ != null) {
-          return extension_!;
-        } else {
-          return <FhirBase>[];
-        }
-      case 'modifierExtension':
-        if (modifierExtension != null) {
-          return modifierExtension!;
-        } else {
-          return <FhirBase>[];
-        }
-    }
-    return null;
-  }
-
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -6371,39 +6933,51 @@ class MolecularSequenceInner extends BackboneElement {
   }
 
   @override
-  FhirBase setChildByName(String name, dynamic child) {
+  FhirBase setChildByName(String childName, dynamic child) {
     // child must be null, or a (List of) FhirBase(s).
     // We only do runtime checks; if incorrect, we throw.
     if (child == null) {
-      throw Exception('Cannot set child to null value for $name');
+      throw Exception('Cannot set child to null value for $childName');
     }
     if (child is! FhirBase && child is! List<FhirBase>) {
-      throw Exception('Cannot set child value for $name');
+      throw Exception('Cannot set child value for $childName');
     }
 
-    switch (name) {
+    switch (childName) {
       case 'id':
         {
           if (child is FhirString) {
             return copyWith(id: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'extension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(extension_: child);
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'modifierExtension':
         {
           if (child is List<FhirExtension>) {
-            return copyWith(modifierExtension: child);
+            // Add all elements from passed list
+            final newList = [...?modifierExtension, ...child];
+            return copyWith(modifierExtension: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?modifierExtension, child];
+            return copyWith(modifierExtension: newList);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'start':
@@ -6411,7 +6985,7 @@ class MolecularSequenceInner extends BackboneElement {
           if (child is FhirInteger) {
             return copyWith(start: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       case 'end':
@@ -6419,11 +6993,11 @@ class MolecularSequenceInner extends BackboneElement {
           if (child is FhirInteger) {
             return copyWith(end: child);
           } else {
-            throw Exception('Cannot set child value for $name');
+            throw Exception('Invalid child type for $childName');
           }
         }
       default:
-        throw Exception('Cannot set child value for $name');
+        throw Exception('Cannot set child value for $childName');
     }
   }
 
@@ -6452,27 +7026,39 @@ class MolecularSequenceInner extends BackboneElement {
   /// If [propertyName] matches the field, that field is replaced by its
   /// `.empty()` variant (or list of `.empty()`).
   @override
-  MolecularSequenceInner createProperty(String propertyName) {
+  MolecularSequenceInner createProperty(
+    String propertyName,
+  ) {
     switch (propertyName) {
       case 'id':
         {
-          return copyWith(id: FhirString.empty());
+          return copyWith(
+            id: FhirString.empty(),
+          );
         }
       case 'extension':
         {
-          return copyWith(extension_: <FhirExtension>[]);
+          return copyWith(
+            extension_: <FhirExtension>[],
+          );
         }
       case 'modifierExtension':
         {
-          return copyWith(modifierExtension: <FhirExtension>[]);
+          return copyWith(
+            modifierExtension: <FhirExtension>[],
+          );
         }
       case 'start':
         {
-          return copyWith(start: FhirInteger.empty());
+          return copyWith(
+            start: FhirInteger.empty(),
+          );
         }
       case 'end':
         {
-          return copyWith(end: FhirInteger.empty());
+          return copyWith(
+            end: FhirInteger.empty(),
+          );
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -6553,7 +7139,10 @@ class MolecularSequenceInner extends BackboneElement {
     }
     if (identical(this, o)) return true;
     if (runtimeType != o.runtimeType) return false;
-    if (!equalsDeepWithNull(id, o.id)) {
+    if (!equalsDeepWithNull(
+      id,
+      o.id,
+    )) {
       return false;
     }
     if (!listEquals<FhirExtension>(
@@ -6568,10 +7157,16 @@ class MolecularSequenceInner extends BackboneElement {
     )) {
       return false;
     }
-    if (!equalsDeepWithNull(start, o.start)) {
+    if (!equalsDeepWithNull(
+      start,
+      o.start,
+    )) {
       return false;
     }
-    if (!equalsDeepWithNull(end, o.end)) {
+    if (!equalsDeepWithNull(
+      end,
+      o.end,
+    )) {
       return false;
     }
     return true;

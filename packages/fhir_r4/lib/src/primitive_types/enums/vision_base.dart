@@ -54,9 +54,14 @@ class VisionBase extends FhirCodeEnum {
     if (value == null && element != null) {
       return VisionBase.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('VisionBase cannot be constructed from JSON.');
+      throw ArgumentError(
+        'VisionBase cannot be constructed from JSON.',
+      );
     }
-    return VisionBase._(validatedValue: value, element: element);
+    return VisionBase._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// up

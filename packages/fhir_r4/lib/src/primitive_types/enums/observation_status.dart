@@ -54,9 +54,14 @@ class ObservationStatus extends FhirCodeEnum {
     if (value == null && element != null) {
       return ObservationStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
-      throw ArgumentError('ObservationStatus cannot be constructed from JSON.');
+      throw ArgumentError(
+        'ObservationStatus cannot be constructed from JSON.',
+      );
     }
-    return ObservationStatus._(validatedValue: value, element: element);
+    return ObservationStatus._(
+      validatedValue: value,
+      element: element,
+    );
   }
 
   /// registered
