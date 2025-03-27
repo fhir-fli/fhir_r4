@@ -11,6 +11,8 @@ class TRight5 extends Element {
     super.objectPath = 'TRight5',
   });
 
+  factory TRight5.empty() => const TRight5();
+
   /// FromJson Factory Constructor
   factory TRight5.fromJson(Map<String, dynamic> json) {
     const objectPath = 'TRight5';
@@ -111,5 +113,19 @@ class TRight5 extends Element {
     return id == other.id &&
         listEquals<FhirBase>(extension_, other.extension_) &&
         listEquals<FhirBase>(a22, other.a22);
+  }
+
+  @override
+  TRight5 setChildByName(String name, dynamic value) {
+    switch (name) {
+      case 'id':
+        return copyWith(id: value as FhirString);
+      case 'extension':
+        return copyWith(extension_: value as List<FhirExtension>);
+      case 'a22':
+        return copyWith(a22: value as List<FhirString>);
+      default:
+        throw ArgumentError('Field name not recognized');
+    }
   }
 }

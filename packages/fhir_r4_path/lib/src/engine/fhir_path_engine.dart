@@ -2165,6 +2165,7 @@ class FHIRPathEngine {
   /// ***************************************
   ///
   FhirBase? _processConstant(FHIRLexer lexer) {
+    print('processing constant: ${lexer.current}');
     if (lexer.isStringConstant()) {
       return FhirString(processConstantString(lexer.take(), lexer))
           .noExtensions();
@@ -3988,6 +3989,7 @@ class FHIRPathEngine {
     List<FhirBase> focus,
     ExpressionNode exp,
   ) {
+    print('Evaluating function: ${exp.function}');
     switch (exp.function) {
       case FpFunction.Empty:
         return funcEmpty(context, focus, exp);
@@ -4142,27 +4144,35 @@ class FHIRPathEngine {
       case FpFunction.ToTime:
         return funcToTime(context, focus, exp);
       case FpFunction.IsInteger:
+        return opIs(focus, ['integer'.toFhirString], exp);
       case FpFunction.ConvertsToInteger:
         return funcIsInteger(focus);
       case FpFunction.IsDecimal:
+        return opIs(focus, ['decimal'.toFhirString], exp);
       case FpFunction.ConvertsToDecimal:
         return funcIsDecimal(context, focus, exp);
       case FpFunction.IsString:
+        return opIs(focus, ['string'.toFhirString], exp);
       case FpFunction.ConvertsToString:
         return funcIsString(focus);
       case FpFunction.IsBoolean:
+        return opIs(focus, ['boolean'.toFhirString], exp);
       case FpFunction.ConvertsToBoolean:
         return funcIsBoolean(focus);
       case FpFunction.IsQuantity:
+        return opIs(focus, ['Quantity'.toFhirString], exp);
       case FpFunction.ConvertsToQuantity:
         return funcIsQuantity(focus);
       case FpFunction.IsDateTime:
+        return opIs(focus, ['dateTime'.toFhirString], exp);
       case FpFunction.ConvertsToDateTime:
         return funcIsDateTime(focus);
       case FpFunction.IsDate:
+        return opIs(focus, ['date'.toFhirString], exp);
       case FpFunction.ConvertsToDate:
         return funcIsDate(focus);
       case FpFunction.IsTime:
+        return opIs(focus, ['time'.toFhirString], exp);
       case FpFunction.ConvertsToTime:
         return funcIsTime(focus);
       case FpFunction.ConformsTo:

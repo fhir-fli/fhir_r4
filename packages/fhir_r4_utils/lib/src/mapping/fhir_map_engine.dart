@@ -211,6 +211,9 @@ class FhirMapEngine {
       indent,
     );
 
+    print('source');
+    source?.forEach((e) => print(e.summary()));
+
     for (final MappingVariables v in source ?? <MappingVariables>[]) {
       for (final target in rule.target ?? <StructureMapTarget>[]) {
         await _processTarget(
@@ -694,11 +697,15 @@ class FhirMapEngine {
         items.add(b);
       } else {
         await _getChildrenByName(b, src.element?.value ?? '', items);
+        print(items.length);
         if (items.isEmpty && src.defaultValueX != null) {
           items.add(src.defaultValueX!);
         }
       }
     }
+
+    print('source1');
+    items.forEach((e) => print(e.toJson()));
 
     if (src.type != null) {
       items.removeWhere((item) => !_isType(item, src.type!.value!));
@@ -961,6 +968,10 @@ class FhirMapEngine {
     String? srcVar,
     bool root,
   ) async {
+    print(tgt.transform);
+    print(vars.summary());
+    print(dest);
+    print(element);
     try {
       switch (tgt.transform?.toString()) {
         case 'create':
