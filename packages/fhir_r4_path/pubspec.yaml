@@ -1,0 +1,27 @@
+name: fhir_r4_path
+description: Dart Library supporting (almost) all Functionality for FHIRPath.
+version: 0.3.0-2
+homepage: https://www.fhirfli.dev/
+repository: https://github.com/fhir-fli/fhir_r4
+
+# This package supports all platforms listed below.
+platforms:
+  android:
+  ios:
+  linux:
+  macos:
+  web:
+  windows:
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  collection: ^1.18.0
+  fhir_r4: ^0.3.0-1
+  http: ^1.2.2
+  ucum: ^0.6.0
+
+dev_dependencies:
+  test: ^1.25.8
+ 
