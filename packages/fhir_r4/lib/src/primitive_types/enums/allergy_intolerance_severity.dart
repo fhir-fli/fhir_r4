@@ -57,13 +57,10 @@ class AllergyIntoleranceSeverity extends FhirCodeEnum {
       return AllergyIntoleranceSeverity.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'AllergyIntoleranceSeverity cannot be constructed from JSON.',
-      );
+          'AllergyIntoleranceSeverity cannot be constructed from JSON.',);
     }
     return AllergyIntoleranceSeverity._(
-      validatedValue: value,
-      element: element,
-    );
+        validatedValue: value, element: element,);
   }
 
   /// mild
@@ -112,9 +109,7 @@ class AllergyIntoleranceSeverity extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   AllergyIntoleranceSeverity withElement(Element? newElement) {
     return AllergyIntoleranceSeverity._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

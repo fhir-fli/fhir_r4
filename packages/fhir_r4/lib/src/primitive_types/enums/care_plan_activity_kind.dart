@@ -57,8 +57,7 @@ class CarePlanActivityKind extends FhirCodeEnum {
       return CarePlanActivityKind.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'CarePlanActivityKind cannot be constructed from JSON.',
-      );
+          'CarePlanActivityKind cannot be constructed from JSON.',);
     }
     return CarePlanActivityKind._(validatedValue: value, element: element);
   }

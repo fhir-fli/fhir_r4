@@ -630,6 +630,80 @@ class AdverseEvent extends DomainResource {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'contained':
+        if (contained != null) {
+          return contained!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'category':
+        if (category != null) {
+          return category!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'resultingCondition':
+        if (resultingCondition != null) {
+          return resultingCondition!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'contributor':
+        if (contributor != null) {
+          return contributor!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'suspectEntity':
+        if (suspectEntity != null) {
+          return suspectEntity!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'subjectMedicalHistory':
+        if (subjectMedicalHistory != null) {
+          return subjectMedicalHistory!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'referenceDocument':
+        if (referenceDocument != null) {
+          return referenceDocument!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'study':
+        if (study != null) {
+          return study!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1658,6 +1732,38 @@ class AdverseEventSuspectEntity extends BackboneElement {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'causality':
+        if (causality != null) {
+          return causality!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2118,6 +2224,32 @@ class AdverseEventCausality extends BackboneElement {
         }
     }
     return fields;
+  }
+
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
   }
 
   /// Retrieves a single field value by its name.

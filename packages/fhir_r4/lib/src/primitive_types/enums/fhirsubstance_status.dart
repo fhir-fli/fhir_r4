@@ -56,8 +56,7 @@ class FHIRSubstanceStatus extends FhirCodeEnum {
       return FHIRSubstanceStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'FHIRSubstanceStatus cannot be constructed from JSON.',
-      );
+          'FHIRSubstanceStatus cannot be constructed from JSON.',);
     }
     return FHIRSubstanceStatus._(validatedValue: value, element: element);
   }

@@ -56,13 +56,10 @@ class MedicationDispenseStatusCodes extends FhirCodeEnum {
       return MedicationDispenseStatusCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'MedicationDispenseStatusCodes cannot be constructed from JSON.',
-      );
+          'MedicationDispenseStatusCodes cannot be constructed from JSON.',);
     }
     return MedicationDispenseStatusCodes._(
-      validatedValue: value,
-      element: element,
-    );
+        validatedValue: value, element: element,);
   }
 
   /// preparation
@@ -173,9 +170,7 @@ class MedicationDispenseStatusCodes extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   MedicationDispenseStatusCodes withElement(Element? newElement) {
     return MedicationDispenseStatusCodes._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

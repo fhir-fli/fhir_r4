@@ -579,6 +579,62 @@ class ConceptMap extends CanonicalResource {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'contained':
+        if (contained != null) {
+          return contained!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'contact':
+        if (contact != null) {
+          return contact!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'useContext':
+        if (useContext != null) {
+          return useContext!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'jurisdiction':
+        if (jurisdiction != null) {
+          return jurisdiction!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'group':
+        if (group != null) {
+          return group!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1666,6 +1722,34 @@ class ConceptMapGroup extends BackboneElement {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'element':
+        return element;
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2213,6 +2297,38 @@ class ConceptMapElement extends BackboneElement {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'target':
+        if (target != null) {
+          return target!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2750,6 +2866,44 @@ class ConceptMapTarget extends BackboneElement {
         }
     }
     return fields;
+  }
+
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'dependsOn':
+        if (dependsOn != null) {
+          return dependsOn!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'product':
+        if (product != null) {
+          return product!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
   }
 
   /// Retrieves a single field value by its name.
@@ -3324,6 +3478,32 @@ class ConceptMapDependsOn extends BackboneElement {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -3835,6 +4015,32 @@ class ConceptMapUnmapped extends BackboneElement {
         }
     }
     return fields;
+  }
+
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
   }
 
   /// Retrieves a single field value by its name.

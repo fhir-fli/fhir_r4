@@ -57,8 +57,7 @@ class ActionCardinalityBehavior extends FhirCodeEnum {
       return ActionCardinalityBehavior.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ActionCardinalityBehavior cannot be constructed from JSON.',
-      );
+          'ActionCardinalityBehavior cannot be constructed from JSON.',);
     }
     return ActionCardinalityBehavior._(validatedValue: value, element: element);
   }
@@ -101,9 +100,7 @@ class ActionCardinalityBehavior extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   ActionCardinalityBehavior withElement(Element? newElement) {
     return ActionCardinalityBehavior._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

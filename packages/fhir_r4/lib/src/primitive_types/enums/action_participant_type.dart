@@ -56,8 +56,7 @@ class ActionParticipantType extends FhirCodeEnum {
       return ActionParticipantType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ActionParticipantType cannot be constructed from JSON.',
-      );
+          'ActionParticipantType cannot be constructed from JSON.',);
     }
     return ActionParticipantType._(validatedValue: value, element: element);
   }

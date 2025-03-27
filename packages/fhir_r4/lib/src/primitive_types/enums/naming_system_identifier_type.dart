@@ -56,13 +56,10 @@ class NamingSystemIdentifierType extends FhirCodeEnum {
       return NamingSystemIdentifierType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'NamingSystemIdentifierType cannot be constructed from JSON.',
-      );
+          'NamingSystemIdentifierType cannot be constructed from JSON.',);
     }
     return NamingSystemIdentifierType._(
-      validatedValue: value,
-      element: element,
-    );
+        validatedValue: value, element: element,);
   }
 
   /// oid
@@ -123,9 +120,7 @@ class NamingSystemIdentifierType extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   NamingSystemIdentifierType withElement(Element? newElement) {
     return NamingSystemIdentifierType._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

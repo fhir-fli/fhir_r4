@@ -454,4 +454,8 @@ class ClassTypeInfo extends FhirBase {
   ClassTypeInfo clear() {
     return ClassTypeInfo(instance);
   }
+
+  @override
+  List<FhirBase> getListChildByName(String name, [bool checkValid = false]) =>
+      <FhirBase>[];
 }

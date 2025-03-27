@@ -56,8 +56,7 @@ class ContactPointSystem extends FhirCodeEnum {
       return ContactPointSystem.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ContactPointSystem cannot be constructed from JSON.',
-      );
+          'ContactPointSystem cannot be constructed from JSON.',);
     }
     return ContactPointSystem._(validatedValue: value, element: element);
   }

@@ -56,8 +56,7 @@ class ReferenceHandlingPolicy extends FhirCodeEnum {
       return ReferenceHandlingPolicy.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ReferenceHandlingPolicy cannot be constructed from JSON.',
-      );
+          'ReferenceHandlingPolicy cannot be constructed from JSON.',);
     }
     return ReferenceHandlingPolicy._(validatedValue: value, element: element);
   }
@@ -125,9 +124,7 @@ class ReferenceHandlingPolicy extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   ReferenceHandlingPolicy withElement(Element? newElement) {
     return ReferenceHandlingPolicy._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

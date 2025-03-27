@@ -56,8 +56,7 @@ class NutritionProductStatus extends FhirCodeEnum {
       return NutritionProductStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'NutritionProductStatus cannot be constructed from JSON.',
-      );
+          'NutritionProductStatus cannot be constructed from JSON.',);
     }
     return NutritionProductStatus._(validatedValue: value, element: element);
   }

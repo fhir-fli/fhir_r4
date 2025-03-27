@@ -56,8 +56,7 @@ class DocumentRelationshipType extends FhirCodeEnum {
       return DocumentRelationshipType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'DocumentRelationshipType cannot be constructed from JSON.',
-      );
+          'DocumentRelationshipType cannot be constructed from JSON.',);
     }
     return DocumentRelationshipType._(validatedValue: value, element: element);
   }
@@ -116,9 +115,7 @@ class DocumentRelationshipType extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   DocumentRelationshipType withElement(Element? newElement) {
     return DocumentRelationshipType._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

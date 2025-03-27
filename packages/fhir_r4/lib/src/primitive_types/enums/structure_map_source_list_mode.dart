@@ -56,13 +56,10 @@ class StructureMapSourceListMode extends FhirCodeEnum {
       return StructureMapSourceListMode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'StructureMapSourceListMode cannot be constructed from JSON.',
-      );
+          'StructureMapSourceListMode cannot be constructed from JSON.',);
     }
     return StructureMapSourceListMode._(
-      validatedValue: value,
-      element: element,
-    );
+        validatedValue: value, element: element,);
   }
 
   /// first
@@ -131,9 +128,7 @@ class StructureMapSourceListMode extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   StructureMapSourceListMode withElement(Element? newElement) {
     return StructureMapSourceListMode._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

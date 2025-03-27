@@ -56,8 +56,7 @@ class StructureMapContextType extends FhirCodeEnum {
       return StructureMapContextType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'StructureMapContextType cannot be constructed from JSON.',
-      );
+          'StructureMapContextType cannot be constructed from JSON.',);
     }
     return StructureMapContextType._(validatedValue: value, element: element);
   }
@@ -98,9 +97,7 @@ class StructureMapContextType extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   StructureMapContextType withElement(Element? newElement) {
     return StructureMapContextType._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

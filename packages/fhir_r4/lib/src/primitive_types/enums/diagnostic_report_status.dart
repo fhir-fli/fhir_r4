@@ -56,8 +56,7 @@ class DiagnosticReportStatus extends FhirCodeEnum {
       return DiagnosticReportStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'DiagnosticReportStatus cannot be constructed from JSON.',
-      );
+          'DiagnosticReportStatus cannot be constructed from JSON.',);
     }
     return DiagnosticReportStatus._(validatedValue: value, element: element);
   }

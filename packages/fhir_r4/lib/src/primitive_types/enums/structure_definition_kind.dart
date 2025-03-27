@@ -56,8 +56,7 @@ class StructureDefinitionKind extends FhirCodeEnum {
       return StructureDefinitionKind.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'StructureDefinitionKind cannot be constructed from JSON.',
-      );
+          'StructureDefinitionKind cannot be constructed from JSON.',);
     }
     return StructureDefinitionKind._(validatedValue: value, element: element);
   }
@@ -117,9 +116,7 @@ class StructureDefinitionKind extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   StructureDefinitionKind withElement(Element? newElement) {
     return StructureDefinitionKind._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -56,8 +56,7 @@ class SearchModifierCode extends FhirCodeEnum {
       return SearchModifierCode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'SearchModifierCode cannot be constructed from JSON.',
-      );
+          'SearchModifierCode cannot be constructed from JSON.',);
     }
     return SearchModifierCode._(validatedValue: value, element: element);
   }

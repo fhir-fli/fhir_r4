@@ -49,8 +49,7 @@ class BiologicallyDerivedProductStorageScale extends FhirCodeEnum {
 
   /// Factory constructor to create [BiologicallyDerivedProductStorageScale] from JSON.
   factory BiologicallyDerivedProductStorageScale.fromJson(
-    Map<String, dynamic> json,
-  ) {
+      Map<String, dynamic> json,) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -59,13 +58,10 @@ class BiologicallyDerivedProductStorageScale extends FhirCodeEnum {
           .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'BiologicallyDerivedProductStorageScale cannot be constructed from JSON.',
-      );
+          'BiologicallyDerivedProductStorageScale cannot be constructed from JSON.',);
     }
     return BiologicallyDerivedProductStorageScale._(
-      validatedValue: value,
-      element: element,
-    );
+        validatedValue: value, element: element,);
   }
 
   /// farenheit
@@ -117,9 +113,7 @@ class BiologicallyDerivedProductStorageScale extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   BiologicallyDerivedProductStorageScale withElement(Element? newElement) {
     return BiologicallyDerivedProductStorageScale._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -472,6 +472,70 @@ class AdministrableProductDefinition extends DomainResource {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'contained':
+        if (contained != null) {
+          return contained!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'identifier':
+        if (identifier != null) {
+          return identifier!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'formOf':
+        if (formOf != null) {
+          return formOf!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'producedFrom':
+        if (producedFrom != null) {
+          return producedFrom!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'ingredient':
+        if (ingredient != null) {
+          return ingredient!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'property':
+        if (property != null) {
+          return property!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'routeOfAdministration':
+        return routeOfAdministration;
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -768,8 +832,7 @@ class AdministrableProductDefinition extends DomainResource {
       case 'routeOfAdministration':
         {
           return copyWith(
-            routeOfAdministration: <AdministrableProductDefinitionRouteOfAdministration>[],
-          );
+              routeOfAdministration: <AdministrableProductDefinitionRouteOfAdministration>[],);
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1311,6 +1374,32 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
         }
     }
     return fields;
+  }
+
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
   }
 
   /// Retrieves a single field value by its name.
@@ -1932,6 +2021,38 @@ class AdministrableProductDefinitionRouteOfAdministration
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'targetSpecies':
+        if (targetSpecies != null) {
+          return targetSpecies!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2075,8 +2196,7 @@ class AdministrableProductDefinitionRouteOfAdministration
   /// `.empty()` variant (or list of `.empty()`).
   @override
   AdministrableProductDefinitionRouteOfAdministration createProperty(
-    String propertyName,
-  ) {
+      String propertyName,) {
     switch (propertyName) {
       case 'id':
         {
@@ -2117,8 +2237,7 @@ class AdministrableProductDefinitionRouteOfAdministration
       case 'targetSpecies':
         {
           return copyWith(
-            targetSpecies: <AdministrableProductDefinitionTargetSpecies>[],
-          );
+              targetSpecies: <AdministrableProductDefinitionTargetSpecies>[],);
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2267,9 +2386,7 @@ class AdministrableProductDefinitionRouteOfAdministration
       return false;
     }
     if (!equalsDeepWithNull(
-      maxDosePerTreatmentPeriod,
-      o.maxDosePerTreatmentPeriod,
-    )) {
+        maxDosePerTreatmentPeriod, o.maxDosePerTreatmentPeriod,)) {
       return false;
     }
     if (!equalsDeepWithNull(maxTreatmentPeriod, o.maxTreatmentPeriod)) {
@@ -2497,6 +2614,38 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'withdrawalPeriod':
+        if (withdrawalPeriod != null) {
+          return withdrawalPeriod!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2590,8 +2739,7 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
   /// `.empty()` variant (or list of `.empty()`).
   @override
   AdministrableProductDefinitionTargetSpecies createProperty(
-    String propertyName,
-  ) {
+      String propertyName,) {
     switch (propertyName) {
       case 'id':
         {
@@ -2612,8 +2760,7 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
       case 'withdrawalPeriod':
         {
           return copyWith(
-            withdrawalPeriod: <AdministrableProductDefinitionWithdrawalPeriod>[],
-          );
+              withdrawalPeriod: <AdministrableProductDefinitionWithdrawalPeriod>[],);
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2951,6 +3098,32 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -3054,8 +3227,7 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
   /// `.empty()` variant (or list of `.empty()`).
   @override
   AdministrableProductDefinitionWithdrawalPeriod createProperty(
-    String propertyName,
-  ) {
+      String propertyName,) {
     switch (propertyName) {
       case 'id':
         {

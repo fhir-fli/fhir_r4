@@ -677,6 +677,74 @@ class OperationDefinition extends CanonicalResource {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'contained':
+        if (contained != null) {
+          return contained!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'contact':
+        if (contact != null) {
+          return contact!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'useContext':
+        if (useContext != null) {
+          return useContext!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'jurisdiction':
+        if (jurisdiction != null) {
+          return jurisdiction!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'resource':
+        if (resource != null) {
+          return resource!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'parameter':
+        if (parameter != null) {
+          return parameter!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'overload':
+        if (overload != null) {
+          return overload!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1999,6 +2067,50 @@ class OperationDefinitionParameter extends BackboneElement {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'targetProfile':
+        if (targetProfile != null) {
+          return targetProfile!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'referencedFrom':
+        if (referencedFrom != null) {
+          return referencedFrom!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'part':
+        if (part_ != null) {
+          return part_!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2234,8 +2346,7 @@ class OperationDefinitionParameter extends BackboneElement {
       case 'referencedFrom':
         {
           return copyWith(
-            referencedFrom: <OperationDefinitionReferencedFrom>[],
-          );
+              referencedFrom: <OperationDefinitionReferencedFrom>[],);
         }
       case 'part':
         {
@@ -2657,6 +2768,32 @@ class OperationDefinitionBinding extends BackboneElement {
         }
     }
     return fields;
+  }
+
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
   }
 
   /// Retrieves a single field value by its name.
@@ -3084,6 +3221,32 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -3323,8 +3486,7 @@ class OperationDefinitionOverload extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory OperationDefinitionOverload.empty() =>
-      const OperationDefinitionOverload();
+  factory OperationDefinitionOverload.empty() => const OperationDefinitionOverload();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OperationDefinitionOverload.fromJson(
@@ -3506,6 +3668,38 @@ class OperationDefinitionOverload extends BackboneElement {
         }
     }
     return fields;
+  }
+
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'parameterName':
+        if (parameterName != null) {
+          return parameterName!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
   }
 
   /// Retrieves a single field value by its name.

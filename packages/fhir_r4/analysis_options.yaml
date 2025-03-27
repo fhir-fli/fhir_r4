@@ -1,0 +1,5 @@
+include: package:very_good_analysis/analysis_options.yaml
+analyzer:
+  errors:
+    avoid_positional_boolean_parameters: ignore
+    always_put_required_named_parameters_first: ignore

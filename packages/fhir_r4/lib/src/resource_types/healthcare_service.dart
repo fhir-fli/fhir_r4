@@ -738,6 +738,134 @@ class HealthcareService extends DomainResource {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'contained':
+        if (contained != null) {
+          return contained!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'identifier':
+        if (identifier != null) {
+          return identifier!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'category':
+        if (category != null) {
+          return category!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'type':
+        if (type != null) {
+          return type!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'specialty':
+        if (specialty != null) {
+          return specialty!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'location':
+        if (location != null) {
+          return location!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'telecom':
+        if (telecom != null) {
+          return telecom!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'coverageArea':
+        if (coverageArea != null) {
+          return coverageArea!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'serviceProvisionCode':
+        if (serviceProvisionCode != null) {
+          return serviceProvisionCode!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'eligibility':
+        if (eligibility != null) {
+          return eligibility!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'program':
+        if (program != null) {
+          return program!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'characteristic':
+        if (characteristic != null) {
+          return characteristic!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'communication':
+        if (communication != null) {
+          return communication!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'referralMethod':
+        if (referralMethod != null) {
+          return referralMethod!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'availableTime':
+        if (availableTime != null) {
+          return availableTime!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'notAvailable':
+        if (notAvailable != null) {
+          return notAvailable!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'endpoint':
+        if (endpoint != null) {
+          return endpoint!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1924,6 +2052,32 @@ class HealthcareServiceEligibility extends BackboneElement {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2383,6 +2537,38 @@ class HealthcareServiceAvailableTime extends BackboneElement {
         }
     }
     return fields;
+  }
+
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'daysOfWeek':
+        if (daysOfWeek != null) {
+          return daysOfWeek!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
   }
 
   /// Retrieves a single field value by its name.
@@ -2864,6 +3050,32 @@ class HealthcareServiceNotAvailable extends BackboneElement {
         }
     }
     return fields;
+  }
+
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
   }
 
   /// Retrieves a single field value by its name.

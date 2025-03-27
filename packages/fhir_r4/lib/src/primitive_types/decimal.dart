@@ -31,8 +31,8 @@ class FhirDecimal extends FhirNumber
   /// Private underscore constructor — no logic, only field assignment.
   FhirDecimal._({
     required super.validatedValue,
-    this.input,
     required bool isInt,
+    this.input,
     super.element,
     super.id,
     super.extension_,

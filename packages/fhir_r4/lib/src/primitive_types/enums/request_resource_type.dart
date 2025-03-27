@@ -57,8 +57,7 @@ class RequestResourceType extends FhirCodeEnum {
       return RequestResourceType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'RequestResourceType cannot be constructed from JSON.',
-      );
+          'RequestResourceType cannot be constructed from JSON.',);
     }
     return RequestResourceType._(validatedValue: value, element: element);
   }

@@ -56,13 +56,10 @@ class MessageSignificanceCategory extends FhirCodeEnum {
       return MessageSignificanceCategory.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'MessageSignificanceCategory cannot be constructed from JSON.',
-      );
+          'MessageSignificanceCategory cannot be constructed from JSON.',);
     }
     return MessageSignificanceCategory._(
-      validatedValue: value,
-      element: element,
-    );
+        validatedValue: value, element: element,);
   }
 
   /// consequence
@@ -116,9 +113,7 @@ class MessageSignificanceCategory extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   MessageSignificanceCategory withElement(Element? newElement) {
     return MessageSignificanceCategory._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

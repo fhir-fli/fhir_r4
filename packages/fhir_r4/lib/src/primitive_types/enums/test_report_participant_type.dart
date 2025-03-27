@@ -56,8 +56,7 @@ class TestReportParticipantType extends FhirCodeEnum {
       return TestReportParticipantType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'TestReportParticipantType cannot be constructed from JSON.',
-      );
+          'TestReportParticipantType cannot be constructed from JSON.',);
     }
     return TestReportParticipantType._(validatedValue: value, element: element);
   }
@@ -108,9 +107,7 @@ class TestReportParticipantType extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   TestReportParticipantType withElement(Element? newElement) {
     return TestReportParticipantType._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

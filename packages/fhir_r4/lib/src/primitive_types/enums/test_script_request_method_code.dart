@@ -56,13 +56,10 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
       return TestScriptRequestMethodCode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'TestScriptRequestMethodCode cannot be constructed from JSON.',
-      );
+          'TestScriptRequestMethodCode cannot be constructed from JSON.',);
     }
     return TestScriptRequestMethodCode._(
-      validatedValue: value,
-      element: element,
-    );
+        validatedValue: value, element: element,);
   }
 
   /// delete
@@ -149,9 +146,7 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   TestScriptRequestMethodCode withElement(Element? newElement) {
     return TestScriptRequestMethodCode._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

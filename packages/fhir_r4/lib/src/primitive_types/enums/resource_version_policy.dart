@@ -56,8 +56,7 @@ class ResourceVersionPolicy extends FhirCodeEnum {
       return ResourceVersionPolicy.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ResourceVersionPolicy cannot be constructed from JSON.',
-      );
+          'ResourceVersionPolicy cannot be constructed from JSON.',);
     }
     return ResourceVersionPolicy._(validatedValue: value, element: element);
   }

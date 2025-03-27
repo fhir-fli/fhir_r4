@@ -56,13 +56,10 @@ class DeviceMetricCalibrationType extends FhirCodeEnum {
       return DeviceMetricCalibrationType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'DeviceMetricCalibrationType cannot be constructed from JSON.',
-      );
+          'DeviceMetricCalibrationType cannot be constructed from JSON.',);
     }
     return DeviceMetricCalibrationType._(
-      validatedValue: value,
-      element: element,
-    );
+        validatedValue: value, element: element,);
   }
 
   /// unspecified
@@ -122,9 +119,7 @@ class DeviceMetricCalibrationType extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   DeviceMetricCalibrationType withElement(Element? newElement) {
     return DeviceMetricCalibrationType._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

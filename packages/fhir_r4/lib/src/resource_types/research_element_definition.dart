@@ -930,6 +930,112 @@ class ResearchElementDefinition extends DomainResource {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'contained':
+        if (contained != null) {
+          return contained!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'identifier':
+        if (identifier != null) {
+          return identifier!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'contact':
+        if (contact != null) {
+          return contact!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'comment':
+        if (comment != null) {
+          return comment!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'useContext':
+        if (useContext != null) {
+          return useContext!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'jurisdiction':
+        if (jurisdiction != null) {
+          return jurisdiction!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'topic':
+        if (topic != null) {
+          return topic!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'author':
+        if (author != null) {
+          return author!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'editor':
+        if (editor != null) {
+          return editor!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'reviewer':
+        if (reviewer != null) {
+          return reviewer!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'endorser':
+        if (endorser != null) {
+          return endorser!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'relatedArtifact':
+        if (relatedArtifact != null) {
+          return relatedArtifact!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'library':
+        if (library_ != null) {
+          return library_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'characteristic':
+        return characteristic;
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1575,8 +1681,7 @@ class ResearchElementDefinition extends DomainResource {
       case 'characteristic':
         {
           return copyWith(
-            characteristic: <ResearchElementDefinitionCharacteristic>[],
-          );
+              characteristic: <ResearchElementDefinitionCharacteristic>[],);
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -2480,25 +2585,17 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
     addField('studyEffectiveTimeFromStart', studyEffectiveTimeFromStart);
     addField('studyEffectiveGroupMeasure', studyEffectiveGroupMeasure);
     addField(
-      'participantEffectiveDescription',
-      participantEffectiveDescription,
-    );
+        'participantEffectiveDescription', participantEffectiveDescription,);
     if (participantEffectiveX != null) {
       final fhirType = participantEffectiveX!.fhirType;
-      addField(
-        'participantEffective${fhirType.capitalize()}',
-        participantEffectiveX,
-      );
+      addField('participantEffective${fhirType.capitalize()}',
+          participantEffectiveX,);
     }
 
     addField(
-      'participantEffectiveTimeFromStart',
-      participantEffectiveTimeFromStart,
-    );
+        'participantEffectiveTimeFromStart', participantEffectiveTimeFromStart,);
     addField(
-      'participantEffectiveGroupMeasure',
-      participantEffectiveGroupMeasure,
-    );
+        'participantEffectiveGroupMeasure', participantEffectiveGroupMeasure,);
     return json;
   }
 
@@ -2647,6 +2744,38 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
         }
     }
     return fields;
+  }
+
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'usageContext':
+        if (usageContext != null) {
+          return usageContext!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
   }
 
   /// Retrieves a single field value by its name.
@@ -3072,14 +3201,12 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
       case 'participantEffectiveTimeFromStart':
         {
           return copyWith(
-            participantEffectiveTimeFromStart: FhirDuration.empty(),
-          );
+              participantEffectiveTimeFromStart: FhirDuration.empty(),);
         }
       case 'participantEffectiveGroupMeasure':
         {
           return copyWith(
-            participantEffectiveGroupMeasure: GroupMeasure.empty(),
-          );
+              participantEffectiveGroupMeasure: GroupMeasure.empty(),);
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3278,45 +3405,33 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-      studyEffectiveDescription,
-      o.studyEffectiveDescription,
-    )) {
+        studyEffectiveDescription, o.studyEffectiveDescription,)) {
       return false;
     }
     if (!equalsDeepWithNull(studyEffectiveX, o.studyEffectiveX)) {
       return false;
     }
     if (!equalsDeepWithNull(
-      studyEffectiveTimeFromStart,
-      o.studyEffectiveTimeFromStart,
-    )) {
+        studyEffectiveTimeFromStart, o.studyEffectiveTimeFromStart,)) {
       return false;
     }
     if (!equalsDeepWithNull(
-      studyEffectiveGroupMeasure,
-      o.studyEffectiveGroupMeasure,
-    )) {
+        studyEffectiveGroupMeasure, o.studyEffectiveGroupMeasure,)) {
       return false;
     }
     if (!equalsDeepWithNull(
-      participantEffectiveDescription,
-      o.participantEffectiveDescription,
-    )) {
+        participantEffectiveDescription, o.participantEffectiveDescription,)) {
       return false;
     }
     if (!equalsDeepWithNull(participantEffectiveX, o.participantEffectiveX)) {
       return false;
     }
-    if (!equalsDeepWithNull(
-      participantEffectiveTimeFromStart,
-      o.participantEffectiveTimeFromStart,
-    )) {
+    if (!equalsDeepWithNull(participantEffectiveTimeFromStart,
+        o.participantEffectiveTimeFromStart,)) {
       return false;
     }
     if (!equalsDeepWithNull(
-      participantEffectiveGroupMeasure,
-      o.participantEffectiveGroupMeasure,
-    )) {
+        participantEffectiveGroupMeasure, o.participantEffectiveGroupMeasure,)) {
       return false;
     }
     return true;

@@ -59,8 +59,7 @@ class ImmunizationStatusCodes extends FhirCodeEnum {
       return ImmunizationStatusCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ImmunizationStatusCodes cannot be constructed from JSON.',
-      );
+          'ImmunizationStatusCodes cannot be constructed from JSON.',);
     }
     return ImmunizationStatusCodes._(validatedValue: value, element: element);
   }
@@ -156,9 +155,7 @@ class ImmunizationStatusCodes extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   ImmunizationStatusCodes withElement(Element? newElement) {
     return ImmunizationStatusCodes._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

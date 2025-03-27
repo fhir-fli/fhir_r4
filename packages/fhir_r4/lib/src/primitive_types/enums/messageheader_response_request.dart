@@ -57,13 +57,10 @@ class MessageheaderResponseRequest extends FhirCodeEnum {
       return MessageheaderResponseRequest.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'MessageheaderResponseRequest cannot be constructed from JSON.',
-      );
+          'MessageheaderResponseRequest cannot be constructed from JSON.',);
     }
     return MessageheaderResponseRequest._(
-      validatedValue: value,
-      element: element,
-    );
+        validatedValue: value, element: element,);
   }
 
   /// always
@@ -128,9 +125,7 @@ class MessageheaderResponseRequest extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   MessageheaderResponseRequest withElement(Element? newElement) {
     return MessageheaderResponseRequest._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

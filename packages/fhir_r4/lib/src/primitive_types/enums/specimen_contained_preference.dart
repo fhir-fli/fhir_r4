@@ -56,13 +56,10 @@ class SpecimenContainedPreference extends FhirCodeEnum {
       return SpecimenContainedPreference.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'SpecimenContainedPreference cannot be constructed from JSON.',
-      );
+          'SpecimenContainedPreference cannot be constructed from JSON.',);
     }
     return SpecimenContainedPreference._(
-      validatedValue: value,
-      element: element,
-    );
+        validatedValue: value, element: element,);
   }
 
   /// preferred
@@ -105,9 +102,7 @@ class SpecimenContainedPreference extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   SpecimenContainedPreference withElement(Element? newElement) {
     return SpecimenContainedPreference._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

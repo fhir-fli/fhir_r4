@@ -57,8 +57,7 @@ class EnableWhenBehavior extends FhirCodeEnum {
       return EnableWhenBehavior.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'EnableWhenBehavior cannot be constructed from JSON.',
-      );
+          'EnableWhenBehavior cannot be constructed from JSON.',);
     }
     return EnableWhenBehavior._(validatedValue: value, element: element);
   }

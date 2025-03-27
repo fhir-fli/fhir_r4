@@ -864,6 +864,110 @@ class Observation extends DomainResource {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'contained':
+        if (contained != null) {
+          return contained!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'identifier':
+        if (identifier != null) {
+          return identifier!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'basedOn':
+        if (basedOn != null) {
+          return basedOn!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'partOf':
+        if (partOf != null) {
+          return partOf!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'category':
+        if (category != null) {
+          return category!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'focus':
+        if (focus != null) {
+          return focus!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'performer':
+        if (performer != null) {
+          return performer!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'interpretation':
+        if (interpretation != null) {
+          return interpretation!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'note':
+        if (note != null) {
+          return note!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'referenceRange':
+        if (referenceRange != null) {
+          return referenceRange!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'hasMember':
+        if (hasMember != null) {
+          return hasMember!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'derivedFrom':
+        if (derivedFrom != null) {
+          return derivedFrom!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'component':
+        if (component != null) {
+          return component!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2060,8 +2164,7 @@ class ObservationReferenceRange extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory ObservationReferenceRange.empty() =>
-      const ObservationReferenceRange();
+  factory ObservationReferenceRange.empty() => const ObservationReferenceRange();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ObservationReferenceRange.fromJson(
@@ -2327,6 +2430,38 @@ class ObservationReferenceRange extends BackboneElement {
         }
     }
     return fields;
+  }
+
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'appliesTo':
+        if (appliesTo != null) {
+          return appliesTo!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
   }
 
   /// Retrieves a single field value by its name.
@@ -3012,6 +3147,44 @@ class ObservationComponent extends BackboneElement {
         }
     }
     return fields;
+  }
+
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'interpretation':
+        if (interpretation != null) {
+          return interpretation!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'referenceRange':
+        if (referenceRange != null) {
+          return referenceRange!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
   }
 
   /// Retrieves a single field value by its name.

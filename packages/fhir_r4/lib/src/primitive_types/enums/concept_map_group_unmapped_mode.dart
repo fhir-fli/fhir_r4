@@ -56,13 +56,10 @@ class ConceptMapGroupUnmappedMode extends FhirCodeEnum {
       return ConceptMapGroupUnmappedMode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ConceptMapGroupUnmappedMode cannot be constructed from JSON.',
-      );
+          'ConceptMapGroupUnmappedMode cannot be constructed from JSON.',);
     }
     return ConceptMapGroupUnmappedMode._(
-      validatedValue: value,
-      element: element,
-    );
+        validatedValue: value, element: element,);
   }
 
   /// provided
@@ -113,9 +110,7 @@ class ConceptMapGroupUnmappedMode extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   ConceptMapGroupUnmappedMode withElement(Element? newElement) {
     return ConceptMapGroupUnmappedMode._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

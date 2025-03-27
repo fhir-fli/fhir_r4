@@ -56,8 +56,7 @@ class EventCapabilityMode extends FhirCodeEnum {
       return EventCapabilityMode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'EventCapabilityMode cannot be constructed from JSON.',
-      );
+          'EventCapabilityMode cannot be constructed from JSON.',);
     }
     return EventCapabilityMode._(validatedValue: value, element: element);
   }

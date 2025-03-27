@@ -56,8 +56,7 @@ class ExampleScenarioActorType extends FhirCodeEnum {
       return ExampleScenarioActorType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ExampleScenarioActorType cannot be constructed from JSON.',
-      );
+          'ExampleScenarioActorType cannot be constructed from JSON.',);
     }
     return ExampleScenarioActorType._(validatedValue: value, element: element);
   }
@@ -98,9 +97,7 @@ class ExampleScenarioActorType extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   ExampleScenarioActorType withElement(Element? newElement) {
     return ExampleScenarioActorType._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -56,13 +56,10 @@ class FinancialResourceStatusCodes extends FhirCodeEnum {
       return FinancialResourceStatusCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'FinancialResourceStatusCodes cannot be constructed from JSON.',
-      );
+          'FinancialResourceStatusCodes cannot be constructed from JSON.',);
     }
     return FinancialResourceStatusCodes._(
-      validatedValue: value,
-      element: element,
-    );
+        validatedValue: value, element: element,);
   }
 
   /// active
@@ -123,9 +120,7 @@ class FinancialResourceStatusCodes extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   FinancialResourceStatusCodes withElement(Element? newElement) {
     return FinancialResourceStatusCodes._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

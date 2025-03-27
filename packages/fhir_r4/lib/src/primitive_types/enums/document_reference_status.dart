@@ -56,8 +56,7 @@ class DocumentReferenceStatus extends FhirCodeEnum {
       return DocumentReferenceStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'DocumentReferenceStatus cannot be constructed from JSON.',
-      );
+          'DocumentReferenceStatus cannot be constructed from JSON.',);
     }
     return DocumentReferenceStatus._(validatedValue: value, element: element);
   }
@@ -108,9 +107,7 @@ class DocumentReferenceStatus extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   DocumentReferenceStatus withElement(Element? newElement) {
     return DocumentReferenceStatus._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

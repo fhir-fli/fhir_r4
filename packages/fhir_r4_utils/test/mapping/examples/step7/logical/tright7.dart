@@ -179,6 +179,19 @@ class TRight7Aa extends BackboneElement {
   }
 
   @override
+  List<FhirBase> getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        return extension_ ?? <FhirExtension>[];
+      default:
+        return <FhirBase>[];
+    }
+  }
+
+  @override
   FhirBase? getChildByName(String name) {
     final values = getChildrenByName(name);
     if (values.length > 1) throw StateError('Too many values for $name found');

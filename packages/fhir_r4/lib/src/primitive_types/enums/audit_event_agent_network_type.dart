@@ -56,13 +56,10 @@ class AuditEventAgentNetworkType extends FhirCodeEnum {
       return AuditEventAgentNetworkType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'AuditEventAgentNetworkType cannot be constructed from JSON.',
-      );
+          'AuditEventAgentNetworkType cannot be constructed from JSON.',);
     }
     return AuditEventAgentNetworkType._(
-      validatedValue: value,
-      element: element,
-    );
+        validatedValue: value, element: element,);
   }
 
   /// value1
@@ -128,9 +125,7 @@ class AuditEventAgentNetworkType extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   AuditEventAgentNetworkType withElement(Element? newElement) {
     return AuditEventAgentNetworkType._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

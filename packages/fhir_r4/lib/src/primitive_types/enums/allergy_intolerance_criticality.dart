@@ -57,13 +57,10 @@ class AllergyIntoleranceCriticality extends FhirCodeEnum {
       return AllergyIntoleranceCriticality.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'AllergyIntoleranceCriticality cannot be constructed from JSON.',
-      );
+          'AllergyIntoleranceCriticality cannot be constructed from JSON.',);
     }
     return AllergyIntoleranceCriticality._(
-      validatedValue: value,
-      element: element,
-    );
+        validatedValue: value, element: element,);
   }
 
   /// low
@@ -117,9 +114,7 @@ class AllergyIntoleranceCriticality extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   AllergyIntoleranceCriticality withElement(Element? newElement) {
     return AllergyIntoleranceCriticality._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

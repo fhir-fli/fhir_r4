@@ -49,8 +49,7 @@ class MedicationAdministrationStatusCodes extends FhirCodeEnum {
 
   /// Factory constructor to create [MedicationAdministrationStatusCodes] from JSON.
   factory MedicationAdministrationStatusCodes.fromJson(
-    Map<String, dynamic> json,
-  ) {
+      Map<String, dynamic> json,) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -59,13 +58,10 @@ class MedicationAdministrationStatusCodes extends FhirCodeEnum {
           .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'MedicationAdministrationStatusCodes cannot be constructed from JSON.',
-      );
+          'MedicationAdministrationStatusCodes cannot be constructed from JSON.',);
     }
     return MedicationAdministrationStatusCodes._(
-      validatedValue: value,
-      element: element,
-    );
+        validatedValue: value, element: element,);
   }
 
   /// in_progress
@@ -157,9 +153,7 @@ class MedicationAdministrationStatusCodes extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   MedicationAdministrationStatusCodes withElement(Element? newElement) {
     return MedicationAdministrationStatusCodes._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

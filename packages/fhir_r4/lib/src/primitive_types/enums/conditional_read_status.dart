@@ -56,8 +56,7 @@ class ConditionalReadStatus extends FhirCodeEnum {
       return ConditionalReadStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ConditionalReadStatus cannot be constructed from JSON.',
-      );
+          'ConditionalReadStatus cannot be constructed from JSON.',);
     }
     return ConditionalReadStatus._(validatedValue: value, element: element);
   }

@@ -78,9 +78,8 @@ abstract class FhirBase {
   /// Clears user data for a given key.
   FhirBase clearUserData(String name) {
     if (userData != null && userData!.containsKey(name)) {
-      final updatedUserData = Map<String, dynamic>.from(userData!);
-      // ignore: cascade_invocations
-      updatedUserData.remove(name);
+      final updatedUserData = Map<String, dynamic>.from(userData!)
+        ..remove(name);
       return copyWith(userData: updatedUserData);
     }
     return this;
@@ -144,6 +143,13 @@ abstract class FhirBase {
   /// Retrieves the properties of the object.
   // ignore: avoid_positional_boolean_parameters
   List<FhirBase> getChildrenByName(String name, [bool checkValid = false]);
+
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  // ignore: avoid_positional_boolean_parameters
+  List<FhirBase>? getListChildByName(String name, [bool checkValid = false]);
 
   /// Sets a property by name.
   FhirBase setChildByName(String name, FhirBase? child) {
@@ -263,7 +269,6 @@ abstract class FhirBase {
   static bool compareDeep(
     FhirBase? e1,
     FhirBase? e2, [
-    // ignore: avoid_positional_boolean_parameters
     bool allowNull = false,
   ]) {
     if (allowNull) {

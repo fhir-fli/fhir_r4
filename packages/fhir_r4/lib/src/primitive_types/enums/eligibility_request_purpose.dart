@@ -56,8 +56,7 @@ class EligibilityRequestPurpose extends FhirCodeEnum {
       return EligibilityRequestPurpose.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'EligibilityRequestPurpose cannot be constructed from JSON.',
-      );
+          'EligibilityRequestPurpose cannot be constructed from JSON.',);
     }
     return EligibilityRequestPurpose._(validatedValue: value, element: element);
   }
@@ -119,9 +118,7 @@ class EligibilityRequestPurpose extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   EligibilityRequestPurpose withElement(Element? newElement) {
     return EligibilityRequestPurpose._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

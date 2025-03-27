@@ -56,8 +56,7 @@ class AdverseEventActuality extends FhirCodeEnum {
       return AdverseEventActuality.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'AdverseEventActuality cannot be constructed from JSON.',
-      );
+          'AdverseEventActuality cannot be constructed from JSON.',);
     }
     return AdverseEventActuality._(validatedValue: value, element: element);
   }

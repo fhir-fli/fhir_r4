@@ -57,8 +57,7 @@ class ConsentDataMeaning extends FhirCodeEnum {
       return ConsentDataMeaning.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ConsentDataMeaning cannot be constructed from JSON.',
-      );
+          'ConsentDataMeaning cannot be constructed from JSON.',);
     }
     return ConsentDataMeaning._(validatedValue: value, element: element);
   }

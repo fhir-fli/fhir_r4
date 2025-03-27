@@ -57,8 +57,7 @@ class GoalLifecycleStatus extends FhirCodeEnum {
       return GoalLifecycleStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'GoalLifecycleStatus cannot be constructed from JSON.',
-      );
+          'GoalLifecycleStatus cannot be constructed from JSON.',);
     }
     return GoalLifecycleStatus._(validatedValue: value, element: element);
   }

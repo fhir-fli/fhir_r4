@@ -57,13 +57,10 @@ class AllergyIntoleranceCategory extends FhirCodeEnum {
       return AllergyIntoleranceCategory.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'AllergyIntoleranceCategory cannot be constructed from JSON.',
-      );
+          'AllergyIntoleranceCategory cannot be constructed from JSON.',);
     }
     return AllergyIntoleranceCategory._(
-      validatedValue: value,
-      element: element,
-    );
+        validatedValue: value, element: element,);
   }
 
   /// food
@@ -127,9 +124,7 @@ class AllergyIntoleranceCategory extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   AllergyIntoleranceCategory withElement(Element? newElement) {
     return AllergyIntoleranceCategory._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

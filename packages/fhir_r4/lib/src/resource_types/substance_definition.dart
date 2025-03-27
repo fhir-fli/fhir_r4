@@ -627,6 +627,116 @@ class SubstanceDefinition extends DomainResource {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'contained':
+        if (contained != null) {
+          return contained!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'identifier':
+        if (identifier != null) {
+          return identifier!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'classification':
+        if (classification != null) {
+          return classification!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'grade':
+        if (grade != null) {
+          return grade!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'informationSource':
+        if (informationSource != null) {
+          return informationSource!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'note':
+        if (note != null) {
+          return note!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'manufacturer':
+        if (manufacturer != null) {
+          return manufacturer!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'supplier':
+        if (supplier != null) {
+          return supplier!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'moiety':
+        if (moiety != null) {
+          return moiety!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'property':
+        if (property != null) {
+          return property!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'molecularWeight':
+        if (molecularWeight != null) {
+          return molecularWeight!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'code':
+        if (code != null) {
+          return code!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'name':
+        if (name != null) {
+          return name!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'relationship':
+        if (relationship != null) {
+          return relationship!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1028,8 +1138,7 @@ class SubstanceDefinition extends DomainResource {
       case 'molecularWeight':
         {
           return copyWith(
-            molecularWeight: <SubstanceDefinitionMolecularWeight>[],
-          );
+              molecularWeight: <SubstanceDefinitionMolecularWeight>[],);
         }
       case 'structure':
         {
@@ -1050,8 +1159,7 @@ class SubstanceDefinition extends DomainResource {
       case 'sourceMaterial':
         {
           return copyWith(
-            sourceMaterial: SubstanceDefinitionSourceMaterial.empty(),
-          );
+              sourceMaterial: SubstanceDefinitionSourceMaterial.empty(),);
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -1493,8 +1601,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory SubstanceDefinitionMoiety.empty() =>
-      const SubstanceDefinitionMoiety();
+  factory SubstanceDefinitionMoiety.empty() => const SubstanceDefinitionMoiety();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionMoiety.fromJson(
@@ -1796,6 +1903,32 @@ class SubstanceDefinitionMoiety extends BackboneElement {
         }
     }
     return fields;
+  }
+
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
   }
 
   /// Retrieves a single field value by its name.
@@ -2436,6 +2569,32 @@ class SubstanceDefinitionProperty extends BackboneElement {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2954,6 +3113,32 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
         }
     }
     return fields;
+  }
+
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
   }
 
   /// Retrieves a single field value by its name.
@@ -3521,6 +3706,50 @@ class SubstanceDefinitionStructure extends BackboneElement {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'technique':
+        if (technique != null) {
+          return technique!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'sourceDocument':
+        if (sourceDocument != null) {
+          return sourceDocument!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'representation':
+        if (representation != null) {
+          return representation!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -3706,8 +3935,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
       case 'molecularWeight':
         {
           return copyWith(
-            molecularWeight: SubstanceDefinitionMolecularWeight.empty(),
-          );
+              molecularWeight: SubstanceDefinitionMolecularWeight.empty(),);
         }
       case 'technique':
         {
@@ -3720,8 +3948,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
       case 'representation':
         {
           return copyWith(
-            representation: <SubstanceDefinitionRepresentation>[],
-          );
+              representation: <SubstanceDefinitionRepresentation>[],);
         }
       default:
         throw ArgumentError('No matching property: $propertyName');
@@ -3882,9 +4109,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-      molecularFormulaByMoiety,
-      o.molecularFormulaByMoiety,
-    )) {
+        molecularFormulaByMoiety, o.molecularFormulaByMoiety,)) {
       return false;
     }
     if (!equalsDeepWithNull(molecularWeight, o.molecularWeight)) {
@@ -4154,6 +4379,32 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
         }
     }
     return fields;
+  }
+
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
   }
 
   /// Retrieves a single field value by its name.
@@ -4684,6 +4935,44 @@ class SubstanceDefinitionCode extends BackboneElement {
         }
     }
     return fields;
+  }
+
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'note':
+        if (note != null) {
+          return note!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'source':
+        if (source != null) {
+          return source!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
   }
 
   /// Retrieves a single field value by its name.
@@ -5377,6 +5666,74 @@ class SubstanceDefinitionName extends BackboneElement {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'language':
+        if (language != null) {
+          return language!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'domain':
+        if (domain != null) {
+          return domain!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'jurisdiction':
+        if (jurisdiction != null) {
+          return jurisdiction!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'synonym':
+        if (synonym != null) {
+          return synonym!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'translation':
+        if (translation != null) {
+          return translation!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'official':
+        if (official != null) {
+          return official!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'source':
+        if (source != null) {
+          return source!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -5880,8 +6237,7 @@ class SubstanceDefinitionOfficial extends BackboneElement {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory SubstanceDefinitionOfficial.empty() =>
-      const SubstanceDefinitionOfficial();
+  factory SubstanceDefinitionOfficial.empty() => const SubstanceDefinitionOfficial();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionOfficial.fromJson(
@@ -6080,6 +6436,32 @@ class SubstanceDefinitionOfficial extends BackboneElement {
         }
     }
     return fields;
+  }
+
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
   }
 
   /// Retrieves a single field value by its name.
@@ -6572,9 +6954,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     if (substanceDefinitionX != null) {
       final fhirType = substanceDefinitionX!.fhirType;
       addField(
-        'substanceDefinition${fhirType.capitalize()}',
-        substanceDefinitionX,
-      );
+          'substanceDefinition${fhirType.capitalize()}', substanceDefinitionX,);
     }
 
     addField('type', type);
@@ -6680,6 +7060,38 @@ class SubstanceDefinitionRelationship extends BackboneElement {
         }
     }
     return fields;
+  }
+
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'source':
+        if (source != null) {
+          return source!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
   }
 
   /// Retrieves a single field value by its name.
@@ -6958,7 +7370,8 @@ class SubstanceDefinitionRelationship extends BackboneElement {
       id: id ? null : this.id,
       extension_: extension_ ? null : this.extension_,
       modifierExtension: modifierExtension ? null : this.modifierExtension,
-      substanceDefinitionX: substanceDefinition ? null : substanceDefinitionX,
+      substanceDefinitionX:
+          substanceDefinition ? null : substanceDefinitionX,
       type: type,
       isDefining: isDefining ? null : this.isDefining,
       amountX: amount ? null : amountX,
@@ -7358,6 +7771,38 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
         }
     }
     return fields;
+  }
+
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'countryOfOrigin':
+        if (countryOfOrigin != null) {
+          return countryOfOrigin!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
   }
 
   /// Retrieves a single field value by its name.

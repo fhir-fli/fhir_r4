@@ -56,8 +56,7 @@ class InvoicePriceComponentType extends FhirCodeEnum {
       return InvoicePriceComponentType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'InvoicePriceComponentType cannot be constructed from JSON.',
-      );
+          'InvoicePriceComponentType cannot be constructed from JSON.',);
     }
     return InvoicePriceComponentType._(validatedValue: value, element: element);
   }
@@ -137,9 +136,7 @@ class InvoicePriceComponentType extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   InvoicePriceComponentType withElement(Element? newElement) {
     return InvoicePriceComponentType._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -56,13 +56,10 @@ class SubscriptionNotificationType extends FhirCodeEnum {
       return SubscriptionNotificationType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'SubscriptionNotificationType cannot be constructed from JSON.',
-      );
+          'SubscriptionNotificationType cannot be constructed from JSON.',);
     }
     return SubscriptionNotificationType._(
-      validatedValue: value,
-      element: element,
-    );
+        validatedValue: value, element: element,);
   }
 
   /// handshake
@@ -138,9 +135,7 @@ class SubscriptionNotificationType extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   SubscriptionNotificationType withElement(Element? newElement) {
     return SubscriptionNotificationType._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -56,8 +56,7 @@ class SubscriptionStatusCodes extends FhirCodeEnum {
       return SubscriptionStatusCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'SubscriptionStatusCodes cannot be constructed from JSON.',
-      );
+          'SubscriptionStatusCodes cannot be constructed from JSON.',);
     }
     return SubscriptionStatusCodes._(validatedValue: value, element: element);
   }
@@ -116,9 +115,7 @@ class SubscriptionStatusCodes extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   SubscriptionStatusCodes withElement(Element? newElement) {
     return SubscriptionStatusCodes._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

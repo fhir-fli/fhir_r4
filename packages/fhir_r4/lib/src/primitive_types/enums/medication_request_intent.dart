@@ -56,8 +56,7 @@ class MedicationRequestIntent extends FhirCodeEnum {
       return MedicationRequestIntent.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'MedicationRequestIntent cannot be constructed from JSON.',
-      );
+          'MedicationRequestIntent cannot be constructed from JSON.',);
     }
     return MedicationRequestIntent._(validatedValue: value, element: element);
   }
@@ -154,9 +153,7 @@ class MedicationRequestIntent extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   MedicationRequestIntent withElement(Element? newElement) {
     return MedicationRequestIntent._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

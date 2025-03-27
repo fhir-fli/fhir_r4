@@ -59,13 +59,10 @@ class IngredientManufacturerRole extends FhirCodeEnum {
       return IngredientManufacturerRole.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'IngredientManufacturerRole cannot be constructed from JSON.',
-      );
+          'IngredientManufacturerRole cannot be constructed from JSON.',);
     }
     return IngredientManufacturerRole._(
-      validatedValue: value,
-      element: element,
-    );
+        validatedValue: value, element: element,);
   }
 
   /// allowed
@@ -121,9 +118,7 @@ class IngredientManufacturerRole extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   IngredientManufacturerRole withElement(Element? newElement) {
     return IngredientManufacturerRole._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

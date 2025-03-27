@@ -57,8 +57,7 @@ class CriteriaNotExistsBehavior extends FhirCodeEnum {
       return CriteriaNotExistsBehavior.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'CriteriaNotExistsBehavior cannot be constructed from JSON.',
-      );
+          'CriteriaNotExistsBehavior cannot be constructed from JSON.',);
     }
     return CriteriaNotExistsBehavior._(validatedValue: value, element: element);
   }
@@ -103,9 +102,7 @@ class CriteriaNotExistsBehavior extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   CriteriaNotExistsBehavior withElement(Element? newElement) {
     return CriteriaNotExistsBehavior._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

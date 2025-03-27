@@ -56,8 +56,7 @@ class AssertionResponseTypes extends FhirCodeEnum {
       return AssertionResponseTypes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'AssertionResponseTypes cannot be constructed from JSON.',
-      );
+          'AssertionResponseTypes cannot be constructed from JSON.',);
     }
     return AssertionResponseTypes._(validatedValue: value, element: element);
   }

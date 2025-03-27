@@ -56,8 +56,7 @@ class SubscriptionChannelType extends FhirCodeEnum {
       return SubscriptionChannelType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'SubscriptionChannelType cannot be constructed from JSON.',
-      );
+          'SubscriptionChannelType cannot be constructed from JSON.',);
     }
     return SubscriptionChannelType._(validatedValue: value, element: element);
   }
@@ -125,9 +124,7 @@ class SubscriptionChannelType extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   SubscriptionChannelType withElement(Element? newElement) {
     return SubscriptionChannelType._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

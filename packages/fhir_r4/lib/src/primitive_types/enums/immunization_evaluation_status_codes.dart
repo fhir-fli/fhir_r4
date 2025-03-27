@@ -52,8 +52,7 @@ class ImmunizationEvaluationStatusCodes extends FhirCodeEnum {
 
   /// Factory constructor to create [ImmunizationEvaluationStatusCodes] from JSON.
   factory ImmunizationEvaluationStatusCodes.fromJson(
-    Map<String, dynamic> json,
-  ) {
+      Map<String, dynamic> json,) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -61,13 +60,10 @@ class ImmunizationEvaluationStatusCodes extends FhirCodeEnum {
       return ImmunizationEvaluationStatusCodes.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ImmunizationEvaluationStatusCodes cannot be constructed from JSON.',
-      );
+          'ImmunizationEvaluationStatusCodes cannot be constructed from JSON.',);
     }
     return ImmunizationEvaluationStatusCodes._(
-      validatedValue: value,
-      element: element,
-    );
+        validatedValue: value, element: element,);
   }
 
   /// in_progress
@@ -166,9 +162,7 @@ class ImmunizationEvaluationStatusCodes extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   ImmunizationEvaluationStatusCodes withElement(Element? newElement) {
     return ImmunizationEvaluationStatusCodes._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

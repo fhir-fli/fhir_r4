@@ -56,8 +56,7 @@ class MeasureReportStatus extends FhirCodeEnum {
       return MeasureReportStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'MeasureReportStatus cannot be constructed from JSON.',
-      );
+          'MeasureReportStatus cannot be constructed from JSON.',);
     }
     return MeasureReportStatus._(validatedValue: value, element: element);
   }

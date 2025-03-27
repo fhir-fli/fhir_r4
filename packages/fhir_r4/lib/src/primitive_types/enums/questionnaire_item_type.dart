@@ -57,8 +57,7 @@ class QuestionnaireItemType extends FhirCodeEnum {
       return QuestionnaireItemType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'QuestionnaireItemType cannot be constructed from JSON.',
-      );
+          'QuestionnaireItemType cannot be constructed from JSON.',);
     }
     return QuestionnaireItemType._(validatedValue: value, element: element);
   }

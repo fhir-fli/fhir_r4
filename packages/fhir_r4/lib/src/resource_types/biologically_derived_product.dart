@@ -38,8 +38,7 @@ class BiologicallyDerivedProduct extends DomainResource {
   /// An empty constructor for partial usage.
   /// All required fields are assigned placeholder values, so
   /// you can instantiate and fill them in later if desired.
-  factory BiologicallyDerivedProduct.empty() =>
-      const BiologicallyDerivedProduct();
+  factory BiologicallyDerivedProduct.empty() => const BiologicallyDerivedProduct();
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProduct.fromJson(
@@ -463,6 +462,68 @@ class BiologicallyDerivedProduct extends DomainResource {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'contained':
+        if (contained != null) {
+          return contained!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'identifier':
+        if (identifier != null) {
+          return identifier!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'request':
+        if (request != null) {
+          return request!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'parent':
+        if (parent != null) {
+          return parent!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'processing':
+        if (processing != null) {
+          return processing!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'storage':
+        if (storage != null) {
+          return storage!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -736,8 +797,7 @@ class BiologicallyDerivedProduct extends DomainResource {
       case 'productCategory':
         {
           return copyWith(
-            productCategory: BiologicallyDerivedProductCategory.empty(),
-          );
+              productCategory: BiologicallyDerivedProductCategory.empty(),);
         }
       case 'productCode':
         {
@@ -762,8 +822,7 @@ class BiologicallyDerivedProduct extends DomainResource {
       case 'collection':
         {
           return copyWith(
-            collection: BiologicallyDerivedProductCollection.empty(),
-          );
+              collection: BiologicallyDerivedProductCollection.empty(),);
         }
       case 'processing':
         {
@@ -772,8 +831,7 @@ class BiologicallyDerivedProduct extends DomainResource {
       case 'manipulation':
         {
           return copyWith(
-            manipulation: BiologicallyDerivedProductManipulation.empty(),
-          );
+              manipulation: BiologicallyDerivedProductManipulation.empty(),);
         }
       case 'storage':
         {
@@ -1299,6 +1357,32 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
         }
     }
     return fields;
+  }
+
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
   }
 
   /// Retrieves a single field value by its name.
@@ -1833,6 +1917,32 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2355,6 +2465,32 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2840,6 +2976,32 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2977,8 +3139,7 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
       case 'scale':
         {
           return copyWith(
-            scale: BiologicallyDerivedProductStorageScale.empty(),
-          );
+              scale: BiologicallyDerivedProductStorageScale.empty(),);
         }
       case 'duration':
         {

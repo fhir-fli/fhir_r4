@@ -591,6 +591,92 @@ class RequestGroup extends DomainResource {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'contained':
+        if (contained != null) {
+          return contained!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'identifier':
+        if (identifier != null) {
+          return identifier!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'instantiatesCanonical':
+        if (instantiatesCanonical != null) {
+          return instantiatesCanonical!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'instantiatesUri':
+        if (instantiatesUri != null) {
+          return instantiatesUri!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'basedOn':
+        if (basedOn != null) {
+          return basedOn!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'replaces':
+        if (replaces != null) {
+          return replaces!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'reasonCode':
+        if (reasonCode != null) {
+          return reasonCode!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'reasonReference':
+        if (reasonReference != null) {
+          return reasonReference!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'note':
+        if (note != null) {
+          return note!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'action':
+        if (action != null) {
+          return action!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1955,6 +2041,68 @@ class RequestGroupAction extends BackboneElement {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'code':
+        if (code != null) {
+          return code!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'documentation':
+        if (documentation != null) {
+          return documentation!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'condition':
+        if (condition != null) {
+          return condition!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'relatedAction':
+        if (relatedAction != null) {
+          return relatedAction!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'participant':
+        if (participant != null) {
+          return participant!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'action':
+        if (action != null) {
+          return action!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2389,8 +2537,7 @@ class RequestGroupAction extends BackboneElement {
       case 'cardinalityBehavior':
         {
           return copyWith(
-            cardinalityBehavior: ActionCardinalityBehavior.empty(),
-          );
+              cardinalityBehavior: ActionCardinalityBehavior.empty(),);
         }
       case 'resource':
         {
@@ -2923,6 +3070,32 @@ class RequestGroupCondition extends BackboneElement {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -3380,6 +3553,32 @@ class RequestGroupRelatedAction extends BackboneElement {
         }
     }
     return fields;
+  }
+
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
   }
 
   /// Retrieves a single field value by its name.

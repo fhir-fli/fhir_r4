@@ -56,8 +56,7 @@ class DeviceUseStatementStatus extends FhirCodeEnum {
       return DeviceUseStatementStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'DeviceUseStatementStatus cannot be constructed from JSON.',
-      );
+          'DeviceUseStatementStatus cannot be constructed from JSON.',);
     }
     return DeviceUseStatementStatus._(validatedValue: value, element: element);
   }
@@ -135,9 +134,7 @@ class DeviceUseStatementStatus extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   DeviceUseStatementStatus withElement(Element? newElement) {
     return DeviceUseStatementStatus._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -56,13 +56,10 @@ class DeviceMetricOperationalStatus extends FhirCodeEnum {
       return DeviceMetricOperationalStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'DeviceMetricOperationalStatus cannot be constructed from JSON.',
-      );
+          'DeviceMetricOperationalStatus cannot be constructed from JSON.',);
     }
     return DeviceMetricOperationalStatus._(
-      validatedValue: value,
-      element: element,
-    );
+        validatedValue: value, element: element,);
   }
 
   /// on_
@@ -123,9 +120,7 @@ class DeviceMetricOperationalStatus extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   DeviceMetricOperationalStatus withElement(Element? newElement) {
     return DeviceMetricOperationalStatus._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

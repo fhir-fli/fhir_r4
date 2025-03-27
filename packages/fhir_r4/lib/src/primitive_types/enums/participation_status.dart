@@ -56,8 +56,7 @@ class ParticipationStatus extends FhirCodeEnum {
       return ParticipationStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ParticipationStatus cannot be constructed from JSON.',
-      );
+          'ParticipationStatus cannot be constructed from JSON.',);
     }
     return ParticipationStatus._(validatedValue: value, element: element);
   }

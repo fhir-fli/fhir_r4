@@ -1,4 +1,4 @@
-library fhir_primitives;
+library;
 
 /// imports
 import 'dart:convert';

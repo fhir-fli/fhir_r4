@@ -56,8 +56,7 @@ class StructureMapInputMode extends FhirCodeEnum {
       return StructureMapInputMode.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'StructureMapInputMode cannot be constructed from JSON.',
-      );
+          'StructureMapInputMode cannot be constructed from JSON.',);
     }
     return StructureMapInputMode._(validatedValue: value, element: element);
   }

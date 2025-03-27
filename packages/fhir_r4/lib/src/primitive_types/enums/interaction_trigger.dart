@@ -56,8 +56,7 @@ class InteractionTrigger extends FhirCodeEnum {
       return InteractionTrigger.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'InteractionTrigger cannot be constructed from JSON.',
-      );
+          'InteractionTrigger cannot be constructed from JSON.',);
     }
     return InteractionTrigger._(validatedValue: value, element: element);
   }

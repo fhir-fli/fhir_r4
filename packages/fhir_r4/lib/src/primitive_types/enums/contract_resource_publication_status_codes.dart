@@ -49,8 +49,7 @@ class ContractResourcePublicationStatusCodes extends FhirCodeEnum {
 
   /// Factory constructor to create [ContractResourcePublicationStatusCodes] from JSON.
   factory ContractResourcePublicationStatusCodes.fromJson(
-    Map<String, dynamic> json,
-  ) {
+      Map<String, dynamic> json,) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -59,13 +58,10 @@ class ContractResourcePublicationStatusCodes extends FhirCodeEnum {
           .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ContractResourcePublicationStatusCodes cannot be constructed from JSON.',
-      );
+          'ContractResourcePublicationStatusCodes cannot be constructed from JSON.',);
     }
     return ContractResourcePublicationStatusCodes._(
-      validatedValue: value,
-      element: element,
-    );
+        validatedValue: value, element: element,);
   }
 
   /// amended
@@ -237,9 +233,7 @@ class ContractResourcePublicationStatusCodes extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   ContractResourcePublicationStatusCodes withElement(Element? newElement) {
     return ContractResourcePublicationStatusCodes._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

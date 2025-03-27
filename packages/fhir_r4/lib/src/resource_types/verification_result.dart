@@ -502,6 +502,68 @@ class VerificationResult extends DomainResource {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'contained':
+        if (contained != null) {
+          return contained!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'target':
+        if (target != null) {
+          return target!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'targetLocation':
+        if (targetLocation != null) {
+          return targetLocation!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'validationProcess':
+        if (validationProcess != null) {
+          return validationProcess!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'primarySource':
+        if (primarySource != null) {
+          return primarySource!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'validator':
+        if (validator != null) {
+          return validator!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -1468,6 +1530,50 @@ class VerificationResultPrimarySource extends BackboneElement {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'type':
+        if (type != null) {
+          return type!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'communicationMethod':
+        if (communicationMethod != null) {
+          return communicationMethod!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'pushTypeAvailable':
+        if (pushTypeAvailable != null) {
+          return pushTypeAvailable!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2141,6 +2247,32 @@ class VerificationResultAttestation extends BackboneElement {
     return fields;
   }
 
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
+  }
+
   /// Retrieves a single field value by its name.
   @override
   FhirBase? getChildByName(String name) {
@@ -2491,15 +2623,11 @@ class VerificationResultAttestation extends BackboneElement {
       return false;
     }
     if (!equalsDeepWithNull(
-      sourceIdentityCertificate,
-      o.sourceIdentityCertificate,
-    )) {
+        sourceIdentityCertificate, o.sourceIdentityCertificate,)) {
       return false;
     }
     if (!equalsDeepWithNull(
-      proxyIdentityCertificate,
-      o.proxyIdentityCertificate,
-    )) {
+        proxyIdentityCertificate, o.proxyIdentityCertificate,)) {
       return false;
     }
     if (!equalsDeepWithNull(proxySignature, o.proxySignature)) {
@@ -2732,6 +2860,32 @@ class VerificationResultValidator extends BackboneElement {
         }
     }
     return fields;
+  }
+
+  /// Retrieves a property by name, but only if that propery is a list. If it
+  /// is not a list, it returns null. If it is a list, but the list is null or
+  /// if the list is empty (which really shouldn't happen in FHIR), it returns
+  /// an empty list.
+  @override
+  List<FhirBase>? getListChildByName(
+    String fieldName, [
+    bool checkValid = false,
+  ]) {
+    switch (fieldName) {
+      case 'extension':
+        if (extension_ != null) {
+          return extension_!;
+        } else {
+          return <FhirBase>[];
+        }
+      case 'modifierExtension':
+        if (modifierExtension != null) {
+          return modifierExtension!;
+        } else {
+          return <FhirBase>[];
+        }
+    }
+    return null;
   }
 
   /// Retrieves a single field value by its name.

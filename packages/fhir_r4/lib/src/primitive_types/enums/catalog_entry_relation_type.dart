@@ -56,8 +56,7 @@ class CatalogEntryRelationType extends FhirCodeEnum {
       return CatalogEntryRelationType.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'CatalogEntryRelationType cannot be constructed from JSON.',
-      );
+          'CatalogEntryRelationType cannot be constructed from JSON.',);
     }
     return CatalogEntryRelationType._(validatedValue: value, element: element);
   }
@@ -99,9 +98,7 @@ class CatalogEntryRelationType extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   CatalogEntryRelationType withElement(Element? newElement) {
     return CatalogEntryRelationType._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

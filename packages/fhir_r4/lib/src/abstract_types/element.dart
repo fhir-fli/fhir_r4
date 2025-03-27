@@ -246,6 +246,15 @@ class Element extends FhirBase {
   }
 
   @override
+  List<FhirBase>? getListChildByName(String name, [bool checkValid = false]) {
+    if (name == 'extension') {
+      return extension_ ?? <FhirExtension>[];
+    } else {
+      return null;
+    }
+  }
+
+  @override
 
   /// Sets a property by name.
   FhirBase setChildByName(String name, dynamic child) {

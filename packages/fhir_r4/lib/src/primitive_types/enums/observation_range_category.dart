@@ -56,8 +56,7 @@ class ObservationRangeCategory extends FhirCodeEnum {
       return ObservationRangeCategory.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ObservationRangeCategory cannot be constructed from JSON.',
-      );
+          'ObservationRangeCategory cannot be constructed from JSON.',);
     }
     return ObservationRangeCategory._(validatedValue: value, element: element);
   }
@@ -107,9 +106,7 @@ class ObservationRangeCategory extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   ObservationRangeCategory withElement(Element? newElement) {
     return ObservationRangeCategory._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

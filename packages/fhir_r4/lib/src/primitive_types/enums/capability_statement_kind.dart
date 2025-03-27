@@ -56,8 +56,7 @@ class CapabilityStatementKind extends FhirCodeEnum {
       return CapabilityStatementKind.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'CapabilityStatementKind cannot be constructed from JSON.',
-      );
+          'CapabilityStatementKind cannot be constructed from JSON.',);
     }
     return CapabilityStatementKind._(validatedValue: value, element: element);
   }
@@ -107,9 +106,7 @@ class CapabilityStatementKind extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   CapabilityStatementKind withElement(Element? newElement) {
     return CapabilityStatementKind._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

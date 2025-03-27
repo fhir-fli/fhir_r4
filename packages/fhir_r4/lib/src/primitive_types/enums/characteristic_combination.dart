@@ -56,8 +56,7 @@ class CharacteristicCombination extends FhirCodeEnum {
       return CharacteristicCombination.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'CharacteristicCombination cannot be constructed from JSON.',
-      );
+          'CharacteristicCombination cannot be constructed from JSON.',);
     }
     return CharacteristicCombination._(validatedValue: value, element: element);
   }
@@ -99,9 +98,7 @@ class CharacteristicCombination extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   CharacteristicCombination withElement(Element? newElement) {
     return CharacteristicCombination._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

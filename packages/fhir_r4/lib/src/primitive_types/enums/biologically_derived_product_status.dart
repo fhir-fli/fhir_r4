@@ -56,13 +56,10 @@ class BiologicallyDerivedProductStatus extends FhirCodeEnum {
       return BiologicallyDerivedProductStatus.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'BiologicallyDerivedProductStatus cannot be constructed from JSON.',
-      );
+          'BiologicallyDerivedProductStatus cannot be constructed from JSON.',);
     }
     return BiologicallyDerivedProductStatus._(
-      validatedValue: value,
-      element: element,
-    );
+        validatedValue: value, element: element,);
   }
 
   /// available
@@ -104,9 +101,7 @@ class BiologicallyDerivedProductStatus extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   BiologicallyDerivedProductStatus withElement(Element? newElement) {
     return BiologicallyDerivedProductStatus._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

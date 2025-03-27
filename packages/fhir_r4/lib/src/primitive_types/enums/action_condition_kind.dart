@@ -56,8 +56,7 @@ class ActionConditionKind extends FhirCodeEnum {
       return ActionConditionKind.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ActionConditionKind cannot be constructed from JSON.',
-      );
+          'ActionConditionKind cannot be constructed from JSON.',);
     }
     return ActionConditionKind._(validatedValue: value, element: element);
   }

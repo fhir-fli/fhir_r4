@@ -56,13 +56,10 @@ class EligibilityResponsePurpose extends FhirCodeEnum {
       return EligibilityResponsePurpose.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'EligibilityResponsePurpose cannot be constructed from JSON.',
-      );
+          'EligibilityResponsePurpose cannot be constructed from JSON.',);
     }
     return EligibilityResponsePurpose._(
-      validatedValue: value,
-      element: element,
-    );
+        validatedValue: value, element: element,);
   }
 
   /// auth_requirements
@@ -127,9 +124,7 @@ class EligibilityResponsePurpose extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   EligibilityResponsePurpose withElement(Element? newElement) {
     return EligibilityResponsePurpose._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

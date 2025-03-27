@@ -49,8 +49,7 @@ class BiologicallyDerivedProductCategory extends FhirCodeEnum {
 
   /// Factory constructor to create [BiologicallyDerivedProductCategory] from JSON.
   factory BiologicallyDerivedProductCategory.fromJson(
-    Map<String, dynamic> json,
-  ) {
+      Map<String, dynamic> json,) {
     final value = json['value'] as String?;
     final elementJson = json['_value'] as Map<String, dynamic>?;
     final element = elementJson != null ? Element.fromJson(elementJson) : null;
@@ -59,13 +58,10 @@ class BiologicallyDerivedProductCategory extends FhirCodeEnum {
           .withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'BiologicallyDerivedProductCategory cannot be constructed from JSON.',
-      );
+          'BiologicallyDerivedProductCategory cannot be constructed from JSON.',);
     }
     return BiologicallyDerivedProductCategory._(
-      validatedValue: value,
-      element: element,
-    );
+        validatedValue: value, element: element,);
   }
 
   /// organ
@@ -137,9 +133,7 @@ class BiologicallyDerivedProductCategory extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   BiologicallyDerivedProductCategory withElement(Element? newElement) {
     return BiologicallyDerivedProductCategory._(
-      validatedValue: value,
-      element: newElement,
-    );
+        validatedValue: value, element: newElement,);
   }
 
   /// Serializes the instance to JSON with standardized keys

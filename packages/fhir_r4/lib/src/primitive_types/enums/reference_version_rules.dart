@@ -57,8 +57,7 @@ class ReferenceVersionRules extends FhirCodeEnum {
       return ReferenceVersionRules.elementOnly.withElement(element);
     } else if (value == null && element == null) {
       throw ArgumentError(
-        'ReferenceVersionRules cannot be constructed from JSON.',
-      );
+          'ReferenceVersionRules cannot be constructed from JSON.',);
     }
     return ReferenceVersionRules._(validatedValue: value, element: element);
   }
