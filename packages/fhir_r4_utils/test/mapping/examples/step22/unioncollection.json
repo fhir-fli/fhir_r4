@@ -1,0 +1,63 @@
+{
+    "resourceType": "StructureMap",
+    "id": "unioncollection",
+    "url": "http://hl7.org/fhir/StructureMap/unioncollection",
+    "name": "unioncollection",
+    "status": "draft",
+    "structure": [
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/tutorial-left",
+            "mode": "source",
+            "alias": "TLeft"
+        },
+        {
+            "url": "http://hl7.org/fhir/StructureDefinition/tutorial-right",
+            "mode": "target",
+            "alias": "TRight"
+        }
+    ],
+    "group": [
+        {
+            "name": "combine",
+            "typeMode": "none",
+            "input": [
+                {
+                    "name": "source",
+                    "type": "TLeft",
+                    "mode": "source"
+                },
+                {
+                    "name": "target",
+                    "type": "TRight",
+                    "mode": "target"
+                }
+            ],
+            "rule": [
+                {
+                    "name": "concatenated",
+                    "source": [
+                        {
+                            "context": "source",
+                            "element": "a",
+                            "listMode": "first",
+                            "variable": "a"
+                        }
+                    ],
+                    "target": [
+                        {
+                            "context": "target",
+                            "contextType": "variable",
+                            "element": "c",
+                            "transform": "evaluate",
+                            "parameter": [
+                                {
+                                    "valueString": "%source.a[0] + %source.b[0]"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

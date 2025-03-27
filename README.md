@@ -1,15 +1,5 @@
 # Fhir R4
 
-[![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
-[![Powered by Mason](https://img.shields.io/endpoint?url=https%3A%2F%2Ftinyurl.com%2Fmason-badge)](https://github.com/felangel/mason)
-[![License: MIT][license_badge]][license_link]
-
-A Very Good Project created by Very Good CLI.
-
-## Installation 💻
-
-**❗ In order to start using Fhir R4 you must have the [Dart SDK][dart_install_link] installed on your machine.**
-
 Install via `dart pub add`:
 
 ```sh
@@ -21,11 +11,10 @@ R4b Version of the FHIR Specification
 
 ### Big Update, Breaking changes for 0.3.0-1
 
-~~### Macros~~
-~~- So I'm going to start using Macros for this version. This requires a higher dart version ```sdk: ">=3.5.0-152 <4.0.0"```~~ No I'm not. They're not quite ready for production yet. But there are still some breaking changes. 
 - No more freezed. I really liked freezed, but it doesn't play nicely with some other code generators. 
 - Speaking of which, since I'm already generating most of the class, I went ahead and generated ```toJson/fromJson``` and ```==```, no external code generation packages (as always, please let me know about mistakes)
 - All of the serializable methods and copyWith should still work as before. 
+- With the exception that I couldn't think of a good way to clear a field by passing null, so I created a new function that clears only the fields you specificall say.
 - Many more enums were incorporated than previously. I think this makes it easier to use, but it does make it less flexible. If you have a field with a value that is not allowed by the current enum, please let me know and I'll look into it.
 - I've moved the Primitive back into this package
 - Newly included FhirString, for standardization and because it's helpful in some other packages like fhir-mapping. I'm going to try and include almost all of the usual string functions so you should be able to work with it almost like you would a normal String in dart. 
