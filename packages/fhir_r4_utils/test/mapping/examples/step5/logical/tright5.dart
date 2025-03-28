@@ -116,14 +116,50 @@ class TRight5 extends Element {
   }
 
   @override
-  TRight5 setChildByName(String name, dynamic value) {
-    switch (name) {
+  TRight5 setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $childName');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $childName');
+    }
+    switch (childName) {
       case 'id':
-        return copyWith(id: value as FhirString);
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Invalid child type for $childName');
+          }
+        }
       case 'extension':
-        return copyWith(extension_: value as List<FhirExtension>);
+        {
+          if (child is List<FhirExtension>) {
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
+          } else {
+            throw Exception('Invalid child type for $childName');
+          }
+        }
       case 'a22':
-        return copyWith(a22: value as List<FhirString>);
+        {
+          if (child is List<FhirString>) {
+            final newList = [...?a22, ...child];
+            return copyWith(a22: newList);
+          } else if (child is FhirString) {
+            final newList = [...?a22, child];
+            return copyWith(a22: newList);
+          } else {
+            throw Exception('Invalid child type for $childName');
+          }
+        }
       default:
         throw ArgumentError('Field name not recognized');
     }

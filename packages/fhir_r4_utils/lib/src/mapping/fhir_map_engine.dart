@@ -9,12 +9,16 @@ import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:uuid/uuid.dart';
 
+FhirBase? backupTarget;
+
 Future<FhirBase?> fhirMappingEngine(
   FhirBase source,
   StructureMap map,
   ResourceCache cache,
-  FhirBase? target,
-) async {
+  FhirBase? target, [
+  FhirBase? secondaryTarget,
+]) async {
+  backupTarget = secondaryTarget;
   final mapEngine = FhirMapEngine(cache, map);
   final transform = await mapEngine.transform('', source, map, target);
   return transform;
@@ -211,7 +215,6 @@ class FhirMapEngine {
       indent,
     );
 
-    print('source');
     source?.forEach((e) => print(e.summary()));
 
     for (final MappingVariables v in source ?? <MappingVariables>[]) {
@@ -266,8 +269,7 @@ class FhirMapEngine {
         if (src == null || tgt == null) {
           continue;
         }
-        print('srcTpe: ${src.fhirType}');
-        print('tgtType: ${tgt.fhirType}');
+
         final String srcType = src.fhirType;
         final String tgtType = tgt.fhirType;
         final ResolvedGroup defGroup = await _resolveGroupByTypes(
@@ -697,14 +699,13 @@ class FhirMapEngine {
         items.add(b);
       } else {
         await _getChildrenByName(b, src.element?.value ?? '', items);
-        print(items.length);
+
         if (items.isEmpty && src.defaultValueX != null) {
           items.add(src.defaultValueX!);
         }
       }
     }
 
-    print('source1');
     items.forEach((e) => print(e.toJson()));
 
     if (src.type != null) {
@@ -718,7 +719,7 @@ class FhirMapEngine {
         expr = fpe.parse(src.condition?.value ?? '');
         src.setUserData(MAP_WHERE_EXPRESSION, expr);
       }
-      print('Expression: $expr');
+
       final List<FhirBase> remove = <FhirBase>[];
       for (final item in items) {
         final MappingVariables varsForSource = vars.copy();
@@ -740,10 +741,10 @@ class FhirMapEngine {
             }
           }
         }
-        print('varsforsource: ${varsForSource.summary()}');
+
         final bool passed =
             fpe.evaluateToBoolean(varsForSource, null, null, item, expr);
-        print('passed condition: $passed');
+
         if (!passed) {
           remove.add(item);
         }
@@ -882,7 +883,6 @@ class FhirMapEngine {
     bool atRoot,
     MappingVariables sharedVars,
   ) async {
-    print('process target');
     FhirBase? dest;
     if (tgt.context != null) {
       dest = vars.get(MappingVariableMode.OUTPUT, tgt.context!.value);
@@ -893,7 +893,7 @@ class FhirMapEngine {
       }
     }
     FhirBase? v;
-    print('transformtype: ${tgt.transform?.toJson()}');
+
     if (tgt.transform != null) {
       v = await _runTransform(
         rulePath,
@@ -907,13 +907,17 @@ class FhirMapEngine {
         srcVar,
         atRoot,
       );
-      print('transformed v: ${v?.fhirType} ${v?.toJson()}');
+
       if (v != null && dest != null) {
         try {
           if (tgt.element == null) {
             throw FHIRException(message: 'Element is null');
           }
+
+          print('dest pr: ${dest.toJson()}');
           dest = dest.setChildByName(tgt.element!.value!, v);
+          print('dest po: ${dest.toJson()}');
+
           sharedVars.add(MappingVariableMode.OUTPUT, tgt.context!.value!, dest);
         } catch (e) {
           throw FHIRException(
@@ -937,23 +941,24 @@ class FhirMapEngine {
           }
         }
       } else if (tgt.element != null) {
-        if (tgt.element != null) {
-          dest = dest.createProperty(tgt.element!.value!);
-          v = dest.getChildByName(tgt.element!.value!);
+        dest = dest.createProperty(tgt.element!.value!);
+        v = dest.getChildByName(tgt.element!.value!);
+        if (v == null) {
+          final types = dest.typeByElementName(tgt.element!.value!);
+          if (types.length >= 1) {
+            v = _typeFactory(types.first);
+          }
         }
       } else {
         v = dest;
       }
     }
-    print('variables');
-    print(tgt.variable);
-    print(v?.toJson());
-    print('v type: ${v?.fhirType}');
+
     if (tgt.variable != null && v != null) {
       vars.add(MappingVariableMode.OUTPUT, tgt.variable!.value!, v);
     }
-
-    print('end process target: ${vars.summary()}');
+    print('vars: ${vars.summary()}');
+    print('sharedVars: ${sharedVars.summary()}');
   }
 
   Future<FhirBase?> _runTransform(
@@ -968,10 +973,6 @@ class FhirMapEngine {
     String? srcVar,
     bool root,
   ) async {
-    print(tgt.transform);
-    print(vars.summary());
-    print(dest);
-    print(element);
     try {
       switch (tgt.transform?.toString()) {
         case 'create':
@@ -1112,7 +1113,6 @@ class FhirMapEngine {
                 }
                 return src.toFhirString;
               } else {
-                print('param string: $src');
                 final String len = _getParamStringNoNull(
                   vars,
                   tgt.parameter![1],
@@ -1473,6 +1473,9 @@ class FhirMapEngine {
   FhirBase _typeFactory(String tn) {
     final newObject = emptyFromType(tn);
     if (newObject == null) {
+      if (backupTarget != null) {
+        return backupTarget!;
+      }
       throw FHIRException(message: 'Unable to create object of type $tn');
     }
     return newObject;
@@ -1543,7 +1546,7 @@ class FhirMapEngine {
     String message,
   ) {
     final FhirBase? b = _getParam(vars, parameter);
-    print('param: ${b?.toJson()}');
+
     if (b == null) {
       throw FHIRException(
         message: 'Unable to find a value for $parameter. Context: $message',

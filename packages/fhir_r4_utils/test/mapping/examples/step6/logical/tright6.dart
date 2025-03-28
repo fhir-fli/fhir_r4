@@ -12,6 +12,8 @@ class TRight6 extends Element {
     super.objectPath = 'TRight6',
   });
 
+  factory TRight6.empty() => const TRight6();
+
   /// FromJson Factory Constructor
   factory TRight6.fromJson(Map<String, dynamic> json) {
     const objectPath = 'TRight6';
@@ -113,5 +115,52 @@ class TRight6 extends Element {
     return id == o.id &&
         const DeepCollectionEquality().equals(extension_, o.extension_) &&
         a23 == o.a23;
+  }
+
+  @override
+  TRight6 setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $childName');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $childName');
+    }
+    switch (childName) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Invalid child type for $childName');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
+          } else {
+            throw Exception('Invalid child type for $childName');
+          }
+        }
+      case 'a23':
+        {
+          if (child is FhirInteger) {
+            return copyWith(a23: child);
+          } else {
+            throw Exception(
+                'Invalid child type (${child is FhirBase ? child.fhirType : child.runtimeType}) for $childName');
+          }
+        }
+      default:
+        throw ArgumentError('Field name not recognized');
+    }
   }
 }

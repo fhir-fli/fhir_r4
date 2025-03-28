@@ -11,6 +11,8 @@ class TRight7 extends Element {
     super.objectPath = 'TRight7',
   });
 
+  factory TRight7.empty() => const TRight7();
+
   factory TRight7.fromJson(Map<String, dynamic> json) {
     return TRight7(
       id: json['id'] != null ? FhirString(json['id'] as String) : null,
@@ -99,6 +101,78 @@ class TRight7 extends Element {
         listEquals<FhirBase>(extension_, other.extension_) &&
         listEquals<FhirBase>(aa, other.aa);
   }
+
+  /// Return the possible Dart types for the field named [fieldName].
+  /// For polymorphic fields, multiple types are possible.
+  @override
+  List<String> typeByElementName(String fieldName) {
+    switch (fieldName) {
+      case 'id':
+        return ['FhirString'];
+      case 'extension':
+        return ['FhirExtension'];
+      case 'aa':
+        return ['TRight7Aa'];
+      default:
+        throw ArgumentError('Field name not recognized');
+    }
+  }
+
+  @override
+  TRight7 setChildByName(String childName, dynamic child) {
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $childName');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $childName');
+    }
+    switch (childName) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Invalid child type for $childName');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
+          } else {
+            throw Exception('Invalid child type for $childName');
+          }
+        }
+      case 'aa':
+        {
+          if (child is List<TRight7Aa>) {
+            return copyWith(aa: child);
+          } else {
+            throw Exception('Invalid child type for $childName');
+          }
+        }
+      default:
+        throw ArgumentError('Field name not recognized');
+    }
+  }
+
+  @override
+  TRight7 createProperty(String name) {
+    switch (name) {
+      case 'aa':
+        return TRight7(aa: []);
+      default:
+        throw ArgumentError('Unknown property $name');
+    }
+  }
 }
 
 /// Nested Backbone Element
@@ -109,6 +183,8 @@ class TRight7Aa extends BackboneElement {
     this.ab,
     super.objectPath = 'TRight7Aa',
   });
+
+  factory TRight7Aa.empty() => const TRight7Aa();
 
   factory TRight7Aa.fromJson(Map<String, dynamic> json) {
     return TRight7Aa(
@@ -207,5 +283,53 @@ class TRight7Aa extends BackboneElement {
   @override
   TRight7Aa clear({bool extension_ = false, bool id = false}) {
     throw UnimplementedError();
+  }
+
+  @override
+  TRight7Aa setChildByName(String childName, dynamic child) {
+    print('setChildByName: $childName');
+    // child must be null, or a (List of) FhirBase(s).
+    // We only do runtime checks; if incorrect, we throw.
+    if (child == null) {
+      throw Exception('Cannot set child to null value for $childName');
+    }
+    if (child is! FhirBase && child is! List<FhirBase>) {
+      throw Exception('Cannot set child value for $childName');
+    }
+    switch (childName) {
+      case 'id':
+        {
+          if (child is FhirString) {
+            return copyWith(id: child);
+          } else {
+            throw Exception('Invalid child type for $childName');
+          }
+        }
+      case 'extension':
+        {
+          if (child is List<FhirExtension>) {
+            // Add all elements from passed list
+            final newList = [...?extension_, ...child];
+            return copyWith(extension_: newList);
+          } else if (child is FhirExtension) {
+            // Add single element to existing list or create new list
+            final newList = [...?extension_, child];
+            return copyWith(extension_: newList);
+          } else {
+            throw Exception('Invalid child type for $childName');
+          }
+        }
+      case 'ab':
+        {
+          if (child is FhirString) {
+            return copyWith(ab: child);
+          } else {
+            throw Exception(
+                'Invalid child type (${child is FhirBase ? child.fhirType : child.runtimeType}) for $childName');
+          }
+        }
+      default:
+        throw ArgumentError('Field name not recognized');
+    }
   }
 }
