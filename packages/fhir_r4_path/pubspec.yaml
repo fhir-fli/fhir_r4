@@ -18,7 +18,8 @@ environment:
 
 dependencies:
   collection: ^1.18.0
-  fhir_r4: ^0.3.0-1
+  fhir_r4: 
+    path: ../fhir_r4
   http: ^1.2.2
   ucum: ^0.6.0
 

@@ -101,6 +101,7 @@ class FhirMapEngine {
     try {
       await _executeGroup('', context, map, vars, g, true);
       final result = vars.getOutputVar(targetName);
+      print('Final result: ${result?.toJson()}');
       if (result == null) {
         throw FHIRException(message: 'No output found');
       } else {
@@ -215,8 +216,6 @@ class FhirMapEngine {
       indent,
     );
 
-    source?.forEach((e) => print(e.summary()));
-
     for (final MappingVariables v in source ?? <MappingVariables>[]) {
       for (final target in rule.target ?? <StructureMapTarget>[]) {
         await _processTarget(
@@ -230,6 +229,8 @@ class FhirMapEngine {
           atRoot,
           vars,
         );
+        print('AFTER PROCESSING TARGET');
+        print('vars: ${vars.summary()}');
       }
       if (rule.rule?.isNotEmpty ?? false) {
         for (final childrule in rule.rule ?? <StructureMapRule>[]) {
@@ -706,8 +707,6 @@ class FhirMapEngine {
       }
     }
 
-    items.forEach((e) => print(e.toJson()));
-
     if (src.type != null) {
       items.removeWhere((item) => !_isType(item, src.type!.value!));
     }
@@ -914,9 +913,9 @@ class FhirMapEngine {
             throw FHIRException(message: 'Element is null');
           }
 
-          print('dest pr: ${dest.toJson()}');
+          // print('dest pr: ${dest.toJson()}');
           dest = dest.setChildByName(tgt.element!.value!, v);
-          print('dest po: ${dest.toJson()}');
+          print('dest after setChildByName: ${dest.toJson()}');
 
           sharedVars.add(MappingVariableMode.OUTPUT, tgt.context!.value!, dest);
         } catch (e) {
@@ -957,7 +956,7 @@ class FhirMapEngine {
     if (tgt.variable != null && v != null) {
       vars.add(MappingVariableMode.OUTPUT, tgt.variable!.value!, v);
     }
-    print('vars: ${vars.summary()}');
+    // print('vars: ${vars.summary()}');
     print('sharedVars: ${sharedVars.summary()}');
   }
 
