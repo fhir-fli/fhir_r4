@@ -128,7 +128,10 @@ class ExpressionLanguage extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   ExpressionLanguage withElement(Element? newElement) {
-    return ExpressionLanguage._(validatedValue: value, element: newElement);
+    return ExpressionLanguage._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

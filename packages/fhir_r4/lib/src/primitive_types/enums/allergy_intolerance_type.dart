@@ -101,7 +101,10 @@ class AllergyIntoleranceType extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   AllergyIntoleranceType withElement(Element? newElement) {
-    return AllergyIntoleranceType._(validatedValue: value, element: newElement);
+    return AllergyIntoleranceType._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

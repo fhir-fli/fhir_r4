@@ -1,6 +1,4 @@
-library;
-
-/// imports
+// imports
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:fhir_r4/fhir_r4.dart';
@@ -8,7 +6,7 @@ import 'package:uuid/uuid.dart';
 import 'package:xml/xml.dart';
 import 'package:yaml/yaml.dart';
 
-/// primitive types
+// primitive types
 part 'base64binary.dart';
 part 'boolean.dart';
 part 'canonical.dart';
@@ -37,7 +35,7 @@ part 'url.dart';
 part 'uuid.dart';
 part 'xhtml.dart';
 
-/// enums
+// enums
 part 'enums/account_status.dart';
 part 'enums/action_cardinality_behavior.dart';
 part 'enums/action_condition_kind.dart';

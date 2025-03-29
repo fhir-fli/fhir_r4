@@ -100,7 +100,10 @@ class ActionPrecheckBehavior extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   ActionPrecheckBehavior withElement(Element? newElement) {
-    return ActionPrecheckBehavior._(validatedValue: value, element: newElement);
+    return ActionPrecheckBehavior._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

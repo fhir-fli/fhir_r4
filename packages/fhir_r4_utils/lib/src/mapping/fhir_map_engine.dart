@@ -4,7 +4,40 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart'
+    show
+        Coding,
+        ConceptMap,
+        ConceptMapGroup,
+        DataType,
+        FHIRException,
+        FhirBase,
+        FhirCanonical,
+        FhirId,
+        FhirNumber,
+        FhirStringExtension,
+        IssueSeverity,
+        IssueType,
+        OperationOutcome,
+        OperationOutcomeIssue,
+        Resource,
+        StringExtensionForFHIR,
+        StructureDefinition,
+        StructureMap,
+        StructureMapDependent,
+        StructureMapGroup,
+        StructureMapGroupTypeMode,
+        StructureMapInputMode,
+        StructureMapModelMode,
+        StructureMapParameter,
+        StructureMapRule,
+        StructureMapSource,
+        StructureMapStructure,
+        StructureMapTarget,
+        StructureMapTargetListMode,
+        StructureMapTransform,
+        ValueSet,
+        ValueSetContains;
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 import 'package:uuid/uuid.dart';
@@ -70,13 +103,15 @@ class FhirMapEngine {
     if (inputName == null) {
       throw MappingDefinitionException(message: 'No input name found');
     }
+    final sourceBuilder = source.toBuilder();
     final vars = MappingVariables()
-      ..add(MappingVariableMode.INPUT, inputName, source);
+      ..add(MappingVariableMode.INPUT, inputName, sourceBuilder);
     final String? targetName =
         _getInputName(g, StructureMapInputMode.target, 'target');
     if (targetName != null) {
       if (target != null) {
-        vars.add(MappingVariableMode.OUTPUT, targetName, target);
+        final targetBuilder = target.toBuilder();
+        vars.add(MappingVariableMode.OUTPUT, targetName, targetBuilder);
       } else {
         final type = _getInputType(g, StructureMapInputMode.target);
         if (type != null) {
@@ -105,7 +140,7 @@ class FhirMapEngine {
       if (result == null) {
         throw FHIRException(message: 'No output found');
       } else {
-        return result;
+        return result.fromBuilder();
       }
     } catch (e) {
       return e is FHIRException
@@ -261,9 +296,9 @@ class FhirMapEngine {
           rule.target?.first.variable != null &&
           rule.target?.first.transform == StructureMapTransform.create &&
           !(rule.target?.first.parameter?.isNotEmpty ?? false)) {
-        final FhirBase? src =
+        final FhirBaseBuilder? src =
             v.get(MappingVariableMode.INPUT, rule.source.first.variable?.value);
-        final FhirBase? tgt = v.get(
+        final FhirBaseBuilder? tgt = v.get(
           MappingVariableMode.OUTPUT,
           rule.target?.firstOrNull?.variable?.value,
         );
@@ -355,7 +390,7 @@ class FhirMapEngine {
   Future<String> _determineTypeFromSourceType(
     StructureMap? map,
     StructureMapGroup? source,
-    FhirBase fhirBase,
+    FhirBaseBuilder fhirBase,
     List<String> types,
   ) async {
     final String type = fhirBase.fhirType;
@@ -670,7 +705,7 @@ class FhirMapEngine {
     String? pathForErrors,
     String indent,
   ) async {
-    final List<FhirBase> items = <FhirBase>[];
+    final List<FhirBaseBuilder> items = <FhirBaseBuilder>[];
     if (src.context.value == '@search') {
       // Evaluate an expression, then do a search
       ExpressionNode? expr =
@@ -686,7 +721,7 @@ class FhirMapEngine {
       // items = services.performSearch(context.appInfo, search);
       throw FHIRException(message: 'Search not implemented');
     } else {
-      final FhirBase? b =
+      final FhirBaseBuilder? b =
           vars.get(MappingVariableMode.INPUT, src.context.value);
 
       if (b == null) {
@@ -702,7 +737,7 @@ class FhirMapEngine {
         await _getChildrenByName(b, src.element?.value ?? '', items);
 
         if (items.isEmpty && src.defaultValueX != null) {
-          items.add(src.defaultValueX!);
+          items.add(src.defaultValueX!.toBuilder());
         }
       }
     }
@@ -719,7 +754,7 @@ class FhirMapEngine {
         src.setUserData(MAP_WHERE_EXPRESSION, expr);
       }
 
-      final List<FhirBase> remove = <FhirBase>[];
+      final List<FhirBaseBuilder> remove = <FhirBaseBuilder>[];
       for (final item in items) {
         final MappingVariables varsForSource = vars.copy();
         if (src.variable != null) {
@@ -741,8 +776,8 @@ class FhirMapEngine {
           }
         }
 
-        final bool passed =
-            fpe.evaluateToBoolean(varsForSource, null, null, item, expr);
+        final bool passed = fpe.evaluateToBoolean(
+            varsForSource, null, null, item.fromBuilder(), expr);
 
         if (!passed) {
           remove.add(item);
@@ -780,8 +815,8 @@ class FhirMapEngine {
             }
           }
         }
-        final bool passed =
-            fpe.evaluateToBoolean(varsForSource, null, null, item, expr);
+        final bool passed = fpe.evaluateToBoolean(
+            varsForSource, null, null, item.fromBuilder(), expr);
         if (!passed) {
           throw FHIRException(
             message: "Rule '$ruleId', Check condition failed, $expr",
@@ -806,7 +841,8 @@ class FhirMapEngine {
             item,
           );
         }
-        logs.add(fpe.evaluateToString(varsForSource, null, null, item, expr));
+        logs.add(fpe.evaluateToString(
+            varsForSource, null, null, item.fromBuilder(), expr));
       }
       // TODO(Dokotela): implement services
       // if (logs.isNotEmpty && services != null) {
@@ -856,14 +892,14 @@ class FhirMapEngine {
     return result;
   }
 
-  bool _isType(FhirBase item, String type) {
+  bool _isType(FhirBaseBuilder item, String type) {
     return type == item.fhirType;
   }
 
   Future<void> _getChildrenByName(
-    FhirBase parentNode,
+    FhirBaseBuilder parentNode,
     String? elementName,
-    List<FhirBase> resultItems,
+    List<FhirBaseBuilder> resultItems,
   ) async {
     if (elementName != null) {
       final children = parentNode.getChildrenByName(elementName);
@@ -882,7 +918,7 @@ class FhirMapEngine {
     bool atRoot,
     MappingVariables sharedVars,
   ) async {
-    FhirBase? dest;
+    FhirBaseBuilder? dest;
     if (tgt.context != null) {
       dest = vars.get(MappingVariableMode.OUTPUT, tgt.context!.value);
       if (dest == null) {
@@ -891,7 +927,7 @@ class FhirMapEngine {
         );
       }
     }
-    FhirBase? v;
+    FhirBaseBuilder? v;
 
     if (tgt.transform != null) {
       v = await _runTransform(
@@ -914,13 +950,13 @@ class FhirMapEngine {
           }
 
           // print('dest pr: ${dest.toJson()}');
-          dest = dest.setChildByName(tgt.element!.value!, v);
+          dest.setChildByName(tgt.element!.value!, v);
           print('dest after setChildByName: ${dest.toJson()}');
 
           sharedVars.add(MappingVariableMode.OUTPUT, tgt.context!.value!, dest);
         } catch (e) {
           throw FHIRException(
-            message: 'Error setting ${tgt.element} on ${dest?.fhirType} '
+            message: 'Error setting ${tgt.element} on ${dest.fhirType} '
                 'for rule $rulePath to value $v: $e',
           );
         }
@@ -929,7 +965,7 @@ class FhirMapEngine {
       if (tgt.listMode?.contains(StructureMapTargetListMode.share) ?? false) {
         v = sharedVars.get(MappingVariableMode.SHARED, tgt.listRuleId?.value);
         if (v == null) {
-          dest = dest.createProperty(tgt.element?.value ?? '');
+          dest.createProperty(tgt.element?.value ?? '');
           v = dest.getChildByName(tgt.element?.value ?? '');
           if (tgt.listRuleId != null && v != null) {
             sharedVars.add(
@@ -940,7 +976,7 @@ class FhirMapEngine {
           }
         }
       } else if (tgt.element != null) {
-        dest = dest.createProperty(tgt.element!.value!);
+        dest.createProperty(tgt.element!.value!);
         v = dest.getChildByName(tgt.element!.value!);
         if (v == null) {
           final types = dest.typeByElementName(tgt.element!.value!);
@@ -960,14 +996,14 @@ class FhirMapEngine {
     print('sharedVars: ${sharedVars.summary()}');
   }
 
-  Future<FhirBase?> _runTransform(
+  Future<FhirBaseBuilder?> _runTransform(
     String rulePath,
     TransformContext context,
     StructureMap? map,
     StructureMapGroup? group,
     StructureMapTarget tgt,
     MappingVariables vars,
-    FhirBase? dest,
+    FhirBaseBuilder? dest,
     String element,
     String? srcVar,
     bool root,
@@ -990,7 +1026,7 @@ class FhirMapEngine {
                   types[0] != 'Resource') {
                 tn = types[0];
               } else if (srcVar != null) {
-                final FhirBase? srcObj =
+                final FhirBaseBuilder? srcObj =
                     vars.get(MappingVariableMode.INPUT, srcVar);
                 if (srcObj != null) {
                   tn = await _determineTypeFromSourceType(
@@ -1076,12 +1112,14 @@ class FhirMapEngine {
               );
               tgt.setUserData(MAP_EXPRESSION, expr);
             }
-            final FhirBase test = tgt.parameter?.length == 2
-                ? (_getParam(vars, tgt.parameter!.first) ?? false.toFhirBoolean)
-                : false.toFhirBoolean;
+            final FhirBaseBuilder test = tgt.parameter?.length == 2
+                ? (_getParam(vars, tgt.parameter!.first) ??
+                    false.toFhirBooleanBuilder)
+                : false.toFhirBooleanBuilder;
             final List<FhirBase> v = expr == null
                 ? <FhirBase>[]
-                : fpe.evaluateWithContext(vars, null, null, test, expr);
+                : fpe.evaluateWithContext(
+                    vars, null, null, test.fromBuilder(), expr);
             if (v.isEmpty) {
               return null;
             } else if (v.length != 1) {
@@ -1090,7 +1128,7 @@ class FhirMapEngine {
                     'Evaluation of $expr returned ${v.length} objects',
               );
             } else {
-              return v.first;
+              return v.first.toBuilder();
             }
           }
 
@@ -1110,7 +1148,7 @@ class FhirMapEngine {
                 if (src.length > l) {
                   src = src.substring(0, l);
                 }
-                return src.toFhirString;
+                return src.toFhirStringBuilder;
               } else {
                 final String len = _getParamStringNoNull(
                   vars,
@@ -1123,7 +1161,7 @@ class FhirMapEngine {
                     src = src.substring(0, l);
                   }
                 }
-                return src.toFhirString;
+                return src.toFhirStringBuilder;
               }
             } else {
               throw FHIRException(
@@ -1156,7 +1194,8 @@ class FhirMapEngine {
               throwIfNull: true,
             )!;
 
-            if (sourceNode is! PrimitiveType || sourceNode.value is! String) {
+            if (sourceNode is! PrimitiveTypeBuilder ||
+                sourceNode.value is! String) {
               throw FHIRException(
                 message: 'Source for escape must be a string LeafNode',
               );
@@ -1168,7 +1207,7 @@ class FhirMapEngine {
             // Handle escaping transformations between formats
             resultString = _convertEscaping(sourceString, fmt1, fmt2);
 
-            return resultString.toFhirString;
+            return resultString.toFhirStringBuilder;
           }
 
         case 'cast':
@@ -1187,7 +1226,7 @@ class FhirMapEngine {
                 case 'string':
                 case 'fhirstring':
                 case 'fhir.string':
-                  return src.toFhirString;
+                  return src.toFhirStringBuilder;
 
                 case 'integer':
                 case 'fhirinteger':
@@ -1197,73 +1236,73 @@ class FhirMapEngine {
                 case 'boolean':
                 case 'fhirboolean':
                 case 'fhir.boolean':
-                  return (src.toLowerCase() == 'true').toFhirBoolean;
+                  return (src.toLowerCase() == 'true').toFhirBooleanBuilder;
 
                 case 'decimal':
                 case 'fhirdecimal':
                 case 'fhir.decimal':
-                  return double.parse(src).toFhirDecimal;
+                  return double.parse(src).toFhirDecimalBuilder;
 
                 case 'date':
                 case 'fhirdate':
                 case 'fhir.date':
-                  return src.toFhirDate;
+                  return src.toFhirDateBuilder;
 
                 case 'datetime':
                 case 'fhirdatetime':
                 case 'fhir.datetime':
-                  return src.toFhirDateTime;
+                  return src.toFhirDateTimeBuilder;
 
                 case 'time':
                 case 'fhirtime':
                 case 'fhir.time':
-                  return src.toFhirTime;
+                  return src.toFhirTimeBuilder;
 
                 case 'instant':
                 case 'fhirinstant':
                 case 'fhir.instant':
-                  return src.toFhirInstant;
+                  return src.toFhirInstantBuilder;
 
                 case 'uri':
                 case 'fhiruri':
                 case 'fhir.uri':
-                  return src.toFhirUri;
+                  return src.toFhirUriBuilder;
 
                 case 'oid':
                 case 'fhiroid':
                 case 'fhir.oid':
-                  return src.toFhirOid;
+                  return src.toFhirOidBuilder;
 
                 case 'id':
                 case 'fhirid':
                 case 'fhir.id':
-                  return src.toFhirId;
+                  return src.toFhirIdBuilder;
 
                 case 'base64binary':
                 case 'fhirbase64binary':
                 case 'fhir.base64binary':
-                  return src.toFhirBase64Binary;
+                  return src.toFhirBase64BinaryBuilder;
 
                 case 'code':
                 case 'fhircode':
                 case 'fhir.code':
                 case 'fhircodeenum':
-                  return src.toFhirCode;
+                  return src.toFhirCodeBuilder;
 
                 case 'canonical':
                 case 'fhircanonical':
                 case 'fhir.canonical':
-                  return src.toFhirCanonical;
+                  return src.toFhirCanonicalBuilder;
 
                 case 'url':
                 case 'fhirurl':
                 case 'fhir.url':
-                  return src.toFhirUrl;
+                  return src.toFhirUrlBuilder;
 
                 case 'unsignedint':
                 case 'fhirunsignedint':
                 case 'fhir.unsignedint':
-                  return int.parse(src).toFhirUnsignedInt;
+                  return int.parse(src).toFhirUnsignedIntBuilder;
 
                 case 'positiveint':
                 case 'fhirpositiveint':
@@ -1275,12 +1314,12 @@ class FhirMapEngine {
                           'PositiveInt must be greater than zero.',
                     );
                   }
-                  return intValue.toFhirPositiveInt;
+                  return intValue.toFhirPositiveIntBuilder;
 
                 case 'markdown':
                 case 'fhirmarkdown':
                 case 'fhir.markdown':
-                  return src.toFhirMarkdown;
+                  return src.toFhirMarkdownBuilder;
 
                 default:
                   throw FHIRMappingCastException(
@@ -1312,7 +1351,7 @@ class FhirMapEngine {
             for (int i = 1; i < tgt.parameter!.length; i++) {
               sb.write(_getParamString(vars, tgt.parameter![i]) ?? '');
             }
-            return sb.toString().toFhirString;
+            return sb.toString().toFhirStringBuilder;
           }
 
         case 'translate':
@@ -1332,21 +1371,21 @@ class FhirMapEngine {
                 message: 'Reference transform requires a source parameter',
               );
             }
-            final FhirBase? b = _getParam(vars, tgt.parameter!.first);
+            final FhirBaseBuilder? b = _getParam(vars, tgt.parameter!.first);
             if (b == null) {
               throw FHIRException(
                 message: 'Rule "$rulePath": Unable to find parameter '
                     '${tgt.parameter!.first.valueId?.value}',
               );
             }
-            if (b is! Resource) {
+            if (b is! ResourceBuilder) {
               throw FHIRException(
                 message:
                     'Rule "$rulePath": Transform engine cannot point at an '
                     'element of type ${b.fhirType}',
               );
             } else {
-              return b.path.toFhirString;
+              return b.path.toFhirStringBuilder;
             }
           }
 
@@ -1367,7 +1406,8 @@ class FhirMapEngine {
               throwIfNull: true,
             )!;
 
-            if (sourceNode is! PrimitiveType || sourceNode.value is! String) {
+            if (sourceNode is! PrimitiveTypeBuilder ||
+                sourceNode.value is! String) {
               throw FHIRException(
                 message: 'Source for dateOp must be a string LeafNode '
                     'representing a date',
@@ -1389,12 +1429,12 @@ class FhirMapEngine {
               );
             }
 
-            return resultDate.toIso8601String().toFhirString;
+            return resultDate.toIso8601String().toFhirStringBuilder;
           }
 
         case 'uuid':
           {
-            return const Uuid().v4().toFhirId;
+            return const Uuid().v4().toFhirIdBuilder;
           }
 
         case 'pointer':
@@ -1404,9 +1444,9 @@ class FhirMapEngine {
                 message: 'Pointer transform requires a source parameter',
               );
             }
-            final FhirBase? b = _getParam(vars, tgt.parameter!.first);
-            if (b is Resource) {
-              return 'urn:uuid:${b.id}'.toFhirUri;
+            final FhirBaseBuilder? b = _getParam(vars, tgt.parameter!.first);
+            if (b is ResourceBuilder) {
+              return 'urn:uuid:${b.id}'.toFhirUriBuilder;
             } else {
               throw FHIRException(
                 message:
@@ -1430,8 +1470,8 @@ class FhirMapEngine {
             );
             final String code =
                 _getParamStringNoNull(vars, tgt.parameter![1], tgt.toString());
-            final Coding c = await _buildCoding(uri, code);
-            return CodeableConcept(coding: [c]);
+            final CodingBuilder c = await _buildCoding(uri, code);
+            return CodeableConceptBuilder(coding: [c]);
           }
 
         case 'c':
@@ -1469,18 +1509,15 @@ class FhirMapEngine {
     }
   }
 
-  FhirBase _typeFactory(String tn) {
+  FhirBaseBuilder _typeFactory(String tn) {
     final newObject = emptyFromType(tn);
     if (newObject == null) {
-      if (backupTarget != null) {
-        return backupTarget!;
-      }
       throw FHIRException(message: 'Unable to create object of type $tn');
     }
     return newObject;
   }
 
-  Future<Coding> _buildCoding(String uri, String code) async {
+  Future<CodingBuilder> _buildCoding(String uri, String code) async {
     String? system;
     String? display;
     String? version;
@@ -1531,11 +1568,11 @@ class FhirMapEngine {
     if (vr?.display != null) {
       display = vr!.display;
     }
-    return Coding(
-      system: system?.toFhirUri,
-      code: code.toFhirCode,
-      display: display?.toFhirString,
-      version: version?.toFhirString,
+    return CodingBuilder(
+      system: system?.toFhirUriBuilder,
+      code: code.toFhirCodeBuilder,
+      display: display?.toFhirStringBuilder,
+      version: version?.toFhirStringBuilder,
     );
   }
 
@@ -1544,14 +1581,14 @@ class FhirMapEngine {
     StructureMapParameter parameter,
     String message,
   ) {
-    final FhirBase? b = _getParam(vars, parameter);
+    final FhirBaseBuilder? b = _getParam(vars, parameter);
 
     if (b == null) {
       throw FHIRException(
         message: 'Unable to find a value for $parameter. Context: $message',
       );
     }
-    if (b is! PrimitiveType) {
+    if (b is! PrimitiveTypeBuilder) {
       throw FHIRException(
         message: 'Found a value for ${parameter.toJson()}, but it has type '
             '${b.fhirType} and cannot be treated as a string. '
@@ -1572,20 +1609,21 @@ class FhirMapEngine {
     MappingVariables vars,
     StructureMapParameter parameter,
   ) {
-    final FhirBase? b = _getParam(vars, parameter);
-    if (b == null || b is! PrimitiveType || b.value is! String?) {
+    final FhirBaseBuilder? b = _getParam(vars, parameter);
+    if (b == null || b is! PrimitiveTypeBuilder || b.value is! String?) {
       return null;
     }
     return b.primitiveValue!;
   }
 
-  FhirBase? _getParam(MappingVariables vars, StructureMapParameter parameter) {
+  FhirBaseBuilder? _getParam(
+      MappingVariables vars, StructureMapParameter parameter) {
     final DataType p = parameter.valueX;
     if (p is! FhirId) {
-      return p;
+      return p.toBuilder();
     } else {
       final String n = p.toString();
-      FhirBase? b = vars.get(MappingVariableMode.INPUT, n);
+      FhirBaseBuilder? b = vars.get(MappingVariableMode.INPUT, n);
       b ??= vars.get(MappingVariableMode.OUTPUT, n);
       if (b == null) {
         throw MappingDefinitionException(
@@ -1596,7 +1634,7 @@ class FhirMapEngine {
     }
   }
 
-  Future<FhirBase?> _translate(
+  Future<FhirBaseBuilder?> _translate(
     TransformContext context,
     StructureMap? map,
     MappingVariables variables,
@@ -1630,15 +1668,15 @@ class FhirMapEngine {
     }
   }
 
-  Future<FhirBase?> _processConceptMapTranslation(
-    FhirBase? sourceElement,
+  Future<FhirBaseBuilder?> _processConceptMapTranslation(
+    FhirBaseBuilder? sourceElement,
     String? conceptMapUrl,
     String? fieldToReturn,
     StructureMap? map,
   ) async {
     final sourceCoding = sourceElement == null
         ? null
-        : sourceElement is PrimitiveType
+        : sourceElement is PrimitiveTypeBuilder
             ? sourceElement.value
             : sourceElement.toJson()['coding'];
 
@@ -1649,12 +1687,12 @@ class FhirMapEngine {
         : await _translateCoding(conceptMap, sourceCoding, fieldToReturn);
   }
 
-  Future<FhirBase?> _translateCoding(
+  Future<FhirBaseBuilder?> _translateCoding(
     ConceptMap conceptMap,
     dynamic sourceCoding,
     String? fieldToReturn,
   ) async {
-    Coding? outcome;
+    CodingBuilder? outcome;
 
     for (final group in conceptMap.group ?? <ConceptMapGroup>[]) {
       if (sourceCoding is String) {
@@ -1680,7 +1718,7 @@ class FhirMapEngine {
   }
 
   // Helper method to find a matching Coding in a ConceptMapGroup
-  Coding? _findMatchInGroup(
+  CodingBuilder? _findMatchInGroup(
     ConceptMapGroup group,
     String? code, [
     String? system,
@@ -1693,9 +1731,9 @@ class FhirMapEngine {
         );
 
         if (matchingTarget != null) {
-          return Coding(
-            system: group.target,
-            code: matchingTarget.code,
+          return CodingBuilder(
+            system: group.target?.toBuilder() as FhirUriBuilder?,
+            code: matchingTarget.code?.toBuilder() as FhirCodeBuilder?,
           );
         }
       }
@@ -1734,7 +1772,7 @@ class FhirMapEngine {
   }) {
     final paramValue = _getParam(variables, parameter);
 
-    if (paramValue is PrimitiveType && paramValue.value != null) {
+    if (paramValue is PrimitiveTypeBuilder && paramValue.value != null) {
       return paramValue.value.toString();
     }
 
@@ -1778,10 +1816,10 @@ class FhirMapEngine {
     return escaped;
   }
 
-  FhirBase _castToInt(String value, String ruleId, String targetType) {
+  FhirBaseBuilder _castToInt(String value, String ruleId, String targetType) {
     try {
       final intValue = int.parse(value);
-      return intValue.toFhirInteger;
+      return intValue.toFhirIntegerBuilder;
     } catch (e) {
       final errorMessage = e is FormatException
           ? "Rule '$ruleId': Failed to cast '$value' to type "

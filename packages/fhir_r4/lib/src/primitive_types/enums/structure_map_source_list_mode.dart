@@ -131,7 +131,9 @@ class StructureMapSourceListMode extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   StructureMapSourceListMode withElement(Element? newElement) {
     return StructureMapSourceListMode._(
-        validatedValue: value, element: newElement,);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

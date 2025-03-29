@@ -109,7 +109,10 @@ class FHIRSubstanceStatus extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   FHIRSubstanceStatus withElement(Element? newElement) {
-    return FHIRSubstanceStatus._(validatedValue: value, element: newElement);
+    return FHIRSubstanceStatus._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

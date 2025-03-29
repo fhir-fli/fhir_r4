@@ -118,7 +118,10 @@ class GuidePageGeneration extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   GuidePageGeneration withElement(Element? newElement) {
-    return GuidePageGeneration._(validatedValue: value, element: newElement);
+    return GuidePageGeneration._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

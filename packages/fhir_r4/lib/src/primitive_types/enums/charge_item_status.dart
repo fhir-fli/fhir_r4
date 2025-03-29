@@ -144,7 +144,10 @@ class ChargeItemStatus extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   ChargeItemStatus withElement(Element? newElement) {
-    return ChargeItemStatus._(validatedValue: value, element: newElement);
+    return ChargeItemStatus._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

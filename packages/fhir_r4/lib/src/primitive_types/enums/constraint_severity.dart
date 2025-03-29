@@ -100,7 +100,10 @@ class ConstraintSeverity extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   ConstraintSeverity withElement(Element? newElement) {
-    return ConstraintSeverity._(validatedValue: value, element: newElement);
+    return ConstraintSeverity._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

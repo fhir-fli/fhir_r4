@@ -163,7 +163,10 @@ class CarePlanIntent extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   CarePlanIntent withElement(Element? newElement) {
-    return CarePlanIntent._(validatedValue: value, element: newElement);
+    return CarePlanIntent._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

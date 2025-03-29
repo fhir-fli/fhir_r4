@@ -126,7 +126,10 @@ class TestReportStatus extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   TestReportStatus withElement(Element? newElement) {
-    return TestReportStatus._(validatedValue: value, element: newElement);
+    return TestReportStatus._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

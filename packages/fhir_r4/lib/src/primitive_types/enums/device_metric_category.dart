@@ -118,7 +118,10 @@ class DeviceMetricCategory extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   DeviceMetricCategory withElement(Element? newElement) {
-    return DeviceMetricCategory._(validatedValue: value, element: newElement);
+    return DeviceMetricCategory._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

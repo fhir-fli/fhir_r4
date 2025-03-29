@@ -108,7 +108,10 @@ class LocationStatus extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   LocationStatus withElement(Element? newElement) {
-    return LocationStatus._(validatedValue: value, element: newElement);
+    return LocationStatus._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -116,7 +116,10 @@ class VisionBase extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   VisionBase withElement(Element? newElement) {
-    return VisionBase._(validatedValue: value, element: newElement);
+    return VisionBase._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

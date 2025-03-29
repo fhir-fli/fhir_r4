@@ -235,7 +235,10 @@ class InteractionTrigger extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   InteractionTrigger withElement(Element? newElement) {
-    return InteractionTrigger._(validatedValue: value, element: newElement);
+    return InteractionTrigger._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -117,7 +117,10 @@ class LinkType extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   LinkType withElement(Element? newElement) {
-    return LinkType._(validatedValue: value, element: newElement);
+    return LinkType._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

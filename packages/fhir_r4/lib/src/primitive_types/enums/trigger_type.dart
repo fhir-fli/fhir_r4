@@ -152,7 +152,10 @@ class TriggerType extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   TriggerType withElement(Element? newElement) {
-    return TriggerType._(validatedValue: value, element: newElement);
+    return TriggerType._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

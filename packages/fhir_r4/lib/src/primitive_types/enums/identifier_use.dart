@@ -125,7 +125,10 @@ class IdentifierUse extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   IdentifierUse withElement(Element? newElement) {
-    return IdentifierUse._(validatedValue: value, element: newElement);
+    return IdentifierUse._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

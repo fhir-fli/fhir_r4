@@ -125,7 +125,10 @@ class AccountStatus extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   AccountStatus withElement(Element? newElement) {
-    return AccountStatus._(validatedValue: value, element: newElement);
+    return AccountStatus._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

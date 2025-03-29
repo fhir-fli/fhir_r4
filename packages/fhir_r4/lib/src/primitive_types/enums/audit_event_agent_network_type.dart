@@ -128,7 +128,9 @@ class AuditEventAgentNetworkType extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   AuditEventAgentNetworkType withElement(Element? newElement) {
     return AuditEventAgentNetworkType._(
-        validatedValue: value, element: newElement,);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

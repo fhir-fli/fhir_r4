@@ -1,4 +1,4 @@
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// [ValidationResults]
@@ -109,30 +109,32 @@ class ValidationResults {
     return cleanedResults;
   }
 
-  OperationOutcomeIssue _makeOperationOutcomeIssue(ValidationDiagnostics e) =>
-      OperationOutcomeIssue(
-        severity: IssueSeverity.fromJson({'value': e.severity.toJson()}),
-        code: IssueType.processing,
+  fhir.OperationOutcomeIssue _makeOperationOutcomeIssue(
+          ValidationDiagnostics e) =>
+      fhir.OperationOutcomeIssue(
+        severity: fhir.IssueSeverity.fromJson({'value': e.severity.toJson()}),
+        code: fhir.IssueType.processing,
         diagnostics: e.diagnostics.toFhirString,
         extension_: e.line == null && e.column == null
             ? null
-            : <FhirExtension>[
+            : <fhir.FhirExtension>[
                 if (e.line != null)
-                  FhirExtension(
-                    url: FhirString(
+                  fhir.FhirExtension(
+                    url: fhir.FhirString(
                       'http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-line',
                     ),
-                    valueX: e.line == null ? null : FhirInteger(e.line),
+                    valueX: e.line == null ? null : fhir.FhirInteger(e.line),
                   ),
                 if (e.column != null)
-                  FhirExtension(
-                    url: FhirString(
+                  fhir.FhirExtension(
+                    url: fhir.FhirString(
                       'http://hl7.org/fhir/StructureDefinition/operationoutcome-issue-col',
                     ),
-                    valueX: e.column == null ? null : FhirInteger(e.column),
+                    valueX:
+                        e.column == null ? null : fhir.FhirInteger(e.column),
                   ),
               ],
-        location: <FhirString>[
+        location: <fhir.FhirString>[
           e.path.toFhirString,
           if (e.line != null && e.column != null)
             'Line[${e.line}] Col[${e.column}]'.toFhirString,
@@ -144,7 +146,7 @@ class ValidationResults {
       );
 
   /// Convert the results to an OperationOutcome object
-  OperationOutcome toOperationOutcome() {
+  fhir.OperationOutcome toOperationOutcome() {
     _joinResults();
     final error = results
         .where(
@@ -163,12 +165,12 @@ class ValidationResults {
               element.severity == Severity.information,
         )
         .toList();
-    final issues = <OperationOutcomeIssue>[
+    final issues = <fhir.OperationOutcomeIssue>[
       ...error.map(_makeOperationOutcomeIssue),
       ...warning.map(_makeOperationOutcomeIssue),
       ...information.map(_makeOperationOutcomeIssue),
     ];
-    final outcome = OperationOutcome(issue: issues);
+    final outcome = fhir.OperationOutcome(issue: issues);
     return outcome;
   }
 

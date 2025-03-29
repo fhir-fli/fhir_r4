@@ -118,7 +118,10 @@ class AdministrativeGender extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   AdministrativeGender withElement(Element? newElement) {
-    return AdministrativeGender._(validatedValue: value, element: newElement);
+    return AdministrativeGender._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

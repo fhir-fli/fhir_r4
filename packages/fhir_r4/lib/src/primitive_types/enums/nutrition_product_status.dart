@@ -110,7 +110,10 @@ class NutritionProductStatus extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   NutritionProductStatus withElement(Element? newElement) {
-    return NutritionProductStatus._(validatedValue: value, element: newElement);
+    return NutritionProductStatus._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

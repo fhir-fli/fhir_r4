@@ -118,7 +118,10 @@ class ParticipationStatus extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   ParticipationStatus withElement(Element? newElement) {
-    return ParticipationStatus._(validatedValue: value, element: newElement);
+    return ParticipationStatus._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -111,7 +111,9 @@ class TestReportParticipantType extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   TestReportParticipantType withElement(Element? newElement) {
     return TestReportParticipantType._(
-        validatedValue: value, element: newElement,);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

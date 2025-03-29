@@ -1401,7 +1401,10 @@ class CarePlanActivityKind extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   CarePlanActivityKind withElement(Element? newElement) {
-    return CarePlanActivityKind._(validatedValue: value, element: newElement);
+    return CarePlanActivityKind._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

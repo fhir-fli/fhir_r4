@@ -98,7 +98,10 @@ class OperationKind extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   OperationKind withElement(Element? newElement) {
-    return OperationKind._(validatedValue: value, element: newElement);
+    return OperationKind._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

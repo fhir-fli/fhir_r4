@@ -98,7 +98,10 @@ class VisionEyes extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   VisionEyes withElement(Element? newElement) {
-    return VisionEyes._(validatedValue: value, element: newElement);
+    return VisionEyes._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

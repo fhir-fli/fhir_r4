@@ -162,7 +162,10 @@ class RequestIntent extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   RequestIntent withElement(Element? newElement) {
-    return RequestIntent._(validatedValue: value, element: newElement);
+    return RequestIntent._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -107,7 +107,10 @@ class AddressType extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   AddressType withElement(Element? newElement) {
-    return AddressType._(validatedValue: value, element: newElement);
+    return AddressType._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

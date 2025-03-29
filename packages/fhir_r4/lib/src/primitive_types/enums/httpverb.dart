@@ -135,7 +135,10 @@ class HTTPVerb extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   HTTPVerb withElement(Element? newElement) {
-    return HTTPVerb._(validatedValue: value, element: newElement);
+    return HTTPVerb._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

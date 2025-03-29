@@ -155,7 +155,10 @@ class ReportRelationshipType extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   ReportRelationshipType withElement(Element? newElement) {
-    return ReportRelationshipType._(validatedValue: value, element: newElement);
+    return ReportRelationshipType._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

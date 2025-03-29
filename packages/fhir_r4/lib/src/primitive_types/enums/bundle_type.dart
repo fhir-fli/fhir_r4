@@ -161,7 +161,10 @@ class BundleType extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   BundleType withElement(Element? newElement) {
-    return BundleType._(validatedValue: value, element: newElement);
+    return BundleType._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -162,7 +162,10 @@ class FilterOperator extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   FilterOperator withElement(Element? newElement) {
-    return FilterOperator._(validatedValue: value, element: newElement);
+    return FilterOperator._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

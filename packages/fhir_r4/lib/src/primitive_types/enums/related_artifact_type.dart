@@ -154,7 +154,10 @@ class RelatedArtifactType extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   RelatedArtifactType withElement(Element? newElement) {
-    return RelatedArtifactType._(validatedValue: value, element: newElement);
+    return RelatedArtifactType._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -149,7 +149,9 @@ class TestScriptRequestMethodCode extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   TestScriptRequestMethodCode withElement(Element? newElement) {
     return TestScriptRequestMethodCode._(
-        validatedValue: value, element: newElement,);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

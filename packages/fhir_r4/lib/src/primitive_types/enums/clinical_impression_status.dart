@@ -159,7 +159,9 @@ class ClinicalImpressionStatus extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   ClinicalImpressionStatus withElement(Element? newElement) {
     return ClinicalImpressionStatus._(
-        validatedValue: value, element: newElement,);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

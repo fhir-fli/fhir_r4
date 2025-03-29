@@ -162,7 +162,10 @@ class EncounterStatus extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   EncounterStatus withElement(Element? newElement) {
-    return EncounterStatus._(validatedValue: value, element: newElement);
+    return EncounterStatus._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

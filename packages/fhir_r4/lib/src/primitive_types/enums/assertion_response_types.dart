@@ -192,7 +192,10 @@ class AssertionResponseTypes extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   AssertionResponseTypes withElement(Element? newElement) {
-    return AssertionResponseTypes._(validatedValue: value, element: newElement);
+    return AssertionResponseTypes._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

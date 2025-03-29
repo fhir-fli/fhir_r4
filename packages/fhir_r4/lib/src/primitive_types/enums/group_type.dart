@@ -134,7 +134,10 @@ class GroupType extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   GroupType withElement(Element? newElement) {
-    return GroupType._(validatedValue: value, element: newElement);
+    return GroupType._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

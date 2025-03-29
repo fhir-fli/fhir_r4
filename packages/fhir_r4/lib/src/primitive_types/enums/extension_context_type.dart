@@ -109,7 +109,10 @@ class ExtensionContextType extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   ExtensionContextType withElement(Element? newElement) {
-    return ExtensionContextType._(validatedValue: value, element: newElement);
+    return ExtensionContextType._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

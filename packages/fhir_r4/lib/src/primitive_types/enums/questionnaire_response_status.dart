@@ -138,7 +138,9 @@ class QuestionnaireResponseStatus extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   QuestionnaireResponseStatus withElement(Element? newElement) {
     return QuestionnaireResponseStatus._(
-        validatedValue: value, element: newElement,);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

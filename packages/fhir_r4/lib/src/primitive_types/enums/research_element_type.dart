@@ -110,7 +110,10 @@ class ResearchElementType extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   ResearchElementType withElement(Element? newElement) {
-    return ResearchElementType._(validatedValue: value, element: newElement);
+    return ResearchElementType._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

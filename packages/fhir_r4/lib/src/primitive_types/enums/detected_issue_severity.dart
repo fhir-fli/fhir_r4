@@ -110,7 +110,10 @@ class DetectedIssueSeverity extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   DetectedIssueSeverity withElement(Element? newElement) {
-    return DetectedIssueSeverity._(validatedValue: value, element: newElement);
+    return DetectedIssueSeverity._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

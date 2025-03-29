@@ -101,7 +101,10 @@ class ConsentProvisionType extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   ConsentProvisionType withElement(Element? newElement) {
-    return ConsentProvisionType._(validatedValue: value, element: newElement);
+    return ConsentProvisionType._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

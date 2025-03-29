@@ -134,7 +134,10 @@ class UDIEntryType extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   UDIEntryType withElement(Element? newElement) {
-    return UDIEntryType._(validatedValue: value, element: newElement);
+    return UDIEntryType._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

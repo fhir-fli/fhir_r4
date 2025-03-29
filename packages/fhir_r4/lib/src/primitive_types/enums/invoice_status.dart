@@ -125,7 +125,10 @@ class InvoiceStatus extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   InvoiceStatus withElement(Element? newElement) {
-    return InvoiceStatus._(validatedValue: value, element: newElement);
+    return InvoiceStatus._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

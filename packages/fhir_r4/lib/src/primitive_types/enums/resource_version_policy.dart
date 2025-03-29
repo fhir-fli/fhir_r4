@@ -109,7 +109,10 @@ class ResourceVersionPolicy extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   ResourceVersionPolicy withElement(Element? newElement) {
-    return ResourceVersionPolicy._(validatedValue: value, element: newElement);
+    return ResourceVersionPolicy._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

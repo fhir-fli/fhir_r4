@@ -137,7 +137,9 @@ class ActionSelectionBehavior extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   ActionSelectionBehavior withElement(Element? newElement) {
     return ActionSelectionBehavior._(
-        validatedValue: value, element: newElement,);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

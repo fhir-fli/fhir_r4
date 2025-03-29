@@ -1,7 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:collection/collection.dart';
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// Enum representing the different modes of a variable during FHIR mapping
 enum MappingVariableMode {
@@ -40,7 +40,7 @@ class MappingVariable {
   final String name;
 
   /// The value of the variable
-  final FhirBase base;
+  final FhirBaseBuilder base;
 
   /// SummaryFunction
   String summary() => '${base.fhirType}: ${prettyPrintJson(base.toJson())}';
@@ -78,14 +78,14 @@ class MappingVariables {
   }
 
   /// Adds a variable to the collection
-  void add(MappingVariableMode mode, String name, FhirBase value) {
+  void add(MappingVariableMode mode, String name, FhirBaseBuilder value) {
     _variables
       ..removeWhere((v) => v.mode == mode && v.name == name)
       ..add(MappingVariable(mode, name, value));
   }
 
   /// Adds an input variable to the collection
-  FhirBase? get(MappingVariableMode mode, String? name) {
+  FhirBaseBuilder? get(MappingVariableMode mode, String? name) {
     return name == null
         ? null
         : _variables
@@ -94,12 +94,12 @@ class MappingVariables {
   }
 
   /// Retrieves an input variable from the collection
-  FhirBase? getInputVar(String name) {
+  FhirBaseBuilder? getInputVar(String name) {
     return get(MappingVariableMode.INPUT, name);
   }
 
   /// Retrieves an output variable from the collection
-  FhirBase? getOutputVar(String? name) {
+  FhirBaseBuilder? getOutputVar(String? name) {
     return name == null ? null : get(MappingVariableMode.OUTPUT, name);
   }
 

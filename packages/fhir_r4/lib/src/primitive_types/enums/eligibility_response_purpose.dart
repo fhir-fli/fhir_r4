@@ -127,7 +127,9 @@ class EligibilityResponsePurpose extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   EligibilityResponsePurpose withElement(Element? newElement) {
     return EligibilityResponsePurpose._(
-        validatedValue: value, element: newElement,);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

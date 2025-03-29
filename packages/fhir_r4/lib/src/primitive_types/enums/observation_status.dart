@@ -153,7 +153,10 @@ class ObservationStatus extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   ObservationStatus withElement(Element? newElement) {
-    return ObservationStatus._(validatedValue: value, element: newElement);
+    return ObservationStatus._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

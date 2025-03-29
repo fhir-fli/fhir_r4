@@ -107,7 +107,10 @@ class NoteType extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   NoteType withElement(Element? newElement) {
-    return NoteType._(validatedValue: value, element: newElement);
+    return NoteType._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

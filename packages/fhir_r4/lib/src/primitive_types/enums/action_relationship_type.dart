@@ -165,7 +165,10 @@ class ActionRelationshipType extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   ActionRelationshipType withElement(Element? newElement) {
-    return ActionRelationshipType._(validatedValue: value, element: newElement);
+    return ActionRelationshipType._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

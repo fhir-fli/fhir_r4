@@ -99,7 +99,10 @@ class OrientationType extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   OrientationType withElement(Element? newElement) {
-    return OrientationType._(validatedValue: value, element: newElement);
+    return OrientationType._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

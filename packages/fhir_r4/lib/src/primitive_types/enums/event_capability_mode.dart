@@ -100,7 +100,10 @@ class EventCapabilityMode extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   EventCapabilityMode withElement(Element? newElement) {
-    return EventCapabilityMode._(validatedValue: value, element: newElement);
+    return EventCapabilityMode._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

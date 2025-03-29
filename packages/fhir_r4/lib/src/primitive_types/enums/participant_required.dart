@@ -109,7 +109,10 @@ class ParticipantRequired extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   ParticipantRequired withElement(Element? newElement) {
-    return ParticipantRequired._(validatedValue: value, element: newElement);
+    return ParticipantRequired._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

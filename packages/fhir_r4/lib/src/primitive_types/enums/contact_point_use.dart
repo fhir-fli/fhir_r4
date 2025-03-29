@@ -126,7 +126,10 @@ class ContactPointUse extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   ContactPointUse withElement(Element? newElement) {
-    return ContactPointUse._(validatedValue: value, element: newElement);
+    return ContactPointUse._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

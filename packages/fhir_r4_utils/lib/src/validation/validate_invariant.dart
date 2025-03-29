@@ -1,12 +1,12 @@
-import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart' as fhir;
 import 'package:fhir_r4_path/fhir_r4_path.dart';
 import 'package:fhir_r4_utils/fhir_r4_utils.dart';
 
 /// Validates the invariants of a [Node] against the corresponding
-/// [ElementDefinition].
+/// [fhir.ElementDefinition].
 ValidationResults validateInvariants({
   required Node node,
-  required ElementDefinition element,
+  required fhir.ElementDefinition element,
   required ValidationResults results,
   String? url,
   required ResourceCache resourceCache,
@@ -41,9 +41,9 @@ ValidationResults validateInvariants({
   return results;
 }
 
-FhirBase? _getContext(
+fhir.FhirBase? _getContext(
   Node node,
-  ElementDefinition element,
+  fhir.ElementDefinition element,
   ValidationResults results,
 ) {
   final dynamic rawContext = _nodeToMap(node);
@@ -64,7 +64,7 @@ FhirBase? _getContext(
 
   for (final type in element.type!) {
     try {
-      final context = fromType(extractedContext, type.code.toString());
+      final context = fhir.fromType(extractedContext, type.code.toString());
       if (context != null) {
         return context;
       }
@@ -93,7 +93,7 @@ FhirBase? _getContext(
 /// Evaluates a FHIRPath expression against a [FhirBase] context.
 bool _evaluateConstraint(
   Node node,
-  FhirBase? context,
+  fhir.FhirBase? context,
   String expression,
   ValidationResults results,
 ) {
@@ -115,8 +115,8 @@ bool _evaluateConstraint(
   // Check if the result satisfies the constraint
   return result.length == 1 &&
       ((result.first is bool && result.first as bool) ||
-          (result.first is FhirBoolean &&
-              ((result.first as FhirBoolean).value ?? false)));
+          (result.first is fhir.FhirBoolean &&
+              ((result.first as fhir.FhirBoolean).value ?? false)));
 }
 
 /// Converts a [Node] to a [Map] for use as a FHIRPath context.

@@ -108,7 +108,10 @@ class AggregationMode extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   AggregationMode withElement(Element? newElement) {
-    return AggregationMode._(validatedValue: value, element: newElement);
+    return AggregationMode._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

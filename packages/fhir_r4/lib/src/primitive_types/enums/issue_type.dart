@@ -359,7 +359,10 @@ class IssueType extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   IssueType withElement(Element? newElement) {
-    return IssueType._(validatedValue: value, element: newElement);
+    return IssueType._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

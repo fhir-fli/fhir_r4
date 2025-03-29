@@ -108,7 +108,10 @@ class NamingSystemType extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   NamingSystemType withElement(Element? newElement) {
-    return NamingSystemType._(validatedValue: value, element: newElement);
+    return NamingSystemType._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

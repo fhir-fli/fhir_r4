@@ -117,7 +117,10 @@ class FHIRDeviceStatus extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   FHIRDeviceStatus withElement(Element? newElement) {
-    return FHIRDeviceStatus._(validatedValue: value, element: newElement);
+    return FHIRDeviceStatus._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

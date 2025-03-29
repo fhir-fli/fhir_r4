@@ -107,7 +107,10 @@ class SlicingRules extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   SlicingRules withElement(Element? newElement) {
-    return SlicingRules._(validatedValue: value, element: newElement);
+    return SlicingRules._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

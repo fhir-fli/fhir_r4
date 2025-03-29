@@ -107,7 +107,10 @@ class ListMode extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   ListMode withElement(Element? newElement) {
-    return ListMode._(validatedValue: value, element: newElement);
+    return ListMode._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -173,7 +173,10 @@ class DiagnosticReportStatus extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   DiagnosticReportStatus withElement(Element? newElement) {
-    return DiagnosticReportStatus._(validatedValue: value, element: newElement);
+    return DiagnosticReportStatus._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

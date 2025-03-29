@@ -126,7 +126,10 @@ class CompartmentType extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   CompartmentType withElement(Element? newElement) {
-    return CompartmentType._(validatedValue: value, element: newElement);
+    return CompartmentType._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

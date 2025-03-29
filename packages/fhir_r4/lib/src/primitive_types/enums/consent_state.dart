@@ -134,7 +134,10 @@ class ConsentState extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   ConsentState withElement(Element? newElement) {
-    return ConsentState._(validatedValue: value, element: newElement);
+    return ConsentState._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -134,7 +134,10 @@ class Status extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   Status withElement(Element? newElement) {
-    return Status._(validatedValue: value, element: newElement);
+    return Status._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

@@ -119,7 +119,10 @@ class ConsentDataMeaning extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   ConsentDataMeaning withElement(Element? newElement) {
-    return ConsentDataMeaning._(validatedValue: value, element: newElement);
+    return ConsentDataMeaning._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

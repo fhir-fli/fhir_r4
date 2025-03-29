@@ -100,7 +100,10 @@ class CodeSearchSupport extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   CodeSearchSupport withElement(Element? newElement) {
-    return CodeSearchSupport._(validatedValue: value, element: newElement);
+    return CodeSearchSupport._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

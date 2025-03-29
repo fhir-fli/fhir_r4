@@ -126,7 +126,9 @@ class CodeSystemHierarchyMeaning extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   CodeSystemHierarchyMeaning withElement(Element? newElement) {
     return CodeSystemHierarchyMeaning._(
-        validatedValue: value, element: newElement,);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

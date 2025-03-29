@@ -323,7 +323,10 @@ class FHIRVersion extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   FHIRVersion withElement(Element? newElement) {
-    return FHIRVersion._(validatedValue: value, element: newElement);
+    return FHIRVersion._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

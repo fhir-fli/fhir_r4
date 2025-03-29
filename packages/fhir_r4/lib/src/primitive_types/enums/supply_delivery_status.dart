@@ -118,7 +118,10 @@ class SupplyDeliveryStatus extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   SupplyDeliveryStatus withElement(Element? newElement) {
-    return SupplyDeliveryStatus._(validatedValue: value, element: newElement);
+    return SupplyDeliveryStatus._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

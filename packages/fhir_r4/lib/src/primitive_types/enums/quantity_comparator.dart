@@ -118,7 +118,10 @@ class QuantityComparator extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   QuantityComparator withElement(Element? newElement) {
-    return QuantityComparator._(validatedValue: value, element: newElement);
+    return QuantityComparator._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

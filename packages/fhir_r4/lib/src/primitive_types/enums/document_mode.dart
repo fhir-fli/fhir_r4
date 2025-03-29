@@ -98,7 +98,10 @@ class DocumentMode extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   DocumentMode withElement(Element? newElement) {
-    return DocumentMode._(validatedValue: value, element: newElement);
+    return DocumentMode._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

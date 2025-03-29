@@ -109,7 +109,10 @@ class MeasureReportStatus extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   MeasureReportStatus withElement(Element? newElement) {
-    return MeasureReportStatus._(validatedValue: value, element: newElement);
+    return MeasureReportStatus._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

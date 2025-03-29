@@ -107,7 +107,10 @@ class ResponseType extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   ResponseType withElement(Element? newElement) {
-    return ResponseType._(validatedValue: value, element: newElement);
+    return ResponseType._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

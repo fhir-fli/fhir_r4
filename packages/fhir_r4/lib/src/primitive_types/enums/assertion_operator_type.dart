@@ -181,7 +181,10 @@ class AssertionOperatorType extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   AssertionOperatorType withElement(Element? newElement) {
-    return AssertionOperatorType._(validatedValue: value, element: newElement);
+    return AssertionOperatorType._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

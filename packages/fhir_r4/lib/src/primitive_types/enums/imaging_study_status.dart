@@ -127,7 +127,10 @@ class ImagingStudyStatus extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   ImagingStudyStatus withElement(Element? newElement) {
-    return ImagingStudyStatus._(validatedValue: value, element: newElement);
+    return ImagingStudyStatus._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

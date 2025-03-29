@@ -121,7 +121,9 @@ class IngredientManufacturerRole extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   IngredientManufacturerRole withElement(Element? newElement) {
     return IngredientManufacturerRole._(
-        validatedValue: value, element: newElement,);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

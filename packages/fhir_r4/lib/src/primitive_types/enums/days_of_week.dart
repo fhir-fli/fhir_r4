@@ -143,7 +143,10 @@ class DaysOfWeek extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   DaysOfWeek withElement(Element? newElement) {
-    return DaysOfWeek._(validatedValue: value, element: newElement);
+    return DaysOfWeek._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

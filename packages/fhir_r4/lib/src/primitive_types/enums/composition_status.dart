@@ -117,7 +117,10 @@ class CompositionStatus extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   CompositionStatus withElement(Element? newElement) {
-    return CompositionStatus._(validatedValue: value, element: newElement);
+    return CompositionStatus._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

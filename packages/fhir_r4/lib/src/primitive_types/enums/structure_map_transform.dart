@@ -235,7 +235,10 @@ class StructureMapTransform extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   StructureMapTransform withElement(Element? newElement) {
-    return StructureMapTransform._(validatedValue: value, element: newElement);
+    return StructureMapTransform._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

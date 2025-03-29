@@ -101,7 +101,9 @@ class StructureMapContextType extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   StructureMapContextType withElement(Element? newElement) {
     return StructureMapContextType._(
-        validatedValue: value, element: newElement,);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

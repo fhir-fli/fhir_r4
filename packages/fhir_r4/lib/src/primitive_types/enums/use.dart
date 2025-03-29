@@ -107,7 +107,10 @@ class Use extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   Use withElement(Element? newElement) {
-    return Use._(validatedValue: value, element: newElement);
+    return Use._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

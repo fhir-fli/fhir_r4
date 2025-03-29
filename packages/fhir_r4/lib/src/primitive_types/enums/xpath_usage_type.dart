@@ -127,7 +127,10 @@ class XPathUsageType extends FhirCodeEnum {
 
   /// Returns the enum value with an element attached
   XPathUsageType withElement(Element? newElement) {
-    return XPathUsageType._(validatedValue: value, element: newElement);
+    return XPathUsageType._(
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys

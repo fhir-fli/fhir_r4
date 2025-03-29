@@ -112,7 +112,9 @@ class StructureMapGroupTypeMode extends FhirCodeEnum {
   /// Returns the enum value with an element attached
   StructureMapGroupTypeMode withElement(Element? newElement) {
     return StructureMapGroupTypeMode._(
-        validatedValue: value, element: newElement,);
+      validatedValue: value,
+      element: newElement,
+    );
   }
 
   /// Serializes the instance to JSON with standardized keys
